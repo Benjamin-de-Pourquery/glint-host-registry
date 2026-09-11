@@ -164,8 +164,8 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
           <p className="text-sm font-medium text-slate-900">{t("checkInLink")}</p>
           {isEnabled && checkInUrl ? (
             <div className="space-y-3">
-              <div className="flex flex-wrap items-center gap-2">
-                <code className="flex-1 truncate rounded-lg bg-slate-100 px-3 py-2 text-xs">
+              <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+                <code className="min-w-0 max-w-full overflow-x-auto rounded-lg bg-slate-100 px-3 py-2 text-xs sm:flex-1">
                   {checkInUrl}
                 </code>
                 <Button variant="outline" size="sm" onClick={copyLink}>

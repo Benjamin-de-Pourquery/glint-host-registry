@@ -111,7 +111,7 @@ export default async function DashboardPage({ params }: Props) {
 
       <div>
         <h2 className="mb-4 text-lg font-semibold text-slate-900">{t("overview")}</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           <StatCard icon={Building2} label={t("stats.total")} value={properties.length} />
           <StatCard icon={CheckCircle2} label={t("stats.ready")} value={stats.ready} color="text-emerald-600" />
           <StatCard icon={AlertTriangle} label={t("stats.action")} value={stats.action_needed} color="text-amber-600" />
@@ -132,14 +132,14 @@ export default async function DashboardPage({ params }: Props) {
             ) : (
               <ul className="space-y-3">
                 {upcoming.map((p) => (
-                  <li key={p.id} className="flex items-center justify-between rounded-lg border border-slate-100 p-3">
-                    <div>
+                  <li key={p.id} className="flex flex-col gap-2 rounded-lg border border-slate-100 p-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="min-w-0">
                       <Link href={`/${locale}/app/properties/${p.id}`} className="font-medium text-slate-900 hover:text-emerald-600">
                         {p.name}
                       </Link>
                       <p className="text-sm text-slate-500">{p.city}</p>
                     </div>
-                    <div className="text-right">
+                    <div className="shrink-0 sm:text-right">
                       <p className="text-sm font-medium text-slate-700">
                         {format(p.registration!.expiryDate!, "dd MMM yyyy")}
                       </p>
@@ -188,14 +188,14 @@ export default async function DashboardPage({ params }: Props) {
           <CardContent>
             <div className="divide-y divide-slate-100">
               {propertyStatuses.map((p) => (
-                <div key={p.id} className="flex items-center justify-between py-3">
-                  <div>
+                <div key={p.id} className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
                     <Link href={`/${locale}/app/properties/${p.id}`} className="font-medium text-slate-900 hover:text-emerald-600">
                       {p.name}
                     </Link>
                     <p className="text-sm text-slate-500">{p.city}, {p.country}</p>
                   </div>
-                  <ComplianceBadge status={p.complianceStatus} />
+                  <ComplianceBadge status={p.complianceStatus} className="shrink-0 self-start sm:self-center" />
                 </div>
               ))}
             </div>

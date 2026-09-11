@@ -104,27 +104,27 @@ export function PropertyDetailTabs({ property, locale }: Props) {
   const propertyTypeLabel = tForm(`types.${property.propertyType}`);
 
   return (
-    <Tabs value={activeTab} onValueChange={(v) => setTab(v as PropertyDetailTab)}>
-      <div className="sticky top-0 z-10 -mx-1 bg-white/95 px-1 pb-2 pt-1 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <Tabs value={activeTab} onValueChange={(v) => setTab(v as PropertyDetailTab)} className="min-w-0">
+      <div className="sticky top-0 z-10 -mx-4 bg-white/95 px-4 pb-2 pt-1 backdrop-blur supports-[backdrop-filter]:bg-white/80 sm:-mx-0 sm:px-0">
         <TabsList
           className={cn(
-            "h-auto w-full justify-start overflow-x-auto rounded-none border-0 border-b border-slate-200 bg-transparent p-0",
-            "scrollbar-none"
+            "h-auto w-full max-w-full justify-start gap-0 overflow-x-auto rounded-none border-0 border-b border-slate-200 bg-transparent p-0",
+            "[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           )}
         >
-          <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent px-4 py-2.5 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="overview" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
             {t("tabs.overview")}
           </TabsTrigger>
-          <TabsTrigger value="compliance" className="rounded-none border-b-2 border-transparent px-4 py-2.5 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="compliance" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
             {t("tabs.compliance")}
           </TabsTrigger>
-          <TabsTrigger value="register" className="rounded-none border-b-2 border-transparent px-4 py-2.5 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="register" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
             {t("tabs.register")}
           </TabsTrigger>
-          <TabsTrigger value="listings" className="rounded-none border-b-2 border-transparent px-4 py-2.5 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="listings" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
             {t("tabs.listings")}
           </TabsTrigger>
-          <TabsTrigger value="notes" className="rounded-none border-b-2 border-transparent px-4 py-2.5 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="notes" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
             {t("tabs.notes")}
           </TabsTrigger>
         </TabsList>
@@ -132,9 +132,9 @@ export function PropertyDetailTabs({ property, locale }: Props) {
 
       <TabsContent value="overview" className="mt-6">
         <div className="mx-auto max-w-2xl space-y-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h2 className="text-lg font-semibold text-slate-900">{t("overview.title")}</h2>
-            <ComplianceBadge status={complianceStatus} />
+            <ComplianceBadge status={complianceStatus} className="shrink-0 self-start sm:self-center" />
           </div>
 
           <PlaybookNextActionTeaser

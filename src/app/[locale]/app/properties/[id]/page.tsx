@@ -31,17 +31,17 @@ export default async function PropertyDetailPage({ params }: Props) {
   if (!property) notFound();
 
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div className="flex items-start gap-4">
+        <div className="flex min-w-0 items-start gap-4">
           <Link href={`/${locale}/app/properties${property.archived ? "?tab=archived" : ""}`}>
             <Button variant="ghost" size="sm">
               <ArrowLeft className="h-4 w-4" />
             </Button>
           </Link>
-          <div>
+          <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl font-bold text-slate-900">{property.name}</h1>
+              <h1 className="text-2xl font-bold text-slate-900 break-words">{property.name}</h1>
               {property.archived && (
                 <Badge variant="secondary">{t("card.archived")}</Badge>
               )}

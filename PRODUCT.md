@@ -33,22 +33,33 @@ Add, edit, and archive properties with:
 - Property type (apartment, house, studio, room, other)
 - Platform listing URLs (Airbnb, Booking, Vrbo)
 - Notes
+- **Archive / restore** — soft-delete via `archived` flag; archived properties are hidden from the active list and do not count toward plan limits
 
-### 5. Registration & compliance
+### 5. Guided compliance playbooks
+Data-driven playbooks keyed by country and city guide hosts step-by-step through local STR registration:
+
+- **Next action card** on each property — what to do now, with links to official portals and one-click copy of prepared property fields
+- Step progress (mark done / skip) persisted per property
+- Full FR playbooks: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
+- Country stubs: Spain, Italy, Netherlands
+
+Playbooks link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
+
+### 6. Registration & compliance
 Per-property compliance tracking:
 - Registration number and issuing authority/municipality
 - Status (not started, pending, active, expired)
 - Issue and expiry/renewal dates
-- Editable local requirements checklist (seeded with EU/FR defaults)
+- Editable local requirements checklist (seeded with EU/FR defaults; complements guided playbooks)
 - Notes field
 
-### 6. Alerts
+### 7. Alerts
 Automatic in-app notifications when registrations approach expiry at 30, 14, and 7 days, plus expired alerts. Notification center with mark-as-read.
 
-### 7. Export / listing readiness
+### 8. Export / listing readiness
 Per-property printable HTML compliance summary with registration number, authority, status, dates, and checklist completion. Copy registration number to clipboard.
 
-### 8. Billing
+### 9. Billing
 Stripe Checkout subscriptions:
 - **Starter** — up to 3 properties, €19/month
 - **Pro** — up to 50 properties, €49/month
@@ -56,10 +67,10 @@ Stripe Checkout subscriptions:
 - Stripe Customer Portal for billing management
 - Property slot gating by plan
 
-### 9. Legal pages
+### 10. Legal pages
 Privacy Policy, Terms of Service, and Legal Notice (Mentions légales) in both FR and EN.
 
-### 10. Settings
+### 11. Settings
 Account name, language toggle (FR/EN), billing management, and demo data seed button (loads sample properties in French cities).
 
 ## Plans
@@ -73,7 +84,7 @@ Account name, language toggle (FR/EN), billing management, and demo data seed bu
 
 1. Sign up at `/en/signup`
 2. Go to Settings → "Load demo data" (grants starter access + 3 sample properties)
-3. Explore dashboard, property compliance, export, and notifications
+3. Explore dashboard, property compliance playbooks (Next action), archive/restore, export, and notifications
 
 ## Regulatory context
 

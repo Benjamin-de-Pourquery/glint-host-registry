@@ -224,6 +224,57 @@
     "tabs": {
       "active": "Actifs",
       "archived": "Archivés"
+    },
+    "emptyArchived": {
+      "title": "Aucun bien archivé",
+      "description": "Les biens archivés sont masqués du portefeuille actif et ne comptent pas dans la limite de votre plan."
+    },
+    "archiveAction": {
+      "cancel": "Annuler",
+      "error": "Impossible de mettre à jour le bien",
+      "archived": "Bien archivé",
+      "restored": "Bien restauré",
+      "archive": {
+        "title": "Archiver {name} ?",
+        "description": "Ce bien sera déplacé vers Archivés. Il ne comptera plus dans la limite de votre plan. Vous pourrez le restaurer à tout moment.",
+        "confirm": "Archiver le bien"
+      },
+      "restore": {
+        "title": "Restaurer {name} ?",
+        "description": "Ce bien reviendra dans votre portefeuille actif et comptera à nouveau dans la limite de votre plan.",
+        "confirm": "Restaurer le bien"
+      }
+    }
+  },
+  "playbook": {
+    "guidedCompliance": "Conformité guidée",
+    "nextAction": "Prochaine action",
+    "openOfficial": "Ouvrir la procédure officielle",
+    "copyFields": "Copier les champs préparés",
+    "copied": "Copié !",
+    "markDone": "Marquer comme fait",
+    "skip": "Ignorer",
+    "skipped": "Ignoré",
+    "undo": "Annuler",
+    "current": "Étape en cours",
+    "stepsTitle": "Playbook de conformité",
+    "progress": "{done} sur {total} étapes terminées",
+    "skippedCount": "{count} ignorée(s)",
+    "prepare": "À préparer",
+    "timeline": "Délai",
+    "verifyUrl": "Certains liens sont indicatifs — vérifiez la procédure actuelle sur le site officiel.",
+    "loading": "Chargement du playbook…",
+    "loadError": "Impossible de charger le playbook de conformité.",
+    "retry": "Réessayer",
+    "noPlaybook": "Aucun playbook guidé n'est disponible pour cette localisation.",
+    "stepDone": "Étape marquée comme faite",
+    "stepSkipped": "Étape ignorée",
+    "updateError": "Impossible de mettre à jour l'étape",
+    "nothingToCopy": "Aucun champ à copier pour cette étape",
+    "openLink": "Lien officiel",
+    "allDone": {
+      "title": "Playbook terminé",
+      "description": "Vous avez parcouru toutes les étapes guidées. Maintenez vos informations d'enregistrement à jour ci-dessous."
     }
   },
   "compliance": {
@@ -245,7 +296,7 @@
       "save": "Enregistrer"
     },
     "checklist": {
-      "title": "Exigences locales",
+      "title": "Exigences locales complémentaires",
       "add": "Ajouter un élément",
       "placeholder": "Description de l'exigence",
       "empty": "Aucun élément"

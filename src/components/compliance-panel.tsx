@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ComplianceBadge } from "@/components/compliance-badge";
+import { PlaybookPanel } from "@/components/playbook-panel";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
 import { toast } from "sonner";
@@ -33,8 +34,11 @@ type Registration = {
 type Props = {
   propertyId: string;
   propertyName: string;
+  address: string;
   city: string;
   country: string;
+  propertyType: string;
+  notes?: string | null;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
   locale: string;
@@ -43,8 +47,11 @@ type Props = {
 export function CompliancePanel({
   propertyId,
   propertyName,
+  address,
   city,
   country,
+  propertyType,
+  notes,
   registration,
   checklistItems: initialChecklist,
   locale,
@@ -126,6 +133,19 @@ export function CompliancePanel({
 
   return (
     <div className="space-y-6">
+      <PlaybookPanel
+        propertyId={propertyId}
+        property={{
+          name: propertyName,
+          address,
+          city,
+          country,
+          propertyType,
+          notes,
+        }}
+        locale={locale}
+      />
+
       <Card>
         <CardHeader>
           <CardTitle>{t("readiness.title")}</CardTitle>

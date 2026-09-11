@@ -79,7 +79,21 @@ model Property {
   user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   registration Registration?
   checklistItems ChecklistItem[]
+  playbookProgress PlaybookStepProgress[]
   notifications  Notification[]
+}
+
+model PlaybookStepProgress {
+  id          String    @id @default(cuid())
+  propertyId  String
+  stepKey     String
+  status      String    @default("pending")
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  property    Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, stepKey])
 }
 
 model Registration {

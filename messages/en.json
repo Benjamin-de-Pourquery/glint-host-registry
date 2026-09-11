@@ -18,73 +18,107 @@
   },
   "landing": {
     "hero": {
-      "title": "Stay compliant with EU short-term rental rules",
-      "subtitle": "Track registration numbers, deadlines, and local requirements across your portfolio — before platforms block your listings.",
-      "cta": "Start your 14-day trial",
-      "ctaSecondary": "See how it works",
-      "badge": "Regulation (EU) 2024/1028 ready"
+      "title": "Short-term rental compliance — guided and operational",
+      "subtitle": "City-specific compliance steps, guest register, registration numbers, and listing prep. Glint guides you — it does not file at the mairie for you.",
+      "cta": "Start 14-day free trial",
+      "ctaLogin": "Sign in",
+      "ctaSecondary": "Explore features",
+      "badge": "Regulation (EU) 2024/1028 framework"
+    },
+    "heroMock": {
+      "property": "Marais Apartment",
+      "status": "Action needed",
+      "nextAction": "Next action",
+      "nextActionText": "Complete online declaration — Paris",
+      "tabs": {
+        "overview": "Overview",
+        "compliance": "Compliance",
+        "register": "Register",
+        "listings": "Listings"
+      },
+      "guestTitle": "Guest register",
+      "guestLink": "Check-in link active",
+      "guestRetention": "6-month retention"
+    },
+    "trust": {
+      "regulation": "Regulation (EU) 2024/1028",
+      "cities": "Paris, Lyon, Marseille, Bordeaux, Nice",
+      "bilingual": "FR + EN interface"
     },
     "problem": {
-      "title": "The compliance deadline is approaching",
-      "description": "From May 2026, online platforms must verify valid registration numbers before publishing EU short-term rental listings. Hosts without proper registration risk delisting, fines, and lost revenue.",
+      "title": "Compliance is more than a registration number",
+      "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
       "points": {
-        "1": "Each EU city has different registration rules and authorities",
-        "2": "Registration numbers must be displayed on every platform listing",
-        "3": "Renewals and local requirements are easy to miss across multiple properties"
+        "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
+        "2": "Platforms will require valid numbers on every listing from 2026",
+        "3": "The guest register (fiche de police) remains an operational obligation in France"
       }
     },
     "solution": {
-      "title": "One registry for your entire portfolio",
-      "description": "Host Registry gives professional hosts and small property managers a single source of truth for compliance status, deadlines, and listing readiness.",
+      "title": "One compliance cockpit for your portfolio",
+      "description": "Glint centralizes guided compliance steps, guest register, registration tracking, and listing prep — with a clear next action per property.",
       "points": {
-        "1": "Centralize registration numbers and issuing authorities",
-        "2": "Track expiry dates with proactive alerts at 30, 14, and 7 days",
-        "3": "Export listing-ready summaries for Airbnb, Booking, and Vrbo"
+        "1": "City compliance tunnels with primary vs secondary residence branching",
+        "2": "Guest register: public link, signature, 6-month retention, CSV export",
+        "3": "Per-property tabs — Overview, Compliance, Register, Listings, Notes — plus archive/restore"
       }
     },
     "features": {
-      "title": "Built for EU hosts",
+      "title": "Everything you need to stay compliant",
+      "subtitle": "Local guidance, operational guest register, and portfolio tracking — in a clean bilingual interface.",
+      "compliance": {
+        "title": "City-guided compliance",
+        "description": "Step-by-step tunnels for Paris, Lyon, Marseille, Bordeaux, and Nice — with official form links, regulations, and residency branching."
+      },
+      "guestRegister": {
+        "title": "Guest register",
+        "description": "Public check-in link or QR, digital signature, 6-month retention, CSV export, and printable police forms."
+      },
+      "tabs": {
+        "title": "Structured property workspace",
+        "description": "Five tabs per property: Overview, Compliance, Register, Listings, and Notes — all in one place."
+      },
+      "nextAction": {
+        "title": "Next-action engine",
+        "description": "Each property surfaces the priority step to tackle — no more spreadsheets or scattered folders."
+      },
       "portfolio": {
-        "title": "Portfolio overview",
-        "description": "See compliance status across all properties at a glance — Ready, Action needed, Expired, or Not started."
+        "title": "Portfolio & archive",
+        "description": "Compliance status overview, expiry alerts, archive and restore without losing history."
       },
-      "tracking": {
-        "title": "Registration tracking",
-        "description": "Store registration numbers, issuing municipalities, issue dates, and renewal deadlines per property."
-      },
-      "checklist": {
-        "title": "Local requirements",
-        "description": "Editable checklists seeded with sensible EU and France defaults for each property."
-      },
-      "alerts": {
-        "title": "Expiry alerts",
-        "description": "In-app notifications when registrations approach renewal — never miss a deadline."
-      },
-      "export": {
-        "title": "Listing readiness",
-        "description": "Copy registration numbers instantly or export a printable compliance summary per property."
-      },
-      "billing": {
-        "title": "Simple pricing",
-        "description": "Starter for up to 3 properties, Pro for growing portfolios — no hidden fees."
+      "listings": {
+        "title": "Listing preparation",
+        "description": "Registration numbers, platform URLs, and exportable summaries for Airbnb, Booking, and Vrbo."
       }
     },
     "pricing": {
       "title": "Straightforward plans",
-      "subtitle": "All plans include a 14-day free trial. Cancel anytime.",
+      "subtitle": "14-day free trial on every plan. Cancel anytime.",
       "starter": {
         "name": "Starter",
         "price": "€19",
         "period": "/month",
         "description": "For hosts with up to 3 properties",
-        "features": ["Up to 3 properties", "Compliance dashboard", "Expiry alerts", "PDF export", "FR + EN interface"]
+        "features": [
+          "Up to 3 active properties",
+          "City-guided compliance",
+          "Guest register",
+          "Expiry alerts",
+          "PDF export & FR + EN interface"
+        ]
       },
       "pro": {
         "name": "Pro",
         "price": "€49",
         "period": "/month",
         "description": "For property managers with larger portfolios",
-        "features": ["Up to 50 properties", "Everything in Starter", "Priority support", "Bulk export", "Team-ready workflows"],
+        "features": [
+          "Up to 50 active properties",
+          "Everything in Starter",
+          "Guest register",
+          "Bulk export & archiving",
+          "Priority support"
+        ],
         "badge": "Most popular"
       },
       "cta": "Start free trial"
@@ -93,34 +127,36 @@
       "title": "Frequently asked questions",
       "items": {
         "1": {
-          "q": "What is Regulation (EU) 2024/1028?",
-          "a": "It is EU legislation requiring short-term rental hosts to obtain registration numbers from local authorities. Online platforms must verify these numbers before publishing listings in the EU."
+          "q": "Does Glint file compliance steps at the mairie for me?",
+          "a": "No. Glint does not replace local authorities — it guides you through compliance tunnels, links official forms and rules, and helps you track numbers, guest register, and listings."
         },
         "2": {
-          "q": "When does this apply?",
-          "a": "Member states are implementing national rules now, with full platform verification requirements expected by May 2026. Starting early protects your listings."
+          "q": "Which cities have guided compliance steps?",
+          "a": "Paris, Lyon, Marseille, Bordeaux, and Nice have full guided tunnels with primary vs secondary residence branching. Other French and EU cities use adaptable templates."
         },
         "3": {
-          "q": "Does Host Registry register my property for me?",
-          "a": "No — you still register with your local municipality. Host Registry helps you track numbers, deadlines, and requirements so you stay compliant."
+          "q": "What is the guest register?",
+          "a": "In France, hosts must collect a police form (fiche de police) for foreign guests. Glint provides a public link or QR, signature capture, 6-month retention, and CSV or print export."
         },
         "4": {
-          "q": "Which countries are supported?",
-          "a": "Host Registry supports all EU member states with editable local requirement checklists. Default templates include France-focused items."
+          "q": "What is Regulation (EU) 2024/1028?",
+          "a": "This regulation requires hosts to obtain a local registration number and platforms to verify it before publishing listings. Glint helps you prepare and track these obligations."
         },
         "5": {
-          "q": "Can I export data for platform verification?",
-          "a": "Yes. Each property has a listing readiness summary with your registration number, authority, and status — copyable or exportable as PDF."
+          "q": "Can I archive a property without losing data?",
+          "a": "Yes. Archiving removes the property from your active portfolio and plan limit while keeping compliance steps, guest register, and history. Restore in one click."
         }
       }
     },
     "cta": {
-      "title": "Protect your listings before May 2026",
-      "subtitle": "Join hosts across Europe who are getting ahead of EU compliance requirements.",
-      "button": "Create your account"
+      "title": "Take control of your compliance",
+      "subtitle": "Guided compliance, guest register, and portfolio tracking — ready before the May 2026 platform deadline.",
+      "button": "Start 14-day free trial",
+      "login": "Sign in"
     },
     "footer": {
       "product": "Product",
+      "account": "Account",
       "legal": "Legal",
       "company": "Glint — micro-entreprise",
       "privacy": "Privacy Policy",

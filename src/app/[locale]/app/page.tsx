@@ -9,7 +9,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { PortfolioOverview } from "@/components/portfolio-overview";
+import { OnboardingChecklist } from "@/components/onboarding-checklist";
+import { EmptyState } from "@/components/empty-state";
 import { format, differenceInDays } from "date-fns";
+import { Building2 } from "lucide-react";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -23,6 +26,12 @@ export default async function DashboardPage({ params }: Props) {
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
+    select: {
+      name: true,
+      email: true,
+      subscriptionStatus: true,
+      onboardingDismissedAt: true,
+    },
   });
 
   await syncExpiryNotifications(session.user.id);
@@ -32,6 +41,7 @@ export default async function DashboardPage({ params }: Props) {
     include: {
       registration: true,
       checklistItems: true,
+      guestRegisterToken: true,
     },
     orderBy: { name: "asc" },
   });
@@ -77,11 +87,18 @@ export default async function DashboardPage({ params }: Props) {
 
   const subscribed = user && hasActiveSubscription(user.subscriptionStatus);
 
+  const onboardingSteps = {
+    addProperty: properties.length > 0,
+    setResidency: properties.some((p) => Boolean(p.residencyStatus)),
+    enableGuestRegister: properties.some((p) => p.guestRegisterToken?.enabled),
+  };
+  const firstPropertyId = properties[0]?.id ?? null;
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">{t("title")}</h1>
+          <h1 className="app-display text-2xl font-bold tracking-tight text-slate-900">{t("title")}</h1>
           <p className="text-slate-600">
             {t("welcome", { name: user?.name || session.user.email || "" })}
           </p>
@@ -107,6 +124,32 @@ export default async function DashboardPage({ params }: Props) {
             </Link>
           </CardContent>
         </Card>
+      )}
+
+      <OnboardingChecklist
+        locale={locale}
+        subscribed={Boolean(subscribed)}
+        dismissed={Boolean(user?.onboardingDismissedAt)}
+        steps={onboardingSteps}
+        firstPropertyId={firstPropertyId}
+      />
+
+      {properties.length === 0 && (
+        <EmptyState
+          icon={Building2}
+          title={t("empty.title")}
+          description={subscribed ? t("empty.description") : t("empty.subscribeDescription")}
+        >
+          {subscribed ? (
+            <Link href={`/${locale}/app/properties/new`}>
+              <Button>{t("empty.cta")}</Button>
+            </Link>
+          ) : (
+            <Link href={`/${locale}/app/settings`}>
+              <Button>{t("subscribe.cta")}</Button>
+            </Link>
+          )}
+        </EmptyState>
       )}
 
       <PortfolioOverview
@@ -183,7 +226,7 @@ export default async function DashboardPage({ params }: Props) {
       {properties.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>{t("overview")}</CardTitle>
+            <CardTitle className="app-display">{t("overview")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="divide-y divide-slate-100">

@@ -230,6 +230,33 @@
       "title": "Abonnez-vous pour ajouter des biens",
       "description": "Choisissez un plan pour gérer votre portefeuille locatif.",
       "cta": "Voir les plans"
+    },
+    "empty": {
+      "title": "Votre portefeuille est vide",
+      "description": "Ajoutez votre premier bien pour suivre la conformité, le registre voyageurs et les échéances.",
+      "subscribeDescription": "Abonnez-vous à un plan, puis ajoutez votre premier bien pour commencer.",
+      "cta": "Ajouter votre premier bien"
+    }
+  },
+  "onboarding": {
+    "title": "Démarrez avec Glint",
+    "subtitle": "Complétez ces trois étapes pour configurer votre premier bien.",
+    "progress": "{done} sur {total} terminées",
+    "dismiss": "Masquer la checklist",
+    "cta": "Aller",
+    "steps": {
+      "addProperty": {
+        "title": "Ajouter un bien",
+        "description": "Créez votre première annonce dans le portefeuille."
+      },
+      "setResidency": {
+        "title": "Définir le statut de résidence",
+        "description": "Indiquez s'il s'agit de votre résidence principale ou secondaire — les démarches s'adaptent."
+      },
+      "enableGuestRegister": {
+        "title": "Activer le lien registre voyageurs",
+        "description": "Générez un lien d'enregistrement public pour les fiches de police des voyageurs étrangers."
+      }
     }
   },
   "properties": {
@@ -288,6 +315,17 @@
     "emptyArchived": {
       "title": "Aucun bien archivé",
       "description": "Les biens archivés sont masqués du portefeuille actif et ne comptent pas dans la limite de votre plan."
+    },
+    "list": {
+      "compact": "Liste",
+      "cards": "Cartes",
+      "viewToggle": "Affichage des biens",
+      "nextAction": {
+        "ready": "Tout est prêt",
+        "action_needed": "Compléter les démarches",
+        "expired": "Renouveler l'enregistrement",
+        "not_started": "Commencer les démarches"
+      }
     },
     "archiveAction": {
       "cancel": "Annuler",
@@ -515,6 +553,11 @@
     "copied": "Copié",
     "recordsTitle": "Fiches voyageurs (période de conservation)",
     "noRecords": "Aucune fiche pour l'instant. Partagez le lien avec vos voyageurs à l'arrivée.",
+    "emptyRecords": {
+      "title": "Aucune fiche voyageur",
+      "description": "Partagez votre lien d'enregistrement avec les voyageurs étrangers à l'arrivée. Ils signeront la fiche de police numériquement — conservation 6 mois.",
+      "cta": "Copier le lien d'enregistrement"
+    },
     "exportCsv": "Exporter CSV",
     "printFiche": "Imprimer la fiche",
     "policeFormRequired": "Fiche de police",

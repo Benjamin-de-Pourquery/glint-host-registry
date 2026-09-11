@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { AppSidebar, SidebarBrand, SidebarContent } from "@/components/app-sidebar";
@@ -13,9 +14,10 @@ type Props = {
 
 export function AppShell({ children, unreadCount }: Props) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const t = useTranslations("nav");
 
   return (
-    <div className="flex min-h-screen overflow-x-hidden bg-slate-50">
+    <div className="app-shell flex min-h-screen overflow-x-hidden bg-slate-50">
       <AppSidebar unreadCount={unreadCount} />
 
       <div className="flex min-w-0 flex-1 flex-col">
@@ -24,10 +26,10 @@ export function AppShell({ children, unreadCount }: Props) {
             type="button"
             variant="ghost"
             size="icon"
-            className="relative shrink-0"
+            className="relative shrink-0 focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
             aria-expanded={mobileNavOpen}
             aria-controls="app-mobile-nav"
-            aria-label="Open navigation menu"
+            aria-label={t("openMenu")}
             onClick={() => setMobileNavOpen(true)}
           >
             <Menu className="h-5 w-5" />
@@ -57,7 +59,7 @@ export function AppShell({ children, unreadCount }: Props) {
             className="w-64 max-w-[85vw] p-0 [&>button]:hidden"
             aria-describedby={undefined}
           >
-            <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+            <SheetTitle className="sr-only">{t("menu")}</SheetTitle>
             <SidebarContent
               unreadCount={unreadCount}
               onNavigate={() => setMobileNavOpen(false)}

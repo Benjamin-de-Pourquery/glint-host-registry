@@ -19,6 +19,7 @@ model User {
   subscriptionPlan     String         @default("none")
   subscriptionStatus   String         @default("inactive")
   stripeSubscriptionId String?
+  onboardingDismissedAt DateTime?
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
   accounts             Account[]

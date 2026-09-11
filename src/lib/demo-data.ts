@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_CHECKLIST_FR } from "@/lib/compliance";
+import { generateGuestRegisterToken } from "@/lib/guest-register";
 
 const DEMO_PROPERTIES = [
   {
@@ -94,6 +95,16 @@ export async function seedDemoData(userId: string, locale: string) {
           title: items[i],
           completed: i < 3 && demo.status === "active",
           sortOrder: i,
+        },
+      });
+    }
+
+    if (demo.name === "Le Marais Studio") {
+      await prisma.guestRegisterToken.create({
+        data: {
+          propertyId: property.id,
+          token: generateGuestRegisterToken(),
+          enabled: true,
         },
       });
     }

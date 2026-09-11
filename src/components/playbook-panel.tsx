@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -35,7 +34,6 @@ import {
   ExternalLink,
   Loader2,
   SkipForward,
-  Sparkles,
   AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -46,6 +44,7 @@ type Props = {
   property: PropertyFieldValues;
   locale: string;
   onResidencyChange?: (status: ResidencyStatus | null) => void;
+  compact?: boolean;
 };
 
 type PlaybookResponse = {
@@ -55,7 +54,13 @@ type PlaybookResponse = {
   summary: { completed: number; total: number; skipped: number };
 };
 
-export function PlaybookPanel({ propertyId, property, locale, onResidencyChange }: Props) {
+export function PlaybookPanel({
+  propertyId,
+  property,
+  locale,
+  onResidencyChange,
+  compact = false,
+}: Props) {
   const t = useTranslations("playbook");
   const uiLocale = (locale === "fr" ? "fr" : "en") as "en" | "fr";
 
@@ -146,11 +151,11 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
     const stepCtaLabelKey = stepCta ? getCtaLabelKey(stepCta.role) : "openLink";
 
     return (
-      <div className="mt-3 space-y-3 border-t border-slate-100 pt-3">
+      <div className="border-t border-slate-100 px-4 pb-4 pt-3">
         <p className="text-sm text-slate-600">{step.instruction[uiLocale]}</p>
 
         {preparedFields.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {preparedFields.map((field) => (
               <CopyFieldChip
                 key={field.key}
@@ -163,7 +168,7 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
         )}
 
         {step.officialUrls.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2">
             {stepCta && (
               <a href={stepCta.url} target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" size="sm">
@@ -186,7 +191,7 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
         )}
 
         {status === "pending" && (
-          <div className="flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             <Button
               variant="secondary"
               size="sm"
@@ -216,6 +221,7 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
           <Button
             variant="ghost"
             size="sm"
+            className="mt-3"
             onClick={() => updateStep(step.key, "pending")}
             disabled={updating === step.key}
           >
@@ -228,36 +234,30 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
 
   if (loading) {
     return (
-      <Card>
-        <CardContent className="flex items-center justify-center gap-2 py-12 text-slate-500">
-          <Loader2 className="h-5 w-5 animate-spin" />
-          {t("loading")}
-        </CardContent>
-      </Card>
+      <div className="flex items-center justify-center gap-2 py-16 text-slate-500">
+        <Loader2 className="h-5 w-5 animate-spin" />
+        {t("loading")}
+      </div>
     );
   }
 
   if (error) {
     return (
-      <Card className="border-red-200">
-        <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
-          <AlertCircle className="h-8 w-8 text-red-500" />
-          <p className="text-sm text-slate-600">{t("loadError")}</p>
-          <Button variant="outline" size="sm" onClick={loadPlaybook}>
-            {t("retry")}
-          </Button>
-        </CardContent>
-      </Card>
+      <div className="flex flex-col items-center gap-3 rounded-xl border border-red-200 bg-red-50/50 py-12 text-center">
+        <AlertCircle className="h-8 w-8 text-red-500" />
+        <p className="text-sm text-slate-600">{t("loadError")}</p>
+        <Button variant="outline" size="sm" onClick={loadPlaybook}>
+          {t("retry")}
+        </Button>
+      </div>
     );
   }
 
   if (!data?.playbook) {
     return (
-      <Card className="border-dashed">
-        <CardContent className="py-10 text-center">
-          <p className="text-sm text-slate-500">{t("noPlaybook")}</p>
-        </CardContent>
-      </Card>
+      <div className="rounded-xl border border-dashed border-slate-200 py-12 text-center">
+        <p className="text-sm text-slate-500">{t("noPlaybook")}</p>
+      </div>
     );
   }
 
@@ -278,28 +278,38 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
     : [];
 
   return (
-    <div className="space-y-4">
-      {/* Header + compact residency */}
-      <Card className="border-emerald-200 bg-gradient-to-br from-emerald-50 to-white">
-        <CardHeader className="pb-3">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 text-emerald-700">
-                <Sparkles className="h-5 w-5" />
-                <span className="text-sm font-medium">{t("guidedCompliance")}</span>
-              </div>
-              <CardTitle className="mt-1 text-lg">{playbook.title[uiLocale]}</CardTitle>
-            </div>
-            <div className="text-right text-sm text-slate-600">
-              <p className="font-semibold text-slate-900">
-                {t("progress", { done: summary.completed, total: summary.total })}
+    <div className="mx-auto max-w-2xl space-y-10">
+      <div className="space-y-4">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium text-emerald-700">{t("subtitle")}</p>
+            <h2 className="mt-0.5 text-xl font-semibold text-slate-900">
+              {playbook.title[uiLocale]}
+            </h2>
+            {!compact && (
+              <p className="mt-1 text-sm text-slate-600">{playbook.description[uiLocale]}</p>
+            )}
+            {playbook.sourceReviewedAt && (
+              <p className="mt-1 text-xs text-slate-400">
+                {t("sourceReviewed", { date: playbook.sourceReviewedAt })}
               </p>
-            </div>
+            )}
           </div>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-wrap items-center gap-3">
-            <Label className="shrink-0 text-xs text-slate-500">{t("residencyStatus")}</Label>
+          <p className="text-sm text-slate-600">
+            <span className="font-semibold text-slate-900">
+              {t("progress", { done: summary.completed, total: summary.total })}
+            </span>
+            {summary.skipped > 0 && (
+              <span className="ml-2 text-xs text-slate-500">
+                ({t("skippedCount", { count: summary.skipped })})
+              </span>
+            )}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-end gap-3">
+          <div className="min-w-[200px] flex-1">
+            <Label className="text-xs font-medium text-slate-500">{t("residencyStatus")}</Label>
             <Select
               value={residencyStatus ?? ""}
               onValueChange={(v) =>
@@ -307,7 +317,7 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
               }
               disabled={savingResidency}
             >
-              <SelectTrigger className="h-8 w-auto min-w-[180px] text-sm">
+              <SelectTrigger className="mt-1 h-9">
                 <SelectValue placeholder={t("residencyPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
@@ -317,135 +327,130 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
               </SelectContent>
             </Select>
           </div>
+          <p className="pb-1 text-xs text-slate-500">{t("residencyHint")}</p>
+        </div>
+      </div>
 
-          {allDone ? (
-            <div className="rounded-lg border border-emerald-200 bg-white p-4">
-              <p className="font-medium text-emerald-800">{t("allDone.title")}</p>
-              <p className="mt-1 text-sm text-slate-600">{t("allDone.description")}</p>
+      {allDone ? (
+        <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white px-6 py-8">
+          <p className="text-lg font-semibold text-emerald-800">{t("allDone.title")}</p>
+          <p className="mt-2 text-sm text-slate-600">{t("allDone.description")}</p>
+        </div>
+      ) : nextStep ? (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white px-6 py-8">
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <p className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                {t("nextAction")}
+              </p>
+              <Badge variant="outline" className="border-emerald-200 text-emerald-700">
+                {t("statusCurrent")}
+              </Badge>
             </div>
-          ) : nextStep ? (
-            <>
-              {/* Layer 1: Next action card */}
-              <div className="rounded-lg border border-emerald-200 bg-white p-4 shadow-sm">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                    {t("nextAction")}
-                  </p>
-                  <Badge variant="outline" className="border-emerald-200 text-emerald-700">
-                    {t("statusCurrent")}
-                  </Badge>
-                </div>
-                <h3 className="mt-2 text-lg font-semibold text-slate-900">
-                  {nextStep.title[uiLocale]}
-                </h3>
-                <p className="mt-1 text-sm text-slate-600">
-                  {getStepWhyNow(nextStep, uiLocale)}
-                </p>
+            <h3 className="mt-2 text-2xl font-bold text-slate-900">{nextStep.title[uiLocale]}</h3>
+            <p className="mt-3 text-base text-slate-600">
+              {getStepWhyNow(nextStep, uiLocale)}
+            </p>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {nextCta && (
-                    <a href={nextCta.url} target="_blank" rel="noopener noreferrer">
-                      <Button size="sm">
-                        {t(nextCtaLabelKey)}
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </a>
-                  )}
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => updateStep(nextStep.key, "done")}
-                    disabled={updating === nextStep.key}
-                  >
-                    {updating === nextStep.key ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Check className="h-4 w-4" />
-                    )}
-                    {t("markDone")}
+            <div className="mt-8 flex flex-wrap gap-2">
+              {nextCta && (
+                <a href={nextCta.url} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg">
+                    {t(nextCtaLabelKey)}
+                    <ExternalLink className="h-4 w-4" />
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => updateStep(nextStep.key, "skipped")}
-                    disabled={updating === nextStep.key}
-                  >
-                    <SkipForward className="h-4 w-4" />
-                    {t("skip")}
-                  </Button>
-                </div>
-
-                {nextPreparedFields.length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {nextPreparedFields.map((field) => (
-                      <CopyFieldChip
-                        key={field.key}
-                        label={field.label}
-                        value={field.value}
-                        copiedLabel={t("copied")}
-                      />
-                    ))}
-                  </div>
+                </a>
+              )}
+              <Button
+                variant="secondary"
+                size="lg"
+                onClick={() => updateStep(nextStep.key, "done")}
+                disabled={updating === nextStep.key}
+              >
+                {updating === nextStep.key ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Check className="h-4 w-4" />
                 )}
+                {t("markDone")}
+              </Button>
+              <Button
+                variant="ghost"
+                size="lg"
+                onClick={() => updateStep(nextStep.key, "skipped")}
+                disabled={updating === nextStep.key}
+              >
+                <SkipForward className="h-4 w-4" />
+                {t("skip")}
+              </Button>
+            </div>
+
+            {nextPreparedFields.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {nextPreparedFields.map((field) => (
+                  <CopyFieldChip
+                    key={field.key}
+                    label={field.label}
+                    value={field.value}
+                    copiedLabel={t("copied")}
+                  />
+                ))}
               </div>
+            )}
+          </div>
 
-              {/* Layer 2: What you need */}
-              {((nextStep.documentsDetailed?.length ?? 0) > 0 ||
-                nextStep.documents[uiLocale].length > 0) && (
-                <div className="rounded-lg border border-slate-200 bg-white p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    {t("whatYouNeed")}
-                  </p>
-                  {(nextStep.documentsDetailed?.length ?? 0) > 0 ? (
-                    <ul className="mt-2 space-y-1.5">
-                      {nextStep.documentsDetailed!.map((doc) => (
-                        <li key={doc.name.en} className="flex items-start gap-2 text-sm">
-                          <span className="mt-0.5 text-emerald-600">□</span>
-                          <span className="text-slate-700">{doc.name[uiLocale]}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <ul className="mt-2 space-y-1">
-                      {nextStep.documents[uiLocale].map((doc: string) => (
-                        <li key={doc} className="flex items-start gap-2 text-sm text-slate-700">
-                          <span className="text-emerald-600">□</span>
-                          {doc}
-                        </li>
-                      ))}
-                    </ul>
+          {((nextStep.documentsDetailed?.length ?? 0) > 0 ||
+            nextStep.documents[uiLocale].length > 0) && (
+            <div className="rounded-xl border border-slate-200 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                {t("whatYouNeed")}
+              </p>
+              {(nextStep.documentsDetailed?.length ?? 0) > 0 ? (
+                <ul className="mt-2 space-y-1.5">
+                  {nextStep.documentsDetailed!.map((doc) => (
+                    <li key={doc.name.en} className="flex items-start gap-2 text-sm">
+                      <span className="mt-0.5 text-emerald-600">□</span>
+                      <span className="text-slate-700">{doc.name[uiLocale]}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="mt-2 space-y-1">
+                  {nextStep.documents[uiLocale].map((doc: string) => (
+                    <li key={doc} className="flex items-start gap-2 text-sm text-slate-700">
+                      <span className="text-emerald-600">□</span>
+                      {doc}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+
+          {nextStep.pitfalls && (
+            <details className="group rounded-xl border border-amber-100 bg-amber-50/50">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-5 py-3 text-sm font-medium text-amber-900 [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2">
+                  {t("localPitfalls")}
+                  {playbook.city && (
+                    <Badge variant="outline" className="border-amber-200 text-amber-800">
+                      {playbook.city}
+                    </Badge>
                   )}
-                </div>
-              )}
+                </span>
+                <ChevronDown className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" />
+              </summary>
+              <p className="px-5 pb-4 text-sm text-amber-800">{nextStep.pitfalls[uiLocale]}</p>
+            </details>
+          )}
+        </div>
+      ) : null}
 
-              {/* Layer 3: Local pitfalls (collapsed) */}
-              {nextStep.pitfalls && (
-                <details className="group rounded-lg border border-amber-100 bg-amber-50/50">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 text-sm font-medium text-amber-900 [&::-webkit-details-marker]:hidden">
-                    <span className="flex items-center gap-2">
-                      {t("localPitfalls")}
-                      {playbook.city && (
-                        <Badge variant="outline" className="border-amber-200 text-amber-800">
-                          {playbook.city}
-                        </Badge>
-                      )}
-                    </span>
-                    <ChevronDown className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" />
-                  </summary>
-                  <p className="px-4 pb-3 text-sm text-amber-800">{nextStep.pitfalls[uiLocale]}</p>
-                </details>
-              )}
-            </>
-          ) : null}
-        </CardContent>
-      </Card>
-
-      {/* Layer 4: All steps timeline */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-base">{t("stepsTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-1">
+      <div className="space-y-3">
+        <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+          {t("stepsTitle")}
+        </h3>
+        <div className="divide-y divide-slate-100 rounded-xl border border-slate-200">
           {visibleSteps.map((step, index) => {
             const status = progressMap.get(step.key) ?? "pending";
             const isNext = step.key === nextStepKey;
@@ -455,20 +460,18 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
               <div
                 key={step.key}
                 className={cn(
-                  "rounded-lg border transition-colors",
-                  isNext && status === "pending" && "border-emerald-200",
-                  status === "done" && "border-slate-100 bg-slate-50/50",
-                  status === "skipped" && "border-slate-100 opacity-70"
+                  isNext && status === "pending" && "bg-emerald-50/40",
+                  status === "skipped" && "opacity-70"
                 )}
               >
                 <button
                   type="button"
-                  className="flex w-full items-center gap-3 p-3 text-left"
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-slate-50/80"
                   onClick={() => setExpandedStepKey(isExpanded ? null : step.key)}
                 >
                   <div
                     className={cn(
-                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold",
+                      "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold",
                       status === "done"
                         ? "bg-emerald-600 text-white"
                         : status === "skipped"
@@ -478,13 +481,13 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
                             : "bg-slate-100 text-slate-600"
                     )}
                   >
-                    {status === "done" ? <Check className="h-3 w-3" /> : index + 1}
+                    {status === "done" ? <Check className="h-3.5 w-3.5" /> : index + 1}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <p
                         className={cn(
-                          "text-sm font-medium text-slate-900",
+                          "font-medium text-slate-900",
                           status === "done" && "line-through text-slate-500"
                         )}
                       >
@@ -494,6 +497,11 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
                         <ArrowRight className="h-3 w-3 text-emerald-600" />
                       )}
                     </div>
+                    {!isExpanded && (
+                      <p className="mt-0.5 truncate text-sm text-slate-500">
+                        {step.instruction[uiLocale]}
+                      </p>
+                    )}
                   </div>
                   <span className="shrink-0 text-xs text-slate-500">
                     {getStepStatus(step.key, progressMap)}
@@ -509,8 +517,73 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
               </div>
             );
           })}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Lightweight summary for the Overview tab */
+export function PlaybookNextActionTeaser({
+  propertyId,
+  locale,
+  onGoToCompliance,
+}: {
+  propertyId: string;
+  locale: string;
+  onGoToCompliance: () => void;
+}) {
+  const t = useTranslations("playbook");
+  const uiLocale = (locale === "fr" ? "fr" : "en") as "en" | "fr";
+  const [data, setData] = useState<PlaybookResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/properties/${propertyId}/playbook`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => setData(json))
+      .finally(() => setLoading(false));
+  }, [propertyId]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center gap-2 text-sm text-slate-500">
+        <Loader2 className="h-4 w-4 animate-spin" />
+        {t("loading")}
+      </div>
+    );
+  }
+
+  if (!data?.playbook || !data.nextStepKey) {
+    if (data?.playbook && data.summary.completed + data.summary.skipped >= data.summary.total) {
+      return (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 px-4 py-3">
+          <p className="font-medium text-emerald-800">{t("allDone.title")}</p>
+        </div>
+      );
+    }
+    return null;
+  }
+
+  const nextStep = data.playbook.steps.find((s) => s.key === data.nextStepKey);
+  if (!nextStep) return null;
+
+  return (
+    <div className="rounded-xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-white px-5 py-4">
+      <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+        {t("nextAction")}
+      </p>
+      <p className="mt-1 font-semibold text-slate-900">{nextStep.title[uiLocale]}</p>
+      <p className="mt-1 line-clamp-2 text-sm text-slate-600">
+        {getStepWhyNow(nextStep, uiLocale)}
+      </p>
+      <p className="mt-2 text-xs text-slate-500">
+        {t("progress", { done: data.summary.completed, total: data.summary.total })}
+      </p>
+      <Button className="mt-3" size="sm" onClick={onGoToCompliance}>
+        {t("viewCompliance")}
+        <ArrowRight className="h-4 w-4" />
+      </Button>
     </div>
   );
 }

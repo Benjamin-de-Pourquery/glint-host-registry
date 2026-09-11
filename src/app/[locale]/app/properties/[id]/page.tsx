@@ -1,10 +1,10 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { PropertyForm } from "@/components/property-form";
-import { CompliancePanel } from "@/components/compliance-panel";
+import { PropertyDetailTabs } from "@/components/property-detail-tabs";
 import { PropertyArchiveButton } from "@/components/property-archive-button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +31,7 @@ export default async function PropertyDetailPage({ params }: Props) {
   if (!property) notFound();
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex items-start gap-4">
           <Link href={`/${locale}/app/properties${property.archived ? "?tab=archived" : ""}`}>
@@ -64,25 +64,10 @@ export default async function PropertyDetailPage({ params }: Props) {
         />
       </div>
 
-      <CompliancePanel
-        propertyId={property.id}
-        propertyName={property.name}
-        address={property.address}
-        city={property.city}
-        country={property.country}
-        propertyType={property.propertyType}
-        residencyStatus={property.residencyStatus}
-        notes={property.notes}
-        registration={property.registration}
-        checklistItems={property.checklistItems}
-        locale={locale}
-      />
-
-      <div>
-        <h2 className="mb-4 text-lg font-semibold text-slate-900">{t("form.edit")}</h2>
-        <PropertyForm
-          mode="edit"
-          initial={{
+      <Suspense fallback={<div className="py-12 text-center text-slate-500">{t("detail.loading")}</div>}>
+        <PropertyDetailTabs
+          locale={locale}
+          property={{
             id: property.id,
             name: property.name,
             address: property.address,
@@ -94,9 +79,11 @@ export default async function PropertyDetailPage({ params }: Props) {
             bookingUrl: property.bookingUrl,
             vrboUrl: property.vrboUrl,
             notes: property.notes,
+            registration: property.registration,
+            checklistItems: property.checklistItems,
           }}
         />
-      </div>
+      </Suspense>
     </div>
   );
 }

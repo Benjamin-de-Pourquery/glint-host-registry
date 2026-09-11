@@ -252,10 +252,52 @@
         "description": "Ce bien reviendra dans votre portefeuille actif et comptera à nouveau dans la limite de votre plan.",
         "confirm": "Restaurer le bien"
       }
+    },
+    "detail": {
+      "loading": "Chargement…",
+      "saved": "Bien enregistré",
+      "saveError": "Impossible d'enregistrer le bien",
+      "editBasics": "Informations du bien",
+      "tabs": {
+        "overview": "Aperçu",
+        "compliance": "Démarches",
+        "register": "Registre",
+        "listings": "Annonces",
+        "notes": "Notes"
+      },
+      "overview": {
+        "title": "Résumé",
+        "address": "Adresse",
+        "type": "Type de bien",
+        "registration": "Numéro d'enregistrement"
+      },
+      "listings": {
+        "urlsTitle": "Liens des annonces",
+        "registrationTitle": "Numéro sur les annonces",
+        "registrationHint": "Ce numéro doit figurer sur chaque annonce plateforme conformément au règlement UE.",
+        "registrationLabel": "Numéro d'enregistrement",
+        "save": "Enregistrer les annonces",
+        "saved": "Annonces enregistrées",
+        "saveError": "Impossible d'enregistrer",
+        "empty": {
+          "title": "Aucune annonce liée",
+          "description": "Ajoutez les URL de vos annonces Airbnb, Booking.com ou Vrbo ci-dessous."
+        }
+      },
+      "notes": {
+        "title": "Notes",
+        "description": "Notes internes sur ce bien — non visibles sur les annonces.",
+        "placeholder": "Ex. contact syndic, particularités du logement…",
+        "save": "Enregistrer les notes",
+        "saved": "Notes enregistrées",
+        "saveError": "Impossible d'enregistrer les notes"
+      }
     }
   },
   "playbook": {
-    "guidedCompliance": "Conformité guidée",
+    "subtitle": "Guide pas à pas",
+    "viewCompliance": "Voir les démarches",
+    "pitfalls": "Points d'attention",
     "nextAction": "Prochaine action",
     "openOfficial": "Ouvrir la procédure officielle",
     "openOfficialForm": "Ouvrir le formulaire officiel",
@@ -279,16 +321,16 @@
     "skipped": "Ignoré",
     "undo": "Annuler",
     "current": "Étape en cours",
-    "stepsTitle": "Playbook de conformité",
+    "stepsTitle": "Toutes les démarches",
     "progress": "{done} sur {total} étapes terminées",
     "skippedCount": "{count} ignorée(s)",
     "prepare": "À préparer",
     "timeline": "Délai",
     "verifyUrl": "Certains liens sont indicatifs — vérifiez la procédure actuelle sur le site officiel.",
-    "loading": "Chargement du playbook…",
-    "loadError": "Impossible de charger le playbook de conformité.",
+    "loading": "Chargement des démarches…",
+    "loadError": "Impossible de charger les démarches de conformité.",
     "retry": "Réessayer",
-    "noPlaybook": "Aucun playbook guidé n'est disponible pour cette localisation.",
+    "noPlaybook": "Aucune démarche guidée n'est disponible pour cette localisation.",
     "stepDone": "Étape marquée comme faite",
     "stepSkipped": "Étape ignorée",
     "updateError": "Impossible de mettre à jour l'étape",
@@ -300,8 +342,8 @@
     "statusPending": "À faire",
     "openLink": "Lien officiel",
     "allDone": {
-      "title": "Playbook terminé",
-      "description": "Vous avez parcouru toutes les étapes guidées. Maintenez vos informations d'enregistrement à jour ci-dessous."
+      "title": "Démarches terminées",
+      "description": "Vous avez parcouru toutes les étapes guidées. Maintenez vos informations d'enregistrement à jour dans l'onglet Registre."
     }
   },
   "compliance": {

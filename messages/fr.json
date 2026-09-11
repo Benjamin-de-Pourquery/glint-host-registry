@@ -19,7 +19,7 @@
   "landing": {
     "hero": {
       "title": "Conformité location courte durée — guidée et opérationnelle",
-      "subtitle": "Démarches par ville, registre des voyageurs, numéros d'enregistrement et préparation des annonces. Glint vous guide — sans déposer à la mairie pour vous.",
+      "subtitle": "Démarches par ville, registre voyageurs et numéros d'enregistrement. Glint vous guide — sans déposer à la mairie.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
@@ -89,6 +89,15 @@
       "listings": {
         "title": "Préparation des annonces",
         "description": "Numéros d'enregistrement, liens plateformes et résumés exportables pour Airbnb, Booking et Vrbo."
+      },
+      "miniUi": {
+        "complianceHeader": "Démarches · Paris",
+        "step1": "Déclaration en ligne",
+        "step2": "Changement d'usage",
+        "step3": "Numéro d'enregistrement",
+        "registerTitle": "Registre voyageurs",
+        "registerRetention": "Conservation 6 mois",
+        "registerSignature": "Signature numérique active"
       }
     },
     "pricing": {

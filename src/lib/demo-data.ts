@@ -90,6 +90,7 @@ export async function seedDemoData(userId: string, locale: string) {
         data: {
           propertyId: property.id,
           title: items[i],
+          completed: i < 3 && demo.status === "active",
           sortOrder: i,
         },
       });

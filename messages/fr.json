@@ -214,6 +214,10 @@
       "notStarted": "Non commencé",
       "guestsThisMonth": "Voyageurs ce mois"
     },
+    "attention": {
+      "action": "{count, plural, one {# bien nécessite une action} other {# biens nécessitent une action}}",
+      "expired": "{count, plural, one {# enregistrement expiré} other {# enregistrements expirés}}"
+    },
     "upcoming": "Échéances à venir",
     "noDeadlines": "Aucune échéance dans les 90 prochains jours",
     "recentAlerts": "Alertes récentes",

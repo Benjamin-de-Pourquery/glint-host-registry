@@ -63,7 +63,7 @@ export function PropertiesView({
         )}
       </div>
 
-      <div className="flex gap-1 rounded-lg border border-slate-200 bg-slate-50 p-1 w-fit">
+      <div className="flex w-full max-w-full gap-1 rounded-lg border border-slate-200 bg-slate-50 p-1 sm:w-fit">
         <Link href={`/${locale}/app/properties`}>
           <button
             type="button"
@@ -94,15 +94,15 @@ export function PropertiesView({
 
       {subscribed && atLimit && tab === "active" && (
         <Card className="border-amber-200 bg-amber-50">
-          <CardContent className="flex items-center justify-between p-4">
-            <div>
+          <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
               <p className="font-medium text-amber-900">{t("limit.title")}</p>
               <p className="text-sm text-amber-800">
                 {t("limit.description", { plan, limit })}
               </p>
             </div>
-            <Link href={`/${locale}/app/settings`}>
-              <Button variant="outline">{t("limit.cta")}</Button>
+            <Link href={`/${locale}/app/settings`} className="shrink-0">
+              <Button variant="outline" className="w-full sm:w-auto">{t("limit.cta")}</Button>
             </Link>
           </CardContent>
         </Card>

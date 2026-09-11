@@ -19,7 +19,7 @@
   "landing": {
     "hero": {
       "title": "Short-term rental compliance — guided and operational",
-      "subtitle": "City-specific compliance steps, guest register, registration numbers, and listing prep. Glint guides you — it does not file at the mairie for you.",
+      "subtitle": "City compliance steps, guest register, and registration numbers. Glint guides you — we don't file at the mairie.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -89,6 +89,15 @@
       "listings": {
         "title": "Listing preparation",
         "description": "Registration numbers, platform URLs, and exportable summaries for Airbnb, Booking, and Vrbo."
+      },
+      "miniUi": {
+        "complianceHeader": "Compliance · Paris",
+        "step1": "Online declaration",
+        "step2": "Change of use",
+        "step3": "Registration number",
+        "registerTitle": "Guest register",
+        "registerRetention": "6-month retention",
+        "registerSignature": "Digital signature active"
       }
     },
     "pricing": {

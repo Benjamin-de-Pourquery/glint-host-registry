@@ -23,6 +23,44 @@ body {
   font-family: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
 }
 
+.landing-hero-bg {
+  background:
+    radial-gradient(ellipse 55% 45% at 85% 15%, rgba(16, 185, 129, 0.09), transparent 70%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #f8fafc 100%);
+}
+
+.landing-hero-blob {
+  position: absolute;
+  top: -8rem;
+  right: -4rem;
+  width: 28rem;
+  height: 28rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.landing-mock-chrome {
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.06),
+    0 2px 4px rgba(15, 23, 42, 0.04),
+    0 12px 32px -4px rgba(15, 23, 42, 0.12),
+    0 24px 48px -12px rgba(15, 23, 42, 0.08);
+}
+
+.landing-trust-badge {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.landing-cta-band {
+  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+}
+
 @keyframes landing-fade-in {
   from {
     opacity: 0;

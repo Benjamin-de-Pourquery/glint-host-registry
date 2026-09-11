@@ -14,7 +14,10 @@
     "properties": "Properties",
     "notifications": "Notifications",
     "settings": "Settings",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "language": "Language"
   },
   "landing": {
     "hero": {

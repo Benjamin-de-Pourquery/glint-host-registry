@@ -105,26 +105,25 @@ export function PropertyDetailTabs({ property, locale }: Props) {
 
   return (
     <Tabs value={activeTab} onValueChange={(v) => setTab(v as PropertyDetailTab)} className="min-w-0">
-      <div className="sticky top-0 z-10 -mx-4 bg-white/95 px-4 pb-2 pt-1 backdrop-blur supports-[backdrop-filter]:bg-white/80 sm:-mx-0 sm:px-0">
+      <div className="sticky top-0 z-10 -mx-4 bg-white/95 px-0 pb-2 pt-1 backdrop-blur supports-[backdrop-filter]:bg-white/80 sm:-mx-0">
         <TabsList
           className={cn(
-            "h-auto w-full max-w-full justify-start gap-0 overflow-x-auto rounded-none border-0 border-b border-slate-200 bg-transparent p-0",
-            "[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            "scroll-fade-x h-auto w-full max-w-full justify-start gap-0 rounded-none border-0 border-b border-slate-200 bg-transparent p-0 px-4 sm:px-0"
           )}
         >
-          <TabsTrigger value="overview" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="overview" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
             {t("tabs.overview")}
           </TabsTrigger>
-          <TabsTrigger value="compliance" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="compliance" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
             {t("tabs.compliance")}
           </TabsTrigger>
-          <TabsTrigger value="register" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="register" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
             {t("tabs.register")}
           </TabsTrigger>
-          <TabsTrigger value="listings" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="listings" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
             {t("tabs.listings")}
           </TabsTrigger>
-          <TabsTrigger value="notes" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:shadow-none">
+          <TabsTrigger value="notes" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
             {t("tabs.notes")}
           </TabsTrigger>
         </TabsList>

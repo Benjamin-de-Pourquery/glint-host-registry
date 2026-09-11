@@ -50,7 +50,7 @@ export function PropertiesView({
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">{t("title")}</h1>
           <p className="text-slate-600">{t("subtitle")}</p>
         </div>
         {subscribed && !atLimit && tab === "active" && (
@@ -63,7 +63,7 @@ export function PropertiesView({
         )}
       </div>
 
-      <div className="flex w-full max-w-full gap-1 rounded-lg border border-slate-200 bg-slate-50 p-1 sm:w-fit">
+      <div className="flex w-full max-w-full gap-1 overflow-x-auto rounded-lg border border-slate-200/90 bg-slate-50 p-1 shadow-sm sm:w-fit">
         <Link href={`/${locale}/app/properties`}>
           <button
             type="button"
@@ -140,7 +140,7 @@ export function PropertiesView({
             });
 
             return (
-              <Card key={property.id} className="transition-shadow hover:shadow-md">
+              <Card key={property.id} className="transition-shadow hover:shadow-md hover:shadow-slate-900/[0.05]">
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between gap-2">
                     <div>

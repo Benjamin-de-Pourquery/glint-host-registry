@@ -81,7 +81,7 @@ export default async function DashboardPage({ params }: Props) {
     <div className="space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">{t("title")}</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900">{t("title")}</h1>
           <p className="text-slate-600">
             {t("welcome", { name: user?.name || session.user.email || "" })}
           </p>
@@ -110,14 +110,14 @@ export default async function DashboardPage({ params }: Props) {
       )}
 
       <div>
-        <h2 className="mb-4 text-lg font-semibold text-slate-900">{t("overview")}</h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          <StatCard icon={Building2} label={t("stats.total")} value={properties.length} />
-          <StatCard icon={CheckCircle2} label={t("stats.ready")} value={stats.ready} color="text-emerald-600" />
-          <StatCard icon={AlertTriangle} label={t("stats.action")} value={stats.action_needed} color="text-amber-600" />
-          <StatCard icon={XCircle} label={t("stats.expired")} value={stats.expired} color="text-red-600" />
-          <StatCard icon={Clock} label={t("stats.notStarted")} value={stats.not_started} color="text-slate-500" />
-          <StatCard icon={Users} label={t("stats.guestsThisMonth")} value={guestsThisMonth} color="text-blue-600" />
+        <h2 className="mb-4 text-lg font-semibold tracking-tight text-slate-900">{t("overview")}</h2>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
+          <StatCard icon={Building2} label={t("stats.total")} value={properties.length} iconBg="bg-slate-100" color="text-slate-600" />
+          <StatCard icon={CheckCircle2} label={t("stats.ready")} value={stats.ready} iconBg="bg-emerald-50" color="text-emerald-600" />
+          <StatCard icon={AlertTriangle} label={t("stats.action")} value={stats.action_needed} iconBg="bg-amber-50" color="text-amber-600" />
+          <StatCard icon={XCircle} label={t("stats.expired")} value={stats.expired} iconBg="bg-red-50" color="text-red-600" />
+          <StatCard icon={Clock} label={t("stats.notStarted")} value={stats.not_started} iconBg="bg-slate-100" color="text-slate-500" />
+          <StatCard icon={Users} label={t("stats.guestsThisMonth")} value={guestsThisMonth} iconBg="bg-blue-50" color="text-blue-600" />
         </div>
       </div>
 
@@ -132,7 +132,7 @@ export default async function DashboardPage({ params }: Props) {
             ) : (
               <ul className="space-y-3">
                 {upcoming.map((p) => (
-                  <li key={p.id} className="flex flex-col gap-2 rounded-lg border border-slate-100 p-3 sm:flex-row sm:items-center sm:justify-between">
+                  <li key={p.id} className="flex flex-col gap-2 rounded-lg border border-slate-200/80 bg-slate-50/30 p-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0">
                       <Link href={`/${locale}/app/properties/${p.id}`} className="font-medium text-slate-900 hover:text-emerald-600">
                         {p.name}
@@ -167,7 +167,7 @@ export default async function DashboardPage({ params }: Props) {
             ) : (
               <ul className="space-y-3">
                 {notifications.map((n) => (
-                  <li key={n.id} className={`rounded-lg border p-3 ${n.read ? "border-slate-100" : "border-emerald-100 bg-emerald-50/50"}`}>
+                  <li key={n.id} className={`rounded-lg border p-3 ${n.read ? "border-slate-200/80 bg-white" : "border-emerald-200/80 bg-emerald-50/60"}`}>
                     <p className="text-sm font-medium text-slate-900">{n.title}</p>
                     <p className="mt-1 text-xs text-slate-500">
                       {format(n.createdAt, "dd MMM yyyy HH:mm")}
@@ -211,19 +211,23 @@ function StatCard({
   label,
   value,
   color = "text-slate-600",
+  iconBg = "bg-slate-100",
 }: {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: number;
   color?: string;
+  iconBg?: string;
 }) {
   return (
-    <Card>
+    <Card className="transition-shadow hover:shadow-md hover:shadow-slate-900/[0.04]">
       <CardContent className="flex items-center gap-3 p-4">
-        <Icon className={`h-8 w-8 ${color}`} />
-        <div>
-          <p className="text-2xl font-bold text-slate-900">{value}</p>
-          <p className="text-xs text-slate-500">{label}</p>
+        <div className={`app-stat-icon ${iconBg}`}>
+          <Icon className={`h-5 w-5 ${color}`} />
+        </div>
+        <div className="min-w-0">
+          <p className="text-2xl font-bold tracking-tight text-slate-900">{value}</p>
+          <p className="truncate text-xs font-medium text-slate-500">{label}</p>
         </div>
       </CardContent>
     </Card>

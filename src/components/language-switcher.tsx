@@ -3,8 +3,13 @@
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function LanguageSwitcher() {
+type Props = {
+  className?: string;
+};
+
+export function LanguageSwitcher({ className }: Props) {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -16,7 +21,7 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center gap-1 rounded-lg border border-slate-200 p-0.5">
+    <div className={cn("flex items-center gap-1 rounded-lg border border-slate-200 p-0.5", className)}>
       <Button
         variant={locale === "en" ? "secondary" : "ghost"}
         size="sm"

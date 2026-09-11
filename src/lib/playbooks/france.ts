@@ -13,10 +13,10 @@ const frSteps = {
     },
     officialUrls: [
       {
-        url: "https://www.service-public.fr/particuliers/vosdroits/F35928",
+        url: "https://www.service-public.fr/particuliers/vosdroits/F2043",
         label: {
-          en: "Service-Public — furnished tourist rental",
-          fr: "Service-Public — location meublée touristique",
+          en: "Service-Public — furnished tourist rental declaration",
+          fr: "Service-Public — déclaration de location meublée touristique",
         },
         urlVerified: true,
       },
@@ -96,7 +96,7 @@ const frSteps = {
     },
     officialUrls: [
       {
-        url: "https://www.impots.gouv.fr/particulier/les-revenus-de-location-meublee",
+        url: "https://www.impots.gouv.fr/particulier/les-locations-meublees",
         label: {
           en: "impots.gouv.fr — furnished rental income",
           fr: "impots.gouv.fr — revenus de location meublée",
@@ -144,7 +144,7 @@ const frSteps = {
           en: "EU Regulation 2024/1028 (official text)",
           fr: "Règlement UE 2024/1028 (texte officiel)",
         },
-        urlVerified: true,
+        urlVerified: false,
       },
     ],
     documents: {
@@ -204,10 +204,10 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
         },
         officialUrls: [
           {
-            url: "https://www.paris.fr/pages/louer-son-logement-pour-le-tourisme-396",
+            url: "https://www.paris.fr/pages/meubles-touristiques-3637",
             label: {
-              en: "City of Paris — renting for tourism",
-              fr: "Ville de Paris — louer son logement pour le tourisme",
+              en: "City of Paris — tourist furnished rentals",
+              fr: "Ville de Paris — meublés touristiques",
             },
             urlVerified: true,
           },
@@ -218,10 +218,10 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
         "paris",
         [
           {
-            url: "https://www.paris.fr/pages/louer-son-logement-pour-le-tourisme-396",
+            url: "https://www.paris.fr/pages/meubles-touristiques-3637",
             label: {
-              en: "Paris registration portal (verify on official site)",
-              fr: "Portail d'enregistrement Paris (vérifier sur le site officiel)",
+              en: "Paris tourist rental registration portal",
+              fr: "Portail d'enregistrement meublés touristiques Paris",
             },
             urlVerified: true,
           },
@@ -238,41 +238,47 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
     country: "France",
     city: "Lyon",
     title: {
-      en: "Lyon Metropole furnished rental",
-      fr: "Location meublée — Métropole de Lyon",
+      en: "Lyon furnished tourist rental",
+      fr: "Location meublée touristique — Lyon",
     },
     description: {
-      en: "Registration and compliance steps for short-term rentals in Lyon and the Metropole.",
-      fr: "Étapes d'enregistrement et de conformité pour les locations courte durée à Lyon et dans la Métropole.",
+      en: "Registration and compliance steps for short-term rentals in Lyon via the Ville de Lyon online service.",
+      fr: "Étapes d'enregistrement et de conformité pour les locations courte durée à Lyon via le téléservice de la Ville de Lyon.",
     },
     steps: [
       {
         ...frSteps.verifyRules("lyon"),
         officialUrls: [
           {
-            url: "https://www.grandlyon.com/services/location-meublee-tourisme.html",
+            url: "https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme",
             label: {
-              en: "Métropole de Lyon — furnished tourist rental",
-              fr: "Métropole de Lyon — location meublée touristique",
+              en: "Ville de Lyon — declare a tourist furnished rental",
+              fr: "Ville de Lyon — déclarer un meublé de tourisme",
             },
             urlVerified: true,
           },
         ],
       },
-      frSteps.municipalRegistration(
-        "lyon",
-        [
-          {
-            url: "https://www.grandlyon.com/services/location-meublee-tourisme.html",
-            label: {
-              en: "Métropole de Lyon registration info",
-              fr: "Informations d'enregistrement Métropole de Lyon",
+      {
+        ...frSteps.municipalRegistration(
+          "lyon",
+          [
+            {
+              url: "https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme",
+              label: {
+                en: "Ville de Lyon — tourist rental registration téléservice",
+                fr: "Ville de Lyon — téléservice d'enregistrement meublé de tourisme",
+              },
+              urlVerified: true,
             },
-            urlVerified: true,
-          },
-        ],
-        { en: "Métropole de Lyon", fr: "Métropole de Lyon" }
-      ),
+          ],
+          { en: "Ville de Lyon", fr: "Ville de Lyon" }
+        ),
+        instruction: {
+          en: "Submit your furnished tourist rental declaration through the Ville de Lyon online téléservice. You will receive a registration number to display on listings.",
+          fr: "Déposez votre déclaration de location meublée touristique via le téléservice en ligne de la Ville de Lyon. Vous recevrez un numéro d'enregistrement à afficher sur vos annonces.",
+        },
+      },
       frSteps.taxDeclaration("lyon"),
       frSteps.updateListings("lyon"),
       frSteps.guestRegister("lyon"),
@@ -295,32 +301,38 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
         ...frSteps.verifyRules("marseille"),
         officialUrls: [
           {
-            url: "https://www.marseille.fr/logement-urbanisme/location-meublee-tourisme",
+            url: "https://www.marseille.fr/index.php/decouvrir-marseille/une-ville-de-tourisme/la-taxe-de-sejour",
             label: {
-              en: "City of Marseille — furnished tourist rental",
-              fr: "Ville de Marseille — location meublée touristique",
+              en: "City of Marseille — tourist tax and furnished rental rules",
+              fr: "Ville de Marseille — taxe de séjour et location meublée",
             },
-            urlVerified: false,
+            urlVerified: true,
           },
         ],
       },
-      frSteps.municipalRegistration(
-        "marseille",
-        [
-          {
-            url: "https://www.marseille.fr/",
-            label: {
-              en: "Marseille city portal (verify procedure on official site)",
-              fr: "Portail Ville de Marseille (vérifier la procédure sur le site officiel)",
+      {
+        ...frSteps.municipalRegistration(
+          "marseille",
+          [
+            {
+              url: "https://taxedesejour.ofeaweb.fr/ts/marseille",
+              label: {
+                en: "Marseille tourist tax portal — registration",
+                fr: "Portail taxe de séjour Marseille — enregistrement",
+              },
+              urlVerified: true,
             },
-            urlVerified: false,
-          },
-        ],
-        {
-          en: "Métropole Aix-Marseille-Provence",
-          fr: "Métropole Aix-Marseille-Provence",
-        }
-      ),
+          ],
+          {
+            en: "Métropole Aix-Marseille-Provence",
+            fr: "Métropole Aix-Marseille-Provence",
+          }
+        ),
+        instruction: {
+          en: "Register your furnished tourist rental through the Marseille tourist tax (taxe de séjour) portal. Create a host account and add your property to obtain your registration number.",
+          fr: "Enregistrez votre location meublée touristique via le portail de taxe de séjour de Marseille. Créez un compte hébergeur et ajoutez votre bien pour obtenir votre numéro d'enregistrement.",
+        },
+      },
       frSteps.taxDeclaration("marseille"),
       frSteps.updateListings("marseille"),
       frSteps.guestRegister("marseille"),
@@ -343,29 +355,43 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
         ...frSteps.verifyRules("bordeaux"),
         officialUrls: [
           {
-            url: "https://www.bordeaux-metropole.fr/",
+            url: "https://www.bordeaux.fr/location-touristique-bordeaux--guide-proprietaires",
             label: {
-              en: "Bordeaux Metropole — verify STR rules on official site",
-              fr: "Bordeaux Métropole — vérifier la réglementation sur le site officiel",
+              en: "City of Bordeaux — tourist rental guide for owners",
+              fr: "Ville de Bordeaux — guide location touristique propriétaires",
             },
-            urlVerified: false,
+            urlVerified: true,
           },
         ],
       },
-      frSteps.municipalRegistration(
-        "bordeaux",
-        [
-          {
-            url: "https://www.bordeaux-metropole.fr/",
-            label: {
-              en: "Bordeaux Metropole portal (verify registration link)",
-              fr: "Portail Bordeaux Métropole (vérifier le lien d'enregistrement)",
+      {
+        ...frSteps.municipalRegistration(
+          "bordeaux",
+          [
+            {
+              url: "https://taxedesejour.bordeaux-metropole.fr/",
+              label: {
+                en: "Bordeaux Metropole — tourist tax and registration portal",
+                fr: "Bordeaux Métropole — portail taxe de séjour et enregistrement",
+              },
+              urlVerified: true,
             },
-            urlVerified: false,
-          },
-        ],
-        { en: "Bordeaux Métropole", fr: "Bordeaux Métropole" }
-      ),
+            {
+              url: "https://www.bordeaux.fr/location-touristique-bordeaux--guide-proprietaires",
+              label: {
+                en: "Bordeaux owner guide — registration steps",
+                fr: "Guide propriétaires Bordeaux — étapes d'enregistrement",
+              },
+              urlVerified: true,
+            },
+          ],
+          { en: "Bordeaux Métropole", fr: "Bordeaux Métropole" }
+        ),
+        instruction: {
+          en: "Register your furnished tourist rental on the Bordeaux Metropole tourist tax portal and follow the owner guide for any change-of-use steps. You will receive a registration number for your listings.",
+          fr: "Enregistrez votre location meublée touristique sur le portail de taxe de séjour de Bordeaux Métropole et suivez le guide propriétaires pour les démarches de changement d'usage le cas échéant. Vous recevrez un numéro d'enregistrement pour vos annonces.",
+        },
+      },
       frSteps.taxDeclaration("bordeaux"),
       frSteps.updateListings("bordeaux"),
       frSteps.guestRegister("bordeaux"),
@@ -388,29 +414,39 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
         ...frSteps.verifyRules("nice"),
         officialUrls: [
           {
-            url: "https://www.nice.fr/fr/nice-pratique/location-meublee-de-tourisme",
+            url: "https://www.nicecotedazur.org/services/logement/autorisations-de-changements-dusage/",
             label: {
-              en: "City of Nice — furnished tourist rental",
-              fr: "Ville de Nice — location meublée de tourisme",
+              en: "Métropole Nice Côte d'Azur — change-of-use rules for STR",
+              fr: "Métropole Nice Côte d'Azur — changement d'usage location meublée",
             },
-            urlVerified: false,
+            urlVerified: true,
           },
         ],
+        pitfalls: {
+          en: "Nice requires change-of-use authorization before registration for many properties. Primary residences are capped at 90 rental nights per year.",
+          fr: "Nice exige une autorisation de changement d'usage avant l'enregistrement pour de nombreux biens. Les résidences principales sont plafonnées à 90 nuitées de location par an.",
+        },
       },
-      frSteps.municipalRegistration(
-        "nice",
-        [
-          {
-            url: "https://www.nice.fr/fr/nice-pratique/location-meublee-de-tourisme",
-            label: {
-              en: "Nice registration information (verify on official site)",
-              fr: "Informations d'enregistrement Nice (vérifier sur le site officiel)",
+      {
+        ...frSteps.municipalRegistration(
+          "nice",
+          [
+            {
+              url: "https://taxedesejour.ofeaweb.fr/ts/metropole-nca",
+              label: {
+                en: "Nice Côte d'Azur tourist tax portal — registration",
+                fr: "Portail taxe de séjour Métropole NCA — enregistrement",
+              },
+              urlVerified: true,
             },
-            urlVerified: false,
-          },
-        ],
-        { en: "Ville de Nice", fr: "Ville de Nice" }
-      ),
+          ],
+          { en: "Métropole Nice Côte d'Azur", fr: "Métropole Nice Côte d'Azur" }
+        ),
+        instruction: {
+          en: "After any required change-of-use authorization, register your furnished rental on the Métropole Nice Côte d'Azur tourist tax portal. Create a host account to obtain your 13-character registration number.",
+          fr: "Après toute autorisation de changement d'usage requise, enregistrez votre location meublée sur le portail de taxe de séjour de la Métropole Nice Côte d'Azur. Créez un compte hébergeur pour obtenir votre numéro d'enregistrement à 13 caractères.",
+        },
+      },
       frSteps.taxDeclaration("nice"),
       frSteps.updateListings("nice"),
       frSteps.guestRegister("nice"),
@@ -433,7 +469,7 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
         "fr",
         [
           {
-            url: "https://www.service-public.fr/particuliers/vosdroits/F35928",
+            url: "https://www.service-public.fr/particuliers/vosdroits/F2043",
             label: {
               en: "Service-Public — declare furnished tourist rental",
               fr: "Service-Public — déclarer une location meublée touristique",

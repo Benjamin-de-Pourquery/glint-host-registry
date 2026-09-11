@@ -81,7 +81,7 @@ export const SPAIN_PLAYBOOK: Playbook = {
             en: "Agencia Tributaria (AEAT)",
             fr: "Agencia Tributaria (AEAT)",
           },
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -107,7 +107,7 @@ export const SPAIN_PLAYBOOK: Playbook = {
             en: "EU Regulation 2024/1028",
             fr: "Règlement UE 2024/1028",
           },
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -226,7 +226,7 @@ export const ITALY_PLAYBOOK: Playbook = {
             en: "EU Regulation 2024/1028",
             fr: "Règlement UE 2024/1028",
           },
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -262,12 +262,12 @@ export const NETHERLANDS_PLAYBOOK: Playbook = {
       },
       officialUrls: [
         {
-          url: "https://www.rijksoverheid.nl/onderwerpen/woning/huurwoningen/vakantieverhuur",
+          url: "https://www.rijksoverheid.nl/themas/bouwen-en-wonen/woning-verhuren/woningverhuur-toeristen",
           label: {
-            en: "Dutch government — holiday rental info",
-            fr: "Gouvernement néerlandais — location vacances",
+            en: "Dutch government — renting to tourists",
+            fr: "Gouvernement néerlandais — location aux touristes",
           },
-          urlVerified: false,
+          urlVerified: true,
         },
       ],
       documents: {
@@ -290,10 +290,10 @@ export const NETHERLANDS_PLAYBOOK: Playbook = {
         {
           url: "https://www.amsterdam.nl/en/housing/rent-out/home-sharing/",
           label: {
-            en: "Amsterdam — home sharing (example gemeente)",
-            fr: "Amsterdam — home sharing (exemple de gemeente)",
+            en: "Amsterdam — home sharing (verify on official site; may block automated checks)",
+            fr: "Amsterdam — home sharing (vérifier sur le site officiel)",
           },
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -345,7 +345,7 @@ export const NETHERLANDS_PLAYBOOK: Playbook = {
             en: "EU Regulation 2024/1028",
             fr: "Règlement UE 2024/1028",
           },
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {

@@ -45,6 +45,8 @@ Data-driven playbooks keyed by country and city guide hosts step-by-step through
 
 Playbooks link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
 
+**Playbook URL maintenance:** run `npm run verify-playbook-urls` before releases (see `src/lib/playbooks/README.md`). Government pages move frequently; `urlVerified: true` must only be set after a live HTTP 200 check.
+
 ### 6. Registration & compliance
 Per-property compliance tracking:
 - Registration number and issuing authority/municipality

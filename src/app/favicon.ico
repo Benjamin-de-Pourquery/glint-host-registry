@@ -1,1 +1,1 @@
-LOAD_FROM_PYTHON
+LOAD_FROM_FILE:/tmp/fav5k_content.txt

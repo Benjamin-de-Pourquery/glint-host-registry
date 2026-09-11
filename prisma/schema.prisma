@@ -82,6 +82,7 @@ model Property {
   registration Registration?
   checklistItems ChecklistItem[]
   playbookProgress PlaybookStepProgress[]
+  listingPlatformProgress ListingPlatformProgress[]
   notifications  Notification[]
   guestRegisterToken GuestRegisterToken?
   guestStays   GuestStay[]
@@ -151,6 +152,19 @@ model PlaybookStepProgress {
   property    Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 
   @@unique([propertyId, stepKey])
+}
+
+model ListingPlatformProgress {
+  id          String    @id @default(cuid())
+  propertyId  String
+  platform    String
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  property    Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, platform])
 }
 
 model Registration {

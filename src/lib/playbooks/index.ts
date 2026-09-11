@@ -142,14 +142,30 @@ const RESIDENCY_LABELS: Record<string, { en: string; fr: string }> = {
   other: { en: "Other / non-primary", fr: "Autre / non principale" },
 };
 
-export function buildPreparedFieldsText(
+export type PreparedField = {
+  key: string;
+  label: string;
+  value: string;
+};
+
+const FIELD_LABELS: Record<string, { en: string; fr: string }> = {
+  name: { en: "Property name", fr: "Nom du bien" },
+  address: { en: "Address", fr: "Adresse" },
+  city: { en: "City", fr: "Ville" },
+  country: { en: "Country", fr: "Pays" },
+  propertyType: { en: "Property type", fr: "Type de bien" },
+  notes: { en: "Notes", fr: "Notes" },
+  residencyStatus: { en: "Residency status", fr: "Statut de résidence" },
+};
+
+export function getPreparedFieldsForStep(
   stepKey: string,
   playbook: Playbook,
   property: PropertyFieldValues,
   locale: "en" | "fr"
-): string {
+): PreparedField[] {
   const step = playbook.steps.find((s) => s.key === stepKey);
-  if (!step) return "";
+  if (!step) return [];
 
   const hints = step.fieldHints ?? [
     "name",
@@ -159,28 +175,19 @@ export function buildPreparedFieldsText(
     "propertyType",
     "residencyStatus",
   ];
-  const labels: Record<string, { en: string; fr: string }> = {
-    name: { en: "Property name", fr: "Nom du bien" },
-    address: { en: "Address", fr: "Adresse" },
-    city: { en: "City", fr: "Ville" },
-    country: { en: "Country", fr: "Pays" },
-    propertyType: { en: "Property type", fr: "Type de bien" },
-    notes: { en: "Notes", fr: "Notes" },
-    residencyStatus: { en: "Residency status", fr: "Statut de résidence" },
-  };
 
-  const lines = hints
+  const fields: PreparedField[] = hints
     .filter((key) => {
       const value = property[key as keyof PropertyFieldValues];
       return value !== undefined && value !== null && value !== "";
     })
     .map((key) => {
-      const label = labels[key]?.[locale] ?? key;
-      let value = property[key as keyof PropertyFieldValues];
-      if (key === "residencyStatus" && value) {
-        value = RESIDENCY_LABELS[value as string]?.[locale] ?? value;
+      const label = FIELD_LABELS[key]?.[locale] ?? key;
+      let value = String(property[key as keyof PropertyFieldValues]);
+      if (key === "residencyStatus") {
+        value = RESIDENCY_LABELS[value]?.[locale] ?? value;
       }
-      return `${label}: ${value}`;
+      return { key: key as string, label, value };
     });
 
   const isParisDeclaration =
@@ -188,14 +195,30 @@ export function buildPreparedFieldsText(
     (playbook.id === "fr-paris" && step.officialUrls.some((u) => u.role === "form"));
 
   if (isParisDeclaration) {
-    const taxHint =
-      locale === "fr"
-        ? "Identifiant du local (avis taxe d'habitation, bas page 4) — ou cocher « J'identifie mon local autrement »"
-        : "Local ID (taxe d'habitation notice, bottom of page 4) — or check « J'identifie mon local autrement »";
-    lines.push(taxHint);
+    fields.push({
+      key: "paris-local-id",
+      label:
+        locale === "fr"
+          ? "Identifiant du local"
+          : "Local ID (taxe d'habitation)",
+      value:
+        locale === "fr"
+          ? "Bas page 4 de l'avis — ou cocher « J'identifie mon local autrement »"
+          : "Bottom of page 4 — or check « J'identifie mon local autrement »",
+    });
   }
 
-  return lines.join("\n");
+  return fields;
+}
+
+/** First sentence of instruction as a one-line why-now summary */
+export function getStepWhyNow(
+  step: PlaybookStep,
+  locale: "en" | "fr"
+): string {
+  const text = step.instruction[locale];
+  const match = text.match(/^[^.!?]+[.!?]/);
+  return match ? match[0].trim() : text.slice(0, 120).trim() + (text.length > 120 ? "…" : "");
 }
 
 export function getNextPendingStep(

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -12,14 +13,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import { CopyFieldChip } from "@/components/copy-field-chip";
 import {
-  buildPreparedFieldsText,
   getCtaLabelKey,
+  getPreparedFieldsForStep,
   getPrimaryCtaUrl,
+  getStepWhyNow,
   stepAppliesToResidency,
 } from "@/lib/playbooks";
 import type {
   Playbook,
+  PlaybookStep,
   PlaybookStepProgress,
   PropertyFieldValues,
   ResidencyStatus,
@@ -27,7 +31,7 @@ import type {
 import {
   ArrowRight,
   Check,
-  Copy,
+  ChevronDown,
   ExternalLink,
   Loader2,
   SkipForward,
@@ -59,11 +63,11 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [updating, setUpdating] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
   const [residencyStatus, setResidencyStatus] = useState<ResidencyStatus | null>(
     property.residencyStatus ?? null
   );
   const [savingResidency, setSavingResidency] = useState(false);
+  const [expandedStepKey, setExpandedStepKey] = useState<string | null>(null);
 
   const loadPlaybook = useCallback(async () => {
     setLoading(true);
@@ -73,6 +77,9 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
       if (!res.ok) throw new Error("Failed to load");
       const json = (await res.json()) as PlaybookResponse;
       setData(json);
+      if (json.nextStepKey) {
+        setExpandedStepKey(json.nextStepKey);
+      }
     } catch {
       setError(true);
     } finally {
@@ -122,23 +129,101 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
     }
   };
 
-  const copyPreparedFields = (stepKey: string) => {
-    if (!data?.playbook) return;
+  const getStepStatus = (stepKey: string, progressMap: Map<string, string>) => {
+    const status = progressMap.get(stepKey) ?? "pending";
+    if (status === "done") return t("statusDone");
+    if (status === "skipped") return t("statusSkipped");
+    if (stepKey === data?.nextStepKey) return t("statusCurrent");
+    return t("statusPending");
+  };
+
+  const renderStepExpanded = (step: PlaybookStep, status: string) => {
     const propertyWithResidency = { ...property, residencyStatus };
-    const text = buildPreparedFieldsText(
-      stepKey,
-      data.playbook,
-      propertyWithResidency,
-      uiLocale
+    const preparedFields = data?.playbook
+      ? getPreparedFieldsForStep(step.key, data.playbook, propertyWithResidency, uiLocale)
+      : [];
+    const stepCta = getPrimaryCtaUrl(step);
+    const stepCtaLabelKey = stepCta ? getCtaLabelKey(stepCta.role) : "openLink";
+
+    return (
+      <div className="mt-3 space-y-3 border-t border-slate-100 pt-3">
+        <p className="text-sm text-slate-600">{step.instruction[uiLocale]}</p>
+
+        {preparedFields.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {preparedFields.map((field) => (
+              <CopyFieldChip
+                key={field.key}
+                label={field.label}
+                value={field.value}
+                copiedLabel={t("copied")}
+              />
+            ))}
+          </div>
+        )}
+
+        {step.officialUrls.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {stepCta && (
+              <a href={stepCta.url} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm">
+                  <ExternalLink className="h-3 w-3" />
+                  {t(stepCtaLabelKey)}
+                </Button>
+              </a>
+            )}
+            {step.officialUrls
+              .filter((u) => u.url !== stepCta?.url)
+              .map((url) => (
+                <a key={url.url} href={url.url} target="_blank" rel="noopener noreferrer">
+                  <Button variant="ghost" size="sm">
+                    <ExternalLink className="h-3 w-3" />
+                    {url.label[uiLocale]}
+                  </Button>
+                </a>
+              ))}
+          </div>
+        )}
+
+        {status === "pending" && (
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => updateStep(step.key, "done")}
+              disabled={updating === step.key}
+            >
+              {updating === step.key ? (
+                <Loader2 className="h-3 w-3 animate-spin" />
+              ) : (
+                <Check className="h-3 w-3" />
+              )}
+              {t("markDone")}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => updateStep(step.key, "skipped")}
+              disabled={updating === step.key}
+            >
+              <SkipForward className="h-3 w-3" />
+              {t("skip")}
+            </Button>
+          </div>
+        )}
+
+        {(status === "done" || status === "skipped") && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => updateStep(step.key, "pending")}
+            disabled={updating === step.key}
+          >
+            {t("undo")}
+          </Button>
+        )}
+      </div>
     );
-    if (!text) {
-      toast.error(t("nothingToCopy"));
-      return;
-    }
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    toast.success(t("copied"));
-    setTimeout(() => setCopied(false), 2000);
   };
 
   if (loading) {
@@ -187,42 +272,34 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
     stepAppliesToResidency(step, residencyStatus)
   );
 
+  const propertyWithResidency = { ...property, residencyStatus };
+  const nextPreparedFields = nextStep
+    ? getPreparedFieldsForStep(nextStep.key, playbook, propertyWithResidency, uiLocale)
+    : [];
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
+      {/* Header + compact residency */}
       <Card className="border-emerald-200 bg-gradient-to-br from-emerald-50 to-white">
-        <CardHeader>
-          <div className="flex items-start justify-between gap-4">
+        <CardHeader className="pb-3">
+          <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 text-emerald-700">
                 <Sparkles className="h-5 w-5" />
                 <span className="text-sm font-medium">{t("guidedCompliance")}</span>
               </div>
-              <CardTitle className="mt-1">{playbook.title[uiLocale]}</CardTitle>
-              <p className="mt-1 text-sm text-slate-600">{playbook.description[uiLocale]}</p>
-              {playbook.sourceReviewedAt && (
-                <p className="mt-1 text-xs text-slate-400">
-                  {t("sourceReviewed", { date: playbook.sourceReviewedAt })}
-                </p>
-              )}
+              <CardTitle className="mt-1 text-lg">{playbook.title[uiLocale]}</CardTitle>
             </div>
             <div className="text-right text-sm text-slate-600">
               <p className="font-semibold text-slate-900">
                 {t("progress", { done: summary.completed, total: summary.total })}
               </p>
-              {summary.skipped > 0 && (
-                <p className="text-xs text-slate-500">
-                  {t("skippedCount", { count: summary.skipped })}
-                </p>
-              )}
             </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="rounded-lg border border-emerald-100 bg-white p-4">
-            <Label className="text-sm font-medium text-slate-700">
-              {t("residencyStatus")}
-            </Label>
-            <p className="mt-1 text-xs text-slate-500">{t("residencyHint")}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <Label className="shrink-0 text-xs text-slate-500">{t("residencyStatus")}</Label>
             <Select
               value={residencyStatus ?? ""}
               onValueChange={(v) =>
@@ -230,7 +307,7 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
               }
               disabled={savingResidency}
             >
-              <SelectTrigger className="mt-2 max-w-sm">
+              <SelectTrigger className="h-8 w-auto min-w-[180px] text-sm">
                 <SelectValue placeholder={t("residencyPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
@@ -247,125 +324,151 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
               <p className="mt-1 text-sm text-slate-600">{t("allDone.description")}</p>
             </div>
           ) : nextStep ? (
-            <div className="space-y-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
-                  {t("nextAction")}
-                </p>
-                <h3 className="mt-1 text-lg font-semibold text-slate-900">
+            <>
+              {/* Layer 1: Next action card */}
+              <div className="rounded-lg border border-emerald-200 bg-white p-4 shadow-sm">
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                    {t("nextAction")}
+                  </p>
+                  <Badge variant="outline" className="border-emerald-200 text-emerald-700">
+                    {t("statusCurrent")}
+                  </Badge>
+                </div>
+                <h3 className="mt-2 text-lg font-semibold text-slate-900">
                   {nextStep.title[uiLocale]}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">{nextStep.instruction[uiLocale]}</p>
+                <p className="mt-1 text-sm text-slate-600">
+                  {getStepWhyNow(nextStep, uiLocale)}
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {nextCta && (
+                    <a href={nextCta.url} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm">
+                        {t(nextCtaLabelKey)}
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    </a>
+                  )}
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => updateStep(nextStep.key, "done")}
+                    disabled={updating === nextStep.key}
+                  >
+                    {updating === nextStep.key ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Check className="h-4 w-4" />
+                    )}
+                    {t("markDone")}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => updateStep(nextStep.key, "skipped")}
+                    disabled={updating === nextStep.key}
+                  >
+                    <SkipForward className="h-4 w-4" />
+                    {t("skip")}
+                  </Button>
+                </div>
+
+                {nextPreparedFields.length > 0 && (
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {nextPreparedFields.map((field) => (
+                      <CopyFieldChip
+                        key={field.key}
+                        label={field.label}
+                        value={field.value}
+                        copiedLabel={t("copied")}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {(nextStep.documentsDetailed?.length ?? 0) > 0 ? (
-                <div>
-                  <p className="text-xs font-medium text-slate-500">{t("prepare")}</p>
-                  <ul className="mt-1 space-y-2 text-sm text-slate-600">
-                    {nextStep.documentsDetailed!.map((doc) => (
-                      <li key={doc.name.en} className="rounded-md bg-slate-50 px-3 py-2">
-                        <span className="font-medium text-slate-800">
-                          {doc.name[uiLocale]}
-                        </span>
-                        <p className="mt-0.5 text-xs text-slate-500">{doc.why[uiLocale]}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                nextStep.documents[uiLocale].length > 0 && (
-                  <div>
-                    <p className="text-xs font-medium text-slate-500">{t("prepare")}</p>
-                    <ul className="mt-1 list-inside list-disc text-sm text-slate-600">
-                      {nextStep.documents[uiLocale].map((doc: string) => (
-                        <li key={doc}>{doc}</li>
+              {/* Layer 2: What you need */}
+              {((nextStep.documentsDetailed?.length ?? 0) > 0 ||
+                nextStep.documents[uiLocale].length > 0) && (
+                <div className="rounded-lg border border-slate-200 bg-white p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    {t("whatYouNeed")}
+                  </p>
+                  {(nextStep.documentsDetailed?.length ?? 0) > 0 ? (
+                    <ul className="mt-2 space-y-1.5">
+                      {nextStep.documentsDetailed!.map((doc) => (
+                        <li key={doc.name.en} className="flex items-start gap-2 text-sm">
+                          <span className="mt-0.5 text-emerald-600">□</span>
+                          <span className="text-slate-700">{doc.name[uiLocale]}</span>
+                        </li>
                       ))}
                     </ul>
-                  </div>
-                )
-              )}
-
-              {nextStep.timeline && (
-                <p className="text-xs text-slate-500">
-                  <span className="font-medium">{t("timeline")}: </span>
-                  {nextStep.timeline[uiLocale]}
-                </p>
-              )}
-
-              {nextStep.pitfalls && (
-                <p className="rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-800">
-                  {nextStep.pitfalls[uiLocale]}
-                </p>
-              )}
-
-              <div className="flex flex-wrap gap-2">
-                {nextCta && (
-                  <a href={nextCta.url} target="_blank" rel="noopener noreferrer">
-                    <Button>
-                      {t(nextCtaLabelKey)}
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </a>
-                )}
-                <Button variant="outline" onClick={() => copyPreparedFields(nextStep.key)}>
-                  {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  {copied ? t("copied") : t("copyFields")}
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => updateStep(nextStep.key, "done")}
-                  disabled={updating === nextStep.key}
-                >
-                  {updating === nextStep.key ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
-                    <Check className="h-4 w-4" />
+                    <ul className="mt-2 space-y-1">
+                      {nextStep.documents[uiLocale].map((doc: string) => (
+                        <li key={doc} className="flex items-start gap-2 text-sm text-slate-700">
+                          <span className="text-emerald-600">□</span>
+                          {doc}
+                        </li>
+                      ))}
+                    </ul>
                   )}
-                  {t("markDone")}
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={() => updateStep(nextStep.key, "skipped")}
-                  disabled={updating === nextStep.key}
-                >
-                  <SkipForward className="h-4 w-4" />
-                  {t("skip")}
-                </Button>
-              </div>
-
-              {nextStep.officialUrls.some((u) => !u.urlVerified) && (
-                <p className="text-xs text-amber-700">{t("verifyUrl")}</p>
+                </div>
               )}
-            </div>
+
+              {/* Layer 3: Local pitfalls (collapsed) */}
+              {nextStep.pitfalls && (
+                <details className="group rounded-lg border border-amber-100 bg-amber-50/50">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 text-sm font-medium text-amber-900 [&::-webkit-details-marker]:hidden">
+                    <span className="flex items-center gap-2">
+                      {t("localPitfalls")}
+                      {playbook.city && (
+                        <Badge variant="outline" className="border-amber-200 text-amber-800">
+                          {playbook.city}
+                        </Badge>
+                      )}
+                    </span>
+                    <ChevronDown className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="px-4 pb-3 text-sm text-amber-800">{nextStep.pitfalls[uiLocale]}</p>
+                </details>
+              )}
+            </>
           ) : null}
         </CardContent>
       </Card>
 
+      {/* Layer 4: All steps timeline */}
       <Card>
-        <CardHeader>
-          <CardTitle>{t("stepsTitle")}</CardTitle>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base">{t("stepsTitle")}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
+        <CardContent className="space-y-1">
           {visibleSteps.map((step, index) => {
             const status = progressMap.get(step.key) ?? "pending";
             const isNext = step.key === nextStepKey;
-            const stepCta = getPrimaryCtaUrl(step);
-            const stepCtaLabelKey = stepCta ? getCtaLabelKey(stepCta.role) : "openLink";
+            const isExpanded = expandedStepKey === step.key;
 
             return (
               <div
                 key={step.key}
                 className={cn(
-                  "rounded-lg border p-4 transition-colors",
-                  isNext && "border-emerald-200 bg-emerald-50/50",
+                  "rounded-lg border transition-colors",
+                  isNext && status === "pending" && "border-emerald-200",
                   status === "done" && "border-slate-100 bg-slate-50/50",
-                  status === "skipped" && "border-slate-100 opacity-60"
+                  status === "skipped" && "border-slate-100 opacity-70"
                 )}
               >
-                <div className="flex items-start gap-3">
+                <button
+                  type="button"
+                  className="flex w-full items-center gap-3 p-3 text-left"
+                  onClick={() => setExpandedStepKey(isExpanded ? null : step.key)}
+                >
                   <div
                     className={cn(
-                      "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold",
+                      "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold",
                       status === "done"
                         ? "bg-emerald-600 text-white"
                         : status === "skipped"
@@ -375,73 +478,34 @@ export function PlaybookPanel({ propertyId, property, locale, onResidencyChange 
                             : "bg-slate-100 text-slate-600"
                     )}
                   >
-                    {status === "done" ? <Check className="h-4 w-4" /> : index + 1}
+                    {status === "done" ? <Check className="h-3 w-3" /> : index + 1}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <p
                         className={cn(
-                          "font-medium text-slate-900",
+                          "text-sm font-medium text-slate-900",
                           status === "done" && "line-through text-slate-500"
                         )}
                       >
                         {step.title[uiLocale]}
                       </p>
-                      {status === "skipped" && (
-                        <span className="text-xs text-slate-400">{t("skipped")}</span>
-                      )}
                       {isNext && status === "pending" && (
-                        <span className="flex items-center gap-1 text-xs font-medium text-emerald-700">
-                          <ArrowRight className="h-3 w-3" />
-                          {t("current")}
-                        </span>
+                        <ArrowRight className="h-3 w-3 text-emerald-600" />
                       )}
                     </div>
-                    <p className="mt-1 text-sm text-slate-500">{step.instruction[uiLocale]}</p>
-
-                    {status === "pending" && (
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {stepCta && (
-                          <a href={stepCta.url} target="_blank" rel="noopener noreferrer">
-                            <Button variant="outline" size="sm">
-                              <ExternalLink className="h-3 w-3" />
-                              {t(stepCtaLabelKey)}
-                            </Button>
-                          </a>
-                        )}
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => updateStep(step.key, "done")}
-                          disabled={updating === step.key}
-                        >
-                          <Check className="h-3 w-3" />
-                          {t("markDone")}
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => updateStep(step.key, "skipped")}
-                          disabled={updating === step.key}
-                        >
-                          {t("skip")}
-                        </Button>
-                      </div>
-                    )}
-
-                    {(status === "done" || status === "skipped") && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="mt-2"
-                        onClick={() => updateStep(step.key, "pending")}
-                        disabled={updating === step.key}
-                      >
-                        {t("undo")}
-                      </Button>
-                    )}
                   </div>
-                </div>
+                  <span className="shrink-0 text-xs text-slate-500">
+                    {getStepStatus(step.key, progressMap)}
+                  </span>
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 shrink-0 text-slate-400 transition-transform",
+                      isExpanded && "rotate-180"
+                    )}
+                  />
+                </button>
+                {isExpanded && renderStepExpanded(step, status)}
               </div>
             );
           })}

@@ -31,7 +31,7 @@ export default async function LandingPage({ params }: Props) {
   const solutionKeys = ["1", "2", "3"];
 
   return (
-    <div className={`landing-page ${jakarta.variable} min-h-screen bg-slate-50 font-[family-name:var(--font-jakarta)]`}>
+    <div className={`landing-page ${jakarta.variable} min-h-screen overflow-x-hidden bg-slate-50 font-[family-name:var(--font-jakarta)]`}>
       <MarketingHeader isLoggedIn={!!session?.user?.id} />
 
       <section className="landing-hero-bg relative overflow-hidden border-b border-slate-200/80">
@@ -39,18 +39,18 @@ export default async function LandingPage({ params }: Props) {
         <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             <div className="landing-fade-in max-w-xl lg:max-w-none">
-              <Badge className="mb-5 border-emerald-200/80 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 hover:bg-emerald-50">
+              <Badge className="mb-5 border-emerald-300/80 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm shadow-emerald-600/10 hover:bg-emerald-50">
                 {t("hero.badge")}
               </Badge>
-              <h1 className="text-[2.75rem] font-extrabold leading-[0.95] tracking-tight text-slate-900 sm:text-6xl lg:text-[4.25rem]">
+              <h1 className="text-[2.75rem] font-extrabold leading-[0.95] tracking-tight text-slate-950 sm:text-6xl lg:text-[4.25rem]">
                 {t("hero.title")}
               </h1>
-              <p className="mt-5 max-w-md text-base leading-snug text-slate-600 sm:text-lg sm:leading-snug">
+              <p className="mt-5 max-w-md text-base leading-snug text-slate-600 sm:text-lg sm:leading-relaxed">
                 {t("hero.subtitle")}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Link href={`/${locale}/signup`}>
-                  <Button size="lg" className="w-full px-8 shadow-lg shadow-emerald-600/25 sm:w-auto">
+                  <Button size="lg" className="w-full px-8 shadow-lg shadow-emerald-600/30 sm:w-auto">
                     {t("hero.cta")}
                   </Button>
                 </Link>

@@ -5,8 +5,8 @@ export async function FeatureBento() {
   const t = await getTranslations("landing.features");
 
   return (
-    <section id="features" className="scroll-mt-20 bg-white py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="features" className="scroll-mt-20 overflow-x-hidden bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             {t("title")}
@@ -16,7 +16,7 @@ export async function FeatureBento() {
 
         <div className="mt-14 grid gap-4 md:grid-cols-3">
           {/* Hero feature: Démarches */}
-          <article className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-shadow hover:shadow-lg hover:shadow-slate-900/5 md:col-span-2 md:row-span-2">
+          <article className="group relative min-w-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-lg hover:shadow-slate-900/5 sm:p-7 md:col-span-2 md:row-span-2">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <Route className="h-6 w-6" />
             </div>
@@ -62,7 +62,7 @@ export async function FeatureBento() {
           </article>
 
           {/* Hero feature: Registre */}
-          <article className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-shadow hover:shadow-lg hover:shadow-slate-900/5 md:row-span-2">
+          <article className="group relative min-w-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-lg hover:shadow-slate-900/5 sm:p-7 md:row-span-2">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <Users className="h-6 w-6" />
             </div>

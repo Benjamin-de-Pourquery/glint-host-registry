@@ -19,7 +19,7 @@ export function AppShell({ children, unreadCount }: Props) {
       <AppSidebar unreadCount={unreadCount} />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-3 border-b border-slate-200 bg-white px-4 lg:hidden">
+        <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-3 border-b border-slate-200/90 bg-white/95 px-4 shadow-sm shadow-slate-900/[0.03] backdrop-blur supports-[backdrop-filter]:bg-white/90 lg:hidden">
           <Button
             type="button"
             variant="ghost"

@@ -35,14 +35,16 @@ export function SidebarBrand({ className }: SidebarBrandProps) {
         className
       )}
     >
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-white">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/25 ring-1 ring-emerald-600/20">
         <Shield className="h-4 w-4" />
       </div>
       <div className="min-w-0 flex flex-col leading-tight">
-        <span className="truncate text-sm font-bold text-slate-900">
+        <span className="truncate text-sm font-bold tracking-tight text-slate-900">
           {tBrand("name")}
         </span>
-        <span className="truncate text-xs text-slate-500">{tBrand("product")}</span>
+        <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-emerald-700 sm:text-xs">
+          {tBrand("product")}
+        </span>
       </div>
     </div>
   );
@@ -83,7 +85,7 @@ export function SidebarContent({
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-emerald-50 text-emerald-700"
+                  ? "bg-emerald-50 font-semibold text-emerald-700 ring-1 ring-emerald-200/60"
                   : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
               )}
             >

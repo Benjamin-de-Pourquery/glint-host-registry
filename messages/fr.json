@@ -14,7 +14,10 @@
     "properties": "Biens",
     "notifications": "Notifications",
     "settings": "Paramètres",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "menu": "Menu",
+    "openMenu": "Ouvrir le menu",
+    "language": "Langue"
   },
   "landing": {
     "hero": {

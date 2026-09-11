@@ -27,6 +27,31 @@ const NICE_CHANGE_OF_USE_RULES_URL =
 const NICE_CHANGE_OF_USE_PORTAL_URL = "https://changementdusage.fr/nice";
 const NICE_PORTAL_URL = "https://taxedesejour.ofeaweb.fr/ts/metropole-nca";
 
+const LILLE_RULES_URL = "https://lillemetropole.fr/meubles-de-tourisme";
+const LILLE_FORM_URL =
+  "https://formulaires.mesdemarches.lille.fr/logement/declarer-un-meuble-de-tourisme/";
+const LILLE_CHANGE_OF_USE_URL =
+  "https://www.lille.fr/Vivre-a-Lille/Mon-logement/Louer-acheter-faire-des-travaux/Changement-d-usage-et-location-de-courte-duree";
+const LILLE_TAX_PORTAL_URL = "https://taxedesejour.lillemetropole.fr/";
+
+const TOULOUSE_RULES_URL =
+  "https://metropole.toulouse.fr/demarches/louer-un-local-meuble-pour-du-tourisme-ou-de-courtes-durees";
+const TOULOUSE_CHANGE_OF_USE_FAQ_URL =
+  "https://metropole.toulouse.fr/faq-changements-dusage-des-locaux-dhabitation";
+const TOULOUSE_PORTAL_URL = "https://taxedesejour.toulouse-metropole.fr/";
+
+const NANTES_RULES_URL =
+  "https://metropole.nantes.fr/mes-services-mon-quotidien/enregistrer-un-meuble-de-tourisme-ou-une-chambre-d-hote";
+const NANTES_CHANGE_OF_USE_URL =
+  "https://metropole.nantes.fr/mes-services-mon-quotidien/connaitre-les-demarches-relatives-au-changement-d-usage-d-un-logement";
+const NANTES_PORTAL_URL = "https://taxedesejour.nantesmetropole.fr/";
+
+const STRASBOURG_PORTAL_URL = "https://taxedesejourems.strasbourg.eu/";
+const STRASBOURG_CHANGE_OF_USE_RULES_URL =
+  "https://www.strasbourg.eu/activite-pro-ou-meuble-de-tourisme";
+const STRASBOURG_CHANGE_OF_USE_INFO_URL =
+  "https://maison-habitat.strasbourg.eu/changement-d-usage-meuble-de-tourisme";
+
 const frSteps = {
   verifyRules: (cityKey: string): PlaybookStep => ({
     key: `${cityKey}-verify-rules`,
@@ -1019,6 +1044,646 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
       frSteps.taxDeclaration("nice"),
       frSteps.updateListings("nice"),
       frSteps.guestRegister("nice"),
+    ],
+  },
+  {
+    id: "fr-lille",
+    country: "France",
+    city: "Lille",
+    title: {
+      en: "Lille furnished tourist rental",
+      fr: "Location meublée touristique — Lille",
+    },
+    description: {
+      en: "Registration via Ville de Lille téléservice (Lille, Lomme, Hellemmes). Primary residence: online form (120 nights/year max without change-of-use). Non-primary or >120 nights: change-of-use authorization required first. Other MEL communes use CERFA via the métropole tax portal.",
+      fr: "Enregistrement via le téléservice de la Ville de Lille (Lille, Lomme, Hellemmes). Résidence principale : formulaire en ligne (120 nuitées/an max sans changement d'usage). Non principale ou >120 nuitées : autorisation de changement d'usage requise au préalable. Les autres communes MEL utilisent le CERFA via le portail taxe de séjour métropolitain.",
+    },
+    sourceReviewedAt: "2026-03-25",
+    steps: [
+      {
+        key: "lille-verify-rules",
+        title: {
+          en: "Check Lille / MEL STR rules for your situation",
+          fr: "Vérifier la réglementation lilloise / MEL selon votre situation",
+        },
+        instruction: {
+          en: "On Lille, Lomme, and Hellemmes, whole-property furnished tourist rentals must be declared via the Ville de Lille online form — partial room rentals in your home are exempt. Primary residences may be rented up to 120 nights/year without change-of-use. Non-primary properties, or primary residences beyond 120 nights, require change-of-use authorization with compensation before registration. Other MEL communes follow the CERFA 14004 process via the métropole tourist tax portal.",
+          fr: "Sur Lille, Lomme et Hellemmes, la location de la totalité du logement en meublé touristique doit être déclarée via le formulaire en ligne de la Ville de Lille — la location d'une partie seulement de votre logement est exemptée. Les résidences principales peuvent être louées jusqu'à 120 nuitées/an sans changement d'usage. Les biens non principaux, ou les résidences principales au-delà de 120 nuitées, exigent une autorisation de changement d'usage avec compensation avant l'enregistrement. Les autres communes MEL suivent le CERFA 14004 via le portail taxe de séjour métropolitain.",
+        },
+        officialUrls: [
+          {
+            url: LILLE_RULES_URL,
+            label: {
+              en: "Métropole Européenne de Lille — furnished tourist rental rules",
+              fr: "Métropole Européenne de Lille — règles meublés de tourisme",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "Confirm primary vs non-primary residence status",
+            "Confirm property is in Lille/Lomme/Hellemmes vs another MEL commune",
+            "Estimated annual rental nights",
+            "Co-ownership bylaws (if applicable)",
+          ],
+          fr: [
+            "Confirmer le statut résidence principale ou non",
+            "Confirmer que le bien est à Lille/Lomme/Hellemmes ou dans une autre commune MEL",
+            "Estimation du nombre de nuitées annuelles",
+            "Règlement de copropriété (le cas échéant)",
+          ],
+        },
+        pitfalls: {
+          en: "The online declaration does NOT authorize change-of-use. Since 1 April 2024, new change-of-use requests for STR in Lille require compensation with no exceptions. Contact changementusage@mairie-lille.fr before renting a non-primary property.",
+          fr: "La déclaration en ligne ne vaut PAS autorisation de changement d'usage. Depuis le 1er avril 2024, les nouvelles demandes de changement d'usage pour meublés touristiques à Lille exigent une compensation sans dérogation. Contactez changementusage@mairie-lille.fr avant de louer un bien non principal.",
+        },
+        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      {
+        key: "lille-change-of-use",
+        title: {
+          en: "Obtain change-of-use authorization (non-primary or >120 nights)",
+          fr: "Obtenir l'autorisation de changement d'usage (non principale ou >120 nuitées)",
+        },
+        instruction: {
+          en: "For non-primary properties, or primary residences rented more than 120 nights/year, contact the Direction de l'Habitat before registering. Change-of-use requires compensation (no exceptions since April 2024). Email changementusage@mairie-lille.fr or call 03 20 49 53 41. There is no separate online portal — follow the official procedures page.",
+          fr: "Pour les biens non principaux, ou les résidences principales louées plus de 120 nuitées/an, contactez la Direction de l'Habitat avant l'enregistrement. Le changement d'usage exige une compensation (sans dérogation depuis avril 2024). Écrivez à changementusage@mairie-lille.fr ou appelez le 03 20 49 53 41. Il n'existe pas de portail en ligne distinct — suivez la page officielle des procédures.",
+        },
+        officialUrls: [
+          {
+            url: LILLE_CHANGE_OF_USE_URL,
+            label: {
+              en: "City of Lille — change-of-use and short-term rental procedures",
+              fr: "Ville de Lille — procédures changement d'usage et location courte durée",
+            },
+            role: "info",
+            urlVerified: true,
+          },
+          {
+            url: LILLE_RULES_URL,
+            label: {
+              en: "MEL — change-of-use compensation rules (reference)",
+              fr: "MEL — règles compensation changement d'usage (référence)",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "Property deed and floor plans",
+            "Compensation property details (required since April 2024)",
+            "Co-ownership bylaws (if applicable)",
+          ],
+          fr: [
+            "Titre de propriété et plans",
+            "Détails du bien de compensation (obligatoire depuis avril 2024)",
+            "Règlement de copropriété (le cas échéant)",
+          ],
+        },
+        timeline: {
+          en: "Processing can take several weeks to months. Do not rent until authorization is granted.",
+          fr: "Le traitement peut prendre plusieurs semaines à plusieurs mois. Ne louez pas avant l'obtention de l'autorisation.",
+        },
+        pitfalls: {
+          en: "Registration and change-of-use are separate tracks. Fines up to €100,000 apply for unauthorized non-primary STR (art. L.651-2 CCH).",
+          fr: "L'enregistrement et le changement d'usage sont des démarches distinctes. Des amendes jusqu'à 100 000 € s'appliquent pour une location non principale non autorisée (art. L.651-2 CCH).",
+        },
+        appliesWhen: "nonPrimary",
+        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      {
+        key: "lille-declare-registration",
+        title: {
+          en: "Declare your furnished tourist rental online (Lille / Lomme / Hellemmes)",
+          fr: "Déclarer votre meublé de tourisme en ligne (Lille / Lomme / Hellemmes)",
+        },
+        instruction: {
+          en: "For properties in Lille, Lomme, or Hellemmes, submit your declaration on the Ville de Lille téléservice (not the MEL rules page). The registration number is issued immediately by email. This applies to whole-property rentals only — renting a room in your home does not require this declaration.",
+          fr: "Pour les biens situés à Lille, Lomme ou Hellemmes, déposez votre déclaration sur le téléservice de la Ville de Lille (pas la page de règles MEL). Le numéro d'enregistrement est délivré immédiatement par email. Cela concerne uniquement la location de la totalité du logement — louer une chambre chez vous ne nécessite pas cette déclaration.",
+        },
+        officialUrls: [
+          {
+            url: LILLE_FORM_URL,
+            label: {
+              en: "Ville de Lille — online tourist rental declaration form",
+              fr: "Ville de Lille — formulaire de déclaration meublé touristique",
+            },
+            role: "form",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "National ID or passport",
+            "Proof of ownership or authorization to rent",
+            "Property address",
+            "Change-of-use authorization (if non-primary)",
+          ],
+          fr: [
+            "Pièce d'identité",
+            "Justificatif de propriété ou autorisation de louer",
+            "Adresse du bien",
+            "Autorisation de changement d'usage (si non principale)",
+          ],
+        },
+        documentsDetailed: [
+          {
+            name: {
+              en: "National ID of the declarant (owner/landlord)",
+              fr: "Pièce d'identité du déclarant (propriétaire/loueur)",
+            },
+            why: {
+              en: "The declaration must be submitted by the property owner or authorized landlord, not a property manager.",
+              fr: "La déclaration doit être déposée par le propriétaire ou le loueur autorisé, pas par un gestionnaire.",
+            },
+          },
+          {
+            name: {
+              en: "Change-of-use authorization decision (if non-primary)",
+              fr: "Décision d'autorisation de changement d'usage (si non principale)",
+            },
+            why: {
+              en: "Required before registering a non-primary property. The online form does not substitute for change-of-use approval.",
+              fr: "Requis avant l'enregistrement d'un bien non principal. Le formulaire en ligne ne remplace pas l'autorisation de changement d'usage.",
+            },
+          },
+        ],
+        timeline: {
+          en: "Registration number issued immediately after online submission.",
+          fr: "Numéro d'enregistrement délivré immédiatement après la déclaration en ligne.",
+        },
+        pitfalls: {
+          en: "Properties in other MEL communes (Roubaix, Tourcoing, etc.) must use CERFA 14004 via the métropole tourist tax portal — not this Lille form.",
+          fr: "Les biens dans les autres communes MEL (Roubaix, Tourcoing, etc.) doivent utiliser le CERFA 14004 via le portail taxe de séjour métropolitain — pas ce formulaire lillois.",
+        },
+        appliesWhen: "always",
+        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      frSteps.taxDeclaration("lille"),
+      frSteps.updateListings("lille"),
+      frSteps.guestRegister("lille"),
+    ],
+  },
+  {
+    id: "fr-toulouse",
+    country: "France",
+    city: "Toulouse",
+    title: {
+      en: "Toulouse furnished tourist rental",
+      fr: "Location meublée touristique — Toulouse",
+    },
+    description: {
+      en: "Registration via Toulouse Métropole tourist tax portal. Rules on metropole.toulouse.fr. Primary residence: online registration (120 nights/year max). Non-primary: change-of-use authorization required first (PDF forms to changement.usage@mairie-toulouse.fr).",
+      fr: "Enregistrement via le portail taxe de séjour Toulouse Métropole. Règles sur metropole.toulouse.fr. Résidence principale : enregistrement en ligne (120 nuitées/an max). Non principale : autorisation de changement d'usage requise au préalable (formulaires PDF à changement.usage@mairie-toulouse.fr).",
+    },
+    sourceReviewedAt: "2026-03-25",
+    steps: [
+      {
+        key: "toulouse-verify-rules",
+        title: {
+          en: "Check Toulouse STR rules for your situation",
+          fr: "Vérifier la réglementation toulousaine selon votre situation",
+        },
+        instruction: {
+          en: "Toulouse city rules apply to properties within Toulouse municipality. Primary residences may be rented up to 120 nights/year after online registration. Exceeding 120 days triggers secondary-residence obligations. Non-primary properties require change-of-use authorization before any rental. Individuals may hold up to 2 temporary change-of-use authorizations without compensation.",
+          fr: "Les règles de la Ville de Toulouse s'appliquent aux biens situés sur le territoire communal. Les résidences principales peuvent être louées jusqu'à 120 nuitées/an après enregistrement en ligne. Au-delà de 120 jours, les obligations des résidences secondaires s'appliquent. Les biens non principaux exigent une autorisation de changement d'usage avant toute location. Les particuliers peuvent détenir jusqu'à 2 autorisations temporaires de changement d'usage sans compensation.",
+        },
+        officialUrls: [
+          {
+            url: TOULOUSE_RULES_URL,
+            label: {
+              en: "Toulouse Métropole — furnished tourist rental rules and procedures",
+              fr: "Toulouse Métropole — règles et procédures meublé de tourisme",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "Confirm primary vs non-primary residence status",
+            "Estimated annual rental nights (120-day cap for primary)",
+            "Co-ownership bylaws (if applicable)",
+            "Landlord authorization (if tenant)",
+          ],
+          fr: [
+            "Confirmer le statut résidence principale ou non",
+            "Estimation du nombre de nuitées annuelles (plafond 120 jours pour résidence principale)",
+            "Règlement de copropriété (le cas échéant)",
+            "Autorisation du bailleur (si locataire)",
+          ],
+        },
+        pitfalls: {
+          en: "Social housing tenants cannot operate STR. The online registration number does NOT authorize change-of-use — these are separate procedures.",
+          fr: "Les locataires du parc social ne peuvent pas exercer une location meublée touristique. Le numéro d'enregistrement en ligne ne vaut PAS autorisation de changement d'usage — ce sont des procédures distinctes.",
+        },
+        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      frSteps.changeOfUse(
+        "toulouse",
+        [
+          {
+            url: TOULOUSE_CHANGE_OF_USE_FAQ_URL,
+            label: {
+              en: "Toulouse Métropole — change-of-use FAQ and contact",
+              fr: "Toulouse Métropole — FAQ changement d'usage et contact",
+            },
+            role: "info",
+            urlVerified: true,
+          },
+          {
+            url: TOULOUSE_RULES_URL,
+            label: {
+              en: "Toulouse Métropole — change-of-use forms (PDF download)",
+              fr: "Toulouse Métropole — formulaires changement d'usage (téléchargement PDF)",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+        ],
+        {
+          en: "For non-primary residences, download the appropriate change-of-use form from the official Toulouse page and email it with supporting documents to changement.usage@mairie-toulouse.fr (or post to Mission Meublés de Tourisme, 6 rue René Leduc, 31505 Toulouse Cedex 5). Individuals may obtain up to 2 temporary authorizations without compensation. Legal entities and 3+ properties require compensation.",
+          fr: "Pour les résidences non principales, téléchargez le formulaire de changement d'usage adapté sur la page officielle de Toulouse et envoyez-le avec les pièces justificatives à changement.usage@mairie-toulouse.fr (ou par courrier à Mission Meublés de Tourisme, 6 rue René Leduc, 31505 Toulouse Cedex 5). Les particuliers peuvent obtenir jusqu'à 2 autorisations temporaires sans compensation. Les personnes morales et 3+ biens exigent une compensation.",
+        },
+        {
+          en: "Do not register on the tourist tax portal until change-of-use is approved. Fines up to €50,000 plus daily penalties apply for unauthorized change-of-use.",
+          fr: "N'enregistrez pas sur le portail taxe de séjour tant que le changement d'usage n'est pas approuvé. Des amendes jusqu'à 50 000 € plus astreintes journalières s'appliquent pour un changement d'usage non autorisé.",
+        }
+      ),
+      {
+        key: "toulouse-declare-registration",
+        title: {
+          en: "Register on the Toulouse Métropole tourist tax portal",
+          fr: "S'inscrire sur le portail taxe de séjour Toulouse Métropole",
+        },
+        instruction: {
+          en: "Create a host account on the Toulouse Métropole tourist tax portal, add your property, and obtain your 13-character registration number. This is the official registration channel — not the metropole.toulouse.fr rules page. The number must appear on all listings from day 1 of rental.",
+          fr: "Créez un compte hébergeur sur le portail taxe de séjour de Toulouse Métropole, ajoutez votre bien et obtenez votre numéro d'enregistrement à 13 caractères. C'est le canal officiel d'enregistrement — pas la page de règles metropole.toulouse.fr. Le numéro doit figurer sur toutes les annonces dès le 1er jour de location.",
+        },
+        officialUrls: [
+          {
+            url: TOULOUSE_PORTAL_URL,
+            label: {
+              en: "Toulouse Métropole tourist tax portal — host registration",
+              fr: "Portail taxe de séjour Toulouse Métropole — inscription hébergeur",
+            },
+            role: "portal",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "National ID or passport",
+            "Proof of ownership or authorization to rent",
+            "Property address",
+            "Change-of-use authorization (if non-primary)",
+            "IBAN for tourist tax payments",
+          ],
+          fr: [
+            "Pièce d'identité",
+            "Justificatif de propriété ou autorisation de louer",
+            "Adresse du bien",
+            "Autorisation de changement d'usage (si non principale)",
+            "IBAN pour le paiement de la taxe de séjour",
+          ],
+        },
+        timeline: {
+          en: "Registration number assigned automatically after portal account setup and property declaration.",
+          fr: "Numéro d'enregistrement attribué automatiquement après création du compte et déclaration du bien sur le portail.",
+        },
+        pitfalls: {
+          en: "The registration number does not authorize change-of-use. Contact changement.usage@mairie-toulouse.fr (05 34 24 57 77) for change-of-use questions before renting a non-primary property.",
+          fr: "Le numéro d'enregistrement ne vaut pas autorisation de changement d'usage. Contactez changement.usage@mairie-toulouse.fr (05 34 24 57 77) pour les questions de changement d'usage avant de louer un bien non principal.",
+        },
+        appliesWhen: "always",
+        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      frSteps.taxDeclaration("toulouse"),
+      frSteps.updateListings("toulouse"),
+      frSteps.guestRegister("toulouse"),
+    ],
+  },
+  {
+    id: "fr-nantes",
+    country: "France",
+    city: "Nantes",
+    title: {
+      en: "Nantes furnished tourist rental",
+      fr: "Location meublée touristique — Nantes",
+    },
+    description: {
+      en: "Registration via Nantes Métropole tourist tax portal (Nantes city only). Rules on metropole.nantes.fr. Primary residence: 120 nights/year max. Non-primary: change-of-use authorization via Service Urbanisme Réglementaire before registration. Other métropole communes use CERFA.",
+      fr: "Enregistrement via le portail taxe de séjour Nantes Métropole (ville de Nantes uniquement). Règles sur metropole.nantes.fr. Résidence principale : 120 nuitées/an max. Non principale : autorisation de changement d'usage via le Service Urbanisme Réglementaire avant l'enregistrement. Les autres communes métropolitaines utilisent le CERFA.",
+    },
+    sourceReviewedAt: "2026-03-25",
+    steps: [
+      {
+        key: "nantes-verify-rules",
+        title: {
+          en: "Check Nantes STR rules for your situation",
+          fr: "Vérifier la réglementation nantaise selon votre situation",
+        },
+        instruction: {
+          en: "The registration number requirement applies to properties in Nantes city only. Primary residences may be rented up to 120 nights/year. Non-primary properties require change-of-use authorization before registration. Properties in other Nantes Métropole communes must use CERFA 14004 (generated via the tax portal) — the 13-character registration number does not apply there.",
+          fr: "L'obligation de numéro d'enregistrement s'applique aux biens situés sur la ville de Nantes uniquement. Les résidences principales peuvent être louées jusqu'à 120 nuitées/an. Les biens non principaux exigent une autorisation de changement d'usage avant l'enregistrement. Les biens dans les autres communes de Nantes Métropole doivent utiliser le CERFA 14004 (généré via le portail taxe de séjour) — le numéro à 13 caractères ne s'applique pas.",
+        },
+        officialUrls: [
+          {
+            url: NANTES_RULES_URL,
+            label: {
+              en: "Nantes Métropole — furnished tourist rental registration rules",
+              fr: "Nantes Métropole — règles enregistrement meublé de tourisme",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "Confirm property is in Nantes city vs another métropole commune",
+            "Confirm primary vs non-primary residence status",
+            "Estimated annual rental nights",
+            "Co-ownership bylaws (if applicable)",
+          ],
+          fr: [
+            "Confirmer que le bien est sur la ville de Nantes ou une autre commune métropolitaine",
+            "Confirmer le statut résidence principale ou non",
+            "Estimation du nombre de nuitées annuelles",
+            "Règlement de copropriété (le cas échéant)",
+          ],
+        },
+        pitfalls: {
+          en: "Registration number and change-of-use authorization are separate procedures. Renting a secondary residence without change-of-use is an offence.",
+          fr: "Le numéro d'enregistrement et l'autorisation de changement d'usage sont des procédures distinctes. Louer une résidence secondaire sans changement d'usage constitue une infraction.",
+        },
+        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      frSteps.changeOfUse(
+        "nantes",
+        [
+          {
+            url: NANTES_CHANGE_OF_USE_URL,
+            label: {
+              en: "Nantes Métropole — change-of-use procedures and contacts",
+              fr: "Nantes Métropole — procédures et contacts changement d'usage",
+            },
+            role: "info",
+            urlVerified: true,
+          },
+        ],
+        {
+          en: "For non-primary properties in Nantes, contact the Service Urbanisme Réglementaire before registering. Email changement.d.usage@mairie-nantes.fr with your project details (STR, address, surface, typology) or call 02 40 41 59 55. Legal entities require compensation; individuals may obtain a renewable temporary authorization.",
+          fr: "Pour les biens non principaux à Nantes, contactez le Service Urbanisme Réglementaire avant l'enregistrement. Écrivez à changement.d.usage@mairie-nantes.fr avec les détails de votre projet (meublé touristique, adresse, surface, typologie) ou appelez le 02 40 41 59 55. Les personnes morales exigent une compensation ; les particuliers peuvent obtenir une autorisation temporaire renouvelable.",
+        },
+        {
+          en: "Change-of-use authorization is strictly personal and non-transferable. Do not register on the tax portal until approved.",
+          fr: "L'autorisation de changement d'usage est strictement personnelle et non cessible. N'enregistrez pas sur le portail taxe de séjour tant qu'elle n'est pas approuvée.",
+        }
+      ),
+      {
+        key: "nantes-declare-registration",
+        title: {
+          en: "Register on the Nantes Métropole tourist tax portal",
+          fr: "S'inscrire sur le portail taxe de séjour Nantes Métropole",
+        },
+        instruction: {
+          en: "Create a « Taxe de séjour » account on the Nantes Métropole portal and declare your property to obtain your registration number (Nantes city). This is the registration channel — not the metropole.nantes.fr rules page. For other métropole communes, the portal generates CERFA 14004 for submission to the local mairie.",
+          fr: "Créez un compte « Taxe de séjour » sur le portail Nantes Métropole et déclarez votre bien pour obtenir votre numéro d'enregistrement (ville de Nantes). C'est le canal d'enregistrement — pas la page de règles metropole.nantes.fr. Pour les autres communes métropolitaines, le portail génère le CERFA 14004 pour transmission à la mairie locale.",
+        },
+        officialUrls: [
+          {
+            url: NANTES_PORTAL_URL,
+            label: {
+              en: "Nantes Métropole tourist tax portal — host registration",
+              fr: "Portail taxe de séjour Nantes Métropole — inscription hébergeur",
+            },
+            role: "portal",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "National ID or passport",
+            "Proof of ownership",
+            "Property address",
+            "Change-of-use authorization (if non-primary)",
+            "IBAN for tourist tax payments",
+          ],
+          fr: [
+            "Pièce d'identité",
+            "Justificatif de propriété",
+            "Adresse du bien",
+            "Autorisation de changement d'usage (si non principale)",
+            "IBAN pour le paiement de la taxe de séjour",
+          ],
+        },
+        documentsDetailed: [
+          {
+            name: {
+              en: "Change-of-use authorization (if non-primary)",
+              fr: "Autorisation de changement d'usage (si non principale)",
+            },
+            why: {
+              en: "Required before registering a secondary residence in Nantes. Contact changement.d.usage@mairie-nantes.fr first.",
+              fr: "Requis avant l'enregistrement d'une résidence secondaire à Nantes. Contactez d'abord changement.d.usage@mairie-nantes.fr.",
+            },
+          },
+        ],
+        timeline: {
+          en: "Registration number issued after portal account setup and property declaration.",
+          fr: "Numéro d'enregistrement délivré après création du compte et déclaration du bien sur le portail.",
+        },
+        appliesWhen: "always",
+        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      frSteps.taxDeclaration("nantes"),
+      frSteps.updateListings("nantes"),
+      frSteps.guestRegister("nantes"),
+    ],
+  },
+  {
+    id: "fr-strasbourg",
+    country: "France",
+    city: "Strasbourg",
+    title: {
+      en: "Strasbourg furnished tourist rental",
+      fr: "Location meublée touristique — Strasbourg",
+    },
+    description: {
+      en: "Registration and tourist tax via Strasbourg Eurométropole portal. Primary residence: register online (<120 nights/year, no change-of-use). Non-primary or >120 nights: change-of-use authorization via Touriz before registration. New rules apply from 1 February 2026.",
+      fr: "Enregistrement et taxe de séjour via le portail Eurométropole de Strasbourg. Résidence principale : enregistrement en ligne (<120 nuitées/an, sans changement d'usage). Non principale ou >120 nuitées : autorisation de changement d'usage via Touriz avant l'enregistrement. Nouvelles règles applicables au 1er février 2026.",
+    },
+    sourceReviewedAt: "2026-03-25",
+    steps: [
+      {
+        key: "strasbourg-verify-rules",
+        title: {
+          en: "Check Strasbourg STR rules for your situation",
+          fr: "Vérifier la réglementation strasbourgeoise selon votre situation",
+        },
+        instruction: {
+          en: "All furnished tourist rentals in Strasbourg require registration and a 13-character number on listings — including primary residences rented fewer than 120 days/year. Non-primary properties, or primary residences beyond 120 days, require change-of-use authorization before registration. Since 1 February 2026, change-of-use applications must include a DPE (classes A–E) and a sworn statement of co-ownership compliance.",
+          fr: "Toutes les locations meublées touristiques à Strasbourg exigent un enregistrement et un numéro à 13 caractères sur les annonces — y compris les résidences principales louées moins de 120 jours/an. Les biens non principaux, ou les résidences principales au-delà de 120 jours, exigent une autorisation de changement d'usage avant l'enregistrement. Depuis le 1er février 2026, les demandes de changement d'usage doivent inclure un DPE (classes A à E) et une attestation sur l'honneur de conformité au règlement de copropriété.",
+        },
+        officialUrls: [
+          {
+            url: STRASBOURG_CHANGE_OF_USE_RULES_URL,
+            label: {
+              en: "City of Strasbourg — STR and change-of-use rules",
+              fr: "Ville de Strasbourg — règles meublé touristique et changement d'usage",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+          {
+            url: STRASBOURG_PORTAL_URL,
+            label: {
+              en: "Strasbourg Eurométropole — tourist tax and registration portal",
+              fr: "Eurométropole de Strasbourg — portail taxe de séjour et enregistrement",
+            },
+            role: "portal",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "Confirm primary vs non-primary residence status",
+            "Estimated annual rental nights (120-day threshold)",
+            "DPE energy rating (A–E required for change-of-use since Feb 2026)",
+            "Co-ownership bylaws (if applicable)",
+          ],
+          fr: [
+            "Confirmer le statut résidence principale ou non",
+            "Estimation du nombre de nuitées annuelles (seuil 120 jours)",
+            "DPE (classes A à E requis pour changement d'usage depuis fév. 2026)",
+            "Règlement de copropriété (le cas échéant)",
+          ],
+        },
+        pitfalls: {
+          en: "Registration and change-of-use are separate. In the extended city centre, change-of-use always requires compensation regardless of applicant type.",
+          fr: "L'enregistrement et le changement d'usage sont distincts. Dans le centre élargi, le changement d'usage exige toujours une compensation quel que soit le type de demandeur.",
+        },
+        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      {
+        key: "strasbourg-change-of-use",
+        title: {
+          en: "Obtain change-of-use authorization (non-primary or >120 nights)",
+          fr: "Obtenir l'autorisation de changement d'usage (non principale ou >120 nuitées)",
+        },
+        instruction: {
+          en: "For non-primary properties or primary residences rented more than 120 days/year, apply for change-of-use via the Touriz guichet (not by email). Since 1 February 2026, include a DPE (A–E) and a sworn statement that co-ownership bylaws permit the intended use. In the extended city centre, compensation is always required.",
+          fr: "Pour les biens non principaux ou les résidences principales louées plus de 120 jours/an, déposez une demande de changement d'usage via le guichet Touriz (pas par email). Depuis le 1er février 2026, joignez un DPE (A à E) et une attestation sur l'honneur que le règlement de copropriété autorise l'usage envisagé. Dans le centre élargi, la compensation est toujours exigée.",
+        },
+        officialUrls: [
+          {
+            url: STRASBOURG_CHANGE_OF_USE_RULES_URL,
+            label: {
+              en: "City of Strasbourg — change-of-use application procedures",
+              fr: "Ville de Strasbourg — procédures demande de changement d'usage",
+            },
+            role: "info",
+            urlVerified: true,
+          },
+          {
+            url: STRASBOURG_CHANGE_OF_USE_INFO_URL,
+            label: {
+              en: "Maison de l'habitat — STR change-of-use criteria",
+              fr: "Maison de l'habitat — critères changement d'usage meublé touristique",
+            },
+            role: "rules",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "Property deed and floor plans",
+            "DPE (energy classes A–E, required since Feb 2026)",
+            "Sworn statement of co-ownership compliance",
+            "Compensation property details (if in extended centre or legal entity)",
+          ],
+          fr: [
+            "Titre de propriété et plans",
+            "DPE (classes A à E, requis depuis fév. 2026)",
+            "Attestation sur l'honneur de conformité au règlement de copropriété",
+            "Détails du bien de compensation (si centre élargi ou personne morale)",
+          ],
+        },
+        timeline: {
+          en: "Processing can take several weeks. Do not rent until authorization is granted.",
+          fr: "Le traitement peut prendre plusieurs semaines. Ne louez pas avant l'obtention de l'autorisation.",
+        },
+        pitfalls: {
+          en: "Ceasing activity cancels your change-of-use authorization permanently. Use a closure period in your portal account for temporary breaks instead.",
+          fr: "La cessation d'activité annule définitivement votre autorisation de changement d'usage. Utilisez une période de fermeture dans votre espace portail pour les interruptions temporaires.",
+        },
+        appliesWhen: "nonPrimary",
+        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      {
+        key: "strasbourg-declare-registration",
+        title: {
+          en: "Register on the Strasbourg Eurométropole tourist tax portal",
+          fr: "S'inscrire sur le portail taxe de séjour Eurométropole de Strasbourg",
+        },
+        instruction: {
+          en: "Declare your accommodation on the Strasbourg Eurométropole tourist tax portal to obtain your 13-character registration number — required even for primary residences under 120 days. This is the registration channel. After any required change-of-use authorization, complete registration before your first rental day.",
+          fr: "Déclarez votre hébergement sur le portail taxe de séjour de l'Eurométropole de Strasbourg pour obtenir votre numéro d'enregistrement à 13 caractères — requis même pour les résidences principales sous 120 jours. C'est le canal d'enregistrement. Après toute autorisation de changement d'usage requise, finalisez l'enregistrement avant le 1er jour de location.",
+        },
+        officialUrls: [
+          {
+            url: STRASBOURG_PORTAL_URL,
+            label: {
+              en: "Strasbourg Eurométropole tourist tax portal — host registration",
+              fr: "Portail taxe de séjour Eurométropole de Strasbourg — inscription hébergeur",
+            },
+            role: "portal",
+            urlVerified: true,
+          },
+        ],
+        documents: {
+          en: [
+            "National ID or passport",
+            "Proof of ownership",
+            "Property address and capacity",
+            "Change-of-use authorization (if non-primary)",
+          ],
+          fr: [
+            "Pièce d'identité",
+            "Justificatif de propriété",
+            "Adresse du bien et capacité d'accueil",
+            "Autorisation de changement d'usage (si non principale)",
+          ],
+        },
+        documentsDetailed: [
+          {
+            name: {
+              en: "13-character registration number",
+              fr: "Numéro d'enregistrement à 13 caractères",
+            },
+            why: {
+              en: "Mandatory on all rental listings from day 1 — including primary residences rented fewer than 120 days/year.",
+              fr: "Obligatoire sur toutes les annonces dès le 1er jour — y compris les résidences principales louées moins de 120 jours/an.",
+            },
+          },
+        ],
+        timeline: {
+          en: "Registration number issued after portal account setup and accommodation declaration.",
+          fr: "Numéro d'enregistrement délivré après création du compte et déclaration de l'hébergement sur le portail.",
+        },
+        pitfalls: {
+          en: "Any modification via your portal account triggers a new registration number. Contact taxedesejour@strasbourg.eu for minor updates to avoid re-issuance.",
+          fr: "Toute modification via votre espace portail entraîne un nouveau numéro d'enregistrement. Contactez taxedesejour@strasbourg.eu pour les mises à jour mineures afin d'éviter une réémission.",
+        },
+        appliesWhen: "always",
+        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
+      },
+      frSteps.taxDeclaration("strasbourg"),
+      frSteps.updateListings("strasbourg"),
+      frSteps.guestRegister("strasbourg"),
     ],
   },
   {

@@ -63,4 +63,25 @@ The script fetches every unique playbook URL and fails if any `urlVerified: true
 5. After marking rules done, next action should be "Declare your furnished tourist rental" with CTA **Open official form** → `meubles-tourisme.paris.fr` (NOT the rules page)
 6. Switch to **Secondary residence** — change-of-use step should appear before declaration
 
+### Tier A city coverage checklist
+
+Gold-precision playbooks (rules / form or portal / tax roles, `appliesWhen` branching, `documentsDetailed` where relevant):
+
+| City | Rules URL | Registration CTA | Change-of-use (non-primary) |
+|------|-----------|------------------|----------------------------|
+| Paris | `paris.fr/meubles-touristiques` | `meubles-tourisme.paris.fr` (form) | `s29-sndcu.apps.paris.fr` (portal) |
+| Lyon | `lyon.fr/demarche/.../declarer-un-meuble-de-tourisme` | same page (form) | `lyon.fr/.../changement-dusage` (info) |
+| Lille | `lillemetropole.fr/meubles-de-tourisme` | `formulaires.mesdemarches.lille.fr` (form) | `lille.fr/.../Changement-d-usage` (info) |
+| Toulouse | `metropole.toulouse.fr/demarches/louer-un-local-meuble...` | `taxedesejour.toulouse-metropole.fr` (portal) | FAQ + PDF forms (info) |
+| Nantes | `metropole.nantes.fr/.../enregistrer-un-meuble...` | `taxedesejour.nantesmetropole.fr` (portal) | `metropole.nantes.fr/.../changement-d-usage` (info) |
+| Strasbourg | `strasbourg.eu/activite-pro-ou-meuble-de-tourisme` | `taxedesejourems.strasbourg.eu` (portal) | Touriz guichet via strasbourg.eu (info) |
+
+Tier B (tax portal + rules page): Marseille, Bordeaux, Nice.
+
+### Lille / Toulouse demo spot-check
+
+1. Settings → Load demo data
+2. Open **Vieux-Lille Loft** (Lille, primary) — registration CTA should be `formulaires.mesdemarches.lille.fr`, not the MEL rules page
+3. Open **Capitole Studio** (Toulouse, secondary) — change-of-use step should appear before the tax portal registration step
+
 See also **Playbook URL maintenance** in `PRODUCT.md`.

@@ -23,6 +23,10 @@ const CITY_ALIASES: Record<string, string> = {
   marseille: "Marseille",
   bordeaux: "Bordeaux",
   nice: "Nice",
+  lille: "Lille",
+  toulouse: "Toulouse",
+  nantes: "Nantes",
+  strasbourg: "Strasbourg",
 };
 
 function normalizeCountry(country: string): string {

@@ -59,6 +59,11 @@ export function getDaysUntilExpiry(expiryDate: Date | null | undefined): number 
   return differenceInDays(expiryDate, new Date());
 }
 
+/** Short hint for compact property rows — translation keys under properties.list.nextAction */
+export function getComplianceNextActionKey(status: ComplianceStatus): string {
+  return status;
+}
+
 export const DEFAULT_CHECKLIST_EN = [
   "Obtain municipal registration number",
   "Declare property to local tax authority",

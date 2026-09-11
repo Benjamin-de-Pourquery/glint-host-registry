@@ -83,7 +83,7 @@ export function SidebarContent({
               href={href}
               onClick={onNavigate}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2",
                 isActive
                   ? "bg-emerald-50 font-semibold text-emerald-700 ring-1 ring-emerald-200/60"
                   : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"

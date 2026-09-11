@@ -30,6 +30,7 @@ import type {
 import {
   ArrowRight,
   Check,
+  CheckCircle2,
   ChevronDown,
   ExternalLink,
   Loader2,
@@ -38,6 +39,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { EmptyState } from "@/components/empty-state";
 
 type Props = {
   propertyId: string;
@@ -332,10 +334,13 @@ export function PlaybookPanel({
       </div>
 
       {allDone ? (
-        <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white px-6 py-8">
-          <p className="text-lg font-semibold text-emerald-800">{t("allDone.title")}</p>
-          <p className="mt-2 text-sm text-slate-600">{t("allDone.description")}</p>
-        </div>
+        <EmptyState
+          icon={CheckCircle2}
+          variant="success"
+          title={t("allDone.title")}
+          description={t("allDone.description")}
+          className="border-0 py-8"
+        />
       ) : nextStep ? (
         <div className="space-y-4">
           <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white px-6 py-8">
@@ -557,9 +562,13 @@ export function PlaybookNextActionTeaser({
   if (!data?.playbook || !data.nextStepKey) {
     if (data?.playbook && data.summary.completed + data.summary.skipped >= data.summary.total) {
       return (
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 px-4 py-3">
-          <p className="font-medium text-emerald-800">{t("allDone.title")}</p>
-        </div>
+        <EmptyState
+          icon={CheckCircle2}
+          variant="success"
+          title={t("allDone.title")}
+          description={t("allDone.description")}
+          className="py-6"
+        />
       );
     }
     return null;

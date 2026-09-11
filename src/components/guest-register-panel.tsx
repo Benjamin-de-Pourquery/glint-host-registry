@@ -15,7 +15,9 @@ import {
   RefreshCw,
   Users,
   AlertCircle,
+  UserPlus,
 } from "lucide-react";
+import { EmptyState } from "@/components/empty-state";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -225,7 +227,28 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
           </div>
 
           {!data || data.records.length === 0 ? (
-            <p className="text-sm text-slate-500">{t("noRecords")}</p>
+            <EmptyState
+              icon={UserPlus}
+              title={t("emptyRecords.title")}
+              description={t("emptyRecords.description")}
+              className="py-8"
+            >
+              {isEnabled && checkInUrl ? (
+                <Button variant="outline" size="sm" onClick={copyLink}>
+                  {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                  {copied ? t("copied") : t("emptyRecords.cta")}
+                </Button>
+              ) : (
+                <Button size="sm" onClick={() => runAction("enable")} disabled={actionLoading}>
+                  {actionLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Link2 className="h-4 w-4" />
+                  )}
+                  {t("enableLink")}
+                </Button>
+              )}
+            </EmptyState>
           ) : (
             <div className="space-y-2">
               {data.records.map((record) => (

@@ -230,6 +230,33 @@
       "title": "Subscribe to add properties",
       "description": "Choose a plan to start managing your rental portfolio.",
       "cta": "View plans"
+    },
+    "empty": {
+      "title": "Your portfolio is empty",
+      "description": "Add your first property to start tracking compliance, guest register, and deadlines.",
+      "subscribeDescription": "Subscribe to a plan, then add your first property to get started.",
+      "cta": "Add your first property"
+    }
+  },
+  "onboarding": {
+    "title": "Get started with Glint",
+    "subtitle": "Complete these three steps to set up your first property.",
+    "progress": "{done} of {total} complete",
+    "dismiss": "Dismiss checklist",
+    "cta": "Go",
+    "steps": {
+      "addProperty": {
+        "title": "Add a property",
+        "description": "Create your first rental listing in the portfolio."
+      },
+      "setResidency": {
+        "title": "Set residency status",
+        "description": "Tell us if it's your primary or secondary residence — compliance steps adapt."
+      },
+      "enableGuestRegister": {
+        "title": "Enable guest register link",
+        "description": "Generate a public check-in link for foreign guest police forms."
+      }
     }
   },
   "properties": {
@@ -288,6 +315,17 @@
     "emptyArchived": {
       "title": "No archived properties",
       "description": "Archived properties are hidden from your active portfolio and do not count toward your plan limit."
+    },
+    "list": {
+      "compact": "List",
+      "cards": "Cards",
+      "viewToggle": "Property list view",
+      "nextAction": {
+        "ready": "All set",
+        "action_needed": "Complete compliance",
+        "expired": "Renew registration",
+        "not_started": "Start compliance"
+      }
     },
     "archiveAction": {
       "cancel": "Cancel",
@@ -515,6 +553,11 @@
     "copied": "Copied",
     "recordsTitle": "Guest records (retention window)",
     "noRecords": "No guest records yet. Share the check-in link with arriving guests.",
+    "emptyRecords": {
+      "title": "No guest records yet",
+      "description": "Share your check-in link with arriving foreign guests. They'll sign the police form digitally — records are kept for 6 months.",
+      "cta": "Copy check-in link"
+    },
     "exportCsv": "Export CSV",
     "printFiche": "Print fiche",
     "policeFormRequired": "Police form",

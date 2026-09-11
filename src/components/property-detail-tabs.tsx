@@ -11,6 +11,7 @@ import { PropertyOverviewForm } from "@/components/property-overview-form";
 import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { getComplianceStatus } from "@/lib/compliance";
+import type { PlatformProgressItem } from "@/lib/listings/platforms";
 import { cn } from "@/lib/utils";
 
 const TAB_IDS = ["overview", "compliance", "register", "listings", "notes"] as const;
@@ -45,6 +46,7 @@ type PropertyData = {
   notes?: string | null;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
+  listingPlatformProgress: PlatformProgressItem[];
 };
 
 type Props = {
@@ -221,6 +223,7 @@ export function PropertyDetailTabs({ property, locale }: Props) {
             vrboUrl: property.vrboUrl,
             registrationNumber: property.registration?.registrationNumber,
           }}
+          platformProgress={property.listingPlatformProgress}
         />
       </TabsContent>
 

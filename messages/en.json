@@ -366,12 +366,27 @@
         "registrationTitle": "Listing registration number",
         "registrationHint": "This number must appear on every platform listing under EU regulation.",
         "registrationLabel": "Registration number",
+        "copied": "Registration number copied",
         "save": "Save listings",
         "saved": "Listings saved",
         "saveError": "Could not save",
         "empty": {
           "title": "No listings linked",
           "description": "Add your Airbnb, Booking.com, or Vrbo listing URLs below."
+        },
+        "checklist": {
+          "title": "Add registration number to platforms",
+          "description": "Mark each platform once you have added your registration number to the listing.",
+          "summary": "{completed}/{total} platforms updated",
+          "item": "Add registration number to {platform}",
+          "done": "Done",
+          "pending": "Pending",
+          "notLinked": "Add a listing URL above to track this platform",
+          "openListing": "Open listing",
+          "allComplete": "All linked platforms are updated. The compliance step will be marked done automatically.",
+          "noLinkedPlatforms": "Add at least one listing URL above to start tracking platform updates.",
+          "noRegistration": "Add your registration number below to unlock the platform checklist.",
+          "toggleError": "Could not update platform status"
         }
       },
       "notes": {

@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { PlaybookPanel } from "@/components/playbook-panel";
+import { GuestRegisterPanel } from "@/components/guest-register-panel";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
 import { toast } from "sonner";
@@ -148,6 +149,8 @@ export function CompliancePanel({
         }}
         locale={locale}
       />
+
+      <GuestRegisterPanel propertyId={propertyId} locale={locale} />
 
       <Card>
         <CardHeader>

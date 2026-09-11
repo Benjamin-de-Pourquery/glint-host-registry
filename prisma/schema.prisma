@@ -82,6 +82,61 @@ model Property {
   checklistItems ChecklistItem[]
   playbookProgress PlaybookStepProgress[]
   notifications  Notification[]
+  guestRegisterToken GuestRegisterToken?
+  guestStays   GuestStay[]
+  guestRecords GuestRecord[]
+}
+
+model GuestRegisterToken {
+  id         String   @id @default(cuid())
+  propertyId String   @unique
+  token      String   @unique
+  enabled    Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime?
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model GuestStay {
+  id           String        @id @default(cuid())
+  propertyId   String
+  checkInDate  DateTime
+  checkOutDate DateTime
+  source       String        @default("manual")
+  notes        String?
+  createdAt    DateTime      @default(now())
+  property     Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  guestRecords GuestRecord[]
+
+  @@index([propertyId])
+}
+
+model GuestRecord {
+  id                      String    @id @default(cuid())
+  propertyId              String
+  stayId                  String?
+  lastName                String
+  firstNames              String
+  dateOfBirth             DateTime
+  placeOfBirth            String
+  nationality             String
+  usualAddress            String
+  mobile                  String
+  email                   String
+  arrivalDate             DateTime
+  departureDate           DateTime
+  isFrenchNational        Boolean   @default(false)
+  requiresPoliceForm      Boolean   @default(true)
+  signatureDataUrl        String?
+  signedAt                DateTime?
+  submittedAt             DateTime?
+  retentionExpiresAt      DateTime?
+  accompanyingChildrenJson String?
+  createdAt               DateTime  @default(now())
+  property                Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  stay                    GuestStay? @relation(fields: [stayId], references: [id], onDelete: SetNull)
+
+  @@index([propertyId, retentionExpiresAt])
 }
 
 model PlaybookStepProgress {

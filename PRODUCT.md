@@ -38,7 +38,7 @@ Add, edit, and archive properties with:
 ### 5. Guided compliance playbooks
 Data-driven playbooks keyed by country and city guide hosts step-by-step through local STR registration:
 
-- **Next action card** on each property — what to do now, with links to official portals and one-click copy of prepared property fields
+- **Layered next-action UX** on each property — scannable next action card, per-field copy chips, compact documents checklist, collapsible local pitfalls, and expandable step timeline
 - Step progress (mark done / skip) persisted per property
 - Full FR playbooks: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
 - Country stubs: Spain, Italy, Netherlands
@@ -47,7 +47,17 @@ Playbooks link to real public government pages where verified; unverified links 
 
 **Playbook URL maintenance:** run `npm run verify-playbook-urls` before releases (see `src/lib/playbooks/README.md`). Government pages move frequently; `urlVerified: true` must only be set after a live HTTP 200 check.
 
-### 6. Registration & compliance
+### 6. Guest register (Registre des voyageurs / fiche de police)
+Pro feature helping French hosts collect and retain the legally required individual police form for **foreign** guests in meublés de tourisme:
+
+- **Legal basis:** Service-Public [F33458](https://www.service-public.fr/particuliers/vosdroits/F33458), CESEDA R.814-1, arrêté du 1er octobre 2015 — obligation when renting to guests of non-French nationality; guest signs on arrival; host retains **6 months**; transmit to police/gendarmerie **only on request**
+- **Public check-in link** per property (tokenized URL + QR) — bilingual FR/EN form with signature pad
+- **Host dashboard** — list records in retention window, view detail, export CSV, print official-style fiche
+- **Playbook integration** — guest-register playbook step auto-completes when check-in link is enabled
+- French nationals may optionally log for operational convenience; UI labels the legal fiche as targeting foreign guests
+- Disclaimer: Glint organizes compliance records; not legal advice; host remains responsible
+
+### 7. Registration & compliance
 Per-property compliance tracking:
 - Registration number and issuing authority/municipality
 - Status (not started, pending, active, expired)
@@ -55,13 +65,13 @@ Per-property compliance tracking:
 - Editable local requirements checklist (seeded with EU/FR defaults; complements guided playbooks)
 - Notes field
 
-### 7. Alerts
+### 8. Alerts
 Automatic in-app notifications when registrations approach expiry at 30, 14, and 7 days, plus expired alerts. Notification center with mark-as-read.
 
-### 8. Export / listing readiness
+### 9. Export / listing readiness
 Per-property printable HTML compliance summary with registration number, authority, status, dates, and checklist completion. Copy registration number to clipboard.
 
-### 9. Billing
+### 10. Billing
 Stripe Checkout subscriptions:
 - **Starter** — up to 3 properties, €19/month
 - **Pro** — up to 50 properties, €49/month
@@ -69,10 +79,10 @@ Stripe Checkout subscriptions:
 - Stripe Customer Portal for billing management
 - Property slot gating by plan
 
-### 10. Legal pages
+### 11. Legal pages
 Privacy Policy, Terms of Service, and Legal Notice (Mentions légales) in both FR and EN.
 
-### 11. Settings
+### 12. Settings
 Account name, language toggle (FR/EN), billing management, and demo data seed button (loads sample properties in French cities).
 
 ## Plans

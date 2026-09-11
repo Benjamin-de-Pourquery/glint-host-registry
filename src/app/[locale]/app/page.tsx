@@ -8,7 +8,7 @@ import { syncExpiryNotifications } from "@/lib/notifications";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ComplianceBadge } from "@/components/compliance-badge";
-import { Building2, CheckCircle2, AlertTriangle, XCircle, Clock } from "lucide-react";
+import { Building2, CheckCircle2, AlertTriangle, XCircle, Clock, Users } from "lucide-react";
 import { format, differenceInDays } from "date-fns";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -34,6 +34,14 @@ export default async function DashboardPage({ params }: Props) {
       checklistItems: true,
     },
     orderBy: { name: "asc" },
+  });
+
+  const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+  const guestsThisMonth = await prisma.guestRecord.count({
+    where: {
+      property: { userId: session.user.id, archived: false },
+      submittedAt: { gte: monthStart },
+    },
   });
 
   const notifications = await prisma.notification.findMany({
@@ -103,12 +111,13 @@ export default async function DashboardPage({ params }: Props) {
 
       <div>
         <h2 className="mb-4 text-lg font-semibold text-slate-900">{t("overview")}</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
           <StatCard icon={Building2} label={t("stats.total")} value={properties.length} />
           <StatCard icon={CheckCircle2} label={t("stats.ready")} value={stats.ready} color="text-emerald-600" />
           <StatCard icon={AlertTriangle} label={t("stats.action")} value={stats.action_needed} color="text-amber-600" />
           <StatCard icon={XCircle} label={t("stats.expired")} value={stats.expired} color="text-red-600" />
           <StatCard icon={Clock} label={t("stats.notStarted")} value={stats.not_started} color="text-slate-500" />
+          <StatCard icon={Users} label={t("stats.guestsThisMonth")} value={guestsThisMonth} color="text-blue-600" />
         </div>
       </div>
 

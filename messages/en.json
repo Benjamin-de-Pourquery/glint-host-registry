@@ -214,6 +214,10 @@
       "notStarted": "Not started",
       "guestsThisMonth": "Guests this month"
     },
+    "attention": {
+      "action": "{count, plural, one {# property needs action} other {# properties need action}}",
+      "expired": "{count, plural, one {# expired registration} other {# expired registrations}}"
+    },
     "upcoming": "Upcoming deadlines",
     "noDeadlines": "No upcoming deadlines in the next 90 days",
     "recentAlerts": "Recent alerts",

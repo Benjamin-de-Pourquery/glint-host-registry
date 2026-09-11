@@ -8,7 +8,7 @@ import { syncExpiryNotifications } from "@/lib/notifications";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ComplianceBadge } from "@/components/compliance-badge";
-import { Building2, CheckCircle2, AlertTriangle, XCircle, Clock, Users } from "lucide-react";
+import { PortfolioOverview } from "@/components/portfolio-overview";
 import { format, differenceInDays } from "date-fns";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -109,17 +109,17 @@ export default async function DashboardPage({ params }: Props) {
         </Card>
       )}
 
-      <div>
-        <h2 className="mb-4 text-lg font-semibold tracking-tight text-slate-900">{t("overview")}</h2>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
-          <StatCard icon={Building2} label={t("stats.total")} value={properties.length} iconBg="bg-slate-100" color="text-slate-600" />
-          <StatCard icon={CheckCircle2} label={t("stats.ready")} value={stats.ready} iconBg="bg-emerald-50" color="text-emerald-600" />
-          <StatCard icon={AlertTriangle} label={t("stats.action")} value={stats.action_needed} iconBg="bg-amber-50" color="text-amber-600" />
-          <StatCard icon={XCircle} label={t("stats.expired")} value={stats.expired} iconBg="bg-red-50" color="text-red-600" />
-          <StatCard icon={Clock} label={t("stats.notStarted")} value={stats.not_started} iconBg="bg-slate-100" color="text-slate-500" />
-          <StatCard icon={Users} label={t("stats.guestsThisMonth")} value={guestsThisMonth} iconBg="bg-blue-50" color="text-blue-600" />
-        </div>
-      </div>
+      <PortfolioOverview
+        locale={locale}
+        stats={{
+          total: properties.length,
+          ready: stats.ready,
+          actionNeeded: stats.action_needed,
+          expired: stats.expired,
+          notStarted: stats.not_started,
+          guestsThisMonth: guestsThisMonth,
+        }}
+      />
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
@@ -203,33 +203,5 @@ export default async function DashboardPage({ params }: Props) {
         </Card>
       )}
     </div>
-  );
-}
-
-function StatCard({
-  icon: Icon,
-  label,
-  value,
-  color = "text-slate-600",
-  iconBg = "bg-slate-100",
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  value: number;
-  color?: string;
-  iconBg?: string;
-}) {
-  return (
-    <Card className="transition-shadow hover:shadow-md hover:shadow-slate-900/[0.04]">
-      <CardContent className="flex items-center gap-3 p-4">
-        <div className={`app-stat-icon ${iconBg}`}>
-          <Icon className={`h-5 w-5 ${color}`} />
-        </div>
-        <div className="min-w-0">
-          <p className="text-2xl font-bold tracking-tight text-slate-900">{value}</p>
-          <p className="truncate text-xs font-medium text-slate-500">{label}</p>
-        </div>
-      </CardContent>
-    </Card>
   );
 }

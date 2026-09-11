@@ -36,7 +36,7 @@ const DEMO_PROPERTIES = [
     propertyType: "apartment",
     airbnbUrl: "https://airbnb.com/rooms/example-lyon",
     registrationNumber: null,
-    issuingAuthority: "Métropole de Lyon",
+    issuingAuthority: "Ville de Lyon",
     status: "pending",
     issueDate: null,
     expiryDate: null,

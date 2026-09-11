@@ -35,17 +35,18 @@ Add, edit, and archive properties with:
 - Notes
 - **Archive / restore** — soft-delete via `archived` flag; archived properties are hidden from the active list and do not count toward plan limits
 
-### 5. Guided compliance playbooks
-Data-driven playbooks keyed by country and city guide hosts step-by-step through local STR registration:
+### 5. Guided compliance (Démarches / Compliance tab)
+Data-driven step-by-step guides keyed by country and city walk hosts through local STR registration:
 
-- **Layered next-action UX** on each property — scannable next action card, per-field copy chips, compact documents checklist, collapsible local pitfalls, and expandable step timeline
+- **Tabbed property detail** — Overview (status badge + next-action teaser), Compliance/Démarches (guided steps), Guest register, Listings, Notes
+- **Compliance tab** — hero next-action card, per-field copy chips, compact documents checklist, collapsible local pitfalls, expandable step timeline
 - Step progress (mark done / skip) persisted per property
-- Full FR playbooks: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
+- Full FR guides: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
 - Country stubs: Spain, Italy, Netherlands
 
-Playbooks link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
+Guides link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
 
-**Playbook URL maintenance:** run `npm run verify-playbook-urls` before releases (see `src/lib/playbooks/README.md`). Government pages move frequently; `urlVerified: true` must only be set after a live HTTP 200 check.
+**URL maintenance:** run `npm run verify-playbook-urls` before releases (see `src/lib/playbooks/README.md`). Government pages move frequently; `urlVerified: true` must only be set after a live HTTP 200 check.
 
 ### 6. Guest register (Registre des voyageurs / fiche de police)
 Pro feature helping French hosts collect and retain the legally required individual police form for **foreign** guests in meublés de tourisme:
@@ -62,7 +63,7 @@ Per-property compliance tracking:
 - Registration number and issuing authority/municipality
 - Status (not started, pending, active, expired)
 - Issue and expiry/renewal dates
-- Editable local requirements checklist (seeded with EU/FR defaults; complements guided playbooks)
+- Editable local requirements checklist (seeded with EU/FR defaults; complements guided compliance steps)
 - Notes field
 
 ### 8. Alerts

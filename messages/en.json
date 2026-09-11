@@ -252,10 +252,52 @@
         "description": "This property will return to your active portfolio and count toward your plan limit again.",
         "confirm": "Restore property"
       }
+    },
+    "detail": {
+      "loading": "Loading…",
+      "saved": "Property saved",
+      "saveError": "Could not save property",
+      "editBasics": "Property details",
+      "tabs": {
+        "overview": "Overview",
+        "compliance": "Compliance",
+        "register": "Guest register",
+        "listings": "Listings",
+        "notes": "Notes"
+      },
+      "overview": {
+        "title": "Summary",
+        "address": "Address",
+        "type": "Property type",
+        "registration": "Registration number"
+      },
+      "listings": {
+        "urlsTitle": "Listing URLs",
+        "registrationTitle": "Listing registration number",
+        "registrationHint": "This number must appear on every platform listing under EU regulation.",
+        "registrationLabel": "Registration number",
+        "save": "Save listings",
+        "saved": "Listings saved",
+        "saveError": "Could not save",
+        "empty": {
+          "title": "No listings linked",
+          "description": "Add your Airbnb, Booking.com, or Vrbo listing URLs below."
+        }
+      },
+      "notes": {
+        "title": "Notes",
+        "description": "Internal notes about this property — not shown on listings.",
+        "placeholder": "e.g. building contact, property quirks…",
+        "save": "Save notes",
+        "saved": "Notes saved",
+        "saveError": "Could not save notes"
+      }
     }
   },
   "playbook": {
-    "guidedCompliance": "Guided compliance",
+    "subtitle": "Step-by-step guide",
+    "viewCompliance": "View compliance steps",
+    "pitfalls": "Watch out for",
     "nextAction": "Next action",
     "openOfficial": "Open official procedure",
     "openOfficialForm": "Open official form",
@@ -279,16 +321,16 @@
     "skipped": "Skipped",
     "undo": "Undo",
     "current": "Current step",
-    "stepsTitle": "Compliance playbook",
+    "stepsTitle": "All compliance steps",
     "progress": "{done} of {total} steps complete",
     "skippedCount": "{count} skipped",
     "prepare": "Prepare",
     "timeline": "Timeline",
     "verifyUrl": "Some links are guide links — verify the current procedure on the official site.",
-    "loading": "Loading compliance playbook…",
-    "loadError": "Could not load the compliance playbook.",
+    "loading": "Loading compliance steps…",
+    "loadError": "Could not load compliance steps.",
     "retry": "Try again",
-    "noPlaybook": "No guided playbook is available yet for this location.",
+    "noPlaybook": "No guided compliance steps are available yet for this location.",
     "stepDone": "Step marked as done",
     "stepSkipped": "Step skipped",
     "updateError": "Could not update step",
@@ -300,8 +342,8 @@
     "statusPending": "Pending",
     "openLink": "Official link",
     "allDone": {
-      "title": "Playbook complete",
-      "description": "You've worked through all guided steps. Keep your registration details up to date below."
+      "title": "Compliance complete",
+      "description": "You've worked through all guided steps. Keep your registration details up to date in the Guest register tab."
     }
   },
   "compliance": {

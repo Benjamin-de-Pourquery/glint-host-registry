@@ -1,0 +1,341 @@
+{
+  "brand": {
+    "name": "Glint",
+    "product": "Host Registry",
+    "tagline": "Conformité location courte durée UE, simplifiée"
+  },
+  "nav": {
+    "features": "Fonctionnalités",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "login": "Connexion",
+    "signup": "Essai gratuit",
+    "dashboard": "Tableau de bord",
+    "properties": "Biens",
+    "notifications": "Notifications",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
+  },
+  "landing": {
+    "hero": {
+      "title": "Restez conforme aux règles UE de location courte durée",
+      "subtitle": "Suivez vos numéros d'enregistrement, échéances et exigences locales sur l'ensemble de votre portefeuille — avant que les plateformes bloquent vos annonces.",
+      "cta": "Commencer l'essai de 14 jours",
+      "ctaSecondary": "Voir comment ça marche",
+      "badge": "Prêt pour le Règlement (UE) 2024/1028"
+    },
+    "problem": {
+      "title": "L'échéance de conformité approche",
+      "description": "À partir de mai 2026, les plateformes en ligne devront vérifier les numéros d'enregistrement valides avant de publier des annonces de location courte durée dans l'UE. Les hôtes sans enregistrement approprié risquent le déréférencement, des amendes et des pertes de revenus.",
+      "points": {
+        "1": "Chaque ville de l'UE a des règles et autorités d'enregistrement différentes",
+        "2": "Les numéros d'enregistrement doivent figurer sur chaque annonce plateforme",
+        "3": "Les renouvellements et exigences locales sont faciles à manquer sur plusieurs biens"
+      }
+    },
+    "solution": {
+      "title": "Un registre unique pour tout votre portefeuille",
+      "description": "Host Registry offre aux hôtes professionnels et petits gestionnaires une source unique pour le statut de conformité, les échéances et la préparation des annonces.",
+      "points": {
+        "1": "Centralisez les numéros d'enregistrement et autorités émettrices",
+        "2": "Suivez les dates d'expiration avec alertes à 30, 14 et 7 jours",
+        "3": "Exportez des résumés prêts pour Airbnb, Booking et Vrbo"
+      }
+    },
+    "features": {
+      "title": "Conçu pour les hôtes UE",
+      "portfolio": {
+        "title": "Vue portefeuille",
+        "description": "Visualisez le statut de conformité de tous vos biens — Prêt, Action requise, Expiré ou Non commencé."
+      },
+      "tracking": {
+        "title": "Suivi d'enregistrement",
+        "description": "Stockez numéros, municipalités émettrices, dates d'émission et renouvellement par bien."
+      },
+      "checklist": {
+        "title": "Exigences locales",
+        "description": "Listes de contrôle modifiables avec modèles UE et France par défaut pour chaque bien."
+      },
+      "alerts": {
+        "title": "Alertes d'expiration",
+        "description": "Notifications in-app quand les enregistrements approchent du renouvellement."
+      },
+      "export": {
+        "title": "Préparation annonces",
+        "description": "Copiez les numéros instantanément ou exportez un résumé de conformité imprimable."
+      },
+      "billing": {
+        "title": "Tarification simple",
+        "description": "Starter jusqu'à 3 biens, Pro pour les portefeuilles en croissance — sans frais cachés."
+      }
+    },
+    "pricing": {
+      "title": "Des offres transparentes",
+      "subtitle": "Tous les plans incluent 14 jours d'essai gratuit. Annulation à tout moment.",
+      "starter": {
+        "name": "Starter",
+        "price": "19 €",
+        "period": "/mois",
+        "description": "Pour les hôtes avec jusqu'à 3 biens",
+        "features": ["Jusqu'à 3 biens", "Tableau de bord conformité", "Alertes d'expiration", "Export PDF", "Interface FR + EN"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "49 €",
+        "period": "/mois",
+        "description": "Pour les gestionnaires avec portefeuilles plus larges",
+        "features": ["Jusqu'à 50 biens", "Tout le Starter", "Support prioritaire", "Export groupé", "Workflows équipe"],
+        "badge": "Le plus populaire"
+      },
+      "cta": "Commencer l'essai gratuit"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "items": {
+        "1": {
+          "q": "Qu'est-ce que le Règlement (UE) 2024/1028 ?",
+          "a": "C'est une législation UE exigeant que les hôtes de location courte durée obtiennent des numéros d'enregistrement des autorités locales. Les plateformes doivent vérifier ces numéros avant publication dans l'UE."
+        },
+        "2": {
+          "q": "Quand cela s'applique-t-il ?",
+          "a": "Les États membres mettent en œuvre les règles nationales maintenant, avec vérification complète par les plateformes attendue pour mai 2026. Anticiper protège vos annonces."
+        },
+        "3": {
+          "q": "Host Registry enregistre-t-il mon bien pour moi ?",
+          "a": "Non — vous vous enregistrez toujours auprès de votre municipalité. Host Registry vous aide à suivre numéros, échéances et exigences pour rester conforme."
+        },
+        "4": {
+          "q": "Quels pays sont couverts ?",
+          "a": "Host Registry couvre tous les États membres de l'UE avec listes de contrôle locales modifiables. Les modèles par défaut incluent des éléments orientés France."
+        },
+        "5": {
+          "q": "Puis-je exporter des données pour la vérification plateforme ?",
+          "a": "Oui. Chaque bien a un résumé de préparation avec numéro, autorité et statut — copiable ou exportable en PDF."
+        }
+      }
+    },
+    "cta": {
+      "title": "Protégez vos annonces avant mai 2026",
+      "subtitle": "Rejoignez les hôtes européens qui anticipent les exigences de conformité UE.",
+      "button": "Créer votre compte"
+    },
+    "footer": {
+      "product": "Produit",
+      "legal": "Légal",
+      "company": "Glint — micro-entreprise",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation",
+      "mentions": "Mentions légales",
+      "copyright": "© {year} Glint. Tous droits réservés."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous à votre compte Host Registry",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "signup": "Créer un compte",
+      "error": "E-mail ou mot de passe invalide"
+    },
+    "signup": {
+      "title": "Créer votre compte",
+      "subtitle": "Commencez votre essai gratuit de 14 jours",
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "passwordHint": "Au moins 8 caractères",
+      "submit": "Créer le compte",
+      "hasAccount": "Déjà un compte ?",
+      "login": "Se connecter",
+      "error": "Impossible de créer le compte. L'e-mail est peut-être déjà utilisé.",
+      "success": "Compte créé avec succès"
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bon retour, {name}",
+    "overview": "Vue portefeuille",
+    "stats": {
+      "total": "Total biens",
+      "ready": "Prêt",
+      "action": "Action requise",
+      "expired": "Expiré",
+      "notStarted": "Non commencé"
+    },
+    "upcoming": "Échéances à venir",
+    "noDeadlines": "Aucune échéance dans les 90 prochains jours",
+    "recentAlerts": "Alertes récentes",
+    "noAlerts": "Aucune alerte",
+    "addProperty": "Ajouter un bien",
+    "viewAll": "Voir tout",
+    "daysLeft": "{days} jours restants",
+    "expired": "Expiré",
+    "subscribe": {
+      "title": "Abonnez-vous pour ajouter des biens",
+      "description": "Choisissez un plan pour gérer votre portefeuille locatif.",
+      "cta": "Voir les plans"
+    }
+  },
+  "properties": {
+    "title": "Biens",
+    "subtitle": "Gérez votre portefeuille locatif",
+    "add": "Ajouter un bien",
+    "empty": {
+      "title": "Aucun bien pour l'instant",
+      "description": "Ajoutez votre premier bien pour commencer le suivi de conformité.",
+      "cta": "Ajouter un bien"
+    },
+    "limit": {
+      "title": "Limite de biens atteinte",
+      "description": "Votre plan {plan} autorise jusqu'à {limit} biens. Passez au plan supérieur.",
+      "cta": "Mettre à niveau"
+    },
+    "form": {
+      "name": "Nom du bien",
+      "address": "Adresse",
+      "city": "Ville",
+      "country": "Pays",
+      "type": "Type de bien",
+      "types": {
+        "apartment": "Appartement",
+        "house": "Maison",
+        "studio": "Studio",
+        "room": "Chambre privée",
+        "other": "Autre"
+      },
+      "airbnb": "URL annonce Airbnb",
+      "booking": "URL annonce Booking.com",
+      "vrbo": "URL annonce Vrbo",
+      "notes": "Notes",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "create": "Créer le bien",
+      "edit": "Modifier le bien"
+    },
+    "card": {
+      "view": "Voir les détails",
+      "archive": "Archiver",
+      "restore": "Restaurer",
+      "archived": "Archivé"
+    },
+    "tabs": {
+      "active": "Actifs",
+      "archived": "Archivés"
+    }
+  },
+  "compliance": {
+    "title": "Conformité",
+    "registration": {
+      "title": "Détails d'enregistrement",
+      "number": "Numéro d'enregistrement",
+      "authority": "Autorité émettrice / municipalité",
+      "status": "Statut",
+      "statuses": {
+        "not_started": "Non commencé",
+        "pending": "En attente",
+        "active": "Actif",
+        "expired": "Expiré"
+      },
+      "issueDate": "Date d'émission",
+      "expiryDate": "Date d'expiration / renouvellement",
+      "notes": "Notes",
+      "save": "Enregistrer"
+    },
+    "checklist": {
+      "title": "Exigences locales",
+      "add": "Ajouter un élément",
+      "placeholder": "Description de l'exigence",
+      "empty": "Aucun élément"
+    },
+    "readiness": {
+      "title": "Préparation annonce",
+      "status": "Statut de conformité",
+      "copy": "Copier le numéro",
+      "copied": "Copié !",
+      "export": "Exporter PDF",
+      "print": "Imprimer le résumé"
+    },
+    "status": {
+      "ready": "Prêt",
+      "action_needed": "Action requise",
+      "expired": "Expiré",
+      "not_started": "Non commencé"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "Aucune notification",
+    "markRead": "Marquer comme lu",
+    "markAllRead": "Tout marquer comme lu",
+    "expiry": "Enregistrement expirant bientôt"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "account": {
+      "title": "Compte",
+      "name": "Nom affiché",
+      "email": "E-mail",
+      "save": "Enregistrer"
+    },
+    "language": {
+      "title": "Langue",
+      "description": "Choisissez la langue de l'interface"
+    },
+    "billing": {
+      "title": "Facturation",
+      "plan": "Plan actuel",
+      "status": "Statut",
+      "none": "Aucun abonnement actif",
+      "manage": "Gérer la facturation",
+      "upgrade": "Mettre à niveau",
+      "subscribe": "S'abonner"
+    },
+    "demo": {
+      "title": "Données de démo",
+      "description": "Charger des biens exemple dans des villes françaises",
+      "button": "Charger les données démo",
+      "success": "Données démo chargées",
+      "error": "Impossible de charger les données démo"
+    }
+  },
+  "billing": {
+    "success": {
+      "title": "Abonnement activé",
+      "description": "Merci ! Votre plan est actif. Vous pouvez ajouter des biens.",
+      "cta": "Aller au tableau de bord"
+    },
+    "cancel": {
+      "title": "Paiement annulé",
+      "description": "Aucun prélèvement effectué. Abonnez-vous depuis les Paramètres.",
+      "cta": "Retour aux paramètres"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "updated": "Dernière mise à jour : septembre 2026"
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "updated": "Dernière mise à jour : septembre 2026"
+    },
+    "mentions": {
+      "title": "Mentions légales",
+      "updated": "Dernière mise à jour : septembre 2026"
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "search": "Rechercher",
+    "noResults": "Aucun résultat"
+  }
+}

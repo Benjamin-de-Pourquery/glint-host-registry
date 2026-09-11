@@ -312,6 +312,14 @@
       "active": "Actifs",
       "archived": "Archivés"
     },
+    "filters": {
+      "all": "Tous",
+      "clear": "Effacer le filtre"
+    },
+    "emptyFiltered": {
+      "title": "Aucun bien ne correspond à ce filtre",
+      "description": "Aucun bien avec le statut « {status} » dans votre portefeuille actif."
+    },
     "emptyArchived": {
       "title": "Aucun bien archivé",
       "description": "Les biens archivés sont masqués du portefeuille actif et ne comptent pas dans la limite de votre plan."

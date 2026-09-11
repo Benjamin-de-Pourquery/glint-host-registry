@@ -6,6 +6,42 @@ export type ComplianceStatus =
   | "expired"
   | "not_started";
 
+export type PortfolioStatusFilter = ComplianceStatus | "all";
+
+export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
+  "all",
+  "action_needed",
+  "expired",
+  "ready",
+  "not_started",
+];
+
+export function parsePortfolioStatusFilter(
+  param?: string
+): PortfolioStatusFilter | null {
+  if (!param || param === "all") {
+    return null;
+  }
+  if (PORTFOLIO_STATUS_FILTERS.includes(param as PortfolioStatusFilter)) {
+    return param as PortfolioStatusFilter;
+  }
+  return null;
+}
+
+export function propertiesListHref(
+  locale: string,
+  options?: { status?: PortfolioStatusFilter | null; tab?: "archived" }
+): string {
+  const params = new URLSearchParams();
+  if (options?.tab === "archived") {
+    params.set("tab", "archived");
+  } else if (options?.status && options.status !== "all") {
+    params.set("status", options.status);
+  }
+  const query = params.toString();
+  return `/${locale}/app/properties${query ? `?${query}` : ""}`;
+}
+
 export interface ComplianceInput {
   registrationNumber?: string | null;
   status?: string | null;

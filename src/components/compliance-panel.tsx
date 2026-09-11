@@ -38,6 +38,7 @@ type Props = {
   city: string;
   country: string;
   propertyType: string;
+  residencyStatus?: string | null;
   notes?: string | null;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
@@ -51,6 +52,7 @@ export function CompliancePanel({
   city,
   country,
   propertyType,
+  residencyStatus,
   notes,
   registration,
   checklistItems: initialChecklist,
@@ -141,6 +143,7 @@ export function CompliancePanel({
           city,
           country,
           propertyType,
+          residencyStatus: residencyStatus as "primary" | "secondary" | "other" | null,
           notes,
         }}
         locale={locale}

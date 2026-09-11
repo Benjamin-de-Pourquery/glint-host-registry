@@ -9,6 +9,7 @@ const updateSchema = z.object({
   city: z.string().min(1).optional(),
   country: z.string().min(1).optional(),
   propertyType: z.string().min(1).optional(),
+  residencyStatus: z.enum(["primary", "secondary", "other"]).nullable().optional(),
   airbnbUrl: z.string().nullable().optional(),
   bookingUrl: z.string().nullable().optional(),
   vrboUrl: z.string().nullable().optional(),

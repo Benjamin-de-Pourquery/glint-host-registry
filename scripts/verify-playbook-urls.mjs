@@ -22,13 +22,35 @@ const PLAYBOOK_FILES = [
 const USER_AGENT =
   "GlintHostRegistry-URLCheck/1.0 (+https://github.com/Benjamin-de-Pourquery/glint-host-registry)";
 
+function extractUrlConstants(source) {
+  const constants = new Map();
+  const constRegex = /const\s+(\w+)\s*=\s*"([^"]+)"/g;
+  let match;
+  while ((match = constRegex.exec(source)) !== null) {
+    if (match[2].startsWith("http")) {
+      constants.set(match[1], match[2]);
+    }
+  }
+  return constants;
+}
+
+function resolveUrl(raw, constants) {
+  if (raw.startsWith("http")) return raw;
+  return constants.get(raw) ?? raw;
+}
+
 function extractOfficialUrls(source) {
   const entries = [];
+  const constants = extractUrlConstants(source);
+
   const blockRegex =
-    /url:\s*"([^"]+)"[\s\S]*?urlVerified:\s*(true|false)/g;
+    /url:\s*("([^"]+)"|(\w+))[\s\S]*?urlVerified:\s*(true|false)/g;
   let match;
   while ((match = blockRegex.exec(source)) !== null) {
-    entries.push({ url: match[1], urlVerified: match[2] === "true" });
+    const raw = match[2] ?? match[3];
+    const url = resolveUrl(raw, constants);
+    if (!url.startsWith("http")) continue;
+    entries.push({ url, urlVerified: match[4] === "true" });
   }
   return entries;
 }

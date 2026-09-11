@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id                   String         @id @default(cuid())
+  name                 String?
+  email                String         @unique
+  emailVerified        DateTime?
+  password             String?
+  image                String?
+  language             String         @default("en")
+  stripeCustomerId     String?
+  subscriptionPlan     String         @default("none")
+  subscriptionStatus   String         @default("inactive")
+  stripeSubscriptionId String?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  accounts             Account[]
+  sessions             Session[]
+  properties           Property[]
+  notifications        Notification[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Property {
+  id           String          @id @default(cuid())
+  userId       String
+  name         String
+  address      String
+  city         String
+  country      String
+  propertyType String
+  airbnbUrl    String?
+  bookingUrl   String?
+  vrboUrl      String?
+  notes        String?
+  archived     Boolean         @default(false)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  registration Registration?
+  checklistItems ChecklistItem[]
+  notifications  Notification[]
+}
+
+model Registration {
+  id                 String    @id @default(cuid())
+  propertyId         String    @unique
+  registrationNumber String?
+  issuingAuthority   String?
+  status             String    @default("not_started")
+  issueDate          DateTime?
+  expiryDate         DateTime?
+  notes              String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  property           Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model ChecklistItem {
+  id         String   @id @default(cuid())
+  propertyId String
+  title      String
+  completed  Boolean  @default(false)
+  notes      String?
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id         String    @id @default(cuid())
+  userId     String
+  propertyId String?
+  title      String
+  message    String
+  type       String
+  read       Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+}

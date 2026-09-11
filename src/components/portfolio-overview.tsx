@@ -9,6 +9,7 @@ import {
   Users,
   XCircle,
 } from "lucide-react";
+import { propertiesListHref } from "@/lib/compliance";
 import { cn } from "@/lib/utils";
 
 type PortfolioStats = {
@@ -38,7 +39,7 @@ export async function PortfolioOverview({ locale, stats }: Props) {
         <div className="space-y-2">
           {stats.actionNeeded > 0 && (
             <Link
-              href={`/${locale}/app/properties`}
+              href={propertiesListHref(locale, { status: "action_needed" })}
               className="flex items-center justify-between gap-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 text-amber-900 transition-colors hover:bg-amber-100"
             >
               <div className="flex min-w-0 items-center gap-2">
@@ -52,7 +53,7 @@ export async function PortfolioOverview({ locale, stats }: Props) {
           )}
           {stats.expired > 0 && (
             <Link
-              href={`/${locale}/app/properties`}
+              href={propertiesListHref(locale, { status: "expired" })}
               className="flex items-center justify-between gap-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-red-900 transition-colors hover:bg-red-100"
             >
               <div className="flex min-w-0 items-center gap-2">
@@ -74,6 +75,7 @@ export async function PortfolioOverview({ locale, stats }: Props) {
           value={stats.actionNeeded}
           emphasized={stats.actionNeeded > 0}
           tone="amber"
+          href={propertiesListHref(locale, { status: "action_needed" })}
         />
         <StatusCell
           icon={XCircle}
@@ -81,18 +83,21 @@ export async function PortfolioOverview({ locale, stats }: Props) {
           value={stats.expired}
           emphasized={stats.expired > 0}
           tone="red"
+          href={propertiesListHref(locale, { status: "expired" })}
         />
         <StatusCell
           icon={CheckCircle2}
           label={t("stats.ready")}
           value={stats.ready}
           tone="emerald"
+          href={propertiesListHref(locale, { status: "ready" })}
         />
         <StatusCell
           icon={Clock}
           label={t("stats.notStarted")}
           value={stats.notStarted}
           tone="slate"
+          href={propertiesListHref(locale, { status: "not_started" })}
         />
         <StatusCell
           icon={Building2}
@@ -100,6 +105,7 @@ export async function PortfolioOverview({ locale, stats }: Props) {
           value={stats.total}
           secondary
           tone="slate"
+          href={propertiesListHref(locale, { status: "all" })}
         />
         <StatusCell
           icon={Users}
@@ -153,6 +159,7 @@ function StatusCell({
   emphasized = false,
   secondary = false,
   tone,
+  href,
 }: {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
@@ -160,17 +167,19 @@ function StatusCell({
   emphasized?: boolean;
   secondary?: boolean;
   tone: Tone;
+  href?: string;
 }) {
   const styles = toneStyles[tone];
 
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-1 rounded-lg border border-slate-200/80 px-2.5 py-2 sm:px-3 sm:py-2.5",
-        secondary ? "bg-slate-50/50" : styles.bg,
-        emphasized && styles.emphasized
-      )}
-    >
+  const className = cn(
+    "flex flex-col gap-1 rounded-lg border border-slate-200/80 px-2.5 py-2 sm:px-3 sm:py-2.5",
+    secondary ? "bg-slate-50/50" : styles.bg,
+    emphasized && styles.emphasized,
+    href && "transition-colors hover:border-slate-300 hover:shadow-sm"
+  );
+
+  const content = (
+    <>
       <div className="flex items-center gap-1.5">
         <Icon
           className={cn(
@@ -196,6 +205,16 @@ function StatusCell({
       >
         {label}
       </p>
-    </div>
+    </>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }

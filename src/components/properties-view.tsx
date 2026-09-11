@@ -8,8 +8,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { PropertyArchiveButton } from "@/components/property-archive-button";
 import { EmptyState } from "@/components/empty-state";
-import { getComplianceStatus, getComplianceNextActionKey } from "@/lib/compliance";
-import { Building2, ExternalLink, LayoutGrid, List, Plus } from "lucide-react";
+import {
+  getComplianceNextActionKey,
+  getComplianceStatus,
+  propertiesListHref,
+  type PortfolioStatusFilter,
+} from "@/lib/compliance";
+import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type PropertyItem = {
@@ -29,9 +34,18 @@ type PropertyItem = {
 
 type ViewMode = "compact" | "cards";
 
+const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
+  "all",
+  "action_needed",
+  "expired",
+  "ready",
+  "not_started",
+];
+
 type Props = {
   locale: string;
   tab: "active" | "archived";
+  statusFilter: PortfolioStatusFilter | null;
   properties: PropertyItem[];
   subscribed: boolean;
   atLimit: boolean;
@@ -57,9 +71,21 @@ function useDefaultViewMode(): ViewMode {
   return mode;
 }
 
+function getPropertyComplianceStatus(property: PropertyItem) {
+  const completed = property.checklistItems.filter((c) => c.completed).length;
+  return getComplianceStatus({
+    registrationNumber: property.registration?.registrationNumber,
+    status: property.registration?.status,
+    expiryDate: property.registration?.expiryDate,
+    checklistCompleted: completed,
+    checklistTotal: property.checklistItems.length,
+  });
+}
+
 export function PropertiesView({
   locale,
   tab,
+  statusFilter,
   properties,
   subscribed,
   atLimit,
@@ -80,6 +106,13 @@ export function PropertiesView({
     localStorage.setItem(VIEW_STORAGE_KEY, mode);
   };
 
+  const filteredProperties =
+    tab === "active" && statusFilter
+      ? properties.filter((property) => getPropertyComplianceStatus(property) === statusFilter)
+      : properties;
+
+  const activeStatusFilter = statusFilter ?? "all";
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -88,7 +121,7 @@ export function PropertiesView({
           <p className="text-slate-600">{t("subtitle")}</p>
         </div>
         <div className="flex items-center gap-2">
-          {properties.length > 0 && (
+          {filteredProperties.length > 0 && (
             <div
               className="flex rounded-lg border border-slate-200 bg-slate-50 p-0.5"
               role="group"
@@ -136,7 +169,7 @@ export function PropertiesView({
       </div>
 
       <div className="flex w-full max-w-full gap-1 overflow-x-auto rounded-lg border border-slate-200/90 bg-slate-50 p-1 shadow-sm sm:w-fit">
-        <Link href={`/${locale}/app/properties`}>
+        <Link href={propertiesListHref(locale, { status: statusFilter })}>
           <button
             type="button"
             className={cn(
@@ -149,7 +182,7 @@ export function PropertiesView({
             {t("tabs.active")}
           </button>
         </Link>
-        <Link href={`/${locale}/app/properties?tab=archived`}>
+        <Link href={propertiesListHref(locale, { tab: "archived" })}>
           <button
             type="button"
             className={cn(
@@ -163,6 +196,37 @@ export function PropertiesView({
           </button>
         </Link>
       </div>
+
+      {tab === "active" && (
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex w-full max-w-full gap-1 overflow-x-auto rounded-lg border border-slate-200/90 bg-slate-50 p-1 shadow-sm sm:w-fit">
+            {STATUS_FILTER_OPTIONS.map((status) => (
+              <Link key={status} href={propertiesListHref(locale, { status })}>
+                <button
+                  type="button"
+                  className={cn(
+                    "whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2",
+                    activeStatusFilter === status
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-600 hover:text-slate-900"
+                  )}
+                >
+                  {status === "all" ? t("filters.all") : tCompliance(status)}
+                </button>
+              </Link>
+            ))}
+          </div>
+          {statusFilter && (
+            <Link
+              href={propertiesListHref(locale)}
+              className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
+            >
+              <X className="h-3.5 w-3.5" aria-hidden />
+              {t("filters.clear")}
+            </Link>
+          )}
+        </div>
+      )}
 
       {subscribed && atLimit && tab === "active" && (
         <Card className="border-amber-200 bg-amber-50">
@@ -180,17 +244,30 @@ export function PropertiesView({
         </Card>
       )}
 
-      {properties.length === 0 ? (
+      {filteredProperties.length === 0 ? (
         <EmptyState
           icon={Building2}
-          title={tab === "archived" ? t("emptyArchived.title") : t("empty.title")}
+          title={
+            tab === "archived"
+              ? t("emptyArchived.title")
+              : statusFilter
+                ? t("emptyFiltered.title")
+                : t("empty.title")
+          }
           description={
             tab === "archived"
               ? t("emptyArchived.description")
-              : t("empty.description")
+              : statusFilter
+                ? t("emptyFiltered.description", { status: tCompliance(statusFilter) })
+                : t("empty.description")
           }
         >
-          {subscribed && tab === "active" && (
+          {statusFilter && tab === "active" && (
+            <Link href={propertiesListHref(locale)}>
+              <Button variant="outline">{t("filters.clear")}</Button>
+            </Link>
+          )}
+          {subscribed && tab === "active" && !statusFilter && (
             <Link href={`/${locale}/app/properties/new`}>
               <Button>{t("empty.cta")}</Button>
             </Link>
@@ -198,15 +275,8 @@ export function PropertiesView({
         </EmptyState>
       ) : activeView === "compact" ? (
         <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200/90 bg-white shadow-sm">
-          {properties.map((property) => {
-            const completed = property.checklistItems.filter((c) => c.completed).length;
-            const status = getComplianceStatus({
-              registrationNumber: property.registration?.registrationNumber,
-              status: property.registration?.status,
-              expiryDate: property.registration?.expiryDate,
-              checklistCompleted: completed,
-              checklistTotal: property.checklistItems.length,
-            });
+          {filteredProperties.map((property) => {
+            const status = getPropertyComplianceStatus(property);
             const nextActionKey = getComplianceNextActionKey(status);
 
             return (
@@ -241,15 +311,8 @@ export function PropertiesView({
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {properties.map((property) => {
-            const completed = property.checklistItems.filter((c) => c.completed).length;
-            const status = getComplianceStatus({
-              registrationNumber: property.registration?.registrationNumber,
-              status: property.registration?.status,
-              expiryDate: property.registration?.expiryDate,
-              checklistCompleted: completed,
-              checklistTotal: property.checklistItems.length,
-            });
+          {filteredProperties.map((property) => {
+            const status = getPropertyComplianceStatus(property);
 
             return (
               <Card key={property.id} className="transition-shadow hover:shadow-md hover:shadow-slate-900/[0.05]">

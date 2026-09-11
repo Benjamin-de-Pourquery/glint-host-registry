@@ -312,6 +312,14 @@
       "active": "Active",
       "archived": "Archived"
     },
+    "filters": {
+      "all": "All",
+      "clear": "Clear filter"
+    },
+    "emptyFiltered": {
+      "title": "No properties match this filter",
+      "description": "No properties with status \"{status}\" in your active portfolio."
+    },
     "emptyArchived": {
       "title": "No archived properties",
       "description": "Archived properties are hidden from your active portfolio and do not count toward your plan limit."

@@ -10,6 +10,7 @@ import { PropertyArchiveButton } from "@/components/property-archive-button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react";
+import { getMissingFicheCountForProperty } from "@/lib/guest-register/missing-fiches";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -40,6 +41,11 @@ export default async function PropertyDetailPage({ params }: Props) {
       completedAt: row?.completedAt?.toISOString() ?? null,
     };
   });
+
+  const missingFichesCount = await getMissingFicheCountForProperty(
+    id,
+    session.user.id
+  );
 
   return (
     <div className="min-w-0 space-y-6">
@@ -78,6 +84,7 @@ export default async function PropertyDetailPage({ params }: Props) {
       <Suspense fallback={<div className="py-12 text-center text-slate-500">{t("detail.loading")}</div>}>
         <PropertyDetailTabs
           locale={locale}
+          missingFichesCount={missingFichesCount}
           property={{
             id: property.id,
             name: property.name,

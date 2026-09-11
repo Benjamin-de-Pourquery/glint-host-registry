@@ -212,11 +212,19 @@
       "action": "Action requise",
       "expired": "Expiré",
       "notStarted": "Non commencé",
-      "guestsThisMonth": "Voyageurs ce mois"
+      "guestsThisMonth": "Voyageurs ce mois",
+      "fichesNeeded": "Fiches manquantes"
     },
     "attention": {
       "action": "{count, plural, one {# bien nécessite une action} other {# biens nécessitent une action}}",
-      "expired": "{count, plural, one {# enregistrement expiré} other {# enregistrements expirés}}"
+      "expired": "{count, plural, one {# enregistrement expiré} other {# enregistrements expirés}}",
+      "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}"
+    },
+    "missingFiches": {
+      "title": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
+      "description": "Les voyageurs étrangers doivent remplir une fiche de police signée à l'arrivée. Ces séjours prévus n'ont pas encore de fiche correspondante.",
+      "exportPdf": "Exporter toutes les fiches (PDF)",
+      "exportCsv": "Exporter le portefeuille CSV"
     },
     "upcoming": "Échéances à venir",
     "noDeadlines": "Aucune échéance dans les 90 prochains jours",
@@ -582,6 +590,10 @@
       "cta": "Copier le lien d'enregistrement"
     },
     "exportCsv": "Exporter CSV",
+    "exportAllPdf": "Exporter toutes les fiches (PDF)",
+    "missingFichesBadge": "{count}",
+    "missingFichesTitle": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
+    "missingFichesHint": "Un voyageur étranger était attendu mais aucune fiche de police signée n'a été reçue. Partagez le lien d'enregistrement ou collectez la fiche manuellement.",
     "printFiche": "Imprimer la fiche",
     "policeFormRequired": "Fiche de police",
     "frenchOptional": "Français — enregistrement optionnel",
@@ -623,6 +635,37 @@
       "legalNotice": "Ce formulaire recueille les informations exigées pour la fiche individuelle de police en location meublée de tourisme en France.",
       "frenchNote": "Ressortissants français : la fiche n'est pas légalement exigée, mais vous pouvez quand même l'envoyer pour le suivi opérationnel de l'hôte.",
       "disclaimer": "Vos données sont partagées uniquement avec l'hôte. Glint n'est pas un conseil juridique."
+    },
+    "stays": {
+      "title": "Séjours prévus",
+      "subtitle": "Enregistrez les séjours à venir pour suivre les fiches manquantes pour les voyageurs étrangers. Décochez pour un séjour uniquement français.",
+      "add": "Ajouter un séjour",
+      "checkIn": "Arrivée",
+      "checkOut": "Départ",
+      "guestLabel": "Libellé voyageur (facultatif)",
+      "guestLabelPlaceholder": "ex. Famille Martin",
+      "expectsForeignGuest": "Voyageur étranger — fiche de police requise",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "empty": "Aucun séjour prévu. Ajoutez un séjour pour recevoir des rappels si une fiche manque.",
+      "added": "Séjour ajouté",
+      "addError": "Impossible d'ajouter le séjour",
+      "deleted": "Séjour supprimé",
+      "deleteError": "Impossible de supprimer le séjour",
+      "dateRequired": "Les dates d'arrivée et de départ sont requises",
+      "unnamedGuest": "Voyageur attendu",
+      "ficheReceived": "Fiche reçue",
+      "ficheMissing": "Fiche manquante",
+      "fichePending": "Fiche en attente",
+      "frenchOnly": "Voyageur français — pas de rappel"
+    },
+    "export": {
+      "propertyPackTitle": "Registre voyageurs — {name}",
+      "portfolioPackTitle": "Registre voyageurs du portefeuille",
+      "portfolioSummary": "{records} fiches sur {properties} biens",
+      "recordCount": "{count} fiches",
+      "printButton": "Imprimer / Enregistrer en PDF",
+      "noRecords": "Aucune fiche dans la période de conservation."
     },
     "fiche": {
       "title": "Fiche individuelle de police",

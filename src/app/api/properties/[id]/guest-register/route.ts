@@ -3,6 +3,12 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { generateGuestRegisterToken } from "@/lib/guest-register";
 import { syncGuestRegisterPlaybookStep } from "@/lib/guest-register/playbook-sync";
+import {
+  getMissingFicheCountForProperty,
+  getStayFicheDeadline,
+  isStayMissingFiche,
+  stayHasMatchingFiche,
+} from "@/lib/guest-register/missing-fiches";
 import { z } from "zod";
 
 const actionSchema = z.object({
@@ -54,6 +60,39 @@ export async function GET(
     },
   });
 
+  const guestStays = await prisma.guestStay.findMany({
+    where: { propertyId: id },
+    include: {
+      guestRecords: {
+        select: {
+          id: true,
+          arrivalDate: true,
+          requiresPoliceForm: true,
+          isFrenchNational: true,
+        },
+      },
+    },
+    orderBy: { checkInDate: "desc" },
+    take: 50,
+  });
+
+  const stays = guestStays.map((stay) => ({
+    id: stay.id,
+    checkInDate: stay.checkInDate.toISOString(),
+    checkOutDate: stay.checkOutDate.toISOString(),
+    expectsForeignGuest: stay.expectsForeignGuest,
+    guestLabel: stay.guestLabel,
+    notes: stay.notes,
+    hasMatchingFiche: stayHasMatchingFiche(stay),
+    isMissingFiche: isStayMissingFiche(stay, now),
+    ficheDeadline: getStayFicheDeadline(stay.checkInDate).toISOString(),
+  }));
+
+  const missingFichesCount = await getMissingFicheCountForProperty(
+    id,
+    session.user.id
+  );
+
   const records = property.guestRecords.map((r) => ({
     id: r.id,
     lastName: r.lastName,
@@ -77,7 +116,9 @@ export async function GET(
         }
       : null,
     records,
+    stays,
     guestsThisMonth,
+    missingFichesCount,
   });
 }
 

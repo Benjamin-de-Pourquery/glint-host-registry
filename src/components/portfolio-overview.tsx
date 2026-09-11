@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Clock,
+  FileWarning,
   Users,
   XCircle,
 } from "lucide-react";
@@ -19,6 +20,7 @@ type PortfolioStats = {
   expired: number;
   notStarted: number;
   guestsThisMonth: number;
+  fichesNeeded: number;
 };
 
 type Props = {
@@ -29,7 +31,8 @@ type Props = {
 export async function PortfolioOverview({ locale, stats }: Props) {
   const t = await getTranslations("dashboard");
 
-  const hasAttention = stats.actionNeeded > 0 || stats.expired > 0;
+  const hasAttention =
+    stats.actionNeeded > 0 || stats.expired > 0 || stats.fichesNeeded > 0;
 
   return (
     <section className="space-y-3">
@@ -65,10 +68,24 @@ export async function PortfolioOverview({ locale, stats }: Props) {
               <ChevronRight className="h-4 w-4 shrink-0 text-red-600" />
             </Link>
           )}
+          {stats.fichesNeeded > 0 && (
+            <Link
+              href={`/${locale}/app`}
+              className="flex items-center justify-between gap-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 text-amber-900 transition-colors hover:bg-amber-100"
+            >
+              <div className="flex min-w-0 items-center gap-2">
+                <FileWarning className="h-4 w-4 shrink-0 text-amber-600" />
+                <p className="text-sm font-medium leading-snug">
+                  {t("attention.fichesNeeded", { count: stats.fichesNeeded })}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-amber-600" />
+            </Link>
+          )}
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6 md:gap-3">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-7 md:gap-3">
         <StatusCell
           icon={AlertTriangle}
           label={t("stats.action")}
@@ -113,6 +130,13 @@ export async function PortfolioOverview({ locale, stats }: Props) {
           value={stats.guestsThisMonth}
           secondary
           tone="blue"
+        />
+        <StatusCell
+          icon={FileWarning}
+          label={t("stats.fichesNeeded")}
+          value={stats.fichesNeeded}
+          emphasized={stats.fichesNeeded > 0}
+          tone="amber"
         />
       </div>
     </section>

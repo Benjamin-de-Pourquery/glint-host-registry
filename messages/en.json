@@ -212,11 +212,19 @@
       "action": "Action needed",
       "expired": "Expired",
       "notStarted": "Not started",
-      "guestsThisMonth": "Guests this month"
+      "guestsThisMonth": "Guests this month",
+      "fichesNeeded": "Fiches needed"
     },
     "attention": {
       "action": "{count, plural, one {# property needs action} other {# properties need action}}",
-      "expired": "{count, plural, one {# expired registration} other {# expired registrations}}"
+      "expired": "{count, plural, one {# expired registration} other {# expired registrations}}",
+      "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}"
+    },
+    "missingFiches": {
+      "title": "{count, plural, one {# missing police form} other {# missing police forms}}",
+      "description": "Foreign guests require a signed fiche de police on arrival. These expected stays have no matching form yet.",
+      "exportPdf": "Export all fiches (PDF)",
+      "exportCsv": "Export portfolio CSV"
     },
     "upcoming": "Upcoming deadlines",
     "noDeadlines": "No upcoming deadlines in the next 90 days",
@@ -582,6 +590,10 @@
       "cta": "Copy check-in link"
     },
     "exportCsv": "Export CSV",
+    "exportAllPdf": "Export all fiches (PDF)",
+    "missingFichesBadge": "{count}",
+    "missingFichesTitle": "{count, plural, one {# missing police form} other {# missing police forms}}",
+    "missingFichesHint": "A foreign guest was expected but no signed fiche de police has been received. Share the check-in link or collect the form manually.",
     "printFiche": "Print fiche",
     "policeFormRequired": "Police form",
     "frenchOptional": "French — optional log",
@@ -623,6 +635,37 @@
       "legalNotice": "This form collects information required for the individual police register (fiche de police) for furnished tourist accommodation in France.",
       "frenchNote": "French nationals: this form is not legally required, but you may still submit for the host's operational records.",
       "disclaimer": "Your data is shared only with the property host. Glint is not legal counsel."
+    },
+    "stays": {
+      "title": "Expected stays",
+      "subtitle": "Log upcoming stays to track missing police forms for foreign guests. French-only stays can be unchecked below.",
+      "add": "Add expected stay",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "guestLabel": "Guest label (optional)",
+      "guestLabelPlaceholder": "e.g. Smith family",
+      "expectsForeignGuest": "Foreign guest — police form required",
+      "save": "Save stay",
+      "cancel": "Cancel",
+      "empty": "No expected stays logged. Add a stay to get reminders when a fiche is missing.",
+      "added": "Expected stay added",
+      "addError": "Could not add stay",
+      "deleted": "Stay removed",
+      "deleteError": "Could not remove stay",
+      "dateRequired": "Check-in and check-out dates are required",
+      "unnamedGuest": "Expected guest",
+      "ficheReceived": "Fiche received",
+      "ficheMissing": "Fiche missing",
+      "fichePending": "Awaiting fiche",
+      "frenchOnly": "French guest — no reminder"
+    },
+    "export": {
+      "propertyPackTitle": "Guest register — {name}",
+      "portfolioPackTitle": "Portfolio guest register",
+      "portfolioSummary": "{records} fiches across {properties} properties",
+      "recordCount": "{count} fiches",
+      "printButton": "Print / Save as PDF",
+      "noRecords": "No guest records in the retention window."
     },
     "fiche": {
       "title": "Individual police form",

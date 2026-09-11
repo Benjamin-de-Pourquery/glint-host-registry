@@ -1,0 +1,341 @@
+{
+  "brand": {
+    "name": "Glint",
+    "product": "Host Registry",
+    "tagline": "EU short-term rental compliance, simplified"
+  },
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "login": "Sign in",
+    "signup": "Start free trial",
+    "dashboard": "Dashboard",
+    "properties": "Properties",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "logout": "Sign out"
+  },
+  "landing": {
+    "hero": {
+      "title": "Stay compliant with EU short-term rental rules",
+      "subtitle": "Track registration numbers, deadlines, and local requirements across your portfolio — before platforms block your listings.",
+      "cta": "Start your 14-day trial",
+      "ctaSecondary": "See how it works",
+      "badge": "Regulation (EU) 2024/1028 ready"
+    },
+    "problem": {
+      "title": "The compliance deadline is approaching",
+      "description": "From May 2026, online platforms must verify valid registration numbers before publishing EU short-term rental listings. Hosts without proper registration risk delisting, fines, and lost revenue.",
+      "points": {
+        "1": "Each EU city has different registration rules and authorities",
+        "2": "Registration numbers must be displayed on every platform listing",
+        "3": "Renewals and local requirements are easy to miss across multiple properties"
+      }
+    },
+    "solution": {
+      "title": "One registry for your entire portfolio",
+      "description": "Host Registry gives professional hosts and small property managers a single source of truth for compliance status, deadlines, and listing readiness.",
+      "points": {
+        "1": "Centralize registration numbers and issuing authorities",
+        "2": "Track expiry dates with proactive alerts at 30, 14, and 7 days",
+        "3": "Export listing-ready summaries for Airbnb, Booking, and Vrbo"
+      }
+    },
+    "features": {
+      "title": "Built for EU hosts",
+      "portfolio": {
+        "title": "Portfolio overview",
+        "description": "See compliance status across all properties at a glance — Ready, Action needed, Expired, or Not started."
+      },
+      "tracking": {
+        "title": "Registration tracking",
+        "description": "Store registration numbers, issuing municipalities, issue dates, and renewal deadlines per property."
+      },
+      "checklist": {
+        "title": "Local requirements",
+        "description": "Editable checklists seeded with sensible EU and France defaults for each property."
+      },
+      "alerts": {
+        "title": "Expiry alerts",
+        "description": "In-app notifications when registrations approach renewal — never miss a deadline."
+      },
+      "export": {
+        "title": "Listing readiness",
+        "description": "Copy registration numbers instantly or export a printable compliance summary per property."
+      },
+      "billing": {
+        "title": "Simple pricing",
+        "description": "Starter for up to 3 properties, Pro for growing portfolios — no hidden fees."
+      }
+    },
+    "pricing": {
+      "title": "Straightforward plans",
+      "subtitle": "All plans include a 14-day free trial. Cancel anytime.",
+      "starter": {
+        "name": "Starter",
+        "price": "€19",
+        "period": "/month",
+        "description": "For hosts with up to 3 properties",
+        "features": ["Up to 3 properties", "Compliance dashboard", "Expiry alerts", "PDF export", "FR + EN interface"]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "€49",
+        "period": "/month",
+        "description": "For property managers with larger portfolios",
+        "features": ["Up to 50 properties", "Everything in Starter", "Priority support", "Bulk export", "Team-ready workflows"],
+        "badge": "Most popular"
+      },
+      "cta": "Start free trial"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": {
+        "1": {
+          "q": "What is Regulation (EU) 2024/1028?",
+          "a": "It is EU legislation requiring short-term rental hosts to obtain registration numbers from local authorities. Online platforms must verify these numbers before publishing listings in the EU."
+        },
+        "2": {
+          "q": "When does this apply?",
+          "a": "Member states are implementing national rules now, with full platform verification requirements expected by May 2026. Starting early protects your listings."
+        },
+        "3": {
+          "q": "Does Host Registry register my property for me?",
+          "a": "No — you still register with your local municipality. Host Registry helps you track numbers, deadlines, and requirements so you stay compliant."
+        },
+        "4": {
+          "q": "Which countries are supported?",
+          "a": "Host Registry supports all EU member states with editable local requirement checklists. Default templates include France-focused items."
+        },
+        "5": {
+          "q": "Can I export data for platform verification?",
+          "a": "Yes. Each property has a listing readiness summary with your registration number, authority, and status — copyable or exportable as PDF."
+        }
+      }
+    },
+    "cta": {
+      "title": "Protect your listings before May 2026",
+      "subtitle": "Join hosts across Europe who are getting ahead of EU compliance requirements.",
+      "button": "Create your account"
+    },
+    "footer": {
+      "product": "Product",
+      "legal": "Legal",
+      "company": "Glint — micro-entreprise",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "mentions": "Legal Notice",
+      "copyright": "© {year} Glint. All rights reserved."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your Host Registry account",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signup": "Create one",
+      "error": "Invalid email or password"
+    },
+    "signup": {
+      "title": "Create your account",
+      "subtitle": "Start your 14-day free trial — no credit card required to explore",
+      "name": "Full name",
+      "email": "Email address",
+      "password": "Password",
+      "passwordHint": "At least 8 characters",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in",
+      "error": "Could not create account. Email may already be in use.",
+      "success": "Account created successfully"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back, {name}",
+    "overview": "Portfolio overview",
+    "stats": {
+      "total": "Total properties",
+      "ready": "Ready",
+      "action": "Action needed",
+      "expired": "Expired",
+      "notStarted": "Not started"
+    },
+    "upcoming": "Upcoming deadlines",
+    "noDeadlines": "No upcoming deadlines in the next 90 days",
+    "recentAlerts": "Recent alerts",
+    "noAlerts": "No alerts yet",
+    "addProperty": "Add property",
+    "viewAll": "View all",
+    "daysLeft": "{days} days left",
+    "expired": "Expired",
+    "subscribe": {
+      "title": "Subscribe to add properties",
+      "description": "Choose a plan to start managing your rental portfolio.",
+      "cta": "View plans"
+    }
+  },
+  "properties": {
+    "title": "Properties",
+    "subtitle": "Manage your rental portfolio",
+    "add": "Add property",
+    "empty": {
+      "title": "No properties yet",
+      "description": "Add your first property to start tracking compliance.",
+      "cta": "Add property"
+    },
+    "limit": {
+      "title": "Property limit reached",
+      "description": "Your {plan} plan allows up to {limit} properties. Upgrade to add more.",
+      "cta": "Upgrade plan"
+    },
+    "form": {
+      "name": "Property name",
+      "address": "Street address",
+      "city": "City",
+      "country": "Country",
+      "type": "Property type",
+      "types": {
+        "apartment": "Apartment",
+        "house": "House",
+        "studio": "Studio",
+        "room": "Private room",
+        "other": "Other"
+      },
+      "airbnb": "Airbnb listing URL",
+      "booking": "Booking.com listing URL",
+      "vrbo": "Vrbo listing URL",
+      "notes": "Notes",
+      "save": "Save property",
+      "cancel": "Cancel",
+      "create": "Create property",
+      "edit": "Edit property"
+    },
+    "card": {
+      "view": "View details",
+      "archive": "Archive",
+      "restore": "Restore",
+      "archived": "Archived"
+    },
+    "tabs": {
+      "active": "Active",
+      "archived": "Archived"
+    }
+  },
+  "compliance": {
+    "title": "Compliance",
+    "registration": {
+      "title": "Registration details",
+      "number": "Registration number",
+      "authority": "Issuing authority / municipality",
+      "status": "Status",
+      "statuses": {
+        "not_started": "Not started",
+        "pending": "Pending",
+        "active": "Active",
+        "expired": "Expired"
+      },
+      "issueDate": "Issue date",
+      "expiryDate": "Expiry / renewal date",
+      "notes": "Notes",
+      "save": "Save registration"
+    },
+    "checklist": {
+      "title": "Local requirements",
+      "add": "Add item",
+      "placeholder": "Requirement description",
+      "empty": "No checklist items"
+    },
+    "readiness": {
+      "title": "Listing readiness",
+      "status": "Compliance status",
+      "copy": "Copy registration number",
+      "copied": "Copied!",
+      "export": "Export PDF",
+      "print": "Print summary"
+    },
+    "status": {
+      "ready": "Ready",
+      "action_needed": "Action needed",
+      "expired": "Expired",
+      "not_started": "Not started"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications",
+    "markRead": "Mark as read",
+    "markAllRead": "Mark all as read",
+    "expiry": "Registration expiring soon"
+    },
+  "settings": {
+    "title": "Settings",
+    "account": {
+      "title": "Account",
+      "name": "Display name",
+      "email": "Email",
+      "save": "Save changes"
+    },
+    "language": {
+      "title": "Language",
+      "description": "Choose your preferred interface language"
+    },
+    "billing": {
+      "title": "Billing",
+      "plan": "Current plan",
+      "status": "Status",
+      "none": "No active subscription",
+      "manage": "Manage billing",
+      "upgrade": "Upgrade plan",
+      "subscribe": "Subscribe"
+    },
+    "demo": {
+      "title": "Demo data",
+      "description": "Load sample properties in French cities to explore the app",
+      "button": "Load demo data",
+      "success": "Demo data loaded",
+      "error": "Could not load demo data"
+    }
+  },
+  "billing": {
+    "success": {
+      "title": "Subscription activated",
+      "description": "Thank you! Your plan is now active. You can start adding properties.",
+      "cta": "Go to dashboard"
+    },
+    "cancel": {
+      "title": "Checkout cancelled",
+      "description": "No charges were made. You can subscribe anytime from Settings.",
+      "cta": "Back to settings"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "updated": "Last updated: September 2026"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "updated": "Last updated: September 2026"
+    },
+    "mentions": {
+      "title": "Legal Notice",
+      "updated": "Last updated: September 2026"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "back": "Back",
+    "search": "Search",
+    "noResults": "No results found"
+  }
+}

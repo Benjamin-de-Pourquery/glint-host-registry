@@ -100,17 +100,20 @@ model GuestRegisterToken {
 }
 
 model GuestStay {
-  id           String        @id @default(cuid())
-  propertyId   String
-  checkInDate  DateTime
-  checkOutDate DateTime
-  source       String        @default("manual")
-  notes        String?
-  createdAt    DateTime      @default(now())
-  property     Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  guestRecords GuestRecord[]
+  id                  String        @id @default(cuid())
+  propertyId          String
+  checkInDate         DateTime
+  checkOutDate        DateTime
+  expectsForeignGuest Boolean       @default(true)
+  guestLabel          String?
+  source              String        @default("manual")
+  notes               String?
+  createdAt           DateTime      @default(now())
+  property            Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  guestRecords        GuestRecord[]
 
   @@index([propertyId])
+  @@index([propertyId, checkInDate])
 }
 
 model GuestRecord {

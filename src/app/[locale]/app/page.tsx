@@ -4,7 +4,8 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getComplianceStatus } from "@/lib/compliance";
 import { hasActiveSubscription } from "@/lib/plans";
-import { syncExpiryNotifications } from "@/lib/notifications";
+import { syncAllNotifications } from "@/lib/notifications";
+import { getMissingFichesForUser } from "@/lib/guest-register/missing-fiches";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ComplianceBadge } from "@/components/compliance-badge";
@@ -34,7 +35,7 @@ export default async function DashboardPage({ params }: Props) {
     },
   });
 
-  await syncExpiryNotifications(session.user.id);
+  await syncAllNotifications(session.user.id);
 
   const properties = await prisma.property.findMany({
     where: { userId: session.user.id, archived: false },
@@ -53,6 +54,9 @@ export default async function DashboardPage({ params }: Props) {
       submittedAt: { gte: monthStart },
     },
   });
+
+  const missingFiches = await getMissingFichesForUser(session.user.id);
+  const fichesNeeded = missingFiches.length;
 
   const notifications = await prisma.notification.findMany({
     where: { userId: session.user.id },
@@ -161,8 +165,47 @@ export default async function DashboardPage({ params }: Props) {
           expired: stats.expired,
           notStarted: stats.not_started,
           guestsThisMonth: guestsThisMonth,
+          fichesNeeded: fichesNeeded,
         }}
       />
+
+      {fichesNeeded > 0 && (
+        <Card className="border-amber-200 bg-amber-50">
+          <CardHeader>
+            <CardTitle className="text-amber-900">
+              {t("missingFiches.title", { count: fichesNeeded })}
+            </CardTitle>
+            <CardDescription className="text-amber-800">
+              {t("missingFiches.description")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul className="mb-4 space-y-2">
+              {missingFiches.slice(0, 5).map((item) => (
+                <li key={item.stayId} className="text-sm text-amber-900">
+                  <Link
+                    href={`/${locale}/app/properties/${item.propertyId}?tab=register`}
+                    className="font-medium hover:underline"
+                  >
+                    {item.propertyName}
+                  </Link>
+                  {" — "}
+                  {format(item.checkInDate, "dd MMM yyyy")}
+                  {item.guestLabel ? ` (${item.guestLabel})` : ""}
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-2">
+              <Link href={`/${locale}/app/guest-register/print-all`} target="_blank">
+                <Button variant="outline" size="sm">{t("missingFiches.exportPdf")}</Button>
+              </Link>
+              <a href="/api/guest-register/export-csv">
+                <Button variant="outline" size="sm">{t("missingFiches.exportCsv")}</Button>
+              </a>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>

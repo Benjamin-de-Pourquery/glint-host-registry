@@ -5,6 +5,7 @@ import {
   isFrenchNationality,
   type AccompanyingChild,
 } from "@/lib/guest-register";
+import { findMatchingStayForRecord } from "@/lib/guest-register/missing-fiches";
 import { z } from "zod";
 
 const childSchema = z.object({
@@ -89,10 +90,19 @@ export async function POST(
     const retentionExpiresAt = computeRetentionExpiresAt(submittedAt);
 
     const children: AccompanyingChild[] = data.accompanyingChildren ?? [];
+    const arrivalDate = new Date(data.arrivalDate);
+    const requiresPoliceForm = !isFrench;
+
+    const stayId = await findMatchingStayForRecord(
+      tokenRecord.propertyId,
+      arrivalDate,
+      requiresPoliceForm
+    );
 
     const record = await prisma.guestRecord.create({
       data: {
         propertyId: tokenRecord.propertyId,
+        stayId,
         lastName: data.lastName.trim(),
         firstNames: data.firstNames.trim(),
         dateOfBirth: new Date(data.dateOfBirth),
@@ -101,10 +111,10 @@ export async function POST(
         usualAddress: data.usualAddress.trim(),
         mobile: data.mobile.trim(),
         email: data.email.trim().toLowerCase(),
-        arrivalDate: new Date(data.arrivalDate),
+        arrivalDate,
         departureDate: new Date(data.departureDate),
         isFrenchNational: isFrench,
-        requiresPoliceForm: !isFrench,
+        requiresPoliceForm,
         signatureDataUrl: data.signatureDataUrl,
         signedAt: now,
         submittedAt,

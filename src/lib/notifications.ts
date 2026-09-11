@@ -1,5 +1,6 @@
-import { differenceInDays } from "date-fns";
+import { differenceInDays, format } from "date-fns";
 import { prisma } from "@/lib/prisma";
+import { getMissingFichesForUser } from "@/lib/guest-register/missing-fiches";
 
 export async function syncExpiryNotifications(userId: string) {
   const properties = await prisma.property.findMany({
@@ -47,4 +48,44 @@ export async function syncExpiryNotifications(userId: string) {
       });
     }
   }
+}
+
+export async function syncMissingFicheNotifications(userId: string) {
+  const missing = await getMissingFichesForUser(userId);
+
+  for (const item of missing) {
+    const title = `Missing police form: ${item.propertyName}`;
+    const guestRef = item.guestLabel ? ` (${item.guestLabel})` : "";
+    const message =
+      item.daysOverdue === 0
+        ? `A foreign guest was expected on ${format(item.checkInDate, "dd/MM/yyyy")}${guestRef} at ${item.propertyName}, but no police form has been submitted yet.`
+        : `Police form overdue for stay starting ${format(item.checkInDate, "dd/MM/yyyy")}${guestRef} at ${item.propertyName} (${item.daysOverdue} day(s) past deadline).`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId,
+        propertyId: item.propertyId,
+        type: "missing_fiche",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId,
+          propertyId: item.propertyId,
+          title,
+          message,
+          type: "missing_fiche",
+        },
+      });
+    }
+  }
+}
+
+export async function syncAllNotifications(userId: string) {
+  await syncExpiryNotifications(userId);
+  await syncMissingFicheNotifications(userId);
 }

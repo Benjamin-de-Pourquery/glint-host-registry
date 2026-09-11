@@ -5,6 +5,9 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Copy,
   Check,
@@ -16,6 +19,9 @@ import {
   Users,
   AlertCircle,
   UserPlus,
+  AlertTriangle,
+  CalendarPlus,
+  Trash2,
 } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
 import { toast } from "sonner";
@@ -36,10 +42,24 @@ type GuestRecordSummary = {
   retentionExpiresAt: string | null;
 };
 
+type GuestStaySummary = {
+  id: string;
+  checkInDate: string;
+  checkOutDate: string;
+  expectsForeignGuest: boolean;
+  guestLabel: string | null;
+  notes: string | null;
+  hasMatchingFiche: boolean;
+  isMissingFiche: boolean;
+  ficheDeadline: string;
+};
+
 type GuestRegisterData = {
   token: { enabled: boolean; token: string; createdAt: string } | null;
   records: GuestRecordSummary[];
+  stays: GuestStaySummary[];
   guestsThisMonth: number;
+  missingFichesCount: number;
 };
 
 type Props = {
@@ -52,8 +72,17 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
+  const [stayLoading, setStayLoading] = useState(false);
   const [copied, setCopied] = useState(false);
   const [qrSvg, setQrSvg] = useState<string | null>(null);
+  const [showStayForm, setShowStayForm] = useState(false);
+  const [stayForm, setStayForm] = useState({
+    checkInDate: "",
+    checkOutDate: "",
+    expectsForeignGuest: true,
+    guestLabel: "",
+    notes: "",
+  });
 
   const checkInUrl =
     data?.token?.enabled && data.token.token
@@ -116,6 +145,53 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const addExpectedStay = async () => {
+    if (!stayForm.checkInDate || !stayForm.checkOutDate) {
+      toast.error(t("stays.dateRequired"));
+      return;
+    }
+    setStayLoading(true);
+    try {
+      const res = await fetch(`/api/properties/${propertyId}/guest-stays`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(stayForm),
+      });
+      if (!res.ok) throw new Error("Failed");
+      await loadData();
+      setShowStayForm(false);
+      setStayForm({
+        checkInDate: "",
+        checkOutDate: "",
+        expectsForeignGuest: true,
+        guestLabel: "",
+        notes: "",
+      });
+      toast.success(t("stays.added"));
+    } catch {
+      toast.error(t("stays.addError"));
+    } finally {
+      setStayLoading(false);
+    }
+  };
+
+  const deleteStay = async (stayId: string) => {
+    setStayLoading(true);
+    try {
+      const res = await fetch(
+        `/api/properties/${propertyId}/guest-stays?stayId=${stayId}`,
+        { method: "DELETE" }
+      );
+      if (!res.ok) throw new Error("Failed");
+      await loadData();
+      toast.success(t("stays.deleted"));
+    } catch {
+      toast.error(t("stays.deleteError"));
+    } finally {
+      setStayLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <Card>
@@ -128,6 +204,7 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
   }
 
   const isEnabled = data?.token?.enabled ?? false;
+  const missingCount = data?.missingFichesCount ?? 0;
 
   return (
     <Card>
@@ -137,6 +214,11 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-slate-600" />
               {t("title")}
+              {missingCount > 0 && (
+                <Badge variant="destructive" className="ml-1">
+                  {t("missingFichesBadge", { count: missingCount })}
+                </Badge>
+              )}
             </CardTitle>
             <p className="mt-1 text-sm text-slate-600">{t("subtitle")}</p>
           </div>
@@ -148,6 +230,16 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
+        {missingCount > 0 && (
+          <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+            <div>
+              <p className="font-medium">{t("missingFichesTitle", { count: missingCount })}</p>
+              <p className="mt-1 text-amber-800">{t("missingFichesHint")}</p>
+            </div>
+          </div>
+        )}
+
         <div className="rounded-lg border border-blue-100 bg-blue-50/50 p-4 text-sm text-blue-900">
           <p className="font-medium">{t("legal.title")}</p>
           <p className="mt-1 text-blue-800">{t("legal.summary")}</p>
@@ -215,14 +307,165 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
 
         <div className="space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm font-medium text-slate-900">{t("stays.title")}</p>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowStayForm((v) => !v)}
+            >
+              <CalendarPlus className="h-4 w-4" />
+              {t("stays.add")}
+            </Button>
+          </div>
+          <p className="text-xs text-slate-500">{t("stays.subtitle")}</p>
+
+          {showStayForm && (
+            <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50/50 p-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div>
+                  <Label htmlFor="checkInDate">{t("stays.checkIn")}</Label>
+                  <Input
+                    id="checkInDate"
+                    type="date"
+                    value={stayForm.checkInDate}
+                    onChange={(e) =>
+                      setStayForm((f) => ({ ...f, checkInDate: e.target.value }))
+                    }
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="checkOutDate">{t("stays.checkOut")}</Label>
+                  <Input
+                    id="checkOutDate"
+                    type="date"
+                    value={stayForm.checkOutDate}
+                    onChange={(e) =>
+                      setStayForm((f) => ({ ...f, checkOutDate: e.target.value }))
+                    }
+                  />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="guestLabel">{t("stays.guestLabel")}</Label>
+                <Input
+                  id="guestLabel"
+                  value={stayForm.guestLabel}
+                  onChange={(e) =>
+                    setStayForm((f) => ({ ...f, guestLabel: e.target.value }))
+                  }
+                  placeholder={t("stays.guestLabelPlaceholder")}
+                />
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="expectsForeignGuest"
+                  checked={stayForm.expectsForeignGuest}
+                  onCheckedChange={(checked) =>
+                    setStayForm((f) => ({
+                      ...f,
+                      expectsForeignGuest: checked === true,
+                    }))
+                  }
+                />
+                <Label htmlFor="expectsForeignGuest" className="text-sm font-normal">
+                  {t("stays.expectsForeignGuest")}
+                </Label>
+              </div>
+              <div className="flex gap-2">
+                <Button size="sm" onClick={addExpectedStay} disabled={stayLoading}>
+                  {stayLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                  {t("stays.save")}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setShowStayForm(false)}
+                >
+                  {t("stays.cancel")}
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {!data || data.stays.length === 0 ? (
+            <p className="text-sm text-slate-500">{t("stays.empty")}</p>
+          ) : (
+            <div className="space-y-2">
+              {data.stays.map((stay) => (
+                <div
+                  key={stay.id}
+                  className={`flex flex-wrap items-center justify-between gap-3 rounded-lg border p-3 ${
+                    stay.isMissingFiche
+                      ? "border-amber-200 bg-amber-50/50"
+                      : "border-slate-100"
+                  }`}
+                >
+                  <div>
+                    <p className="font-medium text-slate-900">
+                      {stay.guestLabel || t("stays.unnamedGuest")}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      {format(new Date(stay.checkInDate), "dd/MM/yyyy")} –{" "}
+                      {format(new Date(stay.checkOutDate), "dd/MM/yyyy")}
+                    </p>
+                    <div className="mt-1 flex flex-wrap gap-1">
+                      {stay.expectsForeignGuest ? (
+                        stay.hasMatchingFiche ? (
+                          <Badge variant="secondary" className="text-xs">
+                            {t("stays.ficheReceived")}
+                          </Badge>
+                        ) : stay.isMissingFiche ? (
+                          <Badge variant="destructive" className="text-xs">
+                            {t("stays.ficheMissing")}
+                          </Badge>
+                        ) : (
+                          <Badge variant="outline" className="text-xs">
+                            {t("stays.fichePending")}
+                          </Badge>
+                        )
+                      ) : (
+                        <Badge variant="outline" className="text-xs text-slate-500">
+                          {t("stays.frenchOnly")}
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => deleteStay(stay.id)}
+                    disabled={stayLoading}
+                  >
+                    <Trash2 className="h-4 w-4 text-slate-400" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm font-medium text-slate-900">{t("recordsTitle")}</p>
             {data && data.records.length > 0 && (
-              <a href={`/api/properties/${propertyId}/guest-register/export`}>
-                <Button variant="outline" size="sm">
-                  <Download className="h-4 w-4" />
-                  {t("exportCsv")}
-                </Button>
-              </a>
+              <div className="flex flex-wrap gap-2">
+                <a href={`/api/properties/${propertyId}/guest-register/export`}>
+                  <Button variant="outline" size="sm">
+                    <Download className="h-4 w-4" />
+                    {t("exportCsv")}
+                  </Button>
+                </a>
+                <a
+                  href={`/${locale}/app/properties/${propertyId}/guest-register/print-all`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" size="sm">
+                    <FileText className="h-4 w-4" />
+                    {t("exportAllPdf")}
+                  </Button>
+                </a>
+              </div>
             )}
           </div>
 

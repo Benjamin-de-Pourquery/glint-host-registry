@@ -12,6 +12,7 @@ import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { PlatformProgressItem } from "@/lib/listings/platforms";
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 const TAB_IDS = ["overview", "compliance", "register", "listings", "notes"] as const;
@@ -52,13 +53,14 @@ type PropertyData = {
 type Props = {
   property: PropertyData;
   locale: string;
+  missingFichesCount?: number;
 };
 
 function isValidTab(tab: string | null): tab is PropertyDetailTab {
   return TAB_IDS.includes(tab as PropertyDetailTab);
 }
 
-export function PropertyDetailTabs({ property, locale }: Props) {
+export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }: Props) {
   const t = useTranslations("properties.detail");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -120,7 +122,14 @@ export function PropertyDetailTabs({ property, locale }: Props) {
             {t("tabs.compliance")}
           </TabsTrigger>
           <TabsTrigger value="register" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
-            {t("tabs.register")}
+            <span className="flex items-center gap-1.5">
+              {t("tabs.register")}
+              {missingFichesCount > 0 && (
+                <Badge variant="destructive" className="h-5 min-w-5 px-1.5 text-[10px]">
+                  {missingFichesCount}
+                </Badge>
+              )}
+            </span>
           </TabsTrigger>
           <TabsTrigger value="listings" className="shrink-0 rounded-none border-b-2 border-transparent px-3 py-2.5 text-sm sm:px-4 data-[state=active]:border-emerald-600 data-[state=active]:bg-transparent data-[state=active]:font-semibold data-[state=active]:text-emerald-700 data-[state=active]:shadow-none">
             {t("tabs.listings")}

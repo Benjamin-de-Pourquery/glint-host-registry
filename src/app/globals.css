@@ -136,3 +136,38 @@ body {
     animation: none;
   }
 }
+
+/* Route navigation — top progress bar + page transitions */
+.navigation-progress-bar {
+  transition: width 180ms ease-out;
+}
+
+@keyframes page-transition-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: page-transition-in 200ms ease-out both;
+}
+
+a.nav-link-root.is-nav-pending {
+  opacity: 0.7;
+  transition: opacity 150ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+
+  .navigation-progress-bar {
+    transition: none;
+  }
+}

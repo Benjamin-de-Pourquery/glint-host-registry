@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { NavLink } from "@/components/navigation/nav-link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import {
@@ -78,7 +78,7 @@ export function SidebarContent({
               : pathname.startsWith(href);
 
           return (
-            <Link
+            <NavLink
               key={item.href}
               href={href}
               onClick={onNavigate}
@@ -96,7 +96,7 @@ export function SidebarContent({
                   {unreadCount > 99 ? "99+" : unreadCount}
                 </span>
               )}
-            </Link>
+            </NavLink>
           );
         })}
       </nav>

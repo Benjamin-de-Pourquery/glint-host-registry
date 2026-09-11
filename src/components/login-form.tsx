@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { NavLink } from "@/components/navigation/nav-link";
+import { useNavigationProgress } from "@/components/navigation/navigation-progress";
 import { signIn } from "next-auth/react";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ export function LoginForm() {
   const tBrand = useTranslations("brand");
   const locale = useLocale();
   const router = useRouter();
+  const { start: startNavigation } = useNavigationProgress();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/app`;
 
@@ -40,6 +42,7 @@ export function LoginForm() {
       setError(t("error"));
       setLoading(false);
     } else {
+      startNavigation();
       router.push(callbackUrl);
     }
   };
@@ -50,7 +53,7 @@ export function LoginForm() {
         <LanguageSwitcher />
       </div>
 
-      <Link href={`/${locale}`} className="mb-8 flex items-center gap-2">
+      <NavLink href={`/${locale}`} className="mb-8 flex items-center gap-2">
         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600 text-white">
           <Shield className="h-5 w-5" />
         </div>
@@ -58,7 +61,7 @@ export function LoginForm() {
           <div className="font-bold text-slate-900">{tBrand("name")}</div>
           <div className="text-sm text-slate-500">{tBrand("product")}</div>
         </div>
-      </Link>
+      </NavLink>
 
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
@@ -96,9 +99,9 @@ export function LoginForm() {
           </form>
           <p className="mt-6 text-center text-sm text-slate-600">
             {t("noAccount")}{" "}
-            <Link href={`/${locale}/signup`} className="font-medium text-emerald-600 hover:underline">
+            <NavLink href={`/${locale}/signup`} className="font-medium text-emerald-600 hover:underline">
               {t("signup")}
-            </Link>
+            </NavLink>
           </p>
         </CardContent>
       </Card>

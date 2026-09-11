@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { NavLink } from "@/components/navigation/nav-link";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -29,7 +29,7 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.25rem] sm:gap-4 sm:px-6">
-        <Link href={`/${locale}`} className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
+        <NavLink href={`/${locale}`} className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/30 transition-shadow group-hover:shadow-lg group-hover:shadow-emerald-600/35 sm:h-10 sm:w-10">
             <Shield className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
@@ -41,7 +41,7 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
               {tBrand("product")}
             </span>
           </div>
-        </Link>
+        </NavLink>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
           {navLinks.map(({ href, key }) => (
@@ -58,12 +58,12 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
         <div className="hidden shrink-0 items-center gap-2 md:flex sm:gap-3">
           <LanguageSwitcher />
           {isLoggedIn ? (
-            <Link href={`/${locale}/app`}>
+            <NavLink href={`/${locale}/app`}>
               <Button size="sm">{t("dashboard")}</Button>
-            </Link>
+            </NavLink>
           ) : (
             <>
-              <Link href={`/${locale}/login`}>
+              <NavLink href={`/${locale}/login`}>
                 <Button
                   variant="outline"
                   size="sm"
@@ -71,12 +71,12 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
                 >
                   {t("login")}
                 </Button>
-              </Link>
-              <Link href={`/${locale}/signup`}>
+              </NavLink>
+              <NavLink href={`/${locale}/signup`}>
                 <Button size="sm" className="shadow-sm shadow-emerald-600/25">
                   {t("signup")}
                 </Button>
-              </Link>
+              </NavLink>
             </>
           )}
         </div>
@@ -135,21 +135,21 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
 
               <div className="flex flex-col gap-2">
                 {isLoggedIn ? (
-                  <Link href={`/${locale}/app`} onClick={closeMenu}>
+                  <NavLink href={`/${locale}/app`} onClick={closeMenu}>
                     <Button className="w-full">{t("dashboard")}</Button>
-                  </Link>
+                  </NavLink>
                 ) : (
                   <>
-                    <Link href={`/${locale}/signup`} onClick={closeMenu}>
+                    <NavLink href={`/${locale}/signup`} onClick={closeMenu}>
                       <Button className="w-full shadow-sm shadow-emerald-600/25">
                         {t("signup")}
                       </Button>
-                    </Link>
-                    <Link href={`/${locale}/login`} onClick={closeMenu}>
+                    </NavLink>
+                    <NavLink href={`/${locale}/login`} onClick={closeMenu}>
                       <Button variant="outline" className="w-full border-slate-300">
                         {t("login")}
                       </Button>
-                    </Link>
+                    </NavLink>
                   </>
                 )}
               </div>

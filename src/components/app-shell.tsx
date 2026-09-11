@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { AppSidebar, SidebarBrand, SidebarContent } from "@/components/app-sidebar";
+import { PageTransition } from "@/components/navigation/page-transition";
 
 type Props = {
   children: React.ReactNode;
@@ -69,7 +70,9 @@ export function AppShell({ children, unreadCount }: Props) {
         </Sheet>
 
         <main className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto">
-          <div className="mx-auto max-w-6xl p-4 lg:p-6 xl:p-8">{children}</div>
+          <div className="mx-auto max-w-6xl p-4 lg:p-6 xl:p-8">
+            <PageTransition>{children}</PageTransition>
+          </div>
         </main>
       </div>
     </div>

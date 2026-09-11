@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { MarketingContent } from "@/components/navigation/marketing-content";
+import { NavLink } from "@/components/navigation/nav-link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { auth } from "@/lib/auth";
@@ -34,6 +35,7 @@ export default async function LandingPage({ params }: Props) {
     <div className={`landing-page ${jakarta.variable} min-h-screen overflow-x-hidden bg-slate-50 font-[family-name:var(--font-jakarta)]`}>
       <MarketingHeader isLoggedIn={!!session?.user?.id} />
 
+      <MarketingContent>
       <section className="landing-hero-bg relative overflow-hidden border-b border-slate-200/80">
         <div className="landing-hero-blob" aria-hidden />
         <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
@@ -49,16 +51,16 @@ export default async function LandingPage({ params }: Props) {
                 {t("hero.subtitle")}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Link href={`/${locale}/signup`}>
+                <NavLink href={`/${locale}/signup`}>
                   <Button size="lg" className="w-full px-8 shadow-lg shadow-emerald-600/30 sm:w-auto">
                     {t("hero.cta")}
                   </Button>
-                </Link>
-                <Link href={`/${locale}/login`}>
+                </NavLink>
+                <NavLink href={`/${locale}/login`}>
                   <Button variant="outline" size="lg" className="w-full border-slate-300 bg-transparent sm:w-auto">
                     {t("hero.ctaLogin")}
                   </Button>
-                </Link>
+                </NavLink>
               </div>
               <p className="mt-4">
                 <a
@@ -128,12 +130,12 @@ export default async function LandingPage({ params }: Props) {
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{t("cta.title")}</h2>
           <p className="mt-3 text-base text-slate-300 sm:text-lg">{t("cta.subtitle")}</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href={`/${locale}/signup`}>
+            <NavLink href={`/${locale}/signup`}>
               <Button size="lg" className="w-full px-8 shadow-lg shadow-emerald-600/30 sm:w-auto">
                 {t("cta.button")}
               </Button>
-            </Link>
-            <Link href={`/${locale}/login`}>
+            </NavLink>
+            <NavLink href={`/${locale}/login`}>
               <Button
                 size="lg"
                 variant="outline"
@@ -141,12 +143,13 @@ export default async function LandingPage({ params }: Props) {
               >
                 {t("cta.login")}
               </Button>
-            </Link>
+            </NavLink>
           </div>
         </div>
       </section>
 
       <LandingFooter locale={locale} />
+      </MarketingContent>
     </div>
   );
 }

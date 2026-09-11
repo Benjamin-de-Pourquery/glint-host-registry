@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { GuestRegisterPanel } from "@/components/guest-register-panel";
+import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
 import { toast } from "sonner";
@@ -28,11 +29,15 @@ type Registration = {
   issueDate?: string | Date | null;
   expiryDate?: string | Date | null;
   notes?: string | null;
+  nationalRegistrationNumber?: string | null;
+  nationalTransitionStatus?: string | null;
+  nationalRenewalDeadline?: string | Date | null;
 };
 
 type Props = {
   propertyId: string;
   locale: string;
+  country: string;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
 };
@@ -40,6 +45,7 @@ type Props = {
 export function PropertyRegisterTab({
   propertyId,
   locale,
+  country,
   registration,
   checklistItems: initialChecklist,
 }: Props) {
@@ -158,6 +164,14 @@ export function PropertyRegisterTab({
           </a>
         </div>
       </section>
+
+      <NationalTransitionCard
+        propertyId={propertyId}
+        country={country}
+        locale={locale}
+        registration={registration}
+        showForm
+      />
 
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-slate-900">{t("registration.title")}</h2>

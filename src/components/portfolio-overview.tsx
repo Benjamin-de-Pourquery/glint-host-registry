@@ -21,6 +21,7 @@ type PortfolioStats = {
   notStarted: number;
   guestsThisMonth: number;
   fichesNeeded: number;
+  nationalTransition: number;
 };
 
 type Props = {
@@ -32,7 +33,10 @@ export async function PortfolioOverview({ locale, stats }: Props) {
   const t = await getTranslations("dashboard");
 
   const hasAttention =
-    stats.actionNeeded > 0 || stats.expired > 0 || stats.fichesNeeded > 0;
+    stats.actionNeeded > 0 ||
+    stats.expired > 0 ||
+    stats.fichesNeeded > 0 ||
+    stats.nationalTransition > 0;
 
   return (
     <section className="space-y-3">
@@ -80,6 +84,20 @@ export async function PortfolioOverview({ locale, stats }: Props) {
                 </p>
               </div>
               <ChevronRight className="h-4 w-4 shrink-0 text-amber-600" />
+            </Link>
+          )}
+          {stats.nationalTransition > 0 && (
+            <Link
+              href={propertiesListHref(locale, { status: "national_transition" })}
+              className="flex items-center justify-between gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3 py-2.5 text-blue-900 transition-colors hover:bg-blue-100"
+            >
+              <div className="flex min-w-0 items-center gap-2">
+                <AlertTriangle className="h-4 w-4 shrink-0 text-blue-600" />
+                <p className="text-sm font-medium leading-snug">
+                  {t("attention.nationalTransition", { count: stats.nationalTransition })}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-blue-600" />
             </Link>
           )}
         </div>

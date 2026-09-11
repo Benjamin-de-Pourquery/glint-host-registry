@@ -16,6 +16,7 @@ const DEMO_PROPERTIES = [
     status: "active",
     issueDate: new Date("2024-03-15"),
     expiryDate: new Date("2027-03-15"),
+    nationalTransitionStatus: "awaiting_portal",
   },
   {
     name: "Vieux-Port Apartment",
@@ -29,6 +30,7 @@ const DEMO_PROPERTIES = [
     status: "active",
     issueDate: new Date("2023-11-01"),
     expiryDate: new Date("2026-09-20"),
+    nationalTransitionStatus: "ready_to_renew",
   },
   {
     name: "Presqu'île Flat",
@@ -104,6 +106,8 @@ export async function seedDemoData(userId: string, locale: string) {
         status: demo.status,
         issueDate: demo.issueDate,
         expiryDate: demo.expiryDate,
+        nationalTransitionStatus:
+          demo.nationalTransitionStatus ?? "awaiting_portal",
       },
     });
 

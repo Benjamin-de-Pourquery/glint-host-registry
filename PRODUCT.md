@@ -101,7 +101,11 @@ Account name, language toggle (FR/EN), billing management, and demo data seed bu
 
 ## Regulatory context
 
-Regulation (EU) 2024/1028 requires STR hosts to obtain registration numbers from local authorities. Online platforms must verify these numbers before publishing EU listings, with full implementation expected by **May 2026**. Host Registry does not register properties on behalf of hosts — it provides the operational tooling to track and maintain compliance.
+Regulation (EU) 2024/1028 has applied since **20 May 2026**. STR hosts must obtain registration numbers from local authorities; online platforms must verify these numbers before publishing EU listings.
+
+In France, hosts currently register through **municipal procedures** (city téléservices, Cerfa). The national **API Meublés** teleservice (DGE / Démarche Numérique) is **not open yet** — opening is planned for **Q4 2026**. Until then, hosts must keep their municipal number and comply locally. When the national portal opens, existing municipal numbers will need **renewal within a transition window**; after that window, old numbers may become invalid.
+
+Host Registry tracks this **dual-regime period**: municipal registration today, national transition readiness (status, dossier checklist, official DGE links). Glint does **not** register properties on behalf of hosts or submit to mairies/DGE.
 
 ## Languages
 

@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getComplianceStatus } from "@/lib/compliance";
+import { needsNationalTransitionAttention } from "@/lib/national-transition";
 import { hasActiveSubscription } from "@/lib/plans";
 import { syncAllNotifications } from "@/lib/notifications";
 import { getMissingFichesForUser } from "@/lib/guest-register/missing-fiches";
@@ -66,6 +67,7 @@ export default async function DashboardPage({ params }: Props) {
   });
 
   const stats = { ready: 0, action_needed: 0, expired: 0, not_started: 0 };
+  let nationalTransitionCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -77,6 +79,9 @@ export default async function DashboardPage({ params }: Props) {
       checklistTotal: p.checklistItems.length,
     });
     stats[status]++;
+    if (needsNationalTransitionAttention(p.country, p.registration)) {
+      nationalTransitionCount++;
+    }
     return { ...p, complianceStatus: status };
   });
 
@@ -166,6 +171,7 @@ export default async function DashboardPage({ params }: Props) {
           notStarted: stats.not_started,
           guestsThisMonth: guestsThisMonth,
           fichesNeeded: fichesNeeded,
+          nationalTransition: nationalTransitionCount,
         }}
       />
 

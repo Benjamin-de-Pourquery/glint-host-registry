@@ -6,7 +6,7 @@ export type ComplianceStatus =
   | "expired"
   | "not_started";
 
-export type PortfolioStatusFilter = ComplianceStatus | "all";
+export type PortfolioStatusFilter = ComplianceStatus | "all" | "national_transition";
 
 export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "all",
@@ -14,6 +14,7 @@ export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "expired",
   "ready",
   "not_started",
+  "national_transition",
 ];
 
 export function parsePortfolioStatusFilter(
@@ -22,7 +23,10 @@ export function parsePortfolioStatusFilter(
   if (!param || param === "all") {
     return null;
   }
-  if (PORTFOLIO_STATUS_FILTERS.includes(param as PortfolioStatusFilter)) {
+  if (
+    param === "national_transition" ||
+    PORTFOLIO_STATUS_FILTERS.includes(param as PortfolioStatusFilter)
+  ) {
     return param as PortfolioStatusFilter;
   }
   return null;

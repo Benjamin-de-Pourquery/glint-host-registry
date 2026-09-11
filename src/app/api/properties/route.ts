@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getPropertyLimit, hasActiveSubscription } from "@/lib/plans";
 import { DEFAULT_CHECKLIST_EN, DEFAULT_CHECKLIST_FR } from "@/lib/compliance";
+import { defaultNationalTransitionStatus } from "@/lib/national-transition";
 import { z } from "zod";
 
 const schema = z.object({
@@ -91,7 +92,11 @@ export async function POST(request: Request) {
     });
 
     await prisma.registration.create({
-      data: { propertyId: property.id, status: "not_started" },
+      data: {
+        propertyId: property.id,
+        status: "not_started",
+        nationalTransitionStatus: defaultNationalTransitionStatus(data.country),
+      },
     });
 
     const checklist =

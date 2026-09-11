@@ -171,17 +171,20 @@ model ListingPlatformProgress {
 }
 
 model Registration {
-  id                 String    @id @default(cuid())
-  propertyId         String    @unique
-  registrationNumber String?
-  issuingAuthority   String?
-  status             String    @default("not_started")
-  issueDate          DateTime?
-  expiryDate         DateTime?
-  notes              String?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  property           Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  id                        String    @id @default(cuid())
+  propertyId                String    @unique
+  registrationNumber        String?
+  issuingAuthority          String?
+  status                    String    @default("not_started")
+  issueDate                 DateTime?
+  expiryDate                DateTime?
+  notes                     String?
+  nationalRegistrationNumber String?
+  nationalTransitionStatus  String    @default("not_applicable")
+  nationalRenewalDeadline   DateTime?
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+  property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }
 
 model ChecklistItem {

@@ -10,6 +10,7 @@ import { PropertyRegisterTab } from "@/components/property-register-tab";
 import { PropertyOverviewForm } from "@/components/property-overview-form";
 import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
+import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { PlatformProgressItem } from "@/lib/listings/platforms";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +32,9 @@ type Registration = {
   issueDate?: string | Date | null;
   expiryDate?: string | Date | null;
   notes?: string | null;
+  nationalRegistrationNumber?: string | null;
+  nationalTransitionStatus?: string | null;
+  nationalRenewalDeadline?: string | Date | null;
 };
 
 type PropertyData = {
@@ -153,6 +157,15 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             onGoToCompliance={() => setTab("compliance")}
           />
 
+          <NationalTransitionCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
+            registration={property.registration}
+            complianceTabHref={`/${locale}/app/properties/${property.id}?tab=compliance`}
+            showForm={false}
+          />
+
           <dl className="grid gap-4 sm:grid-cols-2">
             <div>
               <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
@@ -195,6 +208,14 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
       </TabsContent>
 
       <TabsContent value="compliance" className="mt-6">
+        <div className="mx-auto max-w-2xl space-y-6">
+          <NationalTransitionCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
+            registration={property.registration}
+            showForm
+          />
         <PlaybookPanel
           propertyId={property.id}
           property={{
@@ -212,12 +233,14 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           }}
           locale={locale}
         />
+        </div>
       </TabsContent>
 
       <TabsContent value="register" className="mt-6">
         <PropertyRegisterTab
           propertyId={property.id}
           locale={locale}
+          country={property.country}
           registration={property.registration}
           checklistItems={property.checklistItems}
         />

@@ -3,9 +3,9 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import {
   resolvePlaybook,
-  getNextPendingStep,
   getPlaybookProgressSummary,
 } from "@/lib/playbooks";
+import { getEffectiveNextStep } from "@/lib/national-transition";
 import { z } from "zod";
 
 const updateSchema = z.object({
@@ -26,7 +26,7 @@ export async function GET(
 
   const property = await prisma.property.findFirst({
     where: { id, userId: session.user.id },
-    include: { playbookProgress: true },
+    include: { playbookProgress: true, registration: true },
   });
 
   if (!property) {
@@ -57,7 +57,13 @@ export async function GET(
     | null
     | undefined;
 
-  const nextStep = getNextPendingStep(playbook, progress, residencyStatus);
+  const nextStep = getEffectiveNextStep(
+    playbook,
+    progress,
+    residencyStatus,
+    property.country,
+    property.registration
+  );
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
 
   return NextResponse.json({

@@ -152,7 +152,7 @@
         },
         "4": {
           "q": "What is Regulation (EU) 2024/1028?",
-          "a": "This regulation requires hosts to obtain a local registration number and platforms to verify it before publishing listings. Glint helps you prepare and track these obligations."
+          "a": "In force since 20 May 2026, this regulation requires hosts to obtain a registration number and platforms to verify it. In France, keep your municipal number until the national API Meublés portal opens (expected Q4 2026). Glint tracks both regimes and helps you prepare for the transition."
         },
         "5": {
           "q": "Can I archive a property without losing data?",
@@ -218,7 +218,8 @@
     "attention": {
       "action": "{count, plural, one {# property needs action} other {# properties need action}}",
       "expired": "{count, plural, one {# expired registration} other {# expired registrations}}",
-      "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}"
+      "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}",
+      "nationalTransition": "{count, plural, one {# French property — national transition} other {# French properties — national transition}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# missing police form} other {# missing police forms}}",
@@ -471,7 +472,7 @@
     "title": "Compliance",
     "registration": {
       "title": "Registration details",
-      "number": "Registration number",
+      "number": "Registration number (municipal)",
       "authority": "Issuing authority / municipality",
       "status": "Status",
       "statuses": {
@@ -503,7 +504,42 @@
       "ready": "Ready",
       "action_needed": "Action needed",
       "expired": "Expired",
-      "not_started": "Not started"
+      "not_started": "Not started",
+      "national_transition": "National transition"
+    }
+  },
+  "nationalTransition": {
+    "title": "National transition",
+    "municipalNumber": "Current municipal number",
+    "municipalShort": "Municipal",
+    "nationalShort": "National FRA",
+    "nationalNumber": "National registration number (FRA…)",
+    "nationalPlaceholder": "e.g. FRA123456789 — when issued by API Meublés",
+    "nationalLocked": "Available once the national portal opens or when your status allows entry.",
+    "statusLabel": "Transition status",
+    "renewalDeadlineLabel": "National renewal deadline",
+    "renewalDeadline": "Renew by {date}",
+    "noMunicipalYet": "Obtain your municipal registration number first — platforms may require it now while the national portal is not yet open.",
+    "copied": "Copied",
+    "save": "Save national transition",
+    "saved": "National transition saved",
+    "saveError": "Could not save",
+    "ctaOfficial": "API Meublés — official guide (DGE)",
+    "ctaRenew": "Renew on API Meublés (when open)",
+    "ctaPlaybook": "Open compliance step",
+    "description": {
+      "not_applicable": "National transition tracking applies to French properties only.",
+      "awaiting_portal": "The national teleservice (API Meublés) is expected in Q4 2026. Keep your municipal number and prepare your dossier now.",
+      "ready_to_renew": "The national portal is open or your renewal window has started. Prioritize renewing your registration before municipal numbers expire.",
+      "renewed": "National registration recorded. Keep municipal proof on file and update platform listings if the number changed.",
+      "expired_local": "Your municipal number may no longer be valid after the transition. Renew via API Meublés as soon as possible."
+    },
+    "status": {
+      "not_applicable": "Not applicable",
+      "awaiting_portal": "Awaiting national portal",
+      "ready_to_renew": "Ready to renew nationally",
+      "renewed": "Renewed nationally",
+      "expired_local": "Municipal number expired"
     }
   },
   "notifications": {

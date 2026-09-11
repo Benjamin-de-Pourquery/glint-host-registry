@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import {
+  defaultNationalTransitionStatus,
+  isFranceCountry,
+  NATIONAL_TRANSITION_STATUSES,
+} from "@/lib/national-transition";
 import { z } from "zod";
 
 const schema = z.object({
@@ -10,6 +15,9 @@ const schema = z.object({
   issueDate: z.string().nullable().optional(),
   expiryDate: z.string().nullable().optional(),
   notes: z.string().nullable().optional(),
+  nationalRegistrationNumber: z.string().nullable().optional(),
+  nationalTransitionStatus: z.enum(NATIONAL_TRANSITION_STATUSES).optional(),
+  nationalRenewalDeadline: z.string().nullable().optional(),
 });
 
 export async function PATCH(
@@ -36,6 +44,13 @@ export async function PATCH(
     const body = await request.json();
     const data = schema.parse(body);
 
+    const defaultStatus = defaultNationalTransitionStatus(property.country);
+    const nationalTransitionStatus = isFranceCountry(property.country)
+      ? (data.nationalTransitionStatus ??
+        property.registration?.nationalTransitionStatus ??
+        defaultStatus)
+      : "not_applicable";
+
     const registration = await prisma.registration.upsert({
       where: { propertyId: id },
       create: {
@@ -46,6 +61,11 @@ export async function PATCH(
         issueDate: data.issueDate ? new Date(data.issueDate) : null,
         expiryDate: data.expiryDate ? new Date(data.expiryDate) : null,
         notes: data.notes,
+        nationalRegistrationNumber: data.nationalRegistrationNumber ?? null,
+        nationalTransitionStatus,
+        nationalRenewalDeadline: data.nationalRenewalDeadline
+          ? new Date(data.nationalRenewalDeadline)
+          : null,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -54,6 +74,15 @@ export async function PATCH(
         issueDate: data.issueDate ? new Date(data.issueDate) : null,
         expiryDate: data.expiryDate ? new Date(data.expiryDate) : null,
         notes: data.notes,
+        nationalRegistrationNumber: data.nationalRegistrationNumber,
+        nationalTransitionStatus: isFranceCountry(property.country)
+          ? nationalTransitionStatus
+          : "not_applicable",
+        nationalRenewalDeadline: data.nationalRenewalDeadline
+          ? new Date(data.nationalRenewalDeadline)
+          : data.nationalRenewalDeadline === null
+            ? null
+            : undefined,
       },
     });
 

@@ -14,6 +14,7 @@ import {
   propertiesListHref,
   type PortfolioStatusFilter,
 } from "@/lib/compliance";
+import { needsNationalTransitionAttention } from "@/lib/national-transition";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +29,8 @@ type PropertyItem = {
     registrationNumber?: string | null;
     status?: string | null;
     expiryDate?: Date | null;
+    nationalTransitionStatus?: string | null;
+    nationalRegistrationNumber?: string | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
 };
@@ -108,7 +111,12 @@ export function PropertiesView({
 
   const filteredProperties =
     tab === "active" && statusFilter
-      ? properties.filter((property) => getPropertyComplianceStatus(property) === statusFilter)
+      ? properties.filter((property) => {
+          if (statusFilter === "national_transition") {
+            return needsNationalTransitionAttention(property.country, property.registration);
+          }
+          return getPropertyComplianceStatus(property) === statusFilter;
+        })
       : properties;
 
   const activeStatusFilter = statusFilter ?? "all";

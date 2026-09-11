@@ -52,6 +52,13 @@ const STRASBOURG_CHANGE_OF_USE_RULES_URL =
 const STRASBOURG_CHANGE_OF_USE_INFO_URL =
   "https://maison-habitat.strasbourg.eu/changement-d-usage-meuble-de-tourisme";
 
+const API_MEUBLES_INFO_URL =
+  "https://www.apimeubles.finances.gouv.fr/comprendre-le-dispositif";
+const SERVICE_PUBLIC_NATIONAL_URL =
+  "https://www.service-public.gouv.fr/particuliers/actualites/A18880";
+const ENTREPRISES_API_MEUBLES_URL =
+  "https://www.entreprises.gouv.fr/espace-entreprises/s-informer-sur-la-reglementation/lapi-meubles-guichet-unique-de-centralisation";
+
 const frSteps = {
   verifyRules: (cityKey: string): PlaybookStep => ({
     key: `${cityKey}-verify-rules`,
@@ -254,6 +261,74 @@ const frSteps = {
     fieldHints: ["name", "notes"],
   }),
 
+  prepareNationalPortal: (cityKey: string): PlaybookStep => ({
+    key: `${cityKey}-prepare-national-portal`,
+    title: {
+      en: "Prepare national registration (API Meublés)",
+      fr: "Préparer le téléservice national (API Meublés)",
+    },
+    instruction: {
+      en: "France's national furnished-rental teleservice (API Meublés / Démarche Numérique) is expected to open in Q4 2026. Until then, keep your municipal registration number and continue using your city's procedure. When the national portal opens, existing municipal numbers will need renewal within the transition window — plan your dossier now so you are not blocked on platforms.",
+      fr: "Le téléservice national d'enregistrement des meublés (API Meublés / Démarche Numérique) devrait ouvrir au T4 2026. En attendant, conservez votre numéro municipal et poursuivez la procédure de votre commune. À l'ouverture du portail national, les numéros municipaux existants devront être renouvelés dans le délai de transition — préparez votre dossier dès maintenant pour ne pas être bloqué sur les plateformes.",
+    },
+    officialUrls: [
+      {
+        url: API_MEUBLES_INFO_URL,
+        label: {
+          en: "API Meublés — understand the national system (DGE)",
+          fr: "API Meublés — comprendre le dispositif national (DGE)",
+        },
+        role: "info",
+        urlVerified: false,
+      },
+      {
+        url: SERVICE_PUBLIC_NATIONAL_URL,
+        label: {
+          en: "Service-Public — national registration news",
+          fr: "Service-Public — actualité enregistrement national",
+        },
+        role: "info",
+        urlVerified: true,
+      },
+      {
+        url: ENTREPRISES_API_MEUBLES_URL,
+        label: {
+          en: "entreprises.gouv.fr — API Meublés central portal",
+          fr: "entreprises.gouv.fr — guichet unique API Meublés",
+        },
+        role: "rules",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: [
+        "Municipal registration proof (current number and declaration receipt)",
+        "Listing URLs (Airbnb, Booking, Vrbo, etc.)",
+        "National ID or passport of the owner/landlord",
+        "Full property address and guest capacity",
+        "Residency status (primary vs secondary)",
+        "Co-ownership attestation if required by your building",
+      ],
+      fr: [
+        "Justificatif d'enregistrement municipal (numéro actuel et accusé de déclaration)",
+        "URLs des annonces (Airbnb, Booking, Vrbo, etc.)",
+        "Pièce d'identité du propriétaire/loueur",
+        "Adresse complète du bien et capacité d'accueil",
+        "Statut de résidence (principale ou secondaire)",
+        "Attestation de copropriété si exigée par l'immeuble",
+      ],
+    },
+    timeline: {
+      en: "National portal expected Q4 2026 — gather documents now; renewal window TBD at launch.",
+      fr: "Portail national attendu au T4 2026 — rassemblez les pièces dès maintenant ; fenêtre de renouvellement à préciser à l'ouverture.",
+    },
+    pitfalls: {
+      en: "Platforms may require a registration number now while the national portal is not yet open — use your valid municipal number on listings and plan renewal when API Meublés launches. Glint does not submit filings to mairies or DGE.",
+      fr: "Les plateformes peuvent exiger un numéro dès maintenant alors que le portail national n'est pas ouvert — utilisez votre numéro municipal valide sur les annonces et prévoyez le renouvellement au lancement de l'API Meublés. Glint ne dépose pas de dossiers auprès des mairies ni de la DGE.",
+    },
+    fieldHints: ["address", "city", "country", "propertyType", "residencyStatus", "notes"],
+  }),
+
   guestRegister: (cityKey: string): PlaybookStep => ({
     key: `${cityKey}-guest-register`,
     title: {
@@ -316,7 +391,7 @@ const parisDocumentsDetailed = [
   },
 ];
 
-export const FRANCE_PLAYBOOKS: Playbook[] = [
+const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
   {
     id: "fr-paris",
     country: "France",
@@ -1720,3 +1795,33 @@ export const FRANCE_PLAYBOOKS: Playbook[] = [
     ],
   },
 ];
+
+function cityKeyFromPlaybook(playbook: Playbook): string {
+  if (playbook.id === "fr-generic") return "fr";
+  return playbook.id.replace(/^fr-/, "");
+}
+
+function withNationalTransitionStep(playbook: Playbook): Playbook {
+  const cityKey = cityKeyFromPlaybook(playbook);
+  const nationalStep = frSteps.prepareNationalPortal(cityKey);
+
+  if (playbook.steps.some((s) => s.key.endsWith("-prepare-national-portal"))) {
+    return playbook;
+  }
+
+  const taxIndex = playbook.steps.findIndex((s) => s.key.endsWith("-tax-declaration"));
+  const insertAt = taxIndex >= 0 ? taxIndex : playbook.steps.length;
+
+  return {
+    ...playbook,
+    sourceReviewedAt: playbook.sourceReviewedAt ?? "2026-09-11",
+    steps: [
+      ...playbook.steps.slice(0, insertAt),
+      nationalStep,
+      ...playbook.steps.slice(insertAt),
+    ],
+  };
+}
+
+export const FRANCE_PLAYBOOKS: Playbook[] =
+  BASE_FRANCE_PLAYBOOKS.map(withNationalTransitionStep);

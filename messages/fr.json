@@ -152,7 +152,7 @@
         },
         "4": {
           "q": "Qu'est-ce que le Règlement (UE) 2024/1028 ?",
-          "a": "Ce règlement impose aux hôtes d'obtenir un numéro d'enregistrement local et aux plateformes de le vérifier avant publication. Glint vous aide à préparer et suivre ces obligations."
+          "a": "En vigueur depuis le 20 mai 2026, ce règlement impose un numéro d'enregistrement et sa vérification par les plateformes. En France, conservez votre numéro municipal jusqu'à l'ouverture du téléservice national API Meublés (prévu au T4 2026). Glint suit les deux régimes et vous aide à préparer la transition."
         },
         "5": {
           "q": "Puis-je archiver un bien sans perdre mes données ?",
@@ -218,7 +218,8 @@
     "attention": {
       "action": "{count, plural, one {# bien nécessite une action} other {# biens nécessitent une action}}",
       "expired": "{count, plural, one {# enregistrement expiré} other {# enregistrements expirés}}",
-      "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}"
+      "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
+      "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
@@ -471,7 +472,7 @@
     "title": "Conformité",
     "registration": {
       "title": "Détails d'enregistrement",
-      "number": "Numéro d'enregistrement",
+      "number": "Numéro d'enregistrement (municipal)",
       "authority": "Autorité émettrice / municipalité",
       "status": "Statut",
       "statuses": {
@@ -503,7 +504,42 @@
       "ready": "Prêt",
       "action_needed": "Action requise",
       "expired": "Expiré",
-      "not_started": "Non commencé"
+      "not_started": "Non commencé",
+      "national_transition": "Transition nationale"
+    }
+  },
+  "nationalTransition": {
+    "title": "Transition nationale",
+    "municipalNumber": "Numéro municipal actuel",
+    "municipalShort": "Municipal",
+    "nationalShort": "National FRA",
+    "nationalNumber": "Numéro d'enregistrement national (FRA…)",
+    "nationalPlaceholder": "ex. FRA123456789 — lorsque délivré par l'API Meublés",
+    "nationalLocked": "Disponible à l'ouverture du portail national ou lorsque votre statut le permet.",
+    "statusLabel": "Statut de transition",
+    "renewalDeadlineLabel": "Échéance de renouvellement national",
+    "renewalDeadline": "À renouveler avant le {date}",
+    "noMunicipalYet": "Obtenez d'abord votre numéro d'enregistrement municipal — les plateformes peuvent l'exiger dès maintenant alors que le portail national n'est pas encore ouvert.",
+    "copied": "Copié",
+    "save": "Enregistrer la transition nationale",
+    "saved": "Transition nationale enregistrée",
+    "saveError": "Enregistrement impossible",
+    "ctaOfficial": "API Meublés — guide officiel (DGE)",
+    "ctaRenew": "Renouveler sur l'API Meublés (à l'ouverture)",
+    "ctaPlaybook": "Ouvrir l'étape Démarches",
+    "description": {
+      "not_applicable": "Le suivi de transition nationale s'applique aux biens en France uniquement.",
+      "awaiting_portal": "Le téléservice national (API Meublés) est attendu au T4 2026. Conservez votre numéro municipal et préparez votre dossier dès maintenant.",
+      "ready_to_renew": "Le portail national est ouvert ou votre fenêtre de renouvellement a commencé. Priorisez le renouvellement avant l'expiration des numéros municipaux.",
+      "renewed": "Enregistrement national enregistré. Conservez les justificatifs municipaux et mettez à jour vos annonces si le numéro a changé.",
+      "expired_local": "Votre numéro municipal peut ne plus être valide après la transition. Renouvelez via l'API Meublés dès que possible."
+    },
+    "status": {
+      "not_applicable": "Non applicable",
+      "awaiting_portal": "En attente du portail national",
+      "ready_to_renew": "Prêt pour le renouvellement national",
+      "renewed": "Renouvelé au niveau national",
+      "expired_local": "Numéro municipal expiré"
     }
   },
   "notifications": {

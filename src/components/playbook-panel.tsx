@@ -4,8 +4,26 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { buildPreparedFieldsText } from "@/lib/playbooks";
-import type { Playbook, PlaybookStepProgress, PropertyFieldValues } from "@/lib/playbooks/types";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import {
+  buildPreparedFieldsText,
+  getCtaLabelKey,
+  getPrimaryCtaUrl,
+  stepAppliesToResidency,
+} from "@/lib/playbooks";
+import type {
+  Playbook,
+  PlaybookStepProgress,
+  PropertyFieldValues,
+  ResidencyStatus,
+} from "@/lib/playbooks/types";
 import {
   ArrowRight,
   Check,
@@ -23,6 +41,7 @@ type Props = {
   propertyId: string;
   property: PropertyFieldValues;
   locale: string;
+  onResidencyChange?: (status: ResidencyStatus | null) => void;
 };
 
 type PlaybookResponse = {
@@ -32,7 +51,7 @@ type PlaybookResponse = {
   summary: { completed: number; total: number; skipped: number };
 };
 
-export function PlaybookPanel({ propertyId, property, locale }: Props) {
+export function PlaybookPanel({ propertyId, property, locale, onResidencyChange }: Props) {
   const t = useTranslations("playbook");
   const uiLocale = (locale === "fr" ? "fr" : "en") as "en" | "fr";
 
@@ -41,6 +60,10 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
   const [error, setError] = useState(false);
   const [updating, setUpdating] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [residencyStatus, setResidencyStatus] = useState<ResidencyStatus | null>(
+    property.residencyStatus ?? null
+  );
+  const [savingResidency, setSavingResidency] = useState(false);
 
   const loadPlaybook = useCallback(async () => {
     setLoading(true);
@@ -79,9 +102,35 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
     }
   };
 
+  const saveResidencyStatus = async (status: ResidencyStatus | null) => {
+    setSavingResidency(true);
+    try {
+      const res = await fetch(`/api/properties/${propertyId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ residencyStatus: status }),
+      });
+      if (!res.ok) throw new Error("Failed to save");
+      setResidencyStatus(status);
+      onResidencyChange?.(status);
+      await loadPlaybook();
+      toast.success(t("residencySaved"));
+    } catch {
+      toast.error(t("residencySaveError"));
+    } finally {
+      setSavingResidency(false);
+    }
+  };
+
   const copyPreparedFields = (stepKey: string) => {
     if (!data?.playbook) return;
-    const text = buildPreparedFieldsText(stepKey, data.playbook, property, uiLocale);
+    const propertyWithResidency = { ...property, residencyStatus };
+    const text = buildPreparedFieldsText(
+      stepKey,
+      data.playbook,
+      propertyWithResidency,
+      uiLocale
+    );
     if (!text) {
       toast.error(t("nothingToCopy"));
       return;
@@ -131,6 +180,12 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
   const nextStep = playbook.steps.find((s) => s.key === nextStepKey) ?? null;
   const allDone = summary.completed + summary.skipped >= summary.total;
+  const nextCta = nextStep ? getPrimaryCtaUrl(nextStep) : null;
+  const nextCtaLabelKey = nextCta ? getCtaLabelKey(nextCta.role) : "openOfficial";
+
+  const visibleSteps = playbook.steps.filter((step) =>
+    stepAppliesToResidency(step, residencyStatus)
+  );
 
   return (
     <div className="space-y-6">
@@ -144,6 +199,11 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
               </div>
               <CardTitle className="mt-1">{playbook.title[uiLocale]}</CardTitle>
               <p className="mt-1 text-sm text-slate-600">{playbook.description[uiLocale]}</p>
+              {playbook.sourceReviewedAt && (
+                <p className="mt-1 text-xs text-slate-400">
+                  {t("sourceReviewed", { date: playbook.sourceReviewedAt })}
+                </p>
+              )}
             </div>
             <div className="text-right text-sm text-slate-600">
               <p className="font-semibold text-slate-900">
@@ -157,7 +217,30 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
             </div>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
+          <div className="rounded-lg border border-emerald-100 bg-white p-4">
+            <Label className="text-sm font-medium text-slate-700">
+              {t("residencyStatus")}
+            </Label>
+            <p className="mt-1 text-xs text-slate-500">{t("residencyHint")}</p>
+            <Select
+              value={residencyStatus ?? ""}
+              onValueChange={(v) =>
+                saveResidencyStatus(v === "" ? null : (v as ResidencyStatus))
+              }
+              disabled={savingResidency}
+            >
+              <SelectTrigger className="mt-2 max-w-sm">
+                <SelectValue placeholder={t("residencyPlaceholder")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="primary">{t("residency.primary")}</SelectItem>
+                <SelectItem value="secondary">{t("residency.secondary")}</SelectItem>
+                <SelectItem value="other">{t("residency.other")}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           {allDone ? (
             <div className="rounded-lg border border-emerald-200 bg-white p-4">
               <p className="font-medium text-emerald-800">{t("allDone.title")}</p>
@@ -175,15 +258,31 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
                 <p className="mt-2 text-sm text-slate-600">{nextStep.instruction[uiLocale]}</p>
               </div>
 
-              {nextStep.documents[uiLocale].length > 0 && (
+              {(nextStep.documentsDetailed?.length ?? 0) > 0 ? (
                 <div>
                   <p className="text-xs font-medium text-slate-500">{t("prepare")}</p>
-                  <ul className="mt-1 list-inside list-disc text-sm text-slate-600">
-                    {nextStep.documents[uiLocale].map((doc: string) => (
-                      <li key={doc}>{doc}</li>
+                  <ul className="mt-1 space-y-2 text-sm text-slate-600">
+                    {nextStep.documentsDetailed!.map((doc) => (
+                      <li key={doc.name.en} className="rounded-md bg-slate-50 px-3 py-2">
+                        <span className="font-medium text-slate-800">
+                          {doc.name[uiLocale]}
+                        </span>
+                        <p className="mt-0.5 text-xs text-slate-500">{doc.why[uiLocale]}</p>
+                      </li>
                     ))}
                   </ul>
                 </div>
+              ) : (
+                nextStep.documents[uiLocale].length > 0 && (
+                  <div>
+                    <p className="text-xs font-medium text-slate-500">{t("prepare")}</p>
+                    <ul className="mt-1 list-inside list-disc text-sm text-slate-600">
+                      {nextStep.documents[uiLocale].map((doc: string) => (
+                        <li key={doc}>{doc}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )
               )}
 
               {nextStep.timeline && (
@@ -200,14 +299,10 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
               )}
 
               <div className="flex flex-wrap gap-2">
-                {nextStep.officialUrls[0] && (
-                  <a
-                    href={nextStep.officialUrls[0].url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                {nextCta && (
+                  <a href={nextCta.url} target="_blank" rel="noopener noreferrer">
                     <Button>
-                      {t("openOfficial")}
+                      {t(nextCtaLabelKey)}
                       <ExternalLink className="h-4 w-4" />
                     </Button>
                   </a>
@@ -251,9 +346,11 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
           <CardTitle>{t("stepsTitle")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
-          {playbook.steps.map((step, index) => {
+          {visibleSteps.map((step, index) => {
             const status = progressMap.get(step.key) ?? "pending";
             const isNext = step.key === nextStepKey;
+            const stepCta = getPrimaryCtaUrl(step);
+            const stepCtaLabelKey = stepCta ? getCtaLabelKey(stepCta.role) : "openLink";
 
             return (
               <div
@@ -304,15 +401,11 @@ export function PlaybookPanel({ propertyId, property, locale }: Props) {
 
                     {status === "pending" && (
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {step.officialUrls[0] && (
-                          <a
-                            href={step.officialUrls[0].url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                        {stepCta && (
+                          <a href={stepCta.url} target="_blank" rel="noopener noreferrer">
                             <Button variant="outline" size="sm">
                               <ExternalLink className="h-3 w-3" />
-                              {t("openLink")}
+                              {t(stepCtaLabelKey)}
                             </Button>
                           </a>
                         )}

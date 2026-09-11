@@ -31,6 +31,7 @@ type PropertyData = {
   city: string;
   country: string;
   propertyType: string;
+  residencyStatus?: string | null;
   airbnbUrl?: string | null;
   bookingUrl?: string | null;
   vrboUrl?: string | null;
@@ -54,6 +55,7 @@ export function PropertyForm({
     city: initial?.city || "",
     country: initial?.country || "France",
     propertyType: initial?.propertyType || "apartment",
+    residencyStatus: initial?.residencyStatus || "",
     airbnbUrl: initial?.airbnbUrl || "",
     bookingUrl: initial?.bookingUrl || "",
     vrboUrl: initial?.vrboUrl || "",
@@ -157,6 +159,24 @@ export function PropertyForm({
                       {t(`types.${type}`)}
                     </SelectItem>
                   ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label>{t("residencyStatus")}</Label>
+              <Select
+                value={form.residencyStatus || ""}
+                onValueChange={(v) =>
+                  setForm({ ...form, residencyStatus: v || null })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={t("residencyPlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="primary">{t("residency.primary")}</SelectItem>
+                  <SelectItem value="secondary">{t("residency.secondary")}</SelectItem>
+                  <SelectItem value="other">{t("residency.other")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>

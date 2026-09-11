@@ -50,8 +50,15 @@ export async function GET(
     completedAt: p.completedAt?.toISOString() ?? null,
   }));
 
-  const nextStep = getNextPendingStep(playbook, progress);
-  const summary = getPlaybookProgressSummary(playbook, progress);
+  const residencyStatus = property.residencyStatus as
+    | "primary"
+    | "secondary"
+    | "other"
+    | null
+    | undefined;
+
+  const nextStep = getNextPendingStep(playbook, progress, residencyStatus);
+  const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
 
   return NextResponse.json({
     playbook,

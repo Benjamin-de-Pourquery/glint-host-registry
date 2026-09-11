@@ -71,6 +71,7 @@ export default async function PropertyDetailPage({ params }: Props) {
         city={property.city}
         country={property.country}
         propertyType={property.propertyType}
+        residencyStatus={property.residencyStatus}
         notes={property.notes}
         registration={property.registration}
         checklistItems={property.checklistItems}
@@ -88,6 +89,7 @@ export default async function PropertyDetailPage({ params }: Props) {
             city: property.city,
             country: property.country,
             propertyType: property.propertyType,
+            residencyStatus: property.residencyStatus,
             airbnbUrl: property.airbnbUrl,
             bookingUrl: property.bookingUrl,
             vrboUrl: property.vrboUrl,

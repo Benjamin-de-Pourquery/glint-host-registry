@@ -85,8 +85,27 @@ model Property {
   listingPlatformProgress ListingPlatformProgress[]
   notifications  Notification[]
   guestRegisterToken GuestRegisterToken?
+  calendarFeeds CalendarFeed[]
   guestStays   GuestStay[]
   guestRecords GuestRecord[]
+}
+
+model CalendarFeed {
+  id           String    @id @default(cuid())
+  propertyId   String
+  url          String
+  sourceLabel  String?
+  enabled      Boolean   @default(true)
+  lastSyncedAt DateTime?
+  lastError    String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  property     Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  guestStays   GuestStay[]
+
+  @@unique([propertyId, url])
+  @@index([propertyId])
+  @@index([enabled])
 }
 
 model GuestRegisterToken {
@@ -102,18 +121,24 @@ model GuestRegisterToken {
 model GuestStay {
   id                  String        @id @default(cuid())
   propertyId          String
+  calendarFeedId      String?
+  externalUid         String?
   checkInDate         DateTime
   checkOutDate        DateTime
   expectsForeignGuest Boolean       @default(true)
   guestLabel          String?
   source              String        @default("manual")
+  importStatus        String?
   notes               String?
   createdAt           DateTime      @default(now())
   property            Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  calendarFeed        CalendarFeed? @relation(fields: [calendarFeedId], references: [id], onDelete: SetNull)
   guestRecords        GuestRecord[]
 
+  @@unique([propertyId, externalUid])
   @@index([propertyId])
   @@index([propertyId, checkInDate])
+  @@index([calendarFeedId])
 }
 
 model GuestRecord {

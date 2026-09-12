@@ -52,17 +52,21 @@ export async function GET(
   }
 
   const now = new Date();
-  const stays = property.guestStays.map((stay) => ({
-    id: stay.id,
-    checkInDate: stay.checkInDate.toISOString(),
-    checkOutDate: stay.checkOutDate.toISOString(),
-    expectsForeignGuest: stay.expectsForeignGuest,
-    guestLabel: stay.guestLabel,
-    notes: stay.notes,
-    hasMatchingFiche: stayHasMatchingFiche(stay),
-    isMissingFiche: isStayMissingFiche(stay, now),
-    ficheDeadline: getStayFicheDeadline(stay.checkInDate).toISOString(),
-  }));
+  const stays = property.guestStays
+    .filter((stay) => stay.importStatus !== "removed_from_feed")
+    .map((stay) => ({
+      id: stay.id,
+      checkInDate: stay.checkInDate.toISOString(),
+      checkOutDate: stay.checkOutDate.toISOString(),
+      expectsForeignGuest: stay.expectsForeignGuest,
+      guestLabel: stay.guestLabel,
+      notes: stay.notes,
+      source: stay.source,
+      importStatus: stay.importStatus,
+      hasMatchingFiche: stayHasMatchingFiche(stay),
+      isMissingFiche: isStayMissingFiche(stay, now),
+      ficheDeadline: getStayFicheDeadline(stay.checkInDate).toISOString(),
+    }));
 
   return NextResponse.json({ stays });
 }

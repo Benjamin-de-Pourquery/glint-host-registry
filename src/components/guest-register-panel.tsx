@@ -22,7 +22,16 @@ import {
   AlertTriangle,
   CalendarPlus,
   Trash2,
+  CalendarSync,
+  Rss,
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { EmptyState } from "@/components/empty-state";
 import { toast } from "sonner";
 import QRCode from "qrcode";
@@ -49,9 +58,21 @@ type GuestStaySummary = {
   expectsForeignGuest: boolean;
   guestLabel: string | null;
   notes: string | null;
+  source: string;
+  importStatus: string | null;
   hasMatchingFiche: boolean;
   isMissingFiche: boolean;
   ficheDeadline: string;
+};
+
+type CalendarFeedSummary = {
+  id: string;
+  url: string;
+  sourceLabel: string | null;
+  enabled: boolean;
+  lastSyncedAt: string | null;
+  lastError: string | null;
+  createdAt: string;
 };
 
 type GuestRegisterData = {
@@ -69,13 +90,18 @@ type Props = {
 
 export function GuestRegisterPanel({ propertyId, locale }: Props) {
   const t = useTranslations("guestRegister");
+  const tc = useTranslations("guestRegister.calendar");
   const [data, setData] = useState<GuestRegisterData | null>(null);
+  const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [stayLoading, setStayLoading] = useState(false);
+  const [feedLoading, setFeedLoading] = useState(false);
+  const [syncingFeedId, setSyncingFeedId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [qrSvg, setQrSvg] = useState<string | null>(null);
   const [showStayForm, setShowStayForm] = useState(false);
+  const [showFeedForm, setShowFeedForm] = useState(false);
   const [stayForm, setStayForm] = useState({
     checkInDate: "",
     checkOutDate: "",
@@ -83,19 +109,41 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
     guestLabel: "",
     notes: "",
   });
+  const [feedForm, setFeedForm] = useState({
+    url: "",
+    sourceLabel: "airbnb" as "airbnb" | "booking" | "vrbo" | "other",
+  });
 
   const checkInUrl =
     data?.token?.enabled && data.token.token
       ? `${typeof window !== "undefined" ? window.location.origin : ""}/${locale}/check-in/${data.token.token}`
       : null;
 
+  const loadFeeds = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/properties/${propertyId}/calendar-feeds`);
+      if (!res.ok) throw new Error("Failed");
+      const json = (await res.json()) as { feeds: CalendarFeedSummary[] };
+      setFeeds(json.feeds);
+    } catch {
+      setFeeds([]);
+    }
+  }, [propertyId]);
+
   const loadData = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/properties/${propertyId}/guest-register`);
-      if (!res.ok) throw new Error("Failed");
-      const json = (await res.json()) as GuestRegisterData;
+      const [registerRes, feedsRes] = await Promise.all([
+        fetch(`/api/properties/${propertyId}/guest-register`),
+        fetch(`/api/properties/${propertyId}/calendar-feeds`),
+      ]);
+      if (!registerRes.ok) throw new Error("Failed");
+      const json = (await registerRes.json()) as GuestRegisterData;
       setData(json);
+      if (feedsRes.ok) {
+        const feedsJson = (await feedsRes.json()) as { feeds: CalendarFeedSummary[] };
+        setFeeds(feedsJson.feeds);
+      }
     } catch {
       toast.error(t("loadError"));
     } finally {
@@ -173,6 +221,97 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
     } finally {
       setStayLoading(false);
     }
+  };
+
+  const addCalendarFeed = async () => {
+    if (!feedForm.url.trim()) {
+      toast.error(tc("urlRequired"));
+      return;
+    }
+    setFeedLoading(true);
+    try {
+      const res = await fetch(`/api/properties/${propertyId}/calendar-feeds`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(feedForm),
+      });
+      if (!res.ok) {
+        const err = (await res.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(err?.error ?? "Failed");
+      }
+      await loadFeeds();
+      setShowFeedForm(false);
+      setFeedForm({ url: "", sourceLabel: "airbnb" });
+      toast.success(tc("added"));
+    } catch (error) {
+      toast.error(
+        error instanceof Error && error.message !== "Failed"
+          ? error.message
+          : tc("addError")
+      );
+    } finally {
+      setFeedLoading(false);
+    }
+  };
+
+  const deleteFeed = async (feedId: string) => {
+    setFeedLoading(true);
+    try {
+      const res = await fetch(
+        `/api/properties/${propertyId}/calendar-feeds?feedId=${feedId}`,
+        { method: "DELETE" }
+      );
+      if (!res.ok) throw new Error("Failed");
+      await loadFeeds();
+      toast.success(tc("deleted"));
+    } catch {
+      toast.error(tc("deleteError"));
+    } finally {
+      setFeedLoading(false);
+    }
+  };
+
+  const syncFeeds = async (feedId?: string) => {
+    setSyncingFeedId(feedId ?? "all");
+    try {
+      const res = await fetch(
+        `/api/properties/${propertyId}/calendar-feeds/sync`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(feedId ? { feedId } : {}),
+        }
+      );
+      if (!res.ok) throw new Error("Failed");
+      const json = (await res.json()) as {
+        results: Array<{
+          created: number;
+          updated: number;
+          error?: string;
+        }>;
+      };
+      const failed = json.results.find((result) => result.error);
+      if (failed?.error) {
+        toast.error(failed.error);
+      } else {
+        const created = json.results.reduce((sum, r) => sum + r.created, 0);
+        const updated = json.results.reduce((sum, r) => sum + r.updated, 0);
+        toast.success(tc("syncSuccess", { created, updated }));
+      }
+      await Promise.all([loadData(), loadFeeds()]);
+    } catch {
+      toast.error(tc("syncError"));
+    } finally {
+      setSyncingFeedId(null);
+    }
+  };
+
+  const getSourceBadgeLabel = (source: string) => {
+    const key = source as "airbnb" | "booking" | "vrbo" | "ical" | "other" | "manual";
+    if (key in { airbnb: 1, booking: 1, vrbo: 1, ical: 1, other: 1, manual: 1 }) {
+      return tc(`sourceBadge.${key}`);
+    }
+    return tc("sourceBadge.ical");
   };
 
   const deleteStay = async (stayId: string) => {
@@ -307,6 +446,155 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
 
         <div className="space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm font-medium text-slate-900">{tc("title")}</p>
+            <div className="flex flex-wrap gap-2">
+              {feeds.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => syncFeeds()}
+                  disabled={syncingFeedId !== null || feedLoading}
+                >
+                  {syncingFeedId === "all" ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <CalendarSync className="h-4 w-4" />
+                  )}
+                  {tc("syncAll")}
+                </Button>
+              )}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowFeedForm((v) => !v)}
+              >
+                <Rss className="h-4 w-4" />
+                {tc("addFeed")}
+              </Button>
+            </div>
+          </div>
+          <p className="text-xs text-slate-500">{tc("subtitle")}</p>
+          <p className="text-xs text-slate-500">{tc("limitsNote")}</p>
+
+          {showFeedForm && (
+            <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50/50 p-4">
+              <div>
+                <Label htmlFor="feedUrl">{tc("feedUrl")}</Label>
+                <Input
+                  id="feedUrl"
+                  type="url"
+                  value={feedForm.url}
+                  onChange={(e) =>
+                    setFeedForm((f) => ({ ...f, url: e.target.value }))
+                  }
+                  placeholder={tc("feedUrlPlaceholder")}
+                />
+              </div>
+              <div>
+                <Label>{tc("sourceLabel")}</Label>
+                <Select
+                  value={feedForm.sourceLabel}
+                  onValueChange={(value) =>
+                    setFeedForm((f) => ({
+                      ...f,
+                      sourceLabel: value as typeof f.sourceLabel,
+                    }))
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="airbnb">{tc("sourceOptions.airbnb")}</SelectItem>
+                    <SelectItem value="booking">{tc("sourceOptions.booking")}</SelectItem>
+                    <SelectItem value="vrbo">{tc("sourceOptions.vrbo")}</SelectItem>
+                    <SelectItem value="other">{tc("sourceOptions.other")}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex gap-2">
+                <Button size="sm" onClick={addCalendarFeed} disabled={feedLoading}>
+                  {feedLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                  {tc("addFeed")}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setShowFeedForm(false)}
+                >
+                  {t("stays.cancel")}
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {feeds.length === 0 ? (
+            <p className="text-sm text-slate-500">{tc("empty")}</p>
+          ) : (
+            <div className="space-y-2">
+              {feeds.map((feed) => (
+                <div
+                  key={feed.id}
+                  className="flex flex-wrap items-start justify-between gap-3 rounded-lg border border-slate-100 p-3"
+                >
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {feed.sourceLabel && (
+                        <Badge variant="secondary" className="text-xs">
+                          {tc(`sourceOptions.${feed.sourceLabel}` as "airbnb")}
+                        </Badge>
+                      )}
+                      {feed.enabled ? (
+                        <Badge variant="outline" className="text-xs">
+                          {tc("enabled")}
+                        </Badge>
+                      ) : null}
+                    </div>
+                    <p className="mt-1 truncate text-xs text-slate-600">{feed.url}</p>
+                    <p className="mt-1 text-xs text-slate-500">
+                      {feed.lastSyncedAt
+                        ? tc("lastSynced", {
+                            date: format(new Date(feed.lastSyncedAt), "dd/MM/yyyy HH:mm"),
+                          })
+                        : tc("neverSynced")}
+                    </p>
+                    {feed.lastError && (
+                      <p className="mt-1 text-xs text-red-600">
+                        {tc("lastError", { error: feed.lastError })}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => syncFeeds(feed.id)}
+                      disabled={syncingFeedId !== null || feedLoading}
+                    >
+                      {syncingFeedId === feed.id ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <RefreshCw className="h-4 w-4" />
+                      )}
+                      {tc("syncNow")}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => deleteFeed(feed.id)}
+                      disabled={feedLoading}
+                    >
+                      <Trash2 className="h-4 w-4 text-slate-400" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm font-medium text-slate-900">{t("stays.title")}</p>
             <Button
               variant="outline"
@@ -409,6 +697,16 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
                       {format(new Date(stay.checkOutDate), "dd/MM/yyyy")}
                     </p>
                     <div className="mt-1 flex flex-wrap gap-1">
+                      {stay.source !== "manual" && (
+                        <Badge variant="outline" className="text-xs">
+                          {getSourceBadgeLabel(stay.source)}
+                        </Badge>
+                      )}
+                      {stay.importStatus === "cancelled" && (
+                        <Badge variant="outline" className="text-xs text-slate-500">
+                          {tc("importStatus.cancelled")}
+                        </Badge>
+                      )}
                       {stay.expectsForeignGuest ? (
                         stay.hasMatchingFiche ? (
                           <Badge variant="secondary" className="text-xs">

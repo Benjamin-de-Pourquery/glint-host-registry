@@ -16,7 +16,6 @@ type UserSettings = {
   language: string;
   subscriptionPlan: string;
   subscriptionStatus: string;
-  stripeCustomerId: string | null;
 };
 
 export default function SettingsPage() {
@@ -147,11 +146,9 @@ export default function SettingsPage() {
                   </p>
                 </div>
               </div>
-              {user?.stripeCustomerId && (
-                <Button variant="outline" onClick={openPortal}>
-                  {t("billing.manage")}
-                </Button>
-              )}
+              <Button variant="outline" onClick={openPortal}>
+                {t("billing.manage")}
+              </Button>
               {user?.subscriptionPlan === "starter" && (
                 <Button onClick={() => startCheckout("pro")} disabled={checkoutLoading === "pro"}>
                   {t("billing.upgrade")}
@@ -181,17 +178,19 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{t("demo.title")}</CardTitle>
-          <CardDescription>{t("demo.description")}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button variant="outline" onClick={loadDemo}>
-            {t("demo.button")}
-          </Button>
-        </CardContent>
-      </Card>
+      {process.env.NODE_ENV !== "production" && (
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("demo.title")}</CardTitle>
+            <CardDescription>{t("demo.description")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="outline" onClick={loadDemo}>
+              {t("demo.button")}
+            </Button>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

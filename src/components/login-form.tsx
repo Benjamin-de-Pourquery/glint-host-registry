@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Shield } from "lucide-react";
+import { sanitizeCallbackUrl } from "@/lib/security/safe-redirect";
 
 export function LoginForm() {
   const t = useTranslations("auth.login");
@@ -20,7 +21,10 @@ export function LoginForm() {
   const router = useRouter();
   const { start: startNavigation } = useNavigationProgress();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/app`;
+  const callbackUrl = sanitizeCallbackUrl(
+    searchParams.get("callbackUrl"),
+    locale
+  );
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

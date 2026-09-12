@@ -6,6 +6,8 @@ import {
   type AccompanyingChild,
 } from "@/lib/guest-register";
 import { findMatchingStayForRecord } from "@/lib/guest-register/missing-fiches";
+import { isValidSignatureDataUrl } from "@/lib/security/signature-data-url";
+import { isCheckInRateLimited } from "@/lib/security/rate-limit";
 import { z } from "zod";
 
 const childSchema = z.object({
@@ -76,12 +78,20 @@ export async function POST(
     return NextResponse.json({ error: "Link expired" }, { status: 410 });
   }
 
+  if (await isCheckInRateLimited(tokenRecord.propertyId)) {
+    return NextResponse.json({ error: "Too many submissions" }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const data = submitSchema.parse(body);
 
     if (data.website) {
       return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
+    }
+
+    if (!isValidSignatureDataUrl(data.signatureDataUrl)) {
+      return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
     const isFrench = isFrenchNationality(data.nationality);

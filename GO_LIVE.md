@@ -1,7 +1,7 @@
 # Glint Host Registry — Go-Live Checklist
 
 **Production URL:** https://glint-host-registry.vercel.app  
-**Audience:** Benjamin — approve in ~10 seconds after Money Maker fills live Stripe values.
+**Audience:** Benjamin — approve in ~10 seconds after Money Maker applies staged secrets.
 
 ---
 
@@ -13,36 +13,48 @@
 | Auth & billing gates | Signup/login, 14-day trial checkout, subscription gates on property create |
 | FR compliance playbooks | Paris, Lyon, Marseille, Bordeaux, Nice — verified official links |
 | Guest register | Public check-in link, signature, 6-month retention, CSV/print export |
-| iCal calendar sync | SSRF-safe fetch, manual sync in app, daily cron route (`/api/cron/sync-calendars`) |
+| iCal calendar sync | SSRF-safe fetch, manual sync in app, daily cron via `vercel.json` (`/api/cron/sync-calendars`) |
 | Turso production DB | Migrations applied; `DATABASE_URL` + `TURSO_AUTH_TOKEN` on Vercel Production |
 | Spain SES integration | SOAP credentials UI, validation + **dry-run only** (test endpoint) |
 | Landing & pricing copy | Starter **€19/mo** (≤3 properties), Pro **€49/mo** (≤50 properties), 14-day trial |
-| Stripe (current state) | **Test keys** on Preview **and** Production until this go-live flip |
+| Stripe live catalog | Product + prices + webhook created in Stripe **live mode** (IDs below) |
+| Stripe (current state) | **Test keys** on Preview **and** Production until morning flip |
 
 ---
 
-## Flip on GO (Vercel → Production environment only)
+## Live Stripe catalog (safe to reference — no secrets)
 
-Money Maker fills these **before** Benjamin’s morning check. Do **not** commit real secrets to git.
+Created in Stripe live mode. Price IDs are public identifiers; **never commit** `sk_live_`, `pk_live_`, or `whsec_` to git.
 
-| Variable | Set to |
-|----------|--------|
-| `STRIPE_SECRET_KEY` | `sk_live_...` |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | `pk_live_...` |
-| `STRIPE_PRICE_STARTER` | `STRIPE_LIVE_PRICE_STARTER` *(Money Maker: live Price ID for €19/mo Starter)* |
-| `STRIPE_PRICE_PRO` | `STRIPE_LIVE_PRICE_PRO` *(Money Maker: live Price ID for €49/mo Pro)* |
-| `STRIPE_WEBHOOK_SECRET` | Live webhook signing secret (`whsec_...`) for endpoint below |
+| Resource | ID |
+|----------|-----|
+| Product | `prod_VFAYxblULxh9Nl` |
+| Starter €19/mo | `price_1UEgDXFmO19WLWW8U4lFbo6Y` |
+| Pro €49/mo | `price_1UEgDYFmO19WLWW8exs9fWvU` |
+| Webhook endpoint | `we_1UEgDpFmO19WLWW8OM2hpyd0` → `https://glint-host-registry.vercel.app/api/stripe/webhook` |
 
-**Stripe Dashboard (live mode):**
+Webhook events configured: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`.
 
-1. Products/prices already created in live mode → copy Price IDs into the two vars above.
-2. Webhook endpoint: `https://glint-host-registry.vercel.app/api/stripe/webhook`  
-   Events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`
-3. Customer Portal enabled (Settings → Billing → Customer portal).
+**Secrets (offline only):** Money Maker has staged `sk_live_…`, `pk_live_…`, and `whsec_…` offline. Benjamin validates the flip; secrets are pasted into Vercel Production at go-live — not stored in this repo.
 
-**Redeploy Production** after saving env vars (Vercel → Deployments → Redeploy).
+---
 
-Preview deployments stay on **test** Stripe keys — no change needed there.
+## Morning flip — Production only (6 steps)
+
+Apply in **Vercel → Project → Settings → Environment Variables → Production**. Leave **Preview** unchanged (test keys).
+
+1. Set `STRIPE_SECRET_KEY` to the staged live secret (`sk_live_…`) — Money Maker applies on Benjamin's go-ahead.
+2. Set `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` to the staged live publishable key (`pk_live_…`).
+3. Set price IDs (copy exactly):
+   - `STRIPE_PRICE_STARTER` → `price_1UEgDXFmO19WLWW8U4lFbo6Y`
+   - `STRIPE_PRICE_PRO` → `price_1UEgDYFmO19WLWW8exs9fWvU`
+4. Set `STRIPE_WEBHOOK_SECRET` to the staged signing secret (`whsec_…`) for webhook `we_1UEgDpFmO19WLWW8OM2hpyd0`.
+5. Confirm unchanged:
+   - **Preview** env still uses `sk_test_` / `pk_test_` and test Price IDs
+   - `SES_LIVE` = `false` on Production
+6. **Redeploy Production** (Vercel → Deployments → Redeploy latest).
+
+Customer Portal should already be enabled in Stripe Dashboard → Settings → Billing → Customer portal.
 
 ---
 
@@ -64,7 +76,7 @@ After Production redeploy with live Stripe:
 2. **Signup** — create a fresh account (or use a throwaway email).
 3. **Checkout** — Settings → subscribe to Starter; complete Stripe Checkout with a **real card** (live mode charges real money — use a low-limit card or cancel immediately after test).
    - *Note:* Test card `4242…` only works in test mode; it will **fail** once live keys are active — that confirms live mode is on.
-4. **Webhook** — subscription status shows `trialing` or `active` in Settings within ~30 s.
+4. **Webhook** — subscription status shows `trialing` or `active` in Settings within ~30 s (webhook `we_1UEgDpFmO19WLWW8OM2hpyd0`).
 5. **Property** — add one property (billing gate should pass).
 6. **iCal cron** — confirm `CRON_SECRET` is set on Production; cron runs daily at 04:00 UTC via `vercel.json` (check Vercel → Cron Jobs tab after deploy).
 
@@ -106,9 +118,9 @@ See [.env.example](./.env.example) for full variable documentation.
 
 ## Benjamin’s 10-second approval
 
-- [ ] Money Maker confirmed live Price IDs in `STRIPE_PRICE_STARTER` / `STRIPE_PRICE_PRO`
-- [ ] Production redeployed after live Stripe flip
-- [ ] Smoke test #3–#5 passed
-- [ ] `SES_LIVE` still `false`
+- [ ] Money Maker applied staged `sk_live_` / `pk_live_` / `whsec_` to Production (not in git)
+- [ ] `STRIPE_PRICE_STARTER` = `price_1UEgDXFmO19WLWW8U4lFbo6Y`, `STRIPE_PRICE_PRO` = `price_1UEgDYFmO19WLWW8exs9fWvU`
+- [ ] Production redeployed; smoke tests #3–#5 passed
+- [ ] `SES_LIVE` still `false`; Preview still on test keys
 
 **Approve go-live:** all four checked → live billing is on, Spain stays dry-run, no extra spend beyond a real-card checkout test.

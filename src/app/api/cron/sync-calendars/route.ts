@@ -31,3 +31,8 @@ export async function POST(request: Request) {
     results,
   });
 }
+
+/** Vercel Cron invokes GET; manual ops may use POST with the same auth. */
+export async function GET(request: Request) {
+  return POST(request);
+}

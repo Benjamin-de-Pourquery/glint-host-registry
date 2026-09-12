@@ -77,7 +77,7 @@ export async function PUT(
 
   if (!hasEncryptionKey()) {
     return NextResponse.json(
-      { error: "SECRETS_ENCRYPTION_KEY not configured on server" },
+      { error: "Secure credential storage is not available" },
       { status: 503 }
     );
   }

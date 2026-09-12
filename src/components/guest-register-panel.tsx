@@ -36,6 +36,7 @@ import { EmptyState } from "@/components/empty-state";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
+import type { CalendarSourceLabel } from "@/lib/calendar/source-labels";
 
 type GuestRecordSummary = {
   id: string;
@@ -109,9 +110,12 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
     guestLabel: "",
     notes: "",
   });
-  const [feedForm, setFeedForm] = useState({
+  const [feedForm, setFeedForm] = useState<{
+    url: string;
+    sourceLabel: CalendarSourceLabel;
+  }>({
     url: "",
-    sourceLabel: "airbnb" as "airbnb" | "booking" | "vrbo" | "other",
+    sourceLabel: "airbnb",
   });
 
   const checkInUrl =
@@ -307,11 +311,45 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
   };
 
   const getSourceBadgeLabel = (source: string) => {
-    const key = source as "airbnb" | "booking" | "vrbo" | "ical" | "other" | "manual";
-    if (key in { airbnb: 1, booking: 1, vrbo: 1, ical: 1, other: 1, manual: 1 }) {
+    const key = source as
+      | "airbnb"
+      | "booking"
+      | "vrbo"
+      | "google"
+      | "ical"
+      | "other"
+      | "manual";
+    if (
+      key in {
+        airbnb: 1,
+        booking: 1,
+        vrbo: 1,
+        google: 1,
+        ical: 1,
+        other: 1,
+        manual: 1,
+      }
+    ) {
       return tc(`sourceBadge.${key}`);
     }
     return tc("sourceBadge.ical");
+  };
+
+  const updateFeedUrl = (url: string) => {
+    setFeedForm((f) => {
+      const next = { ...f, url };
+      if (f.sourceLabel === "other") {
+        try {
+          const host = new URL(url.trim()).hostname.toLowerCase();
+          if (host === "calendar.google.com") {
+            next.sourceLabel = "google";
+          }
+        } catch {
+          // ignore invalid URL while typing
+        }
+      }
+      return next;
+    });
   };
 
   const deleteStay = async (stayId: string) => {
@@ -475,6 +513,7 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
           </div>
           <p className="text-xs text-slate-500">{tc("subtitle")}</p>
           <p className="text-xs text-slate-500">{tc("limitsNote")}</p>
+          <p className="text-xs text-slate-500">{tc("googleTip")}</p>
 
           {showFeedForm && (
             <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50/50 p-4">
@@ -484,9 +523,7 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
                   id="feedUrl"
                   type="url"
                   value={feedForm.url}
-                  onChange={(e) =>
-                    setFeedForm((f) => ({ ...f, url: e.target.value }))
-                  }
+                  onChange={(e) => updateFeedUrl(e.target.value)}
                   placeholder={tc("feedUrlPlaceholder")}
                 />
               </div>
@@ -508,6 +545,7 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
                     <SelectItem value="airbnb">{tc("sourceOptions.airbnb")}</SelectItem>
                     <SelectItem value="booking">{tc("sourceOptions.booking")}</SelectItem>
                     <SelectItem value="vrbo">{tc("sourceOptions.vrbo")}</SelectItem>
+                    <SelectItem value="google">{tc("sourceOptions.google")}</SelectItem>
                     <SelectItem value="other">{tc("sourceOptions.other")}</SelectItem>
                   </SelectContent>
                 </Select>

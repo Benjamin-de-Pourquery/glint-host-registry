@@ -2,18 +2,24 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { validateCalendarFeedUrl } from "@/lib/calendar/ssrf-safe-fetch";
+import {
+  CALENDAR_SOURCE_LABELS,
+  detectSourceLabelFromUrl,
+} from "@/lib/calendar/source-labels";
 import { z } from "zod";
+
+const sourceLabelSchema = z.enum(CALENDAR_SOURCE_LABELS);
 
 const createFeedSchema = z.object({
   url: z.string().min(1),
-  sourceLabel: z.enum(["airbnb", "booking", "vrbo", "other"]).optional(),
+  sourceLabel: sourceLabelSchema.optional(),
   enabled: z.boolean().optional(),
 });
 
 const updateFeedSchema = z.object({
   feedId: z.string().min(1),
   enabled: z.boolean().optional(),
-  sourceLabel: z.enum(["airbnb", "booking", "vrbo", "other"]).optional(),
+  sourceLabel: sourceLabelSchema.optional(),
 });
 
 async function getOwnedProperty(propertyId: string, userId: string) {
@@ -73,13 +79,15 @@ export async function POST(
   try {
     const body = await request.json();
     const data = createFeedSchema.parse(body);
-    const normalizedUrl = validateCalendarFeedUrl(data.url).toString();
+    const parsedUrl = validateCalendarFeedUrl(data.url);
+    const normalizedUrl = parsedUrl.toString();
+    const sourceLabel = detectSourceLabelFromUrl(parsedUrl, data.sourceLabel);
 
     const feed = await prisma.calendarFeed.create({
       data: {
         propertyId: id,
         url: normalizedUrl,
-        sourceLabel: data.sourceLabel ?? null,
+        sourceLabel,
         enabled: data.enabled ?? true,
       },
     });

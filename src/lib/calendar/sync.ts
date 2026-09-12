@@ -4,6 +4,7 @@ import {
   buildExternalUid,
   parseIcalEvents,
 } from "@/lib/calendar/ical-parser";
+import { resolveStaySource } from "@/lib/calendar/source-labels";
 
 export type CalendarFeedSyncResult = {
   feedId: string;
@@ -14,18 +15,6 @@ export type CalendarFeedSyncResult = {
   eventCount: number;
   error?: string;
 };
-
-function resolveStaySource(sourceLabel: string | null | undefined): string {
-  if (
-    sourceLabel === "airbnb" ||
-    sourceLabel === "booking" ||
-    sourceLabel === "vrbo" ||
-    sourceLabel === "other"
-  ) {
-    return sourceLabel;
-  }
-  return "ical";
-}
 
 export async function syncCalendarFeed(
   feedId: string

@@ -672,6 +672,47 @@
       "frenchNote": "French nationals: this form is not legally required, but you may still submit for the host's operational records.",
       "disclaimer": "Your data is shared only with the property host. Glint is not legal counsel."
     },
+    "calendar": {
+      "title": "Calendar import",
+      "subtitle": "Paste your Airbnb, Booking, or Vrbo iCal export URL to import upcoming stays automatically.",
+      "feedUrl": "iCal feed URL",
+      "feedUrlPlaceholder": "https://www.airbnb.com/calendar/ical/…",
+      "sourceLabel": "Platform",
+      "sourceOptions": {
+        "airbnb": "Airbnb",
+        "booking": "Booking.com",
+        "vrbo": "Vrbo",
+        "other": "Other"
+      },
+      "addFeed": "Add calendar feed",
+      "syncNow": "Sync now",
+      "syncAll": "Sync all feeds",
+      "enabled": "Enabled",
+      "lastSynced": "Last synced {date}",
+      "neverSynced": "Not synced yet",
+      "lastError": "Last sync error: {error}",
+      "empty": "No calendar feeds connected yet.",
+      "added": "Calendar feed added",
+      "addError": "Could not add calendar feed",
+      "deleted": "Calendar feed removed",
+      "deleteError": "Could not remove calendar feed",
+      "syncSuccess": "Calendar synced — {created} new, {updated} updated",
+      "syncError": "Calendar sync failed",
+      "urlRequired": "Calendar feed URL is required",
+      "limitsNote": "iCal feeds usually include dates and a guest label only — not full police-form details. Imported stays are shells; guests still complete the fiche via your check-in link.",
+      "sourceBadge": {
+        "airbnb": "Airbnb",
+        "booking": "Booking",
+        "vrbo": "Vrbo",
+        "ical": "Calendar",
+        "other": "Calendar",
+        "manual": "Manual"
+      },
+      "importStatus": {
+        "cancelled": "Cancelled in calendar",
+        "removed_from_feed": "Removed from feed"
+      }
+    },
     "stays": {
       "title": "Expected stays",
       "subtitle": "Log upcoming stays to track missing police forms for foreign guests. French-only stays can be unchecked below.",

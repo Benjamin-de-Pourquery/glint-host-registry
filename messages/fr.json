@@ -672,6 +672,47 @@
       "frenchNote": "Ressortissants français : la fiche n'est pas légalement exigée, mais vous pouvez quand même l'envoyer pour le suivi opérationnel de l'hôte.",
       "disclaimer": "Vos données sont partagées uniquement avec l'hôte. Glint n'est pas un conseil juridique."
     },
+    "calendar": {
+      "title": "Import calendrier",
+      "subtitle": "Collez l'URL d'export iCal Airbnb, Booking ou Vrbo pour importer automatiquement les séjours à venir.",
+      "feedUrl": "URL du flux iCal",
+      "feedUrlPlaceholder": "https://www.airbnb.fr/calendar/ical/…",
+      "sourceLabel": "Plateforme",
+      "sourceOptions": {
+        "airbnb": "Airbnb",
+        "booking": "Booking.com",
+        "vrbo": "Vrbo",
+        "other": "Autre"
+      },
+      "addFeed": "Ajouter un flux calendrier",
+      "syncNow": "Synchroniser",
+      "syncAll": "Tout synchroniser",
+      "enabled": "Activé",
+      "lastSynced": "Dernière synchro {date}",
+      "neverSynced": "Pas encore synchronisé",
+      "lastError": "Erreur de synchro : {error}",
+      "empty": "Aucun flux calendrier connecté.",
+      "added": "Flux calendrier ajouté",
+      "addError": "Impossible d'ajouter le flux calendrier",
+      "deleted": "Flux calendrier supprimé",
+      "deleteError": "Impossible de supprimer le flux calendrier",
+      "syncSuccess": "Calendrier synchronisé — {created} nouveau(x), {updated} mis à jour",
+      "syncError": "Échec de la synchronisation",
+      "urlRequired": "L'URL du flux iCal est requise",
+      "limitsNote": "Les flux iCal contiennent en général les dates et un libellé voyageur — pas les données complètes de la fiche de police. Les séjours importés sont des coquilles ; le voyageur complète la fiche via votre lien d'enregistrement.",
+      "sourceBadge": {
+        "airbnb": "Airbnb",
+        "booking": "Booking",
+        "vrbo": "Vrbo",
+        "ical": "Calendrier",
+        "other": "Calendrier",
+        "manual": "Manuel"
+      },
+      "importStatus": {
+        "cancelled": "Annulé dans le calendrier",
+        "removed_from_feed": "Retiré du flux"
+      }
+    },
     "stays": {
       "title": "Séjours prévus",
       "subtitle": "Enregistrez les séjours à venir pour suivre les fiches manquantes pour les voyageurs étrangers. Décochez pour un séjour uniquement français.",

@@ -674,14 +674,16 @@
     },
     "calendar": {
       "title": "Calendar import",
-      "subtitle": "Paste your Airbnb, Booking, or Vrbo iCal export URL to import upcoming stays automatically.",
+      "subtitle": "Paste your Airbnb, Booking, Vrbo, or Google Calendar iCal export URL to import upcoming stays automatically.",
       "feedUrl": "iCal feed URL",
       "feedUrlPlaceholder": "https://www.airbnb.com/calendar/ical/…",
+      "googleTip": "Google Calendar: Settings → Integrate calendar → Secret address in iCal format — paste that URL here.",
       "sourceLabel": "Platform",
       "sourceOptions": {
         "airbnb": "Airbnb",
         "booking": "Booking.com",
         "vrbo": "Vrbo",
+        "google": "Google Calendar",
         "other": "Other"
       },
       "addFeed": "Add calendar feed",
@@ -704,6 +706,7 @@
         "airbnb": "Airbnb",
         "booking": "Booking",
         "vrbo": "Vrbo",
+        "google": "Google Calendar",
         "ical": "Calendar",
         "other": "Calendar",
         "manual": "Manual"

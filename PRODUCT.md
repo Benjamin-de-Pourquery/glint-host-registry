@@ -55,7 +55,7 @@ Pro feature helping French hosts collect and retain the legally required individ
 - **Public check-in link** per property (tokenized URL + QR) — bilingual FR/EN form with signature pad
 - **Host dashboard** — list records in retention window, view detail, export CSV, print official-style fiche
 - **Playbook integration** — guest-register playbook step auto-completes when check-in link is enabled
-- **iCal calendar import** — hosts paste Airbnb/Booking/Vrbo (or any HTTPS) export calendar URLs per property; Glint syncs upcoming stays into expected stays for missing-fiche tracking. **Limits:** iCal feeds typically expose dates and a guest label only — not full police-form PII (name, nationality, passport, etc.). Sync creates stay shells; guests still complete the fiche via the public check-in link. Cancelled or removed calendar events are marked without deleting stays that already have guest records.
+- **iCal calendar import** — hosts paste Airbnb/Booking/Vrbo/Google Calendar (or any HTTPS) export calendar URLs per property; Glint syncs upcoming stays into expected stays for missing-fiche tracking. **Limits:** iCal feeds typically expose dates and a guest label only — not full police-form PII (name, nationality, passport, etc.). Sync creates stay shells; guests still complete the fiche via the public check-in link. Cancelled or removed calendar events are marked without deleting stays that already have guest records.
 - French nationals may optionally log for operational convenience; UI labels the legal fiche as targeting foreign guests
 - Disclaimer: Glint organizes compliance records; not legal advice; host remains responsible
 

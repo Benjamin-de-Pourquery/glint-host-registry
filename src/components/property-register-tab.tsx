@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { GuestRegisterPanel } from "@/components/guest-register-panel";
+import { SesCredentialsPanel } from "@/components/ses-credentials-panel";
+import { isSpainCountry } from "@/lib/spain/regions";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
@@ -38,6 +40,7 @@ type Props = {
   propertyId: string;
   locale: string;
   country: string;
+  city: string;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
 };
@@ -46,6 +49,7 @@ export function PropertyRegisterTab({
   propertyId,
   locale,
   country,
+  city,
   registration,
   checklistItems: initialChecklist,
 }: Props) {
@@ -126,7 +130,15 @@ export function PropertyRegisterTab({
 
   return (
     <div className="mx-auto max-w-2xl space-y-10">
-      <GuestRegisterPanel propertyId={propertyId} locale={locale} />
+      {isSpainCountry(country) && (
+        <SesCredentialsPanel propertyId={propertyId} city={city} />
+      )}
+      <GuestRegisterPanel
+        propertyId={propertyId}
+        locale={locale}
+        country={country}
+        city={city}
+      />
 
       <section className="space-y-4">
         <div className="flex items-center justify-between">

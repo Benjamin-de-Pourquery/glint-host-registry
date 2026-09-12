@@ -41,6 +41,8 @@ Open [http://localhost:4311](http://localhost:4311)
 | `STRIPE_PRICE_STARTER` | For billing | Price ID for Starter plan (€19/mo) |
 | `STRIPE_PRICE_PRO` | For billing | Price ID for Pro plan (€49/mo) |
 | `STRIPE_WEBHOOK_SECRET` | For billing | Webhook signing secret |
+| `SECRETS_ENCRYPTION_KEY` | For Spain SES | 32-byte base64 key for encrypting SOAP credentials at rest (`openssl rand -base64 32`) |
+| `SES_LIVE` | For Spain SES | Set to `true` to enable live SOAP submissions to production endpoint (default: test/dry-run) |
 
 ## Stripe setup (test mode)
 
@@ -66,6 +68,8 @@ Open [http://localhost:4311](http://localhost:4311)
 | `npm run start` | Production server |
 | `npm run db:migrate` | Run Prisma migrations |
 | `npm run db:studio` | Open Prisma Studio |
+| `npm run test` | Run unit tests (SES XML/validation, encryption) |
+| `npm run test:ses` | Run SES integration unit tests only |
 
 ## Deploy on Vercel
 

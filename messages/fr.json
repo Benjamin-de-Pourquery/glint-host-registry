@@ -766,6 +766,80 @@
       "retention": "L'hôte doit conserver cette fiche 6 mois. Transmission police/gendarmerie uniquement sur demande."
     }
   },
+  "ses": {
+    "loading": "Chargement des paramètres SES…",
+    "loadError": "Impossible de charger les paramètres SES",
+    "saved": "Identifiants SES enregistrés",
+    "saveError": "Impossible d'enregistrer les identifiants SES",
+    "testOk": "Test de connexion réussi",
+    "testFailed": "Échec du test : {message}",
+    "testError": "Impossible de tester la connexion",
+    "regionalSystem": {
+      "title": "Système régional de déclaration voyageurs",
+      "catalonia": "{city} est en Catalogne — les données voyageurs doivent être déclarées via Mossos d'Esquadra, pas SES.HOSPEDAJES.",
+      "basque": "{city} est au Pays basque — le système régional s'applique, pas SES.HOSPEDAJES.",
+      "hint": "Configurez vos identifiants régionaux séparément. L'intégration SES Glint ne s'applique pas dans cette région."
+    },
+    "credentials": {
+      "title": "Identifiants SES.HOSPEDAJES",
+      "subtitle": "Identifiants SOAP du Ministère de l'Intérieur. Requis pour soumettre les partes de viajeros sous 24h après l'arrivée.",
+      "configured": "Configuré",
+      "codigoArrendador": "Code arrendador",
+      "codigoEstablecimiento": "Code établissement",
+      "wsUsername": "Identifiant WS (souvent se termine par _WS)",
+      "wsPassword": "Mot de passe WS",
+      "liveSubmit": "Activer l'envoi en production pour ce bien",
+      "liveSubmitHint": "Nécessite SES_LIVE=true sur le serveur. Sinon, seules les simulations sont possibles.",
+      "liveSubmitDisabled": "SES_LIVE n'est pas activé sur le serveur — simulations uniquement.",
+      "save": "Enregistrer",
+      "test": "Tester la connexion",
+      "lastTest": "Dernier test : {status} — {date}",
+      "encryptionMissing": "Clé de chiffrement serveur (SECRETS_ENCRYPTION_KEY) non configurée.",
+      "securityNote": "Les identifiants sont chiffrés au repos et ne sont jamais exposés au navigateur après enregistrement."
+    },
+    "stay": {
+      "prepare": "Préparer déclaration SES",
+      "dryRun": "Simulation",
+      "submit": "Soumettre à SES",
+      "prepareReady": "Déclaration prête pour {count} voyageur(s)",
+      "validationFailed": "{count} problème(s) de validation — complétez les données voyageurs",
+      "dryRunOk": "Simulation terminée — XML validé, non envoyé",
+      "submittedOk": "Soumis à SES avec succès",
+      "rejected": "SES a rejeté la soumission",
+      "error": "Impossible de traiter la soumission SES"
+    },
+    "submission": {
+      "status": {
+        "queued": "En file",
+        "dry_run": "Simulation",
+        "sent": "Envoyé",
+        "accepted": "Accepté",
+        "rejected": "Rejeté"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement de la file SES…",
+      "title": "Déclarations SES dues sous 24h",
+      "subtitle": "Séjours en Espagne nécessitant une déclaration SES.HOSPEDAJES.",
+      "guestCount": "{count, plural, one {# voyageur} other {# voyageurs}}",
+      "hoursLeft": "{hours}h restantes",
+      "overdue": "En retard",
+      "noCredentials": "Pas d'identifiants",
+      "action": "Ouvrir registre"
+    },
+    "checkIn": {
+      "title": "Données SES voyageur (Espagne)",
+      "hint": "Requis pour la déclaration Ministère de l'Intérieur (RD 933/2021).",
+      "documentType": "Type de document",
+      "documentNumber": "Numéro de document",
+      "sex": "Sexe (H/M/O)",
+      "postalCode": "Code postal",
+      "municipalityCode": "Code municipal (Espagne, INE 5 chiffres)",
+      "municipalityCodeHint": "Obligatoire si adresse en Espagne",
+      "municipalityName": "Nom de la commune (étranger)",
+      "municipalityNameHint": "Obligatoire si adresse hors Espagne"
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",

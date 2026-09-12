@@ -17,7 +17,7 @@ export default async function CheckInPage({ params }: Props) {
 
   const tokenRecord = await prisma.guestRegisterToken.findFirst({
     where: { token, enabled: true },
-    include: { property: { select: { name: true } } },
+    include: { property: { select: { name: true, country: true, city: true } } },
   });
 
   if (!tokenRecord) notFound();
@@ -41,7 +41,11 @@ export default async function CheckInPage({ params }: Props) {
           </p>
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-          <CheckInForm token={token} propertyName={tokenRecord.property.name} />
+          <CheckInForm
+            token={token}
+            propertyName={tokenRecord.property.name}
+            propertyCountry={tokenRecord.property.country}
+          />
         </div>
       </div>
     </div>

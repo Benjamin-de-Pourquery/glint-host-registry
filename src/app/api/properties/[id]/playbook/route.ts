@@ -5,7 +5,8 @@ import {
   resolvePlaybook,
   getPlaybookProgressSummary,
 } from "@/lib/playbooks";
-import { getEffectiveNextStep } from "@/lib/national-transition";
+import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
+import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
 import { z } from "zod";
 
 const updateSchema = z.object({
@@ -26,7 +27,11 @@ export async function GET(
 
   const property = await prisma.property.findFirst({
     where: { id, userId: session.user.id },
-    include: { playbookProgress: true, registration: true },
+    include: {
+      playbookProgress: true,
+      registration: true,
+      sesCredential: true,
+    },
   });
 
   if (!property) {
@@ -57,13 +62,17 @@ export async function GET(
     | null
     | undefined;
 
-  const nextStep = getEffectiveNextStep(
-    playbook,
-    progress,
-    residencyStatus,
-    property.country,
-    property.registration
-  );
+  const sesDueForProperty = (
+    await getSesDueQueueForUser(session.user.id)
+  ).some((item) => item.propertyId === id);
+
+  const nextStep = getEffectiveNextStep(playbook, progress, residencyStatus, {
+    country: property.country,
+    city: property.city,
+    registration: property.registration,
+    hasActiveStayNeedingSes: sesDueForProperty,
+    hasSesCredentials: Boolean(property.sesCredential),
+  });
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
 
   return NextResponse.json({

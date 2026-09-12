@@ -33,6 +33,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { EmptyState } from "@/components/empty-state";
+import { SesStayActions } from "@/components/ses-stay-actions";
+import { isSpainCountry, usesSesHospedajes } from "@/lib/spain/regions";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -87,11 +89,14 @@ type GuestRegisterData = {
 type Props = {
   propertyId: string;
   locale: string;
+  country?: string;
+  city?: string;
 };
 
-export function GuestRegisterPanel({ propertyId, locale }: Props) {
+export function GuestRegisterPanel({ propertyId, locale, country = "", city = "" }: Props) {
   const t = useTranslations("guestRegister");
   const tc = useTranslations("guestRegister.calendar");
+  const showSes = isSpainCountry(country) && usesSesHospedajes(city);
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -766,14 +771,23 @@ export function GuestRegisterPanel({ propertyId, locale }: Props) {
                       )}
                     </div>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => deleteStay(stay.id)}
-                    disabled={stayLoading}
-                  >
-                    <Trash2 className="h-4 w-4 text-slate-400" />
-                  </Button>
+                  <div className="flex flex-col items-end gap-2">
+                    {showSes && stay.hasMatchingFiche && (
+                      <SesStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
+                        showSes={showSes}
+                      />
+                    )}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => deleteStay(stay.id)}
+                      disabled={stayLoading}
+                    >
+                      <Trash2 className="h-4 w-4 text-slate-400" />
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>

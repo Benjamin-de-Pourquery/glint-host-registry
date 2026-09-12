@@ -1,5 +1,6 @@
 import { FRANCE_PLAYBOOKS } from "./france";
-import { SPAIN_PLAYBOOK, ITALY_PLAYBOOK, NETHERLANDS_PLAYBOOK } from "./international";
+import { SPAIN_PLAYBOOKS } from "./spain";
+import { ITALY_PLAYBOOK, NETHERLANDS_PLAYBOOK } from "./international";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -12,12 +13,19 @@ import type {
 
 const ALL_PLAYBOOKS: Playbook[] = [
   ...FRANCE_PLAYBOOKS,
-  SPAIN_PLAYBOOK,
+  ...SPAIN_PLAYBOOKS,
   ITALY_PLAYBOOK,
   NETHERLANDS_PLAYBOOK,
 ];
 
 const CITY_ALIASES: Record<string, string> = {
+  madrid: "Madrid",
+  barcelona: "Barcelona",
+  valencia: "Valencia",
+  malaga: "Málaga",
+  "málaga": "Málaga",
+  seville: "Málaga",
+  sevilla: "Málaga",
   paris: "Paris",
   lyon: "Lyon",
   marseille: "Marseille",
@@ -133,10 +141,12 @@ export function getPlaybookById(id: string): Playbook | null {
 export function listPlaybookCoverage(): {
   fullFranceCities: string[];
   countryStubs: string[];
+  spainCities: string[];
 } {
   return {
     fullFranceCities: FRANCE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
-    countryStubs: ["Spain", "Italy", "Netherlands"],
+    countryStubs: ["Italy", "Netherlands"],
+    spainCities: SPAIN_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
   };
 }
 

@@ -88,6 +88,8 @@ model Property {
   calendarFeeds CalendarFeed[]
   guestStays   GuestStay[]
   guestRecords GuestRecord[]
+  sesCredential SesCredential?
+  sesSubmissions SesSubmission[]
 }
 
 model CalendarFeed {
@@ -134,6 +136,7 @@ model GuestStay {
   property            Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   calendarFeed        CalendarFeed? @relation(fields: [calendarFeedId], references: [id], onDelete: SetNull)
   guestRecords        GuestRecord[]
+  sesSubmissions      SesSubmission[]
 
   @@unique([propertyId, externalUid])
   @@index([propertyId])
@@ -162,11 +165,63 @@ model GuestRecord {
   submittedAt             DateTime?
   retentionExpiresAt      DateTime?
   accompanyingChildrenJson String?
+  documentType            String?
+  documentNumber          String?
+  documentSupport         String?
+  sex                     String?
+  kinship                 String?
+  postalCode              String?
+  municipalityCode        String?
+  municipalityName        String?
+  addressCountryAlpha3    String?
   createdAt               DateTime  @default(now())
   property                Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   stay                    GuestStay? @relation(fields: [stayId], references: [id], onDelete: SetNull)
+  sesSubmissions          SesSubmission[]
 
   @@index([propertyId, retentionExpiresAt])
+}
+
+model SesCredential {
+  id                    String    @id @default(cuid())
+  propertyId            String    @unique
+  codigoArrendador      String
+  wsUsernameEncrypted   String
+  wsPasswordEncrypted   String
+  codigoEstablecimiento String
+  liveSubmitEnabled     Boolean   @default(false)
+  lastTestedAt          DateTime?
+  lastTestStatus        String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  property              Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model SesSubmission {
+  id                   String       @id @default(cuid())
+  propertyId           String
+  stayId               String?
+  guestRecordId        String?
+  status               String       @default("queued")
+  mode                 String       @default("dry_run")
+  correlationId        String?
+  loteCode             String?
+  governmentCode       String?
+  governmentMessage    String?
+  validationErrorsJson String?
+  requestSummaryJson   String?
+  submittedAt          DateTime?
+  respondedAt          DateTime?
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  property             Property     @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  stay                 GuestStay?   @relation(fields: [stayId], references: [id], onDelete: SetNull)
+  guestRecord          GuestRecord? @relation(fields: [guestRecordId], references: [id], onDelete: SetNull)
+
+  @@index([propertyId, createdAt])
+  @@index([propertyId, status])
+  @@index([stayId])
+  @@index([guestRecordId])
 }
 
 model PlaybookStepProgress {

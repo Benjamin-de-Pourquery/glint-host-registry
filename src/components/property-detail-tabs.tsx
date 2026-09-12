@@ -241,6 +241,7 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           propertyId={property.id}
           locale={locale}
           country={property.country}
+          city={property.city}
           registration={property.registration}
           checklistItems={property.checklistItems}
         />

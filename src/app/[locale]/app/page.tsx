@@ -15,6 +15,7 @@ import { OnboardingChecklist } from "@/components/onboarding-checklist";
 import { EmptyState } from "@/components/empty-state";
 import { format, differenceInDays } from "date-fns";
 import { Building2 } from "lucide-react";
+import { SesDueQueue } from "@/components/ses-due-queue";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -142,6 +143,8 @@ export default async function DashboardPage({ params }: Props) {
         steps={onboardingSteps}
         firstPropertyId={firstPropertyId}
       />
+
+      <SesDueQueue locale={locale} />
 
       {properties.length === 0 && (
         <EmptyState

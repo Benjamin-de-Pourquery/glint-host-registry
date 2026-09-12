@@ -766,6 +766,80 @@
       "retention": "Host must retain this record for 6 months. Transmit to police/gendarmerie only upon request."
     }
   },
+  "ses": {
+    "loading": "Loading SES settings…",
+    "loadError": "Could not load SES settings",
+    "saved": "SES credentials saved",
+    "saveError": "Could not save SES credentials",
+    "testOk": "Connection test passed",
+    "testFailed": "Connection test failed: {message}",
+    "testError": "Could not test connection",
+    "regionalSystem": {
+      "title": "Regional guest reporting system",
+      "catalonia": "{city} is in Catalonia — guest data must be reported via the Mossos d'Esquadra system, not SES.HOSPEDAJES.",
+      "basque": "{city} is in the Basque Country — guest data uses the regional system, not SES.HOSPEDAJES.",
+      "hint": "Configure your regional portal credentials separately. Glint SES integration does not apply in this region."
+    },
+    "credentials": {
+      "title": "SES.HOSPEDAJES credentials",
+      "subtitle": "SOAP credentials from the Ministry of Interior registration. Required to submit guest reports (parte de viajeros) within 24h of check-in.",
+      "configured": "Configured",
+      "codigoArrendador": "Landlord code (código arrendador)",
+      "codigoEstablecimiento": "Establishment code (código establecimiento)",
+      "wsUsername": "WS username (often ends with _WS)",
+      "wsPassword": "WS password",
+      "liveSubmit": "Enable live submission for this property",
+      "liveSubmitHint": "Requires SES_LIVE=true on server. Submissions default to dry-run otherwise.",
+      "liveSubmitDisabled": "Server SES_LIVE is not enabled — only dry-run submissions are available.",
+      "save": "Save credentials",
+      "test": "Test connection",
+      "lastTest": "Last test: {status} — {date}",
+      "encryptionMissing": "Server encryption key (SECRETS_ENCRYPTION_KEY) is not configured. Contact your administrator.",
+      "securityNote": "Credentials are encrypted at rest and never exposed to the browser after saving."
+    },
+    "stay": {
+      "prepare": "Prepare SES report",
+      "dryRun": "Dry-run submit",
+      "submit": "Submit to SES",
+      "prepareReady": "Report ready for {count} guest(s)",
+      "validationFailed": "{count} validation issue(s) — complete guest data first",
+      "dryRunOk": "Dry-run complete — XML validated, not sent to government",
+      "submittedOk": "Submitted to SES successfully",
+      "rejected": "SES rejected the submission",
+      "error": "Could not process SES submission"
+    },
+    "submission": {
+      "status": {
+        "queued": "Queued",
+        "dry_run": "Dry-run",
+        "sent": "Sent",
+        "accepted": "Accepted",
+        "rejected": "Rejected"
+      }
+    },
+    "dueQueue": {
+      "loading": "Loading SES due queue…",
+      "title": "SES declarations due within 24h",
+      "subtitle": "Guest stays in Spain requiring SES.HOSPEDAJES reporting.",
+      "guestCount": "{count, plural, one {# guest} other {# guests}}",
+      "hoursLeft": "{hours}h remaining",
+      "overdue": "Overdue",
+      "noCredentials": "No credentials",
+      "action": "Open register"
+    },
+    "checkIn": {
+      "title": "SES guest data (Spain)",
+      "hint": "Required for Ministry of Interior guest reporting (RD 933/2021).",
+      "documentType": "ID document type",
+      "documentNumber": "Document number",
+      "sex": "Sex (H/M/O)",
+      "postalCode": "Postal code",
+      "municipalityCode": "Municipality code (Spain, INE 5-digit)",
+      "municipalityCodeHint": "Required if address is in Spain",
+      "municipalityName": "Municipality name (abroad)",
+      "municipalityNameHint": "Required if address is outside Spain"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Something went wrong",

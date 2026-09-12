@@ -29,6 +29,15 @@ const submitSchema = z.object({
   signatureDataUrl: z.string().min(1),
   accompanyingChildren: z.array(childSchema).optional(),
   website: z.string().optional(),
+  documentType: z.string().max(5).optional(),
+  documentNumber: z.string().max(15).optional(),
+  documentSupport: z.string().max(9).optional(),
+  sex: z.string().max(1).optional(),
+  kinship: z.string().max(5).optional(),
+  postalCode: z.string().max(20).optional(),
+  municipalityCode: z.string().max(5).optional(),
+  municipalityName: z.string().max(100).optional(),
+  addressCountryAlpha3: z.string().max(3).optional(),
 });
 
 async function getTokenRecord(token: string) {
@@ -60,6 +69,7 @@ export async function GET(
   return NextResponse.json({
     propertyName: tokenRecord.property.name,
     propertyCity: tokenRecord.property.city,
+    propertyCountry: tokenRecord.property.country,
   });
 }
 
@@ -131,6 +141,15 @@ export async function POST(
         retentionExpiresAt,
         accompanyingChildrenJson:
           children.length > 0 ? JSON.stringify(children) : null,
+        documentType: data.documentType?.trim() || null,
+        documentNumber: data.documentNumber?.trim() || null,
+        documentSupport: data.documentSupport?.trim() || null,
+        sex: data.sex?.trim().toUpperCase() || null,
+        kinship: data.kinship?.trim() || null,
+        postalCode: data.postalCode?.trim() || null,
+        municipalityCode: data.municipalityCode?.trim() || null,
+        municipalityName: data.municipalityName?.trim() || null,
+        addressCountryAlpha3: data.addressCountryAlpha3?.trim().toUpperCase() || null,
       },
     });
 

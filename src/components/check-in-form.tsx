@@ -7,16 +7,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SignaturePad } from "@/components/signature-pad";
 import { Loader2, CheckCircle } from "lucide-react";
+import { isSpainCountry } from "@/lib/spain/regions";
 
 type Props = {
   token: string;
   propertyName: string;
+  propertyCountry?: string;
 };
 
 type ChildEntry = { firstNames: string; dateOfBirth: string };
 
-export function CheckInForm({ token, propertyName }: Props) {
+export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props) {
   const t = useTranslations("guestRegister.public");
+  const tSes = useTranslations("ses.checkIn");
+  const isSpain = isSpainCountry(propertyCountry);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +39,14 @@ export function CheckInForm({ token, propertyName }: Props) {
     arrivalDate: "",
     departureDate: "",
     website: "",
+    documentType: "PAS",
+    documentNumber: "",
+    documentSupport: "",
+    sex: "",
+    postalCode: "",
+    municipalityCode: "",
+    municipalityName: "",
+    addressCountryAlpha3: "",
   });
 
   const update = (key: keyof typeof form, value: string) => {
@@ -197,6 +209,73 @@ export function CheckInForm({ token, propertyName }: Props) {
           />
         </div>
       </div>
+
+      {isSpain && (
+        <div className="space-y-4 rounded-lg border border-emerald-100 bg-emerald-50/40 p-4">
+          <p className="text-sm font-medium text-emerald-900">{tSes("title")}</p>
+          <p className="text-xs text-emerald-800">{tSes("hint")}</p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label>{tSes("documentType")}</Label>
+              <select
+                className="flex h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm"
+                value={form.documentType}
+                onChange={(e) => update("documentType", e.target.value)}
+              >
+                <option value="PAS">PAS</option>
+                <option value="NIF">NIF</option>
+                <option value="NIE">NIE</option>
+                <option value="OTRO">OTRO</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <Label>{tSes("documentNumber")}</Label>
+              <Input
+                required
+                value={form.documentNumber}
+                onChange={(e) => update("documentNumber", e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>{tSes("sex")}</Label>
+              <select
+                className="flex h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm"
+                value={form.sex}
+                onChange={(e) => update("sex", e.target.value)}
+              >
+                <option value="">—</option>
+                <option value="H">H</option>
+                <option value="M">M</option>
+                <option value="O">O</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <Label>{tSes("postalCode")}</Label>
+              <Input
+                required
+                value={form.postalCode}
+                onChange={(e) => update("postalCode", e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>{tSes("municipalityCode")}</Label>
+              <Input
+                value={form.municipalityCode}
+                onChange={(e) => update("municipalityCode", e.target.value)}
+                placeholder={tSes("municipalityCodeHint")}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>{tSes("municipalityName")}</Label>
+              <Input
+                value={form.municipalityName}
+                onChange={(e) => update("municipalityName", e.target.value)}
+                placeholder={tSes("municipalityNameHint")}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">

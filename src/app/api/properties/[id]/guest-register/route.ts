@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { generateGuestRegisterToken } from "@/lib/guest-register";
+import {
+  generateGuestRegisterToken,
+  guestRegisterTokenExpiresAt,
+} from "@/lib/guest-register";
 import { syncGuestRegisterPlaybookStep } from "@/lib/guest-register/playbook-sync";
 import {
   getMissingFicheCountForProperty,
@@ -161,17 +164,13 @@ export async function POST(
     }
 
     const token = generateGuestRegisterToken();
+    const expiresAt = guestRegisterTokenExpiresAt();
 
     if (property.guestRegisterToken) {
-      if (action === "rotate") {
+      if (action === "rotate" || action === "enable") {
         await prisma.guestRegisterToken.update({
           where: { propertyId: id },
-          data: { token, enabled: true },
-        });
-      } else {
-        await prisma.guestRegisterToken.update({
-          where: { propertyId: id },
-          data: { enabled: true },
+          data: { token, enabled: true, expiresAt },
         });
       }
     } else {
@@ -180,6 +179,7 @@ export async function POST(
           propertyId: id,
           token,
           enabled: true,
+          expiresAt,
         },
       });
     }

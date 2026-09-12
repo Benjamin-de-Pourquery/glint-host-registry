@@ -1,5 +1,9 @@
 import { format } from "date-fns";
 import { parseAccompanyingChildren } from "@/lib/guest-register";
+import {
+  escapeSignatureDataUrlForHtml,
+  isValidSignatureDataUrl,
+} from "@/lib/security/signature-data-url";
 
 export type FicheRecord = {
   id: string;
@@ -108,13 +112,18 @@ export function renderFicheHtml(
       `
       : "";
 
-  const signatureBlock = record.signatureDataUrl
+  const safeSignature =
+    record.signatureDataUrl && isValidSignatureDataUrl(record.signatureDataUrl)
+      ? escapeSignatureDataUrlForHtml(record.signatureDataUrl)
+      : null;
+
+  const signatureBlock = safeSignature
     ? `
       <div class="signature">
         <p style="font-size: 12px; font-weight: 600; margin-bottom: 8px;">
           ${labels.signature} / Signature
         </p>
-        <img src="${record.signatureDataUrl}" alt="Signature" />
+        <img src="${safeSignature}" alt="Signature" />
         ${
           record.signedAt
             ? `<p style="font-size: 11px; color: #64748b; margin-top: 8px;">${format(record.signedAt, "dd/MM/yyyy HH:mm")}</p>`

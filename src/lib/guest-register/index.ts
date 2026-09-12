@@ -1,5 +1,12 @@
-import { addMonths } from "date-fns";
+import { addMonths, addDays } from "date-fns";
 import { randomBytes } from "crypto";
+
+/** Default lifetime for guest check-in links (renew on rotate). */
+export const GUEST_REGISTER_TOKEN_TTL_DAYS = 365;
+
+export function guestRegisterTokenExpiresAt(from = new Date()): Date {
+  return addDays(from, GUEST_REGISTER_TOKEN_TTL_DAYS);
+}
 
 export type AccompanyingChild = {
   firstNames: string;

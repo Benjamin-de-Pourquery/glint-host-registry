@@ -19,7 +19,14 @@ export async function POST(request: Request) {
   }
 
   if (!hasActiveSubscription(user.subscriptionStatus)) {
-    // Allow demo seed for exploration by temporarily granting starter access
+    if (process.env.NODE_ENV === "production") {
+      return NextResponse.json(
+        { error: "Active subscription required" },
+        { status: 403 }
+      );
+    }
+
+    // Dev/demo only: grant starter access for local exploration
     await prisma.user.update({
       where: { id: session.user.id },
       data: {

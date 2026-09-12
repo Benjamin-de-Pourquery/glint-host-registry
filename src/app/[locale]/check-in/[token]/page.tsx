@@ -8,6 +8,7 @@ type Props = { params: Promise<{ locale: string; token: string }> };
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
+  referrer: "no-referrer",
 };
 
 export default async function CheckInPage({ params }: Props) {

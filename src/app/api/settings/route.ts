@@ -23,7 +23,6 @@ export async function GET() {
       language: true,
       subscriptionPlan: true,
       subscriptionStatus: true,
-      stripeCustomerId: true,
     },
   });
 

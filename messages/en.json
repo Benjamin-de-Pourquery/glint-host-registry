@@ -789,21 +789,21 @@
       "wsUsername": "WS username (often ends with _WS)",
       "wsPassword": "WS password",
       "liveSubmit": "Enable live submission for this property",
-      "liveSubmitHint": "Requires SES_LIVE=true on server. Submissions default to dry-run otherwise.",
-      "liveSubmitDisabled": "Server SES_LIVE is not enabled — only dry-run submissions are available.",
+      "liveSubmitHint": "When enabled, guest reports are sent to the Ministry of Interior within 24 hours of check-in.",
+      "liveSubmitDisabled": "Live government submission is not available yet — you can test your connection and validate reports without sending them.",
       "save": "Save credentials",
       "test": "Test connection",
       "lastTest": "Last test: {status} — {date}",
-      "encryptionMissing": "Server encryption key (SECRETS_ENCRYPTION_KEY) is not configured. Contact your administrator.",
+      "encryptionMissing": "Secure credential storage is not available. Contact support if this persists.",
       "securityNote": "Credentials are encrypted at rest and never exposed to the browser after saving."
     },
     "stay": {
       "prepare": "Prepare SES report",
-      "dryRun": "Dry-run submit",
+      "dryRun": "Validate (no send)",
       "submit": "Submit to SES",
       "prepareReady": "Report ready for {count} guest(s)",
       "validationFailed": "{count} validation issue(s) — complete guest data first",
-      "dryRunOk": "Dry-run complete — XML validated, not sent to government",
+      "dryRunOk": "Validation complete — report was not sent to the government",
       "submittedOk": "Submitted to SES successfully",
       "rejected": "SES rejected the submission",
       "error": "Could not process SES submission"
@@ -811,7 +811,7 @@
     "submission": {
       "status": {
         "queued": "Queued",
-        "dry_run": "Dry-run",
+        "dry_run": "Validated",
         "sent": "Sent",
         "accepted": "Accepted",
         "rejected": "Rejected"

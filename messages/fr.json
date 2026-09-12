@@ -789,12 +789,12 @@
       "wsUsername": "Identifiant WS (souvent se termine par _WS)",
       "wsPassword": "Mot de passe WS",
       "liveSubmit": "Activer l'envoi en production pour ce bien",
-      "liveSubmitHint": "Nécessite SES_LIVE=true sur le serveur. Sinon, seules les simulations sont possibles.",
-      "liveSubmitDisabled": "SES_LIVE n'est pas activé sur le serveur — simulations uniquement.",
+      "liveSubmitHint": "Une fois activé, les déclarations voyageurs sont envoyées au Ministère de l'Intérieur sous 24 h après l'arrivée.",
+      "liveSubmitDisabled": "L'envoi en production n'est pas encore disponible — vous pouvez tester la connexion et valider les déclarations sans les envoyer.",
       "save": "Enregistrer",
       "test": "Tester la connexion",
       "lastTest": "Dernier test : {status} — {date}",
-      "encryptionMissing": "Clé de chiffrement serveur (SECRETS_ENCRYPTION_KEY) non configurée.",
+      "encryptionMissing": "Le stockage sécurisé des identifiants n'est pas disponible. Contactez le support si le problème persiste.",
       "securityNote": "Les identifiants sont chiffrés au repos et ne sont jamais exposés au navigateur après enregistrement."
     },
     "stay": {

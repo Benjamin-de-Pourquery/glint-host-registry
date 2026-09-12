@@ -2,13 +2,15 @@
 
 Professional compliance operations SaaS for EU short-term rental hosts under Regulation (EU) 2024/1028.
 
+**Going live?** See [GO_LIVE.md](./GO_LIVE.md) for the production billing checklist (Stripe live flip, smoke tests, rollback).
+
 ## Stack
 
 - **Next.js 16** (App Router) + TypeScript + Tailwind CSS
 - **Prisma 7** + SQLite (local/demo) — Postgres/Turso-ready
 - **Auth.js (NextAuth v5)** — email/password credentials
 - **next-intl** — bilingual FR/EN UI
-- **Stripe** — subscription billing (test mode)
+- **Stripe** — subscription billing (test mode until go-live; see [GO_LIVE.md](./GO_LIVE.md))
 
 ## Quick start
 
@@ -31,6 +33,14 @@ Open [http://localhost:4311](http://localhost:4311)
 
 ## Environment variables
 
+See [.env.example](./.env.example) for the full list. Summary:
+
+| Target | Stripe keys | Notes |
+|--------|-------------|-------|
+| Local / Preview | `sk_test_` / `pk_test_` | Safe for development and PR previews |
+| Production (pre go-live) | `sk_test_` / `pk_test_` | Current soft-launch default |
+| Production (go-live) | `sk_live_` / `pk_live_` | Flip per [GO_LIVE.md](./GO_LIVE.md); keep `SES_LIVE=false` |
+
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `DATABASE_URL` | Yes | SQLite path (`file:./dev.db`) or Turso/libsql URL |
@@ -41,8 +51,9 @@ Open [http://localhost:4311](http://localhost:4311)
 | `STRIPE_PRICE_STARTER` | For billing | Price ID for Starter plan (€19/mo) |
 | `STRIPE_PRICE_PRO` | For billing | Price ID for Pro plan (€49/mo) |
 | `STRIPE_WEBHOOK_SECRET` | For billing | Webhook signing secret |
+| `CRON_SECRET` | Production | Protects daily iCal sync cron (`vercel.json` → `/api/cron/sync-calendars`) |
 | `SECRETS_ENCRYPTION_KEY` | For Spain SES | 32-byte base64 key for encrypting SOAP credentials at rest (`openssl rand -base64 32`) |
-| `SES_LIVE` | For Spain SES | Set to `true` to enable live SOAP submissions to production endpoint (default: test/dry-run) |
+| `SES_LIVE` | For Spain SES | Set to `true` only when ready for live SOAP submissions (default: `false` / dry-run) |
 
 ## Stripe setup (test mode)
 
@@ -74,12 +85,13 @@ Open [http://localhost:4311](http://localhost:4311)
 ## Deploy on Vercel
 
 1. Push to GitHub and import in Vercel.
-2. Set all env vars from `.env.example`.
+2. Set all env vars from `.env.example` (Preview: test Stripe; Production: see [GO_LIVE.md](./GO_LIVE.md)).
 3. For production database, use [Turso](https://turso.tech) or Vercel Postgres:
    - Turso: `DATABASE_URL="libsql://your-db.turso.io"` + `TURSO_AUTH_TOKEN`
    - Run migrations: `npx prisma migrate deploy`
 4. Configure Stripe webhook endpoint: `https://your-domain.com/api/stripe/webhook`
 5. Set `NEXT_PUBLIC_APP_URL` to your production URL.
+6. Set `CRON_SECRET` on Production — daily iCal sync is scheduled in `vercel.json` (04:00 UTC).
 
 ## Project structure
 

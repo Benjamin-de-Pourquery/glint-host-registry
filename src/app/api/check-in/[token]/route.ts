@@ -8,11 +8,14 @@ import {
 import { findMatchingStayForRecord } from "@/lib/guest-register/missing-fiches";
 import { isValidSignatureDataUrl } from "@/lib/security/signature-data-url";
 import { isCheckInRateLimited } from "@/lib/security/rate-limit";
+import { validateCheckInForSes } from "@/lib/ses/check-in-validation";
+import { isSpainCountry, usesSesHospedajes } from "@/lib/spain/regions";
 import { z } from "zod";
 
 const childSchema = z.object({
   firstNames: z.string().min(1),
   dateOfBirth: z.string().min(1),
+  kinship: z.string().max(5).optional(),
 });
 
 const submitSchema = z.object({
@@ -102,6 +105,20 @@ export async function POST(
 
     if (!isValidSignatureDataUrl(data.signatureDataUrl)) {
       return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+    }
+
+    const property = tokenRecord.property;
+    const sesRequired =
+      isSpainCountry(property.country) && usesSesHospedajes(property.city);
+
+    if (sesRequired) {
+      const validationErrors = validateCheckInForSes(data);
+      if (validationErrors.length > 0) {
+        return NextResponse.json(
+          { error: "Validation failed", validationErrors },
+          { status: 400 }
+        );
+      }
     }
 
     const isFrench = isFrenchNationality(data.nationality);

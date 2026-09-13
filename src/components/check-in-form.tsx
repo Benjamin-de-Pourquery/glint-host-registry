@@ -6,21 +6,34 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SignaturePad } from "@/components/signature-pad";
-import { Loader2, CheckCircle } from "lucide-react";
-import { isSpainCountry } from "@/lib/spain/regions";
+import { Loader2, CheckCircle, Info } from "lucide-react";
+import {
+  getSpainGuestReportingSystem,
+  isSpainCountry,
+  usesSesHospedajes,
+} from "@/lib/spain/regions";
 
 type Props = {
   token: string;
   propertyName: string;
   propertyCountry?: string;
+  propertyCity?: string;
 };
 
-type ChildEntry = { firstNames: string; dateOfBirth: string };
+type ChildEntry = { firstNames: string; dateOfBirth: string; kinship: string };
 
-export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props) {
+export function CheckInForm({
+  token,
+  propertyName,
+  propertyCountry = "",
+  propertyCity = "",
+}: Props) {
   const t = useTranslations("guestRegister.public");
   const tSes = useTranslations("ses.checkIn");
+  const tRegional = useTranslations("ses.regionalSystem");
   const isSpain = isSpainCountry(propertyCountry);
+  const sesApplies = isSpain && usesSesHospedajes(propertyCity);
+  const regionalSystem = isSpain ? getSpainGuestReportingSystem(propertyCity) : null;
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -43,6 +56,7 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
     documentNumber: "",
     documentSupport: "",
     sex: "",
+    kinship: "",
     postalCode: "",
     municipalityCode: "",
     municipalityName: "",
@@ -54,7 +68,7 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
   };
 
   const addChild = () => {
-    setChildren((prev) => [...prev, { firstNames: "", dateOfBirth: "" }]);
+    setChildren((prev) => [...prev, { firstNames: "", dateOfBirth: "", kinship: "HI" }]);
   };
 
   const updateChild = (index: number, field: keyof ChildEntry, value: string) => {
@@ -66,6 +80,9 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
   const removeChild = (index: number) => {
     setChildren((prev) => prev.filter((_, i) => i !== index));
   };
+
+  const needsDocumentSupport =
+    sesApplies && (form.documentType === "NIF" || form.documentType === "NIE");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,12 +107,14 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Failed");
+        const validationMsg =
+          data.validationErrors?.[0]?.message?.en || data.error;
+        throw new Error(validationMsg || "Failed");
       }
 
       setSubmitted(true);
-    } catch {
-      setError(t("submitError"));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t("submitError"));
     } finally {
       setLoading(false);
     }
@@ -117,6 +136,21 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
         <p>{t("legalNotice")}</p>
         <p className="mt-2 text-xs text-blue-700">{t("frenchNote")}</p>
       </div>
+
+      {isSpain && regionalSystem && regionalSystem !== "ses" && (
+        <div className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50/80 p-4 text-sm text-amber-900">
+          <Info className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+          <div>
+            <p className="font-medium">{tRegional("title")}</p>
+            <p className="mt-1 text-xs text-amber-800">
+              {regionalSystem === "catalonia"
+                ? tRegional("catalonia", { city: propertyCity })
+                : tRegional("basque", { city: propertyCity })}
+            </p>
+            <p className="mt-2 text-xs text-amber-700">{tRegional("hint")}</p>
+          </div>
+        </div>
+      )}
 
       <p className="text-sm text-slate-600">
         {t("propertyLabel")}: <span className="font-medium text-slate-900">{propertyName}</span>
@@ -210,7 +244,7 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
         </div>
       </div>
 
-      {isSpain && (
+      {sesApplies && (
         <div className="space-y-4 rounded-lg border border-emerald-100 bg-emerald-50/40 p-4">
           <p className="text-sm font-medium text-emerald-900">{tSes("title")}</p>
           <p className="text-xs text-emerald-800">{tSes("hint")}</p>
@@ -221,6 +255,7 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
                 className="flex h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm"
                 value={form.documentType}
                 onChange={(e) => update("documentType", e.target.value)}
+                required
               >
                 <option value="PAS">PAS</option>
                 <option value="NIF">NIF</option>
@@ -232,22 +267,46 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
               <Label>{tSes("documentNumber")}</Label>
               <Input
                 required
+                maxLength={15}
                 value={form.documentNumber}
                 onChange={(e) => update("documentNumber", e.target.value)}
               />
             </div>
+            {needsDocumentSupport && (
+              <div className="space-y-2">
+                <Label>{tSes("documentSupport")}</Label>
+                <Input
+                  required
+                  maxLength={9}
+                  value={form.documentSupport}
+                  onChange={(e) => update("documentSupport", e.target.value)}
+                  placeholder={tSes("documentSupportHint")}
+                />
+              </div>
+            )}
             <div className="space-y-2">
               <Label>{tSes("sex")}</Label>
               <select
                 className="flex h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm"
                 value={form.sex}
                 onChange={(e) => update("sex", e.target.value)}
+                required
               >
                 <option value="">—</option>
                 <option value="H">H</option>
                 <option value="M">M</option>
                 <option value="O">O</option>
               </select>
+            </div>
+            <div className="space-y-2">
+              <Label>{tSes("addressCountry")}</Label>
+              <Input
+                required
+                maxLength={3}
+                value={form.addressCountryAlpha3}
+                onChange={(e) => update("addressCountryAlpha3", e.target.value.toUpperCase())}
+                placeholder={tSes("addressCountryHint")}
+              />
             </div>
             <div className="space-y-2">
               <Label>{tSes("postalCode")}</Label>
@@ -302,6 +361,21 @@ export function CheckInForm({ token, propertyName, propertyCountry = "" }: Props
                 onChange={(e) => updateChild(index, "dateOfBirth", e.target.value)}
               />
             </div>
+            {sesApplies && (
+              <div className="space-y-1">
+                <Label className="text-xs">{tSes("kinship")}</Label>
+                <select
+                  className="flex h-10 rounded-lg border border-slate-200 bg-white px-2 text-sm"
+                  value={child.kinship}
+                  onChange={(e) => updateChild(index, "kinship", e.target.value)}
+                >
+                  <option value="HI">HI</option>
+                  <option value="CY">CY</option>
+                  <option value="SG">SG</option>
+                  <option value="OTR">OTR</option>
+                </select>
+              </div>
+            )}
             <Button type="button" variant="ghost" size="sm" onClick={() => removeChild(index)}>
               {t("removeChild")}
             </Button>

@@ -45,6 +45,7 @@ export default async function CheckInPage({ params }: Props) {
             token={token}
             propertyName={tokenRecord.property.name}
             propertyCountry={tokenRecord.property.country}
+            propertyCity={tokenRecord.property.city}
           />
         </div>
       </div>

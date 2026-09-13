@@ -38,8 +38,8 @@ See [.env.example](./.env.example) for the full list. Summary:
 | Target | Stripe keys | Notes |
 |--------|-------------|-------|
 | Local / Preview | `sk_test_` / `pk_test_` | Safe for development and PR previews |
-| Production (pre go-live) | `sk_test_` / `pk_test_` | Current soft-launch default |
-| Production (go-live) | `sk_live_` / `pk_live_` | Flip per [GO_LIVE.md](./GO_LIVE.md); keep `SES_LIVE=false` |
+| Production | `sk_live_` / `pk_live_` | **Live billing active** (see [GO_LIVE.md](./GO_LIVE.md)); keep `SES_LIVE=false` |
+| Preview | `sk_test_` / `pk_test_` | Safe for PR previews and QA |
 
 | Variable | Required | Description |
 |----------|----------|-------------|
@@ -51,7 +51,7 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `STRIPE_PRICE_STARTER` | For billing | Price ID for Starter plan (€19/mo) |
 | `STRIPE_PRICE_PRO` | For billing | Price ID for Pro plan (€49/mo) |
 | `STRIPE_WEBHOOK_SECRET` | For billing | Webhook signing secret |
-| `CRON_SECRET` | Production | Protects daily iCal sync cron (`vercel.json` → `/api/cron/sync-calendars`) |
+| `CRON_SECRET` | Production | Protects cron routes: iCal sync + SES due notifications (`vercel.json`) |
 | `SECRETS_ENCRYPTION_KEY` | For Spain SES | 32-byte base64 key for encrypting SOAP credentials at rest (`openssl rand -base64 32`) |
 | `SES_LIVE` | For Spain SES | Set to `true` only when ready for live SOAP submissions (default: `false` / dry-run) |
 
@@ -91,7 +91,7 @@ See [.env.example](./.env.example) for the full list. Summary:
    - Run migrations: `npx prisma migrate deploy`
 4. Configure Stripe webhook endpoint: `https://your-domain.com/api/stripe/webhook`
 5. Set `NEXT_PUBLIC_APP_URL` to your production URL.
-6. Set `CRON_SECRET` on Production — daily iCal sync is scheduled in `vercel.json` (04:00 UTC).
+6. Set `CRON_SECRET` and `SECRETS_ENCRYPTION_KEY` on Production — crons in `vercel.json`: iCal sync (04:00 UTC daily), SES due (08:00 UTC daily).
 
 ## Project structure
 

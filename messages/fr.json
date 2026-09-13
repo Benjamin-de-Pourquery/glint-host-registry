@@ -21,31 +21,32 @@
   },
   "landing": {
     "hero": {
-      "title": "Conformité location courte durée — guidée et opérationnelle",
-      "subtitle": "Démarches par ville, registre voyageurs et numéros d'enregistrement. Glint vous guide — sans déposer à la mairie.",
+      "title": "Conformité location courte durée UE — France, Espagne et plus",
+      "subtitle": "Démarches par ville, registre voyageurs, file SES.HOSPEDAJES et numéros sous le Règlement (UE) 2024/1028. Glint vous guide — sans déposer à la mairie ni au MIR pour vous.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
       "badge": "Cadre Règlement (UE) 2024/1028"
     },
     "heroMock": {
-      "property": "Appartement Marais",
-      "status": "Action requise",
+      "property": "Appartement Malasaña",
+      "status": "SES à faire",
       "nextAction": "Prochaine action",
-      "nextActionText": "Compléter la déclaration en ligne — Paris",
+      "nextActionText": "Valider parte de viajeros — Madrid (simulation)",
       "tabs": {
         "overview": "Aperçu",
         "compliance": "Démarches",
         "register": "Registre",
         "listings": "Annonces"
       },
-      "guestTitle": "Registre des voyageurs",
-      "guestLink": "Lien check-in actif",
-      "guestRetention": "Conservation 6 mois"
+      "guestTitle": "Registre + file SES",
+      "guestLink": "Lien check-in Annexe I actif",
+      "guestRetention": "Échéance SES 24h suivie"
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "Paris, Lyon, Marseille, Bordeaux, Nice",
+      "cities": "Villes FR + Madrid, Valence, Málaga, Barcelone",
+      "ses": "Validation SES.HOSPEDAJES (simulation)",
       "bilingual": "Interface FR + EN"
     },
     "problem": {
@@ -53,17 +54,17 @@
       "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
       "points": {
         "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
-        "2": "Les plateformes exigeront des numéros valides sur chaque annonce dès 2026",
-        "3": "Le registre des voyageurs (fiche de police) reste une obligation opérationnelle en France"
+        "2": "En Espagne, SES.HOSPEDAJES impose encore la déclaration voyageurs sous 24h — même après l'annulation du NRUA",
+        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes exigeront des numéros valides dès mai 2026"
       }
     },
     "solution": {
       "title": "Un cockpit conformité pour tout votre portefeuille",
-      "description": "Glint centralise démarches guidées, registre voyageurs, suivi des numéros et préparation des annonces — avec une prochaine action claire par bien.",
+      "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros — avec une prochaine action claire par bien.",
       "points": {
-        "1": "Tunnels Démarches par ville avec branchement résidence principale / secondaire",
-        "2": "Registre des voyageurs : lien public, signature, conservation 6 mois, export CSV",
-        "3": "Onglets par bien — Aperçu, Démarches, Registre, Annonces, Notes — plus archivage"
+        "1": "Playbooks France et Espagne (Madrid, Valence, Málaga, Barcelone) avec exceptions régionales",
+        "2": "Registre : check-in Annexe I public, signature, file SES avec fenêtre de préparation 48h",
+        "3": "iCal → registre séjours → validation SES en simulation ; envoi SOAP live quand vous activez SES_LIVE"
       }
     },
     "features": {
@@ -74,8 +75,12 @@
         "description": "Tunnels pas à pas pour Paris, Lyon, Marseille, Bordeaux et Nice — avec liens vers formulaires officiels, règlements et branchement selon votre statut de résidence."
       },
       "guestRegister": {
-        "title": "Registre des voyageurs",
-        "description": "Lien ou QR d'enregistrement public, signature numérique, conservation 6 mois, export CSV et impression des fiches de police."
+        "title": "Registre voyageurs (FR + ES)",
+        "description": "Lien ou QR public avec champs Annexe I pour SES Espagne, fiche de police pour voyageurs étrangers en France, signature numérique et export CSV."
+      },
+      "sesQueue": {
+        "title": "File SES",
+        "description": "File tableau de bord pour séjours Espagne : fenêtre 48h, suivi des retards, validation en simulation et prochaine action jusqu'à acceptation MIR."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -157,12 +162,20 @@
         "5": {
           "q": "Puis-je archiver un bien sans perdre mes données ?",
           "a": "Oui. L'archivage retire le bien du portefeuille actif et de la limite de votre plan, tout en conservant démarches, registre et historique. Restauration en un clic."
+        },
+        "6": {
+          "q": "Glint envoie-t-il les déclarations SES.HOSPEDAJES en production par défaut ?",
+          "a": "Non. Glint valide les données voyageurs et exécute des simulations SOAP aujourd'hui. L'envoi MIR live nécessite SES_LIVE=true et une activation explicite par bien. Nous ne remplaçons pas votre identité de déclarant MIR."
+        },
+        "7": {
+          "q": "Et la Catalogne ou le Pays basque ?",
+          "a": "SES.HOSPEDAJES ne s'applique pas en Catalogne ni au Pays basque — les systèmes régionaux (Mossos, tourisme basque) s'appliquent. Glint affiche un avis clair et ne prétend pas soumettre au SES dans ces régions."
         }
       }
     },
     "cta": {
       "title": "Mettez votre conformité sous contrôle",
-      "subtitle": "Démarches guidées, registre voyageurs et suivi portefeuille — prêts avant l'échéance plateformes de mai 2026.",
+      "subtitle": "Playbooks France, file SES Espagne, registre voyageurs et suivi portefeuille — prêts pour le Règlement UE 2024/1028 et l'échéance SES 24h.",
       "button": "Essai gratuit 14 jours",
       "login": "Connexion"
     },
@@ -819,20 +832,35 @@
     },
     "dueQueue": {
       "loading": "Chargement de la file SES…",
-      "title": "Déclarations SES dues sous 24h",
-      "subtitle": "Séjours en Espagne nécessitant une déclaration SES.HOSPEDAJES.",
+      "title": "Obligations SES — préparation, échéance et retard",
+      "subtitle": "Séjours Espagne nécessitant une action SES.HOSPEDAJES (fenêtre 48h + échéance 24h).",
       "guestCount": "{count, plural, one {# voyageur} other {# voyageurs}}",
+      "noGuestsYet": "Pas encore de données voyageur",
       "hoursLeft": "{hours}h restantes",
       "overdue": "En retard",
+      "prepWindow": "À venir (48h)",
       "noCredentials": "Pas d'identifiants",
-      "action": "Ouvrir registre"
+      "action": "Ouvrir registre",
+      "actionGuest": "Envoyer lien check-in",
+      "status": {
+        "prep_window": "Séjour à venir",
+        "awaiting_guest_data": "En attente données",
+        "awaiting_submission": "Prêt à soumettre",
+        "validation_needed": "Validation requise",
+        "overdue": "En retard"
+      }
     },
     "checkIn": {
-      "title": "Données SES voyageur (Espagne)",
-      "hint": "Requis pour la déclaration Ministère de l'Intérieur (RD 933/2021).",
+      "title": "Données SES voyageur (Espagne — Annexe I)",
+      "hint": "Requis pour la déclaration Ministère de l'Intérieur (RD 933/2021). Champs alignés sur la validation SES MIR v3.1.2.",
       "documentType": "Type de document",
       "documentNumber": "Numéro de document",
+      "documentSupport": "N° support (NIF/NIE)",
+      "documentSupportHint": "Numéro de support sur la carte NIF/NIE",
       "sex": "Sexe (H/M/O)",
+      "kinship": "Parenté (mineurs)",
+      "addressCountry": "Pays de résidence (ISO alpha-3)",
+      "addressCountryHint": "ex. ESP, FRA, GBR",
       "postalCode": "Code postal",
       "municipalityCode": "Code municipal (Espagne, INE 5 chiffres)",
       "municipalityCodeHint": "Obligatoire si adresse en Espagne",

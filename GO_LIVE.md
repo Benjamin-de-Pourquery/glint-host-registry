@@ -14,11 +14,12 @@
 | FR compliance playbooks | Paris, Lyon, Marseille, Bordeaux, Nice — verified official links |
 | Guest register | Public check-in link, signature, 6-month retention, CSV/print export |
 | iCal calendar sync | SSRF-safe fetch, manual sync in app, daily cron via `vercel.json` (`/api/cron/sync-calendars`) |
+| SES due queue + cron | 48h prep window, overdue tracking, in-app notifications via `/api/cron/ses-due` (daily 08:00 UTC) |
 | Turso production DB | Migrations applied; `DATABASE_URL` + `TURSO_AUTH_TOKEN` on Vercel Production |
 | Spain SES integration | SOAP credentials UI, validation + **dry-run only** (test endpoint) |
 | Landing & pricing copy | Starter **€19/mo** (≤3 properties), Pro **€49/mo** (≤50 properties), 14-day trial |
 | Stripe live catalog | Product + prices + webhook created in Stripe **live mode** (IDs below) |
-| Stripe (current state) | **Test keys** on Preview **and** Production until morning flip |
+| Stripe (current state) | **Live keys on Production** (flipped at go-live); Preview stays on test keys |
 
 ---
 
@@ -39,20 +40,19 @@ Webhook events configured: `checkout.session.completed`, `customer.subscription.
 
 ---
 
-## Morning flip — Production only (6 steps)
+## Stripe flip — Production (completed)
 
-Apply in **Vercel → Project → Settings → Environment Variables → Production**. Leave **Preview** unchanged (test keys).
+Stripe live keys are active on **Production**. Preview remains on test keys.
 
-1. Set `STRIPE_SECRET_KEY` to the staged live secret (`sk_live_…`) — Money Maker applies on Benjamin's go-ahead.
-2. Set `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` to the staged live publishable key (`pk_live_…`).
-3. Set price IDs (copy exactly):
-   - `STRIPE_PRICE_STARTER` → `price_1UEgDXFmO19WLWW8U4lFbo6Y`
-   - `STRIPE_PRICE_PRO` → `price_1UEgDYFmO19WLWW8exs9fWvU`
-4. Set `STRIPE_WEBHOOK_SECRET` to the staged signing secret (`whsec_…`) for webhook `we_1UEgDpFmO19WLWW8OM2hpyd0`.
-5. Confirm unchanged:
-   - **Preview** env still uses `sk_test_` / `pk_test_` and test Price IDs
-   - `SES_LIVE` = `false` on Production
-6. **Redeploy Production** (Vercel → Deployments → Redeploy latest).
+If re-flipping or verifying:
+
+1. `STRIPE_SECRET_KEY` = live secret (`sk_live_…`)
+2. `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` = live publishable key (`pk_live_…`)
+3. `STRIPE_PRICE_STARTER` → `price_1UEgDXFmO19WLWW8U4lFbo6Y`
+4. `STRIPE_PRICE_PRO` → `price_1UEgDYFmO19WLWW8exs9fWvU`
+5. `STRIPE_WEBHOOK_SECRET` for webhook `we_1UEgDpFmO19WLWW8OM2hpyd0`
+6. Confirm `SES_LIVE` = `false` on Production
+7. Redeploy Production after any env change
 
 Customer Portal should already be enabled in Stripe Dashboard → Settings → Billing → Customer portal.
 
@@ -78,7 +78,11 @@ After Production redeploy with live Stripe:
    - *Note:* Test card `4242…` only works in test mode; it will **fail** once live keys are active — that confirms live mode is on.
 4. **Webhook** — subscription status shows `trialing` or `active` in Settings within ~30 s (webhook `we_1UEgDpFmO19WLWW8OM2hpyd0`).
 5. **Property** — add one property (billing gate should pass).
-6. **iCal cron** — confirm `CRON_SECRET` is set on Production; cron runs daily at 04:00 UTC via `vercel.json` (check Vercel → Cron Jobs tab after deploy).
+6. **Cron jobs** — confirm `CRON_SECRET` is set on Production:
+   - iCal sync: daily at 04:00 UTC (`/api/cron/sync-calendars`)
+   - SES due notifications: daily at 08:00 UTC (`/api/cron/ses-due`)
+   - Check Vercel → Cron Jobs tab after deploy
+7. **Spain SES** — add a Madrid property, enable check-in link, confirm Annex I fields appear; due queue shows prep/overdue statuses; dry-run validate works; `SES_LIVE` remains `false`.
 
 Optional: Billing portal opens from Settings → Manage billing.
 
@@ -108,9 +112,9 @@ These should already be set; verify once:
 | `AUTH_SECRET` | Random 32+ bytes |
 | `DATABASE_URL` | Turso libsql URL |
 | `TURSO_AUTH_TOKEN` | Turso auth token |
-| `SECRETS_ENCRYPTION_KEY` | Random base64 (Spain SES credential encryption) |
-| `CRON_SECRET` | Random secret (Vercel sends as `Authorization: Bearer …` on cron invocations) |
-| `SES_LIVE` | `false` |
+| `SECRETS_ENCRYPTION_KEY` | **Required** — random base64 for Spain SES credential encryption (`openssl rand -base64 32`) |
+| `CRON_SECRET` | **Required** — random secret for iCal + SES cron routes (Vercel sends as `Authorization: Bearer …`) |
+| `SES_LIVE` | `false` — dry-run only; flip deliberately when ready for live MIR SOAP |
 
 See [.env.example](./.env.example) for full variable documentation.
 

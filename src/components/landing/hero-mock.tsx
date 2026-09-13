@@ -30,7 +30,7 @@ export async function HeroMock() {
               <p className="truncate text-sm font-semibold text-slate-900">{t("property")}</p>
               <p className="flex items-center gap-1 truncate text-xs text-slate-500">
                 <MapPin className="h-3 w-3 shrink-0" />
-                Paris, FR
+                Madrid, ES
               </p>
             </div>
           </div>

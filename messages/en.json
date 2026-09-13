@@ -21,31 +21,32 @@
   },
   "landing": {
     "hero": {
-      "title": "Short-term rental compliance — guided and operational",
-      "subtitle": "City compliance steps, guest register, and registration numbers. Glint guides you — we don't file at the mairie.",
+      "title": "EU short-term rental compliance — France, Spain, and beyond",
+      "subtitle": "City playbooks, guest register, Spain SES.HOSPEDAJES queue, and registration numbers under Regulation (EU) 2024/1028. Glint guides you — we don't file at the mairie or MIR on your behalf.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
       "badge": "Regulation (EU) 2024/1028 framework"
     },
     "heroMock": {
-      "property": "Marais Apartment",
-      "status": "Action needed",
+      "property": "Malasaña Flat",
+      "status": "SES due",
       "nextAction": "Next action",
-      "nextActionText": "Complete online declaration — Paris",
+      "nextActionText": "Validate parte de viajeros — Madrid (dry-run)",
       "tabs": {
         "overview": "Overview",
         "compliance": "Compliance",
         "register": "Register",
         "listings": "Listings"
       },
-      "guestTitle": "Guest register",
-      "guestLink": "Check-in link active",
-      "guestRetention": "6-month retention"
+      "guestTitle": "Guest register + SES queue",
+      "guestLink": "Annex I check-in link active",
+      "guestRetention": "24h SES deadline tracked"
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "Paris, Lyon, Marseille, Bordeaux, Nice",
+      "cities": "FR cities + Madrid, Valencia, Málaga, Barcelona",
+      "ses": "SES.HOSPEDAJES dry-run validation",
       "bilingual": "FR + EN interface"
     },
     "problem": {
@@ -53,17 +54,17 @@
       "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
       "points": {
         "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "Platforms will require valid numbers on every listing from 2026",
-        "3": "The guest register (fiche de police) remains an operational obligation in France"
+        "2": "In Spain, SES.HOSPEDAJES still requires guest reports within 24h of check-in — even after the NRUA annulment",
+        "3": "France keeps the fiche de police for foreign guests; platforms require valid numbers from May 2026"
       }
     },
     "solution": {
       "title": "One compliance cockpit for your portfolio",
-      "description": "Glint centralizes guided compliance steps, guest register, registration tracking, and listing prep — with a clear next action per property.",
+      "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking — with a clear next action per property.",
       "points": {
-        "1": "City compliance tunnels with primary vs secondary residence branching",
-        "2": "Guest register: public link, signature, 6-month retention, CSV export",
-        "3": "Per-property tabs — Overview, Compliance, Register, Listings, Notes — plus archive/restore"
+        "1": "City playbooks for France and Spain (Madrid, Valencia, Málaga, Barcelona) with regional exceptions",
+        "2": "Guest register: public Annex I check-in, signature, SES due queue with 48h prep window",
+        "3": "iCal → stay registry → SES dry-run validation today; live SOAP when you explicitly enable SES_LIVE"
       }
     },
     "features": {
@@ -74,8 +75,12 @@
         "description": "Step-by-step tunnels for Paris, Lyon, Marseille, Bordeaux, and Nice — with official form links, regulations, and residency branching."
       },
       "guestRegister": {
-        "title": "Guest register",
-        "description": "Public check-in link or QR, digital signature, 6-month retention, CSV export, and printable police forms."
+        "title": "Guest register (FR + ES)",
+        "description": "Public check-in link or QR with Annex I fields for Spain SES, French fiche de police for foreign guests, digital signature, and CSV export."
+      },
+      "sesQueue": {
+        "title": "SES due queue",
+        "description": "Dashboard queue for Spain stays: 48h prep window, overdue tracking, dry-run validation, and clear next action until accepted by MIR."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -157,12 +162,20 @@
         "5": {
           "q": "Can I archive a property without losing data?",
           "a": "Yes. Archiving removes the property from your active portfolio and plan limit while keeping compliance steps, guest register, and history. Restore in one click."
+        },
+        "6": {
+          "q": "Does Glint submit SES.HOSPEDAJES reports live by default?",
+          "a": "No. Glint validates guest data and runs dry-run SOAP checks today. Live MIR submission requires SES_LIVE=true and explicit per-property enablement. We never replace your MIR filing identity."
+        },
+        "7": {
+          "q": "What about Catalonia and the Basque Country?",
+          "a": "SES.HOSPEDAJES does not apply in Catalonia or the Basque Country — regional systems (Mossos, Basque tourism) apply instead. Glint shows a clear notice and does not pretend to submit SES in those regions."
         }
       }
     },
     "cta": {
       "title": "Take control of your compliance",
-      "subtitle": "Guided compliance, guest register, and portfolio tracking — ready before the May 2026 platform deadline.",
+      "subtitle": "France playbooks, Spain SES queue, guest register, and portfolio tracking — ready for EU 2024/1028 and the 24h SES deadline.",
       "button": "Start 14-day free trial",
       "login": "Sign in"
     },
@@ -819,20 +832,35 @@
     },
     "dueQueue": {
       "loading": "Loading SES due queue…",
-      "title": "SES declarations due within 24h",
-      "subtitle": "Guest stays in Spain requiring SES.HOSPEDAJES reporting.",
+      "title": "SES obligations — prep, due, and overdue",
+      "subtitle": "Spain stays requiring SES.HOSPEDAJES attention (48h prep window + 24h deadline).",
       "guestCount": "{count, plural, one {# guest} other {# guests}}",
+      "noGuestsYet": "No guest data yet",
       "hoursLeft": "{hours}h remaining",
       "overdue": "Overdue",
+      "prepWindow": "Upcoming (48h)",
       "noCredentials": "No credentials",
-      "action": "Open register"
+      "action": "Open register",
+      "actionGuest": "Send check-in link",
+      "status": {
+        "prep_window": "Upcoming stay",
+        "awaiting_guest_data": "Awaiting guest data",
+        "awaiting_submission": "Ready to submit",
+        "validation_needed": "Needs validation",
+        "overdue": "Overdue"
+      }
     },
     "checkIn": {
-      "title": "SES guest data (Spain)",
-      "hint": "Required for Ministry of Interior guest reporting (RD 933/2021).",
+      "title": "SES guest data (Spain — Annex I)",
+      "hint": "Required for Ministry of Interior guest reporting (RD 933/2021). Fields match SES MIR v3.1.2 validation.",
       "documentType": "ID document type",
       "documentNumber": "Document number",
+      "documentSupport": "Document support no. (NIF/NIE)",
+      "documentSupportHint": "Support number on NIF/NIE card",
       "sex": "Sex (H/M/O)",
+      "kinship": "Kinship (minors)",
+      "addressCountry": "Country of residence (ISO alpha-3)",
+      "addressCountryHint": "e.g. ESP, FRA, GBR",
       "postalCode": "Postal code",
       "municipalityCode": "Municipality code (Spain, INE 5-digit)",
       "municipalityCodeHint": "Required if address is in Spain",

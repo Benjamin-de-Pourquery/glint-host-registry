@@ -85,7 +85,51 @@ export async function syncMissingFicheNotifications(userId: string) {
   }
 }
 
+export async function syncSesDueNotifications(userId: string) {
+  const { getSesDueQueueForUser } = await import("@/lib/ses/due-queue");
+  const dueItems = await getSesDueQueueForUser(userId);
+
+  for (const item of dueItems) {
+    if (item.queueStatus !== "overdue" && item.queueStatus !== "awaiting_submission") {
+      continue;
+    }
+
+    const guestRef = item.guestLabel ? ` (${item.guestLabel})` : "";
+    const title =
+      item.queueStatus === "overdue"
+        ? `SES overdue: ${item.propertyName}`
+        : `SES submission needed: ${item.propertyName}`;
+    const message =
+      item.queueStatus === "overdue"
+        ? `The 24-hour SES deadline has passed for stay starting ${format(new Date(item.checkInDate), "dd/MM/yyyy")}${guestRef} at ${item.propertyName}. Submit or validate the parte de viajeros.`
+        : `Guest stay at ${item.propertyName} requires SES submission${guestRef}. Deadline: ${format(new Date(item.deadline), "dd/MM/yyyy HH:mm")}.`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId,
+        propertyId: item.propertyId,
+        type: "ses_due",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId,
+          propertyId: item.propertyId,
+          title,
+          message,
+          type: "ses_due",
+        },
+      });
+    }
+  }
+}
+
 export async function syncAllNotifications(userId: string) {
   await syncExpiryNotifications(userId);
   await syncMissingFicheNotifications(userId);
+  await syncSesDueNotifications(userId);
 }

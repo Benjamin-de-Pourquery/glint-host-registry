@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Shield, MapPin, Languages } from "lucide-react";
+import { Shield, MapPin, Languages, FileCheck } from "lucide-react";
 
 export async function TrustStrip() {
   const t = await getTranslations("landing.trust");
@@ -7,6 +7,7 @@ export async function TrustStrip() {
   const items = [
     { icon: Shield, label: t("regulation") },
     { icon: MapPin, label: t("cities") },
+    { icon: FileCheck, label: t("ses") },
     { icon: Languages, label: t("bilingual") },
   ];
 

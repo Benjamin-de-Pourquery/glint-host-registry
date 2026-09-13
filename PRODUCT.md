@@ -42,7 +42,8 @@ Data-driven step-by-step guides keyed by country and city walk hosts through loc
 - **Compliance tab** — hero next-action card, per-field copy chips, compact documents checklist, collapsible local pitfalls, expandable step timeline
 - Step progress (mark done / skip) persisted per property
 - Full FR guides: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
-- Country stubs: Spain, Italy, Netherlands
+- **Spain playbooks:** Madrid, Valencia, Málaga, Barcelona + generic fallback (post-NRUA annulment context)
+- Country stubs: Italy, Netherlands
 
 Guides link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
 
@@ -58,6 +59,18 @@ Pro feature helping French hosts collect and retain the legally required individ
 - **iCal calendar import** — hosts paste Airbnb/Booking/Vrbo/Google Calendar (or any HTTPS) export calendar URLs per property; Glint syncs upcoming stays into expected stays for missing-fiche tracking. **Limits:** iCal feeds typically expose dates and a guest label only — not full police-form PII (name, nationality, passport, etc.). Sync creates stay shells; guests still complete the fiche via the public check-in link. Cancelled or removed calendar events are marked without deleting stays that already have guest records.
 - French nationals may optionally log for operational convenience; UI labels the legal fiche as targeting foreign guests
 - Disclaimer: Glint organizes compliance records; not legal advice; host remains responsible
+
+### 6b. Spain SES.HOSPEDAJES (guest reporting)
+Operational layer for **RD 933/2021** guest reporting to the Ministry of Interior (MIR SOAP v3.1.2):
+
+- **Legal context:** After Spain STS 620/2026 annulled the national NRUA registry, regional tourist codes and VUDA remain; SES.HOSPEDAJES is still mandatory for most of Spain (guest report within 24h of check-in).
+- **Regional exceptions:** Catalonia and Basque Country use regional systems — `usesSesHospedajes()` gates SES UI; check-in shows a bilingual notice instead of SES fields.
+- **Annex I check-in:** Public check-in collects SES fields (document type/number/support, sex, postal code, municipality, country alpha-3) with validation aligned to `src/lib/ses/validation.ts`.
+- **SES credentials panel:** Encrypted SOAP credentials per property (`SECRETS_ENCRYPTION_KEY`).
+- **Due queue:** Dashboard card with 48h prep window, overdue tracking, and statuses (`awaiting_guest_data`, `awaiting_submission`, `validation_needed`, `overdue`).
+- **Prepare / dry-run / submit:** Validate XML, dry-run SOAP (default), live submit only when `SES_LIVE=true` + per-property enable.
+- **Cron:** `/api/cron/ses-due` (every 6h) creates in-app notifications for stays entering the 24h window.
+- **Differentiator vs RegistroViajero / seshospedajes.es:** Those tools automate SES-only. Glint adds the EU compliance layer (FR playbooks + iCal registry + SES queue) — not a channel-manager replacement.
 
 ### 7. Registration & compliance
 Per-property compliance tracking:

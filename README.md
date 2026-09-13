@@ -91,7 +91,7 @@ See [.env.example](./.env.example) for the full list. Summary:
    - Run migrations: `npx prisma migrate deploy`
 4. Configure Stripe webhook endpoint: `https://your-domain.com/api/stripe/webhook`
 5. Set `NEXT_PUBLIC_APP_URL` to your production URL.
-6. Set `CRON_SECRET` and `SECRETS_ENCRYPTION_KEY` on Production — crons in `vercel.json`: iCal sync (04:00 UTC daily), SES due (every 6h).
+6. Set `CRON_SECRET` and `SECRETS_ENCRYPTION_KEY` on Production — crons in `vercel.json`: iCal sync (04:00 UTC daily), SES due (08:00 UTC daily).
 
 ## Project structure
 

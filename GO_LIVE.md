@@ -14,7 +14,7 @@
 | FR compliance playbooks | Paris, Lyon, Marseille, Bordeaux, Nice — verified official links |
 | Guest register | Public check-in link, signature, 6-month retention, CSV/print export |
 | iCal calendar sync | SSRF-safe fetch, manual sync in app, daily cron via `vercel.json` (`/api/cron/sync-calendars`) |
-| SES due queue + cron | 48h prep window, overdue tracking, in-app notifications via `/api/cron/ses-due` (every 6h UTC) |
+| SES due queue + cron | 48h prep window, overdue tracking, in-app notifications via `/api/cron/ses-due` (daily 08:00 UTC) |
 | Turso production DB | Migrations applied; `DATABASE_URL` + `TURSO_AUTH_TOKEN` on Vercel Production |
 | Spain SES integration | SOAP credentials UI, validation + **dry-run only** (test endpoint) |
 | Landing & pricing copy | Starter **€19/mo** (≤3 properties), Pro **€49/mo** (≤50 properties), 14-day trial |
@@ -80,7 +80,7 @@ After Production redeploy with live Stripe:
 5. **Property** — add one property (billing gate should pass).
 6. **Cron jobs** — confirm `CRON_SECRET` is set on Production:
    - iCal sync: daily at 04:00 UTC (`/api/cron/sync-calendars`)
-   - SES due notifications: every 6h UTC (`/api/cron/ses-due`)
+   - SES due notifications: daily at 08:00 UTC (`/api/cron/ses-due`)
    - Check Vercel → Cron Jobs tab after deploy
 7. **Spain SES** — add a Madrid property, enable check-in link, confirm Annex I fields appear; due queue shows prep/overdue statuses; dry-run validate works; `SES_LIVE` remains `false`.
 

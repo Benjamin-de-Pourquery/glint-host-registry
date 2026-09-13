@@ -69,7 +69,7 @@ Operational layer for **RD 933/2021** guest reporting to the Ministry of Interio
 - **SES credentials panel:** Encrypted SOAP credentials per property (`SECRETS_ENCRYPTION_KEY`).
 - **Due queue:** Dashboard card with 48h prep window, overdue tracking, and statuses (`awaiting_guest_data`, `awaiting_submission`, `validation_needed`, `overdue`).
 - **Prepare / dry-run / submit:** Validate XML, dry-run SOAP (default), live submit only when `SES_LIVE=true` + per-property enable.
-- **Cron:** `/api/cron/ses-due` (every 6h) creates in-app notifications for stays entering the 24h window.
+- **Cron:** `/api/cron/ses-due` (daily 08:00 UTC) creates in-app notifications for stays entering the 24h window.
 - **Differentiator vs RegistroViajero / seshospedajes.es:** Those tools automate SES-only. Glint adds the EU compliance layer (FR playbooks + iCal registry + SES queue) — not a channel-manager replacement.
 
 ### 7. Registration & compliance

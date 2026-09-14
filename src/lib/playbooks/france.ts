@@ -1786,8 +1786,36 @@ const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
             role: "info",
             urlVerified: true,
           },
+          {
+            url: "https://www.formulaires.service-public.fr/gf/cerfa_14004.do",
+            label: {
+              en: "Cerfa 14004*04 — furnished tourist rental declaration (paper)",
+              fr: "Cerfa 14004*04 — déclaration meublé de tourisme (papier)",
+            },
+            role: "form",
+            urlVerified: true,
+          },
+          {
+            url: ENTREPRISES_API_MEUBLES_URL,
+            label: {
+              en: "entreprises.gouv.fr — API Meublés (national portal, Q4 2026)",
+              fr: "entreprises.gouv.fr — API Meublés (portail national, T4 2026)",
+            },
+            role: "info",
+            urlVerified: true,
+          },
         ],
-        { en: "your local municipality", fr: "votre mairie / collectivité locale" }
+        { en: "your local municipality", fr: "votre mairie / collectivité locale" },
+        {
+          instruction: {
+            en: "Dual regime (Sept 2026): (a) Until the national API Meublés teleservice opens (expected Q4 2026), obtain your registration number via your commune's online teleservice or Cerfa 14004*04 — this is declaration/enregistrement, separate from change-of-use authorization and separate from the 120/90-day primary residence cap. (b) After the national portal opens, migrate to the national FRA number during the transition window. Platforms may block listings now — use your valid municipal number on listings in the interim.",
+            fr: "Double régime (sept. 2026) : (a) Jusqu'à l'ouverture du téléservice national API Meublés (prévu T4 2026), obtenez votre numéro via le téléservice communal ou le Cerfa 14004*04 — c'est la déclaration/enregistrement, distincte de l'autorisation de changement d'usage et du plafond 120/90 jours pour résidence principale. (b) À l'ouverture du portail national, migrez vers le numéro FRA national dans la fenêtre de transition. Les plateformes peuvent bloquer les annonces dès maintenant — utilisez votre numéro municipal valide en attendant.",
+          },
+          pitfalls: {
+            en: "Do not conflate furnished rental registration with change-of-use (non-primary) or the primary-residence night cap — three separate requirements. Glint does not file at the mairie or DGE.",
+            fr: "Ne confondez pas l'enregistrement meublé de tourisme avec le changement d'usage (non principale) ou le plafond de nuitées en résidence principale — trois obligations distinctes. Glint ne dépose pas de dossiers à la mairie ni à la DGE.",
+          },
+        }
       ),
       frSteps.taxDeclaration("fr"),
       frSteps.updateListings("fr"),

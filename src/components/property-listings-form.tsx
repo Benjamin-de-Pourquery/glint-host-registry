@@ -2,150 +2,165 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 import { CopyFieldChip } from "@/components/copy-field-chip";
+import { PlatformBlockPlaybook } from "@/components/platform-block-playbook";
 import {
-  LISTING_PLATFORMS,
-  PLATFORM_HELP_LINKS,
-  getLinkedPlatforms,
-  getPlatformProgressSummary,
-  type ListingPlatform,
-  type PlatformProgressItem,
-} from "@/lib/listings/platforms";
-import { ExternalLink, HelpCircle, Link2 } from "lucide-react";
+  LISTING_CHANNELS,
+  type DisplayStatus,
+  type ListingChannelRecord,
+  type ListingChannelType,
+} from "@/lib/listings/channels";
+import { ExternalLink, Link2, Plus, Ban, Check, HelpCircle } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-
-type FormData = {
-  airbnbUrl?: string | null;
-  bookingUrl?: string | null;
-  vrboUrl?: string | null;
-  registrationNumber?: string | null;
-};
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
   propertyId: string;
-  initial: FormData;
-  platformProgress: PlatformProgressItem[];
+  city: string;
+  registrationNumber?: string | null;
+  nationalRegistrationNumber?: string | null;
+  initialChannels: ListingChannelRecord[];
 };
 
-const PLATFORM_LABEL_KEYS: Record<ListingPlatform, string> = {
-  airbnb: "airbnb",
-  booking: "booking",
-  vrbo: "vrbo",
+const CHANNEL_LABEL_KEYS: Record<ListingChannelType, string> = {
+  AIRBNB: "airbnb",
+  BOOKING: "booking",
+  VRBO: "vrbo",
+  OTHER: "other",
 };
 
-export function PropertyListingsForm({ propertyId, initial, platformProgress }: Props) {
+const STATUS_STYLES: Record<DisplayStatus, string> = {
+  PRESENT: "bg-emerald-100 text-emerald-800",
+  MISSING: "bg-amber-100 text-amber-800",
+  BLOCKED: "bg-red-100 text-red-800",
+  UNKNOWN: "bg-slate-100 text-slate-700",
+};
+
+export function PropertyListingsForm({
+  propertyId,
+  city,
+  registrationNumber,
+  nationalRegistrationNumber,
+  initialChannels,
+}: Props) {
   const t = useTranslations("properties.detail.listings");
   const tForm = useTranslations("properties.form");
-  const locale = useLocale();
   const router = useRouter();
-  const lang = (locale === "fr" ? "fr" : "en") as "en" | "fr";
 
-  const [form, setForm] = useState({
-    airbnbUrl: initial.airbnbUrl || "",
-    bookingUrl: initial.bookingUrl || "",
-    vrboUrl: initial.vrboUrl || "",
-    registrationNumber: initial.registrationNumber || "",
-  });
-  const [progress, setProgress] = useState(platformProgress);
+  const [channels, setChannels] = useState(initialChannels);
   const [loading, setLoading] = useState(false);
-  const [toggling, setToggling] = useState<ListingPlatform | null>(null);
+  const [showAdd, setShowAdd] = useState(false);
+  const [newChannel, setNewChannel] = useState<ListingChannelType>("AIRBNB");
+  const [newUrl, setNewUrl] = useState("");
+  const [blockReasonDraft, setBlockReasonDraft] = useState("");
+  const [expandedBlockId, setExpandedBlockId] = useState<string | null>(null);
 
-  const hasListings =
-    form.airbnbUrl.trim() || form.bookingUrl.trim() || form.vrboUrl.trim();
+  const effectiveNer =
+    nationalRegistrationNumber?.trim() || registrationNumber?.trim() || "";
 
-  const hasRegistrationNumber = Boolean(form.registrationNumber.trim());
+  const blockedChannel = channels.find((c) => c.displayStatus === "BLOCKED");
+  const showBlockPlaybook =
+    blockedChannel || expandedBlockId !== null;
 
-  const linkedPlatforms = useMemo(
+  const issueCount = useMemo(
     () =>
-      getLinkedPlatforms({
-        airbnbUrl: form.airbnbUrl,
-        bookingUrl: form.bookingUrl,
-        vrboUrl: form.vrboUrl,
-      }),
-    [form.airbnbUrl, form.bookingUrl, form.vrboUrl]
+      channels.filter(
+        (c) => c.displayStatus === "MISSING" || c.displayStatus === "BLOCKED"
+      ).length,
+    [channels]
   );
 
-  const summary = getPlatformProgressSummary(linkedPlatforms, progress);
-
-  const getPlatformUrl = (platform: ListingPlatform) => {
-    switch (platform) {
-      case "airbnb":
-        return form.airbnbUrl;
-      case "booking":
-        return form.bookingUrl;
-      case "vrbo":
-        return form.vrboUrl;
+  const updateChannel = async (
+    channelId: string,
+    patch: {
+      displayStatus?: DisplayStatus;
+      blockReason?: string | null;
+      registrationNumberDisplayed?: string | null;
+      listingUrl?: string;
     }
+  ) => {
+    setLoading(true);
+    const res = await fetch(
+      `/api/properties/${propertyId}/listing-channels/${channelId}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(patch),
+      }
+    );
+    setLoading(false);
+
+    if (!res.ok) {
+      toast.error(t("statusError"));
+      return;
+    }
+
+    const updated = (await res.json()) as ListingChannelRecord;
+    setChannels((prev) => prev.map((c) => (c.id === channelId ? updated : c)));
+    router.refresh();
+    toast.success(t("statusUpdated"));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const addChannel = async () => {
+    if (!newUrl.trim()) return;
     setLoading(true);
-
-    const [propRes, regRes] = await Promise.all([
-      fetch(`/api/properties/${propertyId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          airbnbUrl: form.airbnbUrl || null,
-          bookingUrl: form.bookingUrl || null,
-          vrboUrl: form.vrboUrl || null,
-        }),
+    const res = await fetch(`/api/properties/${propertyId}/listing-channels`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        channel: newChannel,
+        listingUrl: newUrl,
+        registrationNumberDisplayed: effectiveNer || null,
+        displayStatus: effectiveNer ? "PRESENT" : "MISSING",
       }),
-      fetch(`/api/properties/${propertyId}/registration`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ registrationNumber: form.registrationNumber || null }),
-      }),
-    ]);
-
+    });
     setLoading(false);
-    if (!propRes.ok || !regRes.ok) {
+
+    if (!res.ok) {
       toast.error(t("saveError"));
       return;
     }
+
+    const created = (await res.json()) as ListingChannelRecord;
+    setChannels((prev) => {
+      const without = prev.filter((c) => c.channel !== created.channel);
+      return [...without, created];
+    });
+    setNewUrl("");
+    setShowAdd(false);
     router.refresh();
     toast.success(t("saved"));
   };
 
-  const togglePlatform = async (platform: ListingPlatform) => {
-    const current = progress.find((p) => p.platform === platform);
-    const completed = !current?.completed;
-    setToggling(platform);
-
-    const res = await fetch(`/api/properties/${propertyId}/listings-platforms`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ platform, completed }),
+  const markBlocked = async (channelId: string) => {
+    await updateChannel(channelId, {
+      displayStatus: "BLOCKED",
+      blockReason: blockReasonDraft || null,
     });
-
-    setToggling(null);
-
-    if (!res.ok) {
-      toast.error(t("checklist.toggleError"));
-      return;
-    }
-
-    const data = await res.json();
-    setProgress((prev) =>
-      prev.map((p) =>
-        p.platform === platform
-          ? { ...p, completed: data.completed, completedAt: data.completedAt }
-          : p
-      )
-    );
-    router.refresh();
+    setExpandedBlockId(channelId);
+    setBlockReasonDraft("");
   };
+
+  const playbookChannel =
+    blockedChannel?.channel ||
+    channels.find((c) => c.id === expandedBlockId)?.channel ||
+    "Airbnb";
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
-      {!hasListings && (
+      {channels.length === 0 && (
         <div className="rounded-xl border border-dashed border-slate-200 px-6 py-10 text-center">
           <Link2 className="mx-auto h-8 w-8 text-slate-300" />
           <p className="mt-3 font-medium text-slate-900">{t("empty.title")}</p>
@@ -153,211 +168,212 @@ export function PropertyListingsForm({ propertyId, initial, platformProgress }: 
         </div>
       )}
 
-      {hasRegistrationNumber && (
+      {effectiveNer && (
         <section className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 space-y-3">
           <h2 className="text-lg font-semibold text-slate-900">{t("registrationTitle")}</h2>
           <p className="text-sm text-slate-600">{t("registrationHint")}</p>
           <CopyFieldChip
             label={t("registrationLabel")}
-            value={form.registrationNumber}
+            value={effectiveNer}
             copiedLabel={t("copied")}
           />
         </section>
       )}
 
-      {hasRegistrationNumber && linkedPlatforms.length > 0 && (
-        <section className="space-y-4">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg font-semibold text-slate-900">{t("checklist.title")}</h2>
-            <p className="text-sm font-medium text-slate-600">
-              {t("checklist.summary", {
-                completed: summary.completed,
-                total: summary.total,
-              })}
-            </p>
+      {showBlockPlaybook && (
+        <PlatformBlockPlaybook
+          channel={playbookChannel}
+          registrationNumber={registrationNumber}
+          nationalRegistrationNumber={nationalRegistrationNumber}
+          city={city}
+          blockReason={blockedChannel?.blockReason}
+        />
+      )}
+
+      {issueCount > 0 && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50/80 px-4 py-3 text-sm text-amber-900">
+          {t("issuesBanner", { count: issueCount })}
+        </div>
+      )}
+
+      {channels.length > 0 && (
+        <section className="space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-slate-900">{t("channelsTitle")}</h2>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setShowAdd(!showAdd)}
+            >
+              <Plus className="mr-1.5 h-3.5 w-3.5" />
+              {t("addChannel")}
+            </Button>
           </div>
-          <p className="text-sm text-slate-500">{t("checklist.description")}</p>
+
           <ul className="space-y-3">
-            {LISTING_PLATFORMS.map((platform) => {
-              const isLinked = linkedPlatforms.includes(platform);
-              const item = progress.find((p) => p.platform === platform);
-              const helpLink = PLATFORM_HELP_LINKS[platform];
-              const platformUrl = getPlatformUrl(platform);
-
-              return (
-                <li
-                  key={platform}
-                  className={cn(
-                    "rounded-lg border px-4 py-3",
-                    isLinked ? "border-slate-200 bg-white" : "border-slate-100 bg-slate-50/50"
-                  )}
-                >
-                  <div className="flex items-start gap-3">
-                    <Checkbox
-                      id={`platform-${platform}`}
-                      checked={item?.completed ?? false}
-                      disabled={!isLinked || toggling === platform}
-                      onCheckedChange={() => togglePlatform(platform)}
-                      className="mt-0.5"
-                    />
-                    <div className="min-w-0 flex-1 space-y-1">
-                      <label
-                        htmlFor={`platform-${platform}`}
-                        className={cn(
-                          "text-sm font-medium",
-                          isLinked ? "text-slate-900 cursor-pointer" : "text-slate-400"
-                        )}
-                      >
-                        {t("checklist.item", { platform: tForm(PLATFORM_LABEL_KEYS[platform]) })}
-                      </label>
-                      {!isLinked && (
-                        <p className="text-xs text-slate-400">{t("checklist.notLinked")}</p>
-                      )}
-                      {isLinked && (
-                        <div className="flex flex-wrap items-center gap-2 pt-1">
-                          {platformUrl && (
-                            <a
-                              href={platformUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs text-emerald-700 hover:underline"
-                            >
-                              <ExternalLink className="h-3 w-3" />
-                              {t("checklist.openListing")}
-                            </a>
-                          )}
-                          <a
-                            href={helpLink.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-slate-700 hover:underline"
-                          >
-                            <HelpCircle className="h-3 w-3" />
-                            {helpLink.label[lang]}
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                    {isLinked && (
-                      <span
-                        className={cn(
-                          "shrink-0 rounded-full px-2 py-0.5 text-xs font-medium",
-                          item?.completed
-                            ? "bg-emerald-100 text-emerald-800"
-                            : "bg-amber-50 text-amber-800"
-                        )}
-                      >
-                        {item?.completed ? t("checklist.done") : t("checklist.pending")}
-                      </span>
-                    )}
+            {channels.map((channel) => (
+              <li
+                key={channel.id}
+                className="rounded-lg border border-slate-200 bg-white p-4 space-y-3"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="font-medium text-slate-900">
+                      {tForm(CHANNEL_LABEL_KEYS[channel.channel])}
+                    </p>
+                    <a
+                      href={channel.listingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-flex items-center gap-1 text-xs text-emerald-700 hover:underline break-all"
+                    >
+                      <ExternalLink className="h-3 w-3 shrink-0" />
+                      {channel.listingUrl}
+                    </a>
                   </div>
-                </li>
-              );
-            })}
+                  <span
+                    className={cn(
+                      "shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium",
+                      STATUS_STYLES[channel.displayStatus]
+                    )}
+                  >
+                    {t(`status.${channel.displayStatus}`)}
+                  </span>
+                </div>
+
+                {channel.registrationNumberDisplayed && (
+                  <CopyFieldChip
+                    label={t("nerOnListing")}
+                    value={channel.registrationNumberDisplayed}
+                    copiedLabel={t("copied")}
+                  />
+                )}
+
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={loading}
+                    onClick={() =>
+                      updateChannel(channel.id, {
+                        displayStatus: "PRESENT",
+                        registrationNumberDisplayed: effectiveNer || channel.registrationNumberDisplayed,
+                      })
+                    }
+                  >
+                    <Check className="mr-1 h-3.5 w-3.5" />
+                    {t("markPresent")}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={loading}
+                    onClick={() =>
+                      updateChannel(channel.id, { displayStatus: "MISSING" })
+                    }
+                  >
+                    <HelpCircle className="mr-1 h-3.5 w-3.5" />
+                    {t("markMissing")}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    disabled={loading}
+                    onClick={() => setExpandedBlockId(channel.id)}
+                  >
+                    <Ban className="mr-1 h-3.5 w-3.5" />
+                    {t("markBlocked")}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    disabled={loading}
+                    onClick={() =>
+                      updateChannel(channel.id, { displayStatus: "UNKNOWN" })
+                    }
+                  >
+                    {t("clearStatus")}
+                  </Button>
+                </div>
+
+                {expandedBlockId === channel.id && channel.displayStatus !== "BLOCKED" && (
+                  <div className="space-y-2 rounded-md border border-red-100 bg-red-50/50 p-3">
+                    <Label htmlFor={`block-reason-${channel.id}`}>{t("blockReasonLabel")}</Label>
+                    <Textarea
+                      id={`block-reason-${channel.id}`}
+                      value={blockReasonDraft}
+                      onChange={(e) => setBlockReasonDraft(e.target.value)}
+                      placeholder={t("blockReasonPlaceholder")}
+                      rows={2}
+                    />
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="destructive"
+                      disabled={loading}
+                      onClick={() => markBlocked(channel.id)}
+                    >
+                      {t("confirmBlock")}
+                    </Button>
+                  </div>
+                )}
+              </li>
+            ))}
           </ul>
-          {summary.total > 0 && summary.completed === summary.total && (
-            <p className="text-sm text-emerald-700">{t("checklist.allComplete")}</p>
-          )}
         </section>
       )}
 
-      {hasRegistrationNumber && linkedPlatforms.length === 0 && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50/50 px-4 py-3 text-sm text-amber-900">
-          {t("checklist.noLinkedPlatforms")}
-        </div>
-      )}
-
-      {!hasRegistrationNumber && (
-        <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-          {t("checklist.noRegistration")}
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-slate-900">{t("urlsTitle")}</h2>
-          <div className="space-y-4">
+      {(showAdd || channels.length === 0) && (
+        <section className="space-y-4 rounded-xl border border-slate-200 p-5">
+          <h2 className="text-lg font-semibold text-slate-900">
+            {channels.length === 0 ? t("urlsTitle") : t("addChannel")}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="airbnb">{tForm("airbnb")}</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="airbnb"
-                  type="url"
-                  value={form.airbnbUrl}
-                  onChange={(e) => setForm({ ...form, airbnbUrl: e.target.value })}
-                  placeholder="https://"
-                />
-                {form.airbnbUrl && (
-                  <a href={form.airbnbUrl} target="_blank" rel="noopener noreferrer">
-                    <Button type="button" variant="outline" size="icon">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </a>
-                )}
-              </div>
+              <Label>{t("channelLabel")}</Label>
+              <Select
+                value={newChannel}
+                onValueChange={(v) => setNewChannel(v as ListingChannelType)}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {LISTING_CHANNELS.map((ch) => (
+                    <SelectItem key={ch} value={ch}>
+                      {tForm(CHANNEL_LABEL_KEYS[ch])}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="booking">{tForm("booking")}</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="booking"
-                  type="url"
-                  value={form.bookingUrl}
-                  onChange={(e) => setForm({ ...form, bookingUrl: e.target.value })}
-                  placeholder="https://"
-                />
-                {form.bookingUrl && (
-                  <a href={form.bookingUrl} target="_blank" rel="noopener noreferrer">
-                    <Button type="button" variant="outline" size="icon">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </a>
-                )}
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="vrbo">{tForm("vrbo")}</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="vrbo"
-                  type="url"
-                  value={form.vrboUrl}
-                  onChange={(e) => setForm({ ...form, vrboUrl: e.target.value })}
-                  placeholder="https://"
-                />
-                {form.vrboUrl && (
-                  <a href={form.vrboUrl} target="_blank" rel="noopener noreferrer">
-                    <Button type="button" variant="outline" size="icon">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {!hasRegistrationNumber && (
-          <section className="space-y-4 border-t border-slate-100 pt-6">
-            <h2 className="text-lg font-semibold text-slate-900">{t("registrationTitle")}</h2>
-            <p className="text-sm text-slate-500">{t("registrationHint")}</p>
-            <div className="space-y-2">
-              <Label htmlFor="registration">{t("registrationLabel")}</Label>
+            <div className="space-y-2 sm:col-span-1">
+              <Label htmlFor="listing-url">{t("listingUrlLabel")}</Label>
               <Input
-                id="registration"
-                value={form.registrationNumber}
-                onChange={(e) => setForm({ ...form, registrationNumber: e.target.value })}
-                placeholder="e.g. 75112-STR-2024-00847"
-                className="font-mono"
+                id="listing-url"
+                type="url"
+                value={newUrl}
+                onChange={(e) => setNewUrl(e.target.value)}
+                placeholder="https://"
               />
             </div>
-          </section>
-        )}
+          </div>
+          <Button type="button" onClick={addChannel} disabled={loading || !newUrl.trim()}>
+            {t("save")}
+          </Button>
+        </section>
+      )}
 
-        <Button type="submit" disabled={loading}>
-          {t("save")}
-        </Button>
-      </form>
+      {!effectiveNer && (
+        <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+          {t("noRegistrationHint")}
+        </div>
+      )}
     </div>
   );
 }

@@ -26,7 +26,12 @@
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
-      "badge": "Cadre Règlement (UE) 2024/1028"
+      "badge": "Cadre Règlement (UE) 2024/1028",
+      "platformBadge": "Sept. 2026 — contrôles NER plateformes"
+    },
+    "platformCompliance": {
+      "title": "Suivi NER sur vos annonces",
+      "description": "Depuis septembre 2026, Airbnb et Booking exigent un numéro d'enregistrement valide alors que le téléservice national français (API Meublés) n'ouvre qu'au T4 2026. Glint suit vos annonces, les blocages plateforme et le dossier de recours — sans envoyer d'e-mails pour vous."
     },
     "heroMock": {
       "property": "Appartement Malasaña",
@@ -95,8 +100,8 @@
         "description": "Vue d'ensemble du statut conformité, alertes d'expiration, archivage et restauration sans perdre l'historique."
       },
       "listings": {
-        "title": "Préparation des annonces",
-        "description": "Numéros d'enregistrement, liens plateformes et résumés exportables pour Airbnb, Booking et Vrbo."
+        "title": "Conformité annonces (NER)",
+        "description": "Suivi par canal (Airbnb, Booking, Vrbo) : statut du numéro affiché, blocages plateforme et playbook de recours avec sources officielles."
       },
       "miniUi": {
         "complianceHeader": "Démarches · Paris",
@@ -226,13 +231,15 @@
       "expired": "Expiré",
       "notStarted": "Non commencé",
       "guestsThisMonth": "Voyageurs ce mois",
-      "fichesNeeded": "Fiches manquantes"
+      "fichesNeeded": "Fiches manquantes",
+      "listingCompliance": "Annonces NER"
     },
     "attention": {
       "action": "{count, plural, one {# bien nécessite une action} other {# biens nécessitent une action}}",
       "expired": "{count, plural, one {# enregistrement expiré} other {# enregistrements expirés}}",
       "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
-      "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}"
+      "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}",
+      "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
@@ -311,6 +318,7 @@
       "airbnb": "URL annonce Airbnb",
       "booking": "URL annonce Booking.com",
       "vrbo": "URL annonce Vrbo",
+      "other": "Autre plateforme",
       "notes": "Notes",
       "residencyStatus": "Statut de résidence",
       "residencyPlaceholder": "Sélectionner le type de résidence",
@@ -354,7 +362,8 @@
         "ready": "Tout est prêt",
         "action_needed": "Compléter les démarches",
         "expired": "Renouveler l'enregistrement",
-        "not_started": "Commencer les démarches"
+        "not_started": "Commencer les démarches",
+        "listing_compliance": "Corriger annonces NER"
       }
     },
     "archiveAction": {
@@ -392,31 +401,47 @@
         "registration": "Numéro d'enregistrement"
       },
       "listings": {
-        "urlsTitle": "Liens des annonces",
+        "urlsTitle": "Ajouter une annonce",
+        "channelsTitle": "Annonces / canaux",
+        "channelLabel": "Plateforme",
+        "listingUrlLabel": "URL de l'annonce",
+        "addChannel": "Ajouter un canal",
         "registrationTitle": "Numéro sur les annonces",
         "registrationHint": "Ce numéro doit figurer sur chaque annonce plateforme conformément au règlement UE.",
         "registrationLabel": "Numéro d'enregistrement",
-        "copied": "Numéro d'enregistrement copié",
-        "save": "Enregistrer les annonces",
-        "saved": "Annonces enregistrées",
+        "nerOnListing": "NER affiché sur l'annonce",
+        "copied": "Copié",
+        "save": "Enregistrer",
+        "saved": "Annonce enregistrée",
         "saveError": "Impossible d'enregistrer",
+        "statusUpdated": "Statut mis à jour",
+        "statusError": "Impossible de mettre à jour le statut",
+        "issuesBanner": "{count, plural, one {# annonce nécessite une action NER} other {# annonces nécessitent une action NER}}",
+        "markPresent": "Numéro présent",
+        "markMissing": "Numéro manquant",
+        "markBlocked": "Plateforme a bloqué",
+        "clearStatus": "Effacer le statut",
+        "blockReasonLabel": "Motif du blocage (optionnel)",
+        "blockReasonPlaceholder": "ex. « Numéro d'enregistrement invalide » sur Airbnb",
+        "confirmBlock": "Confirmer le blocage",
+        "noRegistrationHint": "Ajoutez votre numéro d'enregistrement dans l'onglet Registre ou Démarches pour le copier sur vos annonces.",
+        "status": {
+          "PRESENT": "Présent",
+          "MISSING": "Manquant",
+          "BLOCKED": "Bloqué",
+          "UNKNOWN": "Non vérifié"
+        },
         "empty": {
           "title": "Aucune annonce liée",
           "description": "Ajoutez les URL de vos annonces Airbnb, Booking.com ou Vrbo ci-dessous."
         },
-        "checklist": {
-          "title": "Ajouter le numéro sur les plateformes",
-          "description": "Cochez chaque plateforme une fois le numéro d'enregistrement ajouté à l'annonce.",
-          "summary": "{completed}/{total} plateformes mises à jour",
-          "item": "Ajouter le numéro sur {platform}",
-          "done": "Fait",
-          "pending": "En attente",
-          "notLinked": "Ajoutez l'URL de l'annonce ci-dessus pour suivre cette plateforme",
-          "openListing": "Ouvrir l'annonce",
-          "allComplete": "Toutes les plateformes liées sont à jour. L'étape de conformité sera marquée automatiquement.",
-          "noLinkedPlatforms": "Ajoutez au moins une URL d'annonce ci-dessus pour commencer le suivi.",
-          "noRegistration": "Ajoutez votre numéro d'enregistrement ci-dessous pour débloquer la checklist plateformes.",
-          "toggleError": "Impossible de mettre à jour le statut"
+        "blockPlaybook": {
+          "title": "Playbook blocage plateforme",
+          "subtitle": "Étapes guidées pour rétablir votre annonce — sources officielles uniquement, sans envoi d'e-mail depuis Glint.",
+          "step": "Étape {number}",
+          "blockReason": "Motif enregistré",
+          "copied": "Copié",
+          "urlUnverified": "URL non vérifiée"
         }
       },
       "notes": {
@@ -518,7 +543,8 @@
       "action_needed": "Action requise",
       "expired": "Expiré",
       "not_started": "Non commencé",
-      "national_transition": "Transition nationale"
+      "national_transition": "Transition nationale",
+      "listing_compliance": "Annonces NER"
     }
   },
   "nationalTransition": {

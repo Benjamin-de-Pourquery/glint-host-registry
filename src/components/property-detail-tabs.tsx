@@ -12,7 +12,7 @@ import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
-import type { PlatformProgressItem } from "@/lib/listings/platforms";
+import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +51,7 @@ type PropertyData = {
   notes?: string | null;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
-  listingPlatformProgress: PlatformProgressItem[];
+  listingChannels: ListingChannelRecord[];
 };
 
 type Props = {
@@ -250,13 +250,10 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
       <TabsContent value="listings" className="mt-6">
         <PropertyListingsForm
           propertyId={property.id}
-          initial={{
-            airbnbUrl: property.airbnbUrl,
-            bookingUrl: property.bookingUrl,
-            vrboUrl: property.vrboUrl,
-            registrationNumber: property.registration?.registrationNumber,
-          }}
-          platformProgress={property.listingPlatformProgress}
+          city={property.city}
+          registrationNumber={property.registration?.registrationNumber}
+          nationalRegistrationNumber={property.registration?.nationalRegistrationNumber}
+          initialChannels={property.listingChannels}
         />
       </TabsContent>
 

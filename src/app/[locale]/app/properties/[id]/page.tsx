@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { LISTING_PLATFORMS } from "@/lib/listings/platforms";
+import { toListingChannelRecord } from "@/lib/listings/channels";
 import { PropertyDetailTabs } from "@/components/property-detail-tabs";
 import { PropertyArchiveButton } from "@/components/property-archive-button";
 import { Button } from "@/components/ui/button";
@@ -27,20 +27,13 @@ export default async function PropertyDetailPage({ params }: Props) {
     include: {
       registration: true,
       checklistItems: { orderBy: { sortOrder: "asc" } },
-      listingPlatformProgress: true,
+      listingChannels: true,
     },
   });
 
   if (!property) notFound();
 
-  const listingPlatformProgress = LISTING_PLATFORMS.map((platform) => {
-    const row = property.listingPlatformProgress.find((p) => p.platform === platform);
-    return {
-      platform,
-      completed: row?.completed ?? false,
-      completedAt: row?.completedAt?.toISOString() ?? null,
-    };
-  });
+  const listingChannels = property.listingChannels.map(toListingChannelRecord);
 
   const missingFichesCount = await getMissingFicheCountForProperty(
     id,
@@ -99,7 +92,7 @@ export default async function PropertyDetailPage({ params }: Props) {
             notes: property.notes,
             registration: property.registration,
             checklistItems: property.checklistItems,
-            listingPlatformProgress,
+            listingChannels,
           }}
         />
       </Suspense>

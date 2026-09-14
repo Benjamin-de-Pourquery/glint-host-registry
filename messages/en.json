@@ -26,7 +26,12 @@
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
-      "badge": "Regulation (EU) 2024/1028 framework"
+      "badge": "Regulation (EU) 2024/1028 framework",
+      "platformBadge": "Sept 2026 — platform NER checks"
+    },
+    "platformCompliance": {
+      "title": "Listing NER operations",
+      "description": "From September 2026, Airbnb and Booking require valid registration numbers while France's national API Meublés portal is not expected until Q4 2026. Glint tracks your listings, platform blocks, and appeal evidence — without sending emails on your behalf."
     },
     "heroMock": {
       "property": "Malasaña Flat",
@@ -95,8 +100,8 @@
         "description": "Compliance status overview, expiry alerts, archive and restore without losing history."
       },
       "listings": {
-        "title": "Listing preparation",
-        "description": "Registration numbers, platform URLs, and exportable summaries for Airbnb, Booking, and Vrbo."
+        "title": "Listing NER compliance",
+        "description": "Per-channel tracking (Airbnb, Booking, Vrbo): displayed number status, platform blocks, and appeal playbook with official sources."
       },
       "miniUi": {
         "complianceHeader": "Compliance · Paris",
@@ -226,13 +231,15 @@
       "expired": "Expired",
       "notStarted": "Not started",
       "guestsThisMonth": "Guests this month",
-      "fichesNeeded": "Fiches needed"
+      "fichesNeeded": "Fiches needed",
+      "listingCompliance": "Listing NER"
     },
     "attention": {
       "action": "{count, plural, one {# property needs action} other {# properties need action}}",
       "expired": "{count, plural, one {# expired registration} other {# expired registrations}}",
       "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}",
-      "nationalTransition": "{count, plural, one {# French property — national transition} other {# French properties — national transition}}"
+      "nationalTransition": "{count, plural, one {# French property — national transition} other {# French properties — national transition}}",
+      "listingCompliance": "{count, plural, one {# listing — missing or blocked NER} other {# listings — missing or blocked NER}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# missing police form} other {# missing police forms}}",
@@ -311,6 +318,7 @@
       "airbnb": "Airbnb listing URL",
       "booking": "Booking.com listing URL",
       "vrbo": "Vrbo listing URL",
+      "other": "Other platform",
       "notes": "Notes",
       "residencyStatus": "Residency status",
       "residencyPlaceholder": "Select residency type",
@@ -354,7 +362,8 @@
         "ready": "All set",
         "action_needed": "Complete compliance",
         "expired": "Renew registration",
-        "not_started": "Start compliance"
+        "not_started": "Start compliance",
+        "listing_compliance": "Fix listing NER"
       }
     },
     "archiveAction": {
@@ -392,31 +401,47 @@
         "registration": "Registration number"
       },
       "listings": {
-        "urlsTitle": "Listing URLs",
+        "urlsTitle": "Add a listing",
+        "channelsTitle": "Listings / channels",
+        "channelLabel": "Platform",
+        "listingUrlLabel": "Listing URL",
+        "addChannel": "Add channel",
         "registrationTitle": "Listing registration number",
         "registrationHint": "This number must appear on every platform listing under EU regulation.",
         "registrationLabel": "Registration number",
-        "copied": "Registration number copied",
-        "save": "Save listings",
-        "saved": "Listings saved",
+        "nerOnListing": "NER shown on listing",
+        "copied": "Copied",
+        "save": "Save",
+        "saved": "Listing saved",
         "saveError": "Could not save",
+        "statusUpdated": "Status updated",
+        "statusError": "Could not update status",
+        "issuesBanner": "{count, plural, one {# listing needs NER action} other {# listings need NER action}}",
+        "markPresent": "Number present",
+        "markMissing": "Number missing",
+        "markBlocked": "Platform blocked",
+        "clearStatus": "Clear status",
+        "blockReasonLabel": "Block reason (optional)",
+        "blockReasonPlaceholder": "e.g. \"Invalid registration number\" on Airbnb",
+        "confirmBlock": "Confirm block",
+        "noRegistrationHint": "Add your registration number in the Register or Compliance tab to copy it to listings.",
+        "status": {
+          "PRESENT": "Present",
+          "MISSING": "Missing",
+          "BLOCKED": "Blocked",
+          "UNKNOWN": "Not checked"
+        },
         "empty": {
           "title": "No listings linked",
           "description": "Add your Airbnb, Booking.com, or Vrbo listing URLs below."
         },
-        "checklist": {
-          "title": "Add registration number to platforms",
-          "description": "Mark each platform once you have added your registration number to the listing.",
-          "summary": "{completed}/{total} platforms updated",
-          "item": "Add registration number to {platform}",
-          "done": "Done",
-          "pending": "Pending",
-          "notLinked": "Add a listing URL above to track this platform",
-          "openListing": "Open listing",
-          "allComplete": "All linked platforms are updated. The compliance step will be marked done automatically.",
-          "noLinkedPlatforms": "Add at least one listing URL above to start tracking platform updates.",
-          "noRegistration": "Add your registration number below to unlock the platform checklist.",
-          "toggleError": "Could not update platform status"
+        "blockPlaybook": {
+          "title": "Platform block playbook",
+          "subtitle": "Guided steps to restore your listing — official sources only, no email sent from Glint.",
+          "step": "Step {number}",
+          "blockReason": "Recorded reason",
+          "copied": "Copied",
+          "urlUnverified": "URL not verified"
         }
       },
       "notes": {
@@ -518,7 +543,8 @@
       "action_needed": "Action needed",
       "expired": "Expired",
       "not_started": "Not started",
-      "national_transition": "National transition"
+      "national_transition": "National transition",
+      "listing_compliance": "Listing NER"
     }
   },
   "nationalTransition": {

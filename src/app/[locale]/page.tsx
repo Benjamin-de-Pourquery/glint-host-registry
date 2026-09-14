@@ -81,6 +81,24 @@ export default async function LandingPage({ params }: Props) {
 
       <TrustStrip />
 
+      <section className="border-b border-slate-200/80 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
+          <div className="flex flex-col gap-4 rounded-2xl border border-red-200/80 bg-red-50/40 p-6 sm:flex-row sm:items-start sm:gap-6">
+            <Badge className="shrink-0 self-start border-red-200 bg-white px-3 py-1 text-xs font-semibold text-red-800 hover:bg-white">
+              {t("hero.platformBadge")}
+            </Badge>
+            <div>
+              <h2 className="text-lg font-bold text-slate-900 sm:text-xl">
+                {t("platformCompliance.title")}
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600 sm:text-base">
+                {t("platformCompliance.description")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16">
           <div>

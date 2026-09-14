@@ -83,6 +83,7 @@ model Property {
   checklistItems ChecklistItem[]
   playbookProgress PlaybookStepProgress[]
   listingPlatformProgress ListingPlatformProgress[]
+  listingChannels ListingChannel[]
   notifications  Notification[]
   guestRegisterToken GuestRegisterToken?
   calendarFeeds CalendarFeed[]
@@ -248,6 +249,26 @@ model ListingPlatformProgress {
   property    Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 
   @@unique([propertyId, platform])
+}
+
+model ListingChannel {
+  id                          String    @id @default(cuid())
+  propertyId                  String
+  channel                     String
+  listingUrl                  String
+  registrationNumberDisplayed String?
+  displayStatus               String    @default("UNKNOWN")
+  lastCheckedAt               DateTime?
+  notes                       String?
+  blockedAt                   DateTime?
+  blockReason                 String?
+  createdAt                   DateTime  @default(now())
+  updatedAt                   DateTime  @updatedAt
+  property                    Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, channel])
+  @@index([propertyId])
+  @@index([displayStatus])
 }
 
 model Registration {

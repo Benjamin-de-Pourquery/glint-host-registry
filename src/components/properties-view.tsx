@@ -12,6 +12,7 @@ import {
   getComplianceNextActionKey,
   getComplianceStatus,
   propertiesListHref,
+  propertyHasListingComplianceIssue,
   type PortfolioStatusFilter,
 } from "@/lib/compliance";
 import { needsNationalTransitionAttention } from "@/lib/national-transition";
@@ -33,6 +34,7 @@ type PropertyItem = {
     nationalRegistrationNumber?: string | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
+  listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
 };
 
 type ViewMode = "compact" | "cards";
@@ -43,6 +45,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "expired",
   "ready",
   "not_started",
+  "listing_compliance",
 ];
 
 type Props = {
@@ -114,6 +117,9 @@ export function PropertiesView({
       ? properties.filter((property) => {
           if (statusFilter === "national_transition") {
             return needsNationalTransitionAttention(property.country, property.registration);
+          }
+          if (statusFilter === "listing_compliance") {
+            return propertyHasListingComplianceIssue(property.listingChannels ?? []);
           }
           return getPropertyComplianceStatus(property) === statusFilter;
         })
@@ -285,7 +291,12 @@ export function PropertiesView({
         <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200/90 bg-white shadow-sm">
           {filteredProperties.map((property) => {
             const status = getPropertyComplianceStatus(property);
-            const nextActionKey = getComplianceNextActionKey(status);
+            const hasListingIssue = propertyHasListingComplianceIssue(
+              property.listingChannels ?? []
+            );
+            const nextActionKey = hasListingIssue
+              ? "listing_compliance"
+              : getComplianceNextActionKey(status);
 
             return (
               <Link

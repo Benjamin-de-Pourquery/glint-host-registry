@@ -33,6 +33,7 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
     include: {
       registration: true,
       checklistItems: true,
+      listingChannels: true,
     },
     orderBy: { name: "asc" },
   });

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getComplianceStatus } from "@/lib/compliance";
+import { getComplianceStatus, propertyHasListingComplianceIssue } from "@/lib/compliance";
 import { needsNationalTransitionAttention } from "@/lib/national-transition";
 import { hasActiveSubscription } from "@/lib/plans";
 import { syncAllNotifications } from "@/lib/notifications";
@@ -45,6 +45,7 @@ export default async function DashboardPage({ params }: Props) {
       registration: true,
       checklistItems: true,
       guestRegisterToken: true,
+      listingChannels: true,
     },
     orderBy: { name: "asc" },
   });
@@ -69,6 +70,7 @@ export default async function DashboardPage({ params }: Props) {
 
   const stats = { ready: 0, action_needed: 0, expired: 0, not_started: 0 };
   let nationalTransitionCount = 0;
+  let listingComplianceCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -82,6 +84,9 @@ export default async function DashboardPage({ params }: Props) {
     stats[status]++;
     if (needsNationalTransitionAttention(p.country, p.registration)) {
       nationalTransitionCount++;
+    }
+    if (propertyHasListingComplianceIssue(p.listingChannels)) {
+      listingComplianceCount++;
     }
     return { ...p, complianceStatus: status };
   });
@@ -175,6 +180,7 @@ export default async function DashboardPage({ params }: Props) {
           guestsThisMonth: guestsThisMonth,
           fichesNeeded: fichesNeeded,
           nationalTransition: nationalTransitionCount,
+          listingCompliance: listingComplianceCount,
         }}
       />
 

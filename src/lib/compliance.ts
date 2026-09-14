@@ -6,7 +6,11 @@ export type ComplianceStatus =
   | "expired"
   | "not_started";
 
-export type PortfolioStatusFilter = ComplianceStatus | "all" | "national_transition";
+export type PortfolioStatusFilter =
+  | ComplianceStatus
+  | "all"
+  | "national_transition"
+  | "listing_compliance";
 
 export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "all",
@@ -15,6 +19,7 @@ export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "ready",
   "not_started",
   "national_transition",
+  "listing_compliance",
 ];
 
 export function parsePortfolioStatusFilter(
@@ -25,6 +30,7 @@ export function parsePortfolioStatusFilter(
   }
   if (
     param === "national_transition" ||
+    param === "listing_compliance" ||
     PORTFOLIO_STATUS_FILTERS.includes(param as PortfolioStatusFilter)
   ) {
     return param as PortfolioStatusFilter;
@@ -102,6 +108,21 @@ export function getDaysUntilExpiry(expiryDate: Date | null | undefined): number 
 /** Short hint for compact property rows — translation keys under properties.list.nextAction */
 export function getComplianceNextActionKey(status: ComplianceStatus): string {
   return status;
+}
+
+export type ListingChannelSummary = {
+  displayStatus: string;
+  listingUrl: string;
+};
+
+export function propertyHasListingComplianceIssue(
+  channels: ListingChannelSummary[]
+): boolean {
+  return channels.some(
+    (c) =>
+      c.listingUrl.trim() &&
+      (c.displayStatus === "MISSING" || c.displayStatus === "BLOCKED")
+  );
 }
 
 export const DEFAULT_CHECKLIST_EN = [

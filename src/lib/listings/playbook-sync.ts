@@ -1,34 +1,27 @@
 import { prisma } from "@/lib/prisma";
 import { resolvePlaybook } from "@/lib/playbooks";
-import {
-  allLinkedPlatformsComplete,
-  getLinkedPlatforms,
-  updateListingsStepKey,
-  type ListingPlatform,
-} from "./platforms";
+import { allChannelsPresent } from "./channels";
+import { updateListingsStepKey } from "./platforms";
 
-/** Auto-complete update-listings playbook step when all linked platforms are checked */
+/** Auto-complete update-listings playbook step when all listing channels show PRESENT */
 export async function syncUpdateListingsPlaybookStep(propertyId: string): Promise<void> {
   const property = await prisma.property.findUnique({
     where: { id: propertyId },
     include: {
-      listingPlatformProgress: true,
+      listingChannels: true,
       registration: true,
     },
   });
 
   if (!property?.registration?.registrationNumber?.trim()) return;
 
-  const linkedPlatforms = getLinkedPlatforms(property);
-  if (linkedPlatforms.length === 0) return;
-
-  const progress = property.listingPlatformProgress.map((p) => ({
-    platform: p.platform as ListingPlatform,
-    completed: p.completed,
-    completedAt: p.completedAt?.toISOString() ?? null,
+  const channels = property.listingChannels.map((c) => ({
+    displayStatus: c.displayStatus,
+    listingUrl: c.listingUrl,
   }));
 
-  if (!allLinkedPlatformsComplete(linkedPlatforms, progress)) return;
+  if (channels.length === 0) return;
+  if (!allChannelsPresent(channels)) return;
 
   const playbook = resolvePlaybook(property.country, property.city);
   if (!playbook) return;

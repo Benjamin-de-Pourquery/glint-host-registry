@@ -1,8 +1,12 @@
+import type { Metadata } from "next";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { AppShell } from "@/components/app-shell";
 import { setRequestLocale } from "next-intl/server";
+import { NOINDEX_METADATA } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = NOINDEX_METADATA;
 
 type Props = {
   children: React.ReactNode;

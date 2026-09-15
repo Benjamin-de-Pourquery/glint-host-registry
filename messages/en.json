@@ -4,6 +4,123 @@
     "product": "Host Registry",
     "tagline": "EU short-term rental compliance, simplified"
   },
+  "seo": {
+    "home": {
+      "title": "EU short-term rental compliance — registration numbers, SES Hospedajes & guest register",
+      "description": "Glint Host Registry helps hosts meet Regulation (EU) 2024/1028, platform registration numbers, SES Hospedajes, Mossos, Ertzaintza and French guest police fiches — bilingual FR/EN interface."
+    },
+    "login": {
+      "title": "Sign in",
+      "description": "Sign in to Glint Host Registry to manage EU short-term rental compliance, guest register and SES guest-reporting queues."
+    },
+    "signup": {
+      "title": "Start 14-day free trial",
+      "description": "Create your Glint Host Registry account — registration number tracking, guest register and compliance playbooks for EU hosts."
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "description": "How Glint Host Registry processes your personal data and guest records under GDPR."
+    },
+    "terms": {
+      "title": "Terms of service",
+      "description": "Terms of use for Glint Host Registry, the compliance operations tool for short-term rental hosts."
+    },
+    "mentions": {
+      "title": "Legal notice",
+      "description": "Legal information about Glint Host Registry — publisher, hosting and contact."
+    },
+    "guideRegistration": {
+      "title": "Registration numbers for short-term rentals & platforms in 2026",
+      "description": "Practical guide: Regulation (EU) 2024/1028, French furnished tourism registration, Airbnb and Booking NER checks — what hosts should prepare."
+    },
+    "guideSes": {
+      "title": "SES Hospedajes, Mossos & Ertzaintza — Spain guest reporting guide",
+      "description": "Overview of Spain guest declarations: SES.HOSPEDAJES, Mossos d'Esquadra (Catalonia) and Ertzaintza (Basque Country) — deadlines and obligations."
+    },
+    "guideGuestRegister": {
+      "title": "Guest police fiche — guide for hosts in France",
+      "description": "Obligations for the individual police form for foreign guests in furnished rentals — data fields, 6-month retention and best practices."
+    }
+  },
+  "guides": {
+    "label": "Host guide",
+    "backHome": "Back to home",
+    "cta": {
+      "title": "Centralize compliance with Glint",
+      "description": "Guest register, registration number tracking, SES queue and city playbooks — 14-day free trial.",
+      "button": "Start 14-day free trial",
+      "home": "Explore the product"
+    },
+    "registration": {
+      "title": "Registration numbers for furnished rentals & platforms in 2026",
+      "updated": "Updated: September 2026",
+      "intro": "Regulation (EU) 2024/1028 requires platforms to verify a valid registration number for every short-term rental listing. In France, hosts must reconcile existing municipal rules with the upcoming national API Meublés portal.",
+      "sections": {
+        "eu": {
+          "title": "EU framework (Regulation 2024/1028)",
+          "body": "In force since 20 May 2026, the regulation harmonizes short-term rental registration across the EU. Platforms like Airbnb and Booking must collect and verify the registration number (NER) before publishing or maintaining a listing."
+        },
+        "france": {
+          "title": "France: furnished tourism declaration",
+          "body": "Depending on your municipality, you may need to declare or register your furnished rental (13-digit number in tense zones, town hall procedures elsewhere). The national API Meublés portal is expected in Q4 2026 — keep your municipal numbers in the meantime."
+        },
+        "platforms": {
+          "title": "Platform checks from September 2026",
+          "body": "Major platforms are tightening NER checks from September 2026. Without a valid number or proof of regularization, your listing may be blocked. Prepare your documents and track status per channel."
+        },
+        "glint": {
+          "title": "How Glint helps",
+          "body": "Glint does not file on your behalf with town halls or official portals — it centralizes number tracking, city playbooks, platform blocks and appeal evidence, with a clear next action per property."
+        }
+      }
+    },
+    "ses": {
+      "title": "SES Hospedajes, Mossos & Ertzaintza — Spain guest reporting",
+      "updated": "Updated: September 2026",
+      "intro": "In Spain, tourist rental hosts must transmit guest data within 24 hours of arrival. The applicable system depends on the region: SES.HOSPEDAJES for most of the country, Mossos in Catalonia and Ertzaintza in the Basque Country.",
+      "sections": {
+        "ses": {
+          "title": "SES.HOSPEDAJES (Ministerio del Interior)",
+          "body": "The Sistema de Hospedajes (SES) covers most autonomous communities. Annex I data must be submitted via the Ministry of Interior MIR portal within 24h. Glint validates fields and runs SOAP dry-runs; live submission requires explicit activation (SES_LIVE)."
+        },
+        "mossos": {
+          "title": "Mossos d'Esquadra (Catalonia)",
+          "body": "In Catalonia, SES does not apply: reporting goes through the Mossos Hotels portal. SES-only tools leave Catalan hosts without integrated coverage — Glint collects Annex I data and exports in the expected format for manual submission."
+        },
+        "ertzaintza": {
+          "title": "Ertzaintza (Basque Country)",
+          "body": "In the Basque Country (Ertzaintza territory), reporting is handled by Ertzaintza. As in Catalonia, there is no standard public API — Glint prepares data and tracks 24h deadlines."
+        },
+        "glint": {
+          "title": "How Glint helps",
+          "body": "Annex I check-in register, due queue with 48h prep window, field validation and fitxa/CSV export — you submit on your region's official portal. Glint does not replace your MIR declarant identity."
+        }
+      }
+    },
+    "guestRegister": {
+      "title": "Guest police fiche — obligations for hosts in France",
+      "updated": "Updated: September 2026",
+      "intro": "When renting a furnished property to a foreign-national guest, the host must have them complete and sign an individual police form on arrival. This obligation is separate from the furnished tourism registration number.",
+      "sections": {
+        "obligation": {
+          "title": "Who is affected?",
+          "body": "Any host renting to a non-French guest (with some EU exceptions) must collect a police fiche. French guests may be registered optionally depending on your internal workflow."
+        },
+        "data": {
+          "title": "What information to collect?",
+          "body": "Identity, nationality, date and place of birth, address, stay dates, signature. Glint provides a public link or QR with compliant fields and digital signature."
+        },
+        "retention": {
+          "title": "Retention and transmission",
+          "body": "Forms must be kept for 6 months after departure. They are only transmitted to law enforcement on official request — Glint does not send them automatically."
+        },
+        "glint": {
+          "title": "How Glint helps",
+          "body": "Shareable check-in link, missing-fiche alerts, CSV export and PDF printing — integrated into each property's guest register with configured retention."
+        }
+      }
+    }
+  },
   "nav": {
     "features": "Features",
     "pricing": "Pricing",
@@ -186,6 +303,10 @@
     },
     "footer": {
       "product": "Product",
+      "guides": "Guides",
+      "guideRegistration": "Registration numbers 2026",
+      "guideSes": "SES Hospedajes & regions",
+      "guideGuestRegister": "Guest police fiche",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint — micro-entreprise",

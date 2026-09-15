@@ -1,11 +1,15 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getComplianceStatus } from "@/lib/compliance";
 import { format } from "date-fns";
+import { NOINDEX_METADATA } from "@/lib/seo/metadata";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
+
+export const metadata: Metadata = NOINDEX_METADATA;
 
 export default async function ExportPage({ params }: Props) {
   const { locale, id } = await params;

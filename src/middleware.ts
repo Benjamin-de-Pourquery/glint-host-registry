@@ -27,7 +27,10 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  return intlMiddleware(request);
+  const response = intlMiddleware(request);
+  const locale = pathname.startsWith("/fr") ? "fr" : "en";
+  response.headers.set("x-locale", locale);
+  return response;
 }
 
 export const config = {

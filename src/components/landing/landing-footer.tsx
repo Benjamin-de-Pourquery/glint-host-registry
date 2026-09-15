@@ -12,7 +12,7 @@ export async function LandingFooter({ locale }: Props) {
   return (
     <footer className="border-t border-slate-800 bg-slate-950 py-14 text-slate-400">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 text-white">
               <Shield className="h-5 w-5 text-emerald-500" />
@@ -38,6 +38,36 @@ export async function LandingFooter({ locale }: Props) {
                 <a href="#faq" className="transition-colors hover:text-white">
                   {tNav("faq")}
                 </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-white">{t("guides")}</h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li>
+                <Link
+                  href={`/${locale}/guides/numero-enregistrement-meuble`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideRegistration")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/ses-hospedajes-espagne`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideSes")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/fiche-police-voyageurs`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideGuestRegister")}
+                </Link>
               </li>
             </ul>
           </div>

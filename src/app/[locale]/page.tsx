@@ -1,5 +1,7 @@
 import { MarketingContent } from "@/components/navigation/marketing-content";
 import { NavLink } from "@/components/navigation/nav-link";
+import { LandingJsonLd } from "@/components/landing/landing-json-ld";
+import { generatePageMetadata } from "@/lib/seo/generate-page-metadata";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { auth } from "@/lib/auth";
@@ -22,6 +24,11 @@ const jakarta = Plus_Jakarta_Sans({
 
 type Props = { params: Promise<{ locale: string }> };
 
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "home");
+}
+
 export default async function LandingPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -33,6 +40,7 @@ export default async function LandingPage({ params }: Props) {
 
   return (
     <div className={`landing-page ${jakarta.variable} min-h-screen overflow-x-hidden bg-slate-50 font-[family-name:var(--font-jakarta)]`}>
+      <LandingJsonLd locale={locale} />
       <MarketingHeader isLoggedIn={!!session?.user?.id} />
 
       <MarketingContent>

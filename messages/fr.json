@@ -4,6 +4,123 @@
     "product": "Host Registry",
     "tagline": "Conformité location courte durée UE, simplifiée"
   },
+  "seo": {
+    "home": {
+      "title": "Conformité location courte durée UE — numéro d'enregistrement, SES Hospedajes & registre voyageurs",
+      "description": "Glint Host Registry aide les hôtes à respecter le Règlement UE 2024/1028, la déclaration meublé de tourisme, les numéros Airbnb/Booking, SES Hospedajes, Mossos, Ertzaintza et la fiche de police voyageurs — interface FR/EN."
+    },
+    "login": {
+      "title": "Connexion",
+      "description": "Connectez-vous à Glint Host Registry pour gérer la conformité location courte durée, le registre voyageurs et les déclarations SES."
+    },
+    "signup": {
+      "title": "Essai gratuit 14 jours",
+      "description": "Créez votre compte Glint Host Registry — conformité meublé de tourisme, numéro d'enregistrement plateformes et registre voyageurs pour hôtes UE."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "description": "Comment Glint Host Registry traite vos données personnelles et celles de vos voyageurs, conformément au RGPD."
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "description": "Conditions générales d'utilisation de Glint Host Registry, outil de conformité location courte durée pour hôtes."
+    },
+    "mentions": {
+      "title": "Mentions légales",
+      "description": "Informations légales sur Glint Host Registry — éditeur, hébergement et contact."
+    },
+    "guideRegistration": {
+      "title": "Numéro d'enregistrement meublé de tourisme & plateformes 2026",
+      "description": "Guide pratique : Règlement UE 2024/1028, déclaration meublé de tourisme en France, numéros Airbnb et Booking — ce que les hôtes doivent préparer."
+    },
+    "guideSes": {
+      "title": "SES Hospedajes, Mossos & Ertzaintza — guide hôtes Espagne",
+      "description": "Vue d'ensemble des déclarations voyageurs en Espagne : SES.HOSPEDAJES, Mossos d'Esquadra (Catalogne) et Ertzaintza (Pays basque) — délais et obligations."
+    },
+    "guideGuestRegister": {
+      "title": "Fiche de police voyageurs — guide hôtes France",
+      "description": "Obligations de la fiche individuelle de police pour voyageurs étrangers en location meublée — données, conservation 6 mois et bonnes pratiques."
+    }
+  },
+  "guides": {
+    "label": "Guide hôte",
+    "backHome": "Retour à l'accueil",
+    "cta": {
+      "title": "Centralisez votre conformité avec Glint",
+      "description": "Registre voyageurs, suivi des numéros d'enregistrement, file SES et playbooks par ville — essai gratuit 14 jours.",
+      "button": "Essai gratuit 14 jours",
+      "home": "Voir le produit"
+    },
+    "registration": {
+      "title": "Numéro d'enregistrement meublé de tourisme & plateformes en 2026",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Le Règlement (UE) 2024/1028 impose aux plateformes de vérifier un numéro d'enregistrement valide pour chaque annonce de location courte durée. En France, les hôtes doivent concilier les règles municipales existantes avec le futur téléservice national API Meublés.",
+      "sections": {
+        "eu": {
+          "title": "Cadre européen (Règlement 2024/1028)",
+          "body": "En vigueur depuis le 20 mai 2026, le règlement harmonise l'enregistrement des locations de courte durée dans l'UE. Les plateformes comme Airbnb et Booking doivent collecter et vérifier le numéro d'enregistrement (NER) avant publication ou maintien d'une annonce."
+        },
+        "france": {
+          "title": "France : déclaration meublé de tourisme",
+          "body": "Selon votre commune, vous devez souvent déclarer ou enregistrer votre meublé de tourisme (numéro à 13 chiffres en zone tendue, démarches mairie ailleurs). Le téléservice national API Meublés est prévu au T4 2026 — conservez vos numéros municipaux en attendant."
+        },
+        "platforms": {
+          "title": "Contrôles plateformes dès septembre 2026",
+          "body": "Les grandes plateformes renforcent les contrôles NER à partir de septembre 2026. Sans numéro valide ou en cours de régularisation, votre annonce peut être bloquée. Préparez vos justificatifs et suivez l'état par canal."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne dépose pas vos dossiers à la mairie ni sur les portails officiels — il centralise le suivi des numéros, les playbooks par ville, les blocages plateforme et le dossier de recours, avec une prochaine action claire par bien."
+        }
+      }
+    },
+    "ses": {
+      "title": "SES Hospedajes, Mossos & Ertzaintza — déclarations voyageurs Espagne",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "En Espagne, les hôtes de locations touristiques doivent transmettre les données des voyageurs dans les 24 heures suivant l'arrivée. Le système applicable dépend de la région : SES.HOSPEDAJES pour la plupart du territoire, Mossos en Catalogne et Ertzaintza au Pays basque.",
+      "sections": {
+        "ses": {
+          "title": "SES.HOSPEDAJES (Ministerio del Interior)",
+          "body": "Le Sistema de Hospedajes (SES) couvre la majorité des communautés autonomes. Les données Annexe I doivent être transmises via le portail MIR du Ministère de l'Intérieur dans les 24 h. Glint valide les champs et exécute des simulations SOAP ; l'envoi live nécessite une activation explicite (SES_LIVE)."
+        },
+        "mossos": {
+          "title": "Mossos d'Esquadra (Catalogne)",
+          "body": "En Catalogne, SES ne s'applique pas : la déclaration passe par le portail Mossos Hotels. Les outils limités à SES laissent les hôtes catalans sans solution intégrée — Glint collecte les données Annexe I et exporte au format attendu pour soumission manuelle."
+        },
+        "ertzaintza": {
+          "title": "Ertzaintza (Pays basque)",
+          "body": "Au Pays basque (hors Navarre pour Ertzaintza), la déclaration est gérée par l'Ertzaintza. Comme pour la Catalogne, il n'y a pas d'API publique standard — Glint prépare les données et suit les échéances 24 h."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Registre check-in Annexe I, file d'échéance avec fenêtre 48 h, validation des champs et export fitxa/CSV — vous soumettez sur le portail officiel de votre région. Glint ne remplace pas votre identité de déclarant MIR."
+        }
+      }
+    },
+    "guestRegister": {
+      "title": "Fiche de police voyageurs — obligations hôtes en France",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Lors de la location d'un meublé de tourisme à un voyageur de nationalité étrangère, l'hôte doit faire remplir et signer une fiche individuelle de police à l'arrivée. Cette obligation est distincte du numéro d'enregistrement meublé de tourisme.",
+      "sections": {
+        "obligation": {
+          "title": "Qui est concerné ?",
+          "body": "Tout hôte louant à un voyageur non français (hors UE selon certains cas) doit collecter une fiche de police. Les voyageurs français peuvent être enregistrés de façon optionnelle selon votre organisation interne."
+        },
+        "data": {
+          "title": "Quelles informations collecter ?",
+          "body": "Identité, nationalité, date et lieu de naissance, adresse, dates de séjour, signature. Glint fournit un lien public ou QR avec champs conformes et signature numérique."
+        },
+        "retention": {
+          "title": "Conservation et transmission",
+          "body": "Les fiches doivent être conservées 6 mois après le départ. Elles ne sont transmises aux forces de l'ordre que sur demande officielle — Glint ne les envoie pas automatiquement."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Lien check-in partageable, alertes de fiches manquantes, export CSV et impression PDF — intégré au registre voyageurs de chaque bien, avec conservation paramétrée."
+        }
+      }
+    }
+  },
   "nav": {
     "features": "Fonctionnalités",
     "pricing": "Tarifs",
@@ -186,6 +303,10 @@
     },
     "footer": {
       "product": "Produit",
+      "guides": "Guides",
+      "guideRegistration": "Numéro d'enregistrement 2026",
+      "guideSes": "SES Hospedajes & régions",
+      "guideGuestRegister": "Fiche de police voyageurs",
       "account": "Compte",
       "legal": "Légal",
       "company": "Glint — micro-entreprise",

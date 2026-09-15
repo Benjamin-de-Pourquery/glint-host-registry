@@ -113,3 +113,23 @@ prisma/                 # Schema + migrations
 ```
 
 See [PRODUCT.md](./PRODUCT.md) for product documentation.
+
+## SEO
+
+Glint Host Registry ships with production-ready technical SEO:
+
+- **Favicon & social cards** — generated `icon`, `apple-icon`, and `opengraph-image` (not Next.js defaults)
+- **Locale metadata** — FR/EN titles, descriptions, canonical URLs, and `hreflang` alternates on marketing pages
+- **Structured data** — JSON-LD (`Organization`, `WebSite`, `SoftwareApplication`, `FAQPage`) on the landing page
+- **Crawl controls** — `/robots.txt` and `/sitemap.xml`; `/app/*`, check-in tokens, exports, and print views are `noindex`
+- **Host guides** — public `/[locale]/guides/...` pages linked from the footer
+
+### Search Console (next step for Benjamin)
+
+1. Open [Google Search Console](https://search.google.com/search-console) and add the property `https://glint-host-registry.vercel.app`.
+2. Verify ownership (DNS or HTML tag via Vercel).
+3. Submit the sitemap: `https://glint-host-registry.vercel.app/sitemap.xml`
+4. Inspect a few URLs (`/fr`, `/en`, guide pages) to confirm indexing and hreflang.
+5. No paid ads required — organic discovery only.
+
+Set `NEXT_PUBLIC_APP_URL` to the production URL so canonical and OG URLs resolve correctly.

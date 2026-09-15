@@ -42,7 +42,7 @@ Data-driven step-by-step guides keyed by country and city walk hosts through loc
 - **Compliance tab** — hero next-action card, per-field copy chips, compact documents checklist, collapsible local pitfalls, expandable step timeline
 - Step progress (mark done / skip) persisted per property
 - Full FR guides: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
-- **Spain playbooks:** Madrid, Valencia, Málaga, Barcelona + generic fallback (post-NRUA annulment context)
+- **Spain playbooks:** Madrid, Valencia, Málaga, Barcelona (Mossos), Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz (Ertzaintza) + generic fallback
 - Country stubs: Italy, Netherlands
 
 Guides link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
@@ -60,17 +60,18 @@ Pro feature helping French hosts collect and retain the legally required individ
 - French nationals may optionally log for operational convenience; UI labels the legal fiche as targeting foreign guests
 - Disclaimer: Glint organizes compliance records; not legal advice; host remains responsible
 
-### 6b. Spain SES.HOSPEDAJES (guest reporting)
-Operational layer for **RD 933/2021** guest reporting to the Ministry of Interior (MIR SOAP v3.1.2):
+### 6b. Spain guest reporting (SES + Mossos + Ertzaintza)
+Operational layer for **RD 933/2021 Annex I** guest reporting across all Spanish regions:
 
-- **Legal context:** After Spain STS 620/2026 annulled the national NRUA registry, regional tourist codes and VUDA remain; SES.HOSPEDAJES is still mandatory for most of Spain (guest report within 24h of check-in).
-- **Regional exceptions:** Catalonia and Basque Country use regional systems — `usesSesHospedajes()` gates SES UI; check-in shows a bilingual notice instead of SES fields.
-- **Annex I check-in:** Public check-in collects SES fields (document type/number/support, sex, postal code, municipality, country alpha-3) with validation aligned to `src/lib/ses/validation.ts`.
-- **SES credentials panel:** Encrypted SOAP credentials per property (`SECRETS_ENCRYPTION_KEY`).
-- **Due queue:** Dashboard card with 48h prep window, overdue tracking, and statuses (`awaiting_guest_data`, `awaiting_submission`, `validation_needed`, `overdue`).
-- **Prepare / dry-run / submit:** Validate XML, dry-run SOAP (default), live submit only when `SES_LIVE=true` + per-property enable.
-- **Cron:** `/api/cron/ses-due` (daily 08:00 UTC) creates in-app notifications for stays entering the 24h window.
-- **Differentiator vs RegistroViajero / seshospedajes.es:** Those tools automate SES-only. Glint adds the EU compliance layer (FR playbooks + iCal registry + SES queue) — not a channel-manager replacement.
+- **Legal context:** Guest report within **24h** of check-in; retain register **3 years** (RD 933/2021 Annex I). After STS 620/2026 NRUA annulment, regional tourist codes remain; guest reporting is still mandatory nationwide.
+- **Region routing:** `getSpainGuestReportingMode()` returns `ses` | `mossos` | `ertzaintza` | `none`. Barcelona/Catalonia → Mossos Hotels; Bilbao/Donostia/Vitoria/Basque → Ertzaintza; other Spain → SES.HOSPEDAJES.
+- **Annex I check-in:** Public check-in collects Annex I fields for SES, Mossos, and Ertzaintza properties (document type/number/support, sex, postal code, municipality, country alpha-3) with shared validation in `src/lib/ses/check-in-validation.ts`.
+- **SES (most of Spain):** Encrypted SOAP credentials per property (`SECRETS_ENCRYPTION_KEY`). Due queue, dry-run/live submit when `SES_LIVE=true`.
+- **Mossos / Ertzaintza (Catalonia + Basque):** No fake API push. Glint collects → validates Annex I → due queue → export fitxa/CSV + deep links to official portals. Manual status tracking (`prepared` / `submitted` / `accepted`).
+- **Due queues:** Dashboard cards for SES and regional stays (48h prep window, overdue, `awaiting_guest_data`, `awaiting_submission`).
+- **Cron:** `/api/cron/ses-due` (daily 08:00 UTC) notifies for both SES and regional stays entering the 24h window.
+- **Playbooks:** Barcelona (PI-15 Mossos alta + first submission), Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz (Ertzaintza alta + walkthrough).
+- **Differentiator vs RegistroViajero / BookCheckin:** SES-only tools abandon Basque hosts and treat Catalonia separately. Glint covers multi-region Spain portfolios: FR compliance + iCal + SES queue + Mossos/Ertzaintza ops.
 
 ### 7. Registration & compliance
 Per-property compliance tracking:

@@ -22,7 +22,7 @@
   "landing": {
     "hero": {
       "title": "Conformité location courte durée UE — France, Espagne et plus",
-      "subtitle": "Démarches par ville, registre voyageurs, file SES.HOSPEDAJES et numéros sous le Règlement (UE) 2024/1028. Glint vous guide — sans déposer à la mairie ni au MIR pour vous.",
+      "subtitle": "Ops Espagne multi-régions — SES, Mossos et Ertzaintza — plus playbooks France, registre voyageurs et suivi UE 2024/1028. Glint prépare ; vous soumettez sur les portails officiels.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
@@ -50,8 +50,8 @@
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "Villes FR + Madrid, Valence, Málaga, Barcelone",
-      "ses": "Validation SES.HOSPEDAJES (simulation)",
+      "cities": "Villes FR + Espagne (SES, Mossos, Ertzaintza)",
+      "ses": "SES + ops Mossos/Ertzaintza",
       "bilingual": "Interface FR + EN"
     },
     "problem": {
@@ -59,7 +59,7 @@
       "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
       "points": {
         "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
-        "2": "En Espagne, SES.HOSPEDAJES impose encore la déclaration voyageurs sous 24h — même après l'annulation du NRUA",
+        "2": "En Espagne, la déclaration voyageurs est due sous 24h — SES pour la plupart des régions, Mossos en Catalogne, Ertzaintza au Pays basque",
         "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes exigeront des numéros valides dès mai 2026"
       }
     },
@@ -67,8 +67,8 @@
       "title": "Un cockpit conformité pour tout votre portefeuille",
       "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros — avec une prochaine action claire par bien.",
       "points": {
-        "1": "Playbooks France et Espagne (Madrid, Valence, Málaga, Barcelone) avec exceptions régionales",
-        "2": "Registre : check-in Annexe I public, signature, file SES avec fenêtre de préparation 48h",
+        "1": "Playbooks France et Espagne — dont Mossos (Catalogne) et Ertzaintza (Pays basque) où les outils SES-only s'arrêtent",
+        "2": "Registre : check-in Annexe I pour SES, Mossos et Ertzaintza ; files d'échéance avec fenêtre 48h",
         "3": "iCal → registre séjours → validation SES en simulation ; envoi SOAP live quand vous activez SES_LIVE"
       }
     },
@@ -84,8 +84,8 @@
         "description": "Lien ou QR public avec champs Annexe I pour SES Espagne, fiche de police pour voyageurs étrangers en France, signature numérique et export CSV."
       },
       "sesQueue": {
-        "title": "File SES",
-        "description": "File tableau de bord pour séjours Espagne : fenêtre 48h, suivi des retards, validation en simulation et prochaine action jusqu'à acceptation MIR."
+        "title": "Files déclaration voyageurs Espagne",
+        "description": "File SES pour la plupart de l'Espagne plus ops Mossos/Ertzaintza pour Catalogne et Pays basque — là où RegistroViajero et BookCheckin laissent des lacunes."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -174,7 +174,7 @@
         },
         "7": {
           "q": "Et la Catalogne ou le Pays basque ?",
-          "a": "SES.HOSPEDAJES ne s'applique pas en Catalogne ni au Pays basque — les systèmes régionaux (Mossos, tourisme basque) s'appliquent. Glint affiche un avis clair et ne prétend pas soumettre au SES dans ces régions."
+          "a": "SES.HOSPEDAJES ne s'applique pas — Mossos Hotels (Catalogne) et Ertzaintza (Pays basque) oui. Les outils SES-only comme RegistroViajero et BookCheckin abandonnent ces hôtes. Glint collecte les données Annexe I, les valide, exporte fitxa/CSV et suit la file d'échéance — vous soumettez sur le portail officiel."
         }
       }
     },
@@ -814,10 +814,13 @@
     "testFailed": "Échec du test : {message}",
     "testError": "Impossible de tester la connexion",
     "regionalSystem": {
-      "title": "Système régional de déclaration voyageurs",
-      "catalonia": "{city} est en Catalogne — les données voyageurs doivent être déclarées via Mossos d'Esquadra, pas SES.HOSPEDAJES.",
-      "basque": "{city} est au Pays basque — le système régional s'applique, pas SES.HOSPEDAJES.",
-      "hint": "Configurez vos identifiants régionaux séparément. L'intégration SES Glint ne s'applique pas dans cette région."
+      "title": "Déclaration voyageurs régionale",
+      "mossos": "{city} est en Catalogne — ce séjour sera préparé pour Mossos d'Esquadra (Mossos Hotels), pas SES.HOSPEDAJES.",
+      "ertzaintza": "{city} est au Pays basque — ce séjour sera préparé pour Ertzaintza, pas SES.HOSPEDAJES.",
+      "prepareHint": "Glint collecte et valide les données Annexe I, puis exporte une fitxa/CSV pour saisie sur le portail officiel.",
+      "deadlineHint": "Vous devez soumettre sur le portail officiel sous 24 h après l'arrivée (RD 933/2021). Conserver les registres 3 ans.",
+      "annexTitle": "Données voyageur Annexe I (RD 933/2021)",
+      "annexHint": "Requis pour la déclaration régionale. Mêmes champs que l'Annexe I SES — Glint prépare l'export ; vous soumettez sur Mossos ou Ertzaintza."
     },
     "credentials": {
       "title": "Identifiants SES.HOSPEDAJES",
@@ -892,6 +895,100 @@
       "municipalityCodeHint": "Obligatoire si adresse en Espagne",
       "municipalityName": "Nom de la commune (étranger)",
       "municipalityNameHint": "Obligatoire si adresse hors Espagne"
+    }
+  },
+  "regional": {
+    "system": {
+      "mossos": "Mossos",
+      "ertzaintza": "Ertzaintza"
+    },
+    "panel": {
+      "mossosTitle": "Déclaration voyageurs Mossos d'Esquadra",
+      "ertzaintzaTitle": "Déclaration voyageurs Ertzaintza",
+      "mossosDescription": "{city} est en Catalogne. Les données voyageurs doivent être déclarées via Mossos Hotels — pas SES.HOSPEDAJES. Glint prépare les données Annexe I ; vous soumettez sur le portail officiel.",
+      "ertzaintzaDescription": "{city} est au Pays basque. Les données vont à Ertzaintza — pas au SES. Des concurrents comme BookCheckin ne supportent pas les biens basques.",
+      "honestyNote": "Glint n'envoie pas automatiquement à Mossos ou Ertzaintza. Nous collectons → validons Annexe I → exportons fitxa/CSV → vous soumettez sur le portail officiel.",
+      "workflowTitle": "Workflow",
+      "step1": "Activer le lien check-in et collecter les données Annexe I",
+      "step2": "Préparer le kit d'export (fitxa + CSV) depuis le séjour",
+      "step3": "Saisir les données sur le portail Mossos ou Ertzaintza officiel",
+      "step4": "Marquer le statut dans Glint (préparé → soumis → accepté)",
+      "mossosPortal": "Portail Mossos Hotels",
+      "mossosLogin": "Connexion Mossos",
+      "pi15Info": "Alta établissement PI-15",
+      "ertzaintzaPortal": "Registre Ertzaintza",
+      "euskadiHostelero": "Info gouvernement basque",
+      "rd933": "RD 933/2021",
+      "retentionNote": "Conserver le registre voyageurs 3 ans (RD 933/2021 Annexe I). Ne pas soumettre aussi au SES."
+    },
+    "stay": {
+      "prepare": "Préparer kit d'export",
+      "exportCsv": "Télécharger CSV",
+      "printFitxa": "Imprimer fitxa",
+      "openPortal": "Ouvrir portail officiel",
+      "markSubmitted": "Marquer soumis",
+      "markAccepted": "Marquer accepté",
+      "prepareReady": "Kit d'export prêt pour {count} voyageur(s)",
+      "validationFailed": "{count} problème(s) de validation — complétez les données voyageurs",
+      "statusUpdated": {
+        "prepared": "Marqué comme préparé",
+        "submitted": "Marqué comme soumis sur le portail officiel",
+        "accepted": "Marqué comme accepté"
+      },
+      "error": "Impossible de traiter le rapport régional"
+    },
+    "submission": {
+      "status": {
+        "prepared": "Préparé",
+        "submitted": "Soumis",
+        "accepted": "Accepté"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement de la file régionale…",
+      "title": "Obligations Mossos / Ertzaintza — préparation, échéance et retard",
+      "subtitle": "Séjours Catalogne et Pays basque nécessitant une déclaration régionale (fenêtre 48h + échéance 24h).",
+      "guestCount": "{count, plural, one {# voyageur} other {# voyageurs}}",
+      "noGuestsYet": "Pas encore de données voyageur",
+      "hoursLeft": "{hours}h restantes",
+      "overdue": "En retard",
+      "prepWindow": "À venir (48h)",
+      "action": "Ouvrir registre",
+      "actionGuest": "Envoyer lien check-in",
+      "status": {
+        "prep_window": "Séjour à venir",
+        "awaiting_guest_data": "En attente données",
+        "awaiting_submission": "Prêt à exporter",
+        "overdue": "En retard"
+      }
+    },
+    "copy": {
+      "stayId": "ID séjour",
+      "copied": "Copié"
+    },
+    "export": {
+      "fitxaTitle": "Déclaration voyageur Annexe I (régional)",
+      "deadlineNote": "Soumettre sur le portail officiel sous 24 h après l'arrivée.",
+      "portalNote": "Glint prépare cet export pour saisie manuelle sur {system}. Glint ne soumet pas automatiquement.",
+      "lastName": "Nom",
+      "firstNames": "Prénom(s)",
+      "dateOfBirth": "Date de naissance",
+      "placeOfBirth": "Lieu de naissance",
+      "nationality": "Nationalité",
+      "documentType": "Type de document",
+      "documentNumber": "Numéro de document",
+      "documentSupport": "N° support",
+      "sex": "Sexe",
+      "address": "Adresse",
+      "postalCode": "Code postal",
+      "municipality": "Commune",
+      "country": "Pays (ISO alpha-3)",
+      "mobile": "Mobile",
+      "email": "E-mail",
+      "arrivalDate": "Arrivée",
+      "departureDate": "Départ",
+      "childrenTitle": "Enfants accompagnants",
+      "footer": "Préparé par Glint Host Registry pour soumission manuelle. Conserver 3 ans (RD 933/2021)."
     }
   },
   "common": {

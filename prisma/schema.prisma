@@ -91,6 +91,7 @@ model Property {
   guestRecords GuestRecord[]
   sesCredential SesCredential?
   sesSubmissions SesSubmission[]
+  regionalGuestReports RegionalGuestReport[]
 }
 
 model CalendarFeed {
@@ -138,6 +139,7 @@ model GuestStay {
   calendarFeed        CalendarFeed? @relation(fields: [calendarFeedId], references: [id], onDelete: SetNull)
   guestRecords        GuestRecord[]
   sesSubmissions      SesSubmission[]
+  regionalGuestReports RegionalGuestReport[]
 
   @@unique([propertyId, externalUid])
   @@index([propertyId])
@@ -223,6 +225,26 @@ model SesSubmission {
   @@index([propertyId, status])
   @@index([stayId])
   @@index([guestRecordId])
+}
+
+model RegionalGuestReport {
+  id          String    @id @default(cuid())
+  propertyId  String
+  stayId      String?
+  system      String
+  status      String    @default("prepared")
+  notes       String?
+  preparedAt  DateTime  @default(now())
+  submittedAt DateTime?
+  acceptedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  property    Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  stay        GuestStay? @relation(fields: [stayId], references: [id], onDelete: SetNull)
+
+  @@index([propertyId, createdAt])
+  @@index([propertyId, status])
+  @@index([stayId])
 }
 
 model PlaybookStepProgress {

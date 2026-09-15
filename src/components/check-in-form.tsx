@@ -8,9 +8,9 @@ import { Label } from "@/components/ui/label";
 import { SignaturePad } from "@/components/signature-pad";
 import { Loader2, CheckCircle, Info } from "lucide-react";
 import {
-  getSpainGuestReportingSystem,
+  getSpainGuestReportingMode,
   isSpainCountry,
-  usesSesHospedajes,
+  requiresAnnexOneCheckIn,
 } from "@/lib/spain/regions";
 
 type Props = {
@@ -32,8 +32,9 @@ export function CheckInForm({
   const tSes = useTranslations("ses.checkIn");
   const tRegional = useTranslations("ses.regionalSystem");
   const isSpain = isSpainCountry(propertyCountry);
-  const sesApplies = isSpain && usesSesHospedajes(propertyCity);
-  const regionalSystem = isSpain ? getSpainGuestReportingSystem(propertyCity) : null;
+  const reportingMode = isSpain ? getSpainGuestReportingMode(propertyCity) : "none";
+  const annexOneApplies = isSpain && requiresAnnexOneCheckIn(propertyCity);
+  const isRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -82,7 +83,7 @@ export function CheckInForm({
   };
 
   const needsDocumentSupport =
-    sesApplies && (form.documentType === "NIF" || form.documentType === "NIE");
+    annexOneApplies && (form.documentType === "NIF" || form.documentType === "NIE");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -137,17 +138,18 @@ export function CheckInForm({
         <p className="mt-2 text-xs text-blue-700">{t("frenchNote")}</p>
       </div>
 
-      {isSpain && regionalSystem && regionalSystem !== "ses" && (
-        <div className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50/80 p-4 text-sm text-amber-900">
-          <Info className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+      {isRegional && (
+        <div className="flex gap-3 rounded-lg border border-violet-200 bg-violet-50/80 p-4 text-sm text-violet-900">
+          <Info className="mt-0.5 h-5 w-5 shrink-0 text-violet-600" />
           <div>
             <p className="font-medium">{tRegional("title")}</p>
-            <p className="mt-1 text-xs text-amber-800">
-              {regionalSystem === "catalonia"
-                ? tRegional("catalonia", { city: propertyCity })
-                : tRegional("basque", { city: propertyCity })}
+            <p className="mt-1 text-xs text-violet-800">
+              {reportingMode === "mossos"
+                ? tRegional("mossos", { city: propertyCity })
+                : tRegional("ertzaintza", { city: propertyCity })}
             </p>
-            <p className="mt-2 text-xs text-amber-700">{tRegional("hint")}</p>
+            <p className="mt-2 text-xs text-violet-700">{tRegional("prepareHint")}</p>
+            <p className="mt-1 text-xs text-violet-600">{tRegional("deadlineHint")}</p>
           </div>
         </div>
       )}
@@ -244,10 +246,14 @@ export function CheckInForm({
         </div>
       </div>
 
-      {sesApplies && (
+      {annexOneApplies && (
         <div className="space-y-4 rounded-lg border border-emerald-100 bg-emerald-50/40 p-4">
-          <p className="text-sm font-medium text-emerald-900">{tSes("title")}</p>
-          <p className="text-xs text-emerald-800">{tSes("hint")}</p>
+          <p className="text-sm font-medium text-emerald-900">
+            {isRegional ? tRegional("annexTitle") : tSes("title")}
+          </p>
+          <p className="text-xs text-emerald-800">
+            {isRegional ? tRegional("annexHint") : tSes("hint")}
+          </p>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label>{tSes("documentType")}</Label>
@@ -361,7 +367,7 @@ export function CheckInForm({
                 onChange={(e) => updateChild(index, "dateOfBirth", e.target.value)}
               />
             </div>
-            {sesApplies && (
+            {annexOneApplies && (
               <div className="space-y-1">
                 <Label className="text-xs">{tSes("kinship")}</Label>
                 <select

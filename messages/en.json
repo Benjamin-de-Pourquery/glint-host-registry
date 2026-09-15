@@ -22,7 +22,7 @@
   "landing": {
     "hero": {
       "title": "EU short-term rental compliance — France, Spain, and beyond",
-      "subtitle": "City playbooks, guest register, Spain SES.HOSPEDAJES queue, and registration numbers under Regulation (EU) 2024/1028. Glint guides you — we don't file at the mairie or MIR on your behalf.",
+      "subtitle": "Multi-region Spain ops — SES, Mossos, and Ertzaintza — plus France playbooks, guest register, and EU 2024/1028 registration tracking. Glint prepares; you submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -50,8 +50,8 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR cities + Madrid, Valencia, Málaga, Barcelona",
-      "ses": "SES.HOSPEDAJES dry-run validation",
+      "cities": "FR cities + Spain (SES, Mossos, Ertzaintza)",
+      "ses": "SES + Mossos/Ertzaintza ops",
       "bilingual": "FR + EN interface"
     },
     "problem": {
@@ -59,7 +59,7 @@
       "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
       "points": {
         "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "In Spain, SES.HOSPEDAJES still requires guest reports within 24h of check-in — even after the NRUA annulment",
+        "2": "In Spain, guest reports are due within 24h — SES for most regions, Mossos for Catalonia, Ertzaintza for the Basque Country",
         "3": "France keeps the fiche de police for foreign guests; platforms require valid numbers from May 2026"
       }
     },
@@ -67,8 +67,8 @@
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking — with a clear next action per property.",
       "points": {
-        "1": "City playbooks for France and Spain (Madrid, Valencia, Málaga, Barcelona) with regional exceptions",
-        "2": "Guest register: public Annex I check-in, signature, SES due queue with 48h prep window",
+        "1": "City playbooks for France and Spain — including Mossos (Catalonia) and Ertzaintza (Basque Country) where SES-only tools stop",
+        "2": "Guest register: Annex I check-in for SES, Mossos, and Ertzaintza; due queues with 48h prep window",
         "3": "iCal → stay registry → SES dry-run validation today; live SOAP when you explicitly enable SES_LIVE"
       }
     },
@@ -84,8 +84,8 @@
         "description": "Public check-in link or QR with Annex I fields for Spain SES, French fiche de police for foreign guests, digital signature, and CSV export."
       },
       "sesQueue": {
-        "title": "SES due queue",
-        "description": "Dashboard queue for Spain stays: 48h prep window, overdue tracking, dry-run validation, and clear next action until accepted by MIR."
+        "title": "Spain guest-reporting queues",
+        "description": "SES due queue for most of Spain plus Mossos/Ertzaintza ops for Catalonia and Basque Country — where RegistroViajero and BookCheckin leave gaps."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -174,7 +174,7 @@
         },
         "7": {
           "q": "What about Catalonia and the Basque Country?",
-          "a": "SES.HOSPEDAJES does not apply in Catalonia or the Basque Country — regional systems (Mossos, Basque tourism) apply instead. Glint shows a clear notice and does not pretend to submit SES in those regions."
+          "a": "SES.HOSPEDAJES does not apply there — Mossos Hotels (Catalonia) and Ertzaintza (Basque Country) do. SES-only tools like RegistroViajero and BookCheckin leave these hosts behind. Glint collects Annex I data, validates it, exports a fitxa/CSV, and tracks the due queue — you submit on the official portal."
         }
       }
     },
@@ -814,10 +814,13 @@
     "testFailed": "Connection test failed: {message}",
     "testError": "Could not test connection",
     "regionalSystem": {
-      "title": "Regional guest reporting system",
-      "catalonia": "{city} is in Catalonia — guest data must be reported via the Mossos d'Esquadra system, not SES.HOSPEDAJES.",
-      "basque": "{city} is in the Basque Country — guest data uses the regional system, not SES.HOSPEDAJES.",
-      "hint": "Configure your regional portal credentials separately. Glint SES integration does not apply in this region."
+      "title": "Regional guest reporting",
+      "mossos": "{city} is in Catalonia — this stay will be prepared for Mossos d'Esquadra (Mossos Hotels), not SES.HOSPEDAJES.",
+      "ertzaintza": "{city} is in the Basque Country — this stay will be prepared for Ertzaintza, not SES.HOSPEDAJES.",
+      "prepareHint": "Glint collects and validates Annex I data, then exports a fitxa/CSV for you to enter on the official portal.",
+      "deadlineHint": "You must submit on the official portal within 24 hours of check-in (RD 933/2021). Retain records 3 years.",
+      "annexTitle": "Annex I guest data (RD 933/2021)",
+      "annexHint": "Required for regional guest reporting. Same fields as SES Annex I — Glint prepares the export; you submit on Mossos or Ertzaintza portal."
     },
     "credentials": {
       "title": "SES.HOSPEDAJES credentials",
@@ -892,6 +895,100 @@
       "municipalityCodeHint": "Required if address is in Spain",
       "municipalityName": "Municipality name (abroad)",
       "municipalityNameHint": "Required if address is outside Spain"
+    }
+  },
+  "regional": {
+    "system": {
+      "mossos": "Mossos",
+      "ertzaintza": "Ertzaintza"
+    },
+    "panel": {
+      "mossosTitle": "Mossos d'Esquadra guest reporting",
+      "ertzaintzaTitle": "Ertzaintza guest reporting",
+      "mossosDescription": "{city} is in Catalonia. Guest data must be reported via Mossos Hotels — not SES.HOSPEDAJES. Glint prepares Annex I data; you submit on the official portal.",
+      "ertzaintzaDescription": "{city} is in the Basque Country. Guest data goes to Ertzaintza — not SES. Competitors like BookCheckin do not support Basque properties.",
+      "honestyNote": "Glint does not push to Mossos or Ertzaintza automatically. We collect → validate Annex I → export fitxa/CSV → you submit on the official portal.",
+      "workflowTitle": "Workflow",
+      "step1": "Enable check-in link and collect Annex I guest data",
+      "step2": "Prepare export kit (fitxa + CSV) from the stay",
+      "step3": "Enter data on the official Mossos or Ertzaintza portal",
+      "step4": "Mark submission status in Glint (prepared → submitted → accepted)",
+      "mossosPortal": "Mossos Hotels portal",
+      "mossosLogin": "Mossos login",
+      "pi15Info": "PI-15 establishment alta",
+      "ertzaintzaPortal": "Ertzaintza registry",
+      "euskadiHostelero": "Basque Government info",
+      "rd933": "RD 933/2021",
+      "retentionNote": "Retain guest register 3 years (RD 933/2021 Annex I). Do not also submit to SES."
+    },
+    "stay": {
+      "prepare": "Prepare export kit",
+      "exportCsv": "Download CSV",
+      "printFitxa": "Print fitxa",
+      "openPortal": "Open official portal",
+      "markSubmitted": "Mark submitted",
+      "markAccepted": "Mark accepted",
+      "prepareReady": "Export kit ready for {count} guest(s)",
+      "validationFailed": "{count} validation issue(s) — complete guest data first",
+      "statusUpdated": {
+        "prepared": "Marked as prepared",
+        "submitted": "Marked as submitted on official portal",
+        "accepted": "Marked as accepted"
+      },
+      "error": "Could not process regional report"
+    },
+    "submission": {
+      "status": {
+        "prepared": "Prepared",
+        "submitted": "Submitted",
+        "accepted": "Accepted"
+      }
+    },
+    "dueQueue": {
+      "loading": "Loading regional due queue…",
+      "title": "Mossos / Ertzaintza obligations — prep, due, and overdue",
+      "subtitle": "Catalonia and Basque Country stays requiring regional guest reporting (48h prep + 24h deadline).",
+      "guestCount": "{count, plural, one {# guest} other {# guests}}",
+      "noGuestsYet": "No guest data yet",
+      "hoursLeft": "{hours}h remaining",
+      "overdue": "Overdue",
+      "prepWindow": "Upcoming (48h)",
+      "action": "Open register",
+      "actionGuest": "Send check-in link",
+      "status": {
+        "prep_window": "Upcoming stay",
+        "awaiting_guest_data": "Awaiting guest data",
+        "awaiting_submission": "Ready to export",
+        "overdue": "Overdue"
+      }
+    },
+    "copy": {
+      "stayId": "Stay ID",
+      "copied": "Copied"
+    },
+    "export": {
+      "fitxaTitle": "Annex I guest report (regional)",
+      "deadlineNote": "Submit on the official portal within 24 hours of check-in.",
+      "portalNote": "Glint prepares this export for manual entry on {system}. Glint does not submit automatically.",
+      "lastName": "Last name",
+      "firstNames": "First name(s)",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "nationality": "Nationality",
+      "documentType": "Document type",
+      "documentNumber": "Document number",
+      "documentSupport": "Document support",
+      "sex": "Sex",
+      "address": "Address",
+      "postalCode": "Postal code",
+      "municipality": "Municipality",
+      "country": "Country (ISO alpha-3)",
+      "mobile": "Mobile",
+      "email": "Email",
+      "arrivalDate": "Arrival",
+      "departureDate": "Departure",
+      "childrenTitle": "Accompanying children",
+      "footer": "Prepared by Glint Host Registry for manual portal submission. Retain 3 years (RD 933/2021)."
     }
   },
   "common": {

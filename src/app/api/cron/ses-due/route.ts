@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { format } from "date-fns";
 import { prisma } from "@/lib/prisma";
 import { getSesStaysEnteringSubmissionWindow } from "@/lib/ses/due-queue";
+import { getRegionalStaysEnteringSubmissionWindow } from "@/lib/spain/regional-due-queue";
+import { getRegionalSystemLabel } from "@/lib/spain/regions";
 
 function verifyCronAuth(request: Request): boolean {
   const cronSecret = process.env.CRON_SECRET;
@@ -22,10 +24,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const stays = await getSesStaysEnteringSubmissionWindow();
+  const sesStays = await getSesStaysEnteringSubmissionWindow();
+  const regionalStays = await getRegionalStaysEnteringSubmissionWindow();
   let created = 0;
 
-  for (const stay of stays) {
+  for (const stay of sesStays) {
     const guestRef = stay.guestLabel ? ` (${stay.guestLabel})` : "";
     const title = `SES due soon: ${stay.propertyName}`;
     const message = `Guest check-in on ${format(stay.checkInDate, "dd/MM/yyyy")}${guestRef} at ${stay.propertyName}. Submit the parte de viajeros within 24 hours of arrival.`;
@@ -54,8 +57,40 @@ export async function POST(request: Request) {
     }
   }
 
+  for (const stay of regionalStays) {
+    const systemLabel = getRegionalSystemLabel(stay.system);
+    const guestRef = stay.guestLabel ? ` (${stay.guestLabel})` : "";
+    const title = `${systemLabel} due soon: ${stay.propertyName}`;
+    const message = `Guest check-in on ${format(stay.checkInDate, "dd/MM/yyyy")}${guestRef} at ${stay.propertyName} (${stay.city}). Prepare and submit via the official ${systemLabel} portal within 24 hours of arrival.`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId: stay.userId,
+        propertyId: stay.propertyId,
+        type: "regional_due",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId: stay.userId,
+          propertyId: stay.propertyId,
+          title,
+          message,
+          type: "regional_due",
+        },
+      });
+      created++;
+    }
+  }
+
   return NextResponse.json({
-    scanned: stays.length,
+    scanned: sesStays.length + regionalStays.length,
+    sesScanned: sesStays.length,
+    regionalScanned: regionalStays.length,
     notificationsCreated: created,
   });
 }

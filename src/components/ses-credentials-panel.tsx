@@ -9,11 +9,13 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Loader2, Shield, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { RegionalReportingPanel } from "@/components/regional-reporting-panel";
 import { toast } from "sonner";
+import type { SpainGuestReportingMode } from "@/lib/spain/regions";
 
 type SesCredentialData = {
   configured: boolean;
-  reportingSystem: "ses" | "catalonia" | "basque";
+  reportingSystem: SpainGuestReportingMode;
   usesSes: boolean;
   codigoArrendador: string | null;
   codigoEstablecimiento: string | null;
@@ -125,24 +127,7 @@ export function SesCredentialsPanel({ propertyId, city }: Props) {
   if (!data) return null;
 
   if (!data.usesSes) {
-    return (
-      <Card className="border-amber-200 bg-amber-50/30">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-base">
-            <AlertTriangle className="h-5 w-5 text-amber-600" />
-            {t("regionalSystem.title")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2 text-sm text-amber-900">
-          <p>
-            {data.reportingSystem === "catalonia"
-              ? t("regionalSystem.catalonia", { city })
-              : t("regionalSystem.basque", { city })}
-          </p>
-          <p className="text-xs text-amber-800">{t("regionalSystem.hint")}</p>
-        </CardContent>
-      </Card>
-    );
+    return <RegionalReportingPanel city={city} system={data.reportingSystem} />;
   }
 
   return (

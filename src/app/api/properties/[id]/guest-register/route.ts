@@ -91,6 +91,7 @@ export async function GET(
       source: stay.source,
       importStatus: stay.importStatus,
       hasMatchingFiche: stayHasMatchingFiche(stay),
+      guestCount: stay.guestRecords.length,
       isMissingFiche: isStayMissingFiche(stay, now),
       ficheDeadline: getStayFicheDeadline(stay.checkInDate).toISOString(),
     }));

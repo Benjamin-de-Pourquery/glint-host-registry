@@ -9,7 +9,7 @@ import { findMatchingStayForRecord } from "@/lib/guest-register/missing-fiches";
 import { isValidSignatureDataUrl } from "@/lib/security/signature-data-url";
 import { isCheckInRateLimited } from "@/lib/security/rate-limit";
 import { validateCheckInForSes } from "@/lib/ses/check-in-validation";
-import { isSpainCountry, usesSesHospedajes } from "@/lib/spain/regions";
+import { isSpainCountry, requiresAnnexOneCheckIn } from "@/lib/spain/regions";
 import { z } from "zod";
 
 const childSchema = z.object({
@@ -108,10 +108,10 @@ export async function POST(
     }
 
     const property = tokenRecord.property;
-    const sesRequired =
-      isSpainCountry(property.country) && usesSesHospedajes(property.city);
+    const annexOneRequired =
+      isSpainCountry(property.country) && requiresAnnexOneCheckIn(property.city);
 
-    if (sesRequired) {
+    if (annexOneRequired) {
       const validationErrors = validateCheckInForSes(data);
       if (validationErrors.length > 0) {
         return NextResponse.json(

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { encryptSecret, hasEncryptionKey } from "@/lib/crypto/secrets";
-import { isSpainCountry, getSpainGuestReportingSystem } from "@/lib/spain/regions";
+import { isSpainCountry, getSpainGuestReportingMode } from "@/lib/spain/regions";
 import { z } from "zod";
 
 const saveSchema = z.object({
@@ -36,7 +36,7 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const reportingSystem = getSpainGuestReportingSystem(property.city);
+  const reportingSystem = getSpainGuestReportingMode(property.city);
   const credential = property.sesCredential;
 
   return NextResponse.json({

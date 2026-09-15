@@ -53,7 +53,7 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `STRIPE_WEBHOOK_SECRET` | For billing | Webhook signing secret |
 | `CRON_SECRET` | Production | Protects cron routes: iCal sync + SES due notifications (`vercel.json`) |
 | `SECRETS_ENCRYPTION_KEY` | For Spain SES | 32-byte base64 key for encrypting SOAP credentials at rest (`openssl rand -base64 32`) |
-| `SES_LIVE` | For Spain SES | Set to `true` only when ready for live SOAP submissions (default: `false` / dry-run) |
+| `SES_LIVE` | For Spain SES | Set to `true` only when ready for live SOAP submissions (default: `false` / dry-run). Mossos/Ertzaintza have no live API — export-only. |
 
 ## Stripe setup (test mode)
 
@@ -79,7 +79,7 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `npm run start` | Production server |
 | `npm run db:migrate` | Run Prisma migrations |
 | `npm run db:studio` | Open Prisma Studio |
-| `npm run test` | Run unit tests (SES XML/validation, encryption) |
+| `npm run test` | Run unit tests (SES, Spain region routing, regional export, encryption) |
 | `npm run test:ses` | Run SES integration unit tests only |
 
 ## Deploy on Vercel

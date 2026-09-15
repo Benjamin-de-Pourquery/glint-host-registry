@@ -15,6 +15,7 @@
 | Guest register | Public check-in link, signature, 6-month retention, CSV/print export |
 | iCal calendar sync | SSRF-safe fetch, manual sync in app, daily cron via `vercel.json` (`/api/cron/sync-calendars`) |
 | SES due queue + cron | 48h prep window, overdue tracking, in-app notifications via `/api/cron/ses-due` (daily 08:00 UTC) |
+| Mossos / Ertzaintza ops | Regional due queue, Annex I check-in, fitxa/CSV export, manual status — no live API push |
 | Turso production DB | Migrations applied; `DATABASE_URL` + `TURSO_AUTH_TOKEN` on Vercel Production |
 | Spain SES integration | SOAP credentials UI, validation + **dry-run only** (test endpoint) |
 | Landing & pricing copy | Starter **€19/mo** (≤3 properties), Pro **€49/mo** (≤50 properties), 14-day trial |
@@ -62,7 +63,8 @@ Customer Portal should already be enabled in Stripe Dashboard → Settings → B
 
 | Item | Why |
 |------|-----|
-| `SES_LIVE=false` | Spain guest reporting stays on the **test/dry-run** endpoint — zero government submissions until a deliberate later flip |
+| `SES_LIVE=false` | Spain SES guest reporting stays on the **test/dry-run** endpoint — zero MIR submissions until a deliberate later flip |
+| Mossos/Ertzaintza API | No automated push — Glint prepares exports; host submits on official portal (same honesty model as FR fiche de police) |
 | Custom paid domain | Optional later; default `*.vercel.app` URL is fine |
 | Preview env Stripe keys | Keep `sk_test_` / `pk_test_` on Preview for safe QA |
 
@@ -83,6 +85,7 @@ After Production redeploy with live Stripe:
    - SES due notifications: daily at 08:00 UTC (`/api/cron/ses-due`)
    - Check Vercel → Cron Jobs tab after deploy
 7. **Spain SES** — add a Madrid property, enable check-in link, confirm Annex I fields appear; due queue shows prep/overdue statuses; dry-run validate works; `SES_LIVE` remains `false`.
+8. **Catalonia / Basque** — add a Barcelona or Bilbao property; confirm Mossos/Ertzaintza panel, Annex I check-in, regional due queue, CSV/fitxa export, and manual status buttons. Verify Mossos portal URL loads (HTTP 200).
 
 Optional: Billing portal opens from Settings → Manage billing.
 
@@ -117,6 +120,16 @@ These should already be set; verify once:
 | `SES_LIVE` | `false` — dry-run only; flip deliberately when ready for live MIR SOAP |
 
 See [.env.example](./.env.example) for full variable documentation.
+
+### Turso migration (regional guest reporting)
+
+After deploying this slice, run on Production Turso:
+
+```bash
+npx prisma migrate deploy
+```
+
+Migration: `20260915010000_regional_guest_reporting` — adds `RegionalGuestReport` table for Mossos/Ertzaintza manual submission tracking. Build does not auto-migrate Turso.
 
 ---
 

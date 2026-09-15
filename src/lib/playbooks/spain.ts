@@ -279,33 +279,73 @@ export const SPAIN_BARCELONA_PLAYBOOK: Playbook = {
       fieldHints: ["name", "address", "city", "propertyType"],
     },
     {
-      key: "barcelona-regional-guest-system",
+      key: "barcelona-mossos-enrollment",
       title: {
-        en: "Use Catalonia regional guest system (not SES)",
-        fr: "Utiliser le système régional catalan (pas SES)",
+        en: "Enroll establishment with Mossos (PI-15 alta)",
+        fr: "Inscrire l'établissement auprès des Mossos (alta PI-15)",
       },
       instruction: {
-        en: "Catalonia requires guest data reporting through the Mossos d'Esquadra system — SES.HOSPEDAJES does not apply. Use the official Catalan portal or your property management system integration.",
-        fr: "La Catalogne exige la déclaration via le système Mossos d'Esquadra — SES.HOSPEDAJES ne s'applique pas. Utilisez le portail catalan officiel ou l'intégration de votre PMS.",
+        en: "Before your first guest report, register your establishment with Mossos d'Esquadra via the PI-15 procedure (Canal Empresa / ACCIÓ). Obtain your establishment code. Do NOT also submit to SES.HOSPEDAJES — Catalonia uses Mossos Hotels only.",
+        fr: "Avant votre première déclaration, inscrivez votre établissement auprès des Mossos d'Esquadra via la procédure PI-15 (Canal Empresa / ACCIÓ). Obtenez votre code établissement. Ne soumettez PAS aussi à SES.HOSPEDAJES — la Catalogne utilise uniquement Mossos Hotels.",
       },
       officialUrls: [
         {
-          url: "https://registreviatgers.mossos.gencat.cat/mossos_hotels/AppJava/login.do",
+          url: "https://empresa.gencat.cat/ca/ambits-actuacio/turisme/registre-allotjaments-turistics",
           label: {
-            en: "Mossos — guest register portal (Catalonia)",
-            fr: "Mossos — portail registre voyageurs (Catalogne)",
+            en: "Generalitat — tourist accommodation register & PI-15",
+            fr: "Generalitat — registre hébergements touristiques et PI-15",
           },
           role: "portal",
           urlVerified: true,
         },
       ],
       documents: {
-        en: ["HUT number", "Guest ID documents", "Check-in/check-out dates"],
-        fr: ["Numéro HUT", "Documents d'identité voyageurs", "Dates arrivée/départ"],
+        en: ["HUT number", "NIE/NIF", "Property address", "Establishment type"],
+        fr: ["Numéro HUT", "NIE/NIF", "Adresse du bien", "Type d'établissement"],
+      },
+      fieldHints: ["name", "address", "city"],
+    },
+    {
+      key: "barcelona-mossos-guest-reporting",
+      title: {
+        en: "Report guests via Mossos Hotels within 24h",
+        fr: "Déclarer les voyageurs via Mossos Hotels sous 24h",
+      },
+      instruction: {
+        en: "Collect Annex I guest data via Glint check-in link, then export the fitxa/CSV and enter data manually on the Mossos Hotels portal (registreviatgers.mossos.gencat.cat). Glint prepares and validates — you submit on the official portal. Retain records 3 years (RD 933/2021).",
+        fr: "Collectez les données Annexe I via le lien check-in Glint, puis exportez la fitxa/CSV et saisissez les données manuellement sur le portail Mossos Hotels. Glint prépare et valide — vous soumettez sur le portail officiel. Conservez les registres 3 ans (RD 933/2021).",
+      },
+      officialUrls: [
+        {
+          url: "https://registreviatgers.mossos.gencat.cat/mossos_hotels/",
+          label: {
+            en: "Mossos Hotels — guest register portal",
+            fr: "Mossos Hotels — portail registre voyageurs",
+          },
+          role: "portal",
+          urlVerified: true,
+        },
+        {
+          url: "https://registreviatgers.mossos.gencat.cat/mossos_hotels/AppJava/login.do",
+          label: {
+            en: "Mossos Hotels — login",
+            fr: "Mossos Hotels — connexion",
+          },
+          role: "portal",
+          urlVerified: true,
+        },
+      ],
+      documents: {
+        en: ["Annex I guest data (from Glint export)", "Establishment code", "Check-in/check-out dates"],
+        fr: ["Données Annexe I (export Glint)", "Code établissement", "Dates arrivée/départ"],
       },
       timeline: {
-        en: "Within 24 hours of check-in.",
-        fr: "Sous 24 heures après l'arrivée.",
+        en: "Within 24 hours of check-in. Retain register 3 years.",
+        fr: "Sous 24 heures après l'arrivée. Conserver le registre 3 ans.",
+      },
+      pitfalls: {
+        en: "Do not also submit to SES.HOSPEDAJES. Competitors like RegistroViajero only cover SES — Glint handles Mossos ops for multi-region Spain portfolios.",
+        fr: "Ne soumettez pas aussi à SES.HOSPEDAJES. Des concurrents comme RegistroViajero ne couvrent que le SES — Glint gère les ops Mossos pour les portefeuilles multi-régions.",
       },
       fieldHints: ["address", "city"],
     },
@@ -390,6 +430,145 @@ export const SPAIN_MALAGA_PLAYBOOK: Playbook = {
   ],
 };
 
+const basqueRegionalSteps = (cityKey: string, cityName: string): PlaybookStep[] => [
+  esSteps.postNruaContext(),
+  {
+    key: `${cityKey}-regional-license`,
+    title: {
+      en: "Obtain Basque Country tourist accommodation registration",
+      fr: "Obtenir l'enregistrement touristique du Pays basque",
+    },
+    instruction: {
+      en: `Register your short-term rental with the Basque Government and obtain your regional tourism number. Display it on all platform listings as required under EU 2024/1028.`,
+      fr: `Enregistrez votre location courte durée auprès du gouvernement basque et obtenez votre numéro touristique régional. Affichez-le sur toutes les plateformes conformément au règlement UE 2024/1028.`,
+    },
+    officialUrls: [
+      {
+        url: "https://www.euskadi.eus/informacion/tramitacion-registro-de-viajeros/web01a3wztram/es/",
+        label: {
+          en: "Basque Government — traveller registry info",
+          fr: "Gouvernement basque — registre voyageurs",
+        },
+        role: "info",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: ["NIE/NIF", "Property deed or rental contract", "Regional tourism number"],
+      fr: ["NIE/NIF", "Titre de propriété ou contrat", "Numéro touristique régional"],
+    },
+    fieldHints: ["name", "address", "city", "propertyType"],
+  },
+  {
+    key: `${cityKey}-ertzaintza-enrollment`,
+    title: {
+      en: "Enroll with Ertzaintza electronic registry (alta)",
+      fr: "S'inscrire au registre électronique Ertzaintza (alta)",
+    },
+    instruction: {
+      en: "Before your first guest report, complete the Ertzaintza/Basque Government hostelero alta. Do NOT submit to SES.HOSPEDAJES — the Basque Country uses Ertzaintza only. BookCheckin and other SES-only tools do not support Basque properties.",
+      fr: "Avant votre première déclaration, complétez l'alta hostelero Ertzaintza/gouvernement basque. Ne soumettez PAS à SES.HOSPEDAJES — le Pays basque utilise uniquement Ertzaintza. BookCheckin et autres outils SES-only ne supportent pas les biens basques.",
+    },
+    officialUrls: [
+      {
+        url: "https://www.ertzaintza.euskadi.eus/servicios-al-ciudadano/tramites-y-gestiones/registro-de-viajeros/web01a3wztram/es/",
+        label: {
+          en: "Ertzaintza — traveller registry portal",
+          fr: "Ertzaintza — portail registre voyageurs",
+        },
+        role: "portal",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: ["Regional tourism number", "NIE/NIF", "Property address"],
+      fr: ["Numéro touristique régional", "NIE/NIF", "Adresse du bien"],
+    },
+    fieldHints: ["name", "address", "city"],
+  },
+  {
+    key: `${cityKey}-ertzaintza-guest-reporting`,
+    title: {
+      en: `Report guests via Ertzaintza within 24h (${cityName})`,
+      fr: `Déclarer les voyageurs via Ertzaintza sous 24h (${cityName})`,
+    },
+    instruction: {
+      en: "Collect Annex I guest data via Glint check-in link, export fitxa/CSV, and enter manually on the Ertzaintza portal. Glint prepares and validates — you submit on the official portal. Penalties under Organic Law 4/2015: €100–600 minor, €601–30,000 serious. Retain records 3 years.",
+      fr: "Collectez les données Annexe I via le lien check-in Glint, exportez fitxa/CSV, et saisissez manuellement sur le portail Ertzaintza. Glint prépare et valide — vous soumettez sur le portail officiel. Sanctions loi organique 4/2015 : 100–600 € mineures, 601–30 000 € graves. Conserver 3 ans.",
+    },
+    officialUrls: [
+      {
+        url: "https://www.ertzaintza.euskadi.eus/servicios-al-ciudadano/tramites-y-gestiones/registro-de-viajeros/web01a3wztram/es/",
+        label: {
+          en: "Ertzaintza — traveller registry",
+          fr: "Ertzaintza — registre voyageurs",
+        },
+        role: "portal",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: ["Annex I guest data (from Glint export)", "Regional establishment code"],
+      fr: ["Données Annexe I (export Glint)", "Code établissement régional"],
+    },
+    timeline: {
+      en: "Within 24 hours of check-in. Retain register 3 years.",
+      fr: "Sous 24 heures après l'arrivée. Conserver le registre 3 ans.",
+    },
+    fieldHints: ["address", "city"],
+  },
+  esSteps.taxObligations(cityKey),
+  esSteps.updatePlatforms(cityKey),
+];
+
+export const SPAIN_BILBAO_PLAYBOOK: Playbook = {
+  id: "es-bilbao",
+  country: "Spain",
+  city: "Bilbao",
+  sourceReviewedAt: "2026-09-15",
+  title: {
+    en: "Bilbao — Ertzaintza regional system (not SES)",
+    fr: "Bilbao — système régional Ertzaintza (pas SES)",
+  },
+  description: {
+    en: "Bilbao is in the Basque Country (Bizkaia), which uses Ertzaintza — not SES.HOSPEDAJES. Glint prepares Annex I data for manual portal submission.",
+    fr: "Bilbao est au Pays basque (Bizkaia), qui utilise Ertzaintza — pas SES.HOSPEDAJES. Glint prépare les données Annexe I pour soumission manuelle.",
+  },
+  steps: basqueRegionalSteps("bilbao", "Bilbao"),
+};
+
+export const SPAIN_DONOSTIA_PLAYBOOK: Playbook = {
+  id: "es-donostia",
+  country: "Spain",
+  city: "Donostia-San Sebastián",
+  sourceReviewedAt: "2026-09-15",
+  title: {
+    en: "Donostia-San Sebastián — Ertzaintza (not SES)",
+    fr: "Donostia-San Sebastián — Ertzaintza (pas SES)",
+  },
+  description: {
+    en: "San Sebastián is in Gipuzkoa, Basque Country. Guest reporting goes to Ertzaintza, not SES. Glint handles the ops layer competitors skip.",
+    fr: "San Sebastián est en Gipuzkoa, Pays basque. La déclaration voyageurs va à Ertzaintza, pas au SES. Glint gère la couche ops que les concurrents ignorent.",
+  },
+  steps: basqueRegionalSteps("donostia", "Donostia-San Sebastián"),
+};
+
+export const SPAIN_VITORIA_PLAYBOOK: Playbook = {
+  id: "es-vitoria",
+  country: "Spain",
+  city: "Vitoria-Gasteiz",
+  sourceReviewedAt: "2026-09-15",
+  title: {
+    en: "Vitoria-Gasteiz — Ertzaintza (not SES)",
+    fr: "Vitoria-Gasteiz — Ertzaintza (pas SES)",
+  },
+  description: {
+    en: "Vitoria-Gasteiz is in Álava, Basque Country. Ertzaintza electronic registry applies — SES.HOSPEDAJES does not.",
+    fr: "Vitoria-Gasteiz est en Álava, Pays basque. Le registre électronique Ertzaintza s'applique — pas SES.HOSPEDAJES.",
+  },
+  steps: basqueRegionalSteps("vitoria", "Vitoria-Gasteiz"),
+};
+
 export const SPAIN_GENERIC_PLAYBOOK: Playbook = {
   id: "es-generic",
   country: "Spain",
@@ -449,6 +628,9 @@ export const SPAIN_GENERIC_PLAYBOOK: Playbook = {
 export const SPAIN_PLAYBOOKS: Playbook[] = [
   SPAIN_MADRID_PLAYBOOK,
   SPAIN_BARCELONA_PLAYBOOK,
+  SPAIN_BILBAO_PLAYBOOK,
+  SPAIN_DONOSTIA_PLAYBOOK,
+  SPAIN_VITORIA_PLAYBOOK,
   SPAIN_VALENCIA_PLAYBOOK,
   SPAIN_MALAGA_PLAYBOOK,
   SPAIN_GENERIC_PLAYBOOK,

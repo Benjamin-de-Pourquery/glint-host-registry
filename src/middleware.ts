@@ -34,5 +34,9 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // Exclude Next metadata image routes (no file extension) so they are not
+  // locale-prefixed by next-intl (/icon → /en/icon 404).
+  matcher: [
+    "/((?!api|_next|_vercel|icon|apple-icon|opengraph-image|twitter-image|.*\\..*).*)",
+  ],
 };

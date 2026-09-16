@@ -11,11 +11,15 @@ import {
   isItalyGuestReporting,
 } from "@/lib/italy/regions";
 import { getAlloggiatiLoginUrl, getAlloggiatiPortalUrl } from "@/lib/italy/official-links";
+import { submitAlloggiatiSchedine } from "@/lib/italy/alloggiati/submit";
+import { checkAlloggiatiRateLimit } from "@/lib/italy/alloggiati/rate-limit";
+import { isAlloggiatiLiveEnabled } from "@/lib/italy/alloggiati/config";
 import { z } from "zod";
 
 const actionSchema = z.object({
-  action: z.enum(["prepare", "update_status"]),
+  action: z.enum(["prepare", "update_status", "submit"]),
   status: z.enum(["prepared", "submitted", "accepted"]).optional(),
+  mode: z.enum(["dry_run", "live"]).optional(),
   notes: z.string().max(500).optional(),
 });
 
@@ -32,6 +36,7 @@ export async function GET(
 
   const property = await prisma.property.findFirst({
     where: { id, userId: session.user.id },
+    include: { alloggiatiCredential: true },
   });
 
   if (!property) {
@@ -72,6 +77,9 @@ export async function GET(
     submittedAt: latestReport?.submittedAt?.toISOString() ?? null,
     acceptedAt: latestReport?.acceptedAt?.toISOString() ?? null,
     notes: latestReport?.notes ?? null,
+    credentialsConfigured: Boolean(property.alloggiatiCredential),
+    alloggiatiLiveEnv: isAlloggiatiLiveEnabled(),
+    liveSubmitEnabled: property.alloggiatiCredential?.liveSubmitEnabled ?? false,
   });
 }
 
@@ -84,10 +92,19 @@ export async function POST(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const rateCheck = checkAlloggiatiRateLimit(session.user.id);
+  if (!rateCheck.allowed) {
+    return NextResponse.json(
+      { error: "Rate limit exceeded", retryAfterMs: rateCheck.retryAfterMs },
+      { status: 429 }
+    );
+  }
+
   const { id, stayId } = await params;
 
   const property = await prisma.property.findFirst({
     where: { id, userId: session.user.id },
+    include: { alloggiatiCredential: true },
   });
 
   if (!property) {
@@ -118,7 +135,7 @@ export async function POST(
 
   try {
     const body = await request.json();
-    const { action, status, notes } = actionSchema.parse(body);
+    const { action, status, mode, notes } = actionSchema.parse(body);
 
     if (action === "prepare") {
       const validationErrors = validateStayForAlloggiatiExport(stay.guestRecords);
@@ -167,6 +184,33 @@ export async function POST(
       });
     }
 
+    if (action === "submit") {
+      if (!property.alloggiatiCredential) {
+        return NextResponse.json(
+          { error: "Alloggiati credentials not configured" },
+          { status: 400 }
+        );
+      }
+
+      const result = await submitAlloggiatiSchedine({
+        propertyId: id,
+        userId: session.user.id,
+        guests: stay.guestRecords,
+        mode: mode ?? "dry_run",
+      });
+
+      return NextResponse.json({
+        mode: result.mode,
+        success: result.success,
+        schedineCount: result.schedineCount,
+        schedineValide: result.schedineValide,
+        governmentCode: result.governmentCode,
+        governmentMessage: result.governmentMessage,
+        governmentDetail: result.governmentDetail,
+        dryRunNote: result.dryRunNote,
+      });
+    }
+
     if (action === "update_status") {
       if (!status) {
         return NextResponse.json({ error: "Status required" }, { status: 400 });
@@ -210,7 +254,15 @@ export async function POST(
     }
 
     return NextResponse.json({ error: "Invalid action" }, { status: 400 });
-  } catch {
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === "NO_CREDENTIALS") {
+        return NextResponse.json({ error: "Alloggiati credentials not configured" }, { status: 400 });
+      }
+      if (error.message === "NO_ENCRYPTION") {
+        return NextResponse.json({ error: "Encryption not configured" }, { status: 503 });
+      }
+    }
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 }

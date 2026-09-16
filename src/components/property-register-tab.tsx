@@ -12,6 +12,7 @@ import { ComplianceBadge } from "@/components/compliance-badge";
 import { GuestRegisterPanel } from "@/components/guest-register-panel";
 import { SesCredentialsPanel } from "@/components/ses-credentials-panel";
 import { AlloggiatiReportingPanel } from "@/components/alloggiati-reporting-panel";
+import { AlloggiatiCredentialsPanel } from "@/components/alloggiati-credentials-panel";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
@@ -142,6 +143,7 @@ export function PropertyRegisterTab({
       {isItalyCountry(country) && (
         <>
           <CinComplianceCard propertyId={propertyId} registration={registration} />
+          <AlloggiatiCredentialsPanel propertyId={propertyId} />
           <AlloggiatiReportingPanel city={city} />
         </>
       )}

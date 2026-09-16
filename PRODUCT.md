@@ -82,7 +82,9 @@ Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and 
 - **CIN on Registration / Overview:** `cinNumber`, `cinBdsrStatus`, `cinDisplayedOnListings` on Registration; CIN card on Overview and Register tabs; wired into listing NER display.
 - **Alloggiati check-in:** Public check-in collects Alloggiati-relevant fields (document type/number, sex M/F, nationality, birth date/place, arrival) with field mapping documented in `src/lib/italy/check-in-validation.ts`.
 - **Due queue + dashboard:** 48h prep / 24h overdue (reuses SES cron pattern). In-app `alloggiati_due` notifications. Export kit: printable schedina HTML + CSV + copy chips + deep link to Alloggiati Web. Manual statuses: `prepared` / `submitted` / `accepted` via `RegionalGuestReport` with `system: "alloggiati"`.
-- **No live Alloggiati automation** unless official web-service docs are verified in-repo (`ALLOCGIATI_LIVE=false` default).
+- **Primary UX (no WSKEY):** collect → validate → due queue → export kit + portal deep links — hosts operate without SOAP credentials.
+- **Optional SOAP dry-run (verified):** Official WSDL + MANUALEWS.pdf at `https://alloggiatiweb.poliziadistato.it/service/service.asmx`. Per-property encrypted credentials (`AlloggiatiCredential`: utente, password, WSKEY) mirror SES (`SECRETS_ENCRYPTION_KEY`). `GenerateToken` + `Authentication_Test` for connectivity; `Test` for 168-char schedina validation (CREAFILE.pdf). `ALLOCGIATI_LIVE=false` default — `Send` only when env + per-property flag enabled.
+- **Phase 2:** Full comune/stato code lookup tables (portal Tipi_Tabella), accompanying-family schedina types (17–20), GestioneAppartamenti_* for multi-unit hosts.
 - **Differentiator:** FR + ES (SES/Mossos/Ertzaintza) + IT (CIN + Alloggiati ops) in one EU compliance layer — not an Italy-only PMS.
 - **Next:** Portugal, Greece (documented as future slices).
 

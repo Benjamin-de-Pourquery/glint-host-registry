@@ -90,6 +90,7 @@ model Property {
   guestStays   GuestStay[]
   guestRecords GuestRecord[]
   sesCredential SesCredential?
+  alloggiatiCredential AlloggiatiCredential?
   sesSubmissions SesSubmission[]
   regionalGuestReports RegionalGuestReport[]
 }
@@ -198,6 +199,20 @@ model SesCredential {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   property              Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model AlloggiatiCredential {
+  id                  String    @id @default(cuid())
+  propertyId          String    @unique
+  utente              String
+  passwordEncrypted   String
+  wsKeyEncrypted      String
+  liveSubmitEnabled   Boolean   @default(false)
+  lastTestedAt        DateTime?
+  lastTestStatus      String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  property            Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }
 
 model SesSubmission {

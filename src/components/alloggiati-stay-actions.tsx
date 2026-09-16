@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, FileSearch, Download, ExternalLink, CheckCircle2 } from "lucide-react";
+import { Loader2, FileSearch, Download, ExternalLink, CheckCircle2, Send } from "lucide-react";
 import { CopyFieldChip } from "@/components/copy-field-chip";
 import { toast } from "sonner";
 
@@ -20,11 +20,14 @@ type AlloggiatiStatus = {
   latestStatus: string | null;
   portalUrl: string | null;
   loginUrl: string | null;
+  credentialsConfigured?: boolean;
+  alloggiatiLiveEnv?: boolean;
+  liveSubmitEnabled?: boolean;
 };
 
 export function AlloggiatiStayActions({ propertyId, stayId, locale, guestCount }: Props) {
   const t = useTranslations("alloggiati");
-  const [loading, setLoading] = useState<"prepare" | "status" | null>(null);
+  const [loading, setLoading] = useState<"prepare" | "status" | "dry_run" | "live" | null>(null);
   const [status, setStatus] = useState<AlloggiatiStatus | null>(null);
 
   const loadStatus = async () => {
@@ -66,6 +69,38 @@ export function AlloggiatiStayActions({ propertyId, stayId, locale, guestCount }
         );
       }
       await loadStatus();
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : t("stay.error"));
+    } finally {
+      setLoading(null);
+    }
+  };
+
+  const runSoapSubmit = async (mode: "dry_run" | "live") => {
+    setLoading(mode);
+    try {
+      const res = await fetch(
+        `/api/properties/${propertyId}/guest-stays/${stayId}/alloggiati`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "submit", mode }),
+        }
+      );
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || "Failed");
+
+      if (json.success) {
+        if (json.mode === "dry_run") {
+          toast.success(
+            t("stay.dryRunOk", { valid: json.schedineValide ?? json.schedineCount })
+          );
+        } else {
+          toast.success(t("stay.submittedOk"));
+        }
+      } else {
+        toast.error(json.governmentMessage ?? t("stay.soapFailed"));
+      }
     } catch (e) {
       toast.error(e instanceof Error ? e.message : t("stay.error"));
     } finally {
@@ -125,6 +160,39 @@ export function AlloggiatiStayActions({ propertyId, stayId, locale, guestCount }
           )}
           {t("stay.prepare")}
         </Button>
+
+        {status?.credentialsConfigured && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => runSoapSubmit("dry_run")}
+            disabled={loading !== null || guestCount === 0}
+          >
+            {loading === "dry_run" ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            ) : (
+              <Send className="h-3.5 w-3.5" />
+            )}
+            {t("stay.dryRun")}
+          </Button>
+        )}
+
+        {status?.credentialsConfigured &&
+          status.alloggiatiLiveEnv &&
+          status.liveSubmitEnabled && (
+            <Button
+              size="sm"
+              onClick={() => runSoapSubmit("live")}
+              disabled={loading !== null || guestCount === 0}
+            >
+              {loading === "live" ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Send className="h-3.5 w-3.5" />
+              )}
+              {t("stay.submit")}
+            </Button>
+          )}
 
         <a href={`/api/properties/${propertyId}/guest-stays/${stayId}/alloggiati/export`}>
           <Button variant="outline" size="sm" disabled={guestCount === 0}>

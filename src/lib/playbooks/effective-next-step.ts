@@ -4,7 +4,9 @@ import {
   type NationalTransitionRegistration,
 } from "@/lib/national-transition";
 import { getEffectiveNextStepForSpain } from "@/lib/ses/next-action";
+import { getEffectiveNextStepForItaly } from "@/lib/italy/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
+import { isItalyCountry } from "@/lib/italy/regions";
 
 export type EffectiveNextStepContext = {
   country: string;
@@ -12,6 +14,8 @@ export type EffectiveNextStepContext = {
   registration?: NationalTransitionRegistration | null;
   hasActiveStayNeedingSes?: boolean;
   hasSesCredentials?: boolean;
+  hasCinNumber?: boolean;
+  hasActiveStayNeedingAlloggiati?: boolean;
 };
 
 export function getEffectiveNextStep(
@@ -26,6 +30,15 @@ export function getEffectiveNextStep(
       city: context.city,
       hasActiveStayNeedingSes: context.hasActiveStayNeedingSes,
       hasSesCredentials: context.hasSesCredentials,
+    });
+  }
+
+  if (isItalyCountry(context.country)) {
+    return getEffectiveNextStepForItaly(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      hasCinNumber: context.hasCinNumber,
+      hasActiveStayNeedingAlloggiati: context.hasActiveStayNeedingAlloggiati,
     });
   }
 

@@ -29,8 +29,10 @@ import {
 type Props = {
   propertyId: string;
   city: string;
+  country?: string;
   registrationNumber?: string | null;
   nationalRegistrationNumber?: string | null;
+  cinNumber?: string | null;
   initialChannels: ListingChannelRecord[];
 };
 
@@ -51,8 +53,10 @@ const STATUS_STYLES: Record<DisplayStatus, string> = {
 export function PropertyListingsForm({
   propertyId,
   city,
+  country = "",
   registrationNumber,
   nationalRegistrationNumber,
+  cinNumber,
   initialChannels,
 }: Props) {
   const t = useTranslations("properties.detail.listings");
@@ -68,7 +72,10 @@ export function PropertyListingsForm({
   const [expandedBlockId, setExpandedBlockId] = useState<string | null>(null);
 
   const effectiveNer =
-    nationalRegistrationNumber?.trim() || registrationNumber?.trim() || "";
+    nationalRegistrationNumber?.trim() ||
+    cinNumber?.trim() ||
+    registrationNumber?.trim() ||
+    "";
 
   const blockedChannel = channels.find((c) => c.displayStatus === "BLOCKED");
   const showBlockPlaybook =

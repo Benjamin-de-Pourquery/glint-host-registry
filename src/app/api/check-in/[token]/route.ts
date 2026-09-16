@@ -10,6 +10,8 @@ import { isValidSignatureDataUrl } from "@/lib/security/signature-data-url";
 import { isCheckInRateLimited } from "@/lib/security/rate-limit";
 import { validateCheckInForSes } from "@/lib/ses/check-in-validation";
 import { isSpainCountry, requiresAnnexOneCheckIn } from "@/lib/spain/regions";
+import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
+import { validateCheckInForAlloggiati } from "@/lib/italy/check-in-validation";
 import { z } from "zod";
 
 const childSchema = z.object({
@@ -110,9 +112,21 @@ export async function POST(
     const property = tokenRecord.property;
     const annexOneRequired =
       isSpainCountry(property.country) && requiresAnnexOneCheckIn(property.city);
+    const alloggiatiRequired =
+      isItalyCountry(property.country) && requiresAlloggiatiCheckIn(property.city);
 
     if (annexOneRequired) {
       const validationErrors = validateCheckInForSes(data);
+      if (validationErrors.length > 0) {
+        return NextResponse.json(
+          { error: "Validation failed", validationErrors },
+          { status: 400 }
+        );
+      }
+    }
+
+    if (alloggiatiRequired) {
+      const validationErrors = validateCheckInForAlloggiati(data);
       if (validationErrors.length > 0) {
         return NextResponse.json(
           { error: "Validation failed", validationErrors },

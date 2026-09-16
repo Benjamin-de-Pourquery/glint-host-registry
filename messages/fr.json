@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "Conformité location courte durée UE — France, Espagne et plus",
-      "subtitle": "Ops Espagne multi-régions — SES, Mossos et Ertzaintza — plus playbooks France, registre voyageurs et suivi UE 2024/1028. Glint prépare ; vous soumettez sur les portails officiels.",
+      "title": "Conformité location courte durée UE — France, Espagne, Italie et plus",
+      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, et ops CIN + Alloggiati Italie. Glint prépare ; vous soumettez sur les portails officiels.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "Villes FR + Espagne (SES, Mossos, Ertzaintza)",
-      "ses": "SES + ops Mossos/Ertzaintza",
+      "cities": "FR + ES (SES, Mossos, Ertzaintza) + IT (CIN, Alloggiati)",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati",
       "bilingual": "Interface FR + EN"
     },
     "problem": {
@@ -176,17 +176,17 @@
       "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
       "points": {
         "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
-        "2": "En Espagne, la déclaration voyageurs est due sous 24h — SES pour la plupart des régions, Mossos en Catalogne, Ertzaintza au Pays basque",
-        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes exigeront des numéros valides dès mai 2026"
+        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, les schedine Alloggiati Web sont distinctes du CIN BDSR affiché sur les annonces",
+        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/NER au titre du règlement UE 2024/1028"
       }
     },
     "solution": {
       "title": "Un cockpit conformité pour tout votre portefeuille",
       "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros — avec une prochaine action claire par bien.",
       "points": {
-        "1": "Playbooks France et Espagne — dont Mossos (Catalogne) et Ertzaintza (Pays basque) où les outils SES-only s'arrêtent",
-        "2": "Registre : check-in Annexe I pour SES, Mossos et Ertzaintza ; files d'échéance avec fenêtre 48h",
-        "3": "iCal → registre séjours → validation SES en simulation ; envoi SOAP live quand vous activez SES_LIVE"
+        "1": "Playbooks France, Espagne et Italie — Mossos/Ertzaintza où les outils SES-only s'arrêtent ; Roma, Milano, Firenze, Venezia CIN + Alloggiati",
+        "2": "Registre : Annexe I (ES), champs Alloggiati (IT), fiche FR ; files 48h prep + échéance 24h",
+        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati ; SES dry-run/live avec SES_LIVE"
       }
     },
     "features": {
@@ -197,12 +197,12 @@
         "description": "Tunnels pas à pas pour Paris, Lyon, Marseille, Bordeaux et Nice — avec liens vers formulaires officiels, règlements et branchement selon votre statut de résidence."
       },
       "guestRegister": {
-        "title": "Registre voyageurs (FR + ES)",
-        "description": "Lien ou QR public avec champs Annexe I pour SES Espagne, fiche de police pour voyageurs étrangers en France, signature numérique et export CSV."
+        "title": "Registre voyageurs (FR + ES + IT)",
+        "description": "Lien ou QR public avec champs Annexe I (Espagne), champs schedina Alloggiati (Italie), fiche de police France, signature et export CSV."
       },
       "sesQueue": {
-        "title": "Files déclaration voyageurs Espagne",
-        "description": "File SES pour la plupart de l'Espagne plus ops Mossos/Ertzaintza pour Catalogne et Pays basque — là où RegistroViajero et BookCheckin laissent des lacunes."
+        "title": "Files déclaration voyageurs UE",
+        "description": "SES, Mossos et Ertzaintza (Espagne) plus Alloggiati Web (Italie) — kits d'export et files d'échéance là où PMS Italie-only ou outils SES-only laissent des lacunes."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -292,12 +292,16 @@
         "7": {
           "q": "Et la Catalogne ou le Pays basque ?",
           "a": "SES.HOSPEDAJES ne s'applique pas — Mossos Hotels (Catalogne) et Ertzaintza (Pays basque) oui. Les outils SES-only comme RegistroViajero et BookCheckin abandonnent ces hôtes. Glint collecte les données Annexe I, les valide, exporte fitxa/CSV et suit la file d'échéance — vous soumettez sur le portail officiel."
+        },
+        "8": {
+          "q": "Glint couvre-t-il l'Italie (CIN et Alloggiati) ?",
+          "a": "Oui. Glint suit le CIN BDSR pour les annonces (règlement UE 2024/1028) et prépare les schedine Alloggiati Web (24h après arrivée) avec kits d'export et files d'échéance. CIN et Alloggiati sont des obligations distinctes — pas de soumission automatique aux administrations."
         }
       }
     },
     "cta": {
       "title": "Mettez votre conformité sous contrôle",
-      "subtitle": "Playbooks France, file SES Espagne, registre voyageurs et suivi portefeuille — prêts pour le Règlement UE 2024/1028 et l'échéance SES 24h.",
+      "subtitle": "Ops conformité France, Espagne et Italie dans un seul cockpit — CIN, Alloggiati, SES, Mossos, registre et portefeuille.",
       "button": "Essai gratuit 14 jours",
       "login": "Connexion"
     },
@@ -519,7 +523,8 @@
         "title": "Résumé",
         "address": "Adresse",
         "type": "Type de bien",
-        "registration": "Numéro d'enregistrement"
+        "registration": "Numéro d'enregistrement",
+        "cin": "CIN (BDSR)"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1110,6 +1115,119 @@
       "departureDate": "Départ",
       "childrenTitle": "Enfants accompagnants",
       "footer": "Préparé par Glint Host Registry pour soumission manuelle. Conserver 3 ans (RD 933/2021)."
+    }
+  },
+  "alloggiati": {
+    "system": {
+      "alloggiati": "Alloggiati Web"
+    },
+    "panel": {
+      "title": "Déclaration voyageurs Alloggiati Web",
+      "description": "{city} — L'Italie exige la schedina sur Alloggiati Web (Polizia di Stato) sous 24h après l'arrivée (art. 109 TULPS). Glint prépare les données ; vous soumettez sur le portail officiel.",
+      "honestyNote": "Glint n'envoie pas automatiquement vers Alloggiati Web. Nous collectons → validons → exportons schedina/CSV → vous soumettez sur le portail officiel.",
+      "workflowTitle": "Workflow",
+      "step1": "Activer le lien check-in et collecter les champs Alloggiati",
+      "step2": "Préparer le kit d'export (schedina + CSV) depuis le séjour",
+      "step3": "Saisir les données sur le portail Alloggiati Web",
+      "step4": "Marquer le statut dans Glint (préparé → soumis → accepté)",
+      "alloggiatiPortal": "Portail Alloggiati Web",
+      "bdsrPortal": "Portail BDSR (CIN)",
+      "cinSeparateNote": "Le CIN (BDSR) concerne les annonces plateformes — distinct de la déclaration police Alloggiati."
+    },
+    "cin": {
+      "title": "CIN — Codice Identificativo Nazionale",
+      "description": "Obligatoire sur les annonces au titre du règlement UE 2024/1028. Vérification plateformes depuis le 20 mai 2026. Inscription BDSR avec SPID/CIE — distinct d'Alloggiati Web.",
+      "cinNumber": "Numéro CIN",
+      "cinNumberPlaceholder": "ex. IT12345678901234",
+      "bdsrStatus": "Statut BDSR",
+      "displayedOnListings": "CIN affiché sur toutes les annonces plateformes",
+      "save": "Enregistrer le CIN",
+      "saved": "CIN enregistré",
+      "saveError": "Impossible d'enregistrer le CIN",
+      "openBdsr": "Ouvrir le portail BDSR",
+      "disclaimer": "Pas un conseil juridique. CIN ≠ CIR/SCIA régional ≠ schedina Alloggiati.",
+      "status": {
+        "not_started": "Non commencé",
+        "pending": "En attente BDSR",
+        "active": "Actif",
+        "rejected": "Refusé"
+      }
+    },
+    "checkIn": {
+      "title": "Alloggiati Web — schedina voyageur",
+      "description": "Votre hôte doit communiquer ce séjour à la Polizia di Stato sous 24h après l'arrivée ({city}, Italie).",
+      "prepareHint": "Complétez tous les champs — votre hôte préparera la schedina pour saisie manuelle sur le portail.",
+      "deadlineHint": "Obligatoire au titre de l'art. 109 TULPS — distinct du CIN affiché sur l'annonce.",
+      "fieldsTitle": "Champs Alloggiati",
+      "fieldsHint": "Type de document (PAS/CI), sexe (M/F), nationalité et date d'arrivée sont requis pour la schedina police."
+    },
+    "stay": {
+      "prepare": "Préparer le kit d'export",
+      "exportCsv": "Télécharger CSV",
+      "printSchedina": "Imprimer schedina",
+      "openPortal": "Ouvrir Alloggiati Web",
+      "markSubmitted": "Marquer soumis",
+      "markAccepted": "Marquer accepté",
+      "prepareReady": "Kit prêt pour {count} voyageur(s)",
+      "validationFailed": "{count} problème(s) de validation — complétez les données voyageur",
+      "statusUpdated": {
+        "prepared": "Marqué comme préparé",
+        "submitted": "Marqué comme soumis sur Alloggiati Web",
+        "accepted": "Marqué comme accepté"
+      },
+      "error": "Impossible de traiter le rapport Alloggiati"
+    },
+    "submission": {
+      "status": {
+        "prepared": "Préparé",
+        "submitted": "Soumis",
+        "accepted": "Accepté"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement de la file Alloggiati…",
+      "title": "Obligations Alloggiati Web — préparation, échéance et retard",
+      "subtitle": "Séjours Italie nécessitant une schedina police (fenêtre 48h + échéance 24h après arrivée).",
+      "guestCount": "{count, plural, one {# voyageur} other {# voyageurs}}",
+      "noGuestsYet": "Pas encore de données voyageur",
+      "hoursLeft": "{hours}h restantes",
+      "overdue": "En retard",
+      "prepWindow": "À venir (48h)",
+      "action": "Ouvrir le registre",
+      "actionGuest": "Envoyer le lien check-in",
+      "status": {
+        "prep_window": "Séjour à venir",
+        "awaiting_guest_data": "En attente des données",
+        "awaiting_submission": "Prêt à exporter",
+        "overdue": "En retard"
+      }
+    },
+    "copy": {
+      "stayId": "ID séjour",
+      "copied": "Copié"
+    },
+    "export": {
+      "schedinaTitle": "Schedina Alloggiati Web",
+      "deadlineNote": "Soumettre sur Alloggiati Web sous 24 heures après l'arrivée.",
+      "portalNote": "Glint prépare cet export pour saisie manuelle sur Alloggiati Web. Pas de soumission automatique.",
+      "lastName": "Nom (cognome)",
+      "firstNames": "Prénom(s) (nome)",
+      "sex": "Sexe (sesso)",
+      "dateOfBirth": "Date de naissance",
+      "placeOfBirth": "Lieu de naissance",
+      "nationality": "Nationalité (cittadinanza)",
+      "documentType": "Type de document",
+      "documentNumber": "Numéro de document",
+      "address": "Adresse",
+      "postalCode": "Code postal (CAP)",
+      "municipality": "Commune",
+      "country": "Pays",
+      "mobile": "Mobile",
+      "email": "E-mail",
+      "arrivalDate": "Arrivée",
+      "departureDate": "Départ",
+      "childrenTitle": "Mineurs accompagnants",
+      "footer": "Préparé par Glint Host Registry pour soumission manuelle Alloggiati Web. Conserver selon la loi italienne."
     }
   },
   "common": {

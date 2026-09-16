@@ -12,6 +12,7 @@ import {
   isSpainCountry,
   requiresAnnexOneCheckIn,
 } from "@/lib/spain/regions";
+import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 
 type Props = {
   token: string;
@@ -31,9 +32,13 @@ export function CheckInForm({
   const t = useTranslations("guestRegister.public");
   const tSes = useTranslations("ses.checkIn");
   const tRegional = useTranslations("ses.regionalSystem");
+  const tAlloggiati = useTranslations("alloggiati.checkIn");
   const isSpain = isSpainCountry(propertyCountry);
+  const isItaly = isItalyCountry(propertyCountry);
   const reportingMode = isSpain ? getSpainGuestReportingMode(propertyCity) : "none";
   const annexOneApplies = isSpain && requiresAnnexOneCheckIn(propertyCity);
+  const alloggiatiApplies = isItaly && requiresAlloggiatiCheckIn(propertyCity);
+  const extendedCheckIn = annexOneApplies || alloggiatiApplies;
   const isRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -137,6 +142,20 @@ export function CheckInForm({
         <p>{t("legalNotice")}</p>
         <p className="mt-2 text-xs text-blue-700">{t("frenchNote")}</p>
       </div>
+
+      {alloggiatiApplies && (
+        <div className="flex gap-3 rounded-lg border border-emerald-200 bg-emerald-50/80 p-4 text-sm text-emerald-900">
+          <Info className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" />
+          <div>
+            <p className="font-medium">{tAlloggiati("title")}</p>
+            <p className="mt-1 text-xs text-emerald-800">
+              {tAlloggiati("description", { city: propertyCity })}
+            </p>
+            <p className="mt-2 text-xs text-emerald-700">{tAlloggiati("prepareHint")}</p>
+            <p className="mt-1 text-xs text-emerald-600">{tAlloggiati("deadlineHint")}</p>
+          </div>
+        </div>
+      )}
 
       {isRegional && (
         <div className="flex gap-3 rounded-lg border border-violet-200 bg-violet-50/80 p-4 text-sm text-violet-900">
@@ -246,13 +265,21 @@ export function CheckInForm({
         </div>
       </div>
 
-      {annexOneApplies && (
+      {extendedCheckIn && (
         <div className="space-y-4 rounded-lg border border-emerald-100 bg-emerald-50/40 p-4">
           <p className="text-sm font-medium text-emerald-900">
-            {isRegional ? tRegional("annexTitle") : tSes("title")}
+            {alloggiatiApplies
+              ? tAlloggiati("fieldsTitle")
+              : isRegional
+                ? tRegional("annexTitle")
+                : tSes("title")}
           </p>
           <p className="text-xs text-emerald-800">
-            {isRegional ? tRegional("annexHint") : tSes("hint")}
+            {alloggiatiApplies
+              ? tAlloggiati("fieldsHint")
+              : isRegional
+                ? tRegional("annexHint")
+                : tSes("hint")}
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
@@ -263,10 +290,22 @@ export function CheckInForm({
                 onChange={(e) => update("documentType", e.target.value)}
                 required
               >
-                <option value="PAS">PAS</option>
-                <option value="NIF">NIF</option>
-                <option value="NIE">NIE</option>
-                <option value="OTRO">OTRO</option>
+                {alloggiatiApplies ? (
+                  <>
+                    <option value="PAS">PAS</option>
+                    <option value="CI">CI</option>
+                    <option value="PAT">PAT</option>
+                    <option value="IDC">IDC</option>
+                    <option value="OTH">OTH</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="PAS">PAS</option>
+                    <option value="NIF">NIF</option>
+                    <option value="NIE">NIE</option>
+                    <option value="OTRO">OTRO</option>
+                  </>
+                )}
               </select>
             </div>
             <div className="space-y-2">
@@ -299,9 +338,18 @@ export function CheckInForm({
                 required
               >
                 <option value="">—</option>
-                <option value="H">H</option>
-                <option value="M">M</option>
-                <option value="O">O</option>
+                {alloggiatiApplies ? (
+                  <>
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="H">H</option>
+                    <option value="M">M</option>
+                    <option value="O">O</option>
+                  </>
+                )}
               </select>
             </div>
             <div className="space-y-2">
@@ -367,7 +415,7 @@ export function CheckInForm({
                 onChange={(e) => updateChild(index, "dateOfBirth", e.target.value)}
               />
             </div>
-            {annexOneApplies && (
+            {extendedCheckIn && !alloggiatiApplies && (
               <div className="space-y-1">
                 <Label className="text-xs">{tSes("kinship")}</Label>
                 <select

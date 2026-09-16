@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "EU short-term rental compliance — France, Spain, and beyond",
-      "subtitle": "Multi-region Spain ops — SES, Mossos, and Ertzaintza — plus France playbooks, guest register, and EU 2024/1028 registration tracking. Glint prepares; you submit on official portals.",
+      "title": "EU short-term rental compliance — France, Spain, Italy, and beyond",
+      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, and Italy CIN + Alloggiati Web ops. Glint prepares; you submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR cities + Spain (SES, Mossos, Ertzaintza)",
-      "ses": "SES + Mossos/Ertzaintza ops",
+      "cities": "FR + ES (SES, Mossos, Ertzaintza) + IT (CIN, Alloggiati)",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati ops",
       "bilingual": "FR + EN interface"
     },
     "problem": {
@@ -176,17 +176,17 @@
       "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
       "points": {
         "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "In Spain, guest reports are due within 24h — SES for most regions, Mossos for Catalonia, Ertzaintza for the Basque Country",
-        "3": "France keeps the fiche de police for foreign guests; platforms require valid numbers from May 2026"
+        "2": "In Spain, guest reports are due within 24h — SES, Mossos, or Ertzaintza. In Italy, Alloggiati Web schedine are separate from the BDSR CIN displayed on listings",
+        "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/NER under EU 2024/1028 from May 2026"
       }
     },
     "solution": {
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking — with a clear next action per property.",
       "points": {
-        "1": "City playbooks for France and Spain — including Mossos (Catalonia) and Ertzaintza (Basque Country) where SES-only tools stop",
-        "2": "Guest register: Annex I check-in for SES, Mossos, and Ertzaintza; due queues with 48h prep window",
-        "3": "iCal → stay registry → SES dry-run validation today; live SOAP when you explicitly enable SES_LIVE"
+        "1": "City playbooks for France, Spain, and Italy — Mossos/Ertzaintza where SES-only tools stop; Roma, Milano, Firenze, Venezia CIN + Alloggiati ops",
+        "2": "Guest register: Annex I (ES), Alloggiati fields (IT), French fiche; due queues with 48h prep + 24h deadline",
+        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, and Alloggiati; SES dry-run/live when you enable SES_LIVE"
       }
     },
     "features": {
@@ -197,12 +197,12 @@
         "description": "Step-by-step tunnels for Paris, Lyon, Marseille, Bordeaux, and Nice — with official form links, regulations, and residency branching."
       },
       "guestRegister": {
-        "title": "Guest register (FR + ES)",
-        "description": "Public check-in link or QR with Annex I fields for Spain SES, French fiche de police for foreign guests, digital signature, and CSV export."
+        "title": "Guest register (FR + ES + IT)",
+        "description": "Public check-in link or QR with Annex I fields (Spain), Alloggiati schedina fields (Italy), French fiche de police, digital signature, and CSV export."
       },
       "sesQueue": {
-        "title": "Spain guest-reporting queues",
-        "description": "SES due queue for most of Spain plus Mossos/Ertzaintza ops for Catalonia and Basque Country — where RegistroViajero and BookCheckin leave gaps."
+        "title": "EU guest-reporting queues",
+        "description": "SES, Mossos, and Ertzaintza for Spain plus Alloggiati Web for Italy — export kits and due queues where Italy-only PMS or SES-only tools leave gaps."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -292,12 +292,16 @@
         "7": {
           "q": "What about Catalonia and the Basque Country?",
           "a": "SES.HOSPEDAJES does not apply there — Mossos Hotels (Catalonia) and Ertzaintza (Basque Country) do. SES-only tools like RegistroViajero and BookCheckin leave these hosts behind. Glint collects Annex I data, validates it, exports a fitxa/CSV, and tracks the due queue — you submit on the official portal."
+        },
+        "8": {
+          "q": "Does Glint cover Italy (CIN and Alloggiati)?",
+          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (24h after check-in) with export kits and due queues. CIN and Alloggiati are separate obligations — we do not submit to government systems automatically."
         }
       }
     },
     "cta": {
       "title": "Take control of your compliance",
-      "subtitle": "France playbooks, Spain SES queue, guest register, and portfolio tracking — ready for EU 2024/1028 and the 24h SES deadline.",
+      "subtitle": "France, Spain, and Italy compliance ops in one cockpit — CIN, Alloggiati, SES, Mossos, guest register, and portfolio tracking.",
       "button": "Start 14-day free trial",
       "login": "Sign in"
     },
@@ -519,7 +523,8 @@
         "title": "Summary",
         "address": "Address",
         "type": "Property type",
-        "registration": "Registration number"
+        "registration": "Registration number",
+        "cin": "CIN (BDSR)"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -1110,6 +1115,119 @@
       "departureDate": "Departure",
       "childrenTitle": "Accompanying children",
       "footer": "Prepared by Glint Host Registry for manual portal submission. Retain 3 years (RD 933/2021)."
+    }
+  },
+  "alloggiati": {
+    "system": {
+      "alloggiati": "Alloggiati Web"
+    },
+    "panel": {
+      "title": "Alloggiati Web guest reporting",
+      "description": "{city} — Italy requires guest schedules on Polizia di Stato Alloggiati Web within 24h of check-in (TULPS art. 109). Glint prepares schedina data; you submit on the official portal.",
+      "honestyNote": "Glint does not push to Alloggiati Web automatically. We collect → validate → export schedina/CSV → you submit on the official portal.",
+      "workflowTitle": "Workflow",
+      "step1": "Enable check-in link and collect Alloggiati guest fields",
+      "step2": "Prepare export kit (schedina + CSV) from the stay",
+      "step3": "Enter data on Alloggiati Web portal",
+      "step4": "Mark submission status in Glint (prepared → submitted → accepted)",
+      "alloggiatiPortal": "Alloggiati Web portal",
+      "bdsrPortal": "BDSR CIN portal",
+      "cinSeparateNote": "CIN (BDSR) is for platform listings — separate from Alloggiati police reporting."
+    },
+    "cin": {
+      "title": "CIN — Codice Identificativo Nazionale",
+      "description": "Mandatory on listings under EU 2024/1028. Platforms verify from 20 May 2026. Register via BDSR with SPID/CIE — separate from Alloggiati Web.",
+      "cinNumber": "CIN number",
+      "cinNumberPlaceholder": "e.g. IT12345678901234",
+      "bdsrStatus": "BDSR status",
+      "displayedOnListings": "CIN displayed on all platform listings",
+      "save": "Save CIN",
+      "saved": "CIN saved",
+      "saveError": "Could not save CIN",
+      "openBdsr": "Open BDSR portal",
+      "disclaimer": "Not legal advice. CIN ≠ regional CIR/SCIA ≠ Alloggiati schedina.",
+      "status": {
+        "not_started": "Not started",
+        "pending": "Pending BDSR",
+        "active": "Active",
+        "rejected": "Rejected"
+      }
+    },
+    "checkIn": {
+      "title": "Alloggiati Web — guest schedule",
+      "description": "Your host must communicate this stay to Polizia di Stato within 24 hours of arrival ({city}, Italy).",
+      "prepareHint": "Please complete all fields — your host will prepare the schedina for manual portal entry.",
+      "deadlineHint": "Required under TULPS art. 109 — separate from the CIN shown on the listing.",
+      "fieldsTitle": "Alloggiati guest fields",
+      "fieldsHint": "Document type (PAS/CI), sex (M/F), nationality, and arrival date are required for the police schedina."
+    },
+    "stay": {
+      "prepare": "Prepare export kit",
+      "exportCsv": "Download CSV",
+      "printSchedina": "Print schedina",
+      "openPortal": "Open Alloggiati Web",
+      "markSubmitted": "Mark submitted",
+      "markAccepted": "Mark accepted",
+      "prepareReady": "Export kit ready for {count} guest(s)",
+      "validationFailed": "{count} validation issue(s) — complete guest data first",
+      "statusUpdated": {
+        "prepared": "Marked as prepared",
+        "submitted": "Marked as submitted on Alloggiati Web",
+        "accepted": "Marked as accepted"
+      },
+      "error": "Could not process Alloggiati report"
+    },
+    "submission": {
+      "status": {
+        "prepared": "Prepared",
+        "submitted": "Submitted",
+        "accepted": "Accepted"
+      }
+    },
+    "dueQueue": {
+      "loading": "Loading Alloggiati due queue…",
+      "title": "Alloggiati Web obligations — prep, due, and overdue",
+      "subtitle": "Italy stays requiring police guest schedules (48h prep + 24h deadline after check-in).",
+      "guestCount": "{count, plural, one {# guest} other {# guests}}",
+      "noGuestsYet": "No guest data yet",
+      "hoursLeft": "{hours}h remaining",
+      "overdue": "Overdue",
+      "prepWindow": "Upcoming (48h)",
+      "action": "Open register",
+      "actionGuest": "Send check-in link",
+      "status": {
+        "prep_window": "Upcoming stay",
+        "awaiting_guest_data": "Awaiting guest data",
+        "awaiting_submission": "Ready to export",
+        "overdue": "Overdue"
+      }
+    },
+    "copy": {
+      "stayId": "Stay ID",
+      "copied": "Copied"
+    },
+    "export": {
+      "schedinaTitle": "Alloggiati Web guest schedule",
+      "deadlineNote": "Submit on Alloggiati Web within 24 hours of check-in.",
+      "portalNote": "Glint prepares this export for manual entry on Alloggiati Web. Glint does not submit automatically.",
+      "lastName": "Last name (cognome)",
+      "firstNames": "First name(s) (nome)",
+      "sex": "Sex (sesso)",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "nationality": "Nationality (cittadinanza)",
+      "documentType": "Document type",
+      "documentNumber": "Document number",
+      "address": "Address",
+      "postalCode": "Postal code (CAP)",
+      "municipality": "Municipality",
+      "country": "Country",
+      "mobile": "Mobile",
+      "email": "Email",
+      "arrivalDate": "Arrival",
+      "departureDate": "Departure",
+      "childrenTitle": "Accompanying minors",
+      "footer": "Prepared by Glint Host Registry for manual Alloggiati Web submission. Retain per Italian law."
     }
   },
   "common": {

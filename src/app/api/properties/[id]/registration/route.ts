@@ -18,6 +18,11 @@ const schema = z.object({
   nationalRegistrationNumber: z.string().nullable().optional(),
   nationalTransitionStatus: z.enum(NATIONAL_TRANSITION_STATUSES).optional(),
   nationalRenewalDeadline: z.string().nullable().optional(),
+  cinNumber: z.string().nullable().optional(),
+  cinBdsrStatus: z
+    .enum(["not_started", "pending", "active", "rejected"])
+    .optional(),
+  cinDisplayedOnListings: z.boolean().optional(),
 });
 
 export async function PATCH(
@@ -66,6 +71,9 @@ export async function PATCH(
         nationalRenewalDeadline: data.nationalRenewalDeadline
           ? new Date(data.nationalRenewalDeadline)
           : null,
+        cinNumber: data.cinNumber ?? null,
+        cinBdsrStatus: data.cinBdsrStatus ?? "not_started",
+        cinDisplayedOnListings: data.cinDisplayedOnListings ?? false,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -83,6 +91,9 @@ export async function PATCH(
           : data.nationalRenewalDeadline === null
             ? null
             : undefined,
+        cinNumber: data.cinNumber,
+        cinBdsrStatus: data.cinBdsrStatus,
+        cinDisplayedOnListings: data.cinDisplayedOnListings,
       },
     });
 

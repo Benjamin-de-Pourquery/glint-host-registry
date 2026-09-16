@@ -17,6 +17,8 @@ const root = join(__dirname, "..");
 const PLAYBOOK_FILES = [
   "src/lib/playbooks/france.ts",
   "src/lib/playbooks/international.ts",
+  "src/lib/playbooks/spain.ts",
+  "src/lib/playbooks/italy.ts",
 ];
 
 const USER_AGENT =

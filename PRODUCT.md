@@ -43,7 +43,8 @@ Data-driven step-by-step guides keyed by country and city walk hosts through loc
 - Step progress (mark done / skip) persisted per property
 - Full FR guides: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
 - **Spain playbooks:** Madrid, Valencia, Málaga, Barcelona (Mossos), Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz (Ertzaintza) + generic fallback
-- Country stubs: Italy, Netherlands
+- **Italy playbooks:** Roma, Milano, Firenze, Venezia + Italy generic (CIN/BDSR, Alloggiati Web, ISTAT monthly reminder)
+- Country stubs: Netherlands
 
 Guides link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
 
@@ -72,6 +73,20 @@ Operational layer for **RD 933/2021 Annex I** guest reporting across all Spanish
 - **Cron:** `/api/cron/ses-due` (daily 08:00 UTC) notifies for both SES and regional stays entering the 24h window.
 - **Playbooks:** Barcelona (PI-15 Mossos alta + first submission), Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz (Ertzaintza alta + walkthrough).
 - **Differentiator vs RegistroViajero / BookCheckin:** SES-only tools abandon Basque hosts and treat Catalonia separately. Glint covers multi-region Spain portfolios: FR compliance + iCal + SES queue + Mossos/Ertzaintza ops.
+
+### 6c. Italy guest reporting + CIN (Alloggiati Web + BDSR)
+Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and **TULPS art. 109**:
+
+- **Legal context (not legal advice):** **CIN** (Codice Identificativo Nazionale) via Ministero del Turismo BDSR — mandatory on listings; platforms auto-verify from 20 May 2026; fines up to €8,000. **Alloggiati Web** (Polizia di Stato) — guest schedina within **24h** of check-in; separate from CIN. **ISTAT / regional flows** (ROSS 1000, Sinfonia) — monthly reminder in playbooks, no fake API.
+- **Region routing:** `getItalyGuestReportingMode()` returns `alloggiati` | `none` for all Italian cities (national system). Shared `getGuestReportingJurisdiction()` prevents Italy properties from hitting Spain SES routing.
+- **CIN on Registration / Overview:** `cinNumber`, `cinBdsrStatus`, `cinDisplayedOnListings` on Registration; CIN card on Overview and Register tabs; wired into listing NER display.
+- **Alloggiati check-in:** Public check-in collects Alloggiati-relevant fields (document type/number, sex M/F, nationality, birth date/place, arrival) with field mapping documented in `src/lib/italy/check-in-validation.ts`.
+- **Due queue + dashboard:** 48h prep / 24h overdue (reuses SES cron pattern). In-app `alloggiati_due` notifications. Export kit: printable schedina HTML + CSV + copy chips + deep link to Alloggiati Web. Manual statuses: `prepared` / `submitted` / `accepted` via `RegionalGuestReport` with `system: "alloggiati"`.
+- **Primary UX (no WSKEY):** collect → validate → due queue → export kit + portal deep links — hosts operate without SOAP credentials.
+- **Optional SOAP dry-run (verified):** Official WSDL + MANUALEWS.pdf at `https://alloggiatiweb.poliziadistato.it/service/service.asmx`. Per-property encrypted credentials (`AlloggiatiCredential`: utente, password, WSKEY) mirror SES (`SECRETS_ENCRYPTION_KEY`). `GenerateToken` + `Authentication_Test` for connectivity; `Test` for 168-char schedina validation (CREAFILE.pdf). `ALLOCGIATI_LIVE=false` default — `Send` only when env + per-property flag enabled.
+- **Phase 2:** Full comune/stato code lookup tables (portal Tipi_Tabella), accompanying-family schedina types (17–20), GestioneAppartamenti_* for multi-unit hosts.
+- **Differentiator:** FR + ES (SES/Mossos/Ertzaintza) + IT (CIN + Alloggiati ops) in one EU compliance layer — not an Italy-only PMS.
+- **Next:** Portugal, Greece (documented as future slices).
 
 ### 7. Registration & compliance
 Per-property compliance tracking:

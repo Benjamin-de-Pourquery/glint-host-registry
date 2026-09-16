@@ -54,6 +54,7 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `CRON_SECRET` | Production | Protects cron routes: iCal sync + SES due notifications (`vercel.json`) |
 | `SECRETS_ENCRYPTION_KEY` | For Spain SES | 32-byte base64 key for encrypting SOAP credentials at rest (`openssl rand -base64 32`) |
 | `SES_LIVE` | For Spain SES | Set to `true` only when ready for live SOAP submissions (default: `false` / dry-run). Mossos/Ertzaintza have no live API — export-only. |
+| `ALLOCGIATI_LIVE` | For Italy | Reserved — must stay `false` unless official Alloggiati Web API docs are verified. Default: manual export + portal only. |
 
 ## Stripe setup (test mode)
 
@@ -79,7 +80,8 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `npm run start` | Production server |
 | `npm run db:migrate` | Run Prisma migrations |
 | `npm run db:studio` | Open Prisma Studio |
-| `npm run test` | Run unit tests (SES, Spain region routing, regional export, encryption) |
+| `npm run test` | Run unit tests (SES, Spain/Italy routing, export validation, guest-reporting router, encryption) |
+| `npm run verify-playbook-urls` | HTTP 200 check for verified playbook official URLs |
 | `npm run test:ses` | Run SES integration unit tests only |
 
 ## Deploy on Vercel

@@ -7,6 +7,7 @@ import {
 } from "@/lib/playbooks";
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
 import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
+import { getAlloggiatiDueQueueForUser } from "@/lib/italy/due-queue";
 import { z } from "zod";
 
 const updateSchema = z.object({
@@ -66,12 +67,18 @@ export async function GET(
     await getSesDueQueueForUser(session.user.id)
   ).some((item) => item.propertyId === id);
 
+  const alloggiatiDueForProperty = (
+    await getAlloggiatiDueQueueForUser(session.user.id)
+  ).some((item) => item.propertyId === id);
+
   const nextStep = getEffectiveNextStep(playbook, progress, residencyStatus, {
     country: property.country,
     city: property.city,
     registration: property.registration,
     hasActiveStayNeedingSes: sesDueForProperty,
     hasSesCredentials: Boolean(property.sesCredential),
+    hasCinNumber: Boolean(property.registration?.cinNumber?.trim()),
+    hasActiveStayNeedingAlloggiati: alloggiatiDueForProperty,
   });
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
 

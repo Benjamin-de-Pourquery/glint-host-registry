@@ -39,7 +39,9 @@ import {
   isSpainCountry,
   usesSesHospedajes,
 } from "@/lib/spain/regions";
+import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 import { RegionalStayActions } from "@/components/regional-stay-actions";
+import { AlloggiatiStayActions } from "@/components/alloggiati-stay-actions";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -105,6 +107,7 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
   const showSes = isSpainCountry(country) && usesSesHospedajes(city);
   const reportingMode = isSpainCountry(country) ? getSpainGuestReportingMode(city) : "none";
   const showRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
+  const showAlloggiati = isItalyCountry(country) && requiresAlloggiatiCheckIn(city);
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -793,6 +796,14 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                         stayId={stay.id}
                         locale={locale}
                         system={reportingMode as "mossos" | "ertzaintza"}
+                        guestCount={stay.guestCount ?? 0}
+                      />
+                    )}
+                    {showAlloggiati && (
+                      <AlloggiatiStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
+                        locale={locale}
                         guestCount={stay.guestCount ?? 0}
                       />
                     )}

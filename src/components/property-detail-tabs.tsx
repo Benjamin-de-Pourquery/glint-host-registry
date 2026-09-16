@@ -11,6 +11,8 @@ import { PropertyOverviewForm } from "@/components/property-overview-form";
 import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
+import { CinComplianceCard } from "@/components/cin-compliance-card";
+import { isItalyCountry } from "@/lib/italy/regions";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +37,9 @@ type Registration = {
   nationalRegistrationNumber?: string | null;
   nationalTransitionStatus?: string | null;
   nationalRenewalDeadline?: string | Date | null;
+  cinNumber?: string | null;
+  cinBdsrStatus?: string | null;
+  cinDisplayedOnListings?: boolean;
 };
 
 type PropertyData = {
@@ -191,7 +196,24 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
                 </dd>
               </div>
             )}
+            {property.registration?.cinNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.cin")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.cinNumber}
+                </dd>
+              </div>
+            )}
           </dl>
+
+          {isItalyCountry(property.country) && (
+            <CinComplianceCard
+              propertyId={property.id}
+              registration={property.registration}
+            />
+          )}
 
           <PropertyOverviewForm
             propertyId={property.id}
@@ -251,8 +273,10 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
         <PropertyListingsForm
           propertyId={property.id}
           city={property.city}
+          country={property.country}
           registrationNumber={property.registration?.registrationNumber}
           nationalRegistrationNumber={property.registration?.nationalRegistrationNumber}
+          cinNumber={property.registration?.cinNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

@@ -11,7 +11,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ComplianceBadge } from "@/components/compliance-badge";
 import { GuestRegisterPanel } from "@/components/guest-register-panel";
 import { SesCredentialsPanel } from "@/components/ses-credentials-panel";
+import { AlloggiatiReportingPanel } from "@/components/alloggiati-reporting-panel";
+import { AlloggiatiCredentialsPanel } from "@/components/alloggiati-credentials-panel";
+import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { isSpainCountry } from "@/lib/spain/regions";
+import { isItalyCountry } from "@/lib/italy/regions";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
@@ -34,6 +38,9 @@ type Registration = {
   nationalRegistrationNumber?: string | null;
   nationalTransitionStatus?: string | null;
   nationalRenewalDeadline?: string | Date | null;
+  cinNumber?: string | null;
+  cinBdsrStatus?: string | null;
+  cinDisplayedOnListings?: boolean;
 };
 
 type Props = {
@@ -132,6 +139,13 @@ export function PropertyRegisterTab({
     <div className="mx-auto max-w-2xl space-y-10">
       {isSpainCountry(country) && (
         <SesCredentialsPanel propertyId={propertyId} city={city} />
+      )}
+      {isItalyCountry(country) && (
+        <>
+          <CinComplianceCard propertyId={propertyId} registration={registration} />
+          <AlloggiatiCredentialsPanel propertyId={propertyId} />
+          <AlloggiatiReportingPanel city={city} />
+        </>
       )}
       <GuestRegisterPanel
         propertyId={propertyId}

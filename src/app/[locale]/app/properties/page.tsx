@@ -4,6 +4,7 @@ import { parsePortfolioStatusFilter } from "@/lib/compliance";
 import { prisma } from "@/lib/prisma";
 import { hasActiveSubscription, getPropertyLimit } from "@/lib/plans";
 import { PropertiesView } from "@/components/properties-view";
+import { getNightCapAttentionForUser } from "@/lib/france/night-cap-service";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -45,6 +46,9 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
   const subscribed = user ? hasActiveSubscription(user.subscriptionStatus) : false;
   const limit = user ? getPropertyLimit(user.subscriptionPlan) : 0;
   const atLimit = activeCount >= limit;
+  const nightCapAttentionIds = new Set(
+    (await getNightCapAttentionForUser(session.user.id)).map((item) => item.propertyId)
+  );
 
   return (
     <PropertiesView
@@ -56,6 +60,7 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
       atLimit={atLimit}
       plan={user?.subscriptionPlan || ""}
       limit={limit}
+      nightCapAttentionIds={Array.from(nightCapAttentionIds)}
     />
   );
 }

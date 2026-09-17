@@ -58,6 +58,8 @@ const SERVICE_PUBLIC_NATIONAL_URL =
   "https://www.service-public.gouv.fr/particuliers/actualites/A18880";
 const ENTREPRISES_API_MEUBLES_URL =
   "https://www.entreprises.gouv.fr/espace-entreprises/s-informer-sur-la-reglementation/lapi-meubles-guichet-unique-de-centralisation";
+const LEGIFRANCE_L324_1_1_URL =
+  "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006076939";
 
 const frSteps = {
   verifyRules: (cityKey: string): PlaybookStep => ({
@@ -186,6 +188,58 @@ const frSteps = {
     pitfalls,
     appliesWhen: "nonPrimary",
     fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
+  }),
+
+  primaryNightCap: (cityKey: string): PlaybookStep => ({
+    key: `${cityKey}-primary-night-cap`,
+    title: {
+      en: "Track primary residence night cap (L324-1-1)",
+      fr: "Suivre le plafond de nuitées en résidence principale (L324-1-1)",
+    },
+    instruction: {
+      en: "For your main residence, French law caps short-term rental nights per calendar year (120 by default; some communes such as Paris lower it to 90). Connect your iCal feeds or add stays manually in Glint — the night cap card on your property overview counts nights and warns you before you breach the limit. Exceeding the cap can trigger civil fines up to €15,000.",
+      fr: "Pour votre résidence principale, la loi française plafonne les nuitées de location meublée par année civile (120 par défaut ; certaines communes comme Paris abaissent à 90). Connectez vos flux iCal ou saisissez les séjours dans Glint — la carte plafond nuitées sur l'aperçu du bien compte les nuitées et vous alerte avant dépassement. Le non-respect du plafond expose à une amende civile pouvant atteindre 15 000 €.",
+    },
+    officialUrls: [
+      {
+        url: LEGIFRANCE_L324_1_1_URL,
+        label: {
+          en: "Légifrance — Code du tourisme art. L324-1-1",
+          fr: "Légifrance — Code du tourisme art. L324-1-1",
+        },
+        role: "rules",
+        urlVerified: true,
+      },
+      {
+        url: "https://www.service-public.fr/particuliers/vosdroits/F2043",
+        label: {
+          en: "Service-Public — furnished tourist rental declaration",
+          fr: "Service-Public — déclaration location meublée touristique",
+        },
+        role: "info",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: [
+        "iCal calendar feeds (Airbnb, Booking, etc.) or manual stay list",
+        "Commune night cap (90 or 120) confirmed for your address",
+      ],
+      fr: [
+        "Flux iCal (Airbnb, Booking, etc.) ou liste manuelle des séjours",
+        "Plafond communal (90 ou 120) confirmé pour votre adresse",
+      ],
+    },
+    timeline: {
+      en: "Monitor throughout the calendar year; reset each 1 January.",
+      fr: "Suivi toute l'année civile ; remise à zéro chaque 1er janvier.",
+    },
+    pitfalls: {
+      en: "Cancelled bookings still appear in some feeds — Glint excludes cancelled iCal events from the count. Rolling 12-month windows are not used; the cap is per calendar year.",
+      fr: "Les réservations annulées peuvent rester visibles dans certains flux — Glint exclut les événements iCal annulés du décompte. Le plafond est annuel civil, pas glissant sur 12 mois.",
+    },
+    appliesWhen: "primaryResidence",
+    fieldHints: ["residencyStatus", "city", "country"],
   }),
 
   taxDeclaration: (cityKey: string): PlaybookStep => ({
@@ -1851,5 +1905,26 @@ function withNationalTransitionStep(playbook: Playbook): Playbook {
   };
 }
 
+function withPrimaryNightCapStep(playbook: Playbook): Playbook {
+  const cityKey = cityKeyFromPlaybook(playbook);
+  const nightCapStep = frSteps.primaryNightCap(cityKey);
+
+  if (playbook.steps.some((s) => s.key.endsWith("-primary-night-cap"))) {
+    return playbook;
+  }
+
+  const verifyIndex = playbook.steps.findIndex((s) => s.key.endsWith("-verify-rules"));
+  const insertAt = verifyIndex >= 0 ? verifyIndex + 1 : 1;
+
+  return {
+    ...playbook,
+    steps: [
+      ...playbook.steps.slice(0, insertAt),
+      nightCapStep,
+      ...playbook.steps.slice(insertAt),
+    ],
+  };
+}
+
 export const FRANCE_PLAYBOOKS: Playbook[] =
-  BASE_FRANCE_PLAYBOOKS.map(withNationalTransitionStep);
+  BASE_FRANCE_PLAYBOOKS.map(withNationalTransitionStep).map(withPrimaryNightCapStep);

@@ -54,6 +54,11 @@ type PlaybookResponse = {
   progress: PlaybookStepProgress[];
   nextStepKey: string | null;
   summary: { completed: number; total: number; skipped: number };
+  priorityAction?: {
+    level: string;
+    title: { en: string; fr: string };
+    message: { en: string; fr: string };
+  } | null;
 };
 
 export function PlaybookPanel({
@@ -557,6 +562,28 @@ export function PlaybookNextActionTeaser({
         {t("loading")}
       </div>
     );
+  }
+
+  if (data?.priorityAction) {
+    const urgent =
+      data.priorityAction.level === "exceeded" || data.priorityAction.level === "critical";
+    if (urgent) {
+      return (
+        <div className="rounded-xl border border-red-200 bg-gradient-to-r from-red-50 to-white px-5 py-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-red-700">
+            {t("nextAction")}
+          </p>
+          <p className="mt-1 font-semibold text-slate-900">
+            {data.priorityAction.title[uiLocale]}
+          </p>
+          <p className="mt-1 text-sm text-slate-600">{data.priorityAction.message[uiLocale]}</p>
+          <Button className="mt-3" size="sm" onClick={onGoToCompliance}>
+            {t("viewCompliance")}
+            <ArrowRight className="h-4 w-4" />
+          </Button>
+        </div>
+      );
+    }
   }
 
   if (!data?.playbook || !data.nextStepKey) {

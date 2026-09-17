@@ -216,6 +216,10 @@
         "title": "Portefeuille & archivage",
         "description": "Vue d'ensemble du statut conformité, alertes d'expiration, archivage et restauration sans perdre l'historique."
       },
+      "nightCap": {
+        "title": "Plafond nuitées résidence principale",
+        "description": "Compteur annuel depuis vos calendriers iCal ou séjours manuels — alertes à 70 %, 90 % et dépassement (120 ou 90 nuitées selon la commune)."
+      },
       "listings": {
         "title": "Conformité annonces (NER)",
         "description": "Suivi par canal (Airbnb, Booking, Vrbo) : statut du numéro affiché, blocages plateforme et playbook de recours avec sources officielles."
@@ -296,6 +300,10 @@
         "8": {
           "q": "Glint couvre-t-il l'Italie (CIN et Alloggiati) ?",
           "a": "Oui. Glint suit le CIN BDSR pour les annonces (règlement UE 2024/1028) et prépare les schedine Alloggiati Web (24h après arrivée) avec kits d'export et files d'échéance. CIN et Alloggiati sont des obligations distinctes — pas de soumission automatique aux administrations."
+        },
+        "9": {
+          "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
+          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice) et vous alerte avant dépassement — conformément à l'article L324-1-1 du Code du tourisme."
         }
       }
     },
@@ -357,14 +365,16 @@
       "notStarted": "Non commencé",
       "guestsThisMonth": "Voyageurs ce mois",
       "fichesNeeded": "Fiches manquantes",
-      "listingCompliance": "Annonces NER"
+      "listingCompliance": "Annonces NER",
+      "nightCap": "Plafond nuitées RP"
     },
     "attention": {
       "action": "{count, plural, one {# bien nécessite une action} other {# biens nécessitent une action}}",
       "expired": "{count, plural, one {# enregistrement expiré} other {# enregistrements expirés}}",
       "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
       "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}",
-      "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}"
+      "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}",
+      "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
@@ -488,7 +498,8 @@
         "action_needed": "Compléter les démarches",
         "expired": "Renouveler l'enregistrement",
         "not_started": "Commencer les démarches",
-        "listing_compliance": "Corriger annonces NER"
+        "listing_compliance": "Corriger annonces NER",
+        "night_cap": "Vérifier plafond nuitées"
       }
     },
     "archiveAction": {
@@ -670,7 +681,40 @@
       "expired": "Expiré",
       "not_started": "Non commencé",
       "national_transition": "Transition nationale",
-      "listing_compliance": "Annonces NER"
+      "listing_compliance": "Annonces NER",
+      "night_cap": "Plafond nuitées RP"
+    }
+  },
+  "nightCap": {
+    "title": "Plafond nuitées RP",
+    "subtitle": "Résidence principale — Loi Le Meur / art. L324-1-1",
+    "loading": "Chargement du plafond…",
+    "loadError": "Impossible de charger le plafond de nuitées",
+    "saveError": "Impossible d'enregistrer les paramètres",
+    "saved": "Plafond de nuitées enregistré",
+    "used": "{used} / {limit} nuitées",
+    "remaining": "{count} restantes",
+    "year": "Année civile {year}",
+    "countingMethod": "Décompte : arrivée incluse, départ exclu (nuitées hôtelières)",
+    "progressLabel": "Progression du plafond de nuitées",
+    "enabled": "Suivre le plafond pour ce bien",
+    "sourceLabel": "Source du plafond",
+    "limitLabel": "Limite annuelle",
+    "notesLabel": "Notes",
+    "notesPlaceholder": "Ex. arrêté municipal, dérogation…",
+    "viewStays": "Voir les séjours",
+    "source": {
+      "statutory_120": "Statutaire — 120 nuitées/an",
+      "commune_90": "Commune — 90 nuitées/an (ex. Paris)",
+      "custom": "Personnalisé"
+    },
+    "status": {
+      "ok": "OK",
+      "warning": "Attention",
+      "critical": "Critique",
+      "exceeded": "Dépassé",
+      "disabled": "Désactivé",
+      "not_applicable": "N/A"
     }
   },
   "nationalTransition": {

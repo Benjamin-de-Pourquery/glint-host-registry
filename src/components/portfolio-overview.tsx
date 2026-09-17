@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Clock,
   FileWarning,
+  Moon,
   Users,
   XCircle,
 } from "lucide-react";
@@ -23,6 +24,7 @@ type PortfolioStats = {
   fichesNeeded: number;
   nationalTransition: number;
   listingCompliance: number;
+  nightCapAttention: number;
 };
 
 type Props = {
@@ -38,7 +40,8 @@ export async function PortfolioOverview({ locale, stats }: Props) {
     stats.expired > 0 ||
     stats.fichesNeeded > 0 ||
     stats.nationalTransition > 0 ||
-    stats.listingCompliance > 0;
+    stats.listingCompliance > 0 ||
+    stats.nightCapAttention > 0;
 
   return (
     <section className="space-y-3">
@@ -114,6 +117,20 @@ export async function PortfolioOverview({ locale, stats }: Props) {
                 </p>
               </div>
               <ChevronRight className="h-4 w-4 shrink-0 text-red-600" />
+            </Link>
+          )}
+          {stats.nightCapAttention > 0 && (
+            <Link
+              href={propertiesListHref(locale, { status: "night_cap" })}
+              className="flex items-center justify-between gap-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 text-amber-900 transition-colors hover:bg-amber-100"
+            >
+              <div className="flex min-w-0 items-center gap-2">
+                <Moon className="h-4 w-4 shrink-0 text-amber-600" />
+                <p className="text-sm font-medium leading-snug">
+                  {t("attention.nightCap", { count: stats.nightCapAttention })}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-amber-600" />
             </Link>
           )}
         </div>

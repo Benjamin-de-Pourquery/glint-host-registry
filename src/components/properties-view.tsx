@@ -46,6 +46,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "ready",
   "not_started",
   "listing_compliance",
+  "night_cap",
 ];
 
 type Props = {
@@ -57,6 +58,7 @@ type Props = {
   atLimit: boolean;
   plan: string;
   limit: number;
+  nightCapAttentionIds?: string[];
 };
 
 const VIEW_STORAGE_KEY = "glint-properties-view";
@@ -97,7 +99,9 @@ export function PropertiesView({
   atLimit,
   plan,
   limit,
+  nightCapAttentionIds = [],
 }: Props) {
+  const nightCapSet = new Set(nightCapAttentionIds);
   const t = useTranslations("properties");
   const tCompliance = useTranslations("compliance.status");
   const viewMode = useDefaultViewMode();
@@ -120,6 +124,9 @@ export function PropertiesView({
           }
           if (statusFilter === "listing_compliance") {
             return propertyHasListingComplianceIssue(property.listingChannels ?? []);
+          }
+          if (statusFilter === "night_cap") {
+            return nightCapSet.has(property.id);
           }
           return getPropertyComplianceStatus(property) === statusFilter;
         })

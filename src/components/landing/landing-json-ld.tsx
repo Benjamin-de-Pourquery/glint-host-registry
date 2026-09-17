@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { buildLandingJsonLd } from "@/lib/seo/json-ld";
 
-const FAQ_KEYS = ["1", "2", "3", "4", "5", "6", "7"];
+const FAQ_KEYS = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 type Props = { locale: string };
 

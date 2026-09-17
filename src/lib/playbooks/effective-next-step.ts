@@ -7,6 +7,7 @@ import { getEffectiveNextStepForSpain } from "@/lib/ses/next-action";
 import { getEffectiveNextStepForItaly } from "@/lib/italy/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
+import type { NightCapComputation } from "@/lib/france/night-cap";
 
 export type EffectiveNextStepContext = {
   country: string;
@@ -16,6 +17,7 @@ export type EffectiveNextStepContext = {
   hasSesCredentials?: boolean;
   hasCinNumber?: boolean;
   hasActiveStayNeedingAlloggiati?: boolean;
+  nightCapComputation?: NightCapComputation | null;
 };
 
 export function getEffectiveNextStep(
@@ -47,6 +49,7 @@ export function getEffectiveNextStep(
     progress,
     residencyStatus,
     context.country,
-    context.registration ?? null
+    context.registration ?? null,
+    context.nightCapComputation ?? null
   );
 }

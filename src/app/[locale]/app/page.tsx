@@ -6,6 +6,7 @@ import { getComplianceStatus, propertyHasListingComplianceIssue } from "@/lib/co
 import { needsNationalTransitionAttention } from "@/lib/national-transition";
 import { hasActiveSubscription } from "@/lib/plans";
 import { syncAllNotifications } from "@/lib/notifications";
+import { getNightCapAttentionForUser } from "@/lib/france/night-cap-service";
 import { getMissingFichesForUser } from "@/lib/guest-register/missing-fiches";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -62,6 +63,8 @@ export default async function DashboardPage({ params }: Props) {
 
   const missingFiches = await getMissingFichesForUser(session.user.id);
   const fichesNeeded = missingFiches.length;
+  const nightCapAttention = await getNightCapAttentionForUser(session.user.id);
+  const nightCapAttentionCount = nightCapAttention.length;
 
   const notifications = await prisma.notification.findMany({
     where: { userId: session.user.id },
@@ -185,6 +188,7 @@ export default async function DashboardPage({ params }: Props) {
           fichesNeeded: fichesNeeded,
           nationalTransition: nationalTransitionCount,
           listingCompliance: listingComplianceCount,
+          nightCapAttention: nightCapAttentionCount,
         }}
       />
 

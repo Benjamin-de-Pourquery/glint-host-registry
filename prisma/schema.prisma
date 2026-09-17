@@ -93,6 +93,22 @@ model Property {
   alloggiatiCredential AlloggiatiCredential?
   sesSubmissions SesSubmission[]
   regionalGuestReports RegionalGuestReport[]
+  nightCapSettings NightCapSettings?
+}
+
+model NightCapSettings {
+  id              String    @id @default(cuid())
+  propertyId      String    @unique
+  nightCapEnabled Boolean   @default(true)
+  nightCapLimit   Int       @default(120)
+  nightCapYear    Int
+  nightCapSource  String    @default("statutory_120")
+  notes           String?
+  nightsUsedYtd   Int?
+  lastComputedAt  DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  property        Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }
 
 model CalendarFeed {

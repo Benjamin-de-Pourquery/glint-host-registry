@@ -1,5 +1,10 @@
 import type { Playbook, PlaybookStep } from "@/lib/playbooks/types";
 import { getNextPendingStep } from "@/lib/playbooks";
+import {
+  getEffectiveNextStepForFranceWithNightCap,
+  type FranceNightCapNextActionContext,
+} from "@/lib/france/next-action";
+import type { NightCapComputation } from "@/lib/france/night-cap";
 
 export const NATIONAL_TRANSITION_STATUSES = [
   "not_applicable",
@@ -62,7 +67,8 @@ export function getEffectiveNextStep(
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus: "primary" | "secondary" | "other" | null | undefined,
   country: string,
-  registration: NationalTransitionRegistration | null | undefined
+  registration: NationalTransitionRegistration | null | undefined,
+  nightCapComputation?: NightCapComputation | null
 ): PlaybookStep | null {
   const nationalStepKey = getNationalStepKey(playbook);
   const nationalStep = nationalStepKey
@@ -101,7 +107,19 @@ export function getEffectiveNextStep(
     }
   }
 
-  return defaultNext;
+  const nightCapContext: FranceNightCapNextActionContext = {
+    country,
+    residencyStatus,
+    nightCapComputation: nightCapComputation ?? null,
+  };
+
+  return getEffectiveNextStepForFranceWithNightCap(
+    playbook,
+    progress,
+    residencyStatus,
+    nightCapContext,
+    defaultNext
+  );
 }
 
 export const NATIONAL_PORTAL_PRIMARY_URL =

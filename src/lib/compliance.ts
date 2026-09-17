@@ -10,7 +10,8 @@ export type PortfolioStatusFilter =
   | ComplianceStatus
   | "all"
   | "national_transition"
-  | "listing_compliance";
+  | "listing_compliance"
+  | "night_cap";
 
 export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "all",
@@ -20,6 +21,7 @@ export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "not_started",
   "national_transition",
   "listing_compliance",
+  "night_cap",
 ];
 
 export function parsePortfolioStatusFilter(
@@ -31,6 +33,7 @@ export function parsePortfolioStatusFilter(
   if (
     param === "national_transition" ||
     param === "listing_compliance" ||
+    param === "night_cap" ||
     PORTFOLIO_STATUS_FILTERS.includes(param as PortfolioStatusFilter)
   ) {
     return param as PortfolioStatusFilter;

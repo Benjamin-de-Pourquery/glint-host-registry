@@ -8,6 +8,8 @@ import {
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
 import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
 import { getAlloggiatiDueQueueForUser } from "@/lib/italy/due-queue";
+import { loadPropertyNightCap } from "@/lib/france/night-cap-service";
+import { getNightCapPriorityAction } from "@/lib/france/night-cap";
 import { z } from "zod";
 
 const updateSchema = z.object({
@@ -32,6 +34,7 @@ export async function GET(
       playbookProgress: true,
       registration: true,
       sesCredential: true,
+      nightCapSettings: true,
     },
   });
 
@@ -71,6 +74,14 @@ export async function GET(
     await getAlloggiatiDueQueueForUser(session.user.id)
   ).some((item) => item.propertyId === id);
 
+  const nightCapResult = await loadPropertyNightCap({
+    propertyId: property.id,
+    country: property.country,
+    city: property.city,
+    residencyStatus: property.residencyStatus,
+    settings: property.nightCapSettings,
+  });
+
   const nextStep = getEffectiveNextStep(playbook, progress, residencyStatus, {
     country: property.country,
     city: property.city,
@@ -79,14 +90,21 @@ export async function GET(
     hasSesCredentials: Boolean(property.sesCredential),
     hasCinNumber: Boolean(property.registration?.cinNumber?.trim()),
     hasActiveStayNeedingAlloggiati: alloggiatiDueForProperty,
+    nightCapComputation: nightCapResult.computation,
   });
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
+
+  const priorityAction = nightCapResult.computation
+    ? getNightCapPriorityAction(nightCapResult.computation)
+    : null;
 
   return NextResponse.json({
     playbook,
     progress,
     nextStepKey: nextStep?.key ?? null,
     summary,
+    nightCap: nightCapResult.computation,
+    priorityAction,
   });
 }
 

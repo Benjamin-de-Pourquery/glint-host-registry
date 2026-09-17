@@ -216,6 +216,10 @@
         "title": "Portfolio & archive",
         "description": "Compliance status overview, expiry alerts, archive and restore without losing history."
       },
+      "nightCap": {
+        "title": "Primary residence night cap",
+        "description": "Calendar-year counter from iCal feeds or manual stays — alerts at 70%, 90%, and breach (120 or 90 nights depending on commune)."
+      },
       "listings": {
         "title": "Listing NER compliance",
         "description": "Per-channel tracking (Airbnb, Booking, Vrbo): displayed number status, platform blocks, and appeal playbook with official sources."
@@ -296,6 +300,10 @@
         "8": {
           "q": "Does Glint cover Italy (CIN and Alloggiati)?",
           "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (24h after check-in) with export kits and due queues. CIN and Alloggiati are separate obligations — we do not submit to government systems automatically."
+        },
+        "9": {
+          "q": "Does Glint track the 120-night primary residence cap?",
+          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice), and alerts you before you breach — under Code du tourisme art. L324-1-1."
         }
       }
     },
@@ -357,14 +365,16 @@
       "notStarted": "Not started",
       "guestsThisMonth": "Guests this month",
       "fichesNeeded": "Fiches needed",
-      "listingCompliance": "Listing NER"
+      "listingCompliance": "Listing NER",
+      "nightCap": "Primary night cap"
     },
     "attention": {
       "action": "{count, plural, one {# property needs action} other {# properties need action}}",
       "expired": "{count, plural, one {# expired registration} other {# expired registrations}}",
       "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}",
       "nationalTransition": "{count, plural, one {# French property — national transition} other {# French properties — national transition}}",
-      "listingCompliance": "{count, plural, one {# listing — missing or blocked NER} other {# listings — missing or blocked NER}}"
+      "listingCompliance": "{count, plural, one {# listing — missing or blocked NER} other {# listings — missing or blocked NER}}",
+      "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# missing police form} other {# missing police forms}}",
@@ -488,7 +498,8 @@
         "action_needed": "Complete compliance",
         "expired": "Renew registration",
         "not_started": "Start compliance",
-        "listing_compliance": "Fix listing NER"
+        "listing_compliance": "Fix listing NER",
+        "night_cap": "Review night cap"
       }
     },
     "archiveAction": {
@@ -670,7 +681,40 @@
       "expired": "Expired",
       "not_started": "Not started",
       "national_transition": "National transition",
-      "listing_compliance": "Listing NER"
+      "listing_compliance": "Listing NER",
+      "night_cap": "Primary night cap"
+    }
+  },
+  "nightCap": {
+    "title": "Primary residence night cap",
+    "subtitle": "Main residence — Loi Le Meur / art. L324-1-1",
+    "loading": "Loading night cap…",
+    "loadError": "Could not load night cap data",
+    "saveError": "Could not save settings",
+    "saved": "Night cap settings saved",
+    "used": "{used} / {limit} nights",
+    "remaining": "{count} remaining",
+    "year": "Calendar year {year}",
+    "countingMethod": "Count: check-in inclusive, check-out exclusive (hotel nights)",
+    "progressLabel": "Night cap progress",
+    "enabled": "Track night cap for this property",
+    "sourceLabel": "Cap source",
+    "limitLabel": "Annual limit",
+    "notesLabel": "Notes",
+    "notesPlaceholder": "e.g. municipal order, exemption…",
+    "viewStays": "View stays",
+    "source": {
+      "statutory_120": "Statutory — 120 nights/year",
+      "commune_90": "Commune — 90 nights/year (e.g. Paris)",
+      "custom": "Custom"
+    },
+    "status": {
+      "ok": "OK",
+      "warning": "Warning",
+      "critical": "Critical",
+      "exceeded": "Exceeded",
+      "disabled": "Disabled",
+      "not_applicable": "N/A"
     }
   },
   "nationalTransition": {

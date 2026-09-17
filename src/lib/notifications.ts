@@ -128,8 +128,51 @@ export async function syncSesDueNotifications(userId: string) {
   }
 }
 
+export async function syncNightCapNotifications(userId: string) {
+  const { getNightCapAttentionForUser } = await import("@/lib/france/night-cap-service");
+  const attentionItems = await getNightCapAttentionForUser(userId);
+
+  for (const item of attentionItems) {
+    const { computation } = item;
+    const title =
+      computation.status === "exceeded"
+        ? `Night cap exceeded: ${item.propertyName}`
+        : computation.status === "critical"
+          ? `Night cap critical: ${item.propertyName}`
+          : `Night cap warning: ${item.propertyName}`;
+
+    const message =
+      computation.status === "exceeded"
+        ? `Primary residence night cap exceeded (${computation.nightsUsed}/${computation.limit} nights in ${computation.year}). Stop accepting new bookings to avoid civil fines.`
+        : `Primary residence night cap at ${computation.nightsUsed}/${computation.limit} nights in ${computation.year} (${computation.remaining} remaining). Review upcoming stays.`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId,
+        propertyId: item.propertyId,
+        type: "night_cap",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId,
+          propertyId: item.propertyId,
+          title,
+          message,
+          type: "night_cap",
+        },
+      });
+    }
+  }
+}
+
 export async function syncAllNotifications(userId: string) {
   await syncExpiryNotifications(userId);
   await syncMissingFicheNotifications(userId);
   await syncSesDueNotifications(userId);
+  await syncNightCapNotifications(userId);
 }

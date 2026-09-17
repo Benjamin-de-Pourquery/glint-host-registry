@@ -12,6 +12,7 @@ import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
+import { NightCapCard } from "@/components/night-cap-card";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
@@ -160,6 +161,14 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             propertyId={property.id}
             locale={locale}
             onGoToCompliance={() => setTab("compliance")}
+          />
+
+          <NightCapCard
+            propertyId={property.id}
+            country={property.country}
+            residencyStatus={property.residencyStatus}
+            locale={locale}
+            registerTabHref={`/${locale}/app/properties/${property.id}?tab=register`}
           />
 
           <NationalTransitionCard

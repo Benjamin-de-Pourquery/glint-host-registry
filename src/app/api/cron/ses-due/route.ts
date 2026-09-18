@@ -5,6 +5,7 @@ import { getSesStaysEnteringSubmissionWindow } from "@/lib/ses/due-queue";
 import { getRegionalStaysEnteringSubmissionWindow } from "@/lib/spain/regional-due-queue";
 import { getRegionalSystemLabel } from "@/lib/spain/regions";
 import { getAlloggiatiStaysEnteringSubmissionWindow } from "@/lib/italy/due-queue";
+import { getSibaStaysEnteringSubmissionWindow } from "@/lib/portugal/due-queue";
 
 function verifyCronAuth(request: Request): boolean {
   const cronSecret = process.env.CRON_SECRET;
@@ -28,6 +29,7 @@ export async function POST(request: Request) {
   const sesStays = await getSesStaysEnteringSubmissionWindow();
   const regionalStays = await getRegionalStaysEnteringSubmissionWindow();
   const alloggiatiStays = await getAlloggiatiStaysEnteringSubmissionWindow();
+  const sibaStays = await getSibaStaysEnteringSubmissionWindow();
   let created = 0;
 
   for (const stay of sesStays) {
@@ -118,11 +120,42 @@ export async function POST(request: Request) {
     }
   }
 
+  for (const stay of sibaStays) {
+    const guestRef = stay.guestLabel ? ` (${stay.guestLabel})` : "";
+    const phaseLabel = stay.phase === "arrival" ? "arrival" : "departure";
+    const title = `SIBA ${phaseLabel} due soon: ${stay.propertyName}`;
+    const message = `Foreign guest ${phaseLabel} on ${format(stay.eventDate, "dd/MM/yyyy")}${guestRef} at ${stay.propertyName} (${stay.city}). Prepare and submit the Boletim de Alojamento on SIBA within 3 working days.`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId: stay.userId,
+        propertyId: stay.propertyId,
+        type: "siba_due",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId: stay.userId,
+          propertyId: stay.propertyId,
+          title,
+          message,
+          type: "siba_due",
+        },
+      });
+      created++;
+    }
+  }
+
   return NextResponse.json({
-    scanned: sesStays.length + regionalStays.length + alloggiatiStays.length,
+    scanned: sesStays.length + regionalStays.length + alloggiatiStays.length + sibaStays.length,
     sesScanned: sesStays.length,
     regionalScanned: regionalStays.length,
     alloggiatiScanned: alloggiatiStays.length,
+    sibaScanned: sibaStays.length,
     notificationsCreated: created,
   });
 }

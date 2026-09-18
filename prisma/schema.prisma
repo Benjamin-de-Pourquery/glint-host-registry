@@ -340,6 +340,10 @@ model Registration {
   cinNumber                 String?
   cinBdsrStatus             String    @default("not_started")
   cinDisplayedOnListings    Boolean   @default(false)
+  /** Portugal RNAL (Registo Nacional de Alojamento Local) — Turismo de Portugal */
+  rnalNumber                String?
+  rnalStatus                String    @default("not_started")
+  rnalDisplayedOnListings   Boolean   @default(false)
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

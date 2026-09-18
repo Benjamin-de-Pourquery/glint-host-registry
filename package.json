@@ -12,7 +12,7 @@
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "verify-playbook-urls": "node scripts/verify-playbook-urls.mjs",
-    "test": "tsx --test src/lib/ses/__tests__/ses.test.ts src/lib/ses/__tests__/due-queue.test.ts src/lib/spain/__tests__/regions.test.ts src/lib/spain/__tests__/regional-export.test.ts src/lib/italy/__tests__/regions.test.ts src/lib/italy/__tests__/export.test.ts src/lib/italy/alloggiati/__tests__/schedina.test.ts src/lib/italy/alloggiati/__tests__/soap-client.test.ts src/lib/guest-reporting/__tests__/router.test.ts src/lib/crypto/__tests__/secrets.test.ts src/lib/listings/__tests__/channels.test.ts src/lib/france/__tests__/night-cap.test.ts",
+    "test": "tsx --test src/lib/ses/__tests__/ses.test.ts src/lib/ses/__tests__/due-queue.test.ts src/lib/spain/__tests__/regions.test.ts src/lib/spain/__tests__/regional-export.test.ts src/lib/italy/__tests__/regions.test.ts src/lib/italy/__tests__/export.test.ts src/lib/italy/alloggiati/__tests__/schedina.test.ts src/lib/italy/alloggiati/__tests__/soap-client.test.ts src/lib/portugal/__tests__/regions.test.ts src/lib/portugal/__tests__/check-in-validation.test.ts src/lib/portugal/__tests__/working-days.test.ts src/lib/portugal/__tests__/export.test.ts src/lib/guest-reporting/__tests__/router.test.ts src/lib/crypto/__tests__/secrets.test.ts src/lib/listings/__tests__/channels.test.ts src/lib/france/__tests__/night-cap.test.ts",
     "test:ses": "tsx --test src/lib/ses/__tests__/ses.test.ts src/lib/ses/__tests__/due-queue.test.ts"
   },
   "dependencies": {

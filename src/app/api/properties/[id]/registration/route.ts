@@ -23,6 +23,11 @@ const schema = z.object({
     .enum(["not_started", "pending", "active", "rejected"])
     .optional(),
   cinDisplayedOnListings: z.boolean().optional(),
+  rnalNumber: z.string().nullable().optional(),
+  rnalStatus: z
+    .enum(["not_started", "pending", "active", "expired"])
+    .optional(),
+  rnalDisplayedOnListings: z.boolean().optional(),
 });
 
 export async function PATCH(
@@ -74,6 +79,9 @@ export async function PATCH(
         cinNumber: data.cinNumber ?? null,
         cinBdsrStatus: data.cinBdsrStatus ?? "not_started",
         cinDisplayedOnListings: data.cinDisplayedOnListings ?? false,
+        rnalNumber: data.rnalNumber ?? null,
+        rnalStatus: data.rnalStatus ?? "not_started",
+        rnalDisplayedOnListings: data.rnalDisplayedOnListings ?? false,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -94,6 +102,9 @@ export async function PATCH(
         cinNumber: data.cinNumber,
         cinBdsrStatus: data.cinBdsrStatus,
         cinDisplayedOnListings: data.cinDisplayedOnListings,
+        rnalNumber: data.rnalNumber,
+        rnalStatus: data.rnalStatus,
+        rnalDisplayedOnListings: data.rnalDisplayedOnListings,
       },
     });
 

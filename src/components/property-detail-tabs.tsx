@@ -12,8 +12,10 @@ import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
+import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { NightCapCard } from "@/components/night-cap-card";
 import { isItalyCountry } from "@/lib/italy/regions";
+import { isPortugalCountry } from "@/lib/portugal/regions";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
@@ -41,6 +43,9 @@ type Registration = {
   cinNumber?: string | null;
   cinBdsrStatus?: string | null;
   cinDisplayedOnListings?: boolean;
+  rnalNumber?: string | null;
+  rnalStatus?: string | null;
+  rnalDisplayedOnListings?: boolean;
 };
 
 type PropertyData = {
@@ -215,10 +220,27 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
                 </dd>
               </div>
             )}
+            {property.registration?.rnalNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.rnal")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.rnalNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
             <CinComplianceCard
+              propertyId={property.id}
+              registration={property.registration}
+            />
+          )}
+
+          {isPortugalCountry(property.country) && (
+            <RnalComplianceCard
               propertyId={property.id}
               registration={property.registration}
             />
@@ -286,6 +308,7 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           registrationNumber={property.registration?.registrationNumber}
           nationalRegistrationNumber={property.registration?.nationalRegistrationNumber}
           cinNumber={property.registration?.cinNumber}
+          rnalNumber={property.registration?.rnalNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

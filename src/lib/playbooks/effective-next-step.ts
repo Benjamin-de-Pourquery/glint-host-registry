@@ -5,8 +5,10 @@ import {
 } from "@/lib/national-transition";
 import { getEffectiveNextStepForSpain } from "@/lib/ses/next-action";
 import { getEffectiveNextStepForItaly } from "@/lib/italy/next-action";
+import { getEffectiveNextStepForPortugal } from "@/lib/portugal/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
+import { isPortugalCountry } from "@/lib/portugal/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 
 export type EffectiveNextStepContext = {
@@ -17,6 +19,8 @@ export type EffectiveNextStepContext = {
   hasSesCredentials?: boolean;
   hasCinNumber?: boolean;
   hasActiveStayNeedingAlloggiati?: boolean;
+  hasRnalNumber?: boolean;
+  hasActiveStayNeedingSiba?: boolean;
   nightCapComputation?: NightCapComputation | null;
 };
 
@@ -41,6 +45,15 @@ export function getEffectiveNextStep(
       city: context.city,
       hasCinNumber: context.hasCinNumber,
       hasActiveStayNeedingAlloggiati: context.hasActiveStayNeedingAlloggiati,
+    });
+  }
+
+  if (isPortugalCountry(context.country)) {
+    return getEffectiveNextStepForPortugal(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      hasRnalNumber: context.hasRnalNumber,
+      hasActiveStayNeedingSiba: context.hasActiveStayNeedingSiba,
     });
   }
 

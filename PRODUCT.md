@@ -86,7 +86,18 @@ Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and 
 - **Optional SOAP dry-run (verified):** Official WSDL + MANUALEWS.pdf at `https://alloggiatiweb.poliziadistato.it/service/service.asmx`. Per-property encrypted credentials (`AlloggiatiCredential`: utente, password, WSKEY) mirror SES (`SECRETS_ENCRYPTION_KEY`). `GenerateToken` + `Authentication_Test` for connectivity; `Test` for 168-char schedina validation (CREAFILE.pdf). `ALLOCGIATI_LIVE=false` default — `Send` only when env + per-property flag enabled.
 - **Phase 2:** Full comune/stato code lookup tables (portal Tipi_Tabella), accompanying-family schedina types (17–20), GestioneAppartamenti_* for multi-unit hosts.
 - **Differentiator:** FR + ES (SES/Mossos/Ertzaintza) + IT (CIN + Alloggiati ops) in one EU compliance layer — not an Italy-only PMS.
-- **Next:** Portugal, Greece (documented as future slices).
+- **Next:** Greece (documented as future slice).
+
+### 6b. Portugal — RNAL + SIBA (shipped)
+
+- **Legal context (not legal advice):** **RNAL** (Registo Nacional de Alojamento Local) via Turismo de Portugal — mandatory on listings; platforms verify under EU 2024/1028 from 20 May 2026. **SIBA** (SSI/UCFE) — Boletim de Alojamento for **foreign guests** within **3 working days** of arrival AND departure; Portuguese nationals are NOT reported. Fines €100–€2,000 (Lei 23/2007 art. 203).
+- **Region routing:** `getPortugalGuestReportingMode()` returns `siba` | `none`. Shared `getGuestReportingJurisdiction()` prevents PT properties from hitting SES/Alloggiati/FR police-form paths.
+- **RNAL on Registration / Overview:** `rnalNumber`, `rnalStatus`, `rnalDisplayedOnListings` on Registration; RNAL card on Overview and Register tabs; wired into listing NER display.
+- **SIBA check-in:** Public check-in collects boletim fields for foreign guests (document type/number, sex M/F, nationality not PT, birth date/place, arrival/departure) with field mapping in `src/lib/portugal/check-in-validation.ts`.
+- **Due queue + dashboard:** 3 working days (dias úteis) after arrival and departure; skips weekends + PT fixed holidays. In-app `siba_due` notifications. Export kit: printable boletim HTML + CSV + copy chips + deep link to https://siba.ssi.gov.pt/. Manual statuses via `RegionalGuestReport` with `system: "siba"`.
+- **Primary UX:** collect → validate → due queue → export kit + portal deep links — no fake SIBA SOAP/API.
+- **Playbooks:** Lisboa, Porto, Faro (Algarve), Funchal (Madeira) + PT generic fallback.
+- **Differentiator:** FR + ES + IT + PT in one EU compliance layer.
 
 ### 7. Registration & compliance
 Per-property compliance tracking:

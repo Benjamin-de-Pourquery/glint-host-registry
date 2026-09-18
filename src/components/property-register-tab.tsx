@@ -14,8 +14,11 @@ import { SesCredentialsPanel } from "@/components/ses-credentials-panel";
 import { AlloggiatiReportingPanel } from "@/components/alloggiati-reporting-panel";
 import { AlloggiatiCredentialsPanel } from "@/components/alloggiati-credentials-panel";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
+import { RnalComplianceCard } from "@/components/rnal-compliance-card";
+import { SibaReportingPanel } from "@/components/siba-reporting-panel";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
+import { isPortugalCountry } from "@/lib/portugal/regions";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
@@ -41,6 +44,9 @@ type Registration = {
   cinNumber?: string | null;
   cinBdsrStatus?: string | null;
   cinDisplayedOnListings?: boolean;
+  rnalNumber?: string | null;
+  rnalStatus?: string | null;
+  rnalDisplayedOnListings?: boolean;
 };
 
 type Props = {
@@ -145,6 +151,12 @@ export function PropertyRegisterTab({
           <CinComplianceCard propertyId={propertyId} registration={registration} />
           <AlloggiatiCredentialsPanel propertyId={propertyId} />
           <AlloggiatiReportingPanel city={city} />
+        </>
+      )}
+      {isPortugalCountry(country) && (
+        <>
+          <RnalComplianceCard propertyId={propertyId} registration={registration} />
+          <SibaReportingPanel city={city} />
         </>
       )}
       <GuestRegisterPanel

@@ -8,6 +8,7 @@ import {
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
 import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
 import { getAlloggiatiDueQueueForUser } from "@/lib/italy/due-queue";
+import { getSibaDueQueueForUser } from "@/lib/portugal/due-queue";
 import { loadPropertyNightCap } from "@/lib/france/night-cap-service";
 import { getNightCapPriorityAction } from "@/lib/france/night-cap";
 import { z } from "zod";
@@ -74,6 +75,10 @@ export async function GET(
     await getAlloggiatiDueQueueForUser(session.user.id)
   ).some((item) => item.propertyId === id);
 
+  const sibaDueForProperty = (
+    await getSibaDueQueueForUser(session.user.id)
+  ).some((item) => item.propertyId === id);
+
   const nightCapResult = await loadPropertyNightCap({
     propertyId: property.id,
     country: property.country,
@@ -90,6 +95,8 @@ export async function GET(
     hasSesCredentials: Boolean(property.sesCredential),
     hasCinNumber: Boolean(property.registration?.cinNumber?.trim()),
     hasActiveStayNeedingAlloggiati: alloggiatiDueForProperty,
+    hasRnalNumber: Boolean(property.registration?.rnalNumber?.trim()),
+    hasActiveStayNeedingSiba: sibaDueForProperty,
     nightCapComputation: nightCapResult.computation,
   });
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);

@@ -13,6 +13,7 @@ import {
   requiresAnnexOneCheckIn,
 } from "@/lib/spain/regions";
 import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
+import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
 
 type Props = {
   token: string;
@@ -33,12 +34,15 @@ export function CheckInForm({
   const tSes = useTranslations("ses.checkIn");
   const tRegional = useTranslations("ses.regionalSystem");
   const tAlloggiati = useTranslations("alloggiati.checkIn");
+  const tSiba = useTranslations("siba.checkIn");
   const isSpain = isSpainCountry(propertyCountry);
   const isItaly = isItalyCountry(propertyCountry);
+  const isPortugal = isPortugalCountry(propertyCountry);
   const reportingMode = isSpain ? getSpainGuestReportingMode(propertyCity) : "none";
   const annexOneApplies = isSpain && requiresAnnexOneCheckIn(propertyCity);
   const alloggiatiApplies = isItaly && requiresAlloggiatiCheckIn(propertyCity);
-  const extendedCheckIn = annexOneApplies || alloggiatiApplies;
+  const sibaApplies = isPortugal && requiresSibaCheckIn(propertyCity);
+  const extendedCheckIn = annexOneApplies || alloggiatiApplies || sibaApplies;
   const isRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -268,19 +272,26 @@ export function CheckInForm({
       {extendedCheckIn && (
         <div className="space-y-4 rounded-lg border border-emerald-100 bg-emerald-50/40 p-4">
           <p className="text-sm font-medium text-emerald-900">
-            {alloggiatiApplies
-              ? tAlloggiati("fieldsTitle")
-              : isRegional
-                ? tRegional("annexTitle")
-                : tSes("title")}
+            {sibaApplies
+              ? tSiba("fieldsTitle")
+              : alloggiatiApplies
+                ? tAlloggiati("fieldsTitle")
+                : isRegional
+                  ? tRegional("annexTitle")
+                  : tSes("title")}
           </p>
           <p className="text-xs text-emerald-800">
-            {alloggiatiApplies
-              ? tAlloggiati("fieldsHint")
-              : isRegional
-                ? tRegional("annexHint")
-                : tSes("hint")}
+            {sibaApplies
+              ? tSiba("fieldsHint")
+              : alloggiatiApplies
+                ? tAlloggiati("fieldsHint")
+                : isRegional
+                  ? tRegional("annexHint")
+                  : tSes("hint")}
           </p>
+          {sibaApplies && (
+            <p className="text-xs text-blue-700">{tSiba("portugueseNote")}</p>
+          )}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label>{tSes("documentType")}</Label>
@@ -290,7 +301,15 @@ export function CheckInForm({
                 onChange={(e) => update("documentType", e.target.value)}
                 required
               >
-                {alloggiatiApplies ? (
+                {sibaApplies ? (
+                  <>
+                    <option value="PAS">PAS</option>
+                    <option value="BI">BI</option>
+                    <option value="CC">CC</option>
+                    <option value="IDC">IDC</option>
+                    <option value="OUT">OUT</option>
+                  </>
+                ) : alloggiatiApplies ? (
                   <>
                     <option value="PAS">PAS</option>
                     <option value="CI">CI</option>
@@ -338,7 +357,7 @@ export function CheckInForm({
                 required
               >
                 <option value="">—</option>
-                {alloggiatiApplies ? (
+                {alloggiatiApplies || sibaApplies ? (
                   <>
                     <option value="M">M</option>
                     <option value="F">F</option>

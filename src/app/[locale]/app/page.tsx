@@ -19,6 +19,7 @@ import { Building2 } from "lucide-react";
 import { SesDueQueue } from "@/components/ses-due-queue";
 import { RegionalDueQueue } from "@/components/regional-due-queue";
 import { AlloggiatiDueQueue } from "@/components/alloggiati-due-queue";
+import { SibaDueQueue } from "@/components/siba-due-queue";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -157,6 +158,7 @@ export default async function DashboardPage({ params }: Props) {
       <SesDueQueue locale={locale} />
       <RegionalDueQueue locale={locale} />
       <AlloggiatiDueQueue locale={locale} />
+      <SibaDueQueue locale={locale} />
 
       {properties.length === 0 && (
         <EmptyState

@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "EU short-term rental compliance — France, Spain, Italy, and beyond",
-      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, and Italy CIN + Alloggiati Web ops. Glint prepares; you submit on official portals.",
+      "title": "EU short-term rental compliance — France, Spain, Italy, Portugal, and beyond",
+      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, Italy CIN + Alloggiati, and Portugal RNAL + SIBA ops. Glint prepares; you submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR + ES (SES, Mossos, Ertzaintza) + IT (CIN, Alloggiati)",
-      "ses": "SES + Mossos/Ertzaintza + Alloggiati ops",
+      "cities": "FR + ES + IT + PT (RNAL, SIBA)",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA ops",
       "bilingual": "FR + EN interface"
     },
     "problem": {
@@ -176,17 +176,17 @@
       "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
       "points": {
         "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "In Spain, guest reports are due within 24h — SES, Mossos, or Ertzaintza. In Italy, Alloggiati Web schedine are separate from the BDSR CIN displayed on listings",
-        "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/NER under EU 2024/1028 from May 2026"
+        "2": "In Spain, guest reports are due within 24h — SES, Mossos, or Ertzaintza. In Italy, Alloggiati schedine are separate from CIN. In Portugal, SIBA boletim for foreign guests within 3 working days",
+        "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/RNAL/NER under EU 2024/1028 from May 2026"
       }
     },
     "solution": {
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking — with a clear next action per property.",
       "points": {
-        "1": "City playbooks for France, Spain, and Italy — Mossos/Ertzaintza where SES-only tools stop; Roma, Milano, Firenze, Venezia CIN + Alloggiati ops",
-        "2": "Guest register: Annex I (ES), Alloggiati fields (IT), French fiche; due queues with 48h prep + 24h deadline",
-        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, and Alloggiati; SES dry-run/live when you enable SES_LIVE"
+        "1": "City playbooks for France, Spain, Italy, and Portugal — Lisboa, Porto, Faro, Funchal RNAL + SIBA ops",
+        "2": "Guest register: Annex I (ES), Alloggiati (IT), SIBA boletim (PT foreign guests), French fiche; due queues with deadlines",
+        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, and SIBA; SES dry-run/live when you enable SES_LIVE"
       }
     },
     "features": {
@@ -197,12 +197,12 @@
         "description": "Step-by-step tunnels for Paris, Lyon, Marseille, Bordeaux, and Nice — with official form links, regulations, and residency branching."
       },
       "guestRegister": {
-        "title": "Guest register (FR + ES + IT)",
-        "description": "Public check-in link or QR with Annex I fields (Spain), Alloggiati schedina fields (Italy), French fiche de police, digital signature, and CSV export."
+        "title": "Guest register (FR + ES + IT + PT)",
+        "description": "Public check-in link or QR with Annex I fields (Spain), Alloggiati schedina (Italy), SIBA boletim (Portugal foreign guests), French fiche de police, digital signature, and CSV export."
       },
       "sesQueue": {
         "title": "EU guest-reporting queues",
-        "description": "SES, Mossos, and Ertzaintza for Spain plus Alloggiati Web for Italy — export kits and due queues where Italy-only PMS or SES-only tools leave gaps."
+        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal — export kits and due queues where single-country tools leave gaps."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -535,7 +535,8 @@
         "address": "Address",
         "type": "Property type",
         "registration": "Registration number",
-        "cin": "CIN (BDSR)"
+        "cin": "CIN (BDSR)",
+        "rnal": "RNAL"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -1302,6 +1303,124 @@
       "departureDate": "Departure",
       "childrenTitle": "Accompanying minors",
       "footer": "Prepared by Glint Host Registry for manual Alloggiati Web submission. Retain per Italian law."
+    }
+  },
+  "siba": {
+    "system": {
+      "siba": "SIBA"
+    },
+    "panel": {
+      "title": "SIBA foreign-guest reporting",
+      "description": "{city} — Portugal requires Boletim de Alojamento for foreign guests on SIBA (SSI/UCFE) within 3 working days of arrival and departure. Portuguese nationals are not reported. Glint prepares boletim data; you submit on the official portal.",
+      "honestyNote": "Glint does not submit to SIBA automatically. We collect → validate → export boletim/CSV → you submit on https://siba.ssi.gov.pt/. You remain legally responsible.",
+      "workflowTitle": "Workflow",
+      "step1": "Register your establishment on the SIBA portal",
+      "step2": "Enable check-in link and collect SIBA boletim fields for foreign guests",
+      "step3": "Prepare export kit (boletim + CSV) for arrival and departure phases",
+      "step4": "Enter data on SIBA portal within 3 working days",
+      "step5": "Mark submission status in Glint (prepared → submitted → accepted)",
+      "sibaPortal": "SIBA portal",
+      "sibaFaq": "SIBA FAQ",
+      "rnalSeparateNote": "RNAL is for platform listings under EU 2024/1028 — separate from SIBA police reporting for foreign guests."
+    },
+    "rnal": {
+      "title": "RNAL — Registo Nacional de Alojamento Local",
+      "description": "Mandatory on listings under EU 2024/1028. Platforms verify from 20 May 2026. Register via Turismo de Portugal and municipal comunicação prévia — separate from SIBA guest reporting.",
+      "rnalNumber": "RNAL number",
+      "rnalNumberPlaceholder": "e.g. 12345/AL",
+      "rnalStatus": "RNAL status",
+      "displayedOnListings": "RNAL displayed on all platform listings",
+      "save": "Save RNAL",
+      "saved": "RNAL saved",
+      "saveError": "Could not save RNAL",
+      "openTurismo": "Open Turismo de Portugal",
+      "disclaimer": "Not legal advice. RNAL ≠ SIBA boletim. Portuguese nationals are not reported to SIBA.",
+      "status": {
+        "not_started": "Not started",
+        "pending": "Pending",
+        "active": "Active",
+        "expired": "Expired"
+      }
+    },
+    "checkIn": {
+      "title": "SIBA — Boletim de Alojamento",
+      "description": "Your host must communicate foreign guests to SIBA within 3 working days of arrival and departure ({city}, Portugal).",
+      "prepareHint": "Please complete all fields for foreign guests — your host will prepare the boletim for manual portal entry.",
+      "deadlineHint": "Required under Lei 23/2007 — Portuguese nationals are not reported to SIBA.",
+      "fieldsTitle": "SIBA boletim fields (foreign guests)",
+      "fieldsHint": "Document type (PAS/BI), sex (M/F), nationality (not Portuguese), and arrival/departure dates are required.",
+      "portugueseNote": "Portuguese nationals: SIBA fields are not required. Your host may still keep an ops log."
+    },
+    "stay": {
+      "prepare": "Prepare export kit",
+      "exportCsv": "Download CSV",
+      "printBoletim": "Print boletim",
+      "openPortal": "Open SIBA portal",
+      "markSubmitted": "Mark submitted",
+      "markAccepted": "Mark accepted",
+      "prepareReady": "Export kit ready for {count} foreign guest(s)",
+      "validationFailed": "{count} validation issue(s) — complete foreign guest data first",
+      "statusUpdated": {
+        "prepared": "Marked as prepared",
+        "submitted": "Marked as submitted on SIBA",
+        "accepted": "Marked as accepted"
+      },
+      "error": "Could not process SIBA report",
+      "phaseArrival": "Arrival boletim",
+      "phaseDeparture": "Departure boletim",
+      "portugueseOnlyNote": "All guests are Portuguese nationals — SIBA reporting not required (optional ops log only)."
+    },
+    "submission": {
+      "status": {
+        "prepared": "Prepared",
+        "submitted": "Submitted",
+        "accepted": "Accepted"
+      }
+    },
+    "dueQueue": {
+      "loading": "Loading SIBA due queue…",
+      "title": "SIBA obligations — prep, due, and overdue",
+      "subtitle": "Portugal stays requiring Boletim de Alojamento for foreign guests (3 working days after arrival and departure).",
+      "foreignGuestCount": "{count, plural, one {# foreign guest} other {# foreign guests}}",
+      "noForeignGuests": "No foreign guests yet",
+      "daysLeft": "{days} working day(s) left",
+      "overdue": "Overdue",
+      "prepWindow": "Upcoming (48h)",
+      "action": "Open register",
+      "actionGuest": "Send check-in link",
+      "phaseArrival": "Arrival",
+      "phaseDeparture": "Departure",
+      "status": {
+        "prep_window": "Upcoming stay",
+        "awaiting_guest_data": "Awaiting guest data",
+        "awaiting_submission": "Ready to export",
+        "overdue": "Overdue"
+      }
+    },
+    "copy": {
+      "stayId": "Stay ID",
+      "copied": "Copied"
+    },
+    "export": {
+      "boletimTitle": "SIBA Boletim de Alojamento",
+      "deadlineNote": "Submit on SIBA within 3 working days of arrival and departure.",
+      "portalNote": "Glint prepares this export for manual entry on SIBA. Glint does not submit automatically.",
+      "phaseLabel": "Phase: {phase}",
+      "lastName": "Last name (apelido)",
+      "firstNames": "First name(s) (nome)",
+      "sex": "Sex (sexo)",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "nationality": "Nationality (nacionalidade)",
+      "documentType": "Document type",
+      "documentNumber": "Document number",
+      "address": "Address",
+      "mobile": "Mobile",
+      "email": "Email",
+      "arrivalDate": "Arrival",
+      "departureDate": "Departure",
+      "footer": "Prepared by Glint Host Registry for manual SIBA submission. Host remains legally responsible.",
+      "disclaimer": "Not legal advice. Glint does not submit to SIBA. Portuguese nationals are not reported."
     }
   },
   "common": {

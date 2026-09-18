@@ -33,6 +33,7 @@ type Props = {
   registrationNumber?: string | null;
   nationalRegistrationNumber?: string | null;
   cinNumber?: string | null;
+  rnalNumber?: string | null;
   initialChannels: ListingChannelRecord[];
 };
 
@@ -57,6 +58,7 @@ export function PropertyListingsForm({
   registrationNumber,
   nationalRegistrationNumber,
   cinNumber,
+  rnalNumber,
   initialChannels,
 }: Props) {
   const t = useTranslations("properties.detail.listings");
@@ -73,6 +75,7 @@ export function PropertyListingsForm({
 
   const effectiveNer =
     nationalRegistrationNumber?.trim() ||
+    rnalNumber?.trim() ||
     cinNumber?.trim() ||
     registrationNumber?.trim() ||
     "";

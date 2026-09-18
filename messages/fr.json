@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "Conformité location courte durée UE — France, Espagne, Italie et plus",
-      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, et ops CIN + Alloggiati Italie. Glint prépare ; vous soumettez sur les portails officiels.",
+      "title": "Conformité location courte durée UE — France, Espagne, Italie, Portugal et plus",
+      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, et RNAL + SIBA Portugal. Glint prépare ; vous soumettez sur les portails officiels.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "FR + ES (SES, Mossos, Ertzaintza) + IT (CIN, Alloggiati)",
-      "ses": "SES + Mossos/Ertzaintza + Alloggiati",
+      "cities": "FR + ES + IT + PT (RNAL, SIBA)",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA",
       "bilingual": "Interface FR + EN"
     },
     "problem": {
@@ -176,17 +176,17 @@
       "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
       "points": {
         "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
-        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, les schedine Alloggiati Web sont distinctes du CIN BDSR affiché sur les annonces",
-        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/NER au titre du règlement UE 2024/1028"
+        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, Alloggiati distinct du CIN. Au Portugal, boletim SIBA pour voyageurs étrangers sous 3 jours ouvrés",
+        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/RNAL/NER au titre du règlement UE 2024/1028"
       }
     },
     "solution": {
       "title": "Un cockpit conformité pour tout votre portefeuille",
       "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros — avec une prochaine action claire par bien.",
       "points": {
-        "1": "Playbooks France, Espagne et Italie — Mossos/Ertzaintza où les outils SES-only s'arrêtent ; Roma, Milano, Firenze, Venezia CIN + Alloggiati",
-        "2": "Registre : Annexe I (ES), champs Alloggiati (IT), fiche FR ; files 48h prep + échéance 24h",
-        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati ; SES dry-run/live avec SES_LIVE"
+        "1": "Playbooks France, Espagne, Italie et Portugal — Lisboa, Porto, Faro, Funchal RNAL + SIBA",
+        "2": "Registre : Annexe I (ES), Alloggiati (IT), boletim SIBA (PT voyageurs étrangers), fiche FR ; files d'échéance",
+        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati, SIBA ; SES dry-run/live avec SES_LIVE"
       }
     },
     "features": {
@@ -197,12 +197,12 @@
         "description": "Tunnels pas à pas pour Paris, Lyon, Marseille, Bordeaux et Nice — avec liens vers formulaires officiels, règlements et branchement selon votre statut de résidence."
       },
       "guestRegister": {
-        "title": "Registre voyageurs (FR + ES + IT)",
-        "description": "Lien ou QR public avec champs Annexe I (Espagne), champs schedina Alloggiati (Italie), fiche de police France, signature et export CSV."
+        "title": "Registre voyageurs (FR + ES + IT + PT)",
+        "description": "Lien ou QR public avec champs Annexe I (Espagne), schedina Alloggiati (Italie), boletim SIBA (Portugal voyageurs étrangers), fiche de police France, signature et export CSV."
       },
       "sesQueue": {
         "title": "Files déclaration voyageurs UE",
-        "description": "SES, Mossos et Ertzaintza (Espagne) plus Alloggiati Web (Italie) — kits d'export et files d'échéance là où PMS Italie-only ou outils SES-only laissent des lacunes."
+        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -535,7 +535,8 @@
         "address": "Adresse",
         "type": "Type de bien",
         "registration": "Numéro d'enregistrement",
-        "cin": "CIN (BDSR)"
+        "cin": "CIN (BDSR)",
+        "rnal": "RNAL"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1302,6 +1303,124 @@
       "departureDate": "Départ",
       "childrenTitle": "Mineurs accompagnants",
       "footer": "Préparé par Glint Host Registry pour soumission manuelle Alloggiati Web. Conserver selon la loi italienne."
+    }
+  },
+  "siba": {
+    "system": {
+      "siba": "SIBA"
+    },
+    "panel": {
+      "title": "Déclaration voyageurs étrangers SIBA",
+      "description": "{city} — Le Portugal exige un Boletim de Alojamento pour les voyageurs étrangers sur SIBA (SSI/UCFE) sous 3 jours ouvrés après arrivée et départ. Les ressortissants portugais ne sont pas déclarés. Glint prépare les données ; vous soumettez sur le portail officiel.",
+      "honestyNote": "Glint ne soumet pas au SIBA automatiquement. Nous collectons → validons → exportons boletim/CSV → vous soumettez sur https://siba.ssi.gov.pt/. Vous restez responsable légalement.",
+      "workflowTitle": "Workflow",
+      "step1": "Enregistrer l'établissement sur le portail SIBA",
+      "step2": "Activer le lien check-in et collecter les champs boletim pour voyageurs étrangers",
+      "step3": "Préparer le kit d'export (boletim + CSV) pour arrivée et départ",
+      "step4": "Saisir sur le portail SIBA sous 3 jours ouvrés",
+      "step5": "Marquer le statut dans Glint (préparé → soumis → accepté)",
+      "sibaPortal": "Portail SIBA",
+      "sibaFaq": "FAQ SIBA",
+      "rnalSeparateNote": "Le RNAL concerne les annonces (UE 2024/1028) — distinct de la déclaration police SIBA pour voyageurs étrangers."
+    },
+    "rnal": {
+      "title": "RNAL — Registo Nacional de Alojamento Local",
+      "description": "Obligatoire sur les annonces au titre de l'UE 2024/1028. Vérification plateformes depuis le 20 mai 2026. Inscription via Turismo de Portugal — distinct du SIBA.",
+      "rnalNumber": "Numéro RNAL",
+      "rnalNumberPlaceholder": "ex. 12345/AL",
+      "rnalStatus": "Statut RNAL",
+      "displayedOnListings": "RNAL affiché sur toutes les annonces",
+      "save": "Enregistrer RNAL",
+      "saved": "RNAL enregistré",
+      "saveError": "Impossible d'enregistrer le RNAL",
+      "openTurismo": "Ouvrir Turismo de Portugal",
+      "disclaimer": "Pas un conseil juridique. RNAL ≠ boletim SIBA. Les ressortissants portugais ne sont pas déclarés au SIBA.",
+      "status": {
+        "not_started": "Non commencé",
+        "pending": "En attente",
+        "active": "Actif",
+        "expired": "Expiré"
+      }
+    },
+    "checkIn": {
+      "title": "SIBA — Boletim de Alojamento",
+      "description": "Votre hôte doit déclarer les voyageurs étrangers au SIBA sous 3 jours ouvrés après arrivée et départ ({city}, Portugal).",
+      "prepareHint": "Complétez tous les champs pour voyageurs étrangers — votre hôte préparera le boletim pour saisie manuelle.",
+      "deadlineHint": "Obligatoire au titre de la Lei 23/2007 — les ressortissants portugais ne sont pas déclarés au SIBA.",
+      "fieldsTitle": "Champs boletim SIBA (voyageurs étrangers)",
+      "fieldsHint": "Type de document (PAS/BI), sexe (M/F), nationalité (non portugaise) et dates d'arrivée/départ obligatoires.",
+      "portugueseNote": "Ressortissants portugais : champs SIBA non requis. Votre hôte peut conserver un journal ops."
+    },
+    "stay": {
+      "prepare": "Préparer le kit d'export",
+      "exportCsv": "Télécharger CSV",
+      "printBoletim": "Imprimer boletim",
+      "openPortal": "Ouvrir SIBA",
+      "markSubmitted": "Marquer soumis",
+      "markAccepted": "Marquer accepté",
+      "prepareReady": "Kit prêt pour {count} voyageur(s) étranger(s)",
+      "validationFailed": "{count} problème(s) de validation — complétez les données voyageurs étrangers",
+      "statusUpdated": {
+        "prepared": "Marqué comme préparé",
+        "submitted": "Marqué comme soumis sur SIBA",
+        "accepted": "Marqué comme accepté"
+      },
+      "error": "Impossible de traiter le rapport SIBA",
+      "phaseArrival": "Boletim arrivée",
+      "phaseDeparture": "Boletim départ",
+      "portugueseOnlyNote": "Tous les voyageurs sont portugais — déclaration SIBA non requise (journal ops optionnel)."
+    },
+    "submission": {
+      "status": {
+        "prepared": "Préparé",
+        "submitted": "Soumis",
+        "accepted": "Accepté"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement file SIBA…",
+      "title": "Obligations SIBA — préparation, échéance et retard",
+      "subtitle": "Séjours Portugal nécessitant un Boletim de Alojamento pour voyageurs étrangers (3 jours ouvrés après arrivée et départ).",
+      "foreignGuestCount": "{count, plural, one {# voyageur étranger} other {# voyageurs étrangers}}",
+      "noForeignGuests": "Pas encore de voyageurs étrangers",
+      "daysLeft": "{days} jour(s) ouvré(s) restant(s)",
+      "overdue": "En retard",
+      "prepWindow": "À venir (48h)",
+      "action": "Ouvrir registre",
+      "actionGuest": "Envoyer lien check-in",
+      "phaseArrival": "Arrivée",
+      "phaseDeparture": "Départ",
+      "status": {
+        "prep_window": "Séjour à venir",
+        "awaiting_guest_data": "En attente données voyageur",
+        "awaiting_submission": "Prêt à exporter",
+        "overdue": "En retard"
+      }
+    },
+    "copy": {
+      "stayId": "ID séjour",
+      "copied": "Copié"
+    },
+    "export": {
+      "boletimTitle": "SIBA Boletim de Alojamento",
+      "deadlineNote": "Soumettre sur SIBA sous 3 jours ouvrés après arrivée et départ.",
+      "portalNote": "Glint prépare cet export pour saisie manuelle sur SIBA. Glint ne soumet pas automatiquement.",
+      "phaseLabel": "Phase : {phase}",
+      "lastName": "Nom (apelido)",
+      "firstNames": "Prénom(s) (nome)",
+      "sex": "Sexe (sexo)",
+      "dateOfBirth": "Date de naissance",
+      "placeOfBirth": "Lieu de naissance",
+      "nationality": "Nationalité (nacionalidade)",
+      "documentType": "Type de document",
+      "documentNumber": "Numéro de document",
+      "address": "Adresse",
+      "mobile": "Mobile",
+      "email": "E-mail",
+      "arrivalDate": "Arrivée",
+      "departureDate": "Départ",
+      "footer": "Préparé par Glint Host Registry pour soumission manuelle SIBA. L'hôte reste responsable légalement.",
+      "disclaimer": "Pas un conseil juridique. Glint ne soumet pas au SIBA. Les ressortissants portugais ne sont pas déclarés."
     }
   },
   "common": {

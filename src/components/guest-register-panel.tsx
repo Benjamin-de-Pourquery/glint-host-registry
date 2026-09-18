@@ -40,8 +40,10 @@ import {
   usesSesHospedajes,
 } from "@/lib/spain/regions";
 import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
+import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
 import { RegionalStayActions } from "@/components/regional-stay-actions";
 import { AlloggiatiStayActions } from "@/components/alloggiati-stay-actions";
+import { SibaStayActions } from "@/components/siba-stay-actions";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -108,6 +110,7 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
   const reportingMode = isSpainCountry(country) ? getSpainGuestReportingMode(city) : "none";
   const showRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
   const showAlloggiati = isItalyCountry(country) && requiresAlloggiatiCheckIn(city);
+  const showSiba = isPortugalCountry(country) && requiresSibaCheckIn(city);
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -801,6 +804,14 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                     )}
                     {showAlloggiati && (
                       <AlloggiatiStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
+                        locale={locale}
+                        guestCount={stay.guestCount ?? 0}
+                      />
+                    )}
+                    {showSiba && (
+                      <SibaStayActions
                         propertyId={propertyId}
                         stayId={stay.id}
                         locale={locale}

@@ -25,6 +25,17 @@ describe("getGuestReportingJurisdiction", () => {
   it("routes France", () => {
     assert.equal(getGuestReportingJurisdiction("France", "Paris"), "france");
   });
+
+  it("routes Portugal to SIBA", () => {
+    assert.equal(getGuestReportingJurisdiction("Portugal", "Lisboa"), "portugal_siba");
+    assert.equal(getGuestReportingJurisdiction("Portugal", "Porto"), "portugal_siba");
+  });
+
+  it("does not route Portugal to Spain or Italy systems", () => {
+    assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "spain_ses");
+    assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "italy_alloggiati");
+    assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "spain_mossos");
+  });
 });
 
 describe("requiresExtendedGuestCheckIn", () => {
@@ -32,5 +43,11 @@ describe("requiresExtendedGuestCheckIn", () => {
     assert.equal(requiresExtendedGuestCheckIn("Spain", "Madrid"), true);
     assert.equal(requiresExtendedGuestCheckIn("Italy", "Roma"), true);
     assert.equal(requiresExtendedGuestCheckIn("France", "Paris"), false);
+    assert.equal(requiresExtendedGuestCheckIn("Portugal", "Lisboa"), true);
+  });
+
+  it("isolates Portugal from SES and Alloggiati", () => {
+    assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "spain_ses");
+    assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "italy_alloggiati");
   });
 });

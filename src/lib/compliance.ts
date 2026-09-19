@@ -11,7 +11,8 @@ export type PortfolioStatusFilter =
   | "all"
   | "national_transition"
   | "listing_compliance"
-  | "night_cap";
+  | "night_cap"
+  | "tourist_tax";
 
 export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "all",
@@ -22,6 +23,7 @@ export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "national_transition",
   "listing_compliance",
   "night_cap",
+  "tourist_tax",
 ];
 
 export function parsePortfolioStatusFilter(
@@ -34,6 +36,7 @@ export function parsePortfolioStatusFilter(
     param === "national_transition" ||
     param === "listing_compliance" ||
     param === "night_cap" ||
+    param === "tourist_tax" ||
     PORTFOLIO_STATUS_FILTERS.includes(param as PortfolioStatusFilter)
   ) {
     return param as PortfolioStatusFilter;

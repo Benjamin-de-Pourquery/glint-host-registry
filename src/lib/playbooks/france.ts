@@ -242,6 +242,62 @@ const frSteps = {
     fieldHints: ["residencyStatus", "city", "country"],
   }),
 
+  touristTaxDeclaration: (cityKey: string): PlaybookStep => ({
+    key: `${cityKey}-tourist-tax-declaration`,
+    title: {
+      en: "Declare taxe de séjour (tourist tax) periods",
+      fr: "Déclarer la taxe de séjour par période",
+    },
+    instruction: {
+      en: "Even when Airbnb or Booking collect taxe de séjour as tiers collecteur, you must still declare each period on your commune or EPCI portal — often monthly, including €0 months and stays collected via the platform. Glint tracks taxable nights from your calendar and queues declaration periods; you submit on the official portal (no automated filing). Keep platform attestations on file and verify your meublé classification for the correct rate.",
+      fr: "Même si Airbnb ou Booking collectent la taxe de séjour en tiers collecteur, vous devez déclarer chaque période sur le portail commune/EPCI — souvent mensuellement, y compris les mois à 0 € et les séjours « via tiers collecteur ». Glint suit les nuitées depuis votre calendrier et file les périodes à déclarer ; vous déposez sur le portail officiel (pas de télédéclaration automatique). Conservez les attestations plateforme et vérifiez le classement de votre meublé pour le bon tarif.",
+    },
+    officialUrls: [
+      {
+        url: "https://www.service-public.fr/particuliers/vosdroits/F32963",
+        label: {
+          en: "Service-Public — taxe de séjour",
+          fr: "Service-Public — taxe de séjour",
+        },
+        role: "tax",
+        urlVerified: true,
+      },
+      {
+        url: "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006076939",
+        label: {
+          en: "CGCT — L.2333-33 et seq. (legal basis)",
+          fr: "CGCT — L.2333-33 et s. (base légale)",
+        },
+        role: "rules",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: [
+        "Commune/EPCI télédéclaration portal access",
+        "Platform attestation when tiers collecteur applies",
+        "Nightly stay summary (Glint exports from iCal/manual stays)",
+        "Optional memo of amount remitted",
+      ],
+      fr: [
+        "Accès au portail télédéclaration commune/EPCI",
+        "Attestation plateforme en cas de tiers collecteur",
+        "Récapitulatif des nuitées (Glint depuis iCal/séjours manuels)",
+        "Montant reversé en mémo optionnel",
+      ],
+    },
+    timeline: {
+      en: "Typically monthly or quarterly per commune rules — declare even with zero taxable nights.",
+      fr: "En général mensuel ou trimestriel selon la commune — déclarez même sans nuitées imposables.",
+    },
+    pitfalls: {
+      en: "Platform collection does not replace the host declaration. Wrong commune portal or meublé classification can trigger formal notices (mise en demeure). Glint does not call commune APIs or submit on your behalf.",
+      fr: "La collecte plateforme ne remplace pas la déclaration hôte. Un mauvais portail communal ou classement peut entraîner une mise en demeure. Glint n'appelle pas les API mairie et ne dépose pas pour vous.",
+    },
+    appliesWhen: "always",
+    fieldHints: ["city", "country", "address"],
+  }),
+
   taxDeclaration: (cityKey: string): PlaybookStep => ({
     key: `${cityKey}-tax-declaration`,
     title: {
@@ -1926,5 +1982,29 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
   };
 }
 
+function withTouristTaxDeclarationStep(playbook: Playbook): Playbook {
+  const cityKey = cityKeyFromPlaybook(playbook);
+  const touristTaxStep = frSteps.touristTaxDeclaration(cityKey);
+
+  if (playbook.steps.some((s) => s.key.endsWith("-tourist-tax-declaration"))) {
+    return playbook;
+  }
+
+  const taxIndex = playbook.steps.findIndex((s) => s.key.endsWith("-tax-declaration"));
+  const insertAt = taxIndex >= 0 ? taxIndex : playbook.steps.length;
+
+  return {
+    ...playbook,
+    steps: [
+      ...playbook.steps.slice(0, insertAt),
+      touristTaxStep,
+      ...playbook.steps.slice(insertAt),
+    ],
+  };
+}
+
 export const FRANCE_PLAYBOOKS: Playbook[] =
-  BASE_FRANCE_PLAYBOOKS.map(withNationalTransitionStep).map(withPrimaryNightCapStep);
+  BASE_FRANCE_PLAYBOOKS
+    .map(withNationalTransitionStep)
+    .map(withPrimaryNightCapStep)
+    .map(withTouristTaxDeclarationStep);

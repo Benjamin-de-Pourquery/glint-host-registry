@@ -14,6 +14,7 @@ import { NationalTransitionCard } from "@/components/national-transition-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { NightCapCard } from "@/components/night-cap-card";
+import { TouristTaxCard } from "@/components/tourist-tax-card";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { getComplianceStatus } from "@/lib/compliance";
@@ -174,6 +175,12 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             residencyStatus={property.residencyStatus}
             locale={locale}
             registerTabHref={`/${locale}/app/properties/${property.id}?tab=register`}
+          />
+
+          <TouristTaxCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
           />
 
           <NationalTransitionCard

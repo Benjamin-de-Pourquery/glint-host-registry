@@ -47,14 +47,16 @@ export async function POST(
       }
 
       const result = await syncCalendarFeed(feed.id);
-      const { syncNightCapNotifications } = await import("@/lib/notifications");
+      const { syncNightCapNotifications, syncTouristTaxNotifications } = await import("@/lib/notifications");
       await syncNightCapNotifications(session.user.id);
+      await syncTouristTaxNotifications(session.user.id);
       return NextResponse.json({ results: [result] });
     }
 
     const results = await syncPropertyCalendarFeeds(id);
-    const { syncNightCapNotifications } = await import("@/lib/notifications");
+    const { syncNightCapNotifications, syncTouristTaxNotifications } = await import("@/lib/notifications");
     await syncNightCapNotifications(session.user.id);
+    await syncTouristTaxNotifications(session.user.id);
     return NextResponse.json({ results });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });

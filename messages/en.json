@@ -220,6 +220,10 @@
         "title": "Primary residence night cap",
         "description": "Calendar-year counter from iCal feeds or manual stays — alerts at 70%, 90%, and breach (120 or 90 nights depending on commune)."
       },
+      "touristTax": {
+        "title": "France taxe de séjour ops",
+        "description": "Period queue from your stay calendar — declare on the commune portal even when Airbnb/Booking collect as tiers collecteur (€0 months included)."
+      },
       "listings": {
         "title": "Listing NER compliance",
         "description": "Per-channel tracking (Airbnb, Booking, Vrbo): displayed number status, platform blocks, and appeal playbook with official sources."
@@ -304,6 +308,10 @@
         "9": {
           "q": "Does Glint track the 120-night primary residence cap?",
           "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice), and alerts you before you breach — under Code du tourisme art. L324-1-1."
+        },
+        "10": {
+          "q": "If Airbnb collects taxe de séjour, am I done?",
+          "a": "No. When platforms act as tiers collecteur you must still declare each period on your commune or EPCI portal — often monthly, including €0 months and stays collected via the platform. Glint tracks taxable nights and queues declaration periods; you submit on the official portal (no automated filing)."
         }
       }
     },
@@ -366,7 +374,8 @@
       "guestsThisMonth": "Guests this month",
       "fichesNeeded": "Fiches needed",
       "listingCompliance": "Listing NER",
-      "nightCap": "Primary night cap"
+      "nightCap": "Primary night cap",
+      "touristTax": "Taxe de séjour"
     },
     "attention": {
       "action": "{count, plural, one {# property needs action} other {# properties need action}}",
@@ -374,7 +383,8 @@
       "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}",
       "nationalTransition": "{count, plural, one {# French property — national transition} other {# French properties — national transition}}",
       "listingCompliance": "{count, plural, one {# listing — missing or blocked NER} other {# listings — missing or blocked NER}}",
-      "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}"
+      "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
+      "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# missing police form} other {# missing police forms}}",
@@ -499,7 +509,8 @@
         "expired": "Renew registration",
         "not_started": "Start compliance",
         "listing_compliance": "Fix listing NER",
-        "night_cap": "Review night cap"
+        "night_cap": "Review night cap",
+        "tourist_tax": "Declare taxe de séjour"
       }
     },
     "archiveAction": {
@@ -683,7 +694,65 @@
       "not_started": "Not started",
       "national_transition": "National transition",
       "listing_compliance": "Listing NER",
-      "night_cap": "Primary night cap"
+      "night_cap": "Primary night cap",
+      "tourist_tax": "Taxe de séjour"
+    }
+  },
+  "touristTax": {
+    "title": "Taxe de séjour (tourist tax)",
+    "subtitle": "Declare each period on your commune/EPCI portal — platform collection ≠ host declaration",
+    "loading": "Loading tourist tax…",
+    "loadError": "Could not load tourist tax data",
+    "saveError": "Could not save settings",
+    "saved": "Tourist tax settings saved",
+    "declareError": "Could not mark period as declared",
+    "periodDeclared": "Period marked as declared",
+    "copyError": "Could not copy URL",
+    "copied": "Portal URL copied",
+    "enabled": "Track taxe de séjour for this property",
+    "collectionModeLabel": "Collection mode",
+    "cadenceLabel": "Declaration cadence",
+    "portalLabel": "Commune/EPCI portal URL",
+    "portalPlaceholder": "https://taxedesejour…",
+    "classificationLabel": "Meublé classification (rate hint)",
+    "attestationOnFile": "Platform attestation on file (tiers collecteur)",
+    "notesLabel": "Notes",
+    "notesPlaceholder": "e.g. account login, contact at mairie…",
+    "periodsTitle": "Recent periods",
+    "nights": "{count, plural, one {# taxable night} other {# taxable nights}}",
+    "dueBy": "Due by {date}",
+    "markDeclared": "Mark declared",
+    "attention": "{count, plural, one {# period needs action} other {# periods need action}}",
+    "copyPortal": "Copy portal URL",
+    "openPortal": "Open portal",
+    "collectionMode": {
+      "platform_collects": "Platform collects (tiers collecteur)",
+      "host_collects": "Host collects",
+      "mixed": "Mixed",
+      "unknown": "Unknown"
+    },
+    "cadence": {
+      "monthly": "Monthly",
+      "bimonthly": "Bimonthly",
+      "quarterly": "Quarterly",
+      "annual": "Annual",
+      "unknown": "Unknown"
+    },
+    "classification": {
+      "unclassified": "Unclassified",
+      "1": "1 star",
+      "2": "2 stars",
+      "3": "3 stars",
+      "4": "4 stars",
+      "5": "5 stars",
+      "unknown": "Unknown"
+    },
+    "status": {
+      "upcoming": "Upcoming",
+      "due": "Due",
+      "overdue": "Overdue",
+      "declared": "Declared",
+      "waived": "Waived"
     }
   },
   "nightCap": {

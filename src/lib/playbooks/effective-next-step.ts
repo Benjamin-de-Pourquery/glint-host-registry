@@ -10,6 +10,7 @@ import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
+import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 
 export type EffectiveNextStepContext = {
   country: string;
@@ -22,6 +23,7 @@ export type EffectiveNextStepContext = {
   hasRnalNumber?: boolean;
   hasActiveStayNeedingSiba?: boolean;
   nightCapComputation?: NightCapComputation | null;
+  touristTaxSummary?: TouristTaxSummary | null;
 };
 
 export function getEffectiveNextStep(
@@ -63,6 +65,7 @@ export function getEffectiveNextStep(
     residencyStatus,
     context.country,
     context.registration ?? null,
-    context.nightCapComputation ?? null
+    context.nightCapComputation ?? null,
+    context.touristTaxSummary ?? null
   );
 }

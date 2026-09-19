@@ -170,9 +170,47 @@ export async function syncNightCapNotifications(userId: string) {
   }
 }
 
+export async function syncTouristTaxNotifications(userId: string) {
+  const { getTouristTaxAttentionForUser } = await import("@/lib/france/tourist-tax-service");
+  const attentionItems = await getTouristTaxAttentionForUser(userId);
+
+  for (const item of attentionItems) {
+    const overdue = item.summary.overdueCount > 0;
+    const title = overdue
+      ? `Tourist tax overdue: ${item.propertyName}`
+      : `Tourist tax declaration due: ${item.propertyName}`;
+    const message = overdue
+      ? `A taxe de séjour period is overdue for ${item.propertyName}. Declare on your commune/EPCI portal even if collected by the platform or €0.`
+      : `A taxe de séjour declaration is due soon for ${item.propertyName}. Platform collection does not replace your host declaration.`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId,
+        propertyId: item.propertyId,
+        type: "tourist_tax",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId,
+          propertyId: item.propertyId,
+          title,
+          message,
+          type: "tourist_tax",
+        },
+      });
+    }
+  }
+}
+
 export async function syncAllNotifications(userId: string) {
   await syncExpiryNotifications(userId);
   await syncMissingFicheNotifications(userId);
   await syncSesDueNotifications(userId);
   await syncNightCapNotifications(userId);
+  await syncTouristTaxNotifications(userId);
 }

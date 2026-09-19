@@ -220,6 +220,10 @@
         "title": "Plafond nuitées résidence principale",
         "description": "Compteur annuel depuis vos calendriers iCal ou séjours manuels — alertes à 70 %, 90 % et dépassement (120 ou 90 nuitées selon la commune)."
       },
+      "touristTax": {
+        "title": "Ops taxe de séjour (France)",
+        "description": "File de périodes depuis votre calendrier — déclarez sur le portail commune même si Airbnb/Booking collectent en tiers collecteur (mois à 0 € inclus)."
+      },
       "listings": {
         "title": "Conformité annonces (NER)",
         "description": "Suivi par canal (Airbnb, Booking, Vrbo) : statut du numéro affiché, blocages plateforme et playbook de recours avec sources officielles."
@@ -304,6 +308,10 @@
         "9": {
           "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
           "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice) et vous alerte avant dépassement — conformément à l'article L324-1-1 du Code du tourisme."
+        },
+        "10": {
+          "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
+          "a": "Non. En tiers collecteur, vous devez toujours déclarer chaque période sur le portail commune ou EPCI — souvent mensuellement, y compris les mois à 0 € et les séjours « via tiers collecteur ». Glint suit les nuitées imposables et file les périodes ; vous déposez sur le portail officiel (pas de télédéclaration automatique)."
         }
       }
     },
@@ -366,7 +374,8 @@
       "guestsThisMonth": "Voyageurs ce mois",
       "fichesNeeded": "Fiches manquantes",
       "listingCompliance": "Annonces NER",
-      "nightCap": "Plafond nuitées RP"
+      "nightCap": "Plafond nuitées RP",
+      "touristTax": "Taxe de séjour"
     },
     "attention": {
       "action": "{count, plural, one {# bien nécessite une action} other {# biens nécessitent une action}}",
@@ -374,7 +383,8 @@
       "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
       "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}",
       "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}",
-      "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}"
+      "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
+      "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
@@ -499,7 +509,8 @@
         "expired": "Renouveler l'enregistrement",
         "not_started": "Commencer les démarches",
         "listing_compliance": "Corriger annonces NER",
-        "night_cap": "Vérifier plafond nuitées"
+        "night_cap": "Vérifier plafond nuitées",
+        "tourist_tax": "Déclarer taxe de séjour"
       }
     },
     "archiveAction": {
@@ -683,7 +694,65 @@
       "not_started": "Non commencé",
       "national_transition": "Transition nationale",
       "listing_compliance": "Annonces NER",
-      "night_cap": "Plafond nuitées RP"
+      "night_cap": "Plafond nuitées RP",
+      "tourist_tax": "Taxe de séjour"
+    }
+  },
+  "touristTax": {
+    "title": "Taxe de séjour",
+    "subtitle": "Déclarez chaque période sur le portail commune/EPCI — collecte plateforme ≠ déclaration hôte",
+    "loading": "Chargement taxe de séjour…",
+    "loadError": "Impossible de charger la taxe de séjour",
+    "saveError": "Impossible d'enregistrer les paramètres",
+    "saved": "Paramètres taxe de séjour enregistrés",
+    "declareError": "Impossible de marquer la période comme déclarée",
+    "periodDeclared": "Période marquée comme déclarée",
+    "copyError": "Impossible de copier l'URL",
+    "copied": "URL du portail copiée",
+    "enabled": "Suivre la taxe de séjour pour ce bien",
+    "collectionModeLabel": "Mode de collecte",
+    "cadenceLabel": "Cadence de déclaration",
+    "portalLabel": "URL portail commune/EPCI",
+    "portalPlaceholder": "https://taxedesejour…",
+    "classificationLabel": "Classement meublé (indication tarif)",
+    "attestationOnFile": "Attestation plateforme archivée (tiers collecteur)",
+    "notesLabel": "Notes",
+    "notesPlaceholder": "ex. identifiant portail, contact mairie…",
+    "periodsTitle": "Périodes récentes",
+    "nights": "{count, plural, one {# nuitée imposable} other {# nuitées imposables}}",
+    "dueBy": "Échéance {date}",
+    "markDeclared": "Marquer déclarée",
+    "attention": "{count, plural, one {# période à traiter} other {# périodes à traiter}}",
+    "copyPortal": "Copier l'URL du portail",
+    "openPortal": "Ouvrir le portail",
+    "collectionMode": {
+      "platform_collects": "Plateforme collecte (tiers collecteur)",
+      "host_collects": "Hôte collecte",
+      "mixed": "Mixte",
+      "unknown": "Inconnu"
+    },
+    "cadence": {
+      "monthly": "Mensuelle",
+      "bimonthly": "Bimestrielle",
+      "quarterly": "Trimestrielle",
+      "annual": "Annuelle",
+      "unknown": "Inconnue"
+    },
+    "classification": {
+      "unclassified": "Non classé",
+      "1": "1 étoile",
+      "2": "2 étoiles",
+      "3": "3 étoiles",
+      "4": "4 étoiles",
+      "5": "5 étoiles",
+      "unknown": "Inconnu"
+    },
+    "status": {
+      "upcoming": "À venir",
+      "due": "À déclarer",
+      "overdue": "En retard",
+      "declared": "Déclarée",
+      "waived": "Dispensée"
     }
   },
   "nightCap": {

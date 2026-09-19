@@ -8,6 +8,7 @@ import {
   Clock,
   FileWarning,
   Moon,
+  Receipt,
   Users,
   XCircle,
 } from "lucide-react";
@@ -25,6 +26,7 @@ type PortfolioStats = {
   nationalTransition: number;
   listingCompliance: number;
   nightCapAttention: number;
+  touristTaxAttention: number;
 };
 
 type Props = {
@@ -41,7 +43,8 @@ export async function PortfolioOverview({ locale, stats }: Props) {
     stats.fichesNeeded > 0 ||
     stats.nationalTransition > 0 ||
     stats.listingCompliance > 0 ||
-    stats.nightCapAttention > 0;
+    stats.nightCapAttention > 0 ||
+    stats.touristTaxAttention > 0;
 
   return (
     <section className="space-y-3">
@@ -131,6 +134,20 @@ export async function PortfolioOverview({ locale, stats }: Props) {
                 </p>
               </div>
               <ChevronRight className="h-4 w-4 shrink-0 text-amber-600" />
+            </Link>
+          )}
+          {stats.touristTaxAttention > 0 && (
+            <Link
+              href={propertiesListHref(locale, { status: "tourist_tax" })}
+              className="flex items-center justify-between gap-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-red-900 transition-colors hover:bg-red-100"
+            >
+              <div className="flex min-w-0 items-center gap-2">
+                <Receipt className="h-4 w-4 shrink-0 text-red-600" />
+                <p className="text-sm font-medium leading-snug">
+                  {t("attention.touristTax", { count: stats.touristTaxAttention })}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-red-600" />
             </Link>
           )}
         </div>

@@ -5,6 +5,7 @@ import {
   type FranceNightCapNextActionContext,
 } from "@/lib/france/next-action";
 import type { NightCapComputation } from "@/lib/france/night-cap";
+import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 
 export const NATIONAL_TRANSITION_STATUSES = [
   "not_applicable",
@@ -68,7 +69,8 @@ export function getEffectiveNextStep(
   residencyStatus: "primary" | "secondary" | "other" | null | undefined,
   country: string,
   registration: NationalTransitionRegistration | null | undefined,
-  nightCapComputation?: NightCapComputation | null
+  nightCapComputation?: NightCapComputation | null,
+  touristTaxSummary?: TouristTaxSummary | null
 ): PlaybookStep | null {
   const nationalStepKey = getNationalStepKey(playbook);
   const nationalStep = nationalStepKey
@@ -111,6 +113,7 @@ export function getEffectiveNextStep(
     country,
     residencyStatus,
     nightCapComputation: nightCapComputation ?? null,
+    touristTaxSummary: touristTaxSummary ?? null,
   };
 
   return getEffectiveNextStepForFranceWithNightCap(

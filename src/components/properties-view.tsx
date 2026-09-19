@@ -47,6 +47,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "not_started",
   "listing_compliance",
   "night_cap",
+  "tourist_tax",
 ];
 
 type Props = {
@@ -59,6 +60,7 @@ type Props = {
   plan: string;
   limit: number;
   nightCapAttentionIds?: string[];
+  touristTaxAttentionIds?: string[];
 };
 
 const VIEW_STORAGE_KEY = "glint-properties-view";
@@ -100,8 +102,10 @@ export function PropertiesView({
   plan,
   limit,
   nightCapAttentionIds = [],
+  touristTaxAttentionIds = [],
 }: Props) {
   const nightCapSet = new Set(nightCapAttentionIds);
+  const touristTaxSet = new Set(touristTaxAttentionIds);
   const t = useTranslations("properties");
   const tCompliance = useTranslations("compliance.status");
   const viewMode = useDefaultViewMode();
@@ -127,6 +131,9 @@ export function PropertiesView({
           }
           if (statusFilter === "night_cap") {
             return nightCapSet.has(property.id);
+          }
+          if (statusFilter === "tourist_tax") {
+            return touristTaxSet.has(property.id);
           }
           return getPropertyComplianceStatus(property) === statusFilter;
         })

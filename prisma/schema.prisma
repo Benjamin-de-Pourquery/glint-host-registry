@@ -94,6 +94,43 @@ model Property {
   sesSubmissions SesSubmission[]
   regionalGuestReports RegionalGuestReport[]
   nightCapSettings NightCapSettings?
+  touristTaxSettings TouristTaxSettings?
+  touristTaxPeriods TouristTaxPeriod[]
+}
+
+model TouristTaxSettings {
+  id                 String   @id @default(cuid())
+  propertyId         String   @unique
+  enabled            Boolean  @default(true)
+  collectionMode     String   @default("unknown")
+  declarationCadence String   @default("monthly")
+  portalUrl          String?
+  classification     String   @default("unclassified")
+  attestationOnFile  Boolean  @default(false)
+  notes              String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  property           Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model TouristTaxPeriod {
+  id                  String    @id @default(cuid())
+  propertyId          String
+  periodStart         DateTime
+  periodEnd           DateTime
+  status              String    @default("upcoming")
+  nightsInPeriod      Int?
+  declaredAt          DateTime?
+  declarationChannel  String?
+  amountCents         Int?
+  notes               String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  property            Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, periodStart])
+  @@index([propertyId])
+  @@index([propertyId, status])
 }
 
 model NightCapSettings {

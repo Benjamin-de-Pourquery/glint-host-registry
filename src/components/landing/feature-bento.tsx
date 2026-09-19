@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Route, Users, Zap, Building2, Clock, Moon, ArrowRight, QrCode, CheckCircle2 } from "lucide-react";
+import { Route, Users, Zap, Building2, Clock, Moon, Receipt, ArrowRight, QrCode, CheckCircle2 } from "lucide-react";
 
 export async function FeatureBento() {
   const t = await getTranslations("landing.features");
@@ -97,6 +97,7 @@ export async function FeatureBento() {
             { key: "nextAction" as const, icon: Zap },
             { key: "sesQueue" as const, icon: Clock },
             { key: "nightCap" as const, icon: Moon },
+            { key: "touristTax" as const, icon: Receipt },
             { key: "portfolio" as const, icon: Building2 },
           ].map(({ key, icon: Icon }) => (
             <article

@@ -11,6 +11,8 @@ import { getAlloggiatiDueQueueForUser } from "@/lib/italy/due-queue";
 import { getSibaDueQueueForUser } from "@/lib/portugal/due-queue";
 import { loadPropertyNightCap } from "@/lib/france/night-cap-service";
 import { getNightCapPriorityAction } from "@/lib/france/night-cap";
+import { loadPropertyTouristTax } from "@/lib/france/tourist-tax-service";
+import { getTouristTaxPriorityAction } from "@/lib/france/tourist-tax";
 import { z } from "zod";
 
 const updateSchema = z.object({
@@ -36,6 +38,7 @@ export async function GET(
       registration: true,
       sesCredential: true,
       nightCapSettings: true,
+      touristTaxSettings: true,
     },
   });
 
@@ -87,6 +90,12 @@ export async function GET(
     settings: property.nightCapSettings,
   });
 
+  const touristTaxResult = await loadPropertyTouristTax({
+    propertyId: property.id,
+    country: property.country,
+    settings: property.touristTaxSettings,
+  });
+
   const nextStep = getEffectiveNextStep(playbook, progress, residencyStatus, {
     country: property.country,
     city: property.city,
@@ -98,12 +107,22 @@ export async function GET(
     hasRnalNumber: Boolean(property.registration?.rnalNumber?.trim()),
     hasActiveStayNeedingSiba: sibaDueForProperty,
     nightCapComputation: nightCapResult.computation,
+    touristTaxSummary: touristTaxResult.summary,
   });
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
 
-  const priorityAction = nightCapResult.computation
+  const touristTaxPriority = touristTaxResult.summary
+    ? getTouristTaxPriorityAction(touristTaxResult.summary)
+    : null;
+  const nightCapPriority = nightCapResult.computation
     ? getNightCapPriorityAction(nightCapResult.computation)
     : null;
+  const priorityAction =
+    touristTaxPriority?.level === "critical"
+      ? touristTaxPriority
+      : nightCapPriority?.level === "exceeded" || nightCapPriority?.level === "critical"
+        ? nightCapPriority
+        : touristTaxPriority ?? nightCapPriority;
 
   return NextResponse.json({
     playbook,
@@ -111,6 +130,7 @@ export async function GET(
     nextStepKey: nextStep?.key ?? null,
     summary,
     nightCap: nightCapResult.computation,
+    touristTax: touristTaxResult.summary,
     priorityAction,
   });
 }

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { hasActiveSubscription, getPropertyLimit } from "@/lib/plans";
 import { PropertiesView } from "@/components/properties-view";
 import { getNightCapAttentionForUser } from "@/lib/france/night-cap-service";
+import { getTouristTaxAttentionForUser } from "@/lib/france/tourist-tax-service";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -49,6 +50,9 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
   const nightCapAttentionIds = new Set(
     (await getNightCapAttentionForUser(session.user.id)).map((item) => item.propertyId)
   );
+  const touristTaxAttentionIds = new Set(
+    (await getTouristTaxAttentionForUser(session.user.id)).map((item) => item.propertyId)
+  );
 
   return (
     <PropertiesView
@@ -61,6 +65,7 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
       plan={user?.subscriptionPlan || ""}
       limit={limit}
       nightCapAttentionIds={Array.from(nightCapAttentionIds)}
+      touristTaxAttentionIds={Array.from(touristTaxAttentionIds)}
     />
   );
 }

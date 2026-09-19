@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { getSiteUrl, SITE_NAME } from "@/lib/seo/site";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body className={`${inter.variable} ${jakarta.variable} font-sans antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );

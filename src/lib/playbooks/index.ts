@@ -2,6 +2,7 @@ import { FRANCE_PLAYBOOKS } from "./france";
 import { SPAIN_PLAYBOOKS } from "./spain";
 import { ITALY_PLAYBOOKS } from "./italy";
 import { PORTUGAL_PLAYBOOKS } from "./portugal";
+import { GREECE_PLAYBOOKS } from "./greece";
 import { NETHERLANDS_PLAYBOOK } from "./international";
 import type {
   OfficialUrl,
@@ -18,6 +19,7 @@ const ALL_PLAYBOOKS: Playbook[] = [
   ...SPAIN_PLAYBOOKS,
   ...ITALY_PLAYBOOKS,
   ...PORTUGAL_PLAYBOOKS,
+  ...GREECE_PLAYBOOKS,
   NETHERLANDS_PLAYBOOK,
 ];
 
@@ -64,6 +66,19 @@ const CITY_ALIASES: Record<string, string> = {
   algarve: "Faro",
   funchal: "Funchal",
   madeira: "Funchal",
+  athens: "Athina",
+  athina: "Athina",
+  athènes: "Athina",
+  thessaloniki: "Thessaloniki",
+  salonica: "Thessaloniki",
+  salonique: "Thessaloniki",
+  heraklion: "Heraklion",
+  iraklio: "Heraklion",
+  crete: "Heraklion",
+  rhodes: "Rhodes",
+  rodos: "Rhodes",
+  corfu: "Corfu",
+  kerkyra: "Corfu",
 };
 
 function normalizeCountry(country: string): string {
@@ -72,6 +87,9 @@ function normalizeCountry(country: string): string {
   if (c === "es" || c === "spain" || c === "espagne" || c === "espana") return "Spain";
   if (c === "it" || c === "italy" || c === "italie" || c === "italia") return "Italy";
   if (c === "pt" || c === "portugal" || c === "portuguese") return "Portugal";
+  if (c === "gr" || c === "el" || c === "greece" || c === "hellas" || c === "grèce") {
+    return "Greece";
+  }
   if (c === "nl" || c === "netherlands" || c === "pays-bas" || c === "nederland") {
     return "Netherlands";
   }
@@ -174,6 +192,7 @@ export function listPlaybookCoverage(): {
   spainCities: string[];
   italyCities: string[];
   portugalCities: string[];
+  greeceCities: string[];
 } {
   return {
     fullFranceCities: FRANCE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
@@ -181,6 +200,7 @@ export function listPlaybookCoverage(): {
     spainCities: SPAIN_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     italyCities: ITALY_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     portugalCities: PORTUGAL_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
+    greeceCities: GREECE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
   };
 }
 

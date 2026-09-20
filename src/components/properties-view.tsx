@@ -16,6 +16,7 @@ import {
   type PortfolioStatusFilter,
 } from "@/lib/compliance";
 import { needsNationalTransitionAttention } from "@/lib/national-transition";
+import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +33,11 @@ type PropertyItem = {
     expiryDate?: Date | null;
     nationalTransitionStatus?: string | null;
     nationalRegistrationNumber?: string | null;
+    amaNumber?: string | null;
+    amaStatus?: string | null;
+    amaDisplayedOnListings?: boolean;
+    greeceRegistrationKind?: string | null;
+    greeceAlternateLicenseNumber?: string | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
   listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
@@ -46,6 +52,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "ready",
   "not_started",
   "listing_compliance",
+  "greece_ama",
   "night_cap",
   "tourist_tax",
 ];
@@ -128,6 +135,9 @@ export function PropertiesView({
           }
           if (statusFilter === "listing_compliance") {
             return propertyHasListingComplianceIssue(property.listingChannels ?? []);
+          }
+          if (statusFilter === "greece_ama") {
+            return needsGreeceAmaAttention(property.country, property.registration);
           }
           if (statusFilter === "night_cap") {
             return nightCapSet.has(property.id);

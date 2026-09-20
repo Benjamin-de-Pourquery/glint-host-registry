@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "EU short-term rental compliance — France, Spain, Italy, Portugal, and beyond",
-      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, Italy CIN + Alloggiati, and Portugal RNAL + SIBA ops. Glint prepares; you submit on official portals.",
+      "title": "EU short-term rental compliance — France, Spain, Italy, Portugal, Greece, and beyond",
+      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, Italy CIN + Alloggiati, Portugal RNAL + SIBA, and Greece AMA + AADE stay declarations. Glint prepares; you submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR + ES + IT + PT (RNAL, SIBA)",
-      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA ops",
+      "cities": "FR + ES + IT + PT + GR (AMA, AADE)",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE ops",
       "bilingual": "FR + EN interface"
     },
     "problem": {
@@ -176,17 +176,17 @@
       "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
       "points": {
         "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "In Spain, guest reports are due within 24h — SES, Mossos, or Ertzaintza. In Italy, Alloggiati schedine are separate from CIN. In Portugal, SIBA boletim for foreign guests within 3 working days",
-        "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/RNAL/NER under EU 2024/1028 from May 2026"
+        "2": "In Spain, guest reports are due within 24h — SES, Mossos, or Ertzaintza. In Italy, Alloggiati schedine are separate from CIN. In Portugal, SIBA boletim within 3 working days. In Greece, AADE stay declarations by the 20th after departure",
+        "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/RNAL/AMA/NER under EU 2024/1028 from May 2026"
       }
     },
     "solution": {
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking — with a clear next action per property.",
       "points": {
-        "1": "City playbooks for France, Spain, Italy, and Portugal — Lisboa, Porto, Faro, Funchal RNAL + SIBA ops",
-        "2": "Guest register: Annex I (ES), Alloggiati (IT), SIBA boletim (PT foreign guests), French fiche; due queues with deadlines",
-        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, and SIBA; SES dry-run/live when you enable SES_LIVE"
+        "1": "City playbooks for France, Spain, Italy, Portugal, and Greece — Athens, Thessaloniki, Crete AMA + AADE ops",
+        "2": "Guest register: Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), French fiche; due queues with deadlines",
+        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run/live when you enable SES_LIVE"
       }
     },
     "features": {
@@ -198,11 +198,11 @@
       },
       "guestRegister": {
         "title": "Guest register (FR + ES + IT + PT)",
-        "description": "Public check-in link or QR with Annex I fields (Spain), Alloggiati schedina (Italy), SIBA boletim (Portugal foreign guests), French fiche de police, digital signature, and CSV export."
+        "description": "Public check-in link or QR with Annex I fields (Spain), Alloggiati schedina (Italy), SIBA boletim (Portugal), AADE stay data (Greece), French fiche de police, digital signature, and CSV export."
       },
       "sesQueue": {
         "title": "EU guest-reporting queues",
-        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal — export kits and due queues where single-country tools leave gaps."
+        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal; AADE for Greece — export kits and due queues where single-country tools leave gaps."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -312,6 +312,10 @@
         "10": {
           "q": "If Airbnb collects taxe de séjour, am I done?",
           "a": "No. When platforms act as tiers collecteur you must still declare each period on your commune or EPCI portal — often monthly, including €0 months and stays collected via the platform. Glint tracks taxable nights and queues declaration periods; you submit on the official portal (no automated filing)."
+        },
+        "11": {
+          "q": "Does Glint cover Greece (AMA and AADE)?",
+          "a": "Yes. Glint tracks AADE AMA for listing compliance under EU 2024/1028 and prepares Short-Term Stay Declaration export kits with due queues (by the 20th of the month after guest departure). AMA and AADE stay declarations are separate obligations — we do not submit to AADE automatically."
         }
       }
     },
@@ -374,6 +378,7 @@
       "guestsThisMonth": "Guests this month",
       "fichesNeeded": "Fiches needed",
       "listingCompliance": "Listing NER",
+      "greeceAma": "Greece AMA",
       "nightCap": "Primary night cap",
       "touristTax": "Taxe de séjour"
     },
@@ -383,6 +388,7 @@
       "fichesNeeded": "{count, plural, one {# missing police form} other {# missing police forms}}",
       "nationalTransition": "{count, plural, one {# French property — national transition} other {# French properties — national transition}}",
       "listingCompliance": "{count, plural, one {# listing — missing or blocked NER} other {# listings — missing or blocked NER}}",
+      "greeceAma": "{count, plural, one {# Greece property — AMA missing or not on listings} other {# Greece properties — AMA missing or not on listings}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
       "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
     },
@@ -547,7 +553,8 @@
         "type": "Property type",
         "registration": "Registration number",
         "cin": "CIN (BDSR)",
-        "rnal": "RNAL"
+        "rnal": "RNAL",
+        "ama": "AMA (AADE)"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -694,6 +701,7 @@
       "not_started": "Not started",
       "national_transition": "National transition",
       "listing_compliance": "Listing NER",
+      "greece_ama": "Greece AMA",
       "night_cap": "Primary night cap",
       "tourist_tax": "Taxe de séjour"
     }
@@ -1490,6 +1498,137 @@
       "departureDate": "Departure",
       "footer": "Prepared by Glint Host Registry for manual SIBA submission. Host remains legally responsible.",
       "disclaimer": "Not legal advice. Glint does not submit to SIBA. Portuguese nationals are not reported."
+    }
+  },
+  "aade": {
+    "system": {
+      "aade": "AADE"
+    },
+    "panel": {
+      "title": "AADE Short-Term Stay Declaration",
+      "description": "{city} — Greece requires a Short-Term Stay Declaration (Δήλωση Βραχυχρόνιας Διαμονής) per stay (≤59 nights) by the 20th of the month after guest departure. Glint prepares declaration data; you submit on myAADE.",
+      "honestyNote": "Glint does not submit to AADE automatically. We collect → validate → export CSV/printable kit → you submit on https://www.aade.gr/myAADE. You remain legally responsible.",
+      "workflowTitle": "Workflow",
+      "step1": "Register property in AADE registry and obtain AMA (or ESL for licensed tourist accommodation)",
+      "step2": "Enable check-in link and collect guest data for AADE declaration fields",
+      "step3": "Prepare export kit (printable + CSV) after guest departure",
+      "step4": "Submit Short-Term Stay Declaration on myAADE by day 20 of the month after checkout",
+      "step5": "Mark submission status in Glint (prepared → submitted → accepted)",
+      "myAade": "myAADE portal",
+      "aadeHub": "AADE short-term rental hub",
+      "longTermNote": "Stays of 60+ nights use the AADE long-term lease declaration path — not included in the short-term due queue.",
+      "amaSeparateNote": "AMA is for platform listings under EU 2024/1028 — separate from per-stay AADE declarations."
+    },
+    "ama": {
+      "title": "AMA — AADE Property Registration Number",
+      "description": "Mandatory on listings under EU 2024/1028. Register via myAADE Short-Term Stay Property Registry — separate from per-stay AADE declarations. Licensed tourist accommodations may use ESL / Unique Notification Number instead.",
+      "registrationKind": "Registration type",
+      "amaNumber": "AMA number",
+      "amaNumberPlaceholder": "e.g. 00000000000",
+      "alternateLicenseNumber": "ESL / Unique Notification number",
+      "alternateLicensePlaceholder": "Licensed tourist accommodation number",
+      "amaStatus": "AMA status",
+      "atak": "ATAK (optional)",
+      "atakPlaceholder": "Property tax ID note",
+      "displayedOnListings": "Registration number displayed on all platform listings",
+      "save": "Save AMA",
+      "saved": "AMA saved",
+      "saveError": "Could not save AMA",
+      "openMyAade": "Open myAADE",
+      "openAadeHub": "AADE hub",
+      "disclaimer": "Not legal advice. AMA ≠ AADE stay declaration. Missing AMA on listings is commonly cited at €5,000.",
+      "kind": {
+        "ama": "AMA (short-term rental registry)",
+        "esl": "ESL (licensed tourist accommodation)",
+        "unique_notification": "Unique Notification Number"
+      },
+      "status": {
+        "not_started": "Not started",
+        "in_progress": "In progress",
+        "obtained": "Obtained",
+        "displayed": "Displayed on listings",
+        "not_required_esl": "Not required (ESL path)"
+      }
+    },
+    "checkIn": {
+      "title": "AADE — Short-Term Stay Declaration",
+      "description": "Your host must submit a Short-Term Stay Declaration to AADE for this stay ({city}, Greece).",
+      "prepareHint": "Please complete all fields — your host will prepare the declaration for manual myAADE entry.",
+      "deadlineHint": "Declaration due by the 20th of the month following guest departure (short-term stays ≤59 nights).",
+      "fieldsTitle": "AADE declaration fields",
+      "fieldsHint": "Document type, number, sex, nationality, and arrival/departure dates are required for the export kit."
+    },
+    "stay": {
+      "prepare": "Prepare export kit",
+      "exportCsv": "Download CSV",
+      "printDeclaration": "Print declaration",
+      "openPortal": "Open myAADE",
+      "markSubmitted": "Mark submitted",
+      "markAccepted": "Mark accepted",
+      "prepareReady": "Export kit ready for {count} guest(s)",
+      "validationFailed": "{count} validation issue(s) — complete guest data first",
+      "statusUpdated": {
+        "prepared": "Marked as prepared",
+        "submitted": "Marked as submitted on myAADE",
+        "accepted": "Marked as accepted"
+      },
+      "error": "Could not process AADE report",
+      "deadline": "Due by {date}",
+      "nightCount": "{count} nights",
+      "longTermNote": "60+ night stay — use AADE long-term lease declaration instead (not in short-term queue).",
+      "noGuestsNote": "No guest records yet — send check-in link or add guests manually."
+    },
+    "submission": {
+      "status": {
+        "prepared": "Prepared",
+        "submitted": "Submitted",
+        "accepted": "Accepted"
+      }
+    },
+    "dueQueue": {
+      "loading": "Loading AADE due queue…",
+      "title": "AADE declarations — overdue and due within 7 days",
+      "subtitle": "Greece short-term stays (≤59 nights) requiring declaration by the 20th of the month after departure.",
+      "nightCount": "{count, plural, one {# night} other {# nights}}",
+      "daysLeft": "{days} day(s) left",
+      "overdue": "Overdue",
+      "prepWindow": "Checkout soon",
+      "action": "Open register",
+      "actionGuest": "Send check-in link",
+      "status": {
+        "prep_window": "Upcoming checkout",
+        "awaiting_guest_data": "Awaiting guest data",
+        "awaiting_submission": "Ready to export",
+        "overdue": "Overdue"
+      }
+    },
+    "copy": {
+      "stayId": "Stay ID",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "copied": "Copied"
+    },
+    "export": {
+      "declarationTitle": "AADE Short-Term Stay Declaration",
+      "deadlineNote": "Submit on myAADE by the 20th of the month after guest departure.",
+      "portalNote": "Glint prepares this export for manual entry on myAADE. Glint does not submit automatically.",
+      "disclaimer": "Not legal advice. Glint does not submit to AADE. Host remains legally responsible.",
+      "lastName": "Last name (επώνυμο)",
+      "firstNames": "First name(s) (όνομα)",
+      "sex": "Sex (φύλο)",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "nationality": "Nationality (εθνικότητα)",
+      "documentType": "Document type",
+      "documentNumber": "Document number",
+      "address": "Address",
+      "mobile": "Mobile",
+      "email": "Email",
+      "arrivalDate": "Arrival",
+      "departureDate": "Departure",
+      "amaLabel": "AMA / registration number",
+      "propertyLabel": "Property address",
+      "footer": "Prepared by Glint Host Registry for manual AADE submission. Retain per Greek law."
     }
   },
   "common": {

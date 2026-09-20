@@ -34,6 +34,9 @@ type Props = {
   nationalRegistrationNumber?: string | null;
   cinNumber?: string | null;
   rnalNumber?: string | null;
+  amaNumber?: string | null;
+  greeceRegistrationKind?: string | null;
+  greeceAlternateLicenseNumber?: string | null;
   initialChannels: ListingChannelRecord[];
 };
 
@@ -59,6 +62,9 @@ export function PropertyListingsForm({
   nationalRegistrationNumber,
   cinNumber,
   rnalNumber,
+  amaNumber,
+  greeceRegistrationKind,
+  greeceAlternateLicenseNumber,
   initialChannels,
 }: Props) {
   const t = useTranslations("properties.detail.listings");
@@ -73,8 +79,14 @@ export function PropertyListingsForm({
   const [blockReasonDraft, setBlockReasonDraft] = useState("");
   const [expandedBlockId, setExpandedBlockId] = useState<string | null>(null);
 
+  const greeceNer =
+    greeceRegistrationKind === "esl" || greeceRegistrationKind === "unique_notification"
+      ? greeceAlternateLicenseNumber?.trim()
+      : amaNumber?.trim();
+
   const effectiveNer =
     nationalRegistrationNumber?.trim() ||
+    greeceNer ||
     rnalNumber?.trim() ||
     cinNumber?.trim() ||
     registrationNumber?.trim() ||

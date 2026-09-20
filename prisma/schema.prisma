@@ -381,6 +381,13 @@ model Registration {
   rnalNumber                String?
   rnalStatus                String    @default("not_started")
   rnalDisplayedOnListings   Boolean   @default(false)
+  /** Greece AMA (Αριθμός Μητρώου Ακινήτου) — AADE Short-Term Stay Property Registry */
+  amaNumber                 String?
+  amaStatus                 String    @default("not_started")
+  amaDisplayedOnListings    Boolean   @default(false)
+  greeceRegistrationKind    String    @default("ama")
+  greeceAlternateLicenseNumber String?
+  atak                      String?
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

@@ -14,6 +14,7 @@ import {
 } from "@/lib/spain/regions";
 import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
+import { isGreeceCountry, requiresAadeCheckIn } from "@/lib/greece/regions";
 
 type Props = {
   token: string;
@@ -35,14 +36,17 @@ export function CheckInForm({
   const tRegional = useTranslations("ses.regionalSystem");
   const tAlloggiati = useTranslations("alloggiati.checkIn");
   const tSiba = useTranslations("siba.checkIn");
+  const tAade = useTranslations("aade.checkIn");
   const isSpain = isSpainCountry(propertyCountry);
   const isItaly = isItalyCountry(propertyCountry);
   const isPortugal = isPortugalCountry(propertyCountry);
+  const isGreece = isGreeceCountry(propertyCountry);
   const reportingMode = isSpain ? getSpainGuestReportingMode(propertyCity) : "none";
   const annexOneApplies = isSpain && requiresAnnexOneCheckIn(propertyCity);
   const alloggiatiApplies = isItaly && requiresAlloggiatiCheckIn(propertyCity);
   const sibaApplies = isPortugal && requiresSibaCheckIn(propertyCity);
-  const extendedCheckIn = annexOneApplies || alloggiatiApplies || sibaApplies;
+  const aadeApplies = isGreece && requiresAadeCheckIn(propertyCountry, propertyCity);
+  const extendedCheckIn = annexOneApplies || alloggiatiApplies || sibaApplies || aadeApplies;
   const isRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -272,25 +276,32 @@ export function CheckInForm({
       {extendedCheckIn && (
         <div className="space-y-4 rounded-lg border border-emerald-100 bg-emerald-50/40 p-4">
           <p className="text-sm font-medium text-emerald-900">
-            {sibaApplies
-              ? tSiba("fieldsTitle")
-              : alloggiatiApplies
-                ? tAlloggiati("fieldsTitle")
-                : isRegional
-                  ? tRegional("annexTitle")
-                  : tSes("title")}
+            {aadeApplies
+              ? tAade("fieldsTitle")
+              : sibaApplies
+                ? tSiba("fieldsTitle")
+                : alloggiatiApplies
+                  ? tAlloggiati("fieldsTitle")
+                  : isRegional
+                    ? tRegional("annexTitle")
+                    : tSes("title")}
           </p>
           <p className="text-xs text-emerald-800">
-            {sibaApplies
-              ? tSiba("fieldsHint")
-              : alloggiatiApplies
-                ? tAlloggiati("fieldsHint")
-                : isRegional
-                  ? tRegional("annexHint")
-                  : tSes("hint")}
+            {aadeApplies
+              ? tAade("fieldsHint")
+              : sibaApplies
+                ? tSiba("fieldsHint")
+                : alloggiatiApplies
+                  ? tAlloggiati("fieldsHint")
+                  : isRegional
+                    ? tRegional("annexHint")
+                    : tSes("hint")}
           </p>
           {sibaApplies && (
             <p className="text-xs text-blue-700">{tSiba("portugueseNote")}</p>
+          )}
+          {aadeApplies && (
+            <p className="text-xs text-emerald-700">{tAade("deadlineHint")}</p>
           )}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">

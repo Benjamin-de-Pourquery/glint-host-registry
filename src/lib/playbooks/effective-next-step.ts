@@ -6,9 +6,11 @@ import {
 import { getEffectiveNextStepForSpain } from "@/lib/ses/next-action";
 import { getEffectiveNextStepForItaly } from "@/lib/italy/next-action";
 import { getEffectiveNextStepForPortugal } from "@/lib/portugal/next-action";
+import { getEffectiveNextStepForGreece } from "@/lib/greece/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
+import { isGreeceCountry } from "@/lib/greece/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 
@@ -22,6 +24,9 @@ export type EffectiveNextStepContext = {
   hasActiveStayNeedingAlloggiati?: boolean;
   hasRnalNumber?: boolean;
   hasActiveStayNeedingSiba?: boolean;
+  hasAmaNumber?: boolean;
+  amaDisplayedOnListings?: boolean;
+  hasActiveStayNeedingAade?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
 };
@@ -56,6 +61,16 @@ export function getEffectiveNextStep(
       city: context.city,
       hasRnalNumber: context.hasRnalNumber,
       hasActiveStayNeedingSiba: context.hasActiveStayNeedingSiba,
+    });
+  }
+
+  if (isGreeceCountry(context.country)) {
+    return getEffectiveNextStepForGreece(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      hasAmaNumber: context.hasAmaNumber,
+      amaDisplayedOnListings: context.amaDisplayedOnListings,
+      hasActiveStayNeedingAade: context.hasActiveStayNeedingAade,
     });
   }
 

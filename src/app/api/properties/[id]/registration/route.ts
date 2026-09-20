@@ -28,6 +28,14 @@ const schema = z.object({
     .enum(["not_started", "pending", "active", "expired"])
     .optional(),
   rnalDisplayedOnListings: z.boolean().optional(),
+  amaNumber: z.string().nullable().optional(),
+  amaStatus: z
+    .enum(["not_started", "in_progress", "obtained", "displayed", "not_required_esl"])
+    .optional(),
+  amaDisplayedOnListings: z.boolean().optional(),
+  greeceRegistrationKind: z.enum(["ama", "esl", "unique_notification"]).optional(),
+  greeceAlternateLicenseNumber: z.string().nullable().optional(),
+  atak: z.string().nullable().optional(),
 });
 
 export async function PATCH(
@@ -82,6 +90,12 @@ export async function PATCH(
         rnalNumber: data.rnalNumber ?? null,
         rnalStatus: data.rnalStatus ?? "not_started",
         rnalDisplayedOnListings: data.rnalDisplayedOnListings ?? false,
+        amaNumber: data.amaNumber ?? null,
+        amaStatus: data.amaStatus ?? "not_started",
+        amaDisplayedOnListings: data.amaDisplayedOnListings ?? false,
+        greeceRegistrationKind: data.greeceRegistrationKind ?? "ama",
+        greeceAlternateLicenseNumber: data.greeceAlternateLicenseNumber ?? null,
+        atak: data.atak ?? null,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -105,6 +119,12 @@ export async function PATCH(
         rnalNumber: data.rnalNumber,
         rnalStatus: data.rnalStatus,
         rnalDisplayedOnListings: data.rnalDisplayedOnListings,
+        amaNumber: data.amaNumber,
+        amaStatus: data.amaStatus,
+        amaDisplayedOnListings: data.amaDisplayedOnListings,
+        greeceRegistrationKind: data.greeceRegistrationKind,
+        greeceAlternateLicenseNumber: data.greeceAlternateLicenseNumber,
+        atak: data.atak,
       },
     });
 

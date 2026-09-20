@@ -13,10 +13,12 @@ import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { RnalComplianceCard } from "@/components/rnal-compliance-card";
+import { AmaComplianceCard } from "@/components/ama-compliance-card";
 import { NightCapCard } from "@/components/night-cap-card";
 import { TouristTaxCard } from "@/components/tourist-tax-card";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
+import { isGreeceCountry } from "@/lib/greece/regions";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
@@ -47,6 +49,12 @@ type Registration = {
   rnalNumber?: string | null;
   rnalStatus?: string | null;
   rnalDisplayedOnListings?: boolean;
+  amaNumber?: string | null;
+  amaStatus?: string | null;
+  amaDisplayedOnListings?: boolean;
+  greeceRegistrationKind?: string | null;
+  greeceAlternateLicenseNumber?: string | null;
+  atak?: string | null;
 };
 
 type PropertyData = {
@@ -237,6 +245,16 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
                 </dd>
               </div>
             )}
+            {property.registration?.amaNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.ama")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.amaNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -248,6 +266,13 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
 
           {isPortugalCountry(property.country) && (
             <RnalComplianceCard
+              propertyId={property.id}
+              registration={property.registration}
+            />
+          )}
+
+          {isGreeceCountry(property.country) && (
+            <AmaComplianceCard
               propertyId={property.id}
               registration={property.registration}
             />
@@ -316,6 +341,9 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           nationalRegistrationNumber={property.registration?.nationalRegistrationNumber}
           cinNumber={property.registration?.cinNumber}
           rnalNumber={property.registration?.rnalNumber}
+          amaNumber={property.registration?.amaNumber}
+          greeceRegistrationKind={property.registration?.greeceRegistrationKind}
+          greeceAlternateLicenseNumber={property.registration?.greeceAlternateLicenseNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

@@ -6,6 +6,7 @@ import { getRegionalStaysEnteringSubmissionWindow } from "@/lib/spain/regional-d
 import { getRegionalSystemLabel } from "@/lib/spain/regions";
 import { getAlloggiatiStaysEnteringSubmissionWindow } from "@/lib/italy/due-queue";
 import { getSibaStaysEnteringSubmissionWindow } from "@/lib/portugal/due-queue";
+import { getAadeStaysEnteringSubmissionWindow } from "@/lib/greece/due-queue";
 
 function verifyCronAuth(request: Request): boolean {
   const cronSecret = process.env.CRON_SECRET;
@@ -30,6 +31,7 @@ export async function POST(request: Request) {
   const regionalStays = await getRegionalStaysEnteringSubmissionWindow();
   const alloggiatiStays = await getAlloggiatiStaysEnteringSubmissionWindow();
   const sibaStays = await getSibaStaysEnteringSubmissionWindow();
+  const aadeStays = await getAadeStaysEnteringSubmissionWindow();
   let created = 0;
 
   for (const stay of sesStays) {
@@ -150,12 +152,47 @@ export async function POST(request: Request) {
     }
   }
 
+  for (const stay of aadeStays) {
+    const guestRef = stay.guestLabel ? ` (${stay.guestLabel})` : "";
+    const title = `AADE declaration due soon: ${stay.propertyName}`;
+    const message = `Guest checkout on ${format(stay.checkOutDate, "dd/MM/yyyy")}${guestRef} at ${stay.propertyName} (${stay.city}). Submit the Short-Term Stay Declaration on myAADE by ${format(stay.deadline, "dd/MM/yyyy")} (20th of month after departure).`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId: stay.userId,
+        propertyId: stay.propertyId,
+        type: "aade_due",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId: stay.userId,
+          propertyId: stay.propertyId,
+          title,
+          message,
+          type: "aade_due",
+        },
+      });
+      created++;
+    }
+  }
+
   return NextResponse.json({
-    scanned: sesStays.length + regionalStays.length + alloggiatiStays.length + sibaStays.length,
+    scanned:
+      sesStays.length +
+      regionalStays.length +
+      alloggiatiStays.length +
+      sibaStays.length +
+      aadeStays.length,
     sesScanned: sesStays.length,
     regionalScanned: regionalStays.length,
     alloggiatiScanned: alloggiatiStays.length,
     sibaScanned: sibaStays.length,
+    aadeScanned: aadeStays.length,
     notificationsCreated: created,
   });
 }

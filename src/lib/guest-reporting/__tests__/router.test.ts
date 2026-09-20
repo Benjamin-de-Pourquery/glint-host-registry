@@ -36,6 +36,18 @@ describe("getGuestReportingJurisdiction", () => {
     assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "italy_alloggiati");
     assert.notEqual(getGuestReportingJurisdiction("Portugal", "Lisboa"), "spain_mossos");
   });
+
+  it("routes Greece to AADE", () => {
+    assert.equal(getGuestReportingJurisdiction("Greece", "Athina"), "greece_aade");
+    assert.equal(getGuestReportingJurisdiction("GR", "Thessaloniki"), "greece_aade");
+    assert.equal(getGuestReportingJurisdiction("EL", "Rhodes"), "greece_aade");
+  });
+
+  it("does not route Greece to SES, SIBA, or Alloggiati", () => {
+    assert.notEqual(getGuestReportingJurisdiction("Greece", "Athina"), "spain_ses");
+    assert.notEqual(getGuestReportingJurisdiction("Greece", "Athina"), "portugal_siba");
+    assert.notEqual(getGuestReportingJurisdiction("Greece", "Athina"), "italy_alloggiati");
+  });
 });
 
 describe("requiresExtendedGuestCheckIn", () => {
@@ -44,6 +56,7 @@ describe("requiresExtendedGuestCheckIn", () => {
     assert.equal(requiresExtendedGuestCheckIn("Italy", "Roma"), true);
     assert.equal(requiresExtendedGuestCheckIn("France", "Paris"), false);
     assert.equal(requiresExtendedGuestCheckIn("Portugal", "Lisboa"), true);
+    assert.equal(requiresExtendedGuestCheckIn("Greece", "Athina"), true);
   });
 
   it("isolates Portugal from SES and Alloggiati", () => {

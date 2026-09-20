@@ -13,6 +13,11 @@ import {
   isPortugalCountry,
   type PortugalGuestReportingMode,
 } from "@/lib/portugal/regions";
+import {
+  getGreeceGuestReportingMode,
+  isGreeceCountry,
+  type GreeceGuestReportingMode,
+} from "@/lib/greece/regions";
 
 export type GuestReportingJurisdiction =
   | "france"
@@ -21,6 +26,7 @@ export type GuestReportingJurisdiction =
   | "spain_ertzaintza"
   | "italy_alloggiati"
   | "portugal_siba"
+  | "greece_aade"
   | "none";
 
 export function getGuestReportingJurisdiction(
@@ -52,6 +58,11 @@ export function getGuestReportingJurisdiction(
     return mode === "siba" ? "portugal_siba" : "none";
   }
 
+  if (isGreeceCountry(country)) {
+    const mode = getGreeceGuestReportingMode(country, city, region);
+    return mode === "aade" ? "greece_aade" : "none";
+  }
+
   if (country.trim()) {
     const c = country.trim().toLowerCase();
     if (c === "france" || c === "fr" || c === "frança") {
@@ -74,7 +85,8 @@ export function requiresExtendedGuestCheckIn(
     jurisdiction === "spain_mossos" ||
     jurisdiction === "spain_ertzaintza" ||
     jurisdiction === "italy_alloggiati" ||
-    jurisdiction === "portugal_siba"
+    jurisdiction === "portugal_siba" ||
+    jurisdiction === "greece_aade"
   );
 }
 
@@ -103,4 +115,10 @@ export function getPortugalModeFromJurisdiction(
   jurisdiction: GuestReportingJurisdiction
 ): PortugalGuestReportingMode | null {
   return jurisdiction === "portugal_siba" ? "siba" : null;
+}
+
+export function getGreeceModeFromJurisdiction(
+  jurisdiction: GuestReportingJurisdiction
+): GreeceGuestReportingMode | null {
+  return jurisdiction === "greece_aade" ? "aade" : null;
 }

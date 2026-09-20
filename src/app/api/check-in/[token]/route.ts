@@ -14,6 +14,8 @@ import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 import { validateCheckInForAlloggiati } from "@/lib/italy/check-in-validation";
 import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
 import { validateCheckInForSiba } from "@/lib/portugal/check-in-validation";
+import { isGreeceCountry, requiresAadeCheckIn } from "@/lib/greece/regions";
+import { validateCheckInForAade } from "@/lib/greece/check-in-validation";
 import { z } from "zod";
 
 const childSchema = z.object({
@@ -118,6 +120,8 @@ export async function POST(
       isItalyCountry(property.country) && requiresAlloggiatiCheckIn(property.city);
     const sibaRequired =
       isPortugalCountry(property.country) && requiresSibaCheckIn(property.city);
+    const aadeRequired =
+      isGreeceCountry(property.country) && requiresAadeCheckIn(property.country, property.city);
 
     if (annexOneRequired) {
       const validationErrors = validateCheckInForSes(data);
@@ -141,6 +145,16 @@ export async function POST(
 
     if (sibaRequired) {
       const validationErrors = validateCheckInForSiba(data);
+      if (validationErrors.length > 0) {
+        return NextResponse.json(
+          { error: "Validation failed", validationErrors },
+          { status: 400 }
+        );
+      }
+    }
+
+    if (aadeRequired) {
+      const validationErrors = validateCheckInForAade(data);
       if (validationErrors.length > 0) {
         return NextResponse.json(
           { error: "Validation failed", validationErrors },

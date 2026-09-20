@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "Conformité location courte durée UE — France, Espagne, Italie, Portugal et plus",
-      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, et RNAL + SIBA Portugal. Glint prépare ; vous soumettez sur les portails officiels.",
+      "title": "Conformité location courte durée UE — France, Espagne, Italie, Portugal, Grèce et plus",
+      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, RNAL + SIBA Portugal, et AMA + déclarations AADE Grèce. Glint prépare ; vous soumettez sur les portails officiels.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "FR + ES + IT + PT (RNAL, SIBA)",
-      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA",
+      "cities": "FR + ES + IT + PT + GR (AMA, AADE)",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE",
       "bilingual": "Interface FR + EN"
     },
     "problem": {
@@ -176,17 +176,17 @@
       "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
       "points": {
         "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
-        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, Alloggiati distinct du CIN. Au Portugal, boletim SIBA pour voyageurs étrangers sous 3 jours ouvrés",
-        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/RNAL/NER au titre du règlement UE 2024/1028"
+        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, Alloggiati distinct du CIN. Au Portugal, boletim SIBA sous 3 jours ouvrés. En Grèce, déclarations AADE avant le 20 du mois suivant le départ",
+        "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/RNAL/AMA/NER au titre du règlement UE 2024/1028"
       }
     },
     "solution": {
       "title": "Un cockpit conformité pour tout votre portefeuille",
       "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros — avec une prochaine action claire par bien.",
       "points": {
-        "1": "Playbooks France, Espagne, Italie et Portugal — Lisboa, Porto, Faro, Funchal RNAL + SIBA",
-        "2": "Registre : Annexe I (ES), Alloggiati (IT), boletim SIBA (PT voyageurs étrangers), fiche FR ; files d'échéance",
-        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati, SIBA ; SES dry-run/live avec SES_LIVE"
+        "1": "Playbooks France, Espagne, Italie, Portugal et Grèce — Athènes, Thessalonique, Crète AMA + AADE",
+        "2": "Registre : Annexe I (ES), Alloggiati (IT), SIBA (PT), déclarations AADE (GR), fiche FR ; files d'échéance",
+        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati, SIBA, AADE ; SES dry-run/live avec SES_LIVE"
       }
     },
     "features": {
@@ -198,11 +198,11 @@
       },
       "guestRegister": {
         "title": "Registre voyageurs (FR + ES + IT + PT)",
-        "description": "Lien ou QR public avec champs Annexe I (Espagne), schedina Alloggiati (Italie), boletim SIBA (Portugal voyageurs étrangers), fiche de police France, signature et export CSV."
+        "description": "Lien ou QR public avec champs Annexe I (Espagne), schedina Alloggiati (Italie), boletim SIBA (Portugal), données AADE (Grèce), fiche de police France, signature et export CSV."
       },
       "sesQueue": {
         "title": "Files déclaration voyageurs UE",
-        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
+        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -312,6 +312,10 @@
         "10": {
           "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
           "a": "Non. En tiers collecteur, vous devez toujours déclarer chaque période sur le portail commune ou EPCI — souvent mensuellement, y compris les mois à 0 € et les séjours « via tiers collecteur ». Glint suit les nuitées imposables et file les périodes ; vous déposez sur le portail officiel (pas de télédéclaration automatique)."
+        },
+        "11": {
+          "q": "Glint couvre-t-il la Grèce (AMA et AADE) ?",
+          "a": "Oui. Glint suit l'AMA AADE pour la conformité des annonces au titre de l'UE 2024/1028 et prépare les kits d'export de déclaration de séjour avec files d'attente (avant le 20 du mois suivant le départ). AMA et déclarations AADE sont des obligations distinctes — nous ne soumettons pas automatiquement à l'AADE."
         }
       }
     },
@@ -374,6 +378,7 @@
       "guestsThisMonth": "Voyageurs ce mois",
       "fichesNeeded": "Fiches manquantes",
       "listingCompliance": "Annonces NER",
+      "greeceAma": "AMA Grèce",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -383,6 +388,7 @@
       "fichesNeeded": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
       "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}",
       "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}",
+      "greeceAma": "{count, plural, one {# bien grec — AMA manquant ou non affiché} other {# biens grecs — AMA manquant ou non affiché}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -547,7 +553,8 @@
         "type": "Type de bien",
         "registration": "Numéro d'enregistrement",
         "cin": "CIN (BDSR)",
-        "rnal": "RNAL"
+        "rnal": "RNAL",
+        "ama": "AMA (AADE)"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -694,6 +701,7 @@
       "not_started": "Non commencé",
       "national_transition": "Transition nationale",
       "listing_compliance": "Annonces NER",
+      "greece_ama": "AMA Grèce",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -1490,6 +1498,137 @@
       "departureDate": "Départ",
       "footer": "Préparé par Glint Host Registry pour soumission manuelle SIBA. L'hôte reste responsable légalement.",
       "disclaimer": "Pas un conseil juridique. Glint ne soumet pas au SIBA. Les ressortissants portugais ne sont pas déclarés."
+    }
+  },
+  "aade": {
+    "system": {
+      "aade": "AADE"
+    },
+    "panel": {
+      "title": "Déclaration de séjour de courte durée AADE",
+      "description": "{city} — La Grèce exige une déclaration de séjour de courte durée (Δήλωση Βραχυχρόνιας Διαμονής) par séjour (≤59 nuits) avant le 20 du mois suivant le départ. Glint prépare les données ; vous soumettez sur myAADE.",
+      "honestyNote": "Glint ne soumet pas automatiquement à l'AADE. Nous collectons → validons → exportons CSV/imprimable → vous soumettez sur https://www.aade.gr/myAADE. Vous restez légalement responsable.",
+      "workflowTitle": "Workflow",
+      "step1": "Enregistrer le bien au registre AADE et obtenir l'AMA (ou ESL pour hébergement touristique agréé)",
+      "step2": "Activer le lien check-in et collecter les données voyageurs pour l'export AADE",
+      "step3": "Préparer le kit d'export (imprimable + CSV) après le départ",
+      "step4": "Soumettre la déclaration sur myAADE avant le 20 du mois suivant le checkout",
+      "step5": "Marquer le statut dans Glint (préparé → soumis → accepté)",
+      "myAade": "Portail myAADE",
+      "aadeHub": "Hub AADE location courte durée",
+      "longTermNote": "Les séjours de 60+ nuits suivent la déclaration de bail longue durée AADE — non inclus dans la file courte durée.",
+      "amaSeparateNote": "L'AMA concerne les annonces plateformes au titre de l'UE 2024/1028 — distinct des déclarations de séjour AADE."
+    },
+    "ama": {
+      "title": "AMA — Numéro d'enregistrement AADE",
+      "description": "Obligatoire sur les annonces au titre de l'UE 2024/1028. Enregistrement via myAADE — distinct des déclarations de séjour. Les hébergements touristiques agréés peuvent utiliser un numéro ESL ou de notification unique.",
+      "registrationKind": "Type d'enregistrement",
+      "amaNumber": "Numéro AMA",
+      "amaNumberPlaceholder": "ex. 00000000000",
+      "alternateLicenseNumber": "Numéro ESL / notification unique",
+      "alternateLicensePlaceholder": "Numéro hébergement touristique agréé",
+      "amaStatus": "Statut AMA",
+      "atak": "ATAK (optionnel)",
+      "atakPlaceholder": "Note identifiant fiscal du bien",
+      "displayedOnListings": "Numéro affiché sur toutes les annonces plateformes",
+      "save": "Enregistrer AMA",
+      "saved": "AMA enregistré",
+      "saveError": "Impossible d'enregistrer l'AMA",
+      "openMyAade": "Ouvrir myAADE",
+      "openAadeHub": "Hub AADE",
+      "disclaimer": "Pas un conseil juridique. AMA ≠ déclaration de séjour AADE. L'absence d'AMA sur les annonces expose à des amendes (souvent citées à 5 000 €).",
+      "kind": {
+        "ama": "AMA (registre location courte durée)",
+        "esl": "ESL (hébergement touristique agréé)",
+        "unique_notification": "Numéro de notification unique"
+      },
+      "status": {
+        "not_started": "Non commencé",
+        "in_progress": "En cours",
+        "obtained": "Obtenu",
+        "displayed": "Affiché sur les annonces",
+        "not_required_esl": "Non requis (voie ESL)"
+      }
+    },
+    "checkIn": {
+      "title": "AADE — Déclaration de séjour de courte durée",
+      "description": "Votre hôte doit soumettre une déclaration de séjour AADE pour ce séjour ({city}, Grèce).",
+      "prepareHint": "Veuillez compléter tous les champs — votre hôte préparera la déclaration pour saisie manuelle sur myAADE.",
+      "deadlineHint": "Déclaration due avant le 20 du mois suivant le départ (séjours ≤59 nuits).",
+      "fieldsTitle": "Champs déclaration AADE",
+      "fieldsHint": "Type et numéro de document, sexe, nationalité et dates d'arrivée/départ sont requis pour l'export."
+    },
+    "stay": {
+      "prepare": "Préparer le kit d'export",
+      "exportCsv": "Télécharger CSV",
+      "printDeclaration": "Imprimer la déclaration",
+      "openPortal": "Ouvrir myAADE",
+      "markSubmitted": "Marquer soumis",
+      "markAccepted": "Marquer accepté",
+      "prepareReady": "Kit d'export prêt pour {count} voyageur(s)",
+      "validationFailed": "{count} problème(s) de validation — complétez les données voyageurs",
+      "statusUpdated": {
+        "prepared": "Marqué comme préparé",
+        "submitted": "Marqué comme soumis sur myAADE",
+        "accepted": "Marqué comme accepté"
+      },
+      "error": "Impossible de traiter le rapport AADE",
+      "deadline": "Échéance le {date}",
+      "nightCount": "{count} nuits",
+      "longTermNote": "Séjour 60+ nuits — utilisez la déclaration de bail longue durée AADE (hors file courte durée).",
+      "noGuestsNote": "Aucun voyageur enregistré — envoyez le lien check-in ou ajoutez des voyageurs."
+    },
+    "submission": {
+      "status": {
+        "prepared": "Préparé",
+        "submitted": "Soumis",
+        "accepted": "Accepté"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement de la file AADE…",
+      "title": "Déclarations AADE — en retard et échéance sous 7 jours",
+      "subtitle": "Séjours grecs de courte durée (≤59 nuits) à déclarer avant le 20 du mois suivant le départ.",
+      "nightCount": "{count, plural, one {# nuit} other {# nuits}}",
+      "daysLeft": "{days} jour(s) restant(s)",
+      "overdue": "En retard",
+      "prepWindow": "Départ imminent",
+      "action": "Ouvrir le registre",
+      "actionGuest": "Envoyer le lien check-in",
+      "status": {
+        "prep_window": "Départ à venir",
+        "awaiting_guest_data": "En attente données voyageurs",
+        "awaiting_submission": "Prêt à exporter",
+        "overdue": "En retard"
+      }
+    },
+    "copy": {
+      "stayId": "ID séjour",
+      "checkIn": "Arrivée",
+      "checkOut": "Départ",
+      "copied": "Copié"
+    },
+    "export": {
+      "declarationTitle": "Déclaration de séjour de courte durée AADE",
+      "deadlineNote": "Soumettre sur myAADE avant le 20 du mois suivant le départ du voyageur.",
+      "portalNote": "Glint prépare cet export pour saisie manuelle sur myAADE. Glint ne soumet pas automatiquement.",
+      "disclaimer": "Pas un conseil juridique. Glint ne soumet pas à l'AADE. L'hôte reste légalement responsable.",
+      "lastName": "Nom (επώνυμο)",
+      "firstNames": "Prénom(s) (όνομα)",
+      "sex": "Sexe (φύλο)",
+      "dateOfBirth": "Date de naissance",
+      "placeOfBirth": "Lieu de naissance",
+      "nationality": "Nationalité (εθνικότητα)",
+      "documentType": "Type de document",
+      "documentNumber": "Numéro de document",
+      "address": "Adresse",
+      "mobile": "Mobile",
+      "email": "E-mail",
+      "arrivalDate": "Arrivée",
+      "departureDate": "Départ",
+      "amaLabel": "AMA / numéro d'enregistrement",
+      "propertyLabel": "Adresse du bien",
+      "footer": "Préparé par Glint Host Registry pour soumission manuelle AADE. Conserver selon la loi grecque."
     }
   },
   "common": {

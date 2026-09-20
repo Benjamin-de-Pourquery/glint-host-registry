@@ -21,6 +21,8 @@ import { SesDueQueue } from "@/components/ses-due-queue";
 import { RegionalDueQueue } from "@/components/regional-due-queue";
 import { AlloggiatiDueQueue } from "@/components/alloggiati-due-queue";
 import { SibaDueQueue } from "@/components/siba-due-queue";
+import { AadeDueQueue } from "@/components/aade-due-queue";
+import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -80,6 +82,7 @@ export default async function DashboardPage({ params }: Props) {
   const stats = { ready: 0, action_needed: 0, expired: 0, not_started: 0 };
   let nationalTransitionCount = 0;
   let listingComplianceCount = 0;
+  let greeceAmaCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -96,6 +99,9 @@ export default async function DashboardPage({ params }: Props) {
     }
     if (propertyHasListingComplianceIssue(p.listingChannels)) {
       listingComplianceCount++;
+    }
+    if (needsGreeceAmaAttention(p.country, p.registration)) {
+      greeceAmaCount++;
     }
     return { ...p, complianceStatus: status };
   });
@@ -162,6 +168,7 @@ export default async function DashboardPage({ params }: Props) {
       <RegionalDueQueue locale={locale} />
       <AlloggiatiDueQueue locale={locale} />
       <SibaDueQueue locale={locale} />
+      <AadeDueQueue locale={locale} />
 
       {properties.length === 0 && (
         <EmptyState
@@ -193,6 +200,7 @@ export default async function DashboardPage({ params }: Props) {
           fichesNeeded: fichesNeeded,
           nationalTransition: nationalTransitionCount,
           listingCompliance: listingComplianceCount,
+          greeceAma: greeceAmaCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,
         }}

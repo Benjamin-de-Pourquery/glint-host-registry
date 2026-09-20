@@ -41,9 +41,11 @@ import {
 } from "@/lib/spain/regions";
 import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
+import { isGreeceCountry, requiresAadeCheckIn } from "@/lib/greece/regions";
 import { RegionalStayActions } from "@/components/regional-stay-actions";
 import { AlloggiatiStayActions } from "@/components/alloggiati-stay-actions";
 import { SibaStayActions } from "@/components/siba-stay-actions";
+import { AadeStayActions } from "@/components/aade-stay-actions";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -111,6 +113,7 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
   const showRegional = reportingMode === "mossos" || reportingMode === "ertzaintza";
   const showAlloggiati = isItalyCountry(country) && requiresAlloggiatiCheckIn(city);
   const showSiba = isPortugalCountry(country) && requiresSibaCheckIn(city);
+  const showAade = isGreeceCountry(country) && requiresAadeCheckIn(country, city);
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -816,6 +819,16 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                         stayId={stay.id}
                         locale={locale}
                         guestCount={stay.guestCount ?? 0}
+                      />
+                    )}
+                    {showAade && (
+                      <AadeStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
+                        locale={locale}
+                        guestCount={stay.guestCount ?? 0}
+                        checkInDate={stay.checkInDate}
+                        checkOutDate={stay.checkOutDate}
                       />
                     )}
                     <Button

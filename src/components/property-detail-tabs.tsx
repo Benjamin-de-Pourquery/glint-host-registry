@@ -14,11 +14,13 @@ import { NationalTransitionCard } from "@/components/national-transition-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { AmaComplianceCard } from "@/components/ama-compliance-card";
+import { CroatiaCategorisationCard } from "@/components/croatia-categorisation-card";
 import { NightCapCard } from "@/components/night-cap-card";
 import { TouristTaxCard } from "@/components/tourist-tax-card";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
+import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
@@ -55,6 +57,10 @@ type Registration = {
   greeceRegistrationKind?: string | null;
   greeceAlternateLicenseNumber?: string | null;
   atak?: string | null;
+  hrCategorisationNumber?: string | null;
+  hrObjectId?: string | null;
+  hrCategorisationStatus?: string | null;
+  hrCategorisationDisplayedOnListings?: boolean;
 };
 
 type PropertyData = {
@@ -255,6 +261,16 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
                 </dd>
               </div>
             )}
+            {property.registration?.hrCategorisationNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.categorisation")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.hrCategorisationNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -273,6 +289,13 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
 
           {isGreeceCountry(property.country) && (
             <AmaComplianceCard
+              propertyId={property.id}
+              registration={property.registration}
+            />
+          )}
+
+          {isCroatiaCountry(property.country) && (
+            <CroatiaCategorisationCard
               propertyId={property.id}
               registration={property.registration}
             />

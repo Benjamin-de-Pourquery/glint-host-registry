@@ -138,8 +138,8 @@
   },
   "landing": {
     "hero": {
-      "title": "Conformité location courte durée UE — France, Espagne, Italie, Portugal, Grèce et plus",
-      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, RNAL + SIBA Portugal, et AMA + déclarations AADE Grèce. Glint prépare ; vous soumettez sur les portails officiels.",
+      "title": "Conformité location courte durée UE — France, Espagne, Italie, Portugal, Grèce, Croatie et plus",
+      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, RNAL + SIBA Portugal, AMA + AADE Grèce, et catégorisation + eVisitor Croatie. Glint prépare ; vous soumettez sur les portails officiels.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
@@ -167,8 +167,8 @@
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "FR + ES + IT + PT + GR (AMA, AADE)",
-      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE",
+      "cities": "FR + ES + IT + PT + GR + HR",
+      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor",
       "bilingual": "Interface FR + EN"
     },
     "problem": {
@@ -176,7 +176,7 @@
       "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
       "points": {
         "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
-        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, Alloggiati distinct du CIN. Au Portugal, boletim SIBA sous 3 jours ouvrés. En Grèce, déclarations AADE avant le 20 du mois suivant le départ",
+        "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, Alloggiati distinct du CIN. Au Portugal, boletim SIBA sous 3 jours ouvrés. En Grèce, déclarations AADE avant le 20 du mois suivant le départ. En Croatie, eVisitor sous 24h après arrivée et départ",
         "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/RNAL/AMA/NER au titre du règlement UE 2024/1028"
       }
     },
@@ -202,7 +202,7 @@
       },
       "sesQueue": {
         "title": "Files déclaration voyageurs UE",
-        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
+        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -379,6 +379,7 @@
       "fichesNeeded": "Fiches manquantes",
       "listingCompliance": "Annonces NER",
       "greeceAma": "AMA Grèce",
+      "croatiaEvisitor": "eVisitor Croatie",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -389,6 +390,7 @@
       "nationalTransition": "{count, plural, one {# bien français — transition nationale} other {# biens français — transition nationale}}",
       "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}",
       "greeceAma": "{count, plural, one {# bien grec — AMA manquant ou non affiché} other {# biens grecs — AMA manquant ou non affiché}}",
+      "croatiaEvisitor": "{count, plural, one {# bien croate — catégorisation ou eVisitor manquant} other {# biens croates — catégorisation ou eVisitor manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -554,7 +556,8 @@
         "registration": "Numéro d'enregistrement",
         "cin": "CIN (BDSR)",
         "rnal": "RNAL",
-        "ama": "AMA (AADE)"
+        "ama": "AMA (AADE)",
+        "categorisation": "Catégorisation (HR)"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -702,6 +705,7 @@
       "national_transition": "Transition nationale",
       "listing_compliance": "Annonces NER",
       "greece_ama": "AMA Grèce",
+      "croatia_evisitor": "eVisitor Croatie",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -1629,6 +1633,122 @@
       "amaLabel": "AMA / numéro d'enregistrement",
       "propertyLabel": "Adresse du bien",
       "footer": "Préparé par Glint Host Registry pour soumission manuelle AADE. Conserver selon la loi grecque."
+    }
+  },
+  "evisitor": {
+    "system": {
+      "evisitor": "eVisitor"
+    },
+    "panel": {
+      "title": "Déclaration voyageurs eVisitor",
+      "description": "{city} — La Croatie exige l'enregistrement de chaque voyageur sur eVisitor dans les 24 h suivant l'arrivée et la déclaration de départ dans les 24 h suivant le départ. La taxe de séjour est calculée à partir d'eVisitor. Glint prépare les données ; vous soumettez sur le portail officiel.",
+      "honestyNote": "Glint ne soumet pas automatiquement à eVisitor. Nous collectons → validons → exportons CSV/fiche imprimable → vous soumettez sur https://www.evisitor.hr/. Phase 2 : intégration API Rhetos — pas d'API live dans cette version. Vous restez responsable légalement.",
+      "workflowTitle": "Workflow",
+      "step1": "Obtenir la catégorisation hébergement touristique auprès du Ministère du tourisme",
+      "step2": "Enregistrer votre objet d'hébergement sur eVisitor et sauvegarder l'ID objet",
+      "step3": "Activer le lien check-in et collecter les champs eVisitor pour tous les voyageurs",
+      "step4": "Préparer le kit d'export (imprimable + CSV) pour arrivée et départ",
+      "step5": "Saisir sur eVisitor sous 24 h et marquer le statut dans Glint",
+      "evisitorPortal": "Portail eVisitor",
+      "categorisationSeparateNote": "La catégorisation concerne l'agrément de l'annonce au titre du règlement UE 2024/1028 — distinct de la déclaration eVisitor par voyageur (obligatoire depuis 2016)."
+    },
+    "categorisation": {
+      "title": "Catégorisation hébergement touristique",
+      "description": "Agrément obligatoire avant de publier une annonce de location courte durée en Croatie. Enregistrement auprès du Ministère du tourisme et du sport — distinct de l'enregistrement eVisitor.",
+      "categorisationNumber": "Numéro de catégorisation",
+      "categorisationNumberPlaceholder": "ex. HR-12345",
+      "objectId": "ID objet eVisitor",
+      "objectIdPlaceholder": "ID objet depuis le compte eVisitor",
+      "categorisationStatus": "Statut catégorisation",
+      "displayedOnListings": "Numéro de catégorisation affiché sur toutes les annonces",
+      "save": "Enregistrer la catégorisation",
+      "saved": "Catégorisation enregistrée",
+      "saveError": "Impossible d'enregistrer la catégorisation",
+      "openMint": "Ouvrir Ministère du tourisme",
+      "disclaimer": "Pas un conseil juridique. Catégorisation ≠ déclaration eVisitor. Vérification NER plateformes UE depuis le 20 mai 2026.",
+      "status": {
+        "not_started": "Non commencé",
+        "pending": "En attente",
+        "active": "Actif",
+        "expired": "Expiré"
+      }
+    },
+    "checkIn": {
+      "title": "eVisitor — enregistrement voyageur",
+      "description": "Votre hôte doit vous enregistrer sur eVisitor dans les 24 h suivant l'arrivée et vous déclarer en départ dans les 24 h suivant le départ ({city}, Croatie).",
+      "prepareHint": "Veuillez compléter tous les champs — votre hôte préparera l'export pour saisie manuelle sur eVisitor.",
+      "deadlineHint": "Obligatoire au titre de la loi touristique croate — tous les voyageurs doivent être déclarés sur eVisitor.",
+      "fieldsTitle": "Champs eVisitor voyageur",
+      "fieldsHint": "Type de document (PAS/IDC), sexe (M/F), nationalité et dates d'arrivée/départ sont obligatoires."
+    },
+    "stay": {
+      "prepare": "Préparer le kit d'export",
+      "exportCsv": "Télécharger CSV",
+      "printGuest": "Imprimer fiche voyageur",
+      "openPortal": "Ouvrir portail eVisitor",
+      "markSubmitted": "Marquer soumis",
+      "markAccepted": "Marquer accepté",
+      "prepareReady": "Kit d'export prêt pour {count} voyageur(s)",
+      "validationFailed": "{count} problème(s) de validation — complétez les données voyageur",
+      "statusUpdated": {
+        "prepared": "Marqué comme préparé",
+        "submitted": "Marqué comme soumis sur eVisitor",
+        "accepted": "Marqué comme accepté"
+      },
+      "error": "Impossible de traiter le rapport eVisitor",
+      "phaseArrival": "Enregistrement (arrivée)",
+      "phaseDeparture": "Déclaration de départ",
+      "noGuestsNote": "Aucun voyageur — envoyez le lien check-in ou ajoutez des voyageurs manuellement."
+    },
+    "submission": {
+      "status": {
+        "prepared": "Préparé",
+        "submitted": "Soumis",
+        "accepted": "Accepté"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement file eVisitor…",
+      "title": "Obligations eVisitor — préparation, échéance et retard",
+      "subtitle": "Séjours Croatie nécessitant enregistrement ou déclaration de départ sur eVisitor sous 24 h après arrivée et départ.",
+      "guestCount": "{count, plural, one {# voyageur} other {# voyageurs}}",
+      "noGuests": "Aucun voyageur",
+      "hoursLeft": "{hours} heure(s) restante(s)",
+      "overdue": "En retard",
+      "prepWindow": "À venir (24h)",
+      "action": "Ouvrir registre",
+      "actionGuest": "Envoyer lien check-in",
+      "phaseArrival": "Arrivée",
+      "phaseDeparture": "Départ",
+      "status": {
+        "prep_window": "Séjour à venir",
+        "awaiting_guest_data": "En attente données voyageur",
+        "awaiting_submission": "Prêt à exporter",
+        "overdue": "En retard"
+      }
+    },
+    "copy": {
+      "stayId": "ID séjour",
+      "objectId": "ID objet",
+      "copied": "Copié"
+    },
+    "export": {
+      "guestTitle": "Enregistrement voyageur eVisitor",
+      "deadlineNote": "Enregistrer ou déclarer le départ sur eVisitor dans les 24 h suivant l'arrivée et le départ.",
+      "portalNote": "Glint prépare cet export pour saisie manuelle sur eVisitor. Glint ne soumet pas automatiquement.",
+      "phaseLabel": "Phase : {phase}",
+      "lastName": "Nom (prezime)",
+      "firstNames": "Prénom(s) (ime)",
+      "sex": "Sexe (spol)",
+      "dateOfBirth": "Date de naissance",
+      "nationality": "Nationalité (državljanstvo)",
+      "documentType": "Type de document",
+      "documentNumber": "Numéro de document",
+      "arrivalDate": "Arrivée",
+      "departureDate": "Départ",
+      "objectIdLabel": "ID objet eVisitor",
+      "footer": "Préparé par Glint Host Registry pour soumission manuelle eVisitor. L'hôte reste responsable légalement.",
+      "disclaimer": "Pas un conseil juridique. Glint ne soumet pas à eVisitor. Phase 2 : intégration API Rhetos."
     }
   },
   "common": {

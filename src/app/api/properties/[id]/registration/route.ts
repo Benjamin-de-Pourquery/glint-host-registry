@@ -36,6 +36,12 @@ const schema = z.object({
   greeceRegistrationKind: z.enum(["ama", "esl", "unique_notification"]).optional(),
   greeceAlternateLicenseNumber: z.string().nullable().optional(),
   atak: z.string().nullable().optional(),
+  hrCategorisationNumber: z.string().nullable().optional(),
+  hrObjectId: z.string().nullable().optional(),
+  hrCategorisationStatus: z
+    .enum(["not_started", "pending", "active", "expired"])
+    .optional(),
+  hrCategorisationDisplayedOnListings: z.boolean().optional(),
 });
 
 export async function PATCH(
@@ -96,6 +102,11 @@ export async function PATCH(
         greeceRegistrationKind: data.greeceRegistrationKind ?? "ama",
         greeceAlternateLicenseNumber: data.greeceAlternateLicenseNumber ?? null,
         atak: data.atak ?? null,
+        hrCategorisationNumber: data.hrCategorisationNumber ?? null,
+        hrObjectId: data.hrObjectId ?? null,
+        hrCategorisationStatus: data.hrCategorisationStatus ?? "not_started",
+        hrCategorisationDisplayedOnListings:
+          data.hrCategorisationDisplayedOnListings ?? false,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -125,6 +136,10 @@ export async function PATCH(
         greeceRegistrationKind: data.greeceRegistrationKind,
         greeceAlternateLicenseNumber: data.greeceAlternateLicenseNumber,
         atak: data.atak,
+        hrCategorisationNumber: data.hrCategorisationNumber,
+        hrObjectId: data.hrObjectId,
+        hrCategorisationStatus: data.hrCategorisationStatus,
+        hrCategorisationDisplayedOnListings: data.hrCategorisationDisplayedOnListings,
       },
     });
 

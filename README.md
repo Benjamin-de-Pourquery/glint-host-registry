@@ -80,7 +80,7 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `npm run start` | Production server |
 | `npm run db:migrate` | Run Prisma migrations |
 | `npm run db:studio` | Open Prisma Studio |
-| `npm run test` | Run unit tests (SES, Spain/Italy/Portugal routing, export validation, guest-reporting router, encryption) |
+| `npm run test` | Run unit tests (SES, Spain/Italy/Portugal/Greece/Croatia routing, export validation, guest-reporting router, encryption) |
 | `npm run verify-playbook-urls` | HTTP 200 check for verified playbook official URLs |
 | `npm run test:ses` | Run SES integration unit tests only |
 

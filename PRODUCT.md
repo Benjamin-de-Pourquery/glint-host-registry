@@ -86,9 +86,15 @@ Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and 
 - **Optional SOAP dry-run (verified):** Official WSDL + MANUALEWS.pdf at `https://alloggiatiweb.poliziadistato.it/service/service.asmx`. Per-property encrypted credentials (`AlloggiatiCredential`: utente, password, WSKEY) mirror SES (`SECRETS_ENCRYPTION_KEY`). `GenerateToken` + `Authentication_Test` for connectivity; `Test` for 168-char schedina validation (CREAFILE.pdf). `ALLOCGIATI_LIVE=false` default — `Send` only when env + per-property flag enabled.
 - **Phase 2:** Full comune/stato code lookup tables (portal Tipi_Tabella), accompanying-family schedina types (17–20), GestioneAppartamenti_* for multi-unit hosts.
 - **Differentiator:** FR + ES (SES/Mossos/Ertzaintza) + IT (CIN + Alloggiati ops) in one EU compliance layer — not an Italy-only PMS.
-- **Next:** Greece (documented as future slice).
+### 6d. Greece — AMA + AADE (shipped)
 
-### 6b. Portugal — RNAL + SIBA (shipped)
+- **Legal context (not legal advice):** **AMA** (Αριθμός Μητρώου Ακινήτου) via AADE — mandatory on listings under EU 2024/1028. **AADE Short-Term Stay Declaration** — per stay (≤59 nights) by the 20th of the month after departure.
+- **Region routing:** `getGreeceGuestReportingMode()` returns `aade` | `none`. Shared `getGuestReportingJurisdiction()` prevents GR properties from hitting SES/SIBA/Alloggiati paths.
+- **AMA on Registration / Overview:** `amaNumber`, `amaStatus`, `amaDisplayedOnListings` on Registration; AMA card on Overview and Register tabs.
+- **AADE check-in + due queue:** Export kit + printable declaration; manual statuses via `RegionalGuestReport` with `system: "aade_short_term"`.
+- **Playbooks:** Athina, Thessaloniki, Heraklion, Rhodes, Corfu + GR generic fallback.
+
+### 6e. Portugal — RNAL + SIBA (shipped)
 
 - **Legal context (not legal advice):** **RNAL** (Registo Nacional de Alojamento Local) via Turismo de Portugal — mandatory on listings; platforms verify under EU 2024/1028 from 20 May 2026. **SIBA** (SSI/UCFE) — Boletim de Alojamento for **foreign guests** within **3 working days** of arrival AND departure; Portuguese nationals are NOT reported. Fines €100–€2,000 (Lei 23/2007 art. 203).
 - **Region routing:** `getPortugalGuestReportingMode()` returns `siba` | `none`. Shared `getGuestReportingJurisdiction()` prevents PT properties from hitting SES/Alloggiati/FR police-form paths.
@@ -98,6 +104,16 @@ Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and 
 - **Primary UX:** collect → validate → due queue → export kit + portal deep links — no fake SIBA SOAP/API.
 - **Playbooks:** Lisboa, Porto, Faro (Algarve), Funchal (Madeira) + PT generic fallback.
 - **Differentiator:** FR + ES + IT + PT in one EU compliance layer.
+
+### 6f. Croatia — categorisation + eVisitor (shipped)
+
+- **Legal context (not legal advice):** **Tourist accommodation categorisation** via Ministry of Tourism and Sport — approval required before advertising. EU 2024/1028 applies from 20 May 2026; Croatia's unique listing registration numbers expected ~January 2027 (Hospitality Act / eTourism). **eVisitor** — mandatory guest check-in/out since 2016: register every guest within **24h of arrival**, deregister within **24h of departure**; sojourn tax (boravišna pristojba) calculated from eVisitor.
+- **Region routing:** `getCroatiaGuestReportingMode()` returns `evisitor` | `none`. Shared `getGuestReportingJurisdiction()` jurisdiction `croatia_evisitor`.
+- **Categorisation on Registration / Overview:** `hrCategorisationNumber`, `hrObjectId`, `hrCategorisationStatus`, `hrCategorisationDisplayedOnListings`; categorisation card on Overview and Register tabs.
+- **eVisitor check-in:** Public check-in collects eVisitor fields for all guests (name, document, sex, nationality, dates) with validation in `src/lib/croatia/check-in-validation.ts`.
+- **Due queue + dashboard:** 24h after arrival and departure; in-app `evisitor_due` notifications via `/api/cron/ses-due`. Export kit: printable HTML + CSV + copy chips + deep link to https://www.evisitor.hr/. Manual statuses via `RegionalGuestReport` with `system: "evisitor"`.
+- **Primary UX:** collect → validate → due queue → export kit + portal deep links — **no live eVisitor API** (Phase 2: Rhetos API `eVisitorRhetos_API`).
+- **Playbooks:** Zagreb, Split, Dubrovnik, Zadar + HR generic fallback.
 
 ### 7. Registration & compliance
 Per-property compliance tracking:

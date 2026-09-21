@@ -48,6 +48,19 @@ describe("getGuestReportingJurisdiction", () => {
     assert.notEqual(getGuestReportingJurisdiction("Greece", "Athina"), "portugal_siba");
     assert.notEqual(getGuestReportingJurisdiction("Greece", "Athina"), "italy_alloggiati");
   });
+
+  it("routes Croatia to eVisitor", () => {
+    assert.equal(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "croatia_evisitor");
+    assert.equal(getGuestReportingJurisdiction("HR", "Split"), "croatia_evisitor");
+    assert.equal(getGuestReportingJurisdiction("Croatia", "Zagreb"), "croatia_evisitor");
+  });
+
+  it("does not route Croatia to France, Spain, Portugal, or Greece", () => {
+    assert.notEqual(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "france");
+    assert.notEqual(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "spain_ses");
+    assert.notEqual(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "portugal_siba");
+    assert.notEqual(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "greece_aade");
+  });
 });
 
 describe("requiresExtendedGuestCheckIn", () => {
@@ -57,6 +70,7 @@ describe("requiresExtendedGuestCheckIn", () => {
     assert.equal(requiresExtendedGuestCheckIn("France", "Paris"), false);
     assert.equal(requiresExtendedGuestCheckIn("Portugal", "Lisboa"), true);
     assert.equal(requiresExtendedGuestCheckIn("Greece", "Athina"), true);
+    assert.equal(requiresExtendedGuestCheckIn("Croatia", "Dubrovnik"), true);
   });
 
   it("isolates Portugal from SES and Alloggiati", () => {

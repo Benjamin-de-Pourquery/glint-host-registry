@@ -10,7 +10,12 @@ import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
 import { getAlloggiatiDueQueueForUser } from "@/lib/italy/due-queue";
 import { getSibaDueQueueForUser } from "@/lib/portugal/due-queue";
 import { getAadeDueQueueForUser } from "@/lib/greece/due-queue";
+import { getEvisitorDueQueueForUser } from "@/lib/croatia/due-queue";
 import { hasGreeceRegistrationNumber } from "@/lib/greece/ama-compliance";
+import {
+  hasCroatiaCategorisationNumber,
+  hasCroatiaEvisitorObjectId,
+} from "@/lib/croatia/categorisation-compliance";
 import { loadPropertyNightCap } from "@/lib/france/night-cap-service";
 import { getNightCapPriorityAction } from "@/lib/france/night-cap";
 import { loadPropertyTouristTax } from "@/lib/france/tourist-tax-service";
@@ -88,6 +93,10 @@ export async function GET(
     await getAadeDueQueueForUser(session.user.id)
   ).some((item) => item.propertyId === id);
 
+  const evisitorDueForProperty = (
+    await getEvisitorDueQueueForUser(session.user.id)
+  ).some((item) => item.propertyId === id);
+
   const nightCapResult = await loadPropertyNightCap({
     propertyId: property.id,
     country: property.country,
@@ -115,6 +124,9 @@ export async function GET(
     hasAmaNumber: hasGreeceRegistrationNumber(property.registration),
     amaDisplayedOnListings: Boolean(property.registration?.amaDisplayedOnListings),
     hasActiveStayNeedingAade: aadeDueForProperty,
+    hasCategorisationNumber: hasCroatiaCategorisationNumber(property.registration),
+    hasEvisitorObjectId: hasCroatiaEvisitorObjectId(property.registration),
+    hasActiveStayNeedingEvisitor: evisitorDueForProperty,
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,
   });

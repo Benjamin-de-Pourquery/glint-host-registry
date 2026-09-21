@@ -8,8 +8,8 @@ import {
   Building2,
   Bell,
   Settings,
-  Shield,
 } from "lucide-react";
+import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SignOutButton } from "@/components/sign-out-button";
@@ -35,9 +35,7 @@ export function SidebarBrand({ className }: SidebarBrandProps) {
         className
       )}
     >
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/25 ring-1 ring-emerald-600/20">
-        <Shield className="h-4 w-4" />
-      </div>
+      <GlintBrandIcon size={36} className="shadow-md shadow-slate-900/15" />
       <div className="min-w-0 flex flex-col leading-tight">
         <span className="truncate text-sm font-bold tracking-tight text-slate-900">
           {tBrand("name")}

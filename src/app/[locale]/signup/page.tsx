@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { Shield } from "lucide-react";
+import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
 
 export default function SignupPage() {
   const t = useTranslations("auth.signup");
@@ -66,9 +66,7 @@ export default function SignupPage() {
       </div>
 
       <NavLink href={`/${locale}`} className="mb-8 flex items-center gap-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600 text-white">
-          <Shield className="h-5 w-5" />
-        </div>
+        <GlintBrandIcon size={40} />
         <div>
           <div className="font-bold text-slate-900">{tBrand("name")}</div>
           <div className="text-sm text-slate-500">{tBrand("product")}</div>

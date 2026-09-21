@@ -6,7 +6,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import { Menu, Shield } from "lucide-react";
+import { Menu } from "lucide-react";
+import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
 
 type Props = {
   isLoggedIn?: boolean;
@@ -30,9 +31,9 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.25rem] sm:gap-4 sm:px-6">
         <NavLink href={`/${locale}`} className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/30 transition-shadow group-hover:shadow-lg group-hover:shadow-emerald-600/35 sm:h-10 sm:w-10">
-            <Shield className="h-4 w-4 sm:h-5 sm:w-5" />
-          </div>
+          <GlintBrandIcon
+            className="h-9 w-9 shadow-md shadow-slate-900/20 transition-shadow group-hover:shadow-lg group-hover:shadow-slate-900/25 sm:h-10 sm:w-10"
+          />
           <div className="min-w-0 leading-tight">
             <span className="block truncate text-sm font-bold tracking-tight text-slate-900 sm:text-base">
               {tBrand("name")}

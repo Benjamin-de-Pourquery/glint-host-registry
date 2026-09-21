@@ -5,7 +5,7 @@ export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
 export default function AppleIcon() {
-  return new ImageResponse(<GlintIconMark size={180} fontSize={96} />, {
+  return new ImageResponse(<GlintIconMark size={180} fontSize={94} />, {
     ...size,
   });
 }

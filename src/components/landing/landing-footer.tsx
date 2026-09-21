@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { Shield } from "lucide-react";
+import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
 
 type Props = { locale: string };
 
@@ -15,7 +15,7 @@ export async function LandingFooter({ locale }: Props) {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 text-white">
-              <Shield className="h-5 w-5 text-emerald-500" />
+              <GlintBrandIcon size={24} />
               <span className="font-semibold">{tBrand("name")} {tBrand("product")}</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed">{tBrand("tagline")}</p>

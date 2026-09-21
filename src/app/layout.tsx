@@ -23,8 +23,12 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   icons: {
-    icon: [{ url: "/icon", type: "image/png" }],
-    apple: [{ url: "/apple-icon", type: "image/png" }],
+    icon: [
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
   },
   verification: {
     google: "MFDI4q1RHVUBNZgefQiy_Fq6I35IjQsDBIYPk0oNnDU",

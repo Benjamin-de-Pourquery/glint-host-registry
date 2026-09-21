@@ -3,6 +3,7 @@ import { SPAIN_PLAYBOOKS } from "./spain";
 import { ITALY_PLAYBOOKS } from "./italy";
 import { PORTUGAL_PLAYBOOKS } from "./portugal";
 import { GREECE_PLAYBOOKS } from "./greece";
+import { CROATIA_PLAYBOOKS } from "./croatia";
 import { NETHERLANDS_PLAYBOOK } from "./international";
 import type {
   OfficialUrl,
@@ -20,6 +21,7 @@ const ALL_PLAYBOOKS: Playbook[] = [
   ...ITALY_PLAYBOOKS,
   ...PORTUGAL_PLAYBOOKS,
   ...GREECE_PLAYBOOKS,
+  ...CROATIA_PLAYBOOKS,
   NETHERLANDS_PLAYBOOK,
 ];
 
@@ -79,6 +81,13 @@ const CITY_ALIASES: Record<string, string> = {
   rodos: "Rhodes",
   corfu: "Corfu",
   kerkyra: "Corfu",
+  zagreb: "Zagreb",
+  split: "Split",
+  dubrovnik: "Dubrovnik",
+  zadar: "Zadar",
+  rijeka: "Rijeka",
+  pula: "Pula",
+  istria: "Pula",
 };
 
 function normalizeCountry(country: string): string {
@@ -92,6 +101,9 @@ function normalizeCountry(country: string): string {
   }
   if (c === "nl" || c === "netherlands" || c === "pays-bas" || c === "nederland") {
     return "Netherlands";
+  }
+  if (c === "hr" || c === "croatia" || c === "croatie" || c === "hrvatska") {
+    return "Croatia";
   }
   return country.trim();
 }
@@ -193,6 +205,7 @@ export function listPlaybookCoverage(): {
   italyCities: string[];
   portugalCities: string[];
   greeceCities: string[];
+  croatiaCities: string[];
 } {
   return {
     fullFranceCities: FRANCE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
@@ -201,6 +214,7 @@ export function listPlaybookCoverage(): {
     italyCities: ITALY_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     portugalCities: PORTUGAL_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     greeceCities: GREECE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
+    croatiaCities: CROATIA_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
   };
 }
 

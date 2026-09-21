@@ -18,6 +18,11 @@ import {
   isGreeceCountry,
   type GreeceGuestReportingMode,
 } from "@/lib/greece/regions";
+import {
+  getCroatiaGuestReportingMode,
+  isCroatiaCountry,
+  type CroatiaGuestReportingMode,
+} from "@/lib/croatia/regions";
 
 export type GuestReportingJurisdiction =
   | "france"
@@ -27,6 +32,7 @@ export type GuestReportingJurisdiction =
   | "italy_alloggiati"
   | "portugal_siba"
   | "greece_aade"
+  | "croatia_evisitor"
   | "none";
 
 export function getGuestReportingJurisdiction(
@@ -63,6 +69,11 @@ export function getGuestReportingJurisdiction(
     return mode === "aade" ? "greece_aade" : "none";
   }
 
+  if (isCroatiaCountry(country)) {
+    const mode = getCroatiaGuestReportingMode(city, region);
+    return mode === "evisitor" ? "croatia_evisitor" : "none";
+  }
+
   if (country.trim()) {
     const c = country.trim().toLowerCase();
     if (c === "france" || c === "fr" || c === "frança") {
@@ -86,8 +97,15 @@ export function requiresExtendedGuestCheckIn(
     jurisdiction === "spain_ertzaintza" ||
     jurisdiction === "italy_alloggiati" ||
     jurisdiction === "portugal_siba" ||
-    jurisdiction === "greece_aade"
+    jurisdiction === "greece_aade" ||
+    jurisdiction === "croatia_evisitor"
   );
+}
+
+export function getCroatiaModeFromJurisdiction(
+  jurisdiction: GuestReportingJurisdiction
+): CroatiaGuestReportingMode | null {
+  return jurisdiction === "croatia_evisitor" ? "evisitor" : null;
 }
 
 export function getSpainModeFromJurisdiction(

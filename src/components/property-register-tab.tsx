@@ -18,10 +18,13 @@ import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { AmaComplianceCard } from "@/components/ama-compliance-card";
 import { SibaReportingPanel } from "@/components/siba-reporting-panel";
 import { AadeReportingPanel } from "@/components/aade-reporting-panel";
+import { CroatiaCategorisationCard } from "@/components/croatia-categorisation-card";
+import { EvisitorReportingPanel } from "@/components/evisitor-reporting-panel";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
+import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
@@ -56,6 +59,10 @@ type Registration = {
   greeceRegistrationKind?: string | null;
   greeceAlternateLicenseNumber?: string | null;
   atak?: string | null;
+  hrCategorisationNumber?: string | null;
+  hrObjectId?: string | null;
+  hrCategorisationStatus?: string | null;
+  hrCategorisationDisplayedOnListings?: boolean;
 };
 
 type Props = {
@@ -172,6 +179,12 @@ export function PropertyRegisterTab({
         <>
           <AmaComplianceCard propertyId={propertyId} registration={registration} />
           <AadeReportingPanel city={city} />
+        </>
+      )}
+      {isCroatiaCountry(country) && (
+        <>
+          <CroatiaCategorisationCard propertyId={propertyId} registration={registration} />
+          <EvisitorReportingPanel city={city} />
         </>
       )}
       <GuestRegisterPanel

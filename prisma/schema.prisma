@@ -388,6 +388,11 @@ model Registration {
   greeceRegistrationKind    String    @default("ama")
   greeceAlternateLicenseNumber String?
   atak                      String?
+  /** Croatia tourist accommodation categorisation / object registration — Ministry of Tourism */
+  hrCategorisationNumber    String?
+  hrObjectId                String?
+  hrCategorisationStatus    String    @default("not_started")
+  hrCategorisationDisplayedOnListings Boolean @default(false)
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

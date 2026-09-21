@@ -42,10 +42,12 @@ import {
 import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
 import { isGreeceCountry, requiresAadeCheckIn } from "@/lib/greece/regions";
+import { isCroatiaCountry, requiresEvisitorCheckIn } from "@/lib/croatia/regions";
 import { RegionalStayActions } from "@/components/regional-stay-actions";
 import { AlloggiatiStayActions } from "@/components/alloggiati-stay-actions";
 import { SibaStayActions } from "@/components/siba-stay-actions";
 import { AadeStayActions } from "@/components/aade-stay-actions";
+import { EvisitorStayActions } from "@/components/evisitor-stay-actions";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -114,6 +116,7 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
   const showAlloggiati = isItalyCountry(country) && requiresAlloggiatiCheckIn(city);
   const showSiba = isPortugalCountry(country) && requiresSibaCheckIn(city);
   const showAade = isGreeceCountry(country) && requiresAadeCheckIn(country, city);
+  const showEvisitor = isCroatiaCountry(country) && requiresEvisitorCheckIn(city);
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -829,6 +832,14 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                         guestCount={stay.guestCount ?? 0}
                         checkInDate={stay.checkInDate}
                         checkOutDate={stay.checkOutDate}
+                      />
+                    )}
+                    {showEvisitor && (
+                      <EvisitorStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
+                        locale={locale}
+                        guestCount={stay.guestCount ?? 0}
                       />
                     )}
                     <Button

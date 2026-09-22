@@ -1,5 +1,6 @@
 import { differenceInCalendarDays, startOfDay } from "date-fns";
 import { isFranceCountry } from "@/lib/national-transition";
+import { nlNightCapApplies } from "@/lib/netherlands/night-cap";
 import type { ResidencyStatus } from "@/lib/playbooks/types";
 
 /** Statutory default under Code du tourisme L324-1-1 (120 nights / calendar year). */
@@ -61,9 +62,16 @@ export function isPrimaryResidence(
 
 export function nightCapApplies(
   country: string,
-  residencyStatus: ResidencyStatus | string | null | undefined
+  residencyStatus: ResidencyStatus | string | null | undefined,
+  city?: string | null
 ): boolean {
-  return isFranceCountry(country) && isPrimaryResidence(residencyStatus);
+  if (isFranceCountry(country) && isPrimaryResidence(residencyStatus)) {
+    return true;
+  }
+  if (city && nlNightCapApplies(country, residencyStatus, city)) {
+    return true;
+  }
+  return false;
 }
 
 export function defaultNightCapSourceForCity(city: string): NightCapSource {

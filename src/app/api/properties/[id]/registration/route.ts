@@ -6,6 +6,7 @@ import {
   isFranceCountry,
   NATIONAL_TRANSITION_STATUSES,
 } from "@/lib/national-transition";
+import { isNetherlandsCountry, resolveNlNightCapSource } from "@/lib/netherlands/regions";
 import { z } from "zod";
 
 const schema = z.object({
@@ -42,6 +43,20 @@ const schema = z.object({
     .enum(["not_started", "pending", "active", "expired"])
     .optional(),
   hrCategorisationDisplayedOnListings: z.boolean().optional(),
+  nlRegistrationNumber: z.string().nullable().optional(),
+  nlRegistrationStatus: z
+    .enum(["not_started", "pending", "active", "expired"])
+    .optional(),
+  nlRegistrationDisplayedOnListings: z.boolean().optional(),
+  nlHolidayPermitStatus: z
+    .enum(["not_started", "pending", "active", "expired", "not_required"])
+    .optional(),
+  nlHolidayPermitExpiry: z.string().nullable().optional(),
+  nlPermitNumber: z.string().nullable().optional(),
+  nlNeighborhood: z.string().nullable().optional(),
+  nlNightCapSource: z
+    .enum(["amsterdam_30", "amsterdam_15", "nl_municipal", "none"])
+    .optional(),
 });
 
 export async function PATCH(
@@ -75,6 +90,15 @@ export async function PATCH(
         defaultStatus)
       : "not_applicable";
 
+    const nlNeighborhood =
+      data.nlNeighborhood !== undefined
+        ? data.nlNeighborhood
+        : property.registration?.nlNeighborhood ?? null;
+    const nlNightCapSource = isNetherlandsCountry(property.country)
+      ? (data.nlNightCapSource ??
+        resolveNlNightCapSource(property.city, nlNeighborhood))
+      : "none";
+
     const registration = await prisma.registration.upsert({
       where: { propertyId: id },
       create: {
@@ -107,6 +131,17 @@ export async function PATCH(
         hrCategorisationStatus: data.hrCategorisationStatus ?? "not_started",
         hrCategorisationDisplayedOnListings:
           data.hrCategorisationDisplayedOnListings ?? false,
+        nlRegistrationNumber: data.nlRegistrationNumber ?? null,
+        nlRegistrationStatus: data.nlRegistrationStatus ?? "not_started",
+        nlRegistrationDisplayedOnListings:
+          data.nlRegistrationDisplayedOnListings ?? false,
+        nlHolidayPermitStatus: data.nlHolidayPermitStatus ?? "not_started",
+        nlHolidayPermitExpiry: data.nlHolidayPermitExpiry
+          ? new Date(data.nlHolidayPermitExpiry)
+          : null,
+        nlPermitNumber: data.nlPermitNumber ?? null,
+        nlNeighborhood: nlNeighborhood,
+        nlNightCapSource,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -140,6 +175,23 @@ export async function PATCH(
         hrObjectId: data.hrObjectId,
         hrCategorisationStatus: data.hrCategorisationStatus,
         hrCategorisationDisplayedOnListings: data.hrCategorisationDisplayedOnListings,
+        nlRegistrationNumber: data.nlRegistrationNumber,
+        nlRegistrationStatus: data.nlRegistrationStatus,
+        nlRegistrationDisplayedOnListings: data.nlRegistrationDisplayedOnListings,
+        nlHolidayPermitStatus: data.nlHolidayPermitStatus,
+        nlHolidayPermitExpiry: data.nlHolidayPermitExpiry
+          ? new Date(data.nlHolidayPermitExpiry)
+          : data.nlHolidayPermitExpiry === null
+            ? null
+            : undefined,
+        nlPermitNumber: data.nlPermitNumber,
+        nlNeighborhood: data.nlNeighborhood,
+        nlNightCapSource: isNetherlandsCountry(property.country)
+          ? (data.nlNightCapSource ??
+            (data.nlNeighborhood !== undefined
+              ? resolveNlNightCapSource(property.city, data.nlNeighborhood)
+              : undefined))
+          : undefined,
       },
     });
 

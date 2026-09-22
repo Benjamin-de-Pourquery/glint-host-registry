@@ -61,6 +61,13 @@ describe("getGuestReportingJurisdiction", () => {
     assert.notEqual(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "portugal_siba");
     assert.notEqual(getGuestReportingJurisdiction("Croatia", "Dubrovnik"), "greece_aade");
   });
+
+  it("does not route Netherlands to SES, SIBA, Alloggiati, or eVisitor", () => {
+    assert.equal(getGuestReportingJurisdiction("Netherlands", "Amsterdam"), "none");
+    assert.equal(getGuestReportingJurisdiction("nl", "Rotterdam"), "none");
+    assert.notEqual(getGuestReportingJurisdiction("Netherlands", "Amsterdam"), "spain_ses");
+    assert.notEqual(getGuestReportingJurisdiction("Netherlands", "Amsterdam"), "croatia_evisitor");
+  });
 });
 
 describe("requiresExtendedGuestCheckIn", () => {
@@ -71,6 +78,7 @@ describe("requiresExtendedGuestCheckIn", () => {
     assert.equal(requiresExtendedGuestCheckIn("Portugal", "Lisboa"), true);
     assert.equal(requiresExtendedGuestCheckIn("Greece", "Athina"), true);
     assert.equal(requiresExtendedGuestCheckIn("Croatia", "Dubrovnik"), true);
+    assert.equal(requiresExtendedGuestCheckIn("Netherlands", "Amsterdam"), false);
   });
 
   it("isolates Portugal from SES and Alloggiati", () => {

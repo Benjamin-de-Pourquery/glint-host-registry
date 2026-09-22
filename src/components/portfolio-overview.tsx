@@ -27,6 +27,7 @@ type PortfolioStats = {
   listingCompliance: number;
   greeceAma: number;
   croatiaEvisitor: number;
+  netherlandsRegistration: number;
   nightCapAttention: number;
   touristTaxAttention: number;
 };
@@ -47,6 +48,7 @@ export async function PortfolioOverview({ locale, stats }: Props) {
     stats.listingCompliance > 0 ||
     stats.greeceAma > 0 ||
     stats.croatiaEvisitor > 0 ||
+    stats.netherlandsRegistration > 0 ||
     stats.nightCapAttention > 0 ||
     stats.touristTaxAttention > 0;
 
@@ -152,6 +154,22 @@ export async function PortfolioOverview({ locale, stats }: Props) {
                 </p>
               </div>
               <ChevronRight className="h-4 w-4 shrink-0 text-red-600" />
+            </Link>
+          )}
+          {stats.netherlandsRegistration > 0 && (
+            <Link
+              href={propertiesListHref(locale, { status: "netherlands_registration" })}
+              className="flex items-center justify-between gap-3 rounded-lg border border-orange-200 bg-orange-50 px-3 py-2.5 text-orange-900 transition-colors hover:bg-orange-100"
+            >
+              <div className="flex min-w-0 items-center gap-2">
+                <AlertTriangle className="h-4 w-4 shrink-0 text-orange-600" />
+                <p className="text-sm font-medium leading-snug">
+                  {t("attention.netherlandsRegistration", {
+                    count: stats.netherlandsRegistration,
+                  })}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-orange-600" />
             </Link>
           )}
           {stats.nightCapAttention > 0 && (

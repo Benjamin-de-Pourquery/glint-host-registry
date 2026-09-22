@@ -21,6 +21,8 @@ import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
 import { isCroatiaCountry } from "@/lib/croatia/regions";
+import { isNetherlandsCountry } from "@/lib/netherlands/regions";
+import { NlComplianceCard } from "@/components/nl-compliance-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
@@ -61,6 +63,14 @@ type Registration = {
   hrObjectId?: string | null;
   hrCategorisationStatus?: string | null;
   hrCategorisationDisplayedOnListings?: boolean;
+  nlRegistrationNumber?: string | null;
+  nlRegistrationStatus?: string | null;
+  nlRegistrationDisplayedOnListings?: boolean;
+  nlHolidayPermitStatus?: string | null;
+  nlHolidayPermitExpiry?: string | Date | null;
+  nlPermitNumber?: string | null;
+  nlNeighborhood?: string | null;
+  nlNightCapSource?: string | null;
 };
 
 type PropertyData = {
@@ -186,6 +196,7 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           <NightCapCard
             propertyId={property.id}
             country={property.country}
+            city={property.city}
             residencyStatus={property.residencyStatus}
             locale={locale}
             registerTabHref={`/${locale}/app/properties/${property.id}?tab=register`}
@@ -271,6 +282,16 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
                 </dd>
               </div>
             )}
+            {property.registration?.nlRegistrationNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.nlRegistration")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.nlRegistrationNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -297,6 +318,14 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           {isCroatiaCountry(property.country) && (
             <CroatiaCategorisationCard
               propertyId={property.id}
+              registration={property.registration}
+            />
+          )}
+
+          {isNetherlandsCountry(property.country) && (
+            <NlComplianceCard
+              propertyId={property.id}
+              city={property.city}
               registration={property.registration}
             />
           )}
@@ -367,6 +396,7 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           amaNumber={property.registration?.amaNumber}
           greeceRegistrationKind={property.registration?.greeceRegistrationKind}
           greeceAlternateLicenseNumber={property.registration?.greeceAlternateLicenseNumber}
+          nlRegistrationNumber={property.registration?.nlRegistrationNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

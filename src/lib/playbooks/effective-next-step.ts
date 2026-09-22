@@ -8,11 +8,13 @@ import { getEffectiveNextStepForItaly } from "@/lib/italy/next-action";
 import { getEffectiveNextStepForPortugal } from "@/lib/portugal/next-action";
 import { getEffectiveNextStepForGreece } from "@/lib/greece/next-action";
 import { getEffectiveNextStepForCroatia } from "@/lib/croatia/next-action";
+import { getEffectiveNextStepForNetherlands } from "@/lib/netherlands/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
 import { isCroatiaCountry } from "@/lib/croatia/regions";
+import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 
@@ -32,6 +34,9 @@ export type EffectiveNextStepContext = {
   hasCategorisationNumber?: boolean;
   hasEvisitorObjectId?: boolean;
   hasActiveStayNeedingEvisitor?: boolean;
+  hasNlRegistrationNumber?: boolean;
+  hasNlHolidayPermit?: boolean;
+  hasActiveStayNeedingNotification?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
 };
@@ -86,6 +91,16 @@ export function getEffectiveNextStep(
       hasCategorisationNumber: context.hasCategorisationNumber,
       hasEvisitorObjectId: context.hasEvisitorObjectId,
       hasActiveStayNeedingEvisitor: context.hasActiveStayNeedingEvisitor,
+    });
+  }
+
+  if (isNetherlandsCountry(context.country)) {
+    return getEffectiveNextStepForNetherlands(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      hasNlRegistrationNumber: context.hasNlRegistrationNumber,
+      hasNlHolidayPermit: context.hasNlHolidayPermit,
+      hasActiveStayNeedingNotification: context.hasActiveStayNeedingNotification,
     });
   }
 

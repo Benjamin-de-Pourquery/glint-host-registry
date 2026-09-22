@@ -393,6 +393,18 @@ model Registration {
   hrObjectId                String?
   hrCategorisationStatus    String    @default("not_started")
   hrCategorisationDisplayedOnListings Boolean @default(false)
+  /** Netherlands national tourist rental registration (toeristische verhuur) */
+  nlRegistrationNumber      String?
+  nlRegistrationStatus      String    @default("not_started")
+  nlRegistrationDisplayedOnListings Boolean @default(false)
+  /** Netherlands holiday-rental permit (e.g. Amsterdam vergunning) */
+  nlHolidayPermitStatus     String    @default("not_started")
+  nlHolidayPermitExpiry     DateTime?
+  nlPermitNumber            String?
+  /** Amsterdam wijk key for 15-night cap zones (from 1 Apr 2026) */
+  nlNeighborhood            String?
+  /** Night-cap limit source: amsterdam_30 | amsterdam_15 | nl_municipal | none */
+  nlNightCapSource          String    @default("none")
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

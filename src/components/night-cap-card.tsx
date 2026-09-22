@@ -23,6 +23,7 @@ import {
   type NightCapSource,
 } from "@/lib/france/night-cap";
 import { isFranceCountry } from "@/lib/national-transition";
+import { nlNightCapApplies } from "@/lib/netherlands/night-cap";
 import { ExternalLink, Loader2, Moon } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -49,6 +50,7 @@ type NightCapResponse = {
 type Props = {
   propertyId: string;
   country: string;
+  city?: string;
   residencyStatus?: string | null;
   locale: string;
   registerTabHref?: string;
@@ -88,6 +90,7 @@ const STATUS_TONE: Record<
 export function NightCapCard({
   propertyId,
   country,
+  city = "",
   residencyStatus,
   locale,
   registerTabHref,
@@ -121,7 +124,11 @@ export function NightCapCard({
     load();
   }, [load]);
 
-  if (!isFranceCountry(country) || residencyStatus !== "primary") {
+  const isFrancePrimary =
+    isFranceCountry(country) && residencyStatus === "primary";
+  const isNlNightCap = nlNightCapApplies(country, residencyStatus, city);
+
+  if (!isFrancePrimary && !isNlNightCap) {
     return null;
   }
 

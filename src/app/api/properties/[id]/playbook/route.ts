@@ -11,7 +11,11 @@ import { getAlloggiatiDueQueueForUser } from "@/lib/italy/due-queue";
 import { getSibaDueQueueForUser } from "@/lib/portugal/due-queue";
 import { getAadeDueQueueForUser } from "@/lib/greece/due-queue";
 import { getEvisitorDueQueueForUser } from "@/lib/croatia/due-queue";
+import { getStayNotifyDueQueueForUser } from "@/lib/netherlands/due-queue";
 import { hasGreeceRegistrationNumber } from "@/lib/greece/ama-compliance";
+import {
+  hasNlRegistrationNumber,
+} from "@/lib/netherlands/registration-compliance";
 import {
   hasCroatiaCategorisationNumber,
   hasCroatiaEvisitorObjectId,
@@ -97,6 +101,10 @@ export async function GET(
     await getEvisitorDueQueueForUser(session.user.id)
   ).some((item) => item.propertyId === id);
 
+  const stayNotifyDueForProperty = (
+    await getStayNotifyDueQueueForUser(session.user.id)
+  ).some((item) => item.propertyId === id);
+
   const nightCapResult = await loadPropertyNightCap({
     propertyId: property.id,
     country: property.country,
@@ -127,6 +135,11 @@ export async function GET(
     hasCategorisationNumber: hasCroatiaCategorisationNumber(property.registration),
     hasEvisitorObjectId: hasCroatiaEvisitorObjectId(property.registration),
     hasActiveStayNeedingEvisitor: evisitorDueForProperty,
+    hasNlRegistrationNumber: hasNlRegistrationNumber(property.registration),
+    hasNlHolidayPermit:
+      property.registration?.nlHolidayPermitStatus === "active" ||
+      Boolean(property.registration?.nlPermitNumber?.trim()),
+    hasActiveStayNeedingNotification: stayNotifyDueForProperty,
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,
   });

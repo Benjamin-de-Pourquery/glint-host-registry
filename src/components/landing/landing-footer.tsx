@@ -69,6 +69,46 @@ export async function LandingFooter({ locale }: Props) {
                   {t("guideGuestRegister")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/amsterdam-night-cap`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideAmsterdamNightCap")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/italy-cin-alloggiati`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideItalyCinAlloggiati")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/rnal-siba-portugal`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guidePortugalRnalSiba")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/greece-ama-aade`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideGreeceAmaAade")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${locale}/guides/croatia-evisitor`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideCroatiaEvisitor")}
+                </Link>
+              </li>
             </ul>
           </div>
 

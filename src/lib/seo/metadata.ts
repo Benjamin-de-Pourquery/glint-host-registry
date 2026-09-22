@@ -13,7 +13,12 @@ export type SeoPageKey =
   | "mentions"
   | "guideRegistration"
   | "guideSes"
-  | "guideGuestRegister";
+  | "guideGuestRegister"
+  | "guideAmsterdamNightCap"
+  | "guideItalyCinAlloggiati"
+  | "guidePortugalRnalSiba"
+  | "guideGreeceAmaAade"
+  | "guideCroatiaEvisitor";
 
 const PAGE_PATHS: Record<SeoPageKey, string> = {
   home: "",
@@ -25,6 +30,11 @@ const PAGE_PATHS: Record<SeoPageKey, string> = {
   guideRegistration: "/guides/numero-enregistrement-meuble",
   guideSes: "/guides/ses-hospedajes-espagne",
   guideGuestRegister: "/guides/fiche-police-voyageurs",
+  guideAmsterdamNightCap: "/guides/amsterdam-night-cap",
+  guideItalyCinAlloggiati: "/guides/italy-cin-alloggiati",
+  guidePortugalRnalSiba: "/guides/rnal-siba-portugal",
+  guideGreeceAmaAade: "/guides/greece-ama-aade",
+  guideCroatiaEvisitor: "/guides/croatia-evisitor",
 };
 
 function localeOpenGraphLocale(locale: Locale): string {

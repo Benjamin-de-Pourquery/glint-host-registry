@@ -40,6 +40,26 @@
     "guideGuestRegister": {
       "title": "Fiche de police voyageurs — guide hôtes France",
       "description": "Obligations de la fiche individuelle de police pour voyageurs étrangers en location meublée — données, conservation 6 mois et bonnes pratiques."
+    },
+    "guideAmsterdamNightCap": {
+      "title": "Amsterdam & Pays-Bas — plafonds de nuitées, vergunning et enregistrement",
+      "description": "Guide hôte : enregistrement national toeristische verhuur, vergunning Amsterdam, notification par séjour et plafonds 30/15 nuitées (wijken dès avril 2026)."
+    },
+    "guideItalyCinAlloggiati": {
+      "title": "Italie CIN & Alloggiati Web — guide hôtes 2026",
+      "description": "Codice Identificativo Nazionale (BDSR) sur les annonces et schedine Alloggiati Web sous 24 h — obligations distinctes pour les hôtes italiens."
+    },
+    "guidePortugalRnalSiba": {
+      "title": "Portugal RNAL & SIBA — guide hôtes Alojamento Local",
+      "description": "Numéro RNAL sur les annonces (UE 2024/1028) et Boletim de Alojamento SIBA pour voyageurs étrangers — délais et phases de déclaration."
+    },
+    "guideGreeceAmaAade": {
+      "title": "Grèce AMA & AADE — guide hôtes location courte durée",
+      "description": "Enregistrement AMA sur myAADE et déclarations de séjour de courte durée avant le 20 du mois suivant le départ — export et portail, sans soumission automatique."
+    },
+    "guideCroatiaEvisitor": {
+      "title": "Croatie catégorisation & eVisitor — guide hôtes 2026",
+      "description": "Agrément hébergement touristique, enregistrement eVisitor sous 24 h à l'arrivée et au départ — taxe de séjour et conformité plateformes."
     }
   },
   "guides": {
@@ -117,6 +137,125 @@
         "glint": {
           "title": "Comment Glint vous aide",
           "body": "Lien check-in partageable, alertes de fiches manquantes, export CSV et impression PDF — intégré au registre voyageurs de chaque bien, avec conservation paramétrée."
+        }
+      }
+    },
+    "amsterdamNightCap": {
+      "title": "Amsterdam & Pays-Bas — plafonds de nuitées, vergunning et enregistrement",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Aux Pays-Bas, la location touristique depuis votre résidence principale combine un enregistrement national obligatoire, une vergunning municipale (à Amsterdam notamment), une notification avant chaque séjour et des plafonds de nuitées. Ces obligations sont distinctes du numéro d'enregistrement meublé de tourisme en France ou du CIN en Italie.",
+      "sections": {
+        "registration": {
+          "title": "Enregistrement national (registratietoeristischeverhuur.nl)",
+          "body": "Depuis 2024, chaque location de courte durée doit être enregistrée sur le portail national registratietoeristischeverhuur.nl. Le numéro est gratuit et doit figurer sur toutes les annonces. Au titre du règlement (UE) 2024/1028 (applicable depuis le 20 mai 2026), les plateformes vérifient ce numéro avant publication ou maintien d'une annonce."
+        },
+        "permit": {
+          "title": "Vergunning location de vacances (Amsterdam)",
+          "body": "À Amsterdam, le numéro national ne suffit pas : une vergunning distincte pour le home sharing est requise pour les résidences principales (environ 76 € en 2026, avec renouvellement). Sans vergunning valide, vous exposez votre bien à des amendes. D'autres gemeenten (Rotterdam, La Haye, Utrecht) appliquent des règles similaires — vérifiez localement sur amsterdam.nl et les portails municipaux."
+        },
+        "nightCap": {
+          "title": "Plafonds de nuitées : 30 / 15 nuits",
+          "body": "Pour les résidences principales à Amsterdam : 30 nuitées de location par an dans toute la ville. Depuis le 1er avril 2026, huit wijken sont limitées à 15 nuitées/an : Burgwallen-Nieuwe Zijde, De Weteringschans, Grachtengordel-West, Grachtengordel-Zuid, Haarlemmerbuurt, Jordaan, Nieuwmarkt/Lastage et Oude Pijp. D'autres municipalités néerlandaises imposent aussi des plafonds — consultez rijksoverheid.nl."
+        },
+        "notification": {
+          "title": "Notification municipale avant chaque séjour",
+          "body": "Avant chaque séjour, vous devez notifier Amsterdam via le portail officiel (amsterdam.nl — notify stay). Préparez numéro d'enregistrement, numéro de vergunning, dates et nombre de voyageurs. Glint suit les séjours à venir et prépare les champs à copier — vous soumettez manuellement sur le portail municipal."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne dépose pas vos dossiers sur registratietoeristischeverhuur.nl ni sur les portails gemeente — il centralise le suivi du numéro national, de la vergunning, des notifications par séjour et du compteur de nuitées (30/15), avec une prochaine action claire par bien."
+        }
+      }
+    },
+    "italyCinAlloggiati": {
+      "title": "Italie — CIN (BDSR) et Alloggiati Web pour hôtes",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "En Italie, deux obligations nationales distinctes concernent les hôtes de locations de courte durée : le Codice Identificativo Nazionale (CIN) pour les annonces plateformes, et la schedina Alloggiati Web pour la police des frontières. Elles ne se substituent pas au CIR/SCIA régional ni à la fiche de police voyageurs en France.",
+      "sections": {
+        "cin": {
+          "title": "CIN via le portail BDSR (Ministère du Tourisme)",
+          "body": "Depuis le 20 mai 2026, les plateformes vérifient votre CIN au titre du règlement (UE) 2024/1028 et peuvent dépublier les annonces non conformes. Inscrivez-vous sur il turismo con il codice (BDSR) avec SPID ou CIE. Le CIN doit figurer sur Airbnb, Booking.com et toutes les OTA. Amendes jusqu'à 8 000 € pour CIN manquant sur les annonces."
+        },
+        "alloggiati": {
+          "title": "Alloggiati Web — schedina sous 24 h",
+          "body": "Au titre de l'art. 109 TULPS, communiquez la schedina de chaque voyageur à la Polizia di Stato sous 24 heures après l'arrivée via alloggiatipoliziadistato.it. Effectuez d'abord l'alta de l'établissement sur le portail, puis déposez chaque schedina avec identité, nationalité, date et lieu de naissance, type de document et date d'arrivée."
+        },
+        "distinct": {
+          "title": "Trois obligations distinctes",
+          "body": "CIN (tourisme / plateformes) ≠ schedina Alloggiati (police) ≠ CIR/SCIA régional (urbanisme). Ne confondez pas le code affiché sur Airbnb avec la déclaration police. De nombreuses régions exigent aussi des statistiques mensuelles ISTAT (ROSS 1000, Sinfonia) — soumettez sur le portail régional, sans intégration API Glint."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne soumet pas au BDSR ni à Alloggiati Web — il suit le CIN par annonce, collecte les champs schedina via lien check-in, valide les données et prépare export CSV/imprimable avec file d'échéance 24 h. Vous soumettez sur les portails officiels."
+        }
+      }
+    },
+    "portugalRnalSiba": {
+      "title": "Portugal — RNAL et SIBA pour hôtes Alojamento Local",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Au Portugal, l'enregistrement Alojamento Local (RNAL) concerne vos annonces plateformes, tandis que le SIBA concerne la déclaration police des voyageurs étrangers. Les ressortissants portugais ne sont pas déclarés au SIBA. Ces obligations sont distinctes des déclarations SES en Espagne ou de la fiche de police en France.",
+      "sections": {
+        "rnal": {
+          "title": "RNAL — Registo Nacional de Alojamento Local",
+          "body": "Enregistrez votre location de courte durée auprès de Turismo de Portugal et de votre municipalité (comunicação prévia). Vous recevez un numéro RNAL (ex. 12345/AL) à afficher sur toutes les annonces. Depuis le 20 mai 2026, les plateformes vérifient le RNAL au titre du règlement (UE) 2024/1028."
+        },
+        "siba": {
+          "title": "SIBA — Boletim de Alojamento (voyageurs étrangers)",
+          "body": "Les hôtes accueillant des voyageurs étrangers moyennant rémunération doivent enregistrer l'établissement sur siba.ssi.gov.pt (SSI/UCFE) et transmettre un Boletim de Alojamento pour chaque arrivée et départ de voyageur étranger. Les ressortissants portugais ne sont pas déclarés. Amendes de 100 à 2 000 € pour communication tardive (Lei 23/2007 art. 203)."
+        },
+        "phases": {
+          "title": "Phases de déclaration SIBA",
+          "body": "Phase 1 — enregistrement de l'établissement sur le portail SIBA. Phase 2 — à chaque séjour : déclaration d'arrivée du voyageur étranger sous 3 jours ouvrés (dias úteis). Phase 3 — déclaration de départ sous 3 jours ouvrés après le checkout. Glint prépare les champs boletim via lien check-in et export CSV/imprimable — vous saisissez manuellement sur le portail officiel."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne soumet pas à Turismo de Portugal ni au SIBA — il suit le RNAL par annonce, collecte les données boletim, valide les champs et gère la file d'échéance (3 jours ouvrés) pour arrivée et départ. Vous restez légalement responsable de la soumission."
+        }
+      }
+    },
+    "greeceAmaAade": {
+      "title": "Grèce — AMA (AADE) et déclarations de séjour",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "En Grèce, l'AMA (Αριθμός Μητρώου Ακινήτου) est votre numéro d'enregistrement pour les annonces plateformes, tandis que la déclaration de séjour de courte durée (Δήλωση Βραχυχρόνιας Διαμονής) est une obligation distincte par séjour sur myAADE. Glint prépare les exports — pas de soumission automatique ni d'API gouvernementale live.",
+      "sections": {
+        "ama": {
+          "title": "AMA — enregistrement au registre AADE",
+          "body": "Enregistrez chaque unité de location de courte durée au registre AADE des biens en location de courte durée via myAADE (aade.gr). Vous recevez un AMA à afficher sur Airbnb, Booking.com et autres OTA. Les hébergements touristiques agréés peuvent utiliser un numéro ESL ou de notification unique. Depuis le 20 mai 2026, les plateformes vérifient les numéros au titre du règlement (UE) 2024/1028. L'absence d'AMA sur les annonces expose à des amendes (souvent citées à 5 000 €)."
+        },
+        "declaration": {
+          "title": "Déclaration de séjour AADE (≤59 nuits)",
+          "body": "Pour chaque séjour de courte durée (≤59 nuits), soumettez la déclaration sur myAADE avant le 20 du mois calendaire suivant le départ du voyageur (ex. checkout 15 juillet → déclaration avant le 20 août). Les séjours de 60+ nuits suivent la déclaration de bail longue durée — hors file courte durée Glint. Collectez identité, nationalité, dates d'arrivée et de départ."
+        },
+        "distinct": {
+          "title": "AMA ≠ déclaration de séjour",
+          "body": "L'AMA concerne la conformité des annonces ; la déclaration de séjour concerne chaque voyageur après le checkout. Depuis octobre 2025, la Grèce applique aussi des exigences de sécurité et d'exploitation du bien (incendie, équipements) — consultez le hub AADE location courte durée. Plusieurs municipalités (Athènes, Thessalonique) limitent les nouveaux enregistrements AMA dans certaines zones depuis 2026."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne soumet pas à l'AADE — il suit l'AMA par annonce, collecte les données voyageurs via lien check-in, valide les champs et prépare export CSV/imprimable avec file d'échéance (avant le 20 du mois suivant le départ). Vous soumettez manuellement sur myAADE."
+        }
+      }
+    },
+    "croatiaEvisitor": {
+      "title": "Croatie — catégorisation hébergement et eVisitor",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "En Croatie, vous devez obtenir la catégorisation officielle de votre hébergement touristique avant de publier une annonce, puis enregistrer chaque voyageur sur eVisitor dans les 24 h suivant l'arrivée et la déclaration de départ dans les 24 h suivant le checkout. La taxe de séjour (boravišna pristojba) est calculée à partir des données eVisitor.",
+      "sections": {
+        "categorisation": {
+          "title": "Catégorisation / agrément hébergement touristique",
+          "body": "Avant toute annonce, obtenez l'approbation et la catégorisation auprès du Ministère du tourisme et du sport (mint.gov.hr). Votre bien doit être enregistré comme établissement d'hébergement touristique. Au titre du règlement (UE) 2024/1028, les plateformes vérifient l'enregistrement depuis le 20 mai 2026 ; les numéros d'enregistrement uniques croates sont attendus vers janvier 2027 sous la nouvelle loi sur l'hôtellerie / eTourism."
+        },
+        "evisitor": {
+          "title": "eVisitor — enregistrement de l'objet",
+          "body": "Créez un compte sur evisitor.hr et enregistrez votre objet d'hébergement. Vous aurez besoin de l'ID objet pour l'enregistrement et la déclaration de départ de chaque voyageur. La catégorisation et eVisitor sont des obligations distinctes — l'une concerne l'annonce, l'autre le registre voyageurs obligatoire depuis 2016."
+        },
+        "reporting": {
+          "title": "Déclaration arrivée / départ sous 24 h",
+          "body": "Enregistrez chaque voyageur sur eVisitor dans les 24 h suivant l'arrivée (check-in) et déclarez le départ dans les 24 h suivant le checkout. Les inspecteurs du tourisme contrôlent en pré-saison et haute saison. Glint collecte les champs via lien check-in, valide les données et prépare export CSV/imprimable — vous soumettez manuellement sur evisitor.hr. Pas d'API live dans cette version (intégration Rhetos prévue en phase 2)."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne soumet pas à eVisitor — il suit la catégorisation et l'ID objet, collecte les données voyageurs, valide les champs et gère la file d'échéance 24 h pour arrivée et départ. Vous restez légalement responsable de la soumission sur le portail officiel."
         }
       }
     }
@@ -335,6 +474,11 @@
       "guideRegistration": "Numéro d'enregistrement 2026",
       "guideSes": "SES Hospedajes & régions",
       "guideGuestRegister": "Fiche de police voyageurs",
+      "guideAmsterdamNightCap": "Amsterdam & plafonds nuitées",
+      "guideItalyCinAlloggiati": "Italie CIN & Alloggiati",
+      "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
+      "guideGreeceAmaAade": "Grèce AMA & AADE",
+      "guideCroatiaEvisitor": "Croatie eVisitor",
       "account": "Compte",
       "legal": "Légal",
       "company": "Glint — micro-entreprise",

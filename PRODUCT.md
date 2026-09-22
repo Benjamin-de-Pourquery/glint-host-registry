@@ -44,7 +44,7 @@ Data-driven step-by-step guides keyed by country and city walk hosts through loc
 - Full FR guides: Paris, Lyon, Marseille, Bordeaux, Nice + France generic fallback
 - **Spain playbooks:** Madrid, Valencia, Málaga, Barcelona (Mossos), Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz (Ertzaintza) + generic fallback
 - **Italy playbooks:** Roma, Milano, Firenze, Venezia + Italy generic (CIN/BDSR, Alloggiati Web, ISTAT monthly reminder)
-- Country stubs: Netherlands
+- **Netherlands playbooks:** Amsterdam, Rotterdam, Den Haag, Utrecht + NL generic fallback (national registration, vergunning, stay notification, night caps)
 
 Guides link to real public government pages where verified; unverified links are labeled for manual confirmation. Glint does not submit forms on behalf of hosts.
 
@@ -114,6 +114,16 @@ Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and 
 - **Due queue + dashboard:** 24h after arrival and departure; in-app `evisitor_due` notifications via `/api/cron/ses-due`. Export kit: printable HTML + CSV + copy chips + deep link to https://www.evisitor.hr/. Manual statuses via `RegionalGuestReport` with `system: "evisitor"`.
 - **Primary UX:** collect → validate → due queue → export kit + portal deep links — **no live eVisitor API** (Phase 2: Rhetos API `eVisitorRhetos_API`).
 - **Playbooks:** Zagreb, Split, Dubrovnik, Zadar + HR generic fallback.
+
+### 6g. Netherlands — registration + permit + stay notification + night caps (shipped)
+
+- **Legal context (not legal advice):** **National tourist rental registration** via registratietoeristischeverhuur.nl (free; must display on every listing). EU 2024/1028 applies from 20 May 2026. **Amsterdam:** separate holiday-rental permit (~€76/2026, renew); **notify municipality before every stay**; night caps: **30 nights/year** citywide for primary residences, **15 nights/year from 1 April 2026** in eight wijken (Burgwallen-Nieuwe Zijde, De Weteringschans, Grachtengordel-West/Zuid, Haarlemmerbuurt, Jordaan, Nieuwmarkt/Lastage, Oude Pijp).
+- **Ops routing:** `getNetherlandsMode()` returns `stay_notify` for municipal per-stay notifications. `getGuestReportingJurisdiction()` returns `none` for NL — no SES/SIBA/Alloggiati/eVisitor paths.
+- **Registration on Registration / Overview:** `nlRegistrationNumber`, `nlRegistrationStatus`, `nlRegistrationDisplayedOnListings`, `nlHolidayPermitStatus`, `nlHolidayPermitExpiry`, `nlPermitNumber`, `nlNeighborhood`, `nlNightCapSource`; NL compliance card on Overview and Register tabs.
+- **Night-cap engine:** Reuses `NightCapSettings` for Amsterdam primary residences; auto 15 vs 30 from wijk selection; Action-requise at 70%/90%/exceeded.
+- **Stay notification queue:** `RegionalGuestReport` with `system: "amsterdam_stay_notify"`; due queue on dashboard; copy chips + deep links to gemeente portals; in-app `nl_stay_notify_due` via `/api/cron/ses-due`.
+- **Primary UX:** collect → validate → Action-requise → playbook → export/checklist — **no live municipal APIs**.
+- **Playbooks:** Amsterdam (detailed), Rotterdam, Den Haag, Utrecht + NL generic fallback.
 
 ### 7. Registration & compliance
 Per-property compliance tracking:

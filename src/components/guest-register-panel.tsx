@@ -43,6 +43,8 @@ import { isItalyCountry, requiresAlloggiatiCheckIn } from "@/lib/italy/regions";
 import { isPortugalCountry, requiresSibaCheckIn } from "@/lib/portugal/regions";
 import { isGreeceCountry, requiresAadeCheckIn } from "@/lib/greece/regions";
 import { isCroatiaCountry, requiresEvisitorCheckIn } from "@/lib/croatia/regions";
+import { isNetherlandsCountry, requiresNlStayNotification } from "@/lib/netherlands/regions";
+import { NlStayActions } from "@/components/nl-stay-actions";
 import { RegionalStayActions } from "@/components/regional-stay-actions";
 import { AlloggiatiStayActions } from "@/components/alloggiati-stay-actions";
 import { SibaStayActions } from "@/components/siba-stay-actions";
@@ -117,6 +119,8 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
   const showSiba = isPortugalCountry(country) && requiresSibaCheckIn(city);
   const showAade = isGreeceCountry(country) && requiresAadeCheckIn(country, city);
   const showEvisitor = isCroatiaCountry(country) && requiresEvisitorCheckIn(city);
+  const showNlStayNotify =
+    isNetherlandsCountry(country) && requiresNlStayNotification(city);
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -839,6 +843,13 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                         propertyId={propertyId}
                         stayId={stay.id}
                         locale={locale}
+                        guestCount={stay.guestCount ?? 0}
+                      />
+                    )}
+                    {showNlStayNotify && (
+                      <NlStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
                         guestCount={stay.guestCount ?? 0}
                       />
                     )}

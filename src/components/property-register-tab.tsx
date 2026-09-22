@@ -25,6 +25,9 @@ import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
 import { isCroatiaCountry } from "@/lib/croatia/regions";
+import { isNetherlandsCountry } from "@/lib/netherlands/regions";
+import { NlComplianceCard } from "@/components/nl-compliance-card";
+import { NlStayNotifyPanel } from "@/components/nl-stay-notify-panel";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
@@ -63,6 +66,14 @@ type Registration = {
   hrObjectId?: string | null;
   hrCategorisationStatus?: string | null;
   hrCategorisationDisplayedOnListings?: boolean;
+  nlRegistrationNumber?: string | null;
+  nlRegistrationStatus?: string | null;
+  nlRegistrationDisplayedOnListings?: boolean;
+  nlHolidayPermitStatus?: string | null;
+  nlHolidayPermitExpiry?: string | Date | null;
+  nlPermitNumber?: string | null;
+  nlNeighborhood?: string | null;
+  nlNightCapSource?: string | null;
 };
 
 type Props = {
@@ -185,6 +196,12 @@ export function PropertyRegisterTab({
         <>
           <CroatiaCategorisationCard propertyId={propertyId} registration={registration} />
           <EvisitorReportingPanel city={city} />
+        </>
+      )}
+      {isNetherlandsCountry(country) && (
+        <>
+          <NlComplianceCard propertyId={propertyId} city={city} registration={registration} />
+          <NlStayNotifyPanel city={city} />
         </>
       )}
       <GuestRegisterPanel

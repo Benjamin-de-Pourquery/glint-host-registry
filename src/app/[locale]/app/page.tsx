@@ -23,8 +23,10 @@ import { AlloggiatiDueQueue } from "@/components/alloggiati-due-queue";
 import { SibaDueQueue } from "@/components/siba-due-queue";
 import { AadeDueQueue } from "@/components/aade-due-queue";
 import { EvisitorDueQueue } from "@/components/evisitor-due-queue";
+import { NlDueQueue } from "@/components/nl-due-queue";
 import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
+import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -86,6 +88,7 @@ export default async function DashboardPage({ params }: Props) {
   let listingComplianceCount = 0;
   let greeceAmaCount = 0;
   let croatiaEvisitorCount = 0;
+  let netherlandsRegistrationCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -108,6 +111,9 @@ export default async function DashboardPage({ params }: Props) {
     }
     if (needsCroatiaEvisitorAttention(p.country, p.registration)) {
       croatiaEvisitorCount++;
+    }
+    if (needsNlRegistrationAttention(p.country, p.registration)) {
+      netherlandsRegistrationCount++;
     }
     return { ...p, complianceStatus: status };
   });
@@ -176,6 +182,7 @@ export default async function DashboardPage({ params }: Props) {
       <SibaDueQueue locale={locale} />
       <AadeDueQueue locale={locale} />
       <EvisitorDueQueue locale={locale} />
+      <NlDueQueue locale={locale} />
 
       {properties.length === 0 && (
         <EmptyState
@@ -209,6 +216,7 @@ export default async function DashboardPage({ params }: Props) {
           listingCompliance: listingComplianceCount,
           greeceAma: greeceAmaCount,
           croatiaEvisitor: croatiaEvisitorCount,
+          netherlandsRegistration: netherlandsRegistrationCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,
         }}

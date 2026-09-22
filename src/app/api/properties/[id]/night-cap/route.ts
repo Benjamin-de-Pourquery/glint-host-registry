@@ -37,7 +37,7 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  const applies = nightCapApplies(property.country, property.residencyStatus);
+  const applies = nightCapApplies(property.country, property.residencyStatus, property.city);
   if (!applies) {
     return NextResponse.json({
       applies: false,
@@ -87,9 +87,9 @@ export async function PATCH(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  if (!nightCapApplies(property.country, property.residencyStatus)) {
+  if (!nightCapApplies(property.country, property.residencyStatus, property.city)) {
     return NextResponse.json(
-      { error: "Night cap applies only to French primary residences" },
+      { error: "Night cap not applicable for this property" },
       { status: 400 }
     );
   }

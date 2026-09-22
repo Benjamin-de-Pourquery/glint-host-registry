@@ -23,6 +23,11 @@ import {
   isCroatiaCountry,
   type CroatiaGuestReportingMode,
 } from "@/lib/croatia/regions";
+import {
+  getNetherlandsMode,
+  isNetherlandsCountry,
+  type NetherlandsOpsMode,
+} from "@/lib/netherlands/regions";
 
 export type GuestReportingJurisdiction =
   | "france"
@@ -72,6 +77,10 @@ export function getGuestReportingJurisdiction(
   if (isCroatiaCountry(country)) {
     const mode = getCroatiaGuestReportingMode(city, region);
     return mode === "evisitor" ? "croatia_evisitor" : "none";
+  }
+
+  if (isNetherlandsCountry(country)) {
+    return "none";
   }
 
   if (country.trim()) {
@@ -139,4 +148,13 @@ export function getGreeceModeFromJurisdiction(
   jurisdiction: GuestReportingJurisdiction
 ): GreeceGuestReportingMode | null {
   return jurisdiction === "greece_aade" ? "aade" : null;
+}
+
+/** Netherlands ops mode (stay notification — not police guest reporting). */
+export function getNetherlandsModeFromCountry(
+  country: string,
+  city: string
+): NetherlandsOpsMode | null {
+  if (!isNetherlandsCountry(country)) return null;
+  return getNetherlandsMode(city);
 }

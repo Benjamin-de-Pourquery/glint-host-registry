@@ -8,6 +8,7 @@ import { getAlloggiatiStaysEnteringSubmissionWindow } from "@/lib/italy/due-queu
 import { getSibaStaysEnteringSubmissionWindow } from "@/lib/portugal/due-queue";
 import { getAadeStaysEnteringSubmissionWindow } from "@/lib/greece/due-queue";
 import { getEvisitorStaysEnteringSubmissionWindow } from "@/lib/croatia/due-queue";
+import { getStayNotifyStaysEnteringWindow } from "@/lib/netherlands/due-queue";
 
 function verifyCronAuth(request: Request): boolean {
   const cronSecret = process.env.CRON_SECRET;
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
   const sibaStays = await getSibaStaysEnteringSubmissionWindow();
   const aadeStays = await getAadeStaysEnteringSubmissionWindow();
   const evisitorStays = await getEvisitorStaysEnteringSubmissionWindow();
+  const nlStayNotifyStays = await getStayNotifyStaysEnteringWindow();
   let created = 0;
 
   for (const stay of sesStays) {
@@ -213,6 +215,35 @@ export async function POST(request: Request) {
     }
   }
 
+  for (const stay of nlStayNotifyStays) {
+    const guestRef = stay.guestLabel ? ` (${stay.guestLabel})` : "";
+    const title = `Municipal stay notification due: ${stay.propertyName}`;
+    const message = `Guest check-in on ${format(stay.checkInDate, "dd/MM/yyyy")}${guestRef} at ${stay.propertyName} (${stay.city}). Notify the gemeente before the stay via the official portal.`;
+
+    const existing = await prisma.notification.findFirst({
+      where: {
+        userId: stay.userId,
+        propertyId: stay.propertyId,
+        type: "nl_stay_notify_due",
+        title,
+        createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
+      },
+    });
+
+    if (!existing) {
+      await prisma.notification.create({
+        data: {
+          userId: stay.userId,
+          propertyId: stay.propertyId,
+          title,
+          message,
+          type: "nl_stay_notify_due",
+        },
+      });
+      created++;
+    }
+  }
+
   return NextResponse.json({
     scanned:
       sesStays.length +
@@ -220,13 +251,15 @@ export async function POST(request: Request) {
       alloggiatiStays.length +
       sibaStays.length +
       aadeStays.length +
-      evisitorStays.length,
+      evisitorStays.length +
+      nlStayNotifyStays.length,
     sesScanned: sesStays.length,
     regionalScanned: regionalStays.length,
     alloggiatiScanned: alloggiatiStays.length,
     sibaScanned: sibaStays.length,
     aadeScanned: aadeStays.length,
     evisitorScanned: evisitorStays.length,
+    nlStayNotifyScanned: nlStayNotifyStays.length,
     notificationsCreated: created,
   });
 }

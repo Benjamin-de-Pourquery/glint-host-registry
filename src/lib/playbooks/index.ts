@@ -4,7 +4,7 @@ import { ITALY_PLAYBOOKS } from "./italy";
 import { PORTUGAL_PLAYBOOKS } from "./portugal";
 import { GREECE_PLAYBOOKS } from "./greece";
 import { CROATIA_PLAYBOOKS } from "./croatia";
-import { NETHERLANDS_PLAYBOOK } from "./international";
+import { NETHERLANDS_PLAYBOOKS } from "./netherlands";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -22,7 +22,7 @@ const ALL_PLAYBOOKS: Playbook[] = [
   ...PORTUGAL_PLAYBOOKS,
   ...GREECE_PLAYBOOKS,
   ...CROATIA_PLAYBOOKS,
-  NETHERLANDS_PLAYBOOK,
+  ...NETHERLANDS_PLAYBOOKS,
 ];
 
 const CITY_ALIASES: Record<string, string> = {
@@ -88,6 +88,14 @@ const CITY_ALIASES: Record<string, string> = {
   rijeka: "Rijeka",
   pula: "Pula",
   istria: "Pula",
+  amsterdam: "Amsterdam",
+  ams: "Amsterdam",
+  rotterdam: "Rotterdam",
+  "den haag": "Den Haag",
+  "the hague": "Den Haag",
+  "'s-gravenhage": "Den Haag",
+  "s-gravenhage": "Den Haag",
+  utrecht: "Utrecht",
 };
 
 function normalizeCountry(country: string): string {
@@ -201,6 +209,7 @@ export function getPlaybookById(id: string): Playbook | null {
 export function listPlaybookCoverage(): {
   fullFranceCities: string[];
   countryStubs: string[];
+  netherlandsCities: string[];
   spainCities: string[];
   italyCities: string[];
   portugalCities: string[];
@@ -209,7 +218,8 @@ export function listPlaybookCoverage(): {
 } {
   return {
     fullFranceCities: FRANCE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
-    countryStubs: ["Netherlands"],
+    countryStubs: [] as string[],
+    netherlandsCities: NETHERLANDS_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     spainCities: SPAIN_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     italyCities: ITALY_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     portugalCities: PORTUGAL_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),

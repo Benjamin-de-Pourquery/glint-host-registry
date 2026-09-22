@@ -202,7 +202,11 @@
       },
       "sesQueue": {
         "title": "Files déclaration voyageurs UE",
-        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
+        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) ; notifications de séjour Amsterdam (Pays-Bas) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
+      },
+      "netherlandsOps": {
+        "title": "Conformité Pays-Bas & Amsterdam",
+        "description": "Numéro d'enregistrement national, suivi vergunning, file de notification municipale par séjour, et plafond 30/15 nuitées pour les wijken d'Amsterdam."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -380,6 +384,7 @@
       "listingCompliance": "Annonces NER",
       "greeceAma": "AMA Grèce",
       "croatiaEvisitor": "eVisitor Croatie",
+      "netherlandsRegistration": "Enregistrement NL",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -391,6 +396,7 @@
       "listingCompliance": "{count, plural, one {# annonce — NER manquant ou bloqué} other {# annonces — NER manquant ou bloqué}}",
       "greeceAma": "{count, plural, one {# bien grec — AMA manquant ou non affiché} other {# biens grecs — AMA manquant ou non affiché}}",
       "croatiaEvisitor": "{count, plural, one {# bien croate — catégorisation ou eVisitor manquant} other {# biens croates — catégorisation ou eVisitor manquant}}",
+      "netherlandsRegistration": "{count, plural, one {# bien néerlandais — enregistrement, vergunning ou notification manquante} other {# biens néerlandais — enregistrement, vergunning ou notification manquante}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -557,7 +563,8 @@
         "cin": "CIN (BDSR)",
         "rnal": "RNAL",
         "ama": "AMA (AADE)",
-        "categorisation": "Catégorisation (HR)"
+        "categorisation": "Catégorisation (HR)",
+        "nlRegistration": "Numéro d'enregistrement NL"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1749,6 +1756,91 @@
       "objectIdLabel": "ID objet eVisitor",
       "footer": "Préparé par Glint Host Registry pour soumission manuelle eVisitor. L'hôte reste responsable légalement.",
       "disclaimer": "Pas un conseil juridique. Glint ne soumet pas à eVisitor. Phase 2 : intégration API Rhetos."
+    }
+  },
+  "nl": {
+    "system": {
+      "stayNotify": "Notification de séjour municipal"
+    },
+    "panel": {
+      "title": "Notification de séjour à la municipalité",
+      "description": "{city} — notifiez la gemeente avant chaque séjour via le portail officiel. Glint suit les séjours à venir et prépare les champs à copier — vous soumettez manuellement.",
+      "honestyNote": "Glint ne soumet pas aux API municipales. Nous préparons → vous notifiez sur le portail officiel. Vous restez légalement responsable.",
+      "workflowTitle": "Parcours",
+      "step1": "Obtenir le numéro d'enregistrement national et la vergunning",
+      "step2": "Synchroniser le calendrier ou ajouter les séjours à venir",
+      "step3": "Préparer la notification avec les champs à copier avant l'arrivée",
+      "step4": "Soumettre sur le portail gemeente et marquer comme notifié dans Glint",
+      "portal": "Ouvrir le portail de notification"
+    },
+    "compliance": {
+      "title": "Enregistrement & vergunning Pays-Bas",
+      "description": "Enregistrement national toeristische verhuur (gratuit, à afficher sur toutes les annonces) et vergunning location de vacances distincte si requise (ex. Amsterdam ~76 €/2026).",
+      "registrationSection": "Enregistrement national",
+      "registrationNumber": "Numéro d'enregistrement",
+      "registrationNumberPlaceholder": "ex. depuis registratietoeristischeverhuur.nl",
+      "registrationStatusLabel": "Statut d'enregistrement",
+      "displayedOnListings": "Numéro affiché sur toutes les annonces plateforme",
+      "nationalPortal": "Ouvrir le portail national",
+      "permitSection": "Vergunning location de vacances",
+      "permitNumber": "Numéro de vergunning",
+      "permitNumberPlaceholder": "Numéro vergunning",
+      "permitStatusLabel": "Statut vergunning",
+      "permitExpiry": "Date d'expiration vergunning",
+      "wijkLabel": "Wijk Amsterdam (quartier)",
+      "wijkPlaceholder": "Sélectionner le wijk si zone 15 nuitées",
+      "wijkOutside15": "Hors wijken 15 nuitées (30 nuitées/an)",
+      "wijkHint": "Huit wijken sont limitées à 15 nuitées/an depuis le 1er avril 2026. Glint ajuste automatiquement votre plafond.",
+      "save": "Enregistrer",
+      "saving": "Enregistrement…",
+      "saved": "Conformité Pays-Bas enregistrée",
+      "saveError": "Impossible d'enregistrer",
+      "registrationStatus": {
+        "not_started": "Non commencé",
+        "pending": "En cours",
+        "active": "Actif",
+        "expired": "Expiré"
+      },
+      "permitStatus": {
+        "not_started": "Non commencé",
+        "pending": "En cours",
+        "active": "Actif",
+        "expired": "Expiré",
+        "not_required": "Non requis"
+      }
+    },
+    "stay": {
+      "prepare": "Préparer la notification",
+      "markNotified": "Marquer notifié",
+      "openPortal": "Ouvrir portail gemeente",
+      "prepareReady": "Notification de séjour préparée",
+      "error": "Impossible de traiter la notification",
+      "copyAll": "Copier détails du séjour",
+      "copied": "Copié",
+      "registration": "Enregistrement",
+      "permit": "Vergunning",
+      "guestCount": "{count, plural, one {# voyageur} other {# voyageurs}}",
+      "status": {
+        "prepared": "Préparé",
+        "submitted": "Notifié",
+        "accepted": "Confirmé"
+      },
+      "statusUpdated": {
+        "prepared": "Marqué comme préparé",
+        "submitted": "Marqué comme notifié à la gemeente",
+        "accepted": "Marqué comme confirmé"
+      }
+    },
+    "dueQueue": {
+      "loading": "Chargement de la file de notifications…",
+      "title": "Notifications de séjour municipales — à venir & en retard",
+      "action": "Ouvrir le registre",
+      "status": {
+        "upcoming": "Séjour à venir",
+        "awaiting_notification": "Prêt à notifier",
+        "notified": "Notifié",
+        "overdue": "Notification en retard"
+      }
     }
   },
   "common": {

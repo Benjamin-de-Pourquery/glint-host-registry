@@ -7,6 +7,11 @@ import {
   type NightCapSettingsInput,
   type NightCapSource,
 } from "@/lib/france/night-cap";
+import { isNetherlandsCountry } from "@/lib/netherlands/regions";
+import {
+  buildDefaultNlNightCapSettings,
+  computeNlNightCapStatus,
+} from "@/lib/netherlands/night-cap";
 
 export type NightCapSettingsRecord = {
   id: string;
@@ -56,10 +61,75 @@ export async function getOrCreateNightCapSettings(
 }
 
 export async function loadPropertyNightCap(
-  context: PropertyNightCapContext
+  context: PropertyNightCapContext,
+  wijkKey?: string | null
 ): Promise<{ applies: boolean; settings: NightCapSettingsRecord | null; computation: NightCapComputation | null }> {
-  if (!nightCapApplies(context.country, context.residencyStatus)) {
+  if (!nightCapApplies(context.country, context.residencyStatus, context.city)) {
     return { applies: false, settings: null, computation: null };
+  }
+
+  if (isNetherlandsCountry(context.country)) {
+    const registration = await prisma.registration.findUnique({
+      where: { propertyId: context.propertyId },
+      select: { nlNeighborhood: true, nlNightCapSource: true },
+    });
+    const neighborhood = wijkKey ?? registration?.nlNeighborhood ?? null;
+
+    const stays = await prisma.guestStay.findMany({
+      where: { propertyId: context.propertyId },
+      select: {
+        checkInDate: true,
+        checkOutDate: true,
+        importStatus: true,
+      },
+    });
+
+    const defaults = buildDefaultNlNightCapSettings(context.city, neighborhood);
+    let settings = context.settings;
+
+    if (!settings) {
+      settings = await prisma.nightCapSettings.create({
+        data: {
+          propertyId: context.propertyId,
+          nightCapEnabled: defaults.nightCapEnabled,
+          nightCapLimit: defaults.nightCapLimit,
+          nightCapYear: defaults.nightCapYear,
+          nightCapSource: "custom",
+          notes: defaults.notes ?? null,
+        },
+      });
+    } else if (settings.nightCapLimit !== defaults.nightCapLimit) {
+      settings = await prisma.nightCapSettings.update({
+        where: { propertyId: context.propertyId },
+        data: {
+          nightCapLimit: defaults.nightCapLimit,
+          nightCapSource: "custom",
+          nightCapYear: defaults.nightCapYear,
+        },
+      });
+    }
+
+    const computation = computeNlNightCapStatus(stays, context.city, neighborhood, {
+      nightCapEnabled: settings.nightCapEnabled,
+      nightCapLimit: settings.nightCapLimit,
+      nightCapYear: settings.nightCapYear,
+      nightCapSource: "custom",
+    });
+
+    if (computation && (
+      settings.nightsUsedYtd !== computation.nightsUsed ||
+      !settings.lastComputedAt
+    )) {
+      await prisma.nightCapSettings.update({
+        where: { propertyId: context.propertyId },
+        data: {
+          nightsUsedYtd: computation.nightsUsed,
+          lastComputedAt: new Date(),
+        },
+      });
+    }
+
+    return { applies: true, settings, computation };
   }
 
   const settings = context.settings ?? await getOrCreateNightCapSettings(context.propertyId, context.city);
@@ -127,7 +197,7 @@ export async function getNightCapAttentionForUser(userId: string): Promise<
   }> = [];
 
   for (const property of properties) {
-    if (!nightCapApplies(property.country, property.residencyStatus)) continue;
+    if (!nightCapApplies(property.country, property.residencyStatus, property.city)) continue;
 
     const defaults = buildDefaultNightCapSettings(property.city);
     const settings = property.nightCapSettings ?? {

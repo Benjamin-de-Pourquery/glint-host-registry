@@ -11,6 +11,7 @@ import { toListingChannelRecord } from "@/lib/listings/channels";
 import { isFranceCountry } from "@/lib/national-transition";
 import { loadGuestQueueSummaryForProperty } from "./guest-queue-summary";
 import { tryLoadListingHealthScore } from "./health-score";
+import { loadReconciliationStatement } from "@/lib/authority-mirror";
 import type {
   EvidencePackLoadedData,
   EvidencePackLocale,
@@ -136,6 +137,28 @@ export async function loadEvidencePackData(
     property.country
   );
   const healthScore = await tryLoadListingHealthScore(property.id, locale);
+  const reconciliationRaw = await loadReconciliationStatement(
+    property.id,
+    periodStart,
+    periodEnd,
+    locale
+  );
+  const reconciliationStatement = {
+    openFindingsCount: reconciliationRaw.findings.length,
+    touristTaxNightsDeclared: reconciliationRaw.ledger.touristTaxNightsDeclared,
+    nightCapUsed: reconciliationRaw.ledger.nightCapUsed,
+    nightCapLimit: reconciliationRaw.ledger.nightCapLimit,
+    channels: reconciliationRaw.ledger.channels.map((channel) => ({
+      channel: channel.channel,
+      platformNights: channel.platformNights,
+      platformReservations: channel.platformReservations,
+      registrationKeyDisplayed: channel.registrationKeyDisplayed,
+    })),
+    findings: reconciliationRaw.findings.map((finding) => ({
+      code: finding.code,
+      severity: finding.severity,
+    })),
+  };
 
   const registration = property.registration;
   const nerMigration =
@@ -185,5 +208,6 @@ export async function loadEvidencePackData(
     channels,
     healthScore,
     nerMigration,
+    reconciliationStatement,
   };
 }

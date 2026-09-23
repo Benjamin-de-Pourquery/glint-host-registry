@@ -14,6 +14,11 @@ export type EvidencePackLabels = {
   sectionChannels: string;
   sectionHealthScore: string;
   sectionNer: string;
+  sectionReconciliation: string;
+  reconciliationOpenFindings: string;
+  reconciliationPlatformNights: string;
+  reconciliationTouristTax: string;
+  reconciliationNightCap: string;
   sectionHowToRead: string;
   howToReadBody: string;
   notConfigured: string;
@@ -76,6 +81,11 @@ const LABELS: Record<EvidencePackLocale, EvidencePackLabels> = {
     sectionChannels: "Listing channels",
     sectionHealthScore: "Listing health snapshot",
     sectionNer: "National registration (NER)",
+    sectionReconciliation: "Operational reconciliation statement",
+    reconciliationOpenFindings: "Open findings",
+    reconciliationPlatformNights: "Platform nights",
+    reconciliationTouristTax: "Tourist tax nights declared",
+    reconciliationNightCap: "Night cap used",
     sectionHowToRead: "How to read this pack",
     howToReadBody:
       "Each section reflects data recorded in Host Registry at generation time. Cross-check registration numbers and deadlines against your municipal or national portals. For official rules, follow the playbook links in the app.",
@@ -137,6 +147,11 @@ const LABELS: Record<EvidencePackLocale, EvidencePackLabels> = {
     sectionChannels: "Canaux d'annonce",
     sectionHealthScore: "Instantané santé annonce",
     sectionNer: "Enregistrement national (NER)",
+    sectionReconciliation: "Relevé de rapprochement opérationnel",
+    reconciliationOpenFindings: "Écarts ouverts",
+    reconciliationPlatformNights: "Nuitées plateforme",
+    reconciliationTouristTax: "Nuitées taxe de séjour déclarées",
+    reconciliationNightCap: "Plafond de nuitées utilisé",
     sectionHowToRead: "Comment lire ce pack",
     howToReadBody:
       "Chaque section reflète les données enregistrées dans Host Registry au moment de la génération. Vérifiez les numéros et échéances sur vos portails municipaux ou nationaux. Pour les règles officielles, suivez les liens playbook dans l'application.",

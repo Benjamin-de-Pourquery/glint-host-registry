@@ -212,6 +212,20 @@ export function computeScore(input: ListingHealthComputeInput): ListingHealthRes
     );
   }
 
+  const openFindings = input.reconciliationOpenFindings ?? 0;
+  if (openFindings > 0) {
+    const likelyIssueCount = openFindings;
+    factors.push(
+      factor(
+        "reconciliation_open_findings",
+        likelyIssueCount >= 2 ? "warning" : "warning",
+        "factors.reconciliationOpenFindings",
+        buildHref(locale, propertyId, "overview"),
+        { count: openFindings }
+      )
+    );
+  }
+
   const score = resolveScore(factors);
 
   return {

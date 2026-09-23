@@ -14,6 +14,7 @@ export const LISTING_HEALTH_FACTOR_CODES = [
   "guest_due_warning",
   "night_cap_exceeded",
   "night_cap_warning",
+  "reconciliation_open_findings",
 ] as const;
 
 export type ListingHealthFactorCode = (typeof LISTING_HEALTH_FACTOR_CODES)[number];
@@ -45,6 +46,7 @@ export type ListingHealthComputeInput = {
   guestDueWarningCount: number;
   nightCapPercentUsed: number | null;
   nightCapExceeded: boolean;
+  reconciliationOpenFindings?: number;
   now?: Date;
 };
 

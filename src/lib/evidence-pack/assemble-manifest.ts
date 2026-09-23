@@ -181,6 +181,13 @@ export function assembleEvidencePackManifest(
       included: Boolean(data.nerMigration),
       omittedReason: data.nerMigration ? undefined : labels.notApplicable,
     },
+    {
+      id: "reconciliation",
+      title: labels.sectionReconciliation,
+      itemCount: data.reconciliationStatement?.findings.length ?? 0,
+      included: Boolean(data.reconciliationStatement),
+      omittedReason: data.reconciliationStatement ? undefined : labels.notApplicable,
+    },
   ];
 
   return {
@@ -210,5 +217,6 @@ export function assembleEvidencePackManifest(
     channelsConfigured,
     healthScore: data.healthScore,
     nerMigration: data.nerMigration,
+    reconciliationStatement: data.reconciliationStatement,
   };
 }

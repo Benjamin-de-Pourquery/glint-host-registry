@@ -33,6 +33,7 @@ import { ListingHealthCard } from "@/components/listing-health-card";
 import type { ListingHealthSnapshotRecord } from "@/lib/listing-health/types";
 import { cn } from "@/lib/utils";
 import { EvidencePackButton } from "@/components/evidence-pack-dialog";
+import { AuthorityMirrorCard } from "@/components/authority-mirror-card";
 
 const TAB_IDS = ["overview", "compliance", "register", "listings", "notes"] as const;
 export type PropertyDetailTab = (typeof TAB_IDS)[number];
@@ -248,6 +249,8 @@ export function PropertyDetailTabs({
             country={property.country}
             locale={locale}
           />
+
+          <AuthorityMirrorCard propertyId={property.id} locale={locale} />
 
           <FrNerMigrationCard
             propertyId={property.id}

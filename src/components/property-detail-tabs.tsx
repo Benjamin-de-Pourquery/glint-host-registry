@@ -32,6 +32,7 @@ import { Badge } from "@/components/ui/badge";
 import { ListingHealthCard } from "@/components/listing-health-card";
 import type { ListingHealthSnapshotRecord } from "@/lib/listing-health/types";
 import { cn } from "@/lib/utils";
+import { EvidencePackButton } from "@/components/evidence-pack-dialog";
 
 const TAB_IDS = ["overview", "compliance", "register", "listings", "notes"] as const;
 export type PropertyDetailTab = (typeof TAB_IDS)[number];
@@ -134,6 +135,7 @@ export function PropertyDetailTabs({
   listingHealthTruthCard,
 }: Props) {
   const t = useTranslations("properties.detail");
+  const tEvidencePack = useTranslations("evidencePack");
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -412,6 +414,14 @@ export function PropertyDetailTabs({
 
       <TabsContent value="compliance" className="mt-6">
         <div className="mx-auto max-w-2xl space-y-6">
+          <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-sm font-semibold text-slate-900">{tEvidencePack("cardTitle")}</h3>
+              <p className="mt-1 text-sm text-slate-600">{tEvidencePack("cardSubtitle")}</p>
+            </div>
+            <EvidencePackButton propertyId={property.id} locale={locale} />
+          </div>
+
           <FrNerMigrationCard
             propertyId={property.id}
             country={property.country}
@@ -419,7 +429,6 @@ export function PropertyDetailTabs({
             showForm
             showWizard
           />
-
           <NationalTransitionCard
             propertyId={property.id}
             country={property.country}

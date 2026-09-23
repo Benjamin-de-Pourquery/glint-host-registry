@@ -2319,6 +2319,48 @@
       }
     }
   },
+  "evidencePack": {
+    "trigger": "Generate evidence pack",
+    "title": "Compliance evidence pack",
+    "description": "Download an inspection-ready PDF reflecting your Host Registry records for a chosen period. Operational aid only, not an official certificate.",
+    "cardTitle": "Compliance evidence pack",
+    "cardSubtitle": "One-click PDF for inspections, platform challenges, or municipal requests.",
+    "period": {
+      "label": "Coverage period",
+      "90d": "Last 90 days",
+      "calendar_year": "Calendar year",
+      "custom": "Custom",
+      "start": "Start date",
+      "end": "End date"
+    },
+    "locale": {
+      "label": "Export language",
+      "en": "English",
+      "fr": "French"
+    },
+    "warnings": {
+      "title": "Before you generate",
+      "checking": "Checking your records…",
+      "softNote": "You can still generate the pack. Completing these items will make it more useful.",
+      "missingRegistration": "Add a registration number on the Register tab",
+      "noChannels": "Configure listing channels on the Listings tab",
+      "lowPlaybookProgress": "Complete more playbook steps on the Compliance tab",
+      "noStaysInPeriod": "No stays recorded for this period",
+      "registrationNotStarted": "Registration status is still not started"
+    },
+    "actions": {
+      "generatePdf": "Download PDF",
+      "downloadManifest": "Download manifest JSON"
+    },
+    "success": {
+      "pdfDownloaded": "Evidence pack PDF downloaded",
+      "manifestDownloaded": "Manifest JSON downloaded"
+    },
+    "errors": {
+      "customPeriodRequired": "Select start and end dates for a custom period",
+      "generateFailed": "Could not generate evidence pack"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Something went wrong",

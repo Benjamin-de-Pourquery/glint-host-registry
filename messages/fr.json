@@ -6,8 +6,8 @@
   },
   "seo": {
     "home": {
-      "title": "Conformité location courte durée UE — numéro d'enregistrement, SES Hospedajes & registre voyageurs",
-      "description": "Glint Host Registry aide les hôtes à respecter le Règlement UE 2024/1028, la déclaration meublé de tourisme, les numéros Airbnb/Booking, SES Hospedajes, Mossos, Ertzaintza et la fiche de police voyageurs — interface FR/EN."
+      "title": "Conformité location courte durée UE : numéro d'enregistrement, SES Hospedajes & registre voyageurs",
+      "description": "Glint Host Registry aide les hôtes à respecter le Règlement UE 2024/1028, la déclaration meublé de tourisme, les numéros Airbnb/Booking, SES Hospedajes, Mossos, Ertzaintza et la fiche de police voyageurs. Interface FR/EN."
     },
     "login": {
       "title": "Connexion",
@@ -335,23 +335,23 @@
   },
   "landing": {
     "hero": {
-      "title": "Conformité location courte durée UE — France, Espagne, Italie, Portugal, Grèce, Croatie et plus",
-      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, RNAL + SIBA Portugal, AMA + AADE Grèce, et catégorisation + eVisitor Croatie. Glint prépare ; vous soumettez sur les portails officiels.",
+      "title": "Conformité location courte durée UE : France, Espagne, Italie, Portugal, Grèce, Croatie et plus",
+      "subtitle": "Une couche conformité UE : playbooks France, SES/Mossos/Ertzaintza Espagne, CIN + Alloggiati Italie, RNAL + SIBA Portugal, AMA + AADE Grèce, catégorisation + eVisitor Croatie, notifications Pays-Bas et enregistrement Belgique tri-régional. Glint prépare ; vous soumettez sur les portails officiels.",
       "cta": "Essai gratuit 14 jours",
       "ctaLogin": "Connexion",
       "ctaSecondary": "Découvrir les fonctionnalités",
       "badge": "Cadre Règlement (UE) 2024/1028",
-      "platformBadge": "Sept. 2026 — contrôles NER plateformes"
+      "platformBadge": "Sept. 2026 : contrôles NER plateformes"
     },
     "platformCompliance": {
       "title": "Suivi NER sur vos annonces",
-      "description": "Depuis septembre 2026, Airbnb et Booking exigent un numéro d'enregistrement valide alors que le téléservice national français (API Meublés) n'ouvre qu'au T4 2026. Glint suit vos annonces, les blocages plateforme et le dossier de recours — sans envoyer d'e-mails pour vous."
+      "description": "Depuis septembre 2026, Airbnb et Booking exigent un numéro d'enregistrement valide alors que le téléservice national français (API Meublés) n'ouvre qu'au T4 2026. Glint suit vos annonces, les blocages plateforme et le dossier de recours, sans envoyer d'e-mails pour vous."
     },
     "heroMock": {
       "property": "Appartement Malasaña",
       "status": "SES à faire",
       "nextAction": "Prochaine action",
-      "nextActionText": "Valider parte de viajeros — Madrid (simulation)",
+      "nextActionText": "Valider parte de viajeros, Madrid (simulation)",
       "tabs": {
         "overview": "Aperçu",
         "compliance": "Démarches",
@@ -370,36 +370,36 @@
     },
     "problem": {
       "title": "La conformité ne se résume pas à un numéro",
-      "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par ville — souvent sur plusieurs biens.",
+      "description": "Entre le Règlement UE 2024/1028, les règles municipales et la fiche de police pour les voyageurs étrangers, les hôtes jonglent avec des procédures différentes par pays et par ville, souvent sur plusieurs biens.",
       "points": {
-        "1": "Chaque ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
+        "1": "Chaque pays et ville a ses tunnels d'enregistrement, changements d'usage et formulaires officiels",
         "2": "En Espagne, déclaration sous 24h (SES, Mossos, Ertzaintza). En Italie, Alloggiati distinct du CIN. Au Portugal, boletim SIBA sous 3 jours ouvrés. En Grèce, déclarations AADE avant le 20 du mois suivant le départ. En Croatie, eVisitor sous 24h après arrivée et départ",
         "3": "En France, la fiche de police pour les étrangers reste obligatoire ; les plateformes vérifient CIN/RNAL/AMA/NER au titre du règlement UE 2024/1028"
       }
     },
     "solution": {
       "title": "Un cockpit conformité pour tout votre portefeuille",
-      "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros — avec une prochaine action claire par bien.",
+      "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros, avec une prochaine action claire par bien.",
       "points": {
-        "1": "Playbooks France, Espagne, Italie, Portugal et Grèce — Athènes, Thessalonique, Crète AMA + AADE",
-        "2": "Registre : Annexe I (ES), Alloggiati (IT), SIBA (PT), déclarations AADE (GR), fiche FR ; files d'échéance",
-        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati, SIBA, AADE ; SES dry-run/live avec SES_LIVE"
+        "1": "Playbooks pour la France, l'Espagne, l'Italie, le Portugal, la Grèce, la Croatie, les Pays-Bas et la Belgique",
+        "2": "Registre : fiche FR, Annexe I (ES), Alloggiati (IT), SIBA (PT), déclarations AADE (GR), eVisitor (HR) ; files d'échéance",
+        "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati, SIBA, AADE ; validation SES en simulation, avec envoi MIR live uniquement si vous l'activez"
       }
     },
     "features": {
       "title": "Tout ce qu'il faut pour rester conforme",
-      "subtitle": "Guidage local, registre opérationnel et suivi portefeuille — dans une interface sobre et bilingue.",
+      "subtitle": "Guidage local, registre opérationnel et suivi portefeuille, dans une interface sobre et bilingue.",
       "compliance": {
-        "title": "Démarches guidées par ville",
-        "description": "Tunnels pas à pas pour Paris, Lyon, Marseille, Bordeaux et Nice — avec liens vers formulaires officiels, règlements et branchement selon votre statut de résidence."
+        "title": "Démarches guidées par pays et ville",
+        "description": "Playbooks pas à pas pour la France, l'Espagne, l'Italie, le Portugal, la Grèce, la Croatie, les Pays-Bas et la Belgique, avec liens vers formulaires officiels, règlements et branchement selon votre statut de résidence."
       },
       "guestRegister": {
-        "title": "Registre voyageurs (FR + ES + IT + PT)",
-        "description": "Lien ou QR public avec champs Annexe I (Espagne), schedina Alloggiati (Italie), boletim SIBA (Portugal), données AADE (Grèce), fiche de police France, signature et export CSV."
+        "title": "Registre voyageurs (FR + ES + IT + PT + GR + HR)",
+        "description": "Lien ou QR public avec fiche de police France, champs Annexe I (Espagne), schedina Alloggiati (Italie), boletim SIBA (Portugal), données AADE (Grèce), eVisitor (Croatie), signature et export CSV."
       },
       "sesQueue": {
         "title": "Files déclaration voyageurs UE",
-        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) ; notifications de séjour Amsterdam (Pays-Bas) ; enregistrement Bruxelles / Flandre / Wallonie (Belgique) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
+        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) ; notifications de séjour Amsterdam (Pays-Bas) ; enregistrement Bruxelles / Flandre / Wallonie (Belgique). Kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
       },
       "netherlandsOps": {
         "title": "Conformité Pays-Bas & Amsterdam",
@@ -407,15 +407,15 @@
       },
       "belgiumOps": {
         "title": "Conformité Belgique tri-régionale",
-        "description": "Dossier déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie — routage régional, checklist dossier, suivi du numéro et affichage UE."
+        "description": "Dossier déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie : routage régional, checklist dossier, suivi du numéro et affichage UE."
       },
       "tabs": {
         "title": "Fiche bien structurée",
-        "description": "Cinq onglets par logement : Aperçu, Démarches, Registre, Annonces et Notes — tout au même endroit."
+        "description": "Cinq onglets par logement : Aperçu, Démarches, Registre, Annonces et Notes, tout au même endroit."
       },
       "nextAction": {
         "title": "Moteur de prochaine action",
-        "description": "Chaque bien affiche l'étape prioritaire à traiter — plus de feuilles de calcul ni de dossiers éparpillés."
+        "description": "Chaque bien affiche l'étape prioritaire à traiter, sans feuilles de calcul ni dossiers éparpillés."
       },
       "portfolio": {
         "title": "Portefeuille & archivage",
@@ -423,18 +423,18 @@
       },
       "nightCap": {
         "title": "Plafond nuitées résidence principale",
-        "description": "Compteur annuel depuis vos calendriers iCal ou séjours manuels — alertes à 70 %, 90 % et dépassement (120 ou 90 nuitées selon la commune)."
+        "description": "Compteur annuel depuis vos calendriers iCal ou séjours manuels, avec alertes à 70 %, 90 % et dépassement (120 ou 90 nuitées selon la commune)."
       },
       "touristTax": {
         "title": "Ops taxe de séjour (France)",
-        "description": "File de périodes depuis votre calendrier — déclarez sur le portail commune même si Airbnb/Booking collectent en tiers collecteur (mois à 0 € inclus)."
+        "description": "File de périodes depuis votre calendrier. Déclarez sur le portail commune même si Airbnb/Booking collectent en tiers collecteur (mois à 0 € inclus)."
       },
       "listings": {
         "title": "Conformité annonces (NER)",
         "description": "Suivi par canal (Airbnb, Booking, Vrbo) : statut du numéro affiché, blocages plateforme et playbook de recours avec sources officielles."
       },
       "miniUi": {
-        "complianceHeader": "Démarches · Paris",
+        "complianceHeader": "Démarches · Madrid",
         "step1": "Déclaration en ligne",
         "step2": "Changement d'usage",
         "step3": "Numéro d'enregistrement",
@@ -453,7 +453,7 @@
         "description": "Pour les hôtes avec jusqu'à 3 biens",
         "features": [
           "Jusqu'à 3 biens actifs",
-          "Démarches guidées par ville",
+          "Démarches guidées par pays et ville",
           "Registre des voyageurs",
           "Alertes d'expiration",
           "Export PDF & interface FR + EN"
@@ -577,7 +577,7 @@
       "guideBrusselsAirbnbRegistration": "Airbnb Bruxelles",
       "account": "Compte",
       "legal": "Légal",
-      "company": "Glint — micro-entreprise",
+      "company": "Glint, micro-entreprise",
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d'utilisation",
       "mentions": "Mentions légales",

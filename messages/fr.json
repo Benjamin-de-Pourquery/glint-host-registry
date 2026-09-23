@@ -991,7 +991,8 @@
       "guestDueCritical": "{count, plural, one {# déclaration voyageur en retard critique} other {# déclarations voyageurs en retard critique}}.",
       "guestDueWarning": "{count, plural, one {# séjour à venir peut nécessiter une déclaration voyageur} other {# séjours à venir peuvent nécessiter des déclarations voyageurs}}.",
       "nightCapExceeded": "Plafond de nuitées dépassé ({percentUsed} % utilisé).",
-      "nightCapWarning": "Plafond de nuitées à {percentUsed} % ou plus de la limite annuelle."
+      "nightCapWarning": "Plafond de nuitées à {percentUsed} % ou plus de la limite annuelle.",
+      "capGuardCritical": "Garde-fou plafond actif et nuitées restantes critiques ({percentUsed} % utilisé)."
     }
   },
   "compliance": {
@@ -1097,6 +1098,75 @@
       "overdue": "En retard",
       "declared": "Déclarée",
       "waived": "Dispensée"
+    }
+  },
+  "capGuard": {
+    "title": "Garde-fou plafond",
+    "subtitle": "Publiez des dates fermées sur vos calendriers d'annonces avant d'atteindre le plafond de nuitées.",
+    "loading": "Chargement du garde-fou plafond…",
+    "loadError": "Impossible de charger le garde-fou plafond",
+    "saveError": "Impossible d'enregistrer les paramètres",
+    "saved": "Paramètres du garde-fou plafond enregistrés",
+    "copyError": "Impossible de copier l'URL du flux",
+    "feedCopied": "URL du flux copiée",
+    "tokenRotated": "Jeton du flux renouvelé. Mettez à jour l'URL sur chaque plateforme.",
+    "disclaimer": "Aide opérationnelle uniquement. Le garde-fou plafond réduit fortement le risque de surréservation au-delà du plafond, sans garantir la conformité aux règles locales ni aux politiques des plateformes.",
+    "enabled": "Activer le calendrier sortant du garde-fou plafond",
+    "modeLabel": "Mode de garde-fou",
+    "bufferLabel": "Nuitées de marge",
+    "bufferHint": "Marge suggérée pour vos canaux : {nights} nuitées (durée de séjour type x nombre de canaux).",
+    "registrationGate": "Fermer aussi les dates après l'expiration de l'enregistrement ou du permis",
+    "registrationGateUnavailable": "Ajoutez une date d'expiration d'enregistrement ou de permis pour utiliser cette option.",
+    "feedUrlLabel": "URL du flux iCal sortant",
+    "copyFeed": "Copier l'URL du flux",
+    "rotateToken": "Renouveler le jeton",
+    "feedHint": "Collez cette URL dans l'import calendrier de chaque plateforme. Les plateformes actualisent selon leur propre rythme, souvent toutes les quelques heures.",
+    "blocksPublished": "{count, plural, one {# plage de dates fermées dans le flux actuel} other {# plages de dates fermées dans le flux actuel}}",
+    "mode": {
+      "HARD_STOP": "Arrêt net au plafond",
+      "BUFFER": "Marge avant plafond",
+      "BUDGET": "Fenêtres budgétées"
+    },
+    "forecast": {
+      "used": "Nuitées utilisées",
+      "bookedAhead": "Réservées à venir",
+      "remaining": "Restantes",
+      "projectedCap": "Date projetée du plafond",
+      "notAvailable": "Pas encore disponible"
+    },
+    "budget": {
+      "title": "Fenêtres budgétées",
+      "addWindow": "Ajouter une fenêtre",
+      "remove": "Retirer",
+      "empty": "Ajoutez au moins une fenêtre pour répartir les nuitées restantes sur l'année."
+    },
+    "wizard": {
+      "title": "Configuration par plateforme",
+      "channelManagerNote": "Si vous utilisez un channel manager, importez le flux une seule fois. Il devrait se propager aux plateformes connectées.",
+      "airbnb": {
+        "tab": "Airbnb",
+        "steps": "Airbnb : Annonce > Calendrier > Paramètres de disponibilité > Importer un calendrier. Collez l'URL du flux Garde-fou plafond, nommez-le Host Registry Cap Guard, puis enregistrez."
+      },
+      "booking": {
+        "tab": "Booking.com",
+        "steps": "Booking.com : Extranet > Tarifs et disponibilités > Calendrier > Synchroniser les calendriers > Importer un calendrier. Collez l'URL du flux Garde-fou plafond et confirmez l'import."
+      },
+      "vrbo": {
+        "tab": "Vrbo",
+        "steps": "Vrbo : Calendrier > Importer/exporter > Importer un calendrier. Collez l'URL du flux Garde-fou plafond et enregistrez. Les dates fermées devraient apparaître après la prochaine synchronisation."
+      }
+    },
+    "propagation": {
+      "confirm": "Je vois les dates fermées sur la plateforme",
+      "confirmed": "Propagation confirmée"
+    },
+    "history": {
+      "title": "Activité récente",
+      "enabled": "Garde-fou plafond activé le {date}",
+      "disabled": "Garde-fou plafond désactivé le {date}",
+      "mode_change": "Mode modifié le {date}",
+      "blocks_published": "Flux publié le {date}",
+      "breach_near": "Alerte proche du plafond le {date}"
     }
   },
   "nightCap": {

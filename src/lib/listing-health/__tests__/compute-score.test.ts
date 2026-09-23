@@ -28,6 +28,8 @@ function baseInput(
     guestDueWarningCount: 0,
     nightCapPercentUsed: null,
     nightCapExceeded: false,
+    capGuardEnabled: false,
+    capGuardCritical: false,
     now: NOW,
     ...overrides,
   };

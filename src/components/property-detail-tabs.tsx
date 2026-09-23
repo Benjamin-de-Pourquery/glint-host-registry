@@ -17,6 +17,7 @@ import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { AmaComplianceCard } from "@/components/ama-compliance-card";
 import { CroatiaCategorisationCard } from "@/components/croatia-categorisation-card";
 import { NightCapCard } from "@/components/night-cap-card";
+import { CapGuardCard } from "@/components/cap-guard-card";
 import { TouristTaxCard } from "@/components/tourist-tax-card";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
@@ -241,6 +242,14 @@ export function PropertyDetailTabs({
             residencyStatus={property.residencyStatus}
             locale={locale}
             registerTabHref={`/${locale}/app/properties/${property.id}?tab=register`}
+          />
+
+          <CapGuardCard
+            propertyId={property.id}
+            country={property.country}
+            city={property.city}
+            residencyStatus={property.residencyStatus}
+            locale={locale}
           />
 
           <TouristTaxCard

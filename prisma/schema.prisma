@@ -95,6 +95,8 @@ model Property {
   sesSubmissions SesSubmission[]
   regionalGuestReports RegionalGuestReport[]
   nightCapSettings NightCapSettings?
+  capGuardPolicy CapGuardPolicy?
+  capGuardEvents CapGuardEvent[]
   touristTaxSettings TouristTaxSettings?
   touristTaxPeriods TouristTaxPeriod[]
 }
@@ -147,6 +149,34 @@ model NightCapSettings {
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   property        Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model CapGuardPolicy {
+  id                      String    @id @default(cuid())
+  propertyId              String    @unique
+  enabled                 Boolean   @default(false)
+  mode                    String    @default("BUFFER")
+  bufferNights            Int       @default(7)
+  budgetWindows           String    @default("[]")
+  registrationGate        Boolean   @default(false)
+  feedToken               String    @unique
+  feedTokenRotatedAt      DateTime?
+  propagationConfirmedAt  DateTime?
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime  @updatedAt
+  property                Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model CapGuardEvent {
+  id         String   @id @default(cuid())
+  propertyId String
+  eventType  String
+  payload    String?
+  createdAt  DateTime @default(now())
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([propertyId, createdAt])
 }
 
 model CalendarFeed {

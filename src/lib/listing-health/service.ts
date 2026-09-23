@@ -78,6 +78,8 @@ export async function buildListingHealthInput(
 
   let nightCapPercentUsed: number | null = null;
   let nightCapExceeded = false;
+  let capGuardEnabled = false;
+  let capGuardCritical = false;
 
   const nightCap = await loadPropertyNightCap({
     propertyId: property.id,
@@ -87,11 +89,23 @@ export async function buildListingHealthInput(
     settings: null,
   });
 
+  const capGuardPolicy = await prisma.capGuardPolicy.findUnique({
+    where: { propertyId: property.id },
+  });
+
   if (nightCap.applies && nightCap.computation?.enabled) {
     nightCapPercentUsed = nightCap.computation.percentUsed;
     nightCapExceeded =
       nightCap.computation.status === "exceeded" ||
       nightCap.computation.nightsUsed > nightCap.computation.limit;
+  }
+
+  if (capGuardPolicy?.enabled && nightCap.computation?.enabled) {
+    capGuardEnabled = true;
+    capGuardCritical =
+      nightCap.computation.status === "critical" ||
+      nightCap.computation.status === "exceeded" ||
+      nightCap.computation.remaining < capGuardPolicy.bufferNights;
   }
 
   return {
@@ -109,6 +123,8 @@ export async function buildListingHealthInput(
     guestDueWarningCount: guestSignals.warningCount,
     nightCapPercentUsed,
     nightCapExceeded,
+    capGuardEnabled,
+    capGuardCritical,
   };
 }
 
@@ -258,6 +274,8 @@ export async function getListingHealthScoresForUser(
     const guestSignals = computeGuestDueSignals(property.guestStays);
     let nightCapPercentUsed: number | null = null;
     let nightCapExceeded = false;
+    let capGuardEnabled = false;
+    let capGuardCritical = false;
 
     const nightCap = await loadPropertyNightCap({
       propertyId: property.id,
@@ -267,11 +285,23 @@ export async function getListingHealthScoresForUser(
       settings: null,
     });
 
+    const capGuardPolicy = await prisma.capGuardPolicy.findUnique({
+      where: { propertyId: property.id },
+    });
+
     if (nightCap.applies && nightCap.computation?.enabled) {
       nightCapPercentUsed = nightCap.computation.percentUsed;
       nightCapExceeded =
         nightCap.computation.status === "exceeded" ||
         nightCap.computation.nightsUsed > nightCap.computation.limit;
+    }
+
+    if (capGuardPolicy?.enabled && nightCap.computation?.enabled) {
+      capGuardEnabled = true;
+      capGuardCritical =
+        nightCap.computation.status === "critical" ||
+        nightCap.computation.status === "exceeded" ||
+        nightCap.computation.remaining < capGuardPolicy.bufferNights;
     }
 
     const computed = computeScore({
@@ -289,6 +319,8 @@ export async function getListingHealthScoresForUser(
       guestDueWarningCount: guestSignals.warningCount,
       nightCapPercentUsed,
       nightCapExceeded,
+      capGuardEnabled,
+      capGuardCritical,
     });
 
     results.push({

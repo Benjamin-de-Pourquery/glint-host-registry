@@ -212,6 +212,20 @@ export function computeScore(input: ListingHealthComputeInput): ListingHealthRes
     );
   }
 
+  if (input.capGuardEnabled && input.capGuardCritical) {
+    factors.push(
+      factor(
+        "cap_guard_critical",
+        "warning",
+        "factors.capGuardCritical",
+        buildHref(locale, propertyId, "overview"),
+        input.nightCapPercentUsed != null
+          ? { percentUsed: input.nightCapPercentUsed }
+          : undefined
+      )
+    );
+  }
+
   const score = resolveScore(factors);
 
   return {

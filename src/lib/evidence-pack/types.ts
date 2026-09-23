@@ -86,6 +86,11 @@ export type EvidencePackManifest = {
   stays: EvidencePackStay[];
   stayCount: number;
   nightCap: NightCapComputation | null;
+  capGuard: {
+    mode: string;
+    activeSince: string;
+    propagationConfirmedAt: string | null;
+  } | null;
   guestQueue: EvidencePackGuestQueueSummary;
   channels: EvidencePackChannel[];
   channelsConfigured: boolean;
@@ -133,6 +138,11 @@ export type EvidencePackLoadedData = {
   playbookSummary: { completed: number; total: number; skipped: number } | null;
   stays: EvidencePackStay[];
   nightCap: NightCapComputation | null;
+  capGuard: {
+    mode: string;
+    activeSince: string;
+    propagationConfirmedAt: string | null;
+  } | null;
   guestQueue: EvidencePackGuestQueueSummary;
   channels: ListingChannelRecord[];
   healthScore: EvidencePackHealthScore | null;

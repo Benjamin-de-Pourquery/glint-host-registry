@@ -7,6 +7,7 @@ import {
   NATIONAL_TRANSITION_STATUSES,
 } from "@/lib/national-transition";
 import { isNetherlandsCountry, resolveNlNightCapSource } from "@/lib/netherlands/regions";
+import { isBelgiumCountry, getBelgiumRegion } from "@/lib/belgium/regions";
 import { z } from "zod";
 
 const schema = z.object({
@@ -57,6 +58,23 @@ const schema = z.object({
   nlNightCapSource: z
     .enum(["amsterdam_30", "amsterdam_15", "nl_municipal", "none"])
     .optional(),
+  beRegistrationNumber: z.string().nullable().optional(),
+  beRegistrationStatus: z
+    .enum(["not_started", "dossier_in_progress", "active", "expired", "unknown"])
+    .optional(),
+  beRegistrationDisplayedOnListings: z.boolean().optional(),
+  beRegion: z.enum(["brussels", "flanders", "wallonia"]).nullable().optional(),
+  beOperatorCategory: z.enum(["private", "professional"]).nullable().optional(),
+  beFireSafetyStatus: z
+    .enum(["not_started", "pending", "valid", "expired"])
+    .optional(),
+  beInsuranceStatus: z
+    .enum(["not_started", "pending", "valid", "expired"])
+    .optional(),
+  beUrbanPlanningStatus: z
+    .enum(["not_started", "pending", "valid", "expired"])
+    .optional(),
+  beDossierSubmittedAt: z.string().nullable().optional(),
 });
 
 export async function PATCH(
@@ -98,6 +116,17 @@ export async function PATCH(
       ? (data.nlNightCapSource ??
         resolveNlNightCapSource(property.city, nlNeighborhood))
       : "none";
+
+    const beRegion =
+      data.beRegion !== undefined
+        ? data.beRegion
+        : isBelgiumCountry(property.country)
+          ? property.registration?.beRegion ??
+            (() => {
+              const inferred = getBelgiumRegion(property.city);
+              return inferred === "unknown" ? null : inferred;
+            })()
+          : null;
 
     const registration = await prisma.registration.upsert({
       where: { propertyId: id },
@@ -142,6 +171,18 @@ export async function PATCH(
         nlPermitNumber: data.nlPermitNumber ?? null,
         nlNeighborhood: nlNeighborhood,
         nlNightCapSource,
+        beRegistrationNumber: data.beRegistrationNumber ?? null,
+        beRegistrationStatus: data.beRegistrationStatus ?? "not_started",
+        beRegistrationDisplayedOnListings:
+          data.beRegistrationDisplayedOnListings ?? false,
+        beRegion,
+        beOperatorCategory: data.beOperatorCategory ?? null,
+        beFireSafetyStatus: data.beFireSafetyStatus ?? "not_started",
+        beInsuranceStatus: data.beInsuranceStatus ?? "not_started",
+        beUrbanPlanningStatus: data.beUrbanPlanningStatus ?? "not_started",
+        beDossierSubmittedAt: data.beDossierSubmittedAt
+          ? new Date(data.beDossierSubmittedAt)
+          : null,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -192,6 +233,19 @@ export async function PATCH(
               ? resolveNlNightCapSource(property.city, data.nlNeighborhood)
               : undefined))
           : undefined,
+        beRegistrationNumber: data.beRegistrationNumber,
+        beRegistrationStatus: data.beRegistrationStatus,
+        beRegistrationDisplayedOnListings: data.beRegistrationDisplayedOnListings,
+        beRegion: data.beRegion !== undefined ? data.beRegion : beRegion,
+        beOperatorCategory: data.beOperatorCategory,
+        beFireSafetyStatus: data.beFireSafetyStatus,
+        beInsuranceStatus: data.beInsuranceStatus,
+        beUrbanPlanningStatus: data.beUrbanPlanningStatus,
+        beDossierSubmittedAt: data.beDossierSubmittedAt
+          ? new Date(data.beDossierSubmittedAt)
+          : data.beDossierSubmittedAt === null
+            ? null
+            : undefined,
       },
     });
 

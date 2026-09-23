@@ -9,12 +9,14 @@ import { getEffectiveNextStepForPortugal } from "@/lib/portugal/next-action";
 import { getEffectiveNextStepForGreece } from "@/lib/greece/next-action";
 import { getEffectiveNextStepForCroatia } from "@/lib/croatia/next-action";
 import { getEffectiveNextStepForNetherlands } from "@/lib/netherlands/next-action";
+import { getEffectiveNextStepForBelgium } from "@/lib/belgium/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
 import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { isNetherlandsCountry } from "@/lib/netherlands/regions";
+import { isBelgiumCountry } from "@/lib/belgium/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 
@@ -37,6 +39,10 @@ export type EffectiveNextStepContext = {
   hasNlRegistrationNumber?: boolean;
   hasNlHolidayPermit?: boolean;
   hasActiveStayNeedingNotification?: boolean;
+  beRegion?: string | null;
+  hasBeRegistrationNumber?: boolean;
+  isBeDossierComplete?: boolean;
+  beDisplayedOnListings?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
 };
@@ -101,6 +107,17 @@ export function getEffectiveNextStep(
       hasNlRegistrationNumber: context.hasNlRegistrationNumber,
       hasNlHolidayPermit: context.hasNlHolidayPermit,
       hasActiveStayNeedingNotification: context.hasActiveStayNeedingNotification,
+    });
+  }
+
+  if (isBelgiumCountry(context.country)) {
+    return getEffectiveNextStepForBelgium(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      beRegion: context.beRegion,
+      hasBeRegistrationNumber: context.hasBeRegistrationNumber,
+      isDossierComplete: context.isBeDossierComplete,
+      isDisplayedOnListings: context.beDisplayedOnListings,
     });
   }
 

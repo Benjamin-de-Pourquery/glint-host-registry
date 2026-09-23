@@ -405,6 +405,16 @@ model Registration {
   nlNeighborhood            String?
   /** Night-cap limit source: amsterdam_30 | amsterdam_15 | nl_municipal | none */
   nlNightCapSource          String    @default("none")
+  /** Belgium regional STR registration (Brussels / Flanders / Wallonia) */
+  beRegistrationNumber      String?
+  beRegistrationStatus      String    @default("not_started")
+  beRegistrationDisplayedOnListings Boolean @default(false)
+  beRegion                  String?
+  beOperatorCategory        String?
+  beFireSafetyStatus        String    @default("not_started")
+  beInsuranceStatus         String    @default("not_started")
+  beUrbanPlanningStatus     String    @default("not_started")
+  beDossierSubmittedAt      DateTime?
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

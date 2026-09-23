@@ -28,6 +28,11 @@ import {
   isNetherlandsCountry,
   type NetherlandsOpsMode,
 } from "@/lib/netherlands/regions";
+import {
+  getBelgiumMode,
+  isBelgiumCountry,
+  type BelgiumOpsMode,
+} from "@/lib/belgium/regions";
 
 export type GuestReportingJurisdiction =
   | "france"
@@ -80,6 +85,10 @@ export function getGuestReportingJurisdiction(
   }
 
   if (isNetherlandsCountry(country)) {
+    return "none";
+  }
+
+  if (isBelgiumCountry(country)) {
     return "none";
   }
 
@@ -157,4 +166,13 @@ export function getNetherlandsModeFromCountry(
 ): NetherlandsOpsMode | null {
   if (!isNetherlandsCountry(country)) return null;
   return getNetherlandsMode(city);
+}
+
+/** Belgium ops mode — regional registration (not police guest reporting). */
+export function getBelgiumModeFromCountry(
+  country: string,
+  city: string
+): BelgiumOpsMode | null {
+  if (!isBelgiumCountry(country)) return null;
+  return getBelgiumMode(city);
 }

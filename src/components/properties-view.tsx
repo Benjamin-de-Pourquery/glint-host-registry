@@ -19,6 +19,7 @@ import { needsNationalTransitionAttention } from "@/lib/national-transition";
 import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
+import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -52,6 +53,15 @@ type PropertyItem = {
     nlPermitNumber?: string | null;
     nlNeighborhood?: string | null;
     nlNightCapSource?: string | null;
+    beRegistrationNumber?: string | null;
+    beRegistrationStatus?: string | null;
+    beRegistrationDisplayedOnListings?: boolean;
+    beRegion?: string | null;
+    beOperatorCategory?: string | null;
+    beFireSafetyStatus?: string | null;
+    beInsuranceStatus?: string | null;
+    beUrbanPlanningStatus?: string | null;
+    beDossierSubmittedAt?: Date | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
   listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
@@ -69,6 +79,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "greece_ama",
   "croatia_evisitor",
   "netherlands_registration",
+  "belgium_registration",
   "night_cap",
   "tourist_tax",
 ];
@@ -160,6 +171,13 @@ export function PropertiesView({
           }
           if (statusFilter === "netherlands_registration") {
             return needsNlRegistrationAttention(property.country, property.registration);
+          }
+          if (statusFilter === "belgium_registration") {
+            return needsBelgiumRegistrationAttention(
+              property.country,
+              property.registration,
+              property.city
+            );
           }
           if (statusFilter === "night_cap") {
             return nightCapSet.has(property.id);

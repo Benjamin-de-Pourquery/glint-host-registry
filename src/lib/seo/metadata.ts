@@ -18,7 +18,11 @@ export type SeoPageKey =
   | "guideItalyCinAlloggiati"
   | "guidePortugalRnalSiba"
   | "guideGreeceAmaAade"
-  | "guideCroatiaEvisitor";
+  | "guideCroatiaEvisitor"
+  | "guideBelgiumStrRegistration"
+  | "guideBelgiumStrRegistrationFr"
+  | "guideBrusselsAirbnbRegistration"
+  | "guideBrusselsAirbnbRegistrationFr";
 
 const PAGE_PATHS: Record<SeoPageKey, string> = {
   home: "",
@@ -35,6 +39,10 @@ const PAGE_PATHS: Record<SeoPageKey, string> = {
   guidePortugalRnalSiba: "/guides/rnal-siba-portugal",
   guideGreeceAmaAade: "/guides/greece-ama-aade",
   guideCroatiaEvisitor: "/guides/croatia-evisitor",
+  guideBelgiumStrRegistration: "/guides/belgium-short-term-rental-registration",
+  guideBelgiumStrRegistrationFr: "/guides/enregistrement-location-courte-duree-belgique",
+  guideBrusselsAirbnbRegistration: "/guides/brussels-airbnb-registration",
+  guideBrusselsAirbnbRegistrationFr: "/guides/enregistrement-airbnb-bruxelles",
 };
 
 function localeOpenGraphLocale(locale: Locale): string {

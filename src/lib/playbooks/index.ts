@@ -5,6 +5,7 @@ import { PORTUGAL_PLAYBOOKS } from "./portugal";
 import { GREECE_PLAYBOOKS } from "./greece";
 import { CROATIA_PLAYBOOKS } from "./croatia";
 import { NETHERLANDS_PLAYBOOKS } from "./netherlands";
+import { BELGIUM_PLAYBOOKS } from "./belgium";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -23,6 +24,7 @@ const ALL_PLAYBOOKS: Playbook[] = [
   ...GREECE_PLAYBOOKS,
   ...CROATIA_PLAYBOOKS,
   ...NETHERLANDS_PLAYBOOKS,
+  ...BELGIUM_PLAYBOOKS,
 ];
 
 const CITY_ALIASES: Record<string, string> = {
@@ -96,6 +98,31 @@ const CITY_ALIASES: Record<string, string> = {
   "'s-gravenhage": "Den Haag",
   "s-gravenhage": "Den Haag",
   utrecht: "Utrecht",
+  brussels: "Brussels",
+  bruxelles: "Brussels",
+  brussel: "Brussels",
+  antwerp: "Antwerp",
+  antwerpen: "Antwerp",
+  anvers: "Antwerp",
+  ghent: "Ghent",
+  gent: "Ghent",
+  gand: "Ghent",
+  bruges: "Bruges",
+  brugge: "Bruges",
+  leuven: "Leuven",
+  louvain: "Leuven",
+  mechelen: "Mechelen",
+  malines: "Mechelen",
+  "liège": "Liège",
+  liege: "Liège",
+  luik: "Liège",
+  namur: "Namur",
+  namen: "Namur",
+  charleroi: "Charleroi",
+  mons: "Mons",
+  bergen: "Mons",
+  tournai: "Tournai",
+  doornik: "Tournai",
 };
 
 function normalizeCountry(country: string): string {
@@ -112,6 +139,9 @@ function normalizeCountry(country: string): string {
   }
   if (c === "hr" || c === "croatia" || c === "croatie" || c === "hrvatska") {
     return "Croatia";
+  }
+  if (c === "be" || c === "belgium" || c === "belgique" || c === "belgië" || c === "belgie") {
+    return "Belgium";
   }
   return country.trim();
 }
@@ -215,11 +245,13 @@ export function listPlaybookCoverage(): {
   portugalCities: string[];
   greeceCities: string[];
   croatiaCities: string[];
+  belgiumCities: string[];
 } {
   return {
     fullFranceCities: FRANCE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     countryStubs: [] as string[],
     netherlandsCities: NETHERLANDS_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
+    belgiumCities: BELGIUM_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     spainCities: SPAIN_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     italyCities: ITALY_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     portugalCities: PORTUGAL_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),

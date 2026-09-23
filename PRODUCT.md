@@ -125,6 +125,17 @@ Operational layer for Italian STR hosts under **Regulation (EU) 2024/1028** and 
 - **Primary UX:** collect → validate → Action-requise → playbook → export/checklist — **no live municipal APIs**.
 - **Playbooks:** Amsterdam (detailed), Rotterdam, Den Haag, Utrecht + NL generic fallback.
 
+### 6h. Belgium — tri-regional registration (shipped)
+
+- **Legal context (not legal advice):** Belgium has **no single national STR registration**. Three regional systems: **Brussels-Capital** — prior declaration dossier to Brussels Economy and Employment before renting (1–90 consecutive nights, including occasional / principal residence); registration number after complete conforming file; logo near entrance. **Flanders** — mandatory **aanmelding** at Toerisme Vlaanderen (Logiesdecreet), even for occasional Airbnb; online uitbatersportaal → immediate number by email. **Wallonia** — compulsory registration with Tourisme Wallonie before guests; fire safety (ASI/ACS), insurance, criminal record, planning. EU 2024/1028 applies from 20 May 2026.
+- **Ops routing:** `getBelgiumMode()` returns `registration`. `getGuestReportingJurisdiction()` returns `none` for BE — no SES/SIBA/Alloggiati/eVisitor paths (unlike Chekin/Gotocheck police check-in focus).
+- **Registration on Registration / Overview:** `beRegistrationNumber`, `beRegistrationStatus`, `beRegistrationDisplayedOnListings`, `beRegion`, `beOperatorCategory`, `beFireSafetyStatus`, `beInsuranceStatus`, `beUrbanPlanningStatus`, `beDossierSubmittedAt`; BE compliance card on Overview and Register tabs.
+- **Primary UX:** collect → Action-requise → regional playbook → dossier checklist/export + deep links — **no live government API / no fake BE API**.
+- **Next-action engine:** missing region → missing dossier docs → submit → display on listings → done.
+- **Playbooks:** Brussels (detailed), Antwerp, Ghent, Bruges, Liège, Namur + BE generic fallback with region selection.
+- **SEO guides:** `/guides/belgium-short-term-rental-registration`, `/guides/enregistrement-location-courte-duree-belgique`, `/guides/brussels-airbnb-registration`, `/guides/enregistrement-airbnb-bruxelles`.
+- **Differentiator:** competitors automate police guest check-in; Glint guides Belgium's tri-regional registration + document dossiers with honest manual-submit workflow.
+
 ### 7. Registration & compliance
 Per-property compliance tracking:
 - Registration number and issuing authority/municipality

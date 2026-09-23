@@ -27,6 +27,7 @@ import { NlDueQueue } from "@/components/nl-due-queue";
 import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
+import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -89,6 +90,7 @@ export default async function DashboardPage({ params }: Props) {
   let greeceAmaCount = 0;
   let croatiaEvisitorCount = 0;
   let netherlandsRegistrationCount = 0;
+  let belgiumRegistrationCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -114,6 +116,9 @@ export default async function DashboardPage({ params }: Props) {
     }
     if (needsNlRegistrationAttention(p.country, p.registration)) {
       netherlandsRegistrationCount++;
+    }
+    if (needsBelgiumRegistrationAttention(p.country, p.registration, p.city)) {
+      belgiumRegistrationCount++;
     }
     return { ...p, complianceStatus: status };
   });
@@ -217,6 +222,7 @@ export default async function DashboardPage({ params }: Props) {
           greeceAma: greeceAmaCount,
           croatiaEvisitor: croatiaEvisitorCount,
           netherlandsRegistration: netherlandsRegistrationCount,
+          belgiumRegistration: belgiumRegistrationCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,
         }}

@@ -50,7 +50,7 @@ export type EvidencePackGuestQueueSummary = {
 };
 
 export type EvidencePackHealthScore = {
-  score: number;
+  score: string;
   factors: Array<{ id: string; label: string; status: string }>;
 };
 

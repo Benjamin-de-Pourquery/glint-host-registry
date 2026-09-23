@@ -120,7 +120,7 @@ const LABELS: Record<EvidencePackLocale, EvidencePackLabels> = {
     playbookStatusSkipped: "Skipped",
     healthScore: "Health score",
     healthFactors: "Factors",
-    footer: "Glint Host Registry — operational evidence pack",
+    footer: "Glint Host Registry: operational evidence pack",
   },
   fr: {
     productTitle: "Pack preuve conformité",
@@ -181,7 +181,7 @@ const LABELS: Record<EvidencePackLocale, EvidencePackLabels> = {
     playbookStatusSkipped: "Ignoré",
     healthScore: "Score santé",
     healthFactors: "Facteurs",
-    footer: "Glint Host Registry — pack preuve opérationnel",
+    footer: "Glint Host Registry : pack preuve opérationnel",
   },
 };
 

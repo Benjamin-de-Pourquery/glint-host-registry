@@ -135,7 +135,7 @@ export async function loadEvidencePackData(
     property.id,
     property.country
   );
-  const healthScore = await tryLoadListingHealthScore(property.id, channels);
+  const healthScore = await tryLoadListingHealthScore(property.id, locale);
 
   const registration = property.registration;
   const nerMigration =

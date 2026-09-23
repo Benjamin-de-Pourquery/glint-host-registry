@@ -1,15 +1,40 @@
-import type { ListingChannelRecord } from "@/lib/listings/channels";
-import type { EvidencePackHealthScore } from "./types";
+import type { EvidencePackHealthScore, EvidencePackLocale } from "./types";
 
-type HealthScoreModule = {
-  computeListingHealthScore?: (input: {
-    propertyId: string;
-    channels: ListingChannelRecord[];
-  }) => {
-    score: number;
-    factors?: Array<{ id?: string; label?: string; status?: string }>;
-  } | null;
+type ListingHealthFactor = {
+  code: string;
+  severity: string;
+  messageKey: string;
 };
+
+type ListingHealthResultLike = {
+  score: string;
+  factors: ListingHealthFactor[];
+};
+
+type ListingHealthModule = {
+  getLatestListingHealth?: (
+    propertyId: string,
+    locale?: string
+  ) => Promise<ListingHealthResultLike | null>;
+  buildListingHealthInput?: (
+    propertyId: string,
+    locale?: string
+  ) => Promise<unknown | null>;
+  computeScore?: (input: unknown) => ListingHealthResultLike;
+};
+
+function mapListingHealthResult(
+  result: ListingHealthResultLike
+): EvidencePackHealthScore {
+  return {
+    score: result.score,
+    factors: result.factors.map((factor) => ({
+      id: factor.code,
+      label: factor.messageKey,
+      status: factor.severity,
+    })),
+  };
+}
 
 /**
  * Attempts to load listing health score from the Listing Health module when present.
@@ -17,32 +42,34 @@ type HealthScoreModule = {
  */
 export async function tryLoadListingHealthScore(
   propertyId: string,
-  channels: ListingChannelRecord[]
+  locale: EvidencePackLocale
 ): Promise<EvidencePackHealthScore | null> {
   try {
     const dynamicImport = new Function(
       "specifier",
       "return import(specifier)"
-    ) as (specifier: string) => Promise<HealthScoreModule>;
+    ) as (specifier: string) => Promise<ListingHealthModule>;
 
-    const mod = await dynamicImport("@/lib/listings/health-score");
-    if (typeof mod.computeListingHealthScore === "function") {
-      const result = mod.computeListingHealthScore({ propertyId, channels });
-      if (result && typeof result.score === "number") {
-        return {
-          score: result.score,
-          factors: Array.isArray(result.factors)
-            ? result.factors.map((f) => ({
-                id: f.id ?? "unknown",
-                label: f.label ?? f.id ?? "Factor",
-                status: f.status ?? "unknown",
-              }))
-            : [],
-        };
+    const mod = await dynamicImport("@/lib/listing-health");
+
+    if (typeof mod.getLatestListingHealth === "function") {
+      const snapshot = await mod.getLatestListingHealth(propertyId, locale);
+      if (snapshot) {
+        return mapListingHealthResult(snapshot);
+      }
+    }
+
+    if (
+      typeof mod.buildListingHealthInput === "function" &&
+      typeof mod.computeScore === "function"
+    ) {
+      const input = await mod.buildListingHealthInput(propertyId, locale);
+      if (input) {
+        return mapListingHealthResult(mod.computeScore(input));
       }
     }
   } catch {
-    // Listing Health module not available — omit section gracefully.
+    // Listing Health module not available: omit section gracefully.
   }
   return null;
 }

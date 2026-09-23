@@ -28,6 +28,7 @@ import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
+import { getListingHealthScoresForUser } from "@/lib/listing-health";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -76,6 +77,10 @@ export default async function DashboardPage({ params }: Props) {
   const nightCapAttentionCount = nightCapAttention.length;
   const touristTaxAttention = await getTouristTaxAttentionForUser(session.user.id);
   const touristTaxAttentionCount = touristTaxAttention.length;
+  const listingHealthScores = await getListingHealthScoresForUser(session.user.id, locale);
+  const listingHealthAtRiskCount = listingHealthScores.filter(
+    (s) => s.score === "ORANGE" || s.score === "RED"
+  ).length;
 
   const notifications = await prisma.notification.findMany({
     where: { userId: session.user.id },
@@ -225,6 +230,7 @@ export default async function DashboardPage({ params }: Props) {
           belgiumRegistration: belgiumRegistrationCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,
+          listingHealthAtRisk: listingHealthAtRiskCount,
         }}
       />
 

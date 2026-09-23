@@ -7,6 +7,7 @@ import {
   ChevronRight,
   Clock,
   FileWarning,
+  HeartPulse,
   Moon,
   Receipt,
   Users,
@@ -31,6 +32,7 @@ type PortfolioStats = {
   belgiumRegistration: number;
   nightCapAttention: number;
   touristTaxAttention: number;
+  listingHealthAtRisk: number;
 };
 
 type Props = {
@@ -52,7 +54,8 @@ export async function PortfolioOverview({ locale, stats }: Props) {
     stats.netherlandsRegistration > 0 ||
     stats.belgiumRegistration > 0 ||
     stats.nightCapAttention > 0 ||
-    stats.touristTaxAttention > 0;
+    stats.touristTaxAttention > 0 ||
+    stats.listingHealthAtRisk > 0;
 
   return (
     <section className="space-y-3">
@@ -216,6 +219,20 @@ export async function PortfolioOverview({ locale, stats }: Props) {
                 </p>
               </div>
               <ChevronRight className="h-4 w-4 shrink-0 text-red-600" />
+            </Link>
+          )}
+          {stats.listingHealthAtRisk > 0 && (
+            <Link
+              href={propertiesListHref(locale, { status: "listing_health" })}
+              className="flex items-center justify-between gap-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2.5 text-rose-900 transition-colors hover:bg-rose-100"
+            >
+              <div className="flex min-w-0 items-center gap-2">
+                <HeartPulse className="h-4 w-4 shrink-0 text-rose-600" />
+                <p className="text-sm font-medium leading-snug">
+                  {t("attention.listingHealthAtRisk", { count: stats.listingHealthAtRisk })}
+                </p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-rose-600" />
             </Link>
           )}
         </div>

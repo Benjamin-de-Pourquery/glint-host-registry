@@ -622,6 +622,7 @@
       "guestsThisMonth": "Voyageurs ce mois",
       "fichesNeeded": "Fiches manquantes",
       "listingCompliance": "Annonces NER",
+      "listingHealthAtRisk": "{count, plural, one {# logement à risque de dépublication} other {# logements à risque de dépublication}}",
       "greeceAma": "AMA Grèce",
       "croatiaEvisitor": "eVisitor Croatie",
       "netherlandsRegistration": "Enregistrement NL",
@@ -719,6 +720,7 @@
       "airbnb": "URL annonce Airbnb",
       "booking": "URL annonce Booking.com",
       "vrbo": "URL annonce Vrbo",
+      "direct": "Site de réservation directe",
       "other": "Autre plateforme",
       "notes": "Notes",
       "residencyStatus": "Statut de résidence",
@@ -915,6 +917,51 @@
       "description": "Vous avez parcouru toutes les étapes guidées. Maintenez vos informations d'enregistrement à jour dans l'onglet Registre."
     }
   },
+  "listingHealth": {
+    "title": "Score risque de dépublication",
+    "subtitle": "Signaux de risque opérationnel pour garder vos annonces en ligne sur tous les canaux.",
+    "disclaimer": "Aide opérationnelle à la conformité uniquement, pas un conseil juridique. Le score repose sur vos données saisies et peut ne pas couvrir toutes les règles locales ou politiques plateformes.",
+    "recompute": "Actualiser le score",
+    "fix": "Corriger",
+    "allClear": "Aucun signal de risque actif pour cette annonce.",
+    "score": {
+      "GREEN": "Sain",
+      "ORANGE": "À risque",
+      "RED": "Risque élevé"
+    },
+    "empty": {
+      "title": "Activer le score annonce",
+      "description": "Ajoutez votre numéro d'enregistrement et au moins une URL d'annonce pour suivre le risque de dépublication.",
+      "addRegistration": "Ajouter le numéro",
+      "addListingUrl": "Ajouter une URL d'annonce"
+    },
+    "truthCard": {
+      "title": "Fiche source de vérité",
+      "address": "Adresse",
+      "registration": "Numéro d'enregistrement principal",
+      "expiry": "Validité / renouvellement",
+      "residency": "Type d'occupation",
+      "type": "Type de bien",
+      "notSet": "Non renseigné"
+    },
+    "factors": {
+      "blocking": "Facteurs bloquants",
+      "warnings": "Avertissements",
+      "setupIncomplete": "Ajoutez votre numéro d'enregistrement et au moins une URL d'annonce pour activer le score.",
+      "missingRegistration": "Numéro d'enregistrement manquant alors que le playbook local l'exige.",
+      "expiryPassed": "Enregistrement ou permis expiré depuis {daysOverdue, plural, one {# jour} other {# jours}}.",
+      "expiryWithin7": "Enregistrement ou permis expire dans {daysLeft} jours.",
+      "expiryWithin14": "Enregistrement ou permis expire dans {daysLeft} jours.",
+      "expiryWithin30": "Enregistrement ou permis expire dans {daysLeft} jours.",
+      "noListingUrls": "Aucune URL d'annonce enregistrée pour ce logement.",
+      "channelNumberMismatch": "Numéros d'enregistrement différents entre canaux ({channelCount} variantes).",
+      "channelNumberMismatchPrimary": "Un canal affiche un numéro différent de votre enregistrement principal.",
+      "guestDueCritical": "{count, plural, one {# déclaration voyageur en retard critique} other {# déclarations voyageurs en retard critique}}.",
+      "guestDueWarning": "{count, plural, one {# séjour à venir peut nécessiter une déclaration voyageur} other {# séjours à venir peuvent nécessiter des déclarations voyageurs}}.",
+      "nightCapExceeded": "Plafond de nuitées dépassé ({percentUsed} % utilisé).",
+      "nightCapWarning": "Plafond de nuitées à {percentUsed} % ou plus de la limite annuelle."
+    }
+  },
   "compliance": {
     "title": "Conformité",
     "registration": {
@@ -954,6 +1001,7 @@
       "not_started": "Non commencé",
       "national_transition": "Transition nationale",
       "listing_compliance": "Annonces NER",
+      "listing_health": "Score risque annonce",
       "greece_ama": "AMA Grèce",
       "croatia_evisitor": "eVisitor Croatie",
       "netherlands_registration": "Enregistrement NL",

@@ -20,6 +20,8 @@ import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
+import { ListingHealthBadge } from "@/components/listing-health-badge";
+import type { ListingHealthScore } from "@/lib/listing-health/types";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -76,6 +78,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "ready",
   "not_started",
   "listing_compliance",
+  "listing_health",
   "greece_ama",
   "croatia_evisitor",
   "netherlands_registration",
@@ -95,6 +98,7 @@ type Props = {
   limit: number;
   nightCapAttentionIds?: string[];
   touristTaxAttentionIds?: string[];
+  listingHealthByPropertyId?: Record<string, ListingHealthScore>;
 };
 
 const VIEW_STORAGE_KEY = "glint-properties-view";
@@ -137,6 +141,7 @@ export function PropertiesView({
   limit,
   nightCapAttentionIds = [],
   touristTaxAttentionIds = [],
+  listingHealthByPropertyId = {},
 }: Props) {
   const nightCapSet = new Set(nightCapAttentionIds);
   const touristTaxSet = new Set(touristTaxAttentionIds);
@@ -162,6 +167,10 @@ export function PropertiesView({
           }
           if (statusFilter === "listing_compliance") {
             return propertyHasListingComplianceIssue(property.listingChannels ?? []);
+          }
+          if (statusFilter === "listing_health") {
+            const score = listingHealthByPropertyId[property.id];
+            return score === "ORANGE" || score === "RED";
           }
           if (statusFilter === "greece_ama") {
             return needsGreeceAmaAttention(property.country, property.registration);
@@ -380,6 +389,11 @@ export function PropertiesView({
                   <p className="truncate text-xs text-slate-500">{property.city}</p>
                 </div>
                 <div className="flex shrink-0 flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-2">
+                  {listingHealthByPropertyId[property.id] &&
+                    (listingHealthByPropertyId[property.id] === "ORANGE" ||
+                      listingHealthByPropertyId[property.id] === "RED") && (
+                      <ListingHealthBadge score={listingHealthByPropertyId[property.id]} />
+                    )}
                   <ComplianceBadge status={status} />
                   <span className="hidden text-xs text-slate-500 sm:inline">
                     {t(`list.nextAction.${nextActionKey}`)}
@@ -407,7 +421,14 @@ export function PropertiesView({
                         {property.city}, {property.country}
                       </p>
                     </div>
-                    <ComplianceBadge status={status} />
+                    <div className="flex flex-col items-end gap-1">
+                      {listingHealthByPropertyId[property.id] &&
+                        (listingHealthByPropertyId[property.id] === "ORANGE" ||
+                          listingHealthByPropertyId[property.id] === "RED") && (
+                          <ListingHealthBadge score={listingHealthByPropertyId[property.id]} />
+                        )}
+                      <ComplianceBadge status={status} />
+                    </div>
                   </div>
                   {tab === "archived" && (
                     <p className="mt-2 text-xs font-medium uppercase tracking-wide text-slate-400">

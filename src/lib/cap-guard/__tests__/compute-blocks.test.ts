@@ -35,7 +35,7 @@ const basePolicy = (
   ...overrides,
 });
 
-describe("cap guard — computeGuardBlocks", () => {
+describe("cap guard: computeGuardBlocks", () => {
   it("returns no blocks when disabled", () => {
     const blocks = computeGuardBlocks(
       [],
@@ -151,7 +151,7 @@ describe("cap guard — computeGuardBlocks", () => {
   });
 });
 
-describe("cap guard — forecast and helpers", () => {
+describe("cap guard: forecast and helpers", () => {
   it("counts future booked nights from today", () => {
     const count = countFutureBookedNights(
       [

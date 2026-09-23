@@ -433,6 +433,18 @@
         "title": "Listing NER compliance",
         "description": "Per-channel tracking (Airbnb, Booking, Vrbo): displayed number status, platform blocks, and appeal playbook with official sources."
       },
+      "listingHealth": {
+        "title": "Listing Health",
+        "description": "Listing health score and delisting-risk signals across your channels to prepare for platform registration checks."
+      },
+      "frNerMigration": {
+        "title": "FR NER Migration Cockpit",
+        "description": "Track platform NER blocks and build your migration dossier toward the national API Meublés portal. Glint does not file on your behalf."
+      },
+      "evidencePack": {
+        "title": "Compliance Evidence Pack",
+        "description": "Export a PDF and manifest of compliance evidence per property for your records and audits."
+      },
       "miniUi": {
         "complianceHeader": "Compliance · Madrid",
         "step1": "Online declaration",
@@ -456,7 +468,10 @@
           "Country and city-guided compliance",
           "Guest register",
           "Expiry alerts",
-          "PDF export & FR + EN interface"
+          "Listing Health score across your listings",
+          "FR NER Migration Cockpit (France)",
+          "Compliance Evidence Pack (PDF export)",
+          "FR + EN interface"
         ]
       },
       "pro": {
@@ -467,7 +482,9 @@
         "features": [
           "Up to 50 active properties",
           "Everything in Starter",
-          "Guest register",
+          "Listing Health score across your listings",
+          "FR NER Migration Cockpit (France)",
+          "Compliance Evidence Pack (PDF export)",
           "Bulk export & archiving",
           "Priority support"
         ],
@@ -540,7 +557,7 @@
         },
         "16": {
           "q": "What are the plans and prices?",
-          "a": "Starter is €19/month for up to 3 active properties. Pro is €49/month for up to 50 active properties. Every plan includes a 14-day free trial and you can cancel anytime. Both include city-guided compliance, guest register, expiry alerts, and the FR + EN interface. Pro adds bulk export, archiving, and priority support."
+          "a": "Starter is €19/month for up to 3 active properties. Pro is €49/month for up to 50 active properties. Every plan includes a 14-day free trial and you can cancel anytime. Both include guided playbooks, guest register, expiry alerts, FR + EN interface, Listing Health score, the France NER migration cockpit (where applicable), and Compliance Evidence Pack PDF export. Pro adds bulk export, archiving, and priority support."
         },
         "17": {
           "q": "Can I archive a property without losing data?",

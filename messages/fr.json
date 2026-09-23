@@ -433,6 +433,18 @@
         "title": "Conformité annonces (NER)",
         "description": "Suivi par canal (Airbnb, Booking, Vrbo) : statut du numéro affiché, blocages plateforme et playbook de recours avec sources officielles."
       },
+      "listingHealth": {
+        "title": "Listing Health",
+        "description": "Score de santé et signaux de risque sur vos annonces pour anticiper les contrôles d'enregistrement des plateformes."
+      },
+      "frNerMigration": {
+        "title": "Cockpit migration NER France",
+        "description": "Suivez les blocages NER par plateforme et préparez votre dossier vers le portail national API Meublés. Glint ne dépose pas à votre place."
+      },
+      "evidencePack": {
+        "title": "Pack de preuves de conformité",
+        "description": "Exportez un PDF et un manifeste des preuves de conformité par bien pour vos dossiers et contrôles."
+      },
       "miniUi": {
         "complianceHeader": "Démarches · Madrid",
         "step1": "Déclaration en ligne",
@@ -456,7 +468,10 @@
           "Démarches guidées par pays et ville",
           "Registre des voyageurs",
           "Alertes d'expiration",
-          "Export PDF & interface FR + EN"
+          "Score Listing Health sur vos annonces",
+          "Cockpit migration NER France (API Meublés)",
+          "Pack de preuves de conformité (export PDF)",
+          "Interface FR + EN"
         ]
       },
       "pro": {
@@ -467,7 +482,9 @@
         "features": [
           "Jusqu'à 50 biens actifs",
           "Tout le Starter",
-          "Registre des voyageurs",
+          "Score Listing Health sur vos annonces",
+          "Cockpit migration NER France (API Meublés)",
+          "Pack de preuves de conformité (export PDF)",
           "Export groupé & archivage",
           "Support prioritaire"
         ],
@@ -540,7 +557,7 @@
         },
         "16": {
           "q": "Quels sont les plans et tarifs ?",
-          "a": "Starter : 19 €/mois jusqu'à 3 biens actifs. Pro : 49 €/mois jusqu'à 50 biens actifs. Chaque plan inclut un essai gratuit de 14 jours, résiliable à tout moment. Les deux incluent démarches guidées, registre voyageurs, alertes d'expiration et interface FR + EN. Pro ajoute export groupé, archivage et support prioritaire."
+          "a": "Starter : 19 €/mois jusqu'à 3 biens actifs. Pro : 49 €/mois jusqu'à 50 biens actifs. Chaque plan inclut un essai gratuit de 14 jours, résiliable à tout moment. Les deux incluent démarches guidées, registre voyageurs, alertes d'expiration, interface FR + EN, score Listing Health, cockpit migration NER France (le cas échéant) et export PDF du pack de preuves de conformité. Pro ajoute export groupé, archivage et support prioritaire."
         },
         "17": {
           "q": "Puis-je archiver un bien sans perdre mes données ?",

@@ -29,6 +29,8 @@ import { BeComplianceCard } from "@/components/be-compliance-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
+import { ListingHealthCard } from "@/components/listing-health-card";
+import type { ListingHealthSnapshotRecord } from "@/lib/listing-health/types";
 import { cn } from "@/lib/utils";
 
 const TAB_IDS = ["overview", "compliance", "register", "listings", "notes"] as const;
@@ -102,17 +104,35 @@ type PropertyData = {
   listingChannels: ListingChannelRecord[];
 };
 
+type ListingHealthTruthCard = {
+  address: string;
+  city: string;
+  country: string;
+  primaryRegistrationNumber: string | null;
+  expiryDate: string | null;
+  residencyStatus: string | null;
+  propertyType: string;
+};
+
 type Props = {
   property: PropertyData;
   locale: string;
   missingFichesCount?: number;
+  listingHealthSnapshot?: ListingHealthSnapshotRecord | null;
+  listingHealthTruthCard?: ListingHealthTruthCard;
 };
 
 function isValidTab(tab: string | null): tab is PropertyDetailTab {
   return TAB_IDS.includes(tab as PropertyDetailTab);
 }
 
-export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }: Props) {
+export function PropertyDetailTabs({
+  property,
+  locale,
+  missingFichesCount = 0,
+  listingHealthSnapshot = null,
+  listingHealthTruthCard,
+}: Props) {
   const t = useTranslations("properties.detail");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -203,6 +223,13 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             propertyId={property.id}
             locale={locale}
             onGoToCompliance={() => setTab("compliance")}
+          />
+
+          <ListingHealthCard
+            propertyId={property.id}
+            locale={locale}
+            initialSnapshot={listingHealthSnapshot}
+            truthCard={listingHealthTruthCard}
           />
 
           <NightCapCard

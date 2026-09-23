@@ -1,7 +1,7 @@
 import type { ListingChannel } from "@/generated/prisma/client";
 import { isValidListingUrl, normalizeListingUrl } from "./url-validation";
 
-export const LISTING_CHANNELS = ["AIRBNB", "BOOKING", "VRBO", "OTHER"] as const;
+export const LISTING_CHANNELS = ["AIRBNB", "BOOKING", "VRBO", "DIRECT", "OTHER"] as const;
 export type ListingChannelType = (typeof LISTING_CHANNELS)[number];
 
 export const DISPLAY_STATUSES = ["MISSING", "PRESENT", "UNKNOWN", "BLOCKED"] as const;

@@ -97,6 +97,7 @@ export async function FeatureBento() {
             { key: "nextAction" as const, icon: Zap },
             { key: "sesQueue" as const, icon: Clock },
             { key: "netherlandsOps" as const, icon: Clock },
+            { key: "belgiumOps" as const, icon: Clock },
             { key: "nightCap" as const, icon: Moon },
             { key: "touristTax" as const, icon: Receipt },
             { key: "portfolio" as const, icon: Building2 },

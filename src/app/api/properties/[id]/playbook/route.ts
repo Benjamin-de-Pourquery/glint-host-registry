@@ -17,6 +17,10 @@ import {
   hasNlRegistrationNumber,
 } from "@/lib/netherlands/registration-compliance";
 import {
+  hasBeRegistrationNumber,
+  isBeDossierComplete,
+} from "@/lib/belgium/registration-compliance";
+import {
   hasCroatiaCategorisationNumber,
   hasCroatiaEvisitorObjectId,
 } from "@/lib/croatia/categorisation-compliance";
@@ -140,6 +144,15 @@ export async function GET(
       property.registration?.nlHolidayPermitStatus === "active" ||
       Boolean(property.registration?.nlPermitNumber?.trim()),
     hasActiveStayNeedingNotification: stayNotifyDueForProperty,
+    beRegion: property.registration?.beRegion ?? null,
+    hasBeRegistrationNumber: hasBeRegistrationNumber(property.registration),
+    isBeDossierComplete: isBeDossierComplete(
+      property.registration,
+      property.registration?.beRegion as "brussels" | "flanders" | "wallonia" | null
+    ),
+    beDisplayedOnListings: Boolean(
+      property.registration?.beRegistrationDisplayedOnListings
+    ),
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,
   });

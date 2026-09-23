@@ -68,6 +68,13 @@ describe("getGuestReportingJurisdiction", () => {
     assert.notEqual(getGuestReportingJurisdiction("Netherlands", "Amsterdam"), "spain_ses");
     assert.notEqual(getGuestReportingJurisdiction("Netherlands", "Amsterdam"), "croatia_evisitor");
   });
+
+  it("does not route Belgium to SES, SIBA, Alloggiati, or eVisitor", () => {
+    assert.equal(getGuestReportingJurisdiction("Belgium", "Brussels"), "none");
+    assert.equal(getGuestReportingJurisdiction("be", "Antwerp"), "none");
+    assert.notEqual(getGuestReportingJurisdiction("Belgium", "Brussels"), "spain_ses");
+    assert.notEqual(getGuestReportingJurisdiction("Belgium", "Liège"), "italy_alloggiati");
+  });
 });
 
 describe("requiresExtendedGuestCheckIn", () => {

@@ -60,6 +60,22 @@
     "guideCroatiaEvisitor": {
       "title": "Croatie catégorisation & eVisitor — guide hôtes 2026",
       "description": "Agrément hébergement touristique, enregistrement eVisitor sous 24 h à l'arrivée et au départ — taxe de séjour et conformité plateformes."
+    },
+    "guideBelgiumStrRegistration": {
+      "title": "Enregistrement location courte durée Belgique — guide tri-régional 2026",
+      "description": "Déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie — pas de numéro national unique. Checklist honnête et affichage plateformes (UE 2024/1028)."
+    },
+    "guideBelgiumStrRegistrationFr": {
+      "title": "Enregistrement LCD Belgique — guide hôte tri-régional 2026",
+      "description": "Trois régions, trois systèmes : Bruxelles, Flandre et Wallonie."
+    },
+    "guideBrusselsAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Bruxelles — guide déclaration préalable",
+      "description": "Dossier de déclaration préalable, documents, numéro, logo à l'entrée et vérifications plateformes UE."
+    },
+    "guideBrusselsAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Bruxelles — déclaration préalable",
+      "description": "Région Bruxelles-Capitale : dossier, numéro et affichage sur les annonces."
     }
   },
   "guides": {
@@ -236,6 +252,48 @@
         }
       }
     },
+    "belgiumStrRegistration": {
+      "title": "Enregistrement location courte durée en Belgique (2026)",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "La Belgique n'a pas de numéro national unique pour les locations de courte durée. Les hôtes doivent respecter les règles de Bruxelles-Capitale, de Flandre ou de Wallonie avant de publier sur Airbnb ou Booking. Le règlement (UE) 2024/1028 impose la vérification des numéros depuis le 20 mai 2026.",
+      "sections": {
+        "regions": {
+          "title": "Trois régions, trois systèmes",
+          "body": "Bruxelles-Capitale : dossier de déclaration préalable auprès de Bruxelles Économie et Emploi avant toute location (1 à 90 nuits consécutives). Flandre : aanmelding obligatoire Toerisme Vlaanderen (Logiesdecreet), y compris Airbnb occasionnel. Wallonie : enregistrement Tourisme Wallonie avant l'arrivée des voyageurs, avec sécurité incendie et urbanisme."
+        },
+        "eu": {
+          "title": "UE 2024/1028 et plateformes",
+          "body": "Les plateformes vérifient les numéros d'enregistrement et peuvent déclarer l'activité via SDEP. Affichez votre numéro régional sur chaque annonce OTA une fois délivré."
+        },
+        "glint": {
+          "title": "Comment Glint aide (produit honnête)",
+          "body": "Glint ne dépose pas les formulaires officiels et n'a pas de fausse API belge. Nous orientons vers le bon playbook régional, suivons le dossier (incendie, assurance, urbanisme), le statut d'enregistrement et l'affichage sur les annonces — avec liens officiels et prochaine action prioritaire."
+        }
+      }
+    },
+    "brusselsAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Bruxelles — déclaration préalable",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "À Bruxelles-Capitale, vous devez déposer un dossier de déclaration préalable avant de louer votre bien en hébergement touristique — y compris location occasionnelle et résidence principale, pour des séjours de 1 à 90 nuits consécutives.",
+      "sections": {
+        "dossier": {
+          "title": "Dossier de déclaration préalable",
+          "body": "Rassemblez pièce d'identité, extrait de casier judiciaire, assurance, certificat incendie (ASI/ACS), conformité urbanistique, plans et photos de l'entrée. Les formulaires diffèrent pour hôtes privés et professionnels sur economy-employment.brussels. Le numéro n'est délivré qu'après dossier complet conforme."
+        },
+        "logo": {
+          "title": "Logo et affichage plateformes",
+          "body": "Une fois approuvé, affichez le logo officiel près de l'entrée et ajoutez votre numéro sur Airbnb, Booking.com et toutes les OTA. Les plateformes vérifient les numéros au titre du UE 2024/1028."
+        },
+        "tax": {
+          "title": "Taxe de séjour bruxelloise",
+          "body": "Inscrivez-vous auprès de la Fiscalité bruxelloise pour la taxe de séjour. Glint fournit le lien officiel — pas de moteur de déclaration automatique."
+        },
+        "glint": {
+          "title": "Comment Glint aide",
+          "body": "Suivez l'avancement du dossier, la catégorie d'exploitant, la date de dépôt et le numéro d'enregistrement. Glint prépare la checklist — vous déposez sur le portail bruxellois officiel."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatie — catégorisation hébergement et eVisitor",
       "updated": "Mis à jour : septembre 2026",
@@ -306,7 +364,7 @@
     },
     "trust": {
       "regulation": "Règlement (UE) 2024/1028",
-      "cities": "FR + ES + IT + PT + GR + HR",
+      "cities": "FR + ES + IT + PT + GR + HR + NL + BE",
       "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor",
       "bilingual": "Interface FR + EN"
     },
@@ -341,11 +399,15 @@
       },
       "sesQueue": {
         "title": "Files déclaration voyageurs UE",
-        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) ; notifications de séjour Amsterdam (Pays-Bas) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
+        "description": "SES, Mossos et Ertzaintza (Espagne) ; Alloggiati Web (Italie) ; SIBA (Portugal) ; AADE (Grèce) ; eVisitor (Croatie) ; notifications de séjour Amsterdam (Pays-Bas) ; enregistrement Bruxelles / Flandre / Wallonie (Belgique) — kits d'export et files d'échéance là où les outils mono-pays laissent des lacunes."
       },
       "netherlandsOps": {
         "title": "Conformité Pays-Bas & Amsterdam",
         "description": "Numéro d'enregistrement national, suivi vergunning, file de notification municipale par séjour, et plafond 30/15 nuitées pour les wijken d'Amsterdam."
+      },
+      "belgiumOps": {
+        "title": "Conformité Belgique tri-régionale",
+        "description": "Dossier déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie — routage régional, checklist dossier, suivi du numéro et affichage UE."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -479,6 +541,8 @@
       "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
       "guideGreeceAmaAade": "Grèce AMA & AADE",
       "guideCroatiaEvisitor": "Croatie eVisitor",
+      "guideBelgiumStrRegistration": "Enregistrement LCD Belgique",
+      "guideBrusselsAirbnbRegistration": "Airbnb Bruxelles",
       "account": "Compte",
       "legal": "Légal",
       "company": "Glint — micro-entreprise",
@@ -529,6 +593,7 @@
       "greeceAma": "AMA Grèce",
       "croatiaEvisitor": "eVisitor Croatie",
       "netherlandsRegistration": "Enregistrement NL",
+      "belgiumRegistration": "Enregistrement BE",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -541,6 +606,7 @@
       "greeceAma": "{count, plural, one {# bien grec — AMA manquant ou non affiché} other {# biens grecs — AMA manquant ou non affiché}}",
       "croatiaEvisitor": "{count, plural, one {# bien croate — catégorisation ou eVisitor manquant} other {# biens croates — catégorisation ou eVisitor manquant}}",
       "netherlandsRegistration": "{count, plural, one {# bien néerlandais — enregistrement, vergunning ou notification manquante} other {# biens néerlandais — enregistrement, vergunning ou notification manquante}}",
+      "belgiumRegistration": "{count, plural, one {# bien belge — région, dossier ou enregistrement manquant} other {# biens belges — région, dossier ou enregistrement manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -708,7 +774,8 @@
         "rnal": "RNAL",
         "ama": "AMA (AADE)",
         "categorisation": "Catégorisation (HR)",
-        "nlRegistration": "Numéro d'enregistrement NL"
+        "nlRegistration": "Numéro d'enregistrement NL",
+        "beRegistration": "Numéro d'enregistrement belge"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -857,6 +924,8 @@
       "listing_compliance": "Annonces NER",
       "greece_ama": "AMA Grèce",
       "croatia_evisitor": "eVisitor Croatie",
+      "netherlands_registration": "Enregistrement NL",
+      "belgium_registration": "Enregistrement BE",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -1984,6 +2053,59 @@
         "awaiting_notification": "Prêt à notifier",
         "notified": "Notifié",
         "overdue": "Notification en retard"
+      }
+    }
+  },
+  "be": {
+    "compliance": {
+      "title": "Enregistrement régional Belgique",
+      "description": "La Belgique n'a pas de numéro national unique. Confirmez votre région (Bruxelles, Flandre ou Wallonie), complétez le dossier et suivez votre numéro pour l'affichage sur les plateformes UE.",
+      "regionSection": "Région",
+      "regionLabel": "Région belge",
+      "regionPlaceholder": "Sélectionner la région",
+      "regionUnknown": "Inconnue — sélectionner",
+      "regionHint": "Indice ville : {city}. Les règles diffèrent par région — confirmez avant le dépôt.",
+      "regions": {
+        "brussels": "Bruxelles-Capitale",
+        "flanders": "Flandre",
+        "wallonia": "Wallonie"
+      },
+      "operatorCategory": "Catégorie d'exploitant (Bruxelles)",
+      "operatorCategoryPlaceholder": "Privé ou professionnel",
+      "operatorCategoryUnset": "Non renseigné",
+      "operatorCategories": {
+        "private": "Hôte privé",
+        "professional": "Exploitant professionnel"
+      },
+      "dossierSection": "Checklist dossier",
+      "dossierProgress": "{completed}/{total} éléments",
+      "fireSafety": "Sécurité incendie (ASI/ACS)",
+      "insurance": "Assurance",
+      "urbanPlanning": "Urbanisme",
+      "dossierSubmittedAt": "Dossier déposé le",
+      "registrationSection": "Numéro d'enregistrement",
+      "registrationNumber": "Numéro d'enregistrement",
+      "registrationNumberPlaceholder": "Numéro d'enregistrement régional",
+      "registrationStatusLabel": "Statut d'enregistrement",
+      "displayedOnListings": "Numéro affiché sur toutes les annonces plateformes",
+      "regionalPortal": "Ouvrir le portail régional officiel",
+      "disclaimer": "Glint ne dépose pas les formulaires officiels. Vous déposez sur le portail régional et restez responsable légalement.",
+      "save": "Enregistrer",
+      "saving": "Enregistrement…",
+      "saved": "Conformité Belgique enregistrée",
+      "saveError": "Échec de l'enregistrement",
+      "registrationStatus": {
+        "not_started": "Non démarré",
+        "dossier_in_progress": "Dossier en cours",
+        "active": "Actif",
+        "expired": "Expiré",
+        "unknown": "Inconnu"
+      },
+      "dossierStatus": {
+        "not_started": "Non démarré",
+        "pending": "En attente",
+        "valid": "Valide",
+        "expired": "Expiré"
       }
     }
   },

@@ -60,6 +60,22 @@
     "guideCroatiaEvisitor": {
       "title": "Croatia categorisation & eVisitor — host guide 2026",
       "description": "Tourist accommodation approval, eVisitor guest registration within 24h of arrival and departure — sojourn tax and platform compliance."
+    },
+    "guideBelgiumStrRegistration": {
+      "title": "Belgium short-term rental registration — tri-regional host guide 2026",
+      "description": "Brussels prior declaration, Flanders aanmelding and Wallonia registration — no single national number. Honest checklist and platform display under EU 2024/1028."
+    },
+    "guideBelgiumStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Belgique — guide hôte tri-régional 2026",
+      "description": "Déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie — pas de numéro national unique."
+    },
+    "guideBrusselsAirbnbRegistration": {
+      "title": "Brussels Airbnb registration — prior declaration dossier guide",
+      "description": "Brussels-Capital prior declaration, dossier documents, registration number, entrance logo and EU platform checks."
+    },
+    "guideBrusselsAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Bruxelles — guide déclaration préalable",
+      "description": "Déclaration préalable Région Bruxelles-Capitale, dossier, numéro, logo à l'entrée et vérifications plateformes UE."
     }
   },
   "guides": {
@@ -236,6 +252,48 @@
         }
       }
     },
+    "belgiumStrRegistration": {
+      "title": "Belgium short-term rental registration (2026)",
+      "updated": "Updated: September 2026",
+      "intro": "Belgium has no single national STR registration number. Hosts must comply with Brussels-Capital, Flanders or Wallonia rules before listing on Airbnb or Booking. Regulation (EU) 2024/1028 requires platforms to verify registration numbers from 20 May 2026.",
+      "sections": {
+        "regions": {
+          "title": "Three regions, three systems",
+          "body": "Brussels-Capital: prior declaration dossier to Brussels Economy and Employment before any rental (1–90 consecutive nights). Flanders: mandatory aanmelding at Toerisme Vlaanderen under the Logiesdecreet — even occasional Airbnb. Wallonia: compulsory registration with Tourisme Wallonie before guests arrive, including fire safety and planning compliance."
+        },
+        "eu": {
+          "title": "EU 2024/1028 and platform checks",
+          "body": "Platforms verify registration numbers and may report activity via SDEP where Member States require it. Display your regional number on every OTA listing once issued."
+        },
+        "glint": {
+          "title": "How Glint helps (honest product)",
+          "body": "Glint does not submit government forms and has no fake Belgium API. We route your property to the correct regional playbook, track dossier checklist items (fire safety, insurance, urban planning), registration status and listing display — with official deep links and next-action priority."
+        }
+      }
+    },
+    "brusselsAirbnbRegistration": {
+      "title": "Brussels Airbnb registration — prior declaration",
+      "updated": "Updated: September 2026",
+      "intro": "In Brussels-Capital, you must file a prior declaration dossier before renting your property for tourist accommodation — including occasional stays and principal residence, for stays of 1 to 90 consecutive nights.",
+      "sections": {
+        "dossier": {
+          "title": "Prior declaration dossier",
+          "body": "Gather ID, criminal record extract, insurance proof, fire safety certificate (ASI/ACS), urban planning compliance, floor plans and entrance photos. Private and professional operators use different forms on economy-employment.brussels. The registration number is issued only after a complete conforming file."
+        },
+        "logo": {
+          "title": "Logo and platform display",
+          "body": "Once approved, display the official logo near the property entrance and add your registration number to Airbnb, Booking.com and all OTAs. Platforms verify numbers under EU 2024/1028."
+        },
+        "tax": {
+          "title": "Brussels tourist tax",
+          "body": "Register with Brussels Fiscality for tourist tax on overnight stays. Glint links to official guidance — no automatic commune tax engine."
+        },
+        "glint": {
+          "title": "How Glint helps",
+          "body": "Track dossier progress, operator category, submission date and registration number in one place. Glint prepares your checklist and export — you file on the official Brussels portal."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatia — accommodation categorisation and eVisitor",
       "updated": "Updated: September 2026",
@@ -306,7 +364,7 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR + ES + IT + PT + GR + HR",
+      "cities": "FR + ES + IT + PT + GR + HR + NL + BE",
       "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor ops",
       "bilingual": "FR + EN interface"
     },
@@ -341,11 +399,15 @@
       },
       "sesQueue": {
         "title": "EU guest-reporting queues",
-        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal; AADE for Greece; eVisitor for Croatia; Amsterdam stay-notification ops for Netherlands — export kits and due queues where single-country tools leave gaps."
+        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal; AADE for Greece; eVisitor for Croatia; Amsterdam stay-notification ops for Netherlands; Brussels / Flanders / Wallonia registration ops for Belgium — export kits and due queues where single-country tools leave gaps."
       },
       "netherlandsOps": {
         "title": "Netherlands & Amsterdam compliance ops",
         "description": "National registration number, holiday-rental permit tracker, per-stay municipal notification queue, and 30/15 night-cap engine for Amsterdam wijken."
+      },
+      "belgiumOps": {
+        "title": "Belgium tri-regional registration ops",
+        "description": "Brussels prior-declaration dossier, Flanders aanmelding and Wallonia registration — region routing, dossier checklist, number tracking and EU listing display."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -479,6 +541,8 @@
       "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
       "guideGreeceAmaAade": "Greece AMA & AADE",
       "guideCroatiaEvisitor": "Croatia eVisitor",
+      "guideBelgiumStrRegistration": "Belgium STR registration",
+      "guideBrusselsAirbnbRegistration": "Brussels Airbnb registration",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint — micro-entreprise",
@@ -529,6 +593,7 @@
       "greeceAma": "Greece AMA",
       "croatiaEvisitor": "Croatia eVisitor",
       "netherlandsRegistration": "NL registration",
+      "belgiumRegistration": "Belgium registration",
       "nightCap": "Primary night cap",
       "touristTax": "Taxe de séjour"
     },
@@ -541,6 +606,7 @@
       "greeceAma": "{count, plural, one {# Greece property — AMA missing or not on listings} other {# Greece properties — AMA missing or not on listings}}",
       "croatiaEvisitor": "{count, plural, one {# Croatia property — categorisation or eVisitor setup missing} other {# Croatia properties — categorisation or eVisitor setup missing}}",
       "netherlandsRegistration": "{count, plural, one {# Netherlands property — registration, permit or stay notification missing} other {# Netherlands properties — registration, permit or stay notification missing}}",
+      "belgiumRegistration": "{count, plural, one {# Belgium property — region, dossier or registration missing} other {# Belgium properties — region, dossier or registration missing}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
       "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
     },
@@ -708,7 +774,8 @@
         "rnal": "RNAL",
         "ama": "AMA (AADE)",
         "categorisation": "Categorisation (HR)",
-        "nlRegistration": "NL registration number"
+        "nlRegistration": "NL registration number",
+        "beRegistration": "Belgium registration number"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -857,6 +924,8 @@
       "listing_compliance": "Listing NER",
       "greece_ama": "Greece AMA",
       "croatia_evisitor": "Croatia eVisitor",
+      "netherlands_registration": "NL registration",
+      "belgium_registration": "Belgium registration",
       "night_cap": "Primary night cap",
       "tourist_tax": "Taxe de séjour"
     }
@@ -1984,6 +2053,59 @@
         "awaiting_notification": "Ready to notify",
         "notified": "Notified",
         "overdue": "Notification overdue"
+      }
+    }
+  },
+  "be": {
+    "compliance": {
+      "title": "Belgium regional registration",
+      "description": "Belgium has no single national STR number. Confirm your region (Brussels, Flanders or Wallonia), complete the dossier checklist and track your registration number for EU platform display.",
+      "regionSection": "Region",
+      "regionLabel": "Belgium region",
+      "regionPlaceholder": "Select region",
+      "regionUnknown": "Unknown — select region",
+      "regionHint": "City hint: {city}. Rules differ by region — confirm before filing.",
+      "regions": {
+        "brussels": "Brussels-Capital",
+        "flanders": "Flanders",
+        "wallonia": "Wallonia"
+      },
+      "operatorCategory": "Operator category (Brussels)",
+      "operatorCategoryPlaceholder": "Private or professional",
+      "operatorCategoryUnset": "Not set",
+      "operatorCategories": {
+        "private": "Private host",
+        "professional": "Professional operator"
+      },
+      "dossierSection": "Dossier checklist",
+      "dossierProgress": "{completed}/{total} items",
+      "fireSafety": "Fire safety (ASI/ACS)",
+      "insurance": "Insurance",
+      "urbanPlanning": "Urban planning",
+      "dossierSubmittedAt": "Dossier submitted on",
+      "registrationSection": "Registration number",
+      "registrationNumber": "Registration number",
+      "registrationNumberPlaceholder": "Regional registration number",
+      "registrationStatusLabel": "Registration status",
+      "displayedOnListings": "Registration number displayed on all platform listings",
+      "regionalPortal": "Open regional official portal",
+      "disclaimer": "Glint does not submit government forms. You file on the official regional portal and remain legally responsible.",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Belgium compliance saved",
+      "saveError": "Could not save",
+      "registrationStatus": {
+        "not_started": "Not started",
+        "dossier_in_progress": "Dossier in progress",
+        "active": "Active",
+        "expired": "Expired",
+        "unknown": "Unknown"
+      },
+      "dossierStatus": {
+        "not_started": "Not started",
+        "pending": "Pending",
+        "valid": "Valid",
+        "expired": "Expired"
       }
     }
   },

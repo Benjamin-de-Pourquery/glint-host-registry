@@ -22,7 +22,9 @@ import { isPortugalCountry } from "@/lib/portugal/regions";
 import { isGreeceCountry } from "@/lib/greece/regions";
 import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { isNetherlandsCountry } from "@/lib/netherlands/regions";
+import { isBelgiumCountry } from "@/lib/belgium/regions";
 import { NlComplianceCard } from "@/components/nl-compliance-card";
+import { BeComplianceCard } from "@/components/be-compliance-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
@@ -71,6 +73,15 @@ type Registration = {
   nlPermitNumber?: string | null;
   nlNeighborhood?: string | null;
   nlNightCapSource?: string | null;
+  beRegistrationNumber?: string | null;
+  beRegistrationStatus?: string | null;
+  beRegistrationDisplayedOnListings?: boolean;
+  beRegion?: string | null;
+  beOperatorCategory?: string | null;
+  beFireSafetyStatus?: string | null;
+  beInsuranceStatus?: string | null;
+  beUrbanPlanningStatus?: string | null;
+  beDossierSubmittedAt?: string | Date | null;
 };
 
 type PropertyData = {
@@ -292,6 +303,16 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
                 </dd>
               </div>
             )}
+            {property.registration?.beRegistrationNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.beRegistration")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.beRegistrationNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -324,6 +345,14 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
 
           {isNetherlandsCountry(property.country) && (
             <NlComplianceCard
+              propertyId={property.id}
+              city={property.city}
+              registration={property.registration}
+            />
+          )}
+
+          {isBelgiumCountry(property.country) && (
+            <BeComplianceCard
               propertyId={property.id}
               city={property.city}
               registration={property.registration}
@@ -397,6 +426,7 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
           greeceRegistrationKind={property.registration?.greeceRegistrationKind}
           greeceAlternateLicenseNumber={property.registration?.greeceAlternateLicenseNumber}
           nlRegistrationNumber={property.registration?.nlRegistrationNumber}
+          beRegistrationNumber={property.registration?.beRegistrationNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

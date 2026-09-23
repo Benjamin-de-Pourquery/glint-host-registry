@@ -78,7 +78,7 @@
       "description": "Déclaration préalable Région Bruxelles-Capitale, dossier, numéro, logo à l'entrée et vérifications plateformes UE."
     },
     "guideFrNerMigration": {
-      "title": "France NER national migration 2026 — furnished rental guide",
+      "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
     }
   },
@@ -115,7 +115,7 @@
       }
     },
     "frNerMigration": {
-      "title": "France NER national migration 2026 — furnished rental guide",
+      "title": "France NER national migration 2026: furnished rental guide",
       "updated": "Updated: September 2026",
       "intro": "France is moving furnished tourist rentals to a national teleservice (API Meublés / Démarche Numérique), expected in Q4 2026. Existing municipal numbers will need renewal within a transition window; after that, old numbers may become invalid. Platforms will require a valid national NER.",
       "sections": {
@@ -1144,7 +1144,7 @@
     "saved": "Migration cockpit saved",
     "saveError": "Could not save",
     "copied": "Copied",
-    "ctaOfficial": "API Meublés — official guide (DGE)",
+    "ctaOfficial": "API Meublés: official guide (DGE)",
     "ctaPlaybook": "Open compliance step",
     "ctaGuide": "Read migration guide",
     "description": {

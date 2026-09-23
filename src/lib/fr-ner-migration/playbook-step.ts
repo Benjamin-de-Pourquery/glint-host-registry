@@ -23,8 +23,8 @@ export function buildNerMigrationPrepStep(cityKey: string): PlaybookStep {
       {
         url: API_MEUBLES_INFO_URL,
         label: {
-          en: "API Meublés — understand the national system (DGE)",
-          fr: "API Meublés — comprendre le dispositif national (DGE)",
+          en: "API Meublés: understand the national system (DGE)",
+          fr: "API Meublés: comprendre le dispositif national (DGE)",
         },
         role: "info",
         urlVerified: false,
@@ -32,8 +32,8 @@ export function buildNerMigrationPrepStep(cityKey: string): PlaybookStep {
       {
         url: SERVICE_PUBLIC_NATIONAL_URL,
         label: {
-          en: "Service-Public — national registration news",
-          fr: "Service-Public — actualité enregistrement national",
+          en: "Service-Public: national registration news",
+          fr: "Service-Public: actualité enregistrement national",
         },
         role: "info",
         urlVerified: true,
@@ -41,8 +41,8 @@ export function buildNerMigrationPrepStep(cityKey: string): PlaybookStep {
       {
         url: ENTREPRISES_API_MEUBLES_URL,
         label: {
-          en: "entreprises.gouv.fr — API Meublés central portal",
-          fr: "entreprises.gouv.fr — guichet unique API Meublés",
+          en: "entreprises.gouv.fr: API Meublés central portal",
+          fr: "entreprises.gouv.fr: guichet unique API Meublés",
         },
         role: "rules",
         urlVerified: true,

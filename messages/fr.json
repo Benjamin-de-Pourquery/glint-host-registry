@@ -78,7 +78,7 @@
       "description": "Région Bruxelles-Capitale : dossier, numéro et affichage sur les annonces."
     },
     "guideFrNerMigration": {
-      "title": "Migration NER national meublé de tourisme 2026 — guide",
+      "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
     }
   },
@@ -115,7 +115,7 @@
       }
     },
     "frNerMigration": {
-      "title": "Migration NER national meublé de tourisme 2026 — guide",
+      "title": "Migration NER national meublé de tourisme 2026: guide",
       "updated": "Mis à jour : septembre 2026",
       "intro": "La France bascule l'enregistrement des meublés de tourisme vers un téléservice national (API Meublés / Démarche Numérique), prévu au T4 2026. Les numéros communaux existants devront être renouvelés dans une fenêtre de transition ; ensuite, les anciens numéros peuvent devenir invalides. Les plateformes exigeront un NER national valide.",
       "sections": {
@@ -1144,7 +1144,7 @@
     "saved": "Cockpit migration enregistré",
     "saveError": "Enregistrement impossible",
     "copied": "Copié",
-    "ctaOfficial": "API Meublés — guide officiel (DGE)",
+    "ctaOfficial": "API Meublés: guide officiel (DGE)",
     "ctaPlaybook": "Ouvrir l'étape conformité",
     "ctaGuide": "Lire le guide migration",
     "description": {

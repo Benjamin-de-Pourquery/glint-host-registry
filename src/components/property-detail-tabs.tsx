@@ -11,6 +11,7 @@ import { PropertyOverviewForm } from "@/components/property-overview-form";
 import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
+import { FrNerMigrationCard } from "@/components/fr-ner-migration-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { AmaComplianceCard } from "@/components/ama-compliance-card";
@@ -246,6 +247,15 @@ export function PropertyDetailTabs({
             locale={locale}
           />
 
+          <FrNerMigrationCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
+            complianceTabHref={`/${locale}/app/properties/${property.id}?tab=compliance`}
+            showForm={false}
+            showWizard={false}
+          />
+
           <NationalTransitionCard
             propertyId={property.id}
             country={property.country}
@@ -402,6 +412,14 @@ export function PropertyDetailTabs({
 
       <TabsContent value="compliance" className="mt-6">
         <div className="mx-auto max-w-2xl space-y-6">
+          <FrNerMigrationCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
+            showForm
+            showWizard
+          />
+
           <NationalTransitionCard
             propertyId={property.id}
             country={property.country}

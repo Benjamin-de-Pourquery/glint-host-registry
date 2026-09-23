@@ -6,8 +6,8 @@
   },
   "seo": {
     "home": {
-      "title": "EU short-term rental compliance — registration numbers, SES Hospedajes & guest register",
-      "description": "Glint Host Registry helps hosts meet Regulation (EU) 2024/1028, platform registration numbers, SES Hospedajes, Mossos, Ertzaintza and French guest police fiches — bilingual FR/EN interface."
+      "title": "EU short-term rental compliance: registration numbers, SES Hospedajes & guest register",
+      "description": "Glint Host Registry helps hosts meet Regulation (EU) 2024/1028, platform registration numbers, SES Hospedajes, Mossos, Ertzaintza and French guest police fiches. Bilingual FR/EN interface."
     },
     "login": {
       "title": "Sign in",
@@ -335,23 +335,23 @@
   },
   "landing": {
     "hero": {
-      "title": "EU short-term rental compliance — France, Spain, Italy, Portugal, Greece, Croatia, and beyond",
-      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, Italy CIN + Alloggiati, Portugal RNAL + SIBA, Greece AMA + AADE, and Croatia categorisation + eVisitor guest reporting. Glint prepares; you submit on official portals.",
+      "title": "EU short-term rental compliance: France, Spain, Italy, Portugal, Greece, Croatia, and beyond",
+      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, Italy CIN + Alloggiati, Portugal RNAL + SIBA, Greece AMA + AADE, Croatia categorisation + eVisitor guest reporting, Netherlands stay notifications, and Belgium tri-regional registration. Glint prepares; you submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
       "badge": "Regulation (EU) 2024/1028 framework",
-      "platformBadge": "Sept 2026 — platform NER checks"
+      "platformBadge": "Sept 2026: platform NER checks"
     },
     "platformCompliance": {
       "title": "Listing NER operations",
-      "description": "From September 2026, Airbnb and Booking require valid registration numbers while France's national API Meublés portal is not expected until Q4 2026. Glint tracks your listings, platform blocks, and appeal evidence — without sending emails on your behalf."
+      "description": "From September 2026, Airbnb and Booking require valid registration numbers while France's national API Meublés portal is not expected until Q4 2026. Glint tracks your listings, platform blocks, and appeal evidence, without sending emails on your behalf."
     },
     "heroMock": {
       "property": "Malasaña Flat",
       "status": "SES due",
       "nextAction": "Next action",
-      "nextActionText": "Validate parte de viajeros — Madrid (dry-run)",
+      "nextActionText": "Validate parte de viajeros, Madrid (dry-run)",
       "tabs": {
         "overview": "Overview",
         "compliance": "Compliance",
@@ -370,36 +370,36 @@
     },
     "problem": {
       "title": "Compliance is more than a registration number",
-      "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per city — often across multiple properties.",
+      "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per country and city, often across multiple properties.",
       "points": {
-        "1": "Each city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "In Spain, guest reports are due within 24h — SES, Mossos, or Ertzaintza. In Italy, Alloggiati schedine are separate from CIN. In Portugal, SIBA boletim within 3 working days. In Greece, AADE stay declarations by the 20th after departure. In Croatia, eVisitor check-in/out within 24h of arrival and departure",
+        "1": "Each country and city has its own registration tunnels, change-of-use rules, and official forms",
+        "2": "In Spain, guest reports are due within 24h (SES, Mossos, or Ertzaintza). In Italy, Alloggiati schedine are separate from CIN. In Portugal, SIBA boletim within 3 working days. In Greece, AADE stay declarations by the 20th after departure. In Croatia, eVisitor check-in/out within 24h of arrival and departure",
         "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/RNAL/AMA/NER under EU 2024/1028 from May 2026"
       }
     },
     "solution": {
       "title": "One compliance cockpit for your portfolio",
-      "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking — with a clear next action per property.",
+      "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking, with a clear next action per property.",
       "points": {
-        "1": "City playbooks for France, Spain, Italy, Portugal, and Greece — Athens, Thessaloniki, Crete AMA + AADE ops",
-        "2": "Guest register: Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), French fiche; due queues with deadlines",
-        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run/live when you enable SES_LIVE"
+        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, and Belgium",
+        "2": "Guest register: French fiche, Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), eVisitor (HR); due queues with deadlines",
+        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run validation by default, optional live MIR submission when you enable it"
       }
     },
     "features": {
       "title": "Everything you need to stay compliant",
-      "subtitle": "Local guidance, operational guest register, and portfolio tracking — in a clean bilingual interface.",
+      "subtitle": "Local guidance, operational guest register, and portfolio tracking, in a clean bilingual interface.",
       "compliance": {
-        "title": "City-guided compliance",
-        "description": "Step-by-step tunnels for Paris, Lyon, Marseille, Bordeaux, and Nice — with official form links, regulations, and residency branching."
+        "title": "Country and city-guided compliance",
+        "description": "Step-by-step playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, and Belgium, with official form links, regulations, and residency branching."
       },
       "guestRegister": {
-        "title": "Guest register (FR + ES + IT + PT)",
-        "description": "Public check-in link or QR with Annex I fields (Spain), Alloggiati schedina (Italy), SIBA boletim (Portugal), AADE stay data (Greece), French fiche de police, digital signature, and CSV export."
+        "title": "Guest register (FR + ES + IT + PT + GR + HR)",
+        "description": "Public check-in link or QR with French fiche de police, Annex I fields (Spain), Alloggiati schedina (Italy), SIBA boletim (Portugal), AADE stay data (Greece), eVisitor fields (Croatia), digital signature, and CSV export."
       },
       "sesQueue": {
         "title": "EU guest-reporting queues",
-        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal; AADE for Greece; eVisitor for Croatia; Amsterdam stay-notification ops for Netherlands; Brussels / Flanders / Wallonia registration ops for Belgium — export kits and due queues where single-country tools leave gaps."
+        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal; AADE for Greece; eVisitor for Croatia; Amsterdam stay-notification ops for Netherlands; Brussels / Flanders / Wallonia registration ops for Belgium. Export kits and due queues where single-country tools leave gaps."
       },
       "netherlandsOps": {
         "title": "Netherlands & Amsterdam compliance ops",
@@ -407,15 +407,15 @@
       },
       "belgiumOps": {
         "title": "Belgium tri-regional registration ops",
-        "description": "Brussels prior-declaration dossier, Flanders aanmelding and Wallonia registration — region routing, dossier checklist, number tracking and EU listing display."
+        "description": "Brussels prior-declaration dossier, Flanders aanmelding and Wallonia registration: region routing, dossier checklist, number tracking and EU listing display."
       },
       "tabs": {
         "title": "Structured property workspace",
-        "description": "Five tabs per property: Overview, Compliance, Register, Listings, and Notes — all in one place."
+        "description": "Five tabs per property: Overview, Compliance, Register, Listings, and Notes, all in one place."
       },
       "nextAction": {
         "title": "Next-action engine",
-        "description": "Each property surfaces the priority step to tackle — no more spreadsheets or scattered folders."
+        "description": "Each property surfaces the priority step to tackle, with no more spreadsheets or scattered folders."
       },
       "portfolio": {
         "title": "Portfolio & archive",
@@ -423,18 +423,18 @@
       },
       "nightCap": {
         "title": "Primary residence night cap",
-        "description": "Calendar-year counter from iCal feeds or manual stays — alerts at 70%, 90%, and breach (120 or 90 nights depending on commune)."
+        "description": "Calendar-year counter from iCal feeds or manual stays, with alerts at 70%, 90%, and breach (120 or 90 nights depending on commune)."
       },
       "touristTax": {
         "title": "France taxe de séjour ops",
-        "description": "Period queue from your stay calendar — declare on the commune portal even when Airbnb/Booking collect as tiers collecteur (€0 months included)."
+        "description": "Period queue from your stay calendar. Declare on the commune portal even when Airbnb/Booking collect as tiers collecteur (€0 months included)."
       },
       "listings": {
         "title": "Listing NER compliance",
         "description": "Per-channel tracking (Airbnb, Booking, Vrbo): displayed number status, platform blocks, and appeal playbook with official sources."
       },
       "miniUi": {
-        "complianceHeader": "Compliance · Paris",
+        "complianceHeader": "Compliance · Madrid",
         "step1": "Online declaration",
         "step2": "Change of use",
         "step3": "Registration number",
@@ -453,7 +453,7 @@
         "description": "For hosts with up to 3 properties",
         "features": [
           "Up to 3 active properties",
-          "City-guided compliance",
+          "Country and city-guided compliance",
           "Guest register",
           "Expiry alerts",
           "PDF export & FR + EN interface"
@@ -577,7 +577,7 @@
       "guideBrusselsAirbnbRegistration": "Brussels Airbnb registration",
       "account": "Account",
       "legal": "Legal",
-      "company": "Glint — micro-entreprise",
+      "company": "Glint, micro-entreprise",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "mentions": "Legal Notice",

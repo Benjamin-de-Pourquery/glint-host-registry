@@ -84,6 +84,7 @@ model Property {
   playbookProgress PlaybookStepProgress[]
   listingPlatformProgress ListingPlatformProgress[]
   listingChannels ListingChannel[]
+  listingHealthSnapshots ListingHealthSnapshot[]
   notifications  Notification[]
   guestRegisterToken GuestRegisterToken?
   calendarFeeds CalendarFeed[]
@@ -359,6 +360,18 @@ model ListingChannel {
   @@unique([propertyId, channel])
   @@index([propertyId])
   @@index([displayStatus])
+}
+
+model ListingHealthSnapshot {
+  id             String   @id @default(cuid())
+  propertyId     String
+  score          String
+  factorsJson    String   @default("[]")
+  computedAt     DateTime @default(now())
+  property       Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId, computedAt])
+  @@index([propertyId])
 }
 
 model Registration {

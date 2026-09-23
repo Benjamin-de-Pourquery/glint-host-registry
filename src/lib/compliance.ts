@@ -11,6 +11,7 @@ export type PortfolioStatusFilter =
   | "all"
   | "national_transition"
   | "listing_compliance"
+  | "listing_health"
   | "greece_ama"
   | "croatia_evisitor"
   | "netherlands_registration"
@@ -26,6 +27,7 @@ export const PORTFOLIO_STATUS_FILTERS: PortfolioStatusFilter[] = [
   "not_started",
   "national_transition",
   "listing_compliance",
+  "listing_health",
   "greece_ama",
   "croatia_evisitor",
   "netherlands_registration",
@@ -43,6 +45,7 @@ export function parsePortfolioStatusFilter(
   if (
     param === "national_transition" ||
     param === "listing_compliance" ||
+    param === "listing_health" ||
     param === "greece_ama" ||
     param === "croatia_evisitor" ||
     param === "netherlands_registration" ||

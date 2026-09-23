@@ -622,6 +622,7 @@
       "guestsThisMonth": "Guests this month",
       "fichesNeeded": "Fiches needed",
       "listingCompliance": "Listing NER",
+      "listingHealthAtRisk": "{count, plural, one {# property at listing health risk} other {# properties at listing health risk}}",
       "greeceAma": "Greece AMA",
       "croatiaEvisitor": "Croatia eVisitor",
       "netherlandsRegistration": "NL registration",
@@ -719,6 +720,7 @@
       "airbnb": "Airbnb listing URL",
       "booking": "Booking.com listing URL",
       "vrbo": "Vrbo listing URL",
+      "direct": "Direct booking website",
       "other": "Other platform",
       "notes": "Notes",
       "residencyStatus": "Residency status",
@@ -915,6 +917,51 @@
       "description": "You've worked through all guided steps. Keep your registration details up to date in the Guest register tab."
     }
   },
+  "listingHealth": {
+    "title": "Listing Health",
+    "subtitle": "Operational risk signals for keeping your listings online across channels.",
+    "disclaimer": "Operational compliance aid only, not legal advice. Scores reflect data you entered and may not capture every local rule or platform policy.",
+    "recompute": "Refresh score",
+    "fix": "Fix",
+    "allClear": "No active risk signals for this listing.",
+    "score": {
+      "GREEN": "Healthy",
+      "ORANGE": "At risk",
+      "RED": "High risk"
+    },
+    "empty": {
+      "title": "Activate Listing Health",
+      "description": "Add your registration number and at least one listing URL to start tracking delisting risk.",
+      "addRegistration": "Add registration number",
+      "addListingUrl": "Add listing URL"
+    },
+    "truthCard": {
+      "title": "Listing truth card",
+      "address": "Address",
+      "registration": "Primary registration number",
+      "expiry": "Validity / renewal",
+      "residency": "Occupancy type",
+      "type": "Property type",
+      "notSet": "Not set"
+    },
+    "factors": {
+      "blocking": "Blocking factors",
+      "warnings": "Warnings",
+      "setupIncomplete": "Add your registration number and at least one listing URL to activate the score.",
+      "missingRegistration": "Registration number missing while your local playbook requires one.",
+      "expiryPassed": "Registration or permit expired {daysOverdue, plural, one {# day ago} other {# days ago}}.",
+      "expiryWithin7": "Registration or permit expires in {daysLeft} days.",
+      "expiryWithin14": "Registration or permit expires in {daysLeft} days.",
+      "expiryWithin30": "Registration or permit expires in {daysLeft} days.",
+      "noListingUrls": "No listing URLs saved for this unit.",
+      "channelNumberMismatch": "Different registration numbers across channels ({channelCount} variants).",
+      "channelNumberMismatchPrimary": "A channel shows a different number than your primary registration.",
+      "guestDueCritical": "{count, plural, one {# guest declaration is critically overdue} other {# guest declarations are critically overdue}}.",
+      "guestDueWarning": "{count, plural, one {# upcoming stay may need a guest declaration soon} other {# upcoming stays may need guest declarations soon}}.",
+      "nightCapExceeded": "Night cap exceeded ({percentUsed}% used).",
+      "nightCapWarning": "Night cap at {percentUsed}% or more of the annual limit."
+    }
+  },
   "compliance": {
     "title": "Compliance",
     "registration": {
@@ -954,6 +1001,7 @@
       "not_started": "Not started",
       "national_transition": "National transition",
       "listing_compliance": "Listing NER",
+      "listing_health": "Listing health",
       "greece_ama": "Greece AMA",
       "croatia_evisitor": "Croatia eVisitor",
       "netherlands_registration": "NL registration",

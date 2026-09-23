@@ -11,6 +11,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react";
 import { getMissingFicheCountForProperty } from "@/lib/guest-register/missing-fiches";
+import {
+  recomputeListingHealth,
+  resolveEffectiveExpiryDate,
+  resolvePrimaryRegistrationNumber,
+} from "@/lib/listing-health";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -39,6 +44,18 @@ export default async function PropertyDetailPage({ params }: Props) {
     id,
     session.user.id
   );
+
+  const listingHealthResult = await recomputeListingHealth(id, locale);
+  const listingHealthSnapshot = listingHealthResult
+    ? {
+        id: "latest",
+        propertyId: id,
+        score: listingHealthResult.score,
+        factors: listingHealthResult.factors,
+        isActivated: listingHealthResult.isActivated,
+        computedAt: listingHealthResult.computedAt.toISOString(),
+      }
+    : null;
 
   return (
     <div className="min-w-0 space-y-6">
@@ -78,6 +95,16 @@ export default async function PropertyDetailPage({ params }: Props) {
         <PropertyDetailTabs
           locale={locale}
           missingFichesCount={missingFichesCount}
+          listingHealthSnapshot={listingHealthSnapshot}
+          listingHealthTruthCard={{
+            address: property.address,
+            city: property.city,
+            country: property.country,
+            primaryRegistrationNumber: resolvePrimaryRegistrationNumber(property.registration),
+            expiryDate: resolveEffectiveExpiryDate(property.registration)?.toISOString() ?? null,
+            residencyStatus: property.residencyStatus,
+            propertyType: property.propertyType,
+          }}
           property={{
             id: property.id,
             name: property.name,

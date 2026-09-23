@@ -10,6 +10,7 @@ import {
   DISPLAY_STATUSES,
 } from "@/lib/listings/channels";
 import { syncUpdateListingsPlaybookStep } from "@/lib/listings/playbook-sync";
+import { recomputeListingHealth } from "@/lib/listing-health";
 import { normalizeListingUrl } from "@/lib/listings/url-validation";
 import { z } from "zod";
 
@@ -130,6 +131,7 @@ export async function POST(
 
     await syncLegacyUrls(id);
     await syncUpdateListingsPlaybookStep(id);
+    await recomputeListingHealth(id);
 
     return NextResponse.json(toListingChannelRecord(channel));
   } catch {

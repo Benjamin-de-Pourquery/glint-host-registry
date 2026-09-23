@@ -479,54 +479,86 @@
       "title": "Frequently asked questions",
       "items": {
         "1": {
-          "q": "Does Glint file compliance steps at the mairie for me?",
-          "a": "No. Glint does not replace local authorities — it guides you through compliance tunnels, links official forms and rules, and helps you track numbers, guest register, and listings."
+          "q": "What is Glint Host Registry?",
+          "a": "Glint is an EU short-term rental compliance cockpit for hosts and small property managers. It combines guided city playbooks, a next-action engine, guest register and reporting queues, registration tracking, iCal stay sync, and portfolio tools. Glint prepares your steps and exports. You submit on official portals."
         },
         "2": {
-          "q": "Which cities have guided compliance steps?",
-          "a": "Paris, Lyon, Marseille, Bordeaux, and Nice have full guided tunnels with primary vs secondary residence branching. Other French and EU cities use adaptable templates."
+          "q": "Who is Glint for?",
+          "a": "Independent hosts and small managers with one or many listings on Airbnb, Booking.com, Vrbo, and similar platforms. It fits portfolios across France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, and Belgium, especially when you need one bilingual FR/EN workspace instead of several single-country tools."
         },
         "3": {
-          "q": "What is the guest register?",
-          "a": "In France, hosts must collect a police form (fiche de police) for foreign guests. Glint provides a public link or QR, signature capture, 6-month retention, and CSV or print export."
+          "q": "Does Glint file compliance steps with authorities for me?",
+          "a": "No. Glint does not replace local authorities. It guides you through compliance tunnels, links official forms and rules, and helps you track numbers, guest register, listings, and deadlines. You remain the filing identity on government portals."
         },
         "4": {
           "q": "What is Regulation (EU) 2024/1028?",
-          "a": "In force since 20 May 2026, this regulation requires hosts to obtain a registration number and platforms to verify it. In France, keep your municipal number until the national API Meublés portal opens (expected Q4 2026). Glint tracks both regimes and helps you prepare for the transition."
+          "a": "In force since 20 May 2026, this regulation requires hosts to obtain a registration number and platforms to verify it before publishing EU listings. In France, keep your municipal number until the national API Meublés portal opens (expected Q4 2026). Glint tracks both regimes and helps you prepare for the transition."
         },
         "5": {
+          "q": "Which countries and cities have guided playbooks?",
+          "a": "Full city tunnels ship for France (Paris, Lyon, Marseille, Bordeaux, Nice, plus other French cities via adaptable templates), Spain (Madrid, Valencia, Málaga, Barcelona, Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz), Italy (Roma, Milano, Firenze, Venezia), Portugal (Lisboa, Porto, Faro, Funchal), Greece (Athina, Thessaloniki, Heraklion, Rhodes, Corfu), Croatia (Zagreb, Split, Dubrovnik, Zadar), the Netherlands (Amsterdam, Rotterdam, Den Haag, Utrecht), and Belgium (Brussels, Antwerp, Ghent, Bruges, Liège, Namur), each with a country-level fallback guide."
+        },
+        "6": {
+          "q": "How do guided playbooks and the next-action engine work?",
+          "a": "Each property gets a step-by-step playbook keyed to country and city, with official portal links and residency branching where it applies. The next-action engine surfaces the priority step per property so you know what to do now, without spreadsheets or scattered folders."
+        },
+        "7": {
+          "q": "What is the guest register?",
+          "a": "A public check-in link or QR that collects the right guest fields for your jurisdiction: French fiche de police for foreign guests, Spain Annex I (SES, Mossos, or Ertzaintza), Italy Alloggiati schedina, Portugal SIBA boletim, Greece AADE stay data, and Croatia eVisitor fields. Hosts get signature capture where required, retention windows that match local rules, CSV or print export, and due queues with deadlines."
+        },
+        "8": {
+          "q": "Does Glint sync stays from iCal?",
+          "a": "Yes. Paste Airbnb, Booking, Vrbo, Google Calendar, or other HTTPS iCal feeds per property. Glint syncs upcoming stays into your stay registry for missing-fiche tracking, night-cap counting, and reporting queues. Feeds typically expose dates and a guest label only, so guests still complete the full form via the check-in link."
+        },
+        "9": {
+          "q": "Does Glint submit SES.HOSPEDAJES reports live by default?",
+          "a": "No. Glint validates guest data and runs dry-run checks by default. Live MIR submission is optional and requires an explicit live mode plus per-property enablement. We never replace your MIR filing identity."
+        },
+        "10": {
+          "q": "What about Catalonia and the Basque Country?",
+          "a": "SES.HOSPEDAJES does not apply there. Mossos Hotels covers Catalonia and Ertzaintza covers the Basque Country. SES-only tools leave those hosts behind. Glint collects Annex I data, validates it, exports a fitxa or CSV, and tracks the due queue. You submit on the official portal."
+        },
+        "11": {
+          "q": "Does Glint cover Italy (CIN and Alloggiati)?",
+          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (within 24h after check-in) with export kits and due queues. CIN and Alloggiati are separate obligations. We do not submit to government systems automatically."
+        },
+        "12": {
+          "q": "Does Glint cover Portugal, Greece, and Croatia?",
+          "a": "Yes. Portugal: RNAL for listings plus SIBA boletim for foreign guests within 3 working days. Greece: AMA for listings plus AADE Short-Term Stay Declarations (by the 20th of the month after departure). Croatia: tourist categorisation tracking plus eVisitor check-in and check-out within 24h. In each case Glint prepares export kits and queues. You submit on the official portal."
+        },
+        "13": {
+          "q": "Does Glint cover the Netherlands and Belgium?",
+          "a": "Yes. Netherlands: national registration number, holiday-rental permit tracking, Amsterdam per-stay municipal notification queue, and the 30/15 night-cap engine for Amsterdam wijken. Belgium: tri-regional registration for Brussels prior declaration, Flanders aanmelding, and Wallonia registration, with region routing, dossier checklist, and listing display tracking. No fake government API push."
+        },
+        "14": {
+          "q": "Does Glint track the 120-night primary residence cap?",
+          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice), and alerts you before you breach, under Code du tourisme art. L324-1-1."
+        },
+        "15": {
+          "q": "If Airbnb collects taxe de séjour, am I done?",
+          "a": "No. When platforms act as tiers collecteur you must still declare each period on your commune or EPCI portal, often monthly, including €0 months and stays collected via the platform. Glint tracks taxable nights and queues declaration periods. You submit on the official portal. There is no automated filing."
+        },
+        "16": {
+          "q": "What are the plans and prices?",
+          "a": "Starter is €19/month for up to 3 active properties. Pro is €49/month for up to 50 active properties. Every plan includes a 14-day free trial and you can cancel anytime. Both include city-guided compliance, guest register, expiry alerts, and the FR + EN interface. Pro adds bulk export, archiving, and priority support."
+        },
+        "17": {
           "q": "Can I archive a property without losing data?",
           "a": "Yes. Archiving removes the property from your active portfolio and plan limit while keeping compliance steps, guest register, and history. Restore in one click."
         },
-        "6": {
-          "q": "Does Glint submit SES.HOSPEDAJES reports live by default?",
-          "a": "No. Glint validates guest data and runs dry-run SOAP checks today. Live MIR submission requires SES_LIVE=true and explicit per-property enablement. We never replace your MIR filing identity."
+        "18": {
+          "q": "How is my data handled?",
+          "a": "Guest and compliance records stay in your account for the retention windows required by each jurisdiction (for example 6 months for the French fiche). Glint is a compliance workspace, not legal advice. You remain responsible for filings. Full details are in the Privacy Policy and Terms linked in the footer."
         },
-        "7": {
-          "q": "What about Catalonia and the Basque Country?",
-          "a": "SES.HOSPEDAJES does not apply there — Mossos Hotels (Catalonia) and Ertzaintza (Basque Country) do. SES-only tools like RegistroViajero and BookCheckin leave these hosts behind. Glint collects Annex I data, validates it, exports a fitxa/CSV, and tracks the due queue — you submit on the official portal."
-        },
-        "8": {
-          "q": "Does Glint cover Italy (CIN and Alloggiati)?",
-          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (24h after check-in) with export kits and due queues. CIN and Alloggiati are separate obligations — we do not submit to government systems automatically."
-        },
-        "9": {
-          "q": "Does Glint track the 120-night primary residence cap?",
-          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice), and alerts you before you breach — under Code du tourisme art. L324-1-1."
-        },
-        "10": {
-          "q": "If Airbnb collects taxe de séjour, am I done?",
-          "a": "No. When platforms act as tiers collecteur you must still declare each period on your commune or EPCI portal — often monthly, including €0 months and stays collected via the platform. Glint tracks taxable nights and queues declaration periods; you submit on the official portal (no automated filing)."
-        },
-        "11": {
-          "q": "Does Glint cover Greece (AMA and AADE)?",
-          "a": "Yes. Glint tracks AADE AMA for listing compliance under EU 2024/1028 and prepares Short-Term Stay Declaration export kits with due queues (by the 20th of the month after guest departure). AMA and AADE stay declarations are separate obligations — we do not submit to AADE automatically."
+        "19": {
+          "q": "How do I get support?",
+          "a": "Use in-app help from your dashboard, and Pro plans include priority support. Legal pages and country guides in the footer cover registration numbers, SES regions, guest register, Amsterdam night caps, Italy CIN and Alloggiati, Portugal RNAL and SIBA, Greece AMA and AADE, Croatia eVisitor, and Belgium registration."
         }
       }
     },
     "cta": {
       "title": "Take control of your compliance",
-      "subtitle": "France, Spain, and Italy compliance ops in one cockpit — CIN, Alloggiati, SES, Mossos, guest register, and portfolio tracking.",
+      "subtitle": "France, Spain, Italy, Portugal, Greece, Croatia, Netherlands, and Belgium compliance ops in one cockpit. Playbooks, guest register, reporting queues, and portfolio tracking.",
       "button": "Start 14-day free trial",
       "login": "Sign in"
     },

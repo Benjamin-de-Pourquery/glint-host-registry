@@ -479,54 +479,86 @@
       "title": "Questions fréquentes",
       "items": {
         "1": {
-          "q": "Glint dépose-t-il mes démarches à la mairie ?",
-          "a": "Non. Glint ne remplace pas les autorités locales — il vous guide dans les tunnels Démarches, relie les formulaires et règlements officiels, et vous aide à suivre numéros, registre voyageurs et annonces."
+          "q": "Qu'est-ce que Glint Host Registry ?",
+          "a": "Glint est un cockpit de conformité location courte durée dans l'UE, pour hôtes et petits gestionnaires. Il réunit playbooks guidés par ville, moteur de prochaine action, registre voyageurs et files de déclaration, suivi des numéros, sync iCal et outils portefeuille. Glint prépare les étapes et les exports. Vous soumettez sur les portails officiels."
         },
         "2": {
-          "q": "Quelles villes sont couvertes pour les Démarches ?",
-          "a": "Paris, Lyon, Marseille, Bordeaux et Nice disposent de tunnels guidés complets avec branchement résidence principale / secondaire. D'autres villes françaises et UE suivent des modèles adaptables."
+          "q": "Pour qui est Glint ?",
+          "a": "Les hôtes indépendants et petits gestionnaires avec une ou plusieurs annonces sur Airbnb, Booking.com, Vrbo et plateformes similaires. Il convient aux portefeuilles en France, Espagne, Italie, Portugal, Grèce, Croatie, Pays-Bas et Belgique, surtout quand vous voulez un espace bilingue FR/EN plutôt que plusieurs outils mono-pays."
         },
         "3": {
-          "q": "Qu'est-ce que le registre des voyageurs ?",
-          "a": "En France, les hôtes doivent collecter une fiche de police pour les voyageurs étrangers. Glint fournit un lien public ou QR, la signature, une conservation de 6 mois et l'export CSV ou impression."
+          "q": "Glint dépose-t-il mes démarches auprès des autorités ?",
+          "a": "Non. Glint ne remplace pas les autorités locales. Il vous guide dans les tunnels Démarches, relie les formulaires et règlements officiels, et vous aide à suivre numéros, registre voyageurs, annonces et échéances. Vous restez le déclarant sur les portails publics."
         },
         "4": {
           "q": "Qu'est-ce que le Règlement (UE) 2024/1028 ?",
-          "a": "En vigueur depuis le 20 mai 2026, ce règlement impose un numéro d'enregistrement et sa vérification par les plateformes. En France, conservez votre numéro municipal jusqu'à l'ouverture du téléservice national API Meublés (prévu au T4 2026). Glint suit les deux régimes et vous aide à préparer la transition."
+          "a": "En vigueur depuis le 20 mai 2026, ce règlement impose un numéro d'enregistrement et sa vérification par les plateformes avant publication des annonces UE. En France, conservez votre numéro municipal jusqu'à l'ouverture du téléservice national API Meublés (prévu au T4 2026). Glint suit les deux régimes et vous aide à préparer la transition."
         },
         "5": {
+          "q": "Quels pays et villes ont des playbooks guidés ?",
+          "a": "Des tunnels complets existent pour la France (Paris, Lyon, Marseille, Bordeaux, Nice, plus d'autres villes françaises via modèles adaptables), l'Espagne (Madrid, Valencia, Málaga, Barcelona, Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz), l'Italie (Roma, Milano, Firenze, Venezia), le Portugal (Lisboa, Porto, Faro, Funchal), la Grèce (Athina, Thessaloniki, Heraklion, Rhodes, Corfu), la Croatie (Zagreb, Split, Dubrovnik, Zadar), les Pays-Bas (Amsterdam, Rotterdam, Den Haag, Utrecht) et la Belgique (Bruxelles, Anvers, Gand, Bruges, Liège, Namur), avec un guide de repli par pays."
+        },
+        "6": {
+          "q": "Comment fonctionnent les playbooks et le moteur de prochaine action ?",
+          "a": "Chaque bien reçoit un playbook pas à pas selon le pays et la ville, avec liens vers les portails officiels et branchement résidence principale / secondaire quand c'est pertinent. Le moteur de prochaine action affiche l'étape prioritaire par bien, sans feuilles de calcul ni dossiers éparpillés."
+        },
+        "7": {
+          "q": "Qu'est-ce que le registre des voyageurs ?",
+          "a": "Un lien public ou QR qui collecte les champs adaptés à votre juridiction : fiche de police française pour les voyageurs étrangers, Annexe I Espagne (SES, Mossos ou Ertzaintza), schedina Alloggiati Italie, boletim SIBA Portugal, données AADE Grèce, et champs eVisitor Croatie. Les hôtes disposent de signature quand elle est requise, de durées de conservation conformes aux règles locales, d'export CSV ou impression, et de files d'échéance."
+        },
+        "8": {
+          "q": "Glint synchronise-t-il les séjours via iCal ?",
+          "a": "Oui. Collez les flux iCal Airbnb, Booking, Vrbo, Google Calendar ou tout autre HTTPS par bien. Glint synchronise les séjours à venir dans le registre pour le suivi des fiches manquantes, le plafond de nuitées et les files de déclaration. Les flux exposent surtout dates et libellé voyageur : les voyageurs complètent le formulaire via le lien de check-in."
+        },
+        "9": {
+          "q": "Glint envoie-t-il les déclarations SES.HOSPEDAJES en production par défaut ?",
+          "a": "Non. Glint valide les données voyageurs et exécute des simulations par défaut. L'envoi MIR live est optionnel et nécessite un mode live explicite plus une activation par bien. Nous ne remplaçons pas votre identité de déclarant MIR."
+        },
+        "10": {
+          "q": "Et la Catalogne ou le Pays basque ?",
+          "a": "SES.HOSPEDAJES ne s'applique pas. Mossos Hotels couvre la Catalogne et Ertzaintza le Pays basque. Les outils SES-only laissent ces hôtes de côté. Glint collecte les données Annexe I, les valide, exporte fitxa ou CSV et suit la file d'échéance. Vous soumettez sur le portail officiel."
+        },
+        "11": {
+          "q": "Glint couvre-t-il l'Italie (CIN et Alloggiati) ?",
+          "a": "Oui. Glint suit le CIN BDSR pour les annonces (règlement UE 2024/1028) et prépare les schedine Alloggiati Web (sous 24h après arrivée) avec kits d'export et files d'échéance. CIN et Alloggiati sont des obligations distinctes. Pas de soumission automatique aux administrations."
+        },
+        "12": {
+          "q": "Glint couvre-t-il le Portugal, la Grèce et la Croatie ?",
+          "a": "Oui. Portugal : RNAL pour les annonces et boletim SIBA pour les voyageurs étrangers sous 3 jours ouvrés. Grèce : AMA pour les annonces et déclarations de séjour AADE (avant le 20 du mois suivant le départ). Croatie : suivi de catégorisation touristique et eVisitor à l'arrivée et au départ sous 24h. Dans chaque cas Glint prépare kits d'export et files. Vous soumettez sur le portail officiel."
+        },
+        "13": {
+          "q": "Glint couvre-t-il les Pays-Bas et la Belgique ?",
+          "a": "Oui. Pays-Bas : numéro d'enregistrement national, suivi de vergunning, file de notification municipale par séjour à Amsterdam, et plafond 30/15 nuitées pour les wijken. Belgique : enregistrement tri-régional (déclaration préalable Bruxelles, aanmelding Flandre, enregistrement Wallonie), avec routage régional, checklist dossier et suivi d'affichage sur les annonces. Pas d'API publique fictive."
+        },
+        "14": {
+          "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
+          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
+        },
+        "15": {
+          "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
+          "a": "Non. En tiers collecteur, vous devez toujours déclarer chaque période sur le portail commune ou EPCI, souvent mensuellement, y compris les mois à 0 € et les séjours via plateforme. Glint suit les nuitées imposables et file les périodes. Vous déposez sur le portail officiel. Pas de télédéclaration automatique."
+        },
+        "16": {
+          "q": "Quels sont les plans et tarifs ?",
+          "a": "Starter : 19 €/mois jusqu'à 3 biens actifs. Pro : 49 €/mois jusqu'à 50 biens actifs. Chaque plan inclut un essai gratuit de 14 jours, résiliable à tout moment. Les deux incluent démarches guidées, registre voyageurs, alertes d'expiration et interface FR + EN. Pro ajoute export groupé, archivage et support prioritaire."
+        },
+        "17": {
           "q": "Puis-je archiver un bien sans perdre mes données ?",
           "a": "Oui. L'archivage retire le bien du portefeuille actif et de la limite de votre plan, tout en conservant démarches, registre et historique. Restauration en un clic."
         },
-        "6": {
-          "q": "Glint envoie-t-il les déclarations SES.HOSPEDAJES en production par défaut ?",
-          "a": "Non. Glint valide les données voyageurs et exécute des simulations SOAP aujourd'hui. L'envoi MIR live nécessite SES_LIVE=true et une activation explicite par bien. Nous ne remplaçons pas votre identité de déclarant MIR."
+        "18": {
+          "q": "Comment sont traitées mes données ?",
+          "a": "Les dossiers voyageurs et conformité restent dans votre compte pour les durées de conservation de chaque juridiction (par exemple 6 mois pour la fiche française). Glint est un espace de travail conformité, pas un conseil juridique. Vous restez responsable des dépôts. Le détail figure dans la Politique de confidentialité et les CGU en pied de page."
         },
-        "7": {
-          "q": "Et la Catalogne ou le Pays basque ?",
-          "a": "SES.HOSPEDAJES ne s'applique pas — Mossos Hotels (Catalogne) et Ertzaintza (Pays basque) oui. Les outils SES-only comme RegistroViajero et BookCheckin abandonnent ces hôtes. Glint collecte les données Annexe I, les valide, exporte fitxa/CSV et suit la file d'échéance — vous soumettez sur le portail officiel."
-        },
-        "8": {
-          "q": "Glint couvre-t-il l'Italie (CIN et Alloggiati) ?",
-          "a": "Oui. Glint suit le CIN BDSR pour les annonces (règlement UE 2024/1028) et prépare les schedine Alloggiati Web (24h après arrivée) avec kits d'export et files d'échéance. CIN et Alloggiati sont des obligations distinctes — pas de soumission automatique aux administrations."
-        },
-        "9": {
-          "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
-          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice) et vous alerte avant dépassement — conformément à l'article L324-1-1 du Code du tourisme."
-        },
-        "10": {
-          "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
-          "a": "Non. En tiers collecteur, vous devez toujours déclarer chaque période sur le portail commune ou EPCI — souvent mensuellement, y compris les mois à 0 € et les séjours « via tiers collecteur ». Glint suit les nuitées imposables et file les périodes ; vous déposez sur le portail officiel (pas de télédéclaration automatique)."
-        },
-        "11": {
-          "q": "Glint couvre-t-il la Grèce (AMA et AADE) ?",
-          "a": "Oui. Glint suit l'AMA AADE pour la conformité des annonces au titre de l'UE 2024/1028 et prépare les kits d'export de déclaration de séjour avec files d'attente (avant le 20 du mois suivant le départ). AMA et déclarations AADE sont des obligations distinctes — nous ne soumettons pas automatiquement à l'AADE."
+        "19": {
+          "q": "Comment obtenir de l'aide ?",
+          "a": "Utilisez l'aide in-app depuis le tableau de bord. Les plans Pro incluent un support prioritaire. Les pages légales et guides pays en pied de page couvrent numéros d'enregistrement, régions SES, registre voyageurs, plafonds Amsterdam, CIN et Alloggiati, RNAL et SIBA, AMA et AADE, eVisitor, et enregistrement belge."
         }
       }
     },
     "cta": {
       "title": "Mettez votre conformité sous contrôle",
-      "subtitle": "Ops conformité France, Espagne et Italie dans un seul cockpit — CIN, Alloggiati, SES, Mossos, registre et portefeuille.",
+      "subtitle": "Conformité France, Espagne, Italie, Portugal, Grèce, Croatie, Pays-Bas et Belgique dans un seul cockpit. Playbooks, registre voyageurs, files de déclaration et suivi portefeuille.",
       "button": "Essai gratuit 14 jours",
       "login": "Connexion"
     },

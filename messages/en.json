@@ -15,7 +15,7 @@
     },
     "signup": {
       "title": "Start 14-day free trial",
-      "description": "Create your Glint Host Registry account — registration number tracking, guest register and compliance playbooks for EU hosts."
+      "description": "Create your Glint Host Registry account, registration number tracking, guest register and compliance playbooks for EU hosts."
     },
     "privacy": {
       "title": "Privacy policy",
@@ -27,54 +27,54 @@
     },
     "mentions": {
       "title": "Legal notice",
-      "description": "Legal information about Glint Host Registry — publisher, hosting and contact."
+      "description": "Legal information about Glint Host Registry: publisher, hosting and contact."
     },
     "guideRegistration": {
       "title": "Registration numbers for short-term rentals & platforms in 2026",
-      "description": "Practical guide: Regulation (EU) 2024/1028, French furnished tourism registration, Airbnb and Booking NER checks — what hosts should prepare."
+      "description": "Practical guide: Regulation (EU) 2024/1028, French furnished tourism registration, Airbnb and Booking NER checks. What hosts should prepare."
     },
     "guideSes": {
-      "title": "SES Hospedajes, Mossos & Ertzaintza — Spain guest reporting guide",
-      "description": "Overview of Spain guest declarations: SES.HOSPEDAJES, Mossos d'Esquadra (Catalonia) and Ertzaintza (Basque Country) — deadlines and obligations."
+      "title": "SES Hospedajes, Mossos & Ertzaintza: Spain guest reporting guide",
+      "description": "Overview of Spain guest declarations: SES.HOSPEDAJES, Mossos d'Esquadra (Catalonia) and Ertzaintza (Basque Country), deadlines and obligations."
     },
     "guideGuestRegister": {
-      "title": "Guest police fiche — guide for hosts in France",
-      "description": "Obligations for the individual police form for foreign guests in furnished rentals — data fields, 6-month retention and best practices."
+      "title": "Guest police fiche: guide for hosts in France",
+      "description": "Obligations for the individual police form for foreign guests in furnished rentals, data fields, 6-month retention and best practices."
     },
     "guideAmsterdamNightCap": {
-      "title": "Amsterdam & Netherlands — night caps, permit & registration",
+      "title": "Amsterdam & Netherlands: night caps, permit & registration",
       "description": "Host guide: national toeristische verhuur registration, Amsterdam holiday permit, per-stay notification and 30/15 night caps (wijken from April 2026)."
     },
     "guideItalyCinAlloggiati": {
-      "title": "Italy CIN & Alloggiati Web — host guide 2026",
-      "description": "Codice Identificativo Nazionale (BDSR) on listings and Alloggiati Web schedine within 24h — separate obligations for Italian hosts."
+      "title": "Italy CIN & Alloggiati Web: host guide 2026",
+      "description": "Codice Identificativo Nazionale (BDSR) on listings and Alloggiati Web schedine within 24h, separate obligations for Italian hosts."
     },
     "guidePortugalRnalSiba": {
-      "title": "Portugal RNAL & SIBA — Alojamento Local host guide",
-      "description": "RNAL number on listings (EU 2024/1028) and SIBA Boletim de Alojamento for foreign guests — deadlines and reporting phases."
+      "title": "Portugal RNAL & SIBA: Alojamento Local host guide",
+      "description": "RNAL number on listings (EU 2024/1028) and SIBA Boletim de Alojamento for foreign guests, deadlines and reporting phases."
     },
     "guideGreeceAmaAade": {
-      "title": "Greece AMA & AADE — short-term rental host guide",
-      "description": "AMA registration on myAADE and short-term stay declarations by the 20th of the month after departure — export and portal, no automatic filing."
+      "title": "Greece AMA & AADE: short-term rental host guide",
+      "description": "AMA registration on myAADE and short-term stay declarations by the 20th of the month after departure, export and portal, no automatic filing."
     },
     "guideCroatiaEvisitor": {
-      "title": "Croatia categorisation & eVisitor — host guide 2026",
-      "description": "Tourist accommodation approval, eVisitor guest registration within 24h of arrival and departure — sojourn tax and platform compliance."
+      "title": "Croatia categorisation & eVisitor: host guide 2026",
+      "description": "Tourist accommodation approval, eVisitor guest registration within 24h of arrival and departure, sojourn tax and platform compliance."
     },
     "guideBelgiumStrRegistration": {
-      "title": "Belgium short-term rental registration — tri-regional host guide 2026",
-      "description": "Brussels prior declaration, Flanders aanmelding and Wallonia registration — no single national number. Honest checklist and platform display under EU 2024/1028."
+      "title": "Belgium short-term rental registration: tri-regional host guide 2026",
+      "description": "Brussels prior declaration, Flanders aanmelding and Wallonia registration, no single national number. Honest checklist and platform display under EU 2024/1028."
     },
     "guideBelgiumStrRegistrationFr": {
-      "title": "Enregistrement location courte durée Belgique — guide hôte tri-régional 2026",
-      "description": "Déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie — pas de numéro national unique."
+      "title": "Enregistrement location courte durée Belgique: guide hôte tri-régional 2026",
+      "description": "Déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie, pas de numéro national unique."
     },
     "guideBrusselsAirbnbRegistration": {
-      "title": "Brussels Airbnb registration — prior declaration dossier guide",
+      "title": "Brussels Airbnb registration: prior declaration dossier guide",
       "description": "Brussels-Capital prior declaration, dossier documents, registration number, entrance logo and EU platform checks."
     },
     "guideBrusselsAirbnbRegistrationFr": {
-      "title": "Enregistrement Airbnb Bruxelles — guide déclaration préalable",
+      "title": "Enregistrement Airbnb Bruxelles: guide déclaration préalable",
       "description": "Déclaration préalable Région Bruxelles-Capitale, dossier, numéro, logo à l'entrée et vérifications plateformes UE."
     }
   },
@@ -83,7 +83,7 @@
     "backHome": "Back to home",
     "cta": {
       "title": "Centralize compliance with Glint",
-      "description": "Guest register, registration number tracking, SES queue and city playbooks — 14-day free trial.",
+      "description": "Guest register, registration number tracking, SES queue and city playbooks, 14-day free trial.",
       "button": "Start 14-day free trial",
       "home": "Explore the product"
     },
@@ -98,7 +98,7 @@
         },
         "france": {
           "title": "France: furnished tourism declaration",
-          "body": "Depending on your municipality, you may need to declare or register your furnished rental (13-digit number in tense zones, town hall procedures elsewhere). The national API Meublés portal is expected in Q4 2026 — keep your municipal numbers in the meantime."
+          "body": "Depending on your municipality, you may need to declare or register your furnished rental (13-digit number in tense zones, town hall procedures elsewhere). The national API Meublés portal is expected in Q4 2026. Keep your municipal numbers in the meantime."
         },
         "platforms": {
           "title": "Platform checks from September 2026",
@@ -106,35 +106,35 @@
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Glint does not file on your behalf with town halls or official portals — it centralizes number tracking, city playbooks, platform blocks and appeal evidence, with a clear next action per property."
+          "body": "Glint does not file on your behalf with town halls or official portals, it centralizes number tracking, city playbooks, platform blocks and appeal evidence, with a clear next action per property."
         }
       }
     },
     "ses": {
-      "title": "SES Hospedajes, Mossos & Ertzaintza — Spain guest reporting",
+      "title": "SES Hospedajes, Mossos & Ertzaintza: Spain guest reporting",
       "updated": "Updated: September 2026",
       "intro": "In Spain, tourist rental hosts must transmit guest data within 24 hours of arrival. The applicable system depends on the region: SES.HOSPEDAJES for most of the country, Mossos in Catalonia and Ertzaintza in the Basque Country.",
       "sections": {
         "ses": {
           "title": "SES.HOSPEDAJES (Ministerio del Interior)",
-          "body": "The Sistema de Hospedajes (SES) covers most autonomous communities. Annex I data must be submitted via the Ministry of Interior MIR portal within 24h. Glint validates fields and runs SOAP dry-runs; live submission requires explicit activation (SES_LIVE)."
+          "body": "The Sistema de Hospedajes (SES) covers most autonomous communities. Annex I data must be submitted via the Ministry of Interior MIR portal within 24h. Glint validates fields and runs SOAP dry-runs by default. Live MIR submission is optional and requires explicit per-property activation."
         },
         "mossos": {
           "title": "Mossos d'Esquadra (Catalonia)",
-          "body": "In Catalonia, SES does not apply: reporting goes through the Mossos Hotels portal. SES-only tools leave Catalan hosts without integrated coverage — Glint collects Annex I data and exports in the expected format for manual submission."
+          "body": "In Catalonia, SES does not apply: reporting goes through the Mossos Hotels portal. SES-only tools leave Catalan hosts without integrated coverage, Glint collects Annex I data and exports in the expected format for manual submission."
         },
         "ertzaintza": {
           "title": "Ertzaintza (Basque Country)",
-          "body": "In the Basque Country (Ertzaintza territory), reporting is handled by Ertzaintza. As in Catalonia, there is no standard public API — Glint prepares data and tracks 24h deadlines."
+          "body": "In the Basque Country (Ertzaintza territory), reporting is handled by Ertzaintza. As in Catalonia, there is no standard public API, Glint prepares data and tracks 24h deadlines."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Annex I check-in register, due queue with 48h prep window, field validation and fitxa/CSV export — you submit on your region's official portal. Glint does not replace your MIR declarant identity."
+          "body": "Annex I check-in register, due queue with 48h prep window, field validation and fitxa/CSV export. You submit on your region's official portal. Glint does not replace your MIR declarant identity."
         }
       }
     },
     "guestRegister": {
-      "title": "Guest police fiche — obligations for hosts in France",
+      "title": "Guest police fiche: obligations for hosts in France",
       "updated": "Updated: September 2026",
       "intro": "When renting a furnished property to a foreign-national guest, the host must have them complete and sign an individual police form on arrival. This obligation is separate from the furnished tourism registration number.",
       "sections": {
@@ -148,16 +148,16 @@
         },
         "retention": {
           "title": "Retention and transmission",
-          "body": "Forms must be kept for 6 months after departure. They are only transmitted to law enforcement on official request — Glint does not send them automatically."
+          "body": "Forms must be kept for 6 months after departure. They are only transmitted to law enforcement on official request. Glint does not send them automatically."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Shareable check-in link, missing-fiche alerts, CSV export and PDF printing — integrated into each property's guest register with configured retention."
+          "body": "Shareable check-in link, missing-fiche alerts, CSV export and PDF printing, integrated into each property's guest register with configured retention."
         }
       }
     },
     "amsterdamNightCap": {
-      "title": "Amsterdam & Netherlands — night caps, permit & registration",
+      "title": "Amsterdam & Netherlands: night caps, permit & registration",
       "updated": "Updated: September 2026",
       "intro": "In the Netherlands, tourist rental from your primary residence combines mandatory national registration, a municipal holiday permit (notably in Amsterdam), notification before each stay, and night caps. These obligations are separate from France's furnished tourism registration number or Italy's CIN.",
       "sections": {
@@ -167,24 +167,24 @@
         },
         "permit": {
           "title": "Holiday-rental permit (Amsterdam vergunning)",
-          "body": "In Amsterdam, the national number alone is not enough: a separate home-sharing vergunning is required for primary residences (approximately €76 in 2026, with renewal). Without a valid permit, you risk fines. Other gemeenten (Rotterdam, The Hague, Utrecht) apply similar rules — verify locally on amsterdam.nl and municipal portals."
+          "body": "In Amsterdam, the national number alone is not enough: a separate home-sharing vergunning is required for primary residences (approximately €76 in 2026, with renewal). Without a valid permit, you risk fines. Other gemeenten (Rotterdam, The Hague, Utrecht) apply similar rules. Verify locally on amsterdam.nl and municipal portals."
         },
         "nightCap": {
           "title": "Night caps: 30 / 15 nights",
-          "body": "For primary residences in Amsterdam: 30 rental nights per calendar year citywide. From 1 April 2026, eight wijken are capped at 15 nights/year: Burgwallen-Nieuwe Zijde, De Weteringschans, Grachtengordel-West, Grachtengordel-Zuid, Haarlemmerbuurt, Jordaan, Nieuwmarkt/Lastage and Oude Pijp. Other Dutch municipalities also enforce night caps — check rijksoverheid.nl."
+          "body": "For primary residences in Amsterdam: 30 rental nights per calendar year citywide. From 1 April 2026, eight wijken are capped at 15 nights/year: Burgwallen-Nieuwe Zijde, De Weteringschans, Grachtengordel-West, Grachtengordel-Zuid, Haarlemmerbuurt, Jordaan, Nieuwmarkt/Lastage and Oude Pijp. Other Dutch municipalities also enforce night caps. Check rijksoverheid.nl."
         },
         "notification": {
           "title": "Municipal notification before each stay",
-          "body": "Before every guest stay, you must notify Amsterdam via the official portal (amsterdam.nl — notify stay). Prepare registration number, permit number, dates and guest count. Glint tracks upcoming stays and prepares copy fields — you submit manually on the municipal portal."
+          "body": "Before every guest stay, you must notify Amsterdam via the official portal (amsterdam.nl, notify stay). Prepare registration number, permit number, dates and guest count. Glint tracks upcoming stays and prepares copy fields. You submit manually on the municipal portal."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Glint does not file on your behalf with registratietoeristischeverhuur.nl or gemeente portals — it centralizes national number tracking, permit status, per-stay notifications and night counting (30/15), with a clear next action per property."
+          "body": "Glint does not file on your behalf with registratietoeristischeverhuur.nl or gemeente portals, it centralizes national number tracking, permit status, per-stay notifications and night counting (30/15), with a clear next action per property."
         }
       }
     },
     "italyCinAlloggiati": {
-      "title": "Italy — CIN (BDSR) and Alloggiati Web for hosts",
+      "title": "Italy: CIN (BDSR) and Alloggiati Web for hosts",
       "updated": "Updated: September 2026",
       "intro": "In Italy, two distinct national obligations apply to short-term rental hosts: the Codice Identificativo Nazionale (CIN) for platform listings, and the Alloggiati Web schedina for border police. Neither replaces regional CIR/SCIA or France's guest police fiche.",
       "sections": {
@@ -193,62 +193,62 @@
           "body": "From 20 May 2026, platforms verify your CIN under Regulation (EU) 2024/1028 and may depublish non-compliant listings. Register on il turismo con il codice (BDSR) with SPID or CIE. The CIN must appear on Airbnb, Booking.com and all OTAs. Fines up to €8,000 for missing CIN on listings."
         },
         "alloggiati": {
-          "title": "Alloggiati Web — schedina within 24h",
+          "title": "Alloggiati Web: schedina within 24h",
           "body": "Under TULPS art. 109, communicate each guest's schedina to Polizia di Stato within 24 hours of check-in via alloggiatipoliziadistato.it. Complete the establishment alta on the portal first, then file each schedina with identity, nationality, date and place of birth, document type and arrival date."
         },
         "distinct": {
           "title": "Three separate obligations",
-          "body": "CIN (tourism / platforms) ≠ Alloggiati schedina (police) ≠ regional CIR/SCIA (planning). Do not confuse the code displayed on Airbnb with police reporting. Many regions also require monthly ISTAT tourist flow statistics (ROSS 1000, Sinfonia) — submit on your regional portal, with no Glint API integration."
+          "body": "CIN (tourism / platforms) ≠ Alloggiati schedina (police) ≠ regional CIR/SCIA (planning). Do not confuse the code displayed on Airbnb with police reporting. Many regions also require monthly ISTAT tourist flow statistics (ROSS 1000, Sinfonia). Submit on your regional portal, with no Glint API integration."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Glint does not submit to BDSR or Alloggiati Web — it tracks CIN per listing, collects schedina fields via check-in link, validates data and prepares CSV/printable export with a 24h due queue. You submit on official portals."
+          "body": "Glint does not submit to BDSR or Alloggiati Web, it tracks CIN per listing, collects schedina fields via check-in link, validates data and prepares CSV/printable export with a 24h due queue. You submit on official portals."
         }
       }
     },
     "portugalRnalSiba": {
-      "title": "Portugal — RNAL and SIBA for Alojamento Local hosts",
+      "title": "Portugal: RNAL and SIBA for Alojamento Local hosts",
       "updated": "Updated: September 2026",
       "intro": "In Portugal, Alojamento Local registration (RNAL) covers your platform listings, while SIBA covers police reporting for foreign guests. Portuguese nationals are not reported to SIBA. These obligations are separate from Spain's SES declarations or France's guest police fiche.",
       "sections": {
         "rnal": {
-          "title": "RNAL — Registo Nacional de Alojamento Local",
+          "title": "RNAL: Registo Nacional de Alojamento Local",
           "body": "Register your short-term rental with Turismo de Portugal and your municipality (comunicação prévia). You receive an RNAL number (e.g. 12345/AL) to display on all listings. From 20 May 2026, platforms verify RNAL under Regulation (EU) 2024/1028."
         },
         "siba": {
-          "title": "SIBA — Boletim de Alojamento (foreign guests)",
+          "title": "SIBA: Boletim de Alojamento (foreign guests)",
           "body": "Hosts lodging foreign guests for pay must register the establishment on siba.ssi.gov.pt (SSI/UCFE) and submit a Boletim de Alojamento for each foreign guest arrival AND departure. Portuguese nationals are not reported. Fines €100–€2,000 for late communication (Lei 23/2007 art. 203)."
         },
         "phases": {
           "title": "SIBA reporting phases",
-          "body": "Phase 1 — register the establishment on the SIBA portal. Phase 2 — for each stay: report foreign guest arrival within 3 working days (dias úteis). Phase 3 — report departure within 3 working days after checkout. Glint prepares boletim fields via check-in link and CSV/printable export — you enter manually on the official portal."
+          "body": "Phase 1: register the establishment on the SIBA portal. Phase 2: for each stay: report foreign guest arrival within 3 working days (dias úteis). Phase 3: report departure within 3 working days after checkout. Glint prepares boletim fields via check-in link and CSV/printable export. You enter manually on the official portal."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Glint does not submit to Turismo de Portugal or SIBA — it tracks RNAL per listing, collects boletim data, validates fields and manages the due queue (3 working days) for arrival and departure. You remain legally responsible for submission."
+          "body": "Glint does not submit to Turismo de Portugal or SIBA, it tracks RNAL per listing, collects boletim data, validates fields and manages the due queue (3 working days) for arrival and departure. You remain legally responsible for submission."
         }
       }
     },
     "greeceAmaAade": {
-      "title": "Greece — AMA (AADE) and stay declarations",
+      "title": "Greece: AMA (AADE) and stay declarations",
       "updated": "Updated: September 2026",
-      "intro": "In Greece, the AMA (Αριθμός Μητρώου Ακινήτου) is your listing registration number, while the Short-Term Stay Declaration (Δήλωση Βραχυχρόνιας Διαμονής) is a separate per-stay obligation on myAADE. Glint prepares exports — no automatic filing and no live government API.",
+      "intro": "In Greece, the AMA (Αριθμός Μητρώου Ακινήτου) is your listing registration number, while the Short-Term Stay Declaration (Δήλωση Βραχυχρόνιας Διαμονής) is a separate per-stay obligation on myAADE. Glint prepares exports, with no automatic filing and no live government API.",
       "sections": {
         "ama": {
-          "title": "AMA — AADE property registry registration",
+          "title": "AMA: AADE property registry registration",
           "body": "Register each short-term rental unit in the AADE Short-Term Stay Property Registry via myAADE (aade.gr). You receive an AMA to display on Airbnb, Booking.com and other OTAs. Licensed tourist accommodations may use an ESL or Unique Notification Number instead. From 20 May 2026, platforms verify numbers under Regulation (EU) 2024/1028. Missing AMA on listings is commonly cited at €5,000."
         },
         "declaration": {
           "title": "AADE stay declaration (≤59 nights)",
-          "body": "For each short-term stay (≤59 nights), submit the declaration on myAADE by the 20th of the calendar month following guest departure (e.g. checkout 15 July → declare by 20 August). Stays of 60+ nights use the long-term lease declaration path — outside Glint's short-stay queue. Collect identity, nationality, arrival and departure dates."
+          "body": "For each short-term stay (≤59 nights), submit the declaration on myAADE by the 20th of the calendar month following guest departure (e.g. checkout 15 July → declare by 20 August). Stays of 60+ nights use the long-term lease declaration path, outside Glint's short-stay queue. Collect identity, nationality, arrival and departure dates."
         },
         "distinct": {
           "title": "AMA ≠ stay declaration",
-          "body": "AMA covers listing compliance; the stay declaration covers each guest after checkout. From October 2025, Greece also applies updated property safety and operational requirements (fire safety, equipment) — see the AADE short-term rental hub. Several municipalities (Athens, Thessaloniki) restrict new AMA registrations in certain zones from 2026."
+          "body": "AMA covers listing compliance; the stay declaration covers each guest after checkout. From October 2025, Greece also applies updated property safety and operational requirements (fire safety, equipment), see the AADE short-term rental hub. Several municipalities (Athens, Thessaloniki) restrict new AMA registrations in certain zones from 2026."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Glint does not submit to AADE — it tracks AMA per listing, collects guest data via check-in link, validates fields and prepares CSV/printable export with a due queue (by the 20th of the month after departure). You submit manually on myAADE."
+          "body": "Glint does not submit to AADE, it tracks AMA per listing, collects guest data via check-in link, validates fields and prepares CSV/printable export with a due queue (by the 20th of the month after departure). You submit manually on myAADE."
         }
       }
     },
@@ -259,7 +259,7 @@
       "sections": {
         "regions": {
           "title": "Three regions, three systems",
-          "body": "Brussels-Capital: prior declaration dossier to Brussels Economy and Employment before any rental (1–90 consecutive nights). Flanders: mandatory aanmelding at Toerisme Vlaanderen under the Logiesdecreet — even occasional Airbnb. Wallonia: compulsory registration with Tourisme Wallonie before guests arrive, including fire safety and planning compliance."
+          "body": "Brussels-Capital: prior declaration dossier to Brussels Economy and Employment before any rental (1–90 consecutive nights). Flanders: mandatory aanmelding at Toerisme Vlaanderen under the Logiesdecreet, even occasional Airbnb. Wallonia: compulsory registration with Tourisme Wallonie before guests arrive, including fire safety and planning compliance."
         },
         "eu": {
           "title": "EU 2024/1028 and platform checks",
@@ -267,14 +267,14 @@
         },
         "glint": {
           "title": "How Glint helps (honest product)",
-          "body": "Glint does not submit government forms and has no fake Belgium API. We route your property to the correct regional playbook, track dossier checklist items (fire safety, insurance, urban planning), registration status and listing display — with official deep links and next-action priority."
+          "body": "Glint does not submit government forms and has no fake Belgium API. We route your property to the correct regional playbook, track dossier checklist items (fire safety, insurance, urban planning), registration status and listing display, with official deep links and next-action priority."
         }
       }
     },
     "brusselsAirbnbRegistration": {
-      "title": "Brussels Airbnb registration — prior declaration",
+      "title": "Brussels Airbnb registration: prior declaration",
       "updated": "Updated: September 2026",
-      "intro": "In Brussels-Capital, you must file a prior declaration dossier before renting your property for tourist accommodation — including occasional stays and principal residence, for stays of 1 to 90 consecutive nights.",
+      "intro": "In Brussels-Capital, you must file a prior declaration dossier before renting your property for tourist accommodation, including occasional stays and principal residence, for stays of 1 to 90 consecutive nights.",
       "sections": {
         "dossier": {
           "title": "Prior declaration dossier",
@@ -286,16 +286,16 @@
         },
         "tax": {
           "title": "Brussels tourist tax",
-          "body": "Register with Brussels Fiscality for tourist tax on overnight stays. Glint links to official guidance — no automatic commune tax engine."
+          "body": "Register with Brussels Fiscality for tourist tax on overnight stays. Glint links to official guidance, no automatic commune tax engine."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Track dossier progress, operator category, submission date and registration number in one place. Glint prepares your checklist and export — you file on the official Brussels portal."
+          "body": "Track dossier progress, operator category, submission date and registration number in one place. Glint prepares your checklist and export. You file on the official Brussels portal."
         }
       }
     },
     "croatiaEvisitor": {
-      "title": "Croatia — accommodation categorisation and eVisitor",
+      "title": "Croatia: accommodation categorisation and eVisitor",
       "updated": "Updated: September 2026",
       "intro": "In Croatia, you must obtain official tourist accommodation categorisation before advertising, then register every guest on eVisitor within 24 hours of arrival and report departure within 24 hours of checkout. Sojourn tax (boravišna pristojba) is calculated from eVisitor data.",
       "sections": {
@@ -304,16 +304,16 @@
           "body": "Before any listing, obtain approval and categorisation from the Ministry of Tourism and Sport (mint.gov.hr). Your property must be registered as a tourist accommodation facility. Under Regulation (EU) 2024/1028, platforms verify registration from 20 May 2026; Croatia's unique listing registration numbers are expected from ~January 2027 under the new Hospitality Act / eTourism."
         },
         "evisitor": {
-          "title": "eVisitor — property object registration",
-          "body": "Create an account at evisitor.hr and register your accommodation object. You need the object ID for guest check-in and check-out reporting. Categorisation and eVisitor are separate obligations — one covers the listing, the other mandatory guest reporting since 2016."
+          "title": "eVisitor: property object registration",
+          "body": "Create an account at evisitor.hr and register your accommodation object. You need the object ID for guest check-in and check-out reporting. Categorisation and eVisitor are separate obligations: one covers the listing, the other mandatory guest reporting since 2016."
         },
         "reporting": {
           "title": "Arrival / departure reporting within 24h",
-          "body": "Register every guest on eVisitor within 24 hours of arrival (check-in) and report departure within 24 hours of checkout. Tourism inspectors check pre-season and peak season. Glint collects fields via check-in link, validates data and prepares CSV/printable export — you submit manually on evisitor.hr. No live API in this release (Rhetos integration planned for phase 2)."
+          "body": "Register every guest on eVisitor within 24 hours of arrival (check-in) and report departure within 24 hours of checkout. Tourism inspectors check pre-season and peak season. Glint collects fields via check-in link, validates data and prepares CSV/printable export. You submit manually on evisitor.hr. No live API in this release (Rhetos integration planned for phase 2)."
         },
         "glint": {
           "title": "How Glint helps",
-          "body": "Glint does not submit to eVisitor — it tracks categorisation and object ID, collects guest data, validates fields and manages the 24h due queue for arrival and departure. You remain legally responsible for submission on the official portal."
+          "body": "Glint does not submit to eVisitor, it tracks categorisation and object ID, collects guest data, validates fields and manages the 24h due queue for arrival and departure. You remain legally responsible for submission on the official portal."
         }
       }
     }
@@ -597,7 +597,7 @@
     },
     "signup": {
       "title": "Create your account",
-      "subtitle": "Start your 14-day free trial — no credit card required to explore",
+      "subtitle": "Start your 14-day free trial, no credit card required to explore",
       "name": "Full name",
       "email": "Email address",
       "password": "Password",

@@ -55,6 +55,14 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
+                  href={`/${locale}/guides/migration-ner-2026`}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideFrNerMigration")}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${locale}/guides/ses-hospedajes-espagne`}
                   className="transition-colors hover:text-white"
                 >

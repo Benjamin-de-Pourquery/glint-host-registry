@@ -418,6 +418,25 @@ model Registration {
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  frNerMigration            FrNerMigration?
+}
+
+model FrNerMigration {
+  id                      String       @id @default(cuid())
+  registrationId          String       @unique
+  status                  String       @default("NO_LOCAL")
+  localRegistrationNumber String?
+  localIssuingCommune     String?
+  nerNumber               String?
+  nerIssuedAt             DateTime?
+  transitionEndsAt        DateTime?
+  documentsChecklist      String       @default("[]")
+  channelUpdatesChecklist String       @default("[]")
+  notifyOnPortalOpen      Boolean      @default(false)
+  wizardStep              String?
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
+  registration            Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
 }
 
 model ChecklistItem {

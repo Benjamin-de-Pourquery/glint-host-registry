@@ -28,6 +28,10 @@ import { loadPropertyNightCap } from "@/lib/france/night-cap-service";
 import { getNightCapPriorityAction } from "@/lib/france/night-cap";
 import { loadPropertyTouristTax } from "@/lib/france/tourist-tax-service";
 import { getTouristTaxPriorityAction } from "@/lib/france/tourist-tax";
+import {
+  frNerMigrationApplies,
+  toFrNerMigrationRecord,
+} from "@/lib/fr-ner-migration/service";
 import { z } from "zod";
 
 const updateSchema = z.object({
@@ -123,6 +127,16 @@ export async function GET(
     settings: property.touristTaxSettings,
   });
 
+  let frNerMigration = null;
+  if (frNerMigrationApplies(property.country) && property.registration) {
+    const migrationRow = await prisma.frNerMigration.findUnique({
+      where: { registrationId: property.registration.id },
+    });
+    if (migrationRow) {
+      frNerMigration = toFrNerMigrationRecord(migrationRow);
+    }
+  }
+
   const nextStep = getEffectiveNextStep(playbook, progress, residencyStatus, {
     country: property.country,
     city: property.city,
@@ -155,6 +169,7 @@ export async function GET(
     ),
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,
+    frNerMigration,
   });
   const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
 

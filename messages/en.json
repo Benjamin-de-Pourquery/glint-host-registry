@@ -76,6 +76,10 @@
     "guideBrusselsAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Bruxelles — guide déclaration préalable",
       "description": "Déclaration préalable Région Bruxelles-Capitale, dossier, numéro, logo à l'entrée et vérifications plateformes UE."
+    },
+    "guideFrNerMigration": {
+      "title": "France NER national migration 2026 — furnished rental guide",
+      "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
     }
   },
   "guides": {
@@ -107,6 +111,33 @@
         "glint": {
           "title": "How Glint helps",
           "body": "Glint does not file on your behalf with town halls or official portals — it centralizes number tracking, city playbooks, platform blocks and appeal evidence, with a clear next action per property."
+        }
+      }
+    },
+    "frNerMigration": {
+      "title": "France NER national migration 2026 — furnished rental guide",
+      "updated": "Updated: September 2026",
+      "intro": "France is moving furnished tourist rentals to a national teleservice (API Meublés / Démarche Numérique), expected in Q4 2026. Existing municipal numbers will need renewal within a transition window; after that, old numbers may become invalid. Platforms will require a valid national NER.",
+      "sections": {
+        "timeline": {
+          "title": "Timeline (configurable in Glint)",
+          "body": "National portal expected Q4 2026. Transition end date will be published by the State at launch. Host Registry stores dates in playbook config, not hardcoded in every screen."
+        },
+        "inventory": {
+          "title": "Inventory your local numbers",
+          "body": "For each French property, record your current municipal registration number and issuing commune. If you are not yet registered locally, you will likely need to register everywhere when the national portal opens."
+        },
+        "dossier": {
+          "title": "Prepare your dossier",
+          "body": "Gather ID, address proof, municipal registration proof, listing URLs and co-ownership or change-of-use documents if applicable. Use the NER Migration Cockpit checklist in Glint."
+        },
+        "platforms": {
+          "title": "Update listings after NER",
+          "body": "When you receive your NER, update Airbnb, Booking, Vrbo and other channels. Mark each channel in the migration wizard. Listing Health URLs are informational; channel update completion is tracked on the migration record."
+        },
+        "glint": {
+          "title": "How Glint helps",
+          "body": "Glint does not submit to Démarche Numérique or mairies. It inventories numbers, tracks checklist progress, stores a notify-on-open preference (storage only in v1), and guides you through recording the NER and updating channels."
         }
       }
     },
@@ -575,6 +606,7 @@
       "guideCroatiaEvisitor": "Croatia eVisitor",
       "guideBelgiumStrRegistration": "Belgium STR registration",
       "guideBrusselsAirbnbRegistration": "Brussels Airbnb registration",
+      "guideFrNerMigration": "France NER migration 2026",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint — micro-entreprise",
@@ -1083,6 +1115,104 @@
       "ready_to_renew": "Ready to renew nationally",
       "renewed": "Renewed nationally",
       "expired_local": "Municipal number expired"
+    }
+  },
+  "frNerMigration": {
+    "title": "NER Migration Cockpit",
+    "loading": "Loading migration status…",
+    "disclaimer": "Operational aid only, not legal advice. Glint does not submit filings to mairies or the national teleservice.",
+    "localNumber": "Current municipal number",
+    "localShort": "Municipal",
+    "nerNumber": "National NER",
+    "nerShort": "NER",
+    "localCommune": "Issuing commune / authority",
+    "localPlaceholder": "e.g. 75112-STR-2024-00847",
+    "localCommunePlaceholder": "e.g. Paris, Lyon, Bordeaux Métropole",
+    "noLocalYet": "Inventory your situation: enter your current municipal number if you have one, or prepare to register when the national portal opens.",
+    "documentsTitle": "Document checklist",
+    "documents": {
+      "identity": "Owner ID or passport",
+      "address_proof": "Proof of address for the rental property",
+      "municipal_registration": "Municipal registration proof (number + receipt)",
+      "listing_urls": "Listing URLs (Airbnb, Booking, Vrbo, etc.)",
+      "coproperty": "Co-ownership attestation (if required)",
+      "change_of_use": "Change-of-use authorization (if required)"
+    },
+    "notifyLabel": "Notify me when the national teleservice opens",
+    "notifyHint": "Stored in your account only. No email is sent in this version.",
+    "save": "Save migration cockpit",
+    "saved": "Migration cockpit saved",
+    "saveError": "Could not save",
+    "copied": "Copied",
+    "ctaOfficial": "API Meublés — official guide (DGE)",
+    "ctaPlaybook": "Open compliance step",
+    "ctaGuide": "Read migration guide",
+    "description": {
+      "NO_LOCAL": "National teleservice expected {portalOpens}. Inventory your local number and prepare your dossier now.",
+      "HAS_LOCAL": "Municipal number recorded. Complete the document checklist before the portal opens ({portalOpens}).",
+      "PREP_DONE": "Dossier ready. Opt in for portal-open alerts and follow the wizard when API Meublés goes live.",
+      "SUBMITTED": "Marked as submitted to the national teleservice. Record your NER when you receive it.",
+      "NER_ACTIVE": "National NER active. Update every listing channel and keep municipal proof on file.",
+      "STALE_LOCAL": "Transition window may have ended. Renew via API Meublés and update listings urgently."
+    },
+    "status": {
+      "NO_LOCAL": "No local number",
+      "HAS_LOCAL": "Local number inventoried",
+      "PREP_DONE": "Dossier prepared",
+      "SUBMITTED": "Submitted (manual)",
+      "NER_ACTIVE": "NER active",
+      "STALE_LOCAL": "Local number stale"
+    },
+    "wizard": {
+      "title": "Migration wizard",
+      "stepCounter": "Step {current} of {total}",
+      "saveError": "Could not save step",
+      "stepSaved": "Step saved",
+      "back": "Back",
+      "next": "Next",
+      "finish": "Finish",
+      "complete": "Channel checklist saved",
+      "steps": {
+        "account": "Account",
+        "dossier": "Dossier",
+        "submit": "Submit",
+        "ner_received": "NER received",
+        "update_listings": "Update listings"
+      },
+      "account": {
+        "body": "Create or sign in to your Démarche Numérique / FranceConnect account before filing. Glint does not create the account for you.",
+        "cta": "Démarche Numérique (official)",
+        "confirm": "I have a Démarche Numérique account ready"
+      },
+      "dossier": {
+        "body": "Confirm every document in the checklist is ready before submitting on the national portal.",
+        "incomplete": "Complete the document checklist above before continuing."
+      },
+      "submit": {
+        "body": "File your dossier on the API Meublés teleservice when it opens. Mark this step when you have submitted manually.",
+        "disclaimer": "Host Registry does not automate government submission."
+      },
+      "nerReceived": {
+        "body": "Enter the national NER issued by API Meublés. Your municipal number stays in history for audit.",
+        "number": "National NER",
+        "numberPlaceholder": "e.g. FRA123456789",
+        "issuedAt": "NER issue date",
+        "localKept": "Municipal {number} ({commune}) kept in history.",
+        "unknownCommune": "commune not set"
+      },
+      "updateListings": {
+        "body": "Mark each channel once the NER appears on the live listing URL.",
+        "nerReminder": "Display {number} on every channel."
+      },
+      "channels": {
+        "airbnb": "Airbnb listing updated",
+        "booking": "Booking.com listing updated",
+        "vrbo": "Vrbo listing updated",
+        "other": "Other channel updated"
+      },
+      "dualNumber": {
+        "countdown": "Municipal number may still be accepted on platforms until {date}."
+      }
     }
   },
   "notifications": {

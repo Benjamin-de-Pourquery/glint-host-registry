@@ -76,6 +76,10 @@
     "guideBrusselsAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Bruxelles — déclaration préalable",
       "description": "Région Bruxelles-Capitale : dossier, numéro et affichage sur les annonces."
+    },
+    "guideFrNerMigration": {
+      "title": "Migration NER national meublé de tourisme 2026 — guide",
+      "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
     }
   },
   "guides": {
@@ -107,6 +111,33 @@
         "glint": {
           "title": "Comment Glint vous aide",
           "body": "Glint ne dépose pas vos dossiers à la mairie ni sur les portails officiels — il centralise le suivi des numéros, les playbooks par ville, les blocages plateforme et le dossier de recours, avec une prochaine action claire par bien."
+        }
+      }
+    },
+    "frNerMigration": {
+      "title": "Migration NER national meublé de tourisme 2026 — guide",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "La France bascule l'enregistrement des meublés de tourisme vers un téléservice national (API Meublés / Démarche Numérique), prévu au T4 2026. Les numéros communaux existants devront être renouvelés dans une fenêtre de transition ; ensuite, les anciens numéros peuvent devenir invalides. Les plateformes exigeront un NER national valide.",
+      "sections": {
+        "timeline": {
+          "title": "Calendrier (configurable dans Glint)",
+          "body": "Ouverture du portail national attendue au T4 2026. La date de fin de transition sera publiée par l'État au lancement. Host Registry stocke les dates dans la config playbook, pas en dur sur chaque écran."
+        },
+        "inventory": {
+          "title": "Inventorier vos numéros locaux",
+          "body": "Pour chaque bien en France, enregistrez votre numéro communal actuel et la commune de délivrance. Si vous n'êtes pas encore enregistré localement, l'enregistrement sera probablement obligatoire partout à l'ouverture du portail national."
+        },
+        "dossier": {
+          "title": "Préparer votre dossier",
+          "body": "Rassemblez pièce d'identité, justificatif d'adresse, preuve d'enregistrement communal, URLs d'annonces et documents copropriété ou changement d'usage si applicable. Utilisez la checklist du Cockpit migration NER dans Glint."
+        },
+        "platforms": {
+          "title": "Mettre à jour les annonces après le NER",
+          "body": "À réception du NER, mettez à jour Airbnb, Booking, Vrbo et les autres canaux. Cochez chaque canal dans l'assistant migration. Les URLs Listing Health sont informatives ; la complétion des mises à jour canal est suivie sur l'enregistrement migration."
+        },
+        "glint": {
+          "title": "Comment Glint vous aide",
+          "body": "Glint ne dépose pas sur Démarche Numérique ni en mairie. Il inventorie les numéros, suit la checklist, enregistre la préférence d'alerte à l'ouverture (stockage seul en v1) et vous guide pour saisir le NER et mettre à jour les canaux."
         }
       }
     },
@@ -575,6 +606,7 @@
       "guideCroatiaEvisitor": "Croatie eVisitor",
       "guideBelgiumStrRegistration": "Enregistrement LCD Belgique",
       "guideBrusselsAirbnbRegistration": "Airbnb Bruxelles",
+      "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
       "company": "Glint — micro-entreprise",
@@ -1083,6 +1115,104 @@
       "ready_to_renew": "Prêt pour le renouvellement national",
       "renewed": "Renouvelé au niveau national",
       "expired_local": "Numéro municipal expiré"
+    }
+  },
+  "frNerMigration": {
+    "title": "Cockpit migration NER",
+    "loading": "Chargement du statut migration…",
+    "disclaimer": "Aide opérationnelle uniquement, pas un conseil juridique. Glint ne dépose pas de dossiers auprès des mairies ni du téléservice national.",
+    "localNumber": "Numéro communal actuel",
+    "localShort": "Communal",
+    "nerNumber": "NER national",
+    "nerShort": "NER",
+    "localCommune": "Commune / autorité de délivrance",
+    "localPlaceholder": "ex. 75112-STR-2024-00847",
+    "localCommunePlaceholder": "ex. Paris, Lyon, Bordeaux Métropole",
+    "noLocalYet": "Faites l'inventaire : saisissez votre numéro communal si vous en avez un, ou préparez-vous à vous enregistrer à l'ouverture du portail national.",
+    "documentsTitle": "Checklist pièces",
+    "documents": {
+      "identity": "Pièce d'identité du propriétaire/loueur",
+      "address_proof": "Justificatif d'adresse du logement loué",
+      "municipal_registration": "Justificatif d'enregistrement communal (numéro + accusé)",
+      "listing_urls": "URLs des annonces (Airbnb, Booking, Vrbo, etc.)",
+      "coproperty": "Attestation de copropriété (si exigée)",
+      "change_of_use": "Autorisation de changement d'usage (si exigée)"
+    },
+    "notifyLabel": "Me prévenir quand le téléservice national ouvre",
+    "notifyHint": "Enregistré dans votre compte uniquement. Aucun e-mail n'est envoyé dans cette version.",
+    "save": "Enregistrer le cockpit",
+    "saved": "Cockpit migration enregistré",
+    "saveError": "Enregistrement impossible",
+    "copied": "Copié",
+    "ctaOfficial": "API Meublés — guide officiel (DGE)",
+    "ctaPlaybook": "Ouvrir l'étape conformité",
+    "ctaGuide": "Lire le guide migration",
+    "description": {
+      "NO_LOCAL": "Téléservice national attendu {portalOpens}. Inventoriez votre numéro local et préparez votre dossier dès maintenant.",
+      "HAS_LOCAL": "Numéro communal enregistré. Complétez la checklist pièces avant l'ouverture du portail ({portalOpens}).",
+      "PREP_DONE": "Dossier prêt. Activez l'alerte à l'ouverture et suivez l'assistant quand l'API Meublés sera en ligne.",
+      "SUBMITTED": "Marqué comme déposé sur le téléservice national. Saisissez votre NER à réception.",
+      "NER_ACTIVE": "NER national actif. Mettez à jour chaque canal d'annonce et conservez le justificatif communal.",
+      "STALE_LOCAL": "La fenêtre de transition est peut-être terminée. Renouvelez via l'API Meublés et mettez à jour les annonces en urgence."
+    },
+    "status": {
+      "NO_LOCAL": "Pas de numéro local",
+      "HAS_LOCAL": "Numéro local inventorié",
+      "PREP_DONE": "Dossier préparé",
+      "SUBMITTED": "Déposé (manuel)",
+      "NER_ACTIVE": "NER actif",
+      "STALE_LOCAL": "Numéro local obsolète"
+    },
+    "wizard": {
+      "title": "Assistant migration",
+      "stepCounter": "Étape {current} sur {total}",
+      "saveError": "Impossible d'enregistrer l'étape",
+      "stepSaved": "Étape enregistrée",
+      "back": "Retour",
+      "next": "Suivant",
+      "finish": "Terminer",
+      "complete": "Checklist canaux enregistrée",
+      "steps": {
+        "account": "Compte",
+        "dossier": "Dossier",
+        "submit": "Dépôt",
+        "ner_received": "NER reçu",
+        "update_listings": "Maj annonces"
+      },
+      "account": {
+        "body": "Créez ou connectez-vous à votre compte Démarche Numérique / FranceConnect avant le dépôt. Glint ne crée pas le compte pour vous.",
+        "cta": "Démarche Numérique (officiel)",
+        "confirm": "J'ai un compte Démarche Numérique prêt"
+      },
+      "dossier": {
+        "body": "Confirmez que chaque pièce de la checklist est prête avant de déposer sur le portail national.",
+        "incomplete": "Complétez la checklist pièces ci-dessus avant de continuer."
+      },
+      "submit": {
+        "body": "Déposez votre dossier sur le téléservice API Meublés à l'ouverture. Marquez cette étape une fois le dépôt manuel effectué.",
+        "disclaimer": "Host Registry n'automatise pas le dépôt gouvernemental."
+      },
+      "nerReceived": {
+        "body": "Saisissez le NER national délivré par l'API Meublés. Votre numéro communal reste en historique pour audit.",
+        "number": "NER national",
+        "numberPlaceholder": "ex. FRA123456789",
+        "issuedAt": "Date de délivrance du NER",
+        "localKept": "Communal {number} ({commune}) conservé en historique.",
+        "unknownCommune": "commune non renseignée"
+      },
+      "updateListings": {
+        "body": "Cochez chaque canal une fois le NER visible sur l'URL de l'annonce en ligne.",
+        "nerReminder": "Affichez {number} sur chaque canal."
+      },
+      "channels": {
+        "airbnb": "Annonce Airbnb à jour",
+        "booking": "Annonce Booking.com à jour",
+        "vrbo": "Annonce Vrbo à jour",
+        "other": "Autre canal à jour"
+      },
+      "dualNumber": {
+        "countdown": "Le numéro communal peut encore être accepté sur les plateformes jusqu'au {date}."
+      }
     }
   },
   "notifications": {

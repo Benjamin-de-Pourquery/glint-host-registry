@@ -11,6 +11,7 @@ import { PropertyOverviewForm } from "@/components/property-overview-form";
 import { PropertyListingsForm } from "@/components/property-listings-form";
 import { PropertyNotesForm } from "@/components/property-notes-form";
 import { NationalTransitionCard } from "@/components/national-transition-card";
+import { FrNerMigrationCard } from "@/components/fr-ner-migration-card";
 import { CinComplianceCard } from "@/components/cin-compliance-card";
 import { RnalComplianceCard } from "@/components/rnal-compliance-card";
 import { AmaComplianceCard } from "@/components/ama-compliance-card";
@@ -28,6 +29,8 @@ import { BeComplianceCard } from "@/components/be-compliance-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import type { ListingChannelRecord } from "@/lib/listings/channels";
 import { Badge } from "@/components/ui/badge";
+import { ListingHealthCard } from "@/components/listing-health-card";
+import type { ListingHealthSnapshotRecord } from "@/lib/listing-health/types";
 import { cn } from "@/lib/utils";
 import { EvidencePackButton } from "@/components/evidence-pack-dialog";
 
@@ -102,17 +105,35 @@ type PropertyData = {
   listingChannels: ListingChannelRecord[];
 };
 
+type ListingHealthTruthCard = {
+  address: string;
+  city: string;
+  country: string;
+  primaryRegistrationNumber: string | null;
+  expiryDate: string | null;
+  residencyStatus: string | null;
+  propertyType: string;
+};
+
 type Props = {
   property: PropertyData;
   locale: string;
   missingFichesCount?: number;
+  listingHealthSnapshot?: ListingHealthSnapshotRecord | null;
+  listingHealthTruthCard?: ListingHealthTruthCard;
 };
 
 function isValidTab(tab: string | null): tab is PropertyDetailTab {
   return TAB_IDS.includes(tab as PropertyDetailTab);
 }
 
-export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }: Props) {
+export function PropertyDetailTabs({
+  property,
+  locale,
+  missingFichesCount = 0,
+  listingHealthSnapshot = null,
+  listingHealthTruthCard,
+}: Props) {
   const t = useTranslations("properties.detail");
   const tEvidencePack = useTranslations("evidencePack");
   const router = useRouter();
@@ -206,6 +227,13 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             onGoToCompliance={() => setTab("compliance")}
           />
 
+          <ListingHealthCard
+            propertyId={property.id}
+            locale={locale}
+            initialSnapshot={listingHealthSnapshot}
+            truthCard={listingHealthTruthCard}
+          />
+
           <NightCapCard
             propertyId={property.id}
             country={property.country}
@@ -219,6 +247,15 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             propertyId={property.id}
             country={property.country}
             locale={locale}
+          />
+
+          <FrNerMigrationCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
+            complianceTabHref={`/${locale}/app/properties/${property.id}?tab=compliance`}
+            showForm={false}
+            showWizard={false}
           />
 
           <NationalTransitionCard
@@ -384,6 +421,14 @@ export function PropertyDetailTabs({ property, locale, missingFichesCount = 0 }:
             </div>
             <EvidencePackButton propertyId={property.id} locale={locale} />
           </div>
+
+          <FrNerMigrationCard
+            propertyId={property.id}
+            country={property.country}
+            locale={locale}
+            showForm
+            showWizard
+          />
           <NationalTransitionCard
             propertyId={property.id}
             country={property.country}

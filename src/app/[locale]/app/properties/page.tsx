@@ -6,6 +6,7 @@ import { hasActiveSubscription, getPropertyLimit } from "@/lib/plans";
 import { PropertiesView } from "@/components/properties-view";
 import { getNightCapAttentionForUser } from "@/lib/france/night-cap-service";
 import { getTouristTaxAttentionForUser } from "@/lib/france/tourist-tax-service";
+import { getListingHealthScoresForUser } from "@/lib/listing-health";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -53,6 +54,10 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
   const touristTaxAttentionIds = new Set(
     (await getTouristTaxAttentionForUser(session.user.id)).map((item) => item.propertyId)
   );
+  const listingHealthScores = await getListingHealthScoresForUser(session.user.id, locale);
+  const listingHealthByPropertyId = Object.fromEntries(
+    listingHealthScores.map((s) => [s.propertyId, s.score])
+  );
 
   return (
     <PropertiesView
@@ -66,6 +71,7 @@ export default async function PropertiesPage({ params, searchParams }: Props) {
       limit={limit}
       nightCapAttentionIds={Array.from(nightCapAttentionIds)}
       touristTaxAttentionIds={Array.from(touristTaxAttentionIds)}
+      listingHealthByPropertyId={listingHealthByPropertyId}
     />
   );
 }

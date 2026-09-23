@@ -84,6 +84,7 @@ model Property {
   playbookProgress PlaybookStepProgress[]
   listingPlatformProgress ListingPlatformProgress[]
   listingChannels ListingChannel[]
+  listingHealthSnapshots ListingHealthSnapshot[]
   notifications  Notification[]
   guestRegisterToken GuestRegisterToken?
   calendarFeeds CalendarFeed[]
@@ -361,6 +362,18 @@ model ListingChannel {
   @@index([displayStatus])
 }
 
+model ListingHealthSnapshot {
+  id             String   @id @default(cuid())
+  propertyId     String
+  score          String
+  factorsJson    String   @default("[]")
+  computedAt     DateTime @default(now())
+  property       Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId, computedAt])
+  @@index([propertyId])
+}
+
 model Registration {
   id                        String    @id @default(cuid())
   propertyId                String    @unique
@@ -418,6 +431,25 @@ model Registration {
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  frNerMigration            FrNerMigration?
+}
+
+model FrNerMigration {
+  id                      String       @id @default(cuid())
+  registrationId          String       @unique
+  status                  String       @default("NO_LOCAL")
+  localRegistrationNumber String?
+  localIssuingCommune     String?
+  nerNumber               String?
+  nerIssuedAt             DateTime?
+  transitionEndsAt        DateTime?
+  documentsChecklist      String       @default("[]")
+  channelUpdatesChecklist String       @default("[]")
+  notifyOnPortalOpen      Boolean      @default(false)
+  wizardStep              String?
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
+  registration            Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade)
 }
 
 model ChecklistItem {

@@ -9,6 +9,7 @@ import {
   DISPLAY_STATUSES,
 } from "@/lib/listings/channels";
 import { syncUpdateListingsPlaybookStep } from "@/lib/listings/playbook-sync";
+import { recomputeListingHealth } from "@/lib/listing-health";
 import { normalizeListingUrl } from "@/lib/listings/url-validation";
 import { z } from "zod";
 
@@ -111,6 +112,7 @@ export async function PATCH(
 
     await syncLegacyUrls(id);
     await syncUpdateListingsPlaybookStep(id);
+    await recomputeListingHealth(id);
 
     return NextResponse.json(toListingChannelRecord(channel));
   } catch {
@@ -136,6 +138,7 @@ export async function DELETE(
   await prisma.listingChannel.delete({ where: { id: channelId } });
   await syncLegacyUrls(id);
   await syncUpdateListingsPlaybookStep(id);
+  await recomputeListingHealth(id);
 
   return NextResponse.json({ ok: true });
 }

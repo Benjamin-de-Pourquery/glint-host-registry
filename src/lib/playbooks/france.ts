@@ -1,4 +1,5 @@
 import type { Playbook, PlaybookStep, LocalizedText, OfficialUrl } from "./types";
+import { buildNerMigrationPrepStep } from "@/lib/fr-ner-migration/playbook-step";
 
 const PARIS_RULES_URL =
   "https://www.paris.fr/pages/meubles-touristiques-3637";
@@ -1939,6 +1940,29 @@ function cityKeyFromPlaybook(playbook: Playbook): string {
   return playbook.id.replace(/^fr-/, "");
 }
 
+function withNerMigrationStep(playbook: Playbook): Playbook {
+  const cityKey = cityKeyFromPlaybook(playbook);
+  const nerMigrationStep = buildNerMigrationPrepStep(cityKey);
+
+  if (playbook.steps.some((s) => s.key.endsWith("-ner-migration-prep"))) {
+    return playbook;
+  }
+
+  const nationalIndex = playbook.steps.findIndex((s) =>
+    s.key.endsWith("-prepare-national-portal")
+  );
+  const insertAt = nationalIndex >= 0 ? nationalIndex : playbook.steps.length;
+
+  return {
+    ...playbook,
+    steps: [
+      ...playbook.steps.slice(0, insertAt),
+      nerMigrationStep,
+      ...playbook.steps.slice(insertAt),
+    ],
+  };
+}
+
 function withNationalTransitionStep(playbook: Playbook): Playbook {
   const cityKey = cityKeyFromPlaybook(playbook);
   const nationalStep = frSteps.prepareNationalPortal(cityKey);
@@ -2006,5 +2030,6 @@ function withTouristTaxDeclarationStep(playbook: Playbook): Playbook {
 export const FRANCE_PLAYBOOKS: Playbook[] =
   BASE_FRANCE_PLAYBOOKS
     .map(withNationalTransitionStep)
+    .map(withNerMigrationStep)
     .map(withPrimaryNightCapStep)
     .map(withTouristTaxDeclarationStep);

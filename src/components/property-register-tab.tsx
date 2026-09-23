@@ -31,6 +31,7 @@ import { NlComplianceCard } from "@/components/nl-compliance-card";
 import { BeComplianceCard } from "@/components/be-compliance-card";
 import { NlStayNotifyPanel } from "@/components/nl-stay-notify-panel";
 import { NationalTransitionCard } from "@/components/national-transition-card";
+import { FrNerMigrationCard } from "@/components/fr-ner-migration-card";
 import { getComplianceStatus } from "@/lib/compliance";
 import { Copy, Check, FileText, Printer } from "lucide-react";
 import { toast } from "sonner";
@@ -261,6 +262,14 @@ export function PropertyRegisterTab({
           </a>
         </div>
       </section>
+
+      <FrNerMigrationCard
+        propertyId={propertyId}
+        country={country}
+        locale={locale}
+        showForm
+        showWizard
+      />
 
       <NationalTransitionCard
         propertyId={propertyId}

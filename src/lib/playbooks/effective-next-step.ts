@@ -19,6 +19,7 @@ import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import { isBelgiumCountry } from "@/lib/belgium/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
+import type { FrNerMigrationRecord } from "@/lib/fr-ner-migration/types";
 
 export type EffectiveNextStepContext = {
   country: string;
@@ -45,6 +46,7 @@ export type EffectiveNextStepContext = {
   beDisplayedOnListings?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
+  frNerMigration?: FrNerMigrationRecord | null;
 };
 
 export function getEffectiveNextStep(
@@ -128,6 +130,7 @@ export function getEffectiveNextStep(
     context.country,
     context.registration ?? null,
     context.nightCapComputation ?? null,
-    context.touristTaxSummary ?? null
+    context.touristTaxSummary ?? null,
+    context.frNerMigration ?? null
   );
 }

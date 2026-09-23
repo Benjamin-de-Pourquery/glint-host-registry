@@ -46,6 +46,7 @@ const CHANNEL_LABEL_KEYS: Record<ListingChannelType, string> = {
   AIRBNB: "airbnb",
   BOOKING: "booking",
   VRBO: "vrbo",
+  DIRECT: "direct",
   OTHER: "other",
 };
 

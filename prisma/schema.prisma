@@ -432,6 +432,18 @@ model ChecklistItem {
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }
 
+model EvidencePackEvent {
+  id             String   @id @default(cuid())
+  registrationId String
+  generatedAt    DateTime @default(now())
+  periodStart    DateTime
+  periodEnd      DateTime
+  locale         String
+
+  @@index([registrationId])
+  @@index([generatedAt])
+}
+
 model Notification {
   id         String    @id @default(cuid())
   userId     String

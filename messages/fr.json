@@ -2141,6 +2141,48 @@
       }
     }
   },
+  "evidencePack": {
+    "trigger": "Générer le pack preuve",
+    "title": "Pack preuve conformité",
+    "description": "Téléchargez un PDF prêt pour un contrôle, basé sur vos enregistrements Host Registry pour la période choisie. Aide opérationnelle uniquement, pas un certificat officiel.",
+    "cardTitle": "Pack preuve conformité",
+    "cardSubtitle": "PDF en un clic pour un contrôle, une réclamation plateforme ou une demande municipale.",
+    "period": {
+      "label": "Période couverte",
+      "90d": "90 derniers jours",
+      "calendar_year": "Année civile",
+      "custom": "Personnalisée",
+      "start": "Date de début",
+      "end": "Date de fin"
+    },
+    "locale": {
+      "label": "Langue d'export",
+      "en": "Anglais",
+      "fr": "Français"
+    },
+    "warnings": {
+      "title": "Avant de générer",
+      "checking": "Vérification de vos données…",
+      "softNote": "Vous pouvez quand même générer le pack. Compléter ces éléments le rendra plus utile.",
+      "missingRegistration": "Ajoutez un numéro d'enregistrement dans l'onglet Registre",
+      "noChannels": "Configurez les canaux d'annonce dans l'onglet Annonces",
+      "lowPlaybookProgress": "Complétez davantage d'étapes playbook dans l'onglet Conformité",
+      "noStaysInPeriod": "Aucun séjour enregistré sur cette période",
+      "registrationNotStarted": "Le statut d'enregistrement est encore non démarré"
+    },
+    "actions": {
+      "generatePdf": "Télécharger le PDF",
+      "downloadManifest": "Télécharger le manifeste JSON"
+    },
+    "success": {
+      "pdfDownloaded": "Pack preuve PDF téléchargé",
+      "manifestDownloaded": "Manifeste JSON téléchargé"
+    },
+    "errors": {
+      "customPeriodRequired": "Sélectionnez les dates de début et de fin pour une période personnalisée",
+      "generateFailed": "Impossible de générer le pack preuve"
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",

@@ -29,6 +29,7 @@ import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-comp
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { getListingHealthScoresForUser } from "@/lib/listing-health";
+import { RuleRadarFeed } from "@/components/rule-radar-feed";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -193,6 +194,7 @@ export default async function DashboardPage({ params }: Props) {
       <AadeDueQueue locale={locale} />
       <EvisitorDueQueue locale={locale} />
       <NlDueQueue locale={locale} />
+      <RuleRadarFeed locale={locale} />
 
       {properties.length === 0 && (
         <EmptyState

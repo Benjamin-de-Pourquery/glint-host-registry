@@ -12,6 +12,7 @@ import {
   buildDefaultNlNightCapSettings,
   computeNlNightCapStatus,
 } from "@/lib/netherlands/night-cap";
+import { resolveNightCapSettingsForProperty } from "@/lib/rule-radar/night-cap-integration";
 
 export type NightCapSettingsRecord = {
   id: string;
@@ -85,26 +86,47 @@ export async function loadPropertyNightCap(
     });
 
     const defaults = buildDefaultNlNightCapSettings(context.city, neighborhood);
+    const resolved = await resolveNightCapSettingsForProperty({
+      country: context.country,
+      city: context.city,
+      residencyStatus: context.residencyStatus,
+      wijkKey: neighborhood,
+      existing: context.settings
+        ? {
+            nightCapEnabled: context.settings.nightCapEnabled,
+            nightCapLimit: context.settings.nightCapLimit,
+            nightCapYear: context.settings.nightCapYear,
+            nightCapSource: "custom",
+            notes: context.settings.notes,
+          }
+        : {
+            nightCapEnabled: defaults.nightCapEnabled,
+            nightCapLimit: defaults.nightCapLimit,
+            nightCapYear: defaults.nightCapYear,
+            nightCapSource: "custom",
+            notes: defaults.notes ?? null,
+          },
+    });
     let settings = context.settings;
 
     if (!settings) {
       settings = await prisma.nightCapSettings.create({
         data: {
           propertyId: context.propertyId,
-          nightCapEnabled: defaults.nightCapEnabled,
-          nightCapLimit: defaults.nightCapLimit,
-          nightCapYear: defaults.nightCapYear,
+          nightCapEnabled: resolved.nightCapEnabled,
+          nightCapLimit: resolved.nightCapLimit,
+          nightCapYear: resolved.nightCapYear,
           nightCapSource: "custom",
-          notes: defaults.notes ?? null,
+          notes: resolved.notes ?? null,
         },
       });
-    } else if (settings.nightCapLimit !== defaults.nightCapLimit) {
+    } else if (settings.nightCapLimit !== resolved.nightCapLimit) {
       settings = await prisma.nightCapSettings.update({
         where: { propertyId: context.propertyId },
         data: {
-          nightCapLimit: defaults.nightCapLimit,
+          nightCapLimit: resolved.nightCapLimit,
           nightCapSource: "custom",
-          nightCapYear: defaults.nightCapYear,
+          nightCapYear: resolved.nightCapYear,
         },
       });
     }
@@ -132,7 +154,32 @@ export async function loadPropertyNightCap(
     return { applies: true, settings, computation };
   }
 
-  const settings = context.settings ?? await getOrCreateNightCapSettings(context.propertyId, context.city);
+  let settings = context.settings ?? await getOrCreateNightCapSettings(context.propertyId, context.city);
+  const resolvedFr = await resolveNightCapSettingsForProperty({
+    country: context.country,
+    city: context.city,
+    residencyStatus: context.residencyStatus,
+    existing: {
+      nightCapEnabled: settings.nightCapEnabled,
+      nightCapLimit: settings.nightCapLimit,
+      nightCapYear: settings.nightCapYear,
+      nightCapSource: settings.nightCapSource as NightCapSource,
+      notes: settings.notes,
+    },
+  });
+
+  if (
+    settings.nightCapLimit !== resolvedFr.nightCapLimit ||
+    settings.nightCapSource !== resolvedFr.nightCapSource
+  ) {
+    settings = await prisma.nightCapSettings.update({
+      where: { propertyId: context.propertyId },
+      data: {
+        nightCapLimit: resolvedFr.nightCapLimit,
+        nightCapSource: resolvedFr.nightCapSource,
+      },
+    });
+  }
 
   const stays = await prisma.guestStay.findMany({
     where: { propertyId: context.propertyId },

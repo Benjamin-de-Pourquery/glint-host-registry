@@ -133,6 +133,7 @@ model Property {
   reconciliationFindings ReconciliationFinding[]
   dac7ListingOverviews Dac7ListingOverview[]
   platformColumnMappings PlatformColumnMapping[]
+  ruleImpacts RuleImpact[]
 }
 
 model TouristTaxSettings {
@@ -646,5 +647,51 @@ model PlatformColumnMapping {
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([propertyId, userId, channel])
+}
+
+model JurisdictionRule {
+  id            String    @id @default(cuid())
+  key           String
+  country       String
+  city          String?
+  zone          String?
+  residency     String?
+  valueJson     String
+  effectiveFrom DateTime
+  effectiveTo   DateTime?
+  sourceUrl     String?
+  reviewedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([key, country, city])
+  @@index([effectiveFrom])
+}
+
+model RuleChange {
+  id            String       @id @default(cuid())
+  ruleKeysJson  String
+  summaryEn     String
+  summaryFr     String
+  confidence    String
+  publishedAt   DateTime?
+  createdAt     DateTime     @default(now())
+  impacts       RuleImpact[]
+}
+
+model RuleImpact {
+  id           String     @id @default(cuid())
+  ruleChangeId String
+  propertyId   String
+  beforeJson   String
+  afterJson    String
+  severity     String
+  seenAt       DateTime?
+  createdAt    DateTime   @default(now())
+  ruleChange   RuleChange @relation(fields: [ruleChangeId], references: [id], onDelete: Cascade)
+  property     Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId, seenAt])
+  @@index([ruleChangeId])
   @@index([propertyId])
 }

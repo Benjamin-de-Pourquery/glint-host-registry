@@ -652,24 +652,29 @@
     }
   },
   "auth": {
+    "shell": {
+      "language": "Langue"
+    },
     "login": {
-      "title": "Bon retour",
-      "subtitle": "Connectez-vous à votre compte Host Registry",
+      "title": "Connexion",
+      "subtitle": "Accédez à votre espace de travail.",
       "email": "Adresse e-mail",
       "password": "Mot de passe",
       "submit": "Se connecter",
+      "pending": "Un instant...",
       "noAccount": "Pas encore de compte ?",
       "signup": "Créer un compte",
       "error": "E-mail ou mot de passe invalide"
     },
     "signup": {
-      "title": "Créer votre compte",
-      "subtitle": "Commencez votre essai gratuit de 14 jours",
+      "title": "Créer un compte",
+      "subtitle": "Commencez votre essai gratuit de 14 jours. Aucune carte bancaire requise pour explorer.",
       "name": "Nom complet",
       "email": "Adresse e-mail",
       "password": "Mot de passe",
       "passwordHint": "Au moins 8 caractères",
       "submit": "Créer le compte",
+      "pending": "Un instant...",
       "hasAccount": "Déjà un compte ?",
       "login": "Se connecter",
       "error": "Impossible de créer le compte. L'e-mail est peut-être déjà utilisé.",

@@ -652,24 +652,29 @@
     }
   },
   "auth": {
+    "shell": {
+      "language": "Language"
+    },
     "login": {
-      "title": "Welcome back",
-      "subtitle": "Sign in to your Host Registry account",
+      "title": "Sign in",
+      "subtitle": "Access your workspace.",
       "email": "Email address",
       "password": "Password",
       "submit": "Sign in",
-      "noAccount": "Don't have an account?",
-      "signup": "Create one",
+      "pending": "One moment...",
+      "noAccount": "No account yet?",
+      "signup": "Create an account",
       "error": "Invalid email or password"
     },
     "signup": {
-      "title": "Create your account",
-      "subtitle": "Start your 14-day free trial, no credit card required to explore",
+      "title": "Create an account",
+      "subtitle": "Start your 14-day free trial. No credit card required to explore.",
       "name": "Full name",
       "email": "Email address",
       "password": "Password",
       "passwordHint": "At least 8 characters",
       "submit": "Create account",
+      "pending": "One moment...",
       "hasAccount": "Already have an account?",
       "login": "Sign in",
       "error": "Could not create account. Email may already be in use.",

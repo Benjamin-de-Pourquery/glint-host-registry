@@ -17,13 +17,15 @@ import {
 import { sanitizeCallbackUrl } from "@/lib/security/safe-redirect";
 import { AuthGoogleSection } from "@/components/auth/auth-google-section";
 
-const SUPPORT_EMAIL = "glintapps@proton.me";
-
 type LoginFormProps = {
   showGoogle?: boolean;
+  showForgotPassword?: boolean;
 };
 
-export function LoginForm({ showGoogle = false }: LoginFormProps) {
+export function LoginForm({
+  showGoogle = false,
+  showForgotPassword = false,
+}: LoginFormProps) {
   const t = useTranslations("auth.login");
   const tOAuth = useTranslations("auth.oauth");
   const locale = useLocale();
@@ -34,6 +36,7 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
     searchParams.get("callbackUrl"),
     locale
   );
+  const passwordUpdated = searchParams.get("passwordUpdated") === "1";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -79,6 +82,11 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
           callbackUrl={callbackUrl}
         />
         <form onSubmit={handleSubmit} className="space-y-4">
+          {passwordUpdated && (
+            <div className="rounded-lg bg-emerald-50 p-3 text-sm text-emerald-800">
+              {t("passwordUpdated")}
+            </div>
+          )}
           {error && (
             <div className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>
           )}
@@ -103,6 +111,13 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            {showForgotPassword ? (
+              <p className="text-right text-sm">
+                <AuthTextLink href={`/${locale}/forgot-password`}>
+                  {t("forgotPasswordLink")}
+                </AuthTextLink>
+              </p>
+            ) : null}
           </div>
           <Button
             type="submit"
@@ -111,18 +126,6 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
           >
             {loading ? t("pending") : t("submit")}
           </Button>
-          <p className="text-center text-sm text-slate-500">
-            {t.rich("forgotPassword", {
-              email: (chunks) => (
-                <a
-                  href={`mailto:${SUPPORT_EMAIL}`}
-                  className="font-medium text-slate-900 underline-offset-4 hover:underline"
-                >
-                  {chunks}
-                </a>
-              ),
-            })}
-          </p>
         </form>
       </div>
     </AuthPageShell>

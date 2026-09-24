@@ -23,6 +23,10 @@
       "title": "Mot de passe oublié",
       "description": "Récupérez l'accès à votre espace Glint Host Registry."
     },
+    "resetPassword": {
+      "title": "Réinitialiser le mot de passe",
+      "description": "Définissez un nouveau mot de passe pour votre compte Glint Host Registry."
+    },
     "privacy": {
       "title": "Politique de confidentialité",
       "description": "Comment Glint Host Registry traite vos données personnelles et celles de vos voyageurs, conformément au RGPD."
@@ -672,8 +676,37 @@
       "pending": "Un instant...",
       "noAccount": "Pas encore de compte ?",
       "signup": "Créer un compte",
-      "forgotPassword": "Mot de passe oublié ? Écrivez-nous à <email>glintapps@proton.me</email>",
+      "forgotPasswordLink": "Mot de passe oublié ?",
+      "passwordUpdated": "Mot de passe mis à jour, vous pouvez vous connecter.",
       "error": "E-mail ou mot de passe invalide"
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié",
+      "subtitle": "Saisissez votre adresse e-mail. Nous vous enverrons un lien de réinitialisation.",
+      "email": "Adresse e-mail",
+      "submit": "Envoyer le lien",
+      "pending": "Un instant...",
+      "confirmation": "Si un compte existe pour cette adresse, un email vient d'être envoyé. Le lien est valable 1 heure.",
+      "backToLogin": "Retour à la connexion",
+      "error": "Une erreur s'est produite. Réessayez dans un instant.",
+      "unavailable": "La réinitialisation du mot de passe n'est pas disponible pour le moment."
+    },
+    "resetPassword": {
+      "title": "Nouveau mot de passe",
+      "subtitle": "Saisissez et confirmez votre nouveau mot de passe.",
+      "invalidSubtitle": "Ce lien de réinitialisation n'est plus valide.",
+      "password": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "passwordHint": "Au moins 8 caractères",
+      "submit": "Mettre à jour le mot de passe",
+      "pending": "Un instant...",
+      "mismatch": "Les mots de passe ne correspondent pas.",
+      "policy": "Utilisez au moins 8 caractères.",
+      "submitError": "Impossible de mettre à jour le mot de passe. Demandez un nouveau lien.",
+      "invalidMessage": "Ce lien est invalide. Demandez un nouveau lien de réinitialisation.",
+      "expiredMessage": "Ce lien a expiré. Demandez un nouveau lien de réinitialisation.",
+      "usedMessage": "Ce lien a déjà été utilisé. Demandez un nouveau lien de réinitialisation.",
+      "requestNewLink": "Demander un nouveau lien"
     },
     "signup": {
       "title": "Créer un compte",

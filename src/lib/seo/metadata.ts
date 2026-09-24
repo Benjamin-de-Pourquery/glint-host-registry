@@ -8,6 +8,7 @@ export type SeoPageKey =
   | "home"
   | "login"
   | "signup"
+  | "forgotPassword"
   | "privacy"
   | "terms"
   | "mentions"
@@ -29,6 +30,7 @@ const PAGE_PATHS: Record<SeoPageKey, string> = {
   home: "",
   login: "/login",
   signup: "/signup",
+  forgotPassword: "/forgot-password",
   privacy: "/legal/privacy",
   terms: "/legal/terms",
   mentions: "/legal/mentions",

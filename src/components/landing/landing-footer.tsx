@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
+import { BrandWordmark } from "@/components/brand/brand-wordmark";
 import { suiteProductUrl } from "@/lib/suite-urls";
 
 type Props = { locale: string };
@@ -13,11 +14,17 @@ export async function LandingFooter({ locale }: Props) {
   return (
     <footer className="border-t border-slate-800 bg-slate-950 py-14 text-slate-400">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          <div className="md:col-span-2 xl:col-span-1">
-            <div className="flex items-center gap-2 text-white">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-8">
+          <div className="md:col-span-2 xl:col-span-1 xl:border-r xl:border-slate-800 xl:pr-8">
+            <div className="flex items-center gap-2.5">
               <GlintBrandIcon size={24} />
-              <span className="font-semibold">{tBrand("name")} {tBrand("product")}</span>
+              <BrandWordmark
+                product={tBrand("product")}
+                byGlint={tBrand("byGlint")}
+                variant="dark"
+                productClassName="text-base font-semibold text-white"
+                byGlintClassName="text-emerald-400"
+              />
             </div>
             <p className="mt-3 text-sm leading-relaxed">{tBrand("tagline")}</p>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">{tBrand("suiteOneliner")}</p>
@@ -44,8 +51,9 @@ export async function LandingFooter({ locale }: Props) {
             </ul>
           </div>
 
-          <div>
+          <div className="xl:border-r xl:border-slate-800 xl:pr-8">
             <h4 className="font-semibold text-white">{t("suite")}</h4>
+            <p className="mt-2 text-sm leading-relaxed text-slate-500">{t("suiteIntro")}</p>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <span className="font-medium text-white" aria-current="page">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useNavigationProgress } from "@/components/navigation/navigation-progress";
 import { NavLink } from "@/components/navigation/nav-link";
 import { useRouter } from "next/navigation";
@@ -13,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
+import { BrandWordmark } from "@/components/brand/brand-wordmark";
 
 export default function SignupPage() {
   const t = useTranslations("auth.signup");
@@ -65,12 +65,9 @@ export default function SignupPage() {
         <LanguageSwitcher />
       </div>
 
-      <NavLink href={`/${locale}`} className="mb-8 flex items-center gap-2">
+      <NavLink href={`/${locale}`} className="mb-8 flex items-center gap-2.5">
         <GlintBrandIcon size={40} />
-        <div>
-          <div className="font-bold text-slate-900">{tBrand("name")}</div>
-          <div className="text-sm text-slate-500">{tBrand("product")}</div>
-        </div>
+        <BrandWordmark product={tBrand("product")} byGlint={tBrand("byGlint")} />
       </NavLink>
 
       <Card className="w-full max-w-md">

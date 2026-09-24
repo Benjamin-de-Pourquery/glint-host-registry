@@ -8,6 +8,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
+import { BrandWordmark } from "@/components/brand/brand-wordmark";
 
 type Props = {
   isLoggedIn?: boolean;
@@ -28,20 +29,13 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
   const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-50 border-b border-slate-300/50 bg-slate-50/80 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-50/70">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.25rem] sm:gap-4 sm:px-6">
         <NavLink href={`/${locale}`} className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
           <GlintBrandIcon
             className="h-9 w-9 shadow-md shadow-slate-900/20 transition-shadow group-hover:shadow-lg group-hover:shadow-slate-900/25 sm:h-10 sm:w-10"
           />
-          <div className="min-w-0 leading-tight">
-            <span className="block truncate text-sm font-bold tracking-tight text-slate-900 sm:text-base">
-              {tBrand("name")}
-            </span>
-            <span className="block truncate text-[10px] font-semibold uppercase tracking-wider text-emerald-700 sm:text-xs">
-              {tBrand("product")}
-            </span>
-          </div>
+          <BrandWordmark product={tBrand("product")} byGlint={tBrand("byGlint")} />
         </NavLink>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
@@ -107,10 +101,7 @@ export function MarketingHeader({ isLoggedIn = false }: Props) {
 
           <div className="flex h-full flex-col">
             <div className="border-b border-slate-200 px-5 py-4">
-              <p className="text-sm font-bold text-slate-900">{tBrand("name")}</p>
-              <p className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
-                {tBrand("product")}
-              </p>
+              <BrandWordmark product={tBrand("product")} byGlint={tBrand("byGlint")} />
             </div>
 
             <nav className="flex-1 space-y-1 overflow-y-auto p-3" aria-label="Main">

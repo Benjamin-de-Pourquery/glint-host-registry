@@ -2,6 +2,7 @@
   "brand": {
     "name": "Glint",
     "product": "Host Registry",
+    "byGlint": "By Glint",
     "tagline": "EU short-term rental compliance, simplified",
     "suiteOneliner": "Glint builds operational registries for European compliance. Software only: not a certification body, not a law firm, not a notified body."
   },
@@ -624,6 +625,7 @@
     "footer": {
       "product": "Product",
       "suite": "Suite Glint",
+      "suiteIntro": "Three registries for EU operational compliance: short-term rental hosts, certification labels, and product obligations.",
       "suiteHost": "Host Registry",
       "suiteLabel": "Label Registry",
       "suiteProduct": "Product Registry",

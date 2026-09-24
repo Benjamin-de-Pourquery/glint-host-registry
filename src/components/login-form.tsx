@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
+import { BrandWordmark } from "@/components/brand/brand-wordmark";
 import { sanitizeCallbackUrl } from "@/lib/security/safe-redirect";
 
 export function LoginForm() {
@@ -57,12 +58,9 @@ export function LoginForm() {
         <LanguageSwitcher />
       </div>
 
-      <NavLink href={`/${locale}`} className="mb-8 flex items-center gap-2">
+      <NavLink href={`/${locale}`} className="mb-8 flex items-center gap-2.5">
         <GlintBrandIcon size={40} />
-        <div>
-          <div className="font-bold text-slate-900">{tBrand("name")}</div>
-          <div className="text-sm text-slate-500">{tBrand("product")}</div>
-        </div>
+        <BrandWordmark product={tBrand("product")} byGlint={tBrand("byGlint")} />
       </NavLink>
 
       <Card className="w-full max-w-md">

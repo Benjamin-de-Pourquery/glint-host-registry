@@ -2,6 +2,7 @@
   "brand": {
     "name": "Glint",
     "product": "Host Registry",
+    "byGlint": "Par Glint",
     "tagline": "Conformité location courte durée UE, simplifiée",
     "suiteOneliner": "Glint construit des registres opérationnels pour la conformité européenne. Outil logiciel uniquement : pas un certificateur, pas un avocat, pas un organisme notifié."
   },
@@ -624,6 +625,7 @@
     "footer": {
       "product": "Produit",
       "suite": "Suite Glint",
+      "suiteIntro": "Trois registres pour la conformité opérationnelle UE : location courte durée, labels de certification et obligations produit.",
       "suiteHost": "Host Registry",
       "suiteLabel": "Label Registry",
       "suiteProduct": "Product Registry",

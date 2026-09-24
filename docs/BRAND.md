@@ -4,8 +4,9 @@ The **site mark** is the source of truth for LinkedIn, social profiles, and all 
 
 ## Mark
 
-- **Shape:** Rounded square tile with emerald **G** and a small emerald **check badge** (compliance / registry verified).
-- **Implementation:** `GlintIconMark` (`src/lib/seo/icon-mark.tsx`) for favicon, Apple touch icon, and Open Graph; `GlintBrandIcon` (`src/components/brand/glint-brand-icon.tsx`) for in-app UI.
+- **Shape:** Rounded square tile with emerald **H** (Host corner-kiss) and a small emerald **check badge** (compliance / registry verified).
+- **Wordmark:** Product name **Host Registry** with localized **Par Glint** / **By Glint** (`BrandWordmark`, `brand.byGlint` in messages), matching Label Registry.
+- **Implementation:** Static PNGs in `public/brand/suite-host-H-corner-*.png` for favicon and OG; `GlintBrandIcon` for in-app UI; legacy `GlintIconMark` mirrors the H tile for dynamic renders.
 
 ## Palette
 
@@ -13,7 +14,7 @@ The **site mark** is the source of truth for LinkedIn, social profiles, and all 
 | ----------- | --------- | ------------------------------ |
 | Slate dark  | `#0f172a` | Mark background (gradient start) |
 | Slate mid   | `#1e293b` | Mark background (gradient end)   |
-| Emerald     | `#10b981` | Letter G, check badge            |
+| Emerald     | `#10b981` | Letter H, check badge            |
 
 Constants: `src/lib/seo/brand-colors.ts`.
 

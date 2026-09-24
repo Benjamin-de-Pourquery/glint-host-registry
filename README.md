@@ -8,7 +8,7 @@ Professional compliance operations SaaS for EU short-term rental hosts under Reg
 
 - **Next.js 16** (App Router) + TypeScript + Tailwind CSS
 - **Prisma 7** + SQLite (local/demo) — Postgres/Turso-ready
-- **Auth.js (NextAuth v5)** — email/password credentials
+- **Auth.js (NextAuth v5)** — email/password credentials; optional Google OAuth when configured
 - **next-intl** — bilingual FR/EN UI
 - **Stripe** — subscription billing (test mode until go-live; see [GO_LIVE.md](./GO_LIVE.md))
 
@@ -45,6 +45,8 @@ See [.env.example](./.env.example) for the full list. Summary:
 |----------|----------|-------------|
 | `DATABASE_URL` | Yes | SQLite path (`file:./dev.db`) or Turso/libsql URL |
 | `AUTH_SECRET` | Yes | Auth.js session secret |
+| `AUTH_GOOGLE_ID` | Optional | Shared Glint Google OAuth client ID (enables Google sign-in when paired with secret) |
+| `AUTH_GOOGLE_SECRET` | Optional | Google OAuth client secret |
 | `NEXT_PUBLIC_APP_URL` | Yes | Public app URL for Stripe redirects |
 | `STRIPE_SECRET_KEY` | For billing | Stripe secret key (test: `sk_test_...`) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | For billing | Stripe publishable key |

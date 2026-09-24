@@ -659,6 +659,10 @@
     "shell": {
       "language": "Language"
     },
+    "oauth": {
+      "google": "Continue with Google",
+      "or": "or"
+    },
     "login": {
       "title": "Sign in",
       "subtitle": "Access your workspace.",

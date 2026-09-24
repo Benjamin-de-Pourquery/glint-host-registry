@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useNavigationProgress } from "@/components/navigation/navigation-progress";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -14,36 +14,43 @@ import {
   AuthTextLink,
   authPrimaryButtonClassName,
 } from "@/components/auth/auth-page-shell";
-import { sanitizeCallbackUrl } from "@/lib/security/safe-redirect";
 import { AuthGoogleSection } from "@/components/auth/auth-google-section";
 
-const SUPPORT_EMAIL = "glintapps@proton.me";
-
-type LoginFormProps = {
+type SignupFormProps = {
   showGoogle?: boolean;
 };
 
-export function LoginForm({ showGoogle = false }: LoginFormProps) {
-  const t = useTranslations("auth.login");
+export function SignupForm({ showGoogle = false }: SignupFormProps) {
+  const t = useTranslations("auth.signup");
   const tOAuth = useTranslations("auth.oauth");
   const locale = useLocale();
   const router = useRouter();
   const { start: startNavigation } = useNavigationProgress();
-  const searchParams = useSearchParams();
-  const callbackUrl = sanitizeCallbackUrl(
-    searchParams.get("callbackUrl"),
-    locale
-  );
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const appCallbackUrl = `/${locale}/app`;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password, language: locale }),
+    });
+
+    if (!res.ok) {
+      setError(t("error"));
+      setLoading(false);
+      return;
+    }
 
     const result = await signIn("credentials", {
       email,
@@ -56,7 +63,7 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
       setLoading(false);
     } else {
       startNavigation();
-      router.push(callbackUrl);
+      router.push(appCallbackUrl);
     }
   };
 
@@ -66,8 +73,8 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
       description={t("subtitle")}
       footer={
         <AuthFormFooter>
-          {t("noAccount")}{" "}
-          <AuthTextLink href={`/${locale}/signup`}>{t("signup")}</AuthTextLink>
+          {t("hasAccount")}{" "}
+          <AuthTextLink href={`/${locale}/login`}>{t("login")}</AuthTextLink>
         </AuthFormFooter>
       }
     >
@@ -76,12 +83,22 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
           showGoogle={showGoogle}
           googleLabel={tOAuth("google")}
           dividerLabel={tOAuth("or")}
-          callbackUrl={callbackUrl}
+          callbackUrl={appCallbackUrl}
         />
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
             <div className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>
           )}
+          <div className="space-y-2">
+            <Label htmlFor="name">{t("name")}</Label>
+            <Input
+              id="name"
+              autoComplete="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="email">{t("email")}</Label>
             <Input
@@ -98,11 +115,13 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
             <Input
               id="password"
               type="password"
-              autoComplete="current-password"
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              minLength={8}
               required
             />
+            <p className="text-xs text-slate-500">{t("passwordHint")}</p>
           </div>
           <Button
             type="submit"
@@ -111,18 +130,6 @@ export function LoginForm({ showGoogle = false }: LoginFormProps) {
           >
             {loading ? t("pending") : t("submit")}
           </Button>
-          <p className="text-center text-sm text-slate-500">
-            {t.rich("forgotPassword", {
-              email: (chunks) => (
-                <a
-                  href={`mailto:${SUPPORT_EMAIL}`}
-                  className="font-medium text-slate-900 underline-offset-4 hover:underline"
-                >
-                  {chunks}
-                </a>
-              ),
-            })}
-          </p>
         </form>
       </div>
     </AuthPageShell>

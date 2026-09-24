@@ -34,12 +34,6 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/*": ["./prisma/**/*", "./src/generated/prisma/**/*"],
   },
-  async rewrites() {
-    return [
-      // Browsers request /favicon.ico by default; serve the same dynamic mark as /icon.
-      { source: "/favicon.ico", destination: "/icon" },
-    ];
-  },
   async headers() {
     return [
       {

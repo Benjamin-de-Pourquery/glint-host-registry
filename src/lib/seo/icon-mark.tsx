@@ -4,7 +4,7 @@ import {
   BRAND_SLATE_GRADIENT,
 } from "./brand-colors";
 
-/** Shared favicon / OG mark — slate background, emerald "G" with registry check accent. */
+/** Shared mark — slate background, emerald Host "H" with registry check accent (legacy dynamic renderer). */
 export function GlintIconMark({
   size,
   fontSize,
@@ -46,7 +46,7 @@ export function GlintIconMark({
           textRendering: "optimizeLegibility",
         }}
       >
-        G
+        H
       </div>
       <div
         style={{

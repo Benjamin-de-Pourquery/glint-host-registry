@@ -10,6 +10,7 @@ import {
   Settings,
 } from "lucide-react";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
+import { BrandWordmark } from "@/components/brand/brand-wordmark";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SignOutButton } from "@/components/sign-out-button";
@@ -36,14 +37,7 @@ export function SidebarBrand({ className }: SidebarBrandProps) {
       )}
     >
       <GlintBrandIcon size={36} className="shadow-md shadow-slate-900/15" />
-      <div className="min-w-0 flex flex-col leading-tight">
-        <span className="truncate text-sm font-bold tracking-tight text-slate-900">
-          {tBrand("name")}
-        </span>
-        <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-emerald-700 sm:text-xs">
-          {tBrand("product")}
-        </span>
-      </div>
+      <BrandWordmark product={tBrand("product")} byGlint={tBrand("byGlint")} />
     </div>
   );
 }

@@ -14,8 +14,8 @@ type Props = {
 };
 
 /**
- * Inline SVG brand mark — slate navy tile, emerald G, compliance check badge.
- * Mirrors {@link GlintIconMark} used for favicon / OG images.
+ * Inline SVG brand mark — slate navy tile, emerald H (Host corner-kiss), compliance check badge.
+ * Mirrors suite static favicon assets in public/brand/.
  */
 export function GlintBrandIcon({ size, className }: Props) {
   const id = `glint-brand`;
@@ -53,7 +53,7 @@ export function GlintBrandIcon({ size, className }: Props) {
         fontWeight={800}
         letterSpacing="-0.04em"
       >
-        G
+        H
       </text>
       <circle cx={checkX} cy={checkY} r={checkSize / 2} fill={BRAND_EMERALD} />
       <path

@@ -88,6 +88,7 @@ export async function loadEvidencePackData(
       playbookProgress: true,
       listingChannels: true,
       nightCapSettings: true,
+      capGuardPolicy: true,
       guestStays: {
         where: {
           checkOutDate: { gte: periodStart },
@@ -204,6 +205,15 @@ export async function loadEvidencePackData(
     playbookSummary,
     stays,
     nightCap: nightCapResult.computation,
+    capGuard:
+      property.capGuardPolicy?.enabled
+        ? {
+            mode: property.capGuardPolicy.mode,
+            activeSince: property.capGuardPolicy.createdAt.toISOString(),
+            propagationConfirmedAt:
+              property.capGuardPolicy.propagationConfirmedAt?.toISOString() ?? null,
+          }
+        : null,
     guestQueue,
     channels,
     healthScore,

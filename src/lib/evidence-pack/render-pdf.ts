@@ -172,7 +172,16 @@ export function renderEvidencePackPdf(manifest: EvidencePackManifest): Uint8Arra
       PAGE_MARGIN,
       y
     );
-    y += 10;
+    y += 6;
+    if (manifest.capGuard) {
+      doc.text(
+        `${labels.capGuardActive}: ${labels.capGuardMode} ${manifest.capGuard.mode} | ${labels.capGuardSince} ${format(new Date(manifest.capGuard.activeSince), "dd/MM/yyyy")}`,
+        PAGE_MARGIN,
+        y
+      );
+      y += 6;
+    }
+    y += 4;
   }
 
   y = ensureSpace(doc, y, 20);

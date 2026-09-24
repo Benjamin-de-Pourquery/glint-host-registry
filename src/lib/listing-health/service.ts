@@ -79,6 +79,8 @@ export async function buildListingHealthInput(
 
   let nightCapPercentUsed: number | null = null;
   let nightCapExceeded = false;
+  let capGuardEnabled = false;
+  let capGuardCritical = false;
 
   const nightCap = await loadPropertyNightCap({
     propertyId: property.id,
@@ -86,6 +88,10 @@ export async function buildListingHealthInput(
     city: property.city,
     residencyStatus: property.residencyStatus,
     settings: null,
+  });
+
+  const capGuardPolicy = await prisma.capGuardPolicy.findUnique({
+    where: { propertyId: property.id },
   });
 
   if (nightCap.applies && nightCap.computation?.enabled) {
@@ -96,6 +102,14 @@ export async function buildListingHealthInput(
   }
 
   const reconciliationOpenFindings = await countOpenFindings(property.id);
+
+  if (capGuardPolicy?.enabled && nightCap.computation?.enabled) {
+    capGuardEnabled = true;
+    capGuardCritical =
+      nightCap.computation.status === "critical" ||
+      nightCap.computation.status === "exceeded" ||
+      nightCap.computation.remaining < capGuardPolicy.bufferNights;
+  }
 
   return {
     propertyId: property.id,
@@ -113,6 +127,8 @@ export async function buildListingHealthInput(
     nightCapPercentUsed,
     nightCapExceeded,
     reconciliationOpenFindings,
+    capGuardEnabled,
+    capGuardCritical,
   };
 }
 
@@ -262,6 +278,8 @@ export async function getListingHealthScoresForUser(
     const guestSignals = computeGuestDueSignals(property.guestStays);
     let nightCapPercentUsed: number | null = null;
     let nightCapExceeded = false;
+    let capGuardEnabled = false;
+    let capGuardCritical = false;
 
     const nightCap = await loadPropertyNightCap({
       propertyId: property.id,
@@ -269,6 +287,10 @@ export async function getListingHealthScoresForUser(
       city: property.city,
       residencyStatus: property.residencyStatus,
       settings: null,
+    });
+
+    const capGuardPolicy = await prisma.capGuardPolicy.findUnique({
+      where: { propertyId: property.id },
     });
 
     if (nightCap.applies && nightCap.computation?.enabled) {
@@ -279,6 +301,14 @@ export async function getListingHealthScoresForUser(
     }
 
     const reconciliationOpenFindings = await countOpenFindings(property.id);
+
+    if (capGuardPolicy?.enabled && nightCap.computation?.enabled) {
+      capGuardEnabled = true;
+      capGuardCritical =
+        nightCap.computation.status === "critical" ||
+        nightCap.computation.status === "exceeded" ||
+        nightCap.computation.remaining < capGuardPolicy.bufferNights;
+    }
 
     const computed = computeScore({
       propertyId: property.id,
@@ -296,6 +326,8 @@ export async function getListingHealthScoresForUser(
       nightCapPercentUsed,
       nightCapExceeded,
       reconciliationOpenFindings,
+      capGuardEnabled,
+      capGuardCritical,
     });
 
     results.push({

@@ -214,14 +214,27 @@ export function computeScore(input: ListingHealthComputeInput): ListingHealthRes
 
   const openFindings = input.reconciliationOpenFindings ?? 0;
   if (openFindings > 0) {
-    const likelyIssueCount = openFindings;
     factors.push(
       factor(
         "reconciliation_open_findings",
-        likelyIssueCount >= 2 ? "warning" : "warning",
+        "warning",
         "factors.reconciliationOpenFindings",
         buildHref(locale, propertyId, "overview"),
         { count: openFindings }
+      )
+    );
+  }
+
+  if (input.capGuardEnabled && input.capGuardCritical) {
+    factors.push(
+      factor(
+        "cap_guard_critical",
+        "warning",
+        "factors.capGuardCritical",
+        buildHref(locale, propertyId, "overview"),
+        input.nightCapPercentUsed != null
+          ? { percentUsed: input.nightCapPercentUsed }
+          : undefined
       )
     );
   }

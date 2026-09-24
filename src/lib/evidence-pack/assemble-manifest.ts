@@ -207,6 +207,7 @@ export function assembleEvidencePackManifest(
     stays: data.stays,
     stayCount: data.stays.length,
     nightCap: data.nightCap,
+    capGuard: data.capGuard,
     guestQueue: data.guestQueue,
     channels: data.channels.map((channel) => ({
       channel: channel.channel,

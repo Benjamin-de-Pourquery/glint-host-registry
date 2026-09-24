@@ -15,6 +15,7 @@ export const LISTING_HEALTH_FACTOR_CODES = [
   "night_cap_exceeded",
   "night_cap_warning",
   "reconciliation_open_findings",
+  "cap_guard_critical",
 ] as const;
 
 export type ListingHealthFactorCode = (typeof LISTING_HEALTH_FACTOR_CODES)[number];
@@ -47,6 +48,8 @@ export type ListingHealthComputeInput = {
   nightCapPercentUsed: number | null;
   nightCapExceeded: boolean;
   reconciliationOpenFindings?: number;
+  capGuardEnabled: boolean;
+  capGuardCritical: boolean;
   now?: Date;
 };
 

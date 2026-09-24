@@ -68,6 +68,7 @@ const fixture: EvidencePackLoadedData = {
     enabled: true,
     source: "commune_90",
   },
+  capGuard: null,
   guestQueue: {
     total: 1,
     byStatus: { awaiting_submission: 1 },

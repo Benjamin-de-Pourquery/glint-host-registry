@@ -212,6 +212,19 @@ export function computeScore(input: ListingHealthComputeInput): ListingHealthRes
     );
   }
 
+  const openFindings = input.reconciliationOpenFindings ?? 0;
+  if (openFindings > 0) {
+    factors.push(
+      factor(
+        "reconciliation_open_findings",
+        "warning",
+        "factors.reconciliationOpenFindings",
+        buildHref(locale, propertyId, "overview"),
+        { count: openFindings }
+      )
+    );
+  }
+
   if (input.capGuardEnabled && input.capGuardCritical) {
     factors.push(
       factor(

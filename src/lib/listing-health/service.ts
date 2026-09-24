@@ -14,6 +14,7 @@ import type {
   ListingHealthSnapshotRecord,
 } from "./types";
 import { loadPropertyNightCap } from "@/lib/france/night-cap-service";
+import { countOpenFindings } from "@/lib/authority-mirror";
 
 function parseFactors(json: string): ListingHealthFactor[] {
   try {
@@ -100,6 +101,8 @@ export async function buildListingHealthInput(
       nightCap.computation.nightsUsed > nightCap.computation.limit;
   }
 
+  const reconciliationOpenFindings = await countOpenFindings(property.id);
+
   if (capGuardPolicy?.enabled && nightCap.computation?.enabled) {
     capGuardEnabled = true;
     capGuardCritical =
@@ -123,6 +126,7 @@ export async function buildListingHealthInput(
     guestDueWarningCount: guestSignals.warningCount,
     nightCapPercentUsed,
     nightCapExceeded,
+    reconciliationOpenFindings,
     capGuardEnabled,
     capGuardCritical,
   };
@@ -296,6 +300,8 @@ export async function getListingHealthScoresForUser(
         nightCap.computation.nightsUsed > nightCap.computation.limit;
     }
 
+    const reconciliationOpenFindings = await countOpenFindings(property.id);
+
     if (capGuardPolicy?.enabled && nightCap.computation?.enabled) {
       capGuardEnabled = true;
       capGuardCritical =
@@ -319,6 +325,7 @@ export async function getListingHealthScoresForUser(
       guestDueWarningCount: guestSignals.warningCount,
       nightCapPercentUsed,
       nightCapExceeded,
+      reconciliationOpenFindings,
       capGuardEnabled,
       capGuardCritical,
     });

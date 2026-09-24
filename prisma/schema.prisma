@@ -26,6 +26,8 @@ model User {
   sessions             Session[]
   properties           Property[]
   notifications        Notification[]
+  platformImports      PlatformImport[]
+  platformColumnMappings PlatformColumnMapping[]
 }
 
 model Account {
@@ -99,6 +101,11 @@ model Property {
   capGuardEvents CapGuardEvent[]
   touristTaxSettings TouristTaxSettings?
   touristTaxPeriods TouristTaxPeriod[]
+  platformImports PlatformImport[]
+  platformReservations PlatformReservation[]
+  reconciliationFindings ReconciliationFinding[]
+  dac7ListingOverviews Dac7ListingOverview[]
+  platformColumnMappings PlatformColumnMapping[]
 }
 
 model TouristTaxSettings {
@@ -225,6 +232,7 @@ model GuestStay {
   guestRecords        GuestRecord[]
   sesSubmissions      SesSubmission[]
   regionalGuestReports RegionalGuestReport[]
+  platformReservations PlatformReservation[]
 
   @@unique([propertyId, externalUid])
   @@index([propertyId])
@@ -517,4 +525,99 @@ model Notification {
   createdAt  DateTime  @default(now())
   user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+}
+
+model PlatformImport {
+  id              String                @id @default(cuid())
+  propertyId      String
+  channel         String
+  filename        String?
+  rowCount        Int                   @default(0)
+  createdAt       DateTime              @default(now())
+  createdByUserId String
+  property        Property              @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdBy       User                  @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  reservations    PlatformReservation[]
+
+  @@index([propertyId])
+  @@index([propertyId, createdAt])
+}
+
+model PlatformReservation {
+  id               String          @id @default(cuid())
+  propertyId       String
+  importId         String?
+  channel          String
+  externalRef      String?
+  listingRef       String?
+  checkIn          DateTime
+  checkOut         DateTime
+  nights           Int
+  guests           Int?
+  status           String          @default("confirmed")
+  grossAmountCents Int?
+  matchedStayId    String?
+  createdAt        DateTime        @default(now())
+  property         Property        @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  import           PlatformImport? @relation(fields: [importId], references: [id], onDelete: SetNull)
+  matchedStay      GuestStay?      @relation(fields: [matchedStayId], references: [id], onDelete: SetNull)
+
+  @@unique([propertyId, channel, externalRef])
+  @@index([propertyId])
+  @@index([propertyId, checkIn])
+  @@index([importId])
+  @@index([matchedStayId])
+}
+
+model ReconciliationFinding {
+  id             String    @id @default(cuid())
+  propertyId     String
+  periodStart    DateTime
+  periodEnd      DateTime
+  code           String
+  severity       String
+  expectedJson   String    @default("{}")
+  observedJson   String    @default("{}")
+  sourceRefsJson String    @default("[]")
+  resolvedAt     DateTime?
+  createdAt      DateTime  @default(now())
+  property       Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId, periodStart])
+  @@index([propertyId, resolvedAt])
+  @@index([propertyId, code])
+}
+
+model Dac7ListingOverview {
+  id                   String   @id @default(cuid())
+  propertyId           String
+  year                 Int
+  channel              String
+  listingRef           String   @default("")
+  daysRented           Int
+  q1ConsiderationCents Int?
+  q2ConsiderationCents Int?
+  q3ConsiderationCents Int?
+  q4ConsiderationCents Int?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  property             Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, year, channel, listingRef])
+  @@index([propertyId, year])
+}
+
+model PlatformColumnMapping {
+  id          String   @id @default(cuid())
+  propertyId  String
+  userId      String
+  channel     String   @default("GENERIC")
+  mappingJson String   @default("{}")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, userId, channel])
+  @@index([propertyId])
 }

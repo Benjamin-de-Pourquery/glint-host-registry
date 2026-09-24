@@ -69,6 +69,27 @@ export type EvidencePackSection = {
   omittedReason?: string;
 };
 
+export type EvidencePackReconciliationRow = {
+  channel: string;
+  platformNights: number;
+  platformReservations: number;
+  registrationKeyDisplayed: string | null;
+};
+
+export type EvidencePackReconciliationFinding = {
+  code: string;
+  severity: string;
+};
+
+export type EvidencePackReconciliationStatement = {
+  openFindingsCount: number;
+  touristTaxNightsDeclared: number | null;
+  nightCapUsed: number;
+  nightCapLimit: number | null;
+  channels: EvidencePackReconciliationRow[];
+  findings: EvidencePackReconciliationFinding[];
+};
+
 export type EvidencePackManifest = {
   generatedAt: string;
   productVersion: string;
@@ -100,6 +121,7 @@ export type EvidencePackManifest = {
     nationalTransitionStatus: string | null;
     nationalRenewalDeadline: string | null;
   } | null;
+  reconciliationStatement: EvidencePackReconciliationStatement | null;
 };
 
 export type EvidencePackWarning = {
@@ -147,6 +169,7 @@ export type EvidencePackLoadedData = {
   channels: ListingChannelRecord[];
   healthScore: EvidencePackHealthScore | null;
   nerMigration: EvidencePackManifest["nerMigration"];
+  reconciliationStatement: EvidencePackReconciliationStatement | null;
 };
 
 export type { PlaybookStepProgress };

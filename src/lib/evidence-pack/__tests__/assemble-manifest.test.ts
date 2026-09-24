@@ -103,6 +103,21 @@ const fixture: EvidencePackLoadedData = {
     nationalTransitionStatus: "renewed",
     nationalRenewalDeadline: "2027-01-01T00:00:00.000Z",
   },
+  reconciliationStatement: {
+    openFindingsCount: 1,
+    touristTaxNightsDeclared: 4,
+    nightCapUsed: 42,
+    nightCapLimit: 90,
+    channels: [
+      {
+        channel: "AIRBNB",
+        platformNights: 4,
+        platformReservations: 1,
+        registrationKeyDisplayed: "75123456789",
+      },
+    ],
+    findings: [{ code: "ORPHAN_PLATFORM_RESERVATION", severity: "to_check" }],
+  },
 };
 
 describe("assembleEvidencePackManifest", () => {

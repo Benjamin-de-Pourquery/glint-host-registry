@@ -254,6 +254,50 @@ export function renderEvidencePackPdf(manifest: EvidencePackManifest): Uint8Arra
     y += 4;
   }
 
+  if (manifest.reconciliationStatement) {
+    y = ensureSpace(doc, y, 24);
+    y = addSectionTitle(doc, labels.sectionReconciliation, y);
+    doc.setFontSize(9);
+    doc.setTextColor(...hexToRgb(BRAND_SLATE_DARK));
+    doc.text(
+      `${labels.reconciliationOpenFindings}: ${manifest.reconciliationStatement.openFindingsCount}`,
+      PAGE_MARGIN,
+      y
+    );
+    y += 5;
+    doc.text(
+      `${labels.reconciliationTouristTax}: ${manifest.reconciliationStatement.touristTaxNightsDeclared ?? labels.notConfigured}`,
+      PAGE_MARGIN,
+      y
+    );
+    y += 5;
+    doc.text(
+      `${labels.reconciliationNightCap}: ${manifest.reconciliationStatement.nightCapUsed}${
+        manifest.reconciliationStatement.nightCapLimit != null
+          ? ` / ${manifest.reconciliationStatement.nightCapLimit}`
+          : ""
+      }`,
+      PAGE_MARGIN,
+      y
+    );
+    y += 6;
+    for (const channel of manifest.reconciliationStatement.channels) {
+      y = ensureSpace(doc, y, 8);
+      doc.text(
+        `${channel.channel}: ${labels.reconciliationPlatformNights} ${channel.platformNights} (${channel.platformReservations} reservations)`,
+        PAGE_MARGIN,
+        y
+      );
+      y += 5;
+    }
+    for (const finding of manifest.reconciliationStatement.findings) {
+      y = ensureSpace(doc, y, 6);
+      doc.text(`• ${finding.code} (${finding.severity})`, PAGE_MARGIN + 2, y);
+      y += 5;
+    }
+    y += 4;
+  }
+
   if (manifest.nerMigration) {
     y = ensureSpace(doc, y, 20);
     y = addSectionTitle(doc, labels.sectionNer, y);

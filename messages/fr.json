@@ -1009,7 +1009,103 @@
       "guestDueWarning": "{count, plural, one {# séjour à venir peut nécessiter une déclaration voyageur} other {# séjours à venir peuvent nécessiter des déclarations voyageurs}}.",
       "nightCapExceeded": "Plafond de nuitées dépassé ({percentUsed} % utilisé).",
       "nightCapWarning": "Plafond de nuitées à {percentUsed} % ou plus de la limite annuelle.",
+      "reconciliationOpenFindings": "{count, plural, one {# écart de rapprochement opérationnel ouvert} other {# écarts de rapprochement opérationnel ouverts}}.",
       "capGuardCritical": "Garde-fou plafond actif et nuitées restantes critiques ({percentUsed} % utilisé)."
+    }
+  },
+  "authorityMirror": {
+    "title": "Miroir des données plateformes",
+    "subtitle": "Rapprochement opérationnel entre exports plateformes et vos enregistrements Host Registry.",
+    "disclaimer": "Aide au rapprochement opérationnel uniquement, pas un conseil fiscal ni un dépôt officiel.",
+    "loading": "Chargement du rapprochement…",
+    "ledger": {
+      "title": "Registre côté autorité",
+      "hint": "Par canal : ce que les plateformes déclareraient vs ce que vous avez déclaré ce mois.",
+      "channel": "Canal",
+      "platformNights": "Nuitées plateforme",
+      "reservations": "Réservations",
+      "touristTaxNights": "Nuitées taxe de séjour",
+      "guestReports": "Déclarations voyageurs déposées",
+      "registrationKey": "Clé d'enregistrement sur le canal",
+      "empty": "Importez des réservations plateforme pour alimenter le registre.",
+      "notDeclared": "Non déclaré",
+      "missingKey": "Non renseigné",
+      "nightCap": "Plafond de nuitées",
+      "touristTaxTotal": "Nuitées taxe de séjour (période)"
+    },
+    "import": {
+      "title": "Importer un export plateforme",
+      "hint": "CSV ou XLSX uniquement. Fichiers analysés en mémoire, non conservés.",
+      "channel": "Canal",
+      "file": "Fichier",
+      "showAmounts": "Afficher les montants optionnels (trimestres DAC7)",
+      "success": "{count} réservations importées ({matched} rapprochées aux séjours).",
+      "runGeneric": "Importer avec correspondance",
+      "mapping": {
+        "externalRef": "Référence réservation",
+        "listingRef": "Référence annonce",
+        "checkIn": "Date d'arrivée",
+        "checkOut": "Date de départ",
+        "nights": "Nuitées",
+        "guests": "Voyageurs",
+        "status": "Statut",
+        "grossAmount": "Montant brut",
+        "placeholder": "Choisir une colonne"
+      }
+    },
+    "reconcile": {
+      "action": "Lancer le rapprochement",
+      "success": "Rapprochement mis à jour pour cette période."
+    },
+    "findings": {
+      "title": "Écarts",
+      "empty": "Aucun écart ouvert pour cette période.",
+      "fix": "Corriger dans l'app",
+      "resolve": "Marquer résolu",
+      "resolved": "Écart marqué résolu.",
+      "severity": {
+        "to_check": "À vérifier",
+        "likely_issue": "Probable écart"
+      },
+      "codes": {
+        "UNDECLARED_NIGHTS": "Nuitées plateforme supérieures aux nuitées taxe de séjour déclarées",
+        "GUEST_REPORT_MISSING": "Déclaration voyageur manquante pour un séjour",
+        "GUEST_COUNT_MISMATCH": "Nombre de voyageurs différent entre plateforme et registre",
+        "CAP_EXCEEDED_CROSS_CHANNEL": "Plafond de nuitées dépassé tous canaux confondus",
+        "WRONG_KEY_ON_CHANNEL": "Clé d'enregistrement incohérente sur un canal",
+        "ORPHAN_PLATFORM_RESERVATION": "Réservation plateforme ou séjour sans correspondance",
+        "DAC7_DAYS_MISMATCH": "Jours DAC7 différents des réservations importées"
+      }
+    },
+    "explanations": {
+      "UNDECLARED_NIGHTS": "Annulations, bornes de période ou décalage brut/net peuvent expliquer l'écart. Vérifiez votre déclaration taxe de séjour.",
+      "GUEST_REPORT_MISSING": "Un séjour peut être domestique ou déclaré dans un système régional non encore relié.",
+      "GUEST_COUNT_MISMATCH": "Enfants ou accompagnants peuvent être absents des exports plateforme.",
+      "CAP_EXCEEDED_CROSS_CHANNEL": "Les totaux multi-canaux peuvent inclure des nuitées bloquées ou annulées encore visibles dans les exports.",
+      "WRONG_KEY_ON_CHANNEL": "Les plateformes peuvent conserver un ancien numéro après une mise à jour NER.",
+      "ORPHAN_PLATFORM_RESERVATION": "Séjours manuels ou flux iCal peuvent ne pas partager la même référence que les lignes CSV.",
+      "DAC7_DAYS_MISMATCH": "Les totaux annuels DAC7 suivent l'année civile ; les imports peuvent chevaucher partiellement."
+    },
+    "dac7": {
+      "title": "Vue annuelle DAC7 (saisie manuelle)",
+      "hint": "Saisissez les jours loués depuis votre synthèse DAC7 plateforme. Pas d'OCR PDF en v1.",
+      "year": "Année",
+      "channel": "Canal",
+      "listingRef": "Référence annonce",
+      "daysRented": "Jours loués",
+      "q1": "Considération T1",
+      "q2": "Considération T2",
+      "q3": "Considération T3",
+      "q4": "Considération T4",
+      "save": "Enregistrer la ligne DAC7",
+      "saved": "Vue DAC7 enregistrée."
+    },
+    "errors": {
+      "load": "Impossible de charger le miroir des données plateformes.",
+      "import": "Échec de l'import. Vérifiez le format du fichier.",
+      "reconcile": "Échec du rapprochement.",
+      "resolve": "Impossible de résoudre l'écart.",
+      "dac7": "Impossible d'enregistrer la vue DAC7."
     }
   },
   "compliance": {

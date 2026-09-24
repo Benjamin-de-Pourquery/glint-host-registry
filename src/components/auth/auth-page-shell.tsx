@@ -94,5 +94,10 @@ export function AuthTextLink({
   );
 }
 
+/** Host Registry primary auth CTA (emerald suite identity). */
 export const authPrimaryButtonClassName =
-  "w-full bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-slate-900";
+  "w-full bg-emerald-600 text-white shadow-sm shadow-emerald-600/25 hover:bg-emerald-700 focus-visible:ring-emerald-600";
+
+/** Label-style secondary auth action (magic link, etc.). */
+export const authSecondaryButtonClassName =
+  "w-full border-slate-200 bg-white text-slate-900 hover:bg-slate-50 focus-visible:ring-emerald-600";

@@ -19,6 +19,10 @@
       "title": "Essai gratuit 14 jours",
       "description": "Créez votre compte Glint Host Registry: conformité meublé de tourisme, numéro d'enregistrement plateformes et registre voyageurs pour hôtes UE."
     },
+    "forgotPassword": {
+      "title": "Mot de passe oublié",
+      "description": "Récupérez l'accès à votre espace Glint Host Registry."
+    },
     "privacy": {
       "title": "Politique de confidentialité",
       "description": "Comment Glint Host Registry traite vos données personnelles et celles de vos voyageurs, conformément au RGPD."
@@ -664,11 +668,24 @@
       "pending": "Un instant...",
       "noAccount": "Pas encore de compte ?",
       "signup": "Créer un compte",
+      "magicHint": "Vous pouvez aussi demander un lien de connexion. Aucun e-mail n'est encore envoyé depuis cet écran.",
+      "magicSubmit": "Recevoir un lien de connexion",
+      "magicNotice": "Les liens de connexion ne sont pas encore automatisés sur Host Registry. Utilisez votre mot de passe ci-dessus ou réinitialisez l'accès ci-dessous.",
+      "forgotLink": "Mot de passe oublié",
       "error": "E-mail ou mot de passe invalide"
+    },
+    "forgot": {
+      "title": "Mot de passe oublié",
+      "subtitle": "Si un compte existe, nous vous aiderons à récupérer l'accès.",
+      "email": "Adresse e-mail",
+      "submit": "Préparer le lien de réinitialisation",
+      "pending": "Un instant...",
+      "prepared": "Si un compte existe pour cette adresse, écrivez à glintapps@proton.me depuis la même boîte et nous vous aiderons à réinitialiser votre mot de passe.",
+      "backToSignIn": "Retour à la connexion"
     },
     "signup": {
       "title": "Créer un compte",
-      "subtitle": "Commencez votre essai gratuit de 14 jours. Aucune carte bancaire requise pour explorer.",
+      "subtitle": "Hôtes et gestionnaires : commencez votre essai gratuit de 14 jours ici.",
       "name": "Nom complet",
       "email": "Adresse e-mail",
       "password": "Mot de passe",

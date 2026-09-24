@@ -1,8 +1,13 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import { isGoogleOAuthConfigured } from "@/lib/auth/google-oauth";
+
+const googleOAuthConfigured = isGoogleOAuthConfigured();
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -26,6 +31,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/en/login",
   },
   providers: [
+    ...(googleOAuthConfigured
+      ? [
+          Google({
+            clientId: process.env.AUTH_GOOGLE_ID!,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+            /**
+             * Link Google sign-in to an existing credentials user when emails match.
+             * Google OIDC returns email_verified; treat that as proof of mailbox control.
+             */
+            allowDangerousEmailAccountLinking: true,
+            authorization: {
+              params: {
+                scope: "openid email profile",
+              },
+            },
+          }),
+        ]
+      : []),
     Credentials({
       name: "credentials",
       credentials: {
@@ -62,6 +85,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
+  events: {
+    async signIn({ user, account, isNewUser }) {
+      if (!isNewUser || account?.provider !== "google" || !user.id) {
+        return;
+      }
+
+      const cookieStore = await cookies();
+      const locale = cookieStore.get("NEXT_LOCALE")?.value;
+      if (locale !== "en" && locale !== "fr") {
+        return;
+      }
+
+      await prisma.user.update({
+        where: { id: user.id },
+        data: { language: locale },
+      });
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {

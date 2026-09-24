@@ -113,6 +113,7 @@ These should already be set; verify once:
 |----------|------------------|
 | `NEXT_PUBLIC_APP_URL` | `https://glint-host-registry.vercel.app` |
 | `AUTH_SECRET` | Random 32+ bytes |
+| `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` | Optional — shared Glint Google OAuth; callback `https://glint-host-registry.vercel.app/api/auth/callback/google` |
 | `DATABASE_URL` | Turso libsql URL |
 | `TURSO_AUTH_TOKEN` | Turso auth token |
 | `SECRETS_ENCRYPTION_KEY` | **Required** — random base64 for Spain SES credential encryption (`openssl rand -base64 32`) |

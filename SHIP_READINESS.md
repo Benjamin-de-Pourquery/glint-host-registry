@@ -164,7 +164,7 @@ Implemented in `src/lib/calendar/ssrf-safe-fetch.ts` (PR #18). Used on feed crea
 
 | Flow | Status | Notes |
 |------|--------|-------|
-| Signup / login | ✅ | `src/app/api/auth/register/route.ts`, Auth.js credentials |
+| Signup / login | ✅ | `src/app/api/auth/register/route.ts`, Auth.js credentials; optional Google OAuth when `AUTH_GOOGLE_ID` + `AUTH_GOOGLE_SECRET` are set |
 | Add property | ✅ | Gated by `hasActiveSubscription` + plan limit |
 | Archive / restore | ✅ | `PATCH` with `archived` flag |
 | Playbook next-action | ✅ | `src/lib/playbooks/index.ts`, `src/components/playbook-panel.tsx` |
@@ -253,7 +253,7 @@ npm run build  →  ✅ success (Next.js 16.3.4, TypeScript clean)
 
 1. Set all vars from `.env.example` (Turso `DATABASE_URL` + `TURSO_AUTH_TOKEN` in production).
 2. Run `npx prisma migrate deploy` against production DB.
-3. Set `AUTH_SECRET` (32+ byte random).
+3. Set `AUTH_SECRET` (32+ byte random). Optionally set `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` for Google sign-in (register redirect URI in Google Cloud Console).
 4. Set `NEXT_PUBLIC_APP_URL` to production domain.
 5. Configure Stripe **test** webhook → `/api/stripe/webhook`; switch to live keys at go-live.
 6. Enable Stripe Customer Portal in Dashboard.

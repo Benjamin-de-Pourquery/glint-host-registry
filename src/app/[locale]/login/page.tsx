@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { LoginForm } from "@/components/login-form";
+import { isGoogleOAuthConfigured } from "@/lib/auth/google-oauth";
 import { AuthPageShell } from "@/components/auth/auth-page-shell";
 import { generatePageMetadata } from "@/lib/seo/generate-page-metadata";
 
@@ -24,9 +25,11 @@ async function LoginFallback() {
 }
 
 export default function LoginPage() {
+  const showGoogle = isGoogleOAuthConfigured();
+
   return (
     <Suspense fallback={<LoginFallback />}>
-      <LoginForm />
+      <LoginForm showGoogle={showGoogle} />
     </Suspense>
   );
 }

@@ -659,6 +659,10 @@
     "shell": {
       "language": "Langue"
     },
+    "oauth": {
+      "google": "Continuer avec Google",
+      "or": "ou"
+    },
     "login": {
       "title": "Connexion",
       "subtitle": "Accédez à votre espace de travail.",

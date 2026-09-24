@@ -41,6 +41,9 @@ export type EvidencePackLabels = {
   nightCapUsed: string;
   nightCapLimit: string;
   nightCapRemaining: string;
+  capGuardActive: string;
+  capGuardMode: string;
+  capGuardSince: string;
   stayCheckIn: string;
   stayCheckOut: string;
   stayNights: string;
@@ -104,6 +107,9 @@ const LABELS: Record<EvidencePackLocale, EvidencePackLabels> = {
     nightCapUsed: "Nights used",
     nightCapLimit: "Annual limit",
     nightCapRemaining: "Remaining",
+    capGuardActive: "Cap Guard active",
+    capGuardMode: "Mode",
+    capGuardSince: "since",
     stayCheckIn: "Check-in",
     stayCheckOut: "Check-out",
     stayNights: "Nights",
@@ -165,6 +171,9 @@ const LABELS: Record<EvidencePackLocale, EvidencePackLabels> = {
     nightCapUsed: "Nuitées utilisées",
     nightCapLimit: "Plafond annuel",
     nightCapRemaining: "Restant",
+    capGuardActive: "Garde-fou plafond actif",
+    capGuardMode: "Mode",
+    capGuardSince: "depuis le",
     stayCheckIn: "Arrivée",
     stayCheckOut: "Départ",
     stayNights: "Nuitées",

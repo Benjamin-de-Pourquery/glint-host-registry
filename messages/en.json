@@ -1008,7 +1008,8 @@
       "guestDueCritical": "{count, plural, one {# guest declaration is critically overdue} other {# guest declarations are critically overdue}}.",
       "guestDueWarning": "{count, plural, one {# upcoming stay may need a guest declaration soon} other {# upcoming stays may need guest declarations soon}}.",
       "nightCapExceeded": "Night cap exceeded ({percentUsed}% used).",
-      "nightCapWarning": "Night cap at {percentUsed}% or more of the annual limit."
+      "nightCapWarning": "Night cap at {percentUsed}% or more of the annual limit.",
+      "capGuardCritical": "Cap Guard is active and remaining nights are critically low ({percentUsed}% used)."
     }
   },
   "compliance": {
@@ -1114,6 +1115,75 @@
       "overdue": "Overdue",
       "declared": "Declared",
       "waived": "Waived"
+    }
+  },
+  "capGuard": {
+    "title": "Cap Guard",
+    "subtitle": "Publish blocked dates to your listing calendars before the night cap is reached.",
+    "loading": "Loading Cap Guard…",
+    "loadError": "Could not load Cap Guard",
+    "saveError": "Could not save Cap Guard settings",
+    "saved": "Cap Guard settings saved",
+    "copyError": "Could not copy feed URL",
+    "feedCopied": "Feed URL copied",
+    "tokenRotated": "Feed token rotated. Update the URL on each platform.",
+    "disclaimer": "Operational aid only. Cap Guard strongly reduces the risk of overbooking past your cap, but does not guarantee compliance with local rules or platform policies.",
+    "enabled": "Enable Cap Guard outbound calendar",
+    "modeLabel": "Guard mode",
+    "bufferLabel": "Buffer nights",
+    "bufferHint": "Suggested buffer for your channels: {nights} nights (typical stay length x channel count).",
+    "registrationGate": "Also close dates after registration or permit expiry",
+    "registrationGateUnavailable": "Add a registration or permit expiry date to use the registration gate.",
+    "feedUrlLabel": "Outbound iCal feed URL",
+    "copyFeed": "Copy feed URL",
+    "rotateToken": "Rotate token",
+    "feedHint": "Paste this URL into each platform calendar import. Platforms refresh on their own schedule, often every few hours.",
+    "blocksPublished": "{count, plural, one {# blocked date range in the current feed} other {# blocked date ranges in the current feed}}",
+    "mode": {
+      "HARD_STOP": "Hard stop at cap",
+      "BUFFER": "Buffer before cap",
+      "BUDGET": "Budget windows"
+    },
+    "forecast": {
+      "used": "Nights used",
+      "bookedAhead": "Booked ahead",
+      "remaining": "Remaining",
+      "projectedCap": "Projected cap date",
+      "notAvailable": "Not available yet"
+    },
+    "budget": {
+      "title": "Budget windows",
+      "addWindow": "Add window",
+      "remove": "Remove",
+      "empty": "Add at least one window to allocate remaining nights across the year."
+    },
+    "wizard": {
+      "title": "Platform setup",
+      "channelManagerNote": "If you use a channel manager, import the feed there once. It should propagate to connected platforms.",
+      "airbnb": {
+        "tab": "Airbnb",
+        "steps": "Airbnb: Listing > Calendar > Availability settings > Import calendar. Paste the Cap Guard feed URL, name it Host Registry Cap Guard, and save."
+      },
+      "booking": {
+        "tab": "Booking.com",
+        "steps": "Booking.com: Extranet > Rates and availability > Calendar > Sync calendars > Import calendar. Paste the Cap Guard feed URL and confirm import."
+      },
+      "vrbo": {
+        "tab": "Vrbo",
+        "steps": "Vrbo: Calendar > Import/export > Import calendar. Paste the Cap Guard feed URL and save. Blocked dates should appear after the next sync."
+      }
+    },
+    "propagation": {
+      "confirm": "I see blocked dates on the platform",
+      "confirmed": "Propagation confirmed"
+    },
+    "history": {
+      "title": "Recent activity",
+      "enabled": "Cap Guard enabled on {date}",
+      "disabled": "Cap Guard disabled on {date}",
+      "mode_change": "Mode changed on {date}",
+      "blocks_published": "Feed published on {date}",
+      "breach_near": "Near-cap alert on {date}"
     }
   },
   "nightCap": {

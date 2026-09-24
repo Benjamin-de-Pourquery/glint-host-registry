@@ -47,7 +47,14 @@ See [.env.example](./.env.example) for the full list. Summary:
 | `AUTH_SECRET` | Yes | Auth.js session secret |
 | `AUTH_GOOGLE_ID` | Optional | Shared Glint Google OAuth client ID (enables Google sign-in when paired with secret) |
 | `AUTH_GOOGLE_SECRET` | Optional | Google OAuth client secret |
-| `NEXT_PUBLIC_APP_URL` | Yes | Public app URL for Stripe redirects |
+| `EMAIL_FROM` | For password reset | Sender address (e.g. `Glint Host <noreply@example.com>`) |
+| `RESEND_API_KEY` | For password reset | Resend API key (preferred mailer when set) |
+| `SMTP_HOST` | For password reset | SMTP host when not using Resend |
+| `SMTP_PORT` | Optional | SMTP port (default `465`, TLS when 465) |
+| `SMTP_USER` / `SMTP_PASS` | Optional | SMTP credentials when required by your provider |
+| `EMAIL_REPLY_TO` | Optional | Reply-To header on transactional email |
+| `DEMO_LOCKED_EMAILS` | Optional | Comma-separated emails blocked from self-serve password reset |
+| `NEXT_PUBLIC_APP_URL` | Yes | Public app URL for Stripe redirects and reset links |
 | `STRIPE_SECRET_KEY` | For billing | Stripe secret key (test: `sk_test_...`) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | For billing | Stripe publishable key |
 | `STRIPE_PRICE_STARTER` | For billing | Price ID for Starter plan (€19/mo) |

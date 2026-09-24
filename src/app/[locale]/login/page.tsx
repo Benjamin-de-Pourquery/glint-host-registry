@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { LoginForm } from "@/components/login-form";
 import { isGoogleOAuthConfigured } from "@/lib/auth/google-oauth";
+import { isMailerConfigured } from "@/lib/email/send-email";
 import { AuthPageShell } from "@/components/auth/auth-page-shell";
 import { generatePageMetadata } from "@/lib/seo/generate-page-metadata";
 
@@ -26,10 +27,11 @@ async function LoginFallback() {
 
 export default function LoginPage() {
   const showGoogle = isGoogleOAuthConfigured();
+  const showForgotPassword = isMailerConfigured();
 
   return (
     <Suspense fallback={<LoginFallback />}>
-      <LoginForm showGoogle={showGoogle} />
+      <LoginForm showGoogle={showGoogle} showForgotPassword={showForgotPassword} />
     </Suspense>
   );
 }

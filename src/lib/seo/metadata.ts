@@ -9,6 +9,7 @@ export type SeoPageKey =
   | "login"
   | "signup"
   | "forgotPassword"
+  | "resetPassword"
   | "privacy"
   | "terms"
   | "mentions"
@@ -31,6 +32,7 @@ const PAGE_PATHS: Record<SeoPageKey, string> = {
   login: "/login",
   signup: "/signup",
   forgotPassword: "/forgot-password",
+  resetPassword: "/reset-password",
   privacy: "/legal/privacy",
   terms: "/legal/terms",
   mentions: "/legal/mentions",
@@ -133,6 +135,6 @@ export const NOINDEX_METADATA: Metadata = {
 
 export function getPublicSitemapPaths(): Array<{ path: string; page: SeoPageKey }> {
   return (Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>)
-    .filter(([page]) => page !== "forgotPassword")
+    .filter(([page]) => page !== "forgotPassword" && page !== "resetPassword")
     .map(([page, path]) => ({ path, page }));
 }

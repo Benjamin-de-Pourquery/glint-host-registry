@@ -23,6 +23,10 @@
       "title": "Forgot password",
       "description": "Recover access to your Glint Host Registry workspace."
     },
+    "resetPassword": {
+      "title": "Reset password",
+      "description": "Set a new password for your Glint Host Registry account."
+    },
     "privacy": {
       "title": "Privacy policy",
       "description": "How Glint Host Registry processes your personal data and guest records under GDPR."
@@ -672,8 +676,37 @@
       "pending": "One moment...",
       "noAccount": "No account yet?",
       "signup": "Create an account",
-      "forgotPassword": "Forgot your password? Write to us at <email>glintapps@proton.me</email>",
+      "forgotPasswordLink": "Forgot password?",
+      "passwordUpdated": "Password updated. You can sign in now.",
       "error": "Invalid email or password"
+    },
+    "forgotPassword": {
+      "title": "Forgot password",
+      "subtitle": "Enter your email address and we will send you a reset link.",
+      "email": "Email address",
+      "submit": "Send reset link",
+      "pending": "One moment...",
+      "confirmation": "If an account exists for this address, an email has just been sent. The link is valid for 1 hour.",
+      "backToLogin": "Back to sign in",
+      "error": "Something went wrong. Try again in a moment.",
+      "unavailable": "Password reset is not available right now."
+    },
+    "resetPassword": {
+      "title": "Choose a new password",
+      "subtitle": "Enter and confirm your new password.",
+      "invalidSubtitle": "This reset link is no longer valid.",
+      "password": "New password",
+      "confirmPassword": "Confirm password",
+      "passwordHint": "At least 8 characters",
+      "submit": "Update password",
+      "pending": "One moment...",
+      "mismatch": "Passwords do not match.",
+      "policy": "Use at least 8 characters.",
+      "submitError": "Could not update your password. Request a new link and try again.",
+      "invalidMessage": "This link is invalid. Request a new reset link.",
+      "expiredMessage": "This link has expired. Request a new reset link.",
+      "usedMessage": "This link has already been used. Request a new reset link.",
+      "requestNewLink": "Request a new link"
     },
     "signup": {
       "title": "Create an account",

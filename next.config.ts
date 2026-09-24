@@ -34,6 +34,13 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/*": ["./prisma/**/*", "./src/generated/prisma/**/*"],
   },
+  async rewrites() {
+    return [
+      // App Router static metadata files are served at *.png; keep canonical /icon URLs.
+      { source: "/icon", destination: "/icon.png" },
+      { source: "/apple-icon", destination: "/apple-icon.png" },
+    ];
+  },
   async headers() {
     return [
       {

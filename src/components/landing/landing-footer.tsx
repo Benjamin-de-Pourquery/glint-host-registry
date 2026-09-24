@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
+import { suiteProductUrl } from "@/lib/suite-urls";
 
 type Props = { locale: string };
 
@@ -12,13 +13,14 @@ export async function LandingFooter({ locale }: Props) {
   return (
     <footer className="border-t border-slate-800 bg-slate-950 py-14 text-slate-400">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
-          <div className="md:col-span-1">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          <div className="md:col-span-2 xl:col-span-1">
             <div className="flex items-center gap-2 text-white">
               <GlintBrandIcon size={24} />
               <span className="font-semibold">{tBrand("name")} {tBrand("product")}</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed">{tBrand("tagline")}</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-500">{tBrand("suiteOneliner")}</p>
           </div>
 
           <div>
@@ -37,6 +39,36 @@ export async function LandingFooter({ locale }: Props) {
               <li>
                 <a href="#faq" className="transition-colors hover:text-white">
                   {tNav("faq")}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-white">{t("suite")}</h4>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li>
+                <span className="font-medium text-white" aria-current="page">
+                  {t("suiteHost")}
+                  <span className="ml-1.5 font-normal text-slate-500">({t("suiteCurrent")})</span>
+                </span>
+              </li>
+              <li>
+                <a
+                  href={suiteProductUrl("label", locale)}
+                  className="transition-colors hover:text-white"
+                  rel="noopener noreferrer"
+                >
+                  {t("suiteLabel")}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={suiteProductUrl("product", locale)}
+                  className="transition-colors hover:text-white"
+                  rel="noopener noreferrer"
+                >
+                  {t("suiteProduct")}
                 </a>
               </li>
             </ul>

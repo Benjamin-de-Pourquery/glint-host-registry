@@ -11,6 +11,7 @@ import { TrustStrip } from "@/components/landing/trust-strip";
 import { FeatureBento } from "@/components/landing/feature-bento";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { FaqSection } from "@/components/landing/faq-section";
+import { RelatedSuiteNote } from "@/components/landing/related-suite-note";
 import { LandingFooter } from "@/components/landing/landing-footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -145,6 +146,7 @@ export default async function LandingPage({ params }: Props) {
 
       <FeatureBento />
       <PricingSection locale={locale} />
+      <RelatedSuiteNote locale={locale} />
       <FaqSection />
 
       <section className="landing-cta-band relative overflow-hidden border-y border-slate-800 py-16 sm:py-20">

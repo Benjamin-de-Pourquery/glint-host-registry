@@ -668,20 +668,8 @@
       "pending": "Un instant...",
       "noAccount": "Pas encore de compte ?",
       "signup": "Créer un compte",
-      "magicHint": "Vous pouvez aussi demander un lien de connexion. Aucun e-mail n'est encore envoyé depuis cet écran.",
-      "magicSubmit": "Recevoir un lien de connexion",
-      "magicNotice": "Les liens de connexion ne sont pas encore automatisés sur Host Registry. Utilisez votre mot de passe ci-dessus ou réinitialisez l'accès ci-dessous.",
-      "forgotLink": "Mot de passe oublié",
+      "forgotPassword": "Mot de passe oublié ? Écrivez-nous à <email>glintapps@proton.me</email>",
       "error": "E-mail ou mot de passe invalide"
-    },
-    "forgot": {
-      "title": "Mot de passe oublié",
-      "subtitle": "Si un compte existe, nous vous aiderons à récupérer l'accès.",
-      "email": "Adresse e-mail",
-      "submit": "Préparer le lien de réinitialisation",
-      "pending": "Un instant...",
-      "prepared": "Si un compte existe pour cette adresse, écrivez à glintapps@proton.me depuis la même boîte et nous vous aiderons à réinitialiser votre mot de passe.",
-      "backToSignIn": "Retour à la connexion"
     },
     "signup": {
       "title": "Créer un compte",

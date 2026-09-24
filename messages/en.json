@@ -668,20 +668,8 @@
       "pending": "One moment...",
       "noAccount": "No account yet?",
       "signup": "Create an account",
-      "magicHint": "You can also request a sign-in link. No email is sent from this screen yet.",
-      "magicSubmit": "Email me a sign-in link",
-      "magicNotice": "Sign-in links are not automated on Host Registry yet. Use your password above or reset access below.",
-      "forgotLink": "Forgot password",
+      "forgotPassword": "Forgot your password? Write to us at <email>glintapps@proton.me</email>",
       "error": "Invalid email or password"
-    },
-    "forgot": {
-      "title": "Forgot password",
-      "subtitle": "If an account exists, we will help you recover access.",
-      "email": "Email address",
-      "submit": "Prepare reset link",
-      "pending": "One moment...",
-      "prepared": "If an account exists for this address, email glintapps@proton.me from the same inbox and we will help you reset your password.",
-      "backToSignIn": "Back to sign in"
     },
     "signup": {
       "title": "Create an account",

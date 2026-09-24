@@ -132,7 +132,7 @@ export const NOINDEX_METADATA: Metadata = {
 };
 
 export function getPublicSitemapPaths(): Array<{ path: string; page: SeoPageKey }> {
-  return (Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>).map(
-    ([page, path]) => ({ path, page })
-  );
+  return (Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>)
+    .filter(([page]) => page !== "forgotPassword")
+    .map(([page, path]) => ({ path, page }));
 }

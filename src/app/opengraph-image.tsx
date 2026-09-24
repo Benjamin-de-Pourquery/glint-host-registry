@@ -1,5 +1,6 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
-import { GlintIconMark } from "@/lib/seo/icon-mark";
 import { SITE_NAME } from "@/lib/seo/site";
 
 export const alt = SITE_NAME;
@@ -15,7 +16,14 @@ const FEATURE_CHIPS = [
   "FR + EN",
 ];
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const markPath = path.join(
+    process.cwd(),
+    "public/brand/suite-host-H-corner-512.png",
+  );
+  const markBuffer = await readFile(markPath);
+  const markSrc = `data:image/png;base64,${markBuffer.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -33,7 +41,7 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-          <GlintIconMark size={96} fontSize={50} />
+          <img src={markSrc} width={96} height={96} alt="" />
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <div
               style={{ fontSize: 52, fontWeight: 800, letterSpacing: "-0.03em" }}
@@ -118,6 +126,6 @@ export default function OpenGraphImage() {
         </div>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }

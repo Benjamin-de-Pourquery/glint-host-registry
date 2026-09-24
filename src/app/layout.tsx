@@ -24,7 +24,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      {
+        url: "/brand/suite-host-H-corner-16.png",
+        type: "image/png",
+        sizes: "16x16",
+      },
       { url: "/icon", type: "image/png", sizes: "32x32" },
+      {
+        url: "/brand/suite-host-H-corner-64.png",
+        type: "image/png",
+        sizes: "64x64",
+      },
       { url: "/favicon.ico", sizes: "32x32" },
     ],
     apple: [{ url: "/apple-icon", type: "image/png", sizes: "180x180" }],

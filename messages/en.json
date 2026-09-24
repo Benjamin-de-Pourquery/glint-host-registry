@@ -2,7 +2,8 @@
   "brand": {
     "name": "Glint",
     "product": "Host Registry",
-    "tagline": "EU short-term rental compliance, simplified"
+    "tagline": "EU short-term rental compliance, simplified",
+    "suiteOneliner": "Glint builds operational registries for European compliance. Software only: not a certification body, not a law firm, not a notified body."
   },
   "seo": {
     "home": {
@@ -397,7 +398,17 @@
       "regulation": "Regulation (EU) 2024/1028",
       "cities": "FR + ES + IT + PT + GR + HR + NL + BE",
       "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor ops",
-      "bilingual": "FR + EN interface"
+      "bilingual": "FR + EN interface",
+      "softwareOnly": "Software only: not a certifier, law firm, or notified body"
+    },
+    "relatedSuite": {
+      "ariaLabel": "Other Glint suite products",
+      "prefix": "Also in the Glint suite:",
+      "labelName": "Label Registry",
+      "labelDescription": "supports private-label EmpCo ops;",
+      "productName": "Product Registry",
+      "productDescription": "supports brand catalogue and PPWR/GPSR ops.",
+      "note": "Separate products and accounts (no shared SSO)."
     },
     "problem": {
       "title": "Compliance is more than a registration number",
@@ -536,7 +547,7 @@
         },
         "3": {
           "q": "Does Glint file compliance steps with authorities for me?",
-          "a": "No. Glint does not replace local authorities. It guides you through compliance tunnels, links official forms and rules, and helps you track numbers, guest register, listings, and deadlines. You remain the filing identity on government portals."
+          "a": "No. Glint does not replace local authorities. It guides you through compliance tunnels, links official forms and rules, and helps you track numbers, guest register, listings, and deadlines. You remain the filing identity on government portals. Glint is software only: not a certification body, not a law firm, not a notified body."
         },
         "4": {
           "q": "What is Regulation (EU) 2024/1028?",
@@ -596,7 +607,7 @@
         },
         "18": {
           "q": "How is my data handled?",
-          "a": "Guest and compliance records stay in your account for the retention windows required by each jurisdiction (for example 6 months for the French fiche). Glint is a compliance workspace, not legal advice. You remain responsible for filings. Full details are in the Privacy Policy and Terms linked in the footer."
+          "a": "Guest and compliance records stay in your account for the retention windows required by each jurisdiction (for example 6 months for the French fiche). Glint builds operational registries for European compliance and is software only: not a certification body, not a law firm, not a notified body. You remain responsible for filings. Full details are in the Privacy Policy and Terms linked in the footer."
         },
         "19": {
           "q": "How do I get support?",
@@ -612,6 +623,11 @@
     },
     "footer": {
       "product": "Product",
+      "suite": "Suite Glint",
+      "suiteHost": "Host Registry",
+      "suiteLabel": "Label Registry",
+      "suiteProduct": "Product Registry",
+      "suiteCurrent": "this site",
       "guides": "Guides",
       "guideRegistration": "Registration numbers 2026",
       "guideSes": "SES Hospedajes & regions",

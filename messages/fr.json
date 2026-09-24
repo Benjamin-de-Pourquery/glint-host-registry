@@ -2,7 +2,8 @@
   "brand": {
     "name": "Glint",
     "product": "Host Registry",
-    "tagline": "Conformité location courte durée UE, simplifiée"
+    "tagline": "Conformité location courte durée UE, simplifiée",
+    "suiteOneliner": "Glint construit des registres opérationnels pour la conformité européenne. Outil logiciel uniquement : pas un certificateur, pas un avocat, pas un organisme notifié."
   },
   "seo": {
     "home": {
@@ -397,7 +398,17 @@
       "regulation": "Règlement (UE) 2024/1028",
       "cities": "FR + ES + IT + PT + GR + HR + NL + BE",
       "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor",
-      "bilingual": "Interface FR + EN"
+      "bilingual": "Interface FR + EN",
+      "softwareOnly": "Outil logiciel uniquement : pas certificateur, avocat ni organisme notifié"
+    },
+    "relatedSuite": {
+      "ariaLabel": "Autres produits de la suite Glint",
+      "prefix": "Aussi dans la suite Glint :",
+      "labelName": "Label Registry",
+      "labelDescription": "aide les opérations marque blanche EmpCo ;",
+      "productName": "Product Registry",
+      "productDescription": "aide le catalogue marque et les opérations PPWR/GPSR.",
+      "note": "Produits et comptes distincts (pas de SSO partagé)."
     },
     "problem": {
       "title": "La conformité ne se résume pas à un numéro",
@@ -536,7 +547,7 @@
         },
         "3": {
           "q": "Glint dépose-t-il mes démarches auprès des autorités ?",
-          "a": "Non. Glint ne remplace pas les autorités locales. Il vous guide dans les tunnels Démarches, relie les formulaires et règlements officiels, et vous aide à suivre numéros, registre voyageurs, annonces et échéances. Vous restez le déclarant sur les portails publics."
+          "a": "Non. Glint ne remplace pas les autorités locales. Il vous guide dans les tunnels Démarches, relie les formulaires et règlements officiels, et vous aide à suivre numéros, registre voyageurs, annonces et échéances. Vous restez le déclarant sur les portails publics. Glint est un outil logiciel uniquement : pas un certificateur, pas un avocat, pas un organisme notifié."
         },
         "4": {
           "q": "Qu'est-ce que le Règlement (UE) 2024/1028 ?",
@@ -596,7 +607,7 @@
         },
         "18": {
           "q": "Comment sont traitées mes données ?",
-          "a": "Les dossiers voyageurs et conformité restent dans votre compte pour les durées de conservation de chaque juridiction (par exemple 6 mois pour la fiche française). Glint est un espace de travail conformité, pas un conseil juridique. Vous restez responsable des dépôts. Le détail figure dans la Politique de confidentialité et les CGU en pied de page."
+          "a": "Les dossiers voyageurs et conformité restent dans votre compte pour les durées de conservation de chaque juridiction (par exemple 6 mois pour la fiche française). Glint construit des registres opérationnels pour la conformité européenne et reste un outil logiciel uniquement : pas un certificateur, pas un avocat, pas un organisme notifié. Vous restez responsable des dépôts. Le détail figure dans la Politique de confidentialité et les CGU en pied de page."
         },
         "19": {
           "q": "Comment obtenir de l'aide ?",
@@ -612,6 +623,11 @@
     },
     "footer": {
       "product": "Produit",
+      "suite": "Suite Glint",
+      "suiteHost": "Host Registry",
+      "suiteLabel": "Label Registry",
+      "suiteProduct": "Product Registry",
+      "suiteCurrent": "ce site",
       "guides": "Guides",
       "guideRegistration": "Numéro d'enregistrement 2026",
       "guideSes": "SES Hospedajes & régions",

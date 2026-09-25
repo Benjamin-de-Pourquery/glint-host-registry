@@ -2609,6 +2609,62 @@
       "generateFailed": "Impossible de générer le pack preuve"
     }
   },
+  "ruleRadar": {
+    "feed": {
+      "title": "Changements vous concernant",
+      "description": "Mises à jour réglementaires pouvant modifier plafonds ou échéances pour vos logements. Aide opérationnelle, pas un conseil juridique.",
+      "loading": "Chargement des changements réglementaires...",
+      "markSeen": "Marquer comme vu",
+      "nightCapDelta": "(plafond : {before} à {after} nuitées)",
+      "disclaimer": "Vérifiez la source officielle et la date d'effet avant d'agir. Ceci n'est pas un conseil juridique."
+    },
+    "banner": {
+      "title": "Changement réglementaire pour ce logement",
+      "generic": "Une règle récente peut affecter les plafonds de nuitées ou les échéances de ce bien.",
+      "markSeen": "Marquer comme vu",
+      "dismiss": "Fermer",
+      "disclaimer": "Aide opérationnelle uniquement. Confirmez avec la source officielle."
+    },
+    "severity": {
+      "high": "Impact élevé",
+      "medium": "Impact moyen",
+      "low": "Impact faible",
+      "none": "Sans impact"
+    },
+    "confidence": {
+      "official": "Officiel",
+      "announced": "Annoncé",
+      "reported": "Signalé"
+    },
+    "console": {
+      "title": "Console Rule Radar",
+      "description": "Triage réglementaire interne. Les changements de règles exigent une relecture humaine avant publication.",
+      "loading": "Chargement de la console...",
+      "forbiddenTitle": "Accès console requis",
+      "forbiddenDescription": "Définissez RULE_RADAR_CONSOLE=1 ou ajoutez votre e-mail à RULE_RADAR_STAFF_EMAILS.",
+      "triageTitle": "File de triage des sources",
+      "triageDescription": "URLs officielles des playbooks avec empreinte de contenu pour détecter les changements.",
+      "authorTitle": "Rédiger un changement de règle",
+      "authorDescription": "Créer un brouillon ou publier après relecture. Jamais de publication automatique.",
+      "summaryEn": "Résumé (EN)",
+      "summaryFr": "Résumé (FR)",
+      "confidence": "Confiance",
+      "confidenceOfficial": "Officiel",
+      "confidenceAnnounced": "Annoncé",
+      "confidenceReported": "Signalé",
+      "saveDraft": "Enregistrer le brouillon",
+      "publish": "Publier et calculer les impacts",
+      "publishNote": "La publication met à jour les règles et crée des diffs d'impact par logement.",
+      "validation": "Résumé et au moins une clé de règle sont requis.",
+      "error": "Impossible d'enregistrer le changement.",
+      "draftSaved": "Brouillon enregistré.",
+      "published": "Publié. {count} impacts logement créés.",
+      "rulesTitle": "Règles de juridiction",
+      "changesTitle": "Changements de règles",
+      "publishedLabel": "Publié",
+      "draftLabel": "Brouillon"
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",

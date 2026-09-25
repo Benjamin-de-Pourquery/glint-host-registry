@@ -2609,6 +2609,62 @@
       "generateFailed": "Could not generate evidence pack"
     }
   },
+  "ruleRadar": {
+    "feed": {
+      "title": "Changes affecting you",
+      "description": "Regulatory updates that may change limits or deadlines for your properties. Operational aid only, not legal advice.",
+      "loading": "Loading regulatory changes...",
+      "markSeen": "Mark as seen",
+      "nightCapDelta": "(night cap: {before} to {after} nights)",
+      "disclaimer": "Check the official source and effective date before acting. This is not legal advice."
+    },
+    "banner": {
+      "title": "Regulatory change affects this property",
+      "generic": "A recent rule change may affect night caps or compliance deadlines for this unit.",
+      "markSeen": "Mark as seen",
+      "dismiss": "Dismiss",
+      "disclaimer": "Operational aid only. Confirm with the official source."
+    },
+    "severity": {
+      "high": "High impact",
+      "medium": "Medium impact",
+      "low": "Low impact",
+      "none": "No impact"
+    },
+    "confidence": {
+      "official": "Official",
+      "announced": "Announced",
+      "reported": "Reported"
+    },
+    "console": {
+      "title": "Rule Radar console",
+      "description": "Internal regulatory triage. Draft rule changes require human review before publish.",
+      "loading": "Loading console...",
+      "forbiddenTitle": "Console access required",
+      "forbiddenDescription": "Set RULE_RADAR_CONSOLE=1 or add your email to RULE_RADAR_STAFF_EMAILS.",
+      "triageTitle": "Source triage queue",
+      "triageDescription": "Official URLs from playbooks with content-hash stubs for change detection.",
+      "authorTitle": "Author a rule change",
+      "authorDescription": "Create a draft or publish after review. Never auto-publish.",
+      "summaryEn": "Summary (EN)",
+      "summaryFr": "Summary (FR)",
+      "confidence": "Confidence",
+      "confidenceOfficial": "Official",
+      "confidenceAnnounced": "Announced",
+      "confidenceReported": "Reported",
+      "saveDraft": "Save draft",
+      "publish": "Publish and compute impacts",
+      "publishNote": "Publishing updates jurisdiction rules and creates per-property impact diffs.",
+      "validation": "Summary and at least one rule key are required.",
+      "error": "Could not save rule change.",
+      "draftSaved": "Draft saved.",
+      "published": "Published. {count} property impacts created.",
+      "rulesTitle": "Jurisdiction rules",
+      "changesTitle": "Rule changes",
+      "publishedLabel": "Published",
+      "draftLabel": "Draft"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Something went wrong",

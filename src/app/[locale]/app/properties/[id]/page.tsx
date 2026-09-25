@@ -16,6 +16,7 @@ import {
   resolveEffectiveExpiryDate,
   resolvePrimaryRegistrationNumber,
 } from "@/lib/listing-health";
+import { RuleRadarBanner } from "@/components/rule-radar-banner";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -90,6 +91,8 @@ export default async function PropertyDetailPage({ params }: Props) {
           }
         />
       </div>
+
+      <RuleRadarBanner propertyId={property.id} locale={locale} />
 
       <Suspense fallback={<div className="py-12 text-center text-slate-500">{t("detail.loading")}</div>}>
         <PropertyDetailTabs

@@ -38,7 +38,10 @@ export function RuleRadarBanner({ propertyId, locale }: Props) {
   }, [propertyId]);
 
   useEffect(() => {
-    load();
+    const id = window.setTimeout(() => {
+      void load();
+    }, 0);
+    return () => window.clearTimeout(id);
   }, [load]);
 
   const markAllSeen = async () => {

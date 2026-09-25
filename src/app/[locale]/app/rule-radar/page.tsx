@@ -31,6 +31,7 @@ type ConsoleData = {
     source: {
       url: string;
       labelEn: string;
+      labelFr: string;
       contentHash: string;
     };
     suggestedRuleKeys: string[];
@@ -85,7 +86,10 @@ export default function RuleRadarConsolePage() {
   }, []);
 
   useEffect(() => {
-    load();
+    const id = window.setTimeout(() => {
+      void load();
+    }, 0);
+    return () => window.clearTimeout(id);
   }, [load]);
 
   const toggleKey = (key: string) => {
@@ -180,7 +184,7 @@ export default function RuleRadarConsolePage() {
                   rel="noopener noreferrer"
                   className="font-medium text-blue-700 hover:underline"
                 >
-                  {locale === "fr" ? item.source.labelEn : item.source.labelEn}
+                  {locale === "fr" ? item.source.labelFr : item.source.labelEn}
                 </a>
                 <Badge variant="outline">hash:{item.source.contentHash}</Badge>
               </div>

@@ -4,7 +4,6 @@ import {
   nightCapApplies,
   type NightCapComputation,
   type NightCapSettingsInput,
-  type NightCapSource,
 } from "@/lib/france/night-cap";
 import { isPrimaryResidence } from "@/lib/france/night-cap";
 import { isFranceCountry } from "@/lib/national-transition";

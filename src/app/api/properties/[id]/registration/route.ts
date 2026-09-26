@@ -8,6 +8,7 @@ import {
 } from "@/lib/national-transition";
 import { isNetherlandsCountry, resolveNlNightCapSource } from "@/lib/netherlands/regions";
 import { isBelgiumCountry, getBelgiumRegion } from "@/lib/belgium/regions";
+import { isAustriaCountry, getAustriaFederalState } from "@/lib/austria/regions";
 import { z } from "zod";
 
 const schema = z.object({
@@ -75,6 +76,22 @@ const schema = z.object({
     .enum(["not_started", "pending", "valid", "expired"])
     .optional(),
   beDossierSubmittedAt: z.string().nullable().optional(),
+  atRegistrationNumber: z.string().nullable().optional(),
+  atRegistrationStatus: z
+    .enum([
+      "not_started",
+      "dossier_in_progress",
+      "pending",
+      "active",
+      "expired",
+      "unknown",
+    ])
+    .optional(),
+  atRegistrationDisplayedOnListings: z.boolean().optional(),
+  atFederalState: z.enum(["vienna", "other"]).nullable().optional(),
+  atOperatorCategory: z.enum(["natural", "legal"]).nullable().optional(),
+  atDossierPreparedAt: z.string().nullable().optional(),
+  atTransitionDeadline: z.string().nullable().optional(),
 });
 
 export async function PATCH(
@@ -124,6 +141,17 @@ export async function PATCH(
           ? property.registration?.beRegion ??
             (() => {
               const inferred = getBelgiumRegion(property.city);
+              return inferred === "unknown" ? null : inferred;
+            })()
+          : null;
+
+    const atFederalState =
+      data.atFederalState !== undefined
+        ? data.atFederalState
+        : isAustriaCountry(property.country)
+          ? property.registration?.atFederalState ??
+            (() => {
+              const inferred = getAustriaFederalState(property.city);
               return inferred === "unknown" ? null : inferred;
             })()
           : null;
@@ -182,6 +210,18 @@ export async function PATCH(
         beUrbanPlanningStatus: data.beUrbanPlanningStatus ?? "not_started",
         beDossierSubmittedAt: data.beDossierSubmittedAt
           ? new Date(data.beDossierSubmittedAt)
+          : null,
+        atRegistrationNumber: data.atRegistrationNumber ?? null,
+        atRegistrationStatus: data.atRegistrationStatus ?? "not_started",
+        atRegistrationDisplayedOnListings:
+          data.atRegistrationDisplayedOnListings ?? false,
+        atFederalState,
+        atOperatorCategory: data.atOperatorCategory ?? null,
+        atDossierPreparedAt: data.atDossierPreparedAt
+          ? new Date(data.atDossierPreparedAt)
+          : null,
+        atTransitionDeadline: data.atTransitionDeadline
+          ? new Date(data.atTransitionDeadline)
           : null,
       },
       update: {
@@ -244,6 +284,21 @@ export async function PATCH(
         beDossierSubmittedAt: data.beDossierSubmittedAt
           ? new Date(data.beDossierSubmittedAt)
           : data.beDossierSubmittedAt === null
+            ? null
+            : undefined,
+        atRegistrationNumber: data.atRegistrationNumber,
+        atRegistrationStatus: data.atRegistrationStatus,
+        atRegistrationDisplayedOnListings: data.atRegistrationDisplayedOnListings,
+        atFederalState: data.atFederalState !== undefined ? data.atFederalState : atFederalState,
+        atOperatorCategory: data.atOperatorCategory,
+        atDossierPreparedAt: data.atDossierPreparedAt
+          ? new Date(data.atDossierPreparedAt)
+          : data.atDossierPreparedAt === null
+            ? null
+            : undefined,
+        atTransitionDeadline: data.atTransitionDeadline
+          ? new Date(data.atTransitionDeadline)
+          : data.atTransitionDeadline === null
             ? null
             : undefined,
       },

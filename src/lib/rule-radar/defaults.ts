@@ -15,6 +15,12 @@ export const HARDCODED_DEFAULTS: Record<string, unknown> = {
   [RULE_KEYS.NL_AMSTERDAM_WIJK_15_ZONES]: [...AMSTERDAM_15_NIGHT_WIJKEN],
   [RULE_KEYS.FR_TOURIST_TAX_DEFAULT_CADENCE]: "monthly",
   [RULE_KEYS.FR_GUEST_FICHE_DEADLINE_DAYS]: 1,
+  [RULE_KEYS.AT_VIENNA_WKVRG_REGISTRATION]: {
+    status: "announced_pending_landtag",
+    effectiveDate: "2027-01-01",
+    existingListingTransitionEnd: "2027-03-31",
+    confidence: "announced",
+  },
 };
 
 export function getHardcodedDefault<T>(key: string, fallback: T): T {

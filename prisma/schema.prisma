@@ -494,6 +494,14 @@ model Registration {
   beInsuranceStatus         String    @default("not_started")
   beUrbanPlanningStatus     String    @default("not_started")
   beDossierSubmittedAt      DateTime?
+  /** Austria / Vienna WKVRG platform STR registration (pending legislation) */
+  atRegistrationNumber      String?
+  atRegistrationStatus      String    @default("not_started")
+  atRegistrationDisplayedOnListings Boolean @default(false)
+  atFederalState            String?
+  atOperatorCategory        String?
+  atDossierPreparedAt       DateTime?
+  atTransitionDeadline      DateTime?
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

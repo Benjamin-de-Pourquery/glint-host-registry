@@ -20,6 +20,7 @@ import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
+import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
 import { ListingHealthBadge } from "@/components/listing-health-badge";
 import type { ListingHealthScore } from "@/lib/listing-health/types";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
@@ -64,6 +65,13 @@ type PropertyItem = {
     beInsuranceStatus?: string | null;
     beUrbanPlanningStatus?: string | null;
     beDossierSubmittedAt?: Date | null;
+    atRegistrationNumber?: string | null;
+    atRegistrationStatus?: string | null;
+    atRegistrationDisplayedOnListings?: boolean;
+    atFederalState?: string | null;
+    atOperatorCategory?: string | null;
+    atDossierPreparedAt?: Date | null;
+    atTransitionDeadline?: Date | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
   listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
@@ -83,6 +91,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "croatia_evisitor",
   "netherlands_registration",
   "belgium_registration",
+  "austria_registration",
   "night_cap",
   "tourist_tax",
 ];
@@ -183,6 +192,13 @@ export function PropertiesView({
           }
           if (statusFilter === "belgium_registration") {
             return needsBelgiumRegistrationAttention(
+              property.country,
+              property.registration,
+              property.city
+            );
+          }
+          if (statusFilter === "austria_registration") {
+            return needsAustriaRegistrationAttention(
               property.country,
               property.registration,
               property.city

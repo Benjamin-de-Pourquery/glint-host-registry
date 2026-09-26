@@ -10,6 +10,7 @@ import { getEffectiveNextStepForGreece } from "@/lib/greece/next-action";
 import { getEffectiveNextStepForCroatia } from "@/lib/croatia/next-action";
 import { getEffectiveNextStepForNetherlands } from "@/lib/netherlands/next-action";
 import { getEffectiveNextStepForBelgium } from "@/lib/belgium/next-action";
+import { getEffectiveNextStepForAustria } from "@/lib/austria/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
@@ -17,6 +18,7 @@ import { isGreeceCountry } from "@/lib/greece/regions";
 import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import { isBelgiumCountry } from "@/lib/belgium/regions";
+import { isAustriaCountry } from "@/lib/austria/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 import type { FrNerMigrationRecord } from "@/lib/fr-ner-migration/types";
@@ -44,6 +46,10 @@ export type EffectiveNextStepContext = {
   hasBeRegistrationNumber?: boolean;
   isBeDossierComplete?: boolean;
   beDisplayedOnListings?: boolean;
+  atFederalState?: string | null;
+  hasAtRegistrationNumber?: boolean;
+  isAtDossierPrepared?: boolean;
+  atDisplayedOnListings?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
   frNerMigration?: FrNerMigrationRecord | null;
@@ -120,6 +126,17 @@ export function getEffectiveNextStep(
       hasBeRegistrationNumber: context.hasBeRegistrationNumber,
       isDossierComplete: context.isBeDossierComplete,
       isDisplayedOnListings: context.beDisplayedOnListings,
+    });
+  }
+
+  if (isAustriaCountry(context.country)) {
+    return getEffectiveNextStepForAustria(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      atFederalState: context.atFederalState,
+      hasAtRegistrationNumber: context.hasAtRegistrationNumber,
+      isDossierPrepared: context.isAtDossierPrepared,
+      isDisplayedOnListings: context.atDisplayedOnListings,
     });
   }
 

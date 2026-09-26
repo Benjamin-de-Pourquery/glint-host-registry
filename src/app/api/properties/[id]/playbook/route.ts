@@ -21,6 +21,10 @@ import {
   isBeDossierComplete,
 } from "@/lib/belgium/registration-compliance";
 import {
+  hasAtRegistrationNumber,
+  isAtDossierPrepared,
+} from "@/lib/austria/registration-compliance";
+import {
   hasCroatiaCategorisationNumber,
   hasCroatiaEvisitorObjectId,
 } from "@/lib/croatia/categorisation-compliance";
@@ -166,6 +170,12 @@ export async function GET(
     ),
     beDisplayedOnListings: Boolean(
       property.registration?.beRegistrationDisplayedOnListings
+    ),
+    atFederalState: property.registration?.atFederalState ?? null,
+    hasAtRegistrationNumber: hasAtRegistrationNumber(property.registration),
+    isAtDossierPrepared: isAtDossierPrepared(property.registration),
+    atDisplayedOnListings: Boolean(
+      property.registration?.atRegistrationDisplayedOnListings
     ),
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,

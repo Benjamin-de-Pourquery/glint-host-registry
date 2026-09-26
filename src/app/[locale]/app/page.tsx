@@ -28,6 +28,7 @@ import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
+import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
 import { getListingHealthScoresForUser } from "@/lib/listing-health";
 import { RuleRadarFeed } from "@/components/rule-radar-feed";
 
@@ -97,6 +98,7 @@ export default async function DashboardPage({ params }: Props) {
   let croatiaEvisitorCount = 0;
   let netherlandsRegistrationCount = 0;
   let belgiumRegistrationCount = 0;
+  let austriaRegistrationCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -125,6 +127,9 @@ export default async function DashboardPage({ params }: Props) {
     }
     if (needsBelgiumRegistrationAttention(p.country, p.registration, p.city)) {
       belgiumRegistrationCount++;
+    }
+    if (needsAustriaRegistrationAttention(p.country, p.registration, p.city)) {
+      austriaRegistrationCount++;
     }
     return { ...p, complianceStatus: status };
   });
@@ -230,6 +235,7 @@ export default async function DashboardPage({ params }: Props) {
           croatiaEvisitor: croatiaEvisitorCount,
           netherlandsRegistration: netherlandsRegistrationCount,
           belgiumRegistration: belgiumRegistrationCount,
+          austriaRegistration: austriaRegistrationCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,
           listingHealthAtRisk: listingHealthAtRiskCount,

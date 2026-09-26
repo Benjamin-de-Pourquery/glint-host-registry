@@ -87,6 +87,22 @@
       "title": "Enregistrement Airbnb Bruxelles: déclaration préalable",
       "description": "Région Bruxelles-Capitale : dossier, numéro et affichage sur les annonces."
     },
+    "guideViennaStrRegistration": {
+      "title": "Enregistrement location courte durée Vienne: guide WKVRG 2027",
+      "description": "Projet WKVRG viennois, échéances dès le 1er janvier 2027, numéros plateformes et checklist Host Registry. Loi non encore définitive."
+    },
+    "guideViennaStrRegistrationFr": {
+      "title": "Enregistrement LCD Vienne: guide WKVRG 2027 (FR)",
+      "description": "Annonce municipale WKVRG, calendrier 2027, affichage plateformes. Texte de loi encore en attente au Landtag."
+    },
+    "guideViennaAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Vienne: guide préparation WKVRG",
+      "description": "Registre LCD plateforme annoncé, numéro sur les annonces, amendes et UE 2024/1028. Pas de dépôt automatique Glint."
+    },
+    "guideViennaAirbnbRegistrationFr": {
+      "title": "Airbnb Vienne et WKVRG: guide hôte",
+      "description": "Préparation au registre viennois, numéro obligatoire sur les OTA, amendes annoncées. Host Registry ne dépose pas pour vous."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -335,6 +351,60 @@
         }
       }
     },
+    "viennaStrRegistration": {
+      "title": "Enregistrement LCD Vienne (WKVRG)",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Le 19 septembre 2026, la Ville de Vienne a annoncé un projet de Wiener Kurzzeitvermietungsregistergesetz (WKVRG) pour les locations de courte durée sur plateformes. La loi doit encore être adoptée au Landtag de Vienne (objectif novembre 2026) et le texte final peut évoluer. Glint Host Registry vous aide à vous préparer. Nous ne déposons pas les formulaires officiels et ne délivrons pas de numéro.",
+      "sections": {
+        "announced": {
+          "title": "Ce qui a été annoncé",
+          "body": "Un registre électronique viennois pour les LCD sur plateformes (Airbnb, Booking.com, etc.). Personnes physiques et morales doivent enregistrer chaque logement. La ville peut refuser si la LCD est interdite localement. Le WKVRG est une annonce, pas encore une loi adoptée."
+        },
+        "timelines": {
+          "title": "Calendrier (selon l'annonce)",
+          "body": "Entrée en vigueur prévue le 1er janvier 2027 pour les nouveaux hôtes. Annonces existantes : transition jusqu'à fin T1 2027 (31 mars 2027). Le numéro doit figurer sur les plateformes une fois le registre ouvert."
+        },
+        "platforms": {
+          "title": "Plateformes et amendes",
+          "body": "Les plateformes exigeront un numéro valide après la transition. Amendes annoncées jusqu'à 50 000 € par infraction. Pas de déclaration police voyageurs dans ce registre viennois."
+        },
+        "eu": {
+          "title": "Règlement UE 2024/1028",
+          "body": "En vigueur depuis le 20 mai 2026, le règlement impose aux plateformes de vérifier les numéros lorsque l'État membre l'exige. Le registre viennois est la voie locale annoncée par la ville."
+        },
+        "ninetyDay": {
+          "title": "Règle 90 jours (distincte)",
+          "body": "Les règles existantes de partage du logement (90 jours) et les restrictions de changement d'usage restent distinctes de l'enregistrement WKVRG. Suivez les deux obligations."
+        },
+        "glint": {
+          "title": "Rôle de Host Registry",
+          "body": "Playbook Vienne, checklist dossier, date limite de transition, stockage du numéro et suivi d'affichage sur les annonces, avec liens vers l'annonce officielle. Vous déposez sur le portail municipal à l'ouverture."
+        }
+      }
+    },
+    "viennaAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Vienne sous WKVRG",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Les hôtes Airbnb et autres plateformes à Vienne doivent se préparer au numéro d'enregistrement obligatoire annoncé sous le WKVRG. Ce guide couvre la préparation opérationnelle tant que la loi est en attente.",
+      "sections": {
+        "register": {
+          "title": "S'inscrire à l'ouverture du portail",
+          "body": "Après adoption au Landtag, déposez la demande sur le registre officiel viennois (URL à publier). Rassemblez adresse, identité de l'hôte, type d'exploitant et vérifications d'exclusion (ex. Gemeindewohnung)."
+        },
+        "number": {
+          "title": "Numéro sur les annonces",
+          "body": "Affichez le numéro municipal sur chaque OTA. Vérification au titre du UE 2024/1028. Annonces sans numéro valide susceptibles d'être retirées après le 31 mars 2027 pour les hôtes existants."
+        },
+        "fines": {
+          "title": "Sanctions",
+          "body": "Pénalités annoncées jusqu'à 50 000 €. Host Registry suit le numéro et l'affichage mais ne dépose pas pour vous."
+        },
+        "glint": {
+          "title": "Workflow Host Registry",
+          "body": "Utilisez le playbook Vienne, enregistrez le numéro, cochez l'affichage par canal et exportez votre dossier."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatie: catégorisation hébergement et eVisitor",
       "updated": "Mis à jour : septembre 2026",
@@ -432,7 +502,7 @@
       "title": "Un cockpit conformité pour tout votre portefeuille",
       "description": "Glint centralise démarches guidées, registre voyageurs, file SES Espagne, sync iCal et suivi des numéros, avec une prochaine action claire par bien.",
       "points": {
-        "1": "Playbooks pour la France, l'Espagne, l'Italie, le Portugal, la Grèce, la Croatie, les Pays-Bas et la Belgique",
+        "1": "Playbooks pour la France, l'Espagne, l'Italie, le Portugal, la Grèce, la Croatie, les Pays-Bas, la Belgique et l'Autriche (préparation WKVRG Vienne dès 2027)",
         "2": "Registre : fiche FR, Annexe I (ES), Alloggiati (IT), SIBA (PT), déclarations AADE (GR), eVisitor (HR) ; files d'échéance",
         "3": "iCal → séjours → kits d'export Mossos, Ertzaintza, Alloggiati, SIBA, AADE ; validation SES en simulation, avec envoi MIR live uniquement si vous l'activez"
       }
@@ -459,6 +529,10 @@
       "belgiumOps": {
         "title": "Conformité Belgique tri-régionale",
         "description": "Dossier déclaration préalable Bruxelles, aanmelding Flandre et enregistrement Wallonie : routage régional, checklist dossier, suivi du numéro et affichage UE."
+      },
+      "austriaOps": {
+        "title": "Autriche / Vienne WKVRG (dès 2027)",
+        "description": "Registre LCD plateforme annoncé : suivi dossier, échéances de transition, stockage du numéro et affichage annonces. Pas de dépôt automatique tant que la loi est au Landtag."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -649,6 +723,8 @@
       "guideCroatiaEvisitor": "Croatie eVisitor",
       "guideBelgiumStrRegistration": "Enregistrement LCD Belgique",
       "guideBrusselsAirbnbRegistration": "Airbnb Bruxelles",
+      "guideViennaStrRegistration": "LCD Vienne (WKVRG)",
+      "guideViennaAirbnbRegistration": "Airbnb Vienne / WKVRG",
       "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
@@ -741,6 +817,7 @@
       "croatiaEvisitor": "eVisitor Croatie",
       "netherlandsRegistration": "Enregistrement NL",
       "belgiumRegistration": "Enregistrement BE",
+      "austriaRegistration": "Autriche / Vienne WKVRG",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -754,6 +831,7 @@
       "croatiaEvisitor": "{count, plural, one {# bien croate — catégorisation ou eVisitor manquant} other {# biens croates — catégorisation ou eVisitor manquant}}",
       "netherlandsRegistration": "{count, plural, one {# bien néerlandais — enregistrement, vergunning ou notification manquante} other {# biens néerlandais — enregistrement, vergunning ou notification manquante}}",
       "belgiumRegistration": "{count, plural, one {# bien belge — région, dossier ou enregistrement manquant} other {# biens belges — région, dossier ou enregistrement manquant}}",
+      "austriaRegistration": "{count, plural, one {# bien autrichien — dossier ou enregistrement WKVRG manquant} other {# biens autrichiens — dossier ou enregistrement WKVRG manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -923,7 +1001,8 @@
         "ama": "AMA (AADE)",
         "categorisation": "Catégorisation (HR)",
         "nlRegistration": "Numéro d'enregistrement NL",
-        "beRegistration": "Numéro d'enregistrement belge"
+        "beRegistration": "Numéro d'enregistrement belge",
+        "atRegistration": "Numéro d'enregistrement Autriche / Vienne"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1217,6 +1296,7 @@
       "croatia_evisitor": "eVisitor Croatie",
       "netherlands_registration": "Enregistrement NL",
       "belgium_registration": "Enregistrement BE",
+      "austria_registration": "Autriche / Vienne WKVRG",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -2564,6 +2644,51 @@
         "pending": "En attente",
         "valid": "Valide",
         "expired": "Expiré"
+      }
+    }
+  },
+  "at": {
+    "compliance": {
+      "title": "Autriche / Vienne — préparation WKVRG",
+      "description": "Le WKVRG est annoncé et en attente au Landtag de Vienne (objectif novembre 2026). Suivez le Land, la préparation du dossier, la date limite de transition, le numéro et l'affichage sur les annonces. Glint ne dépose pas les formulaires officiels.",
+      "locationSection": "Localisation",
+      "federalStateLabel": "Land / focus",
+      "federalStatePlaceholder": "Sélectionner",
+      "federalStateUnknown": "Inconnu — sélectionner",
+      "locationHint": "Ville indiquée : {city}. Vienne annonce le registre LCD plateforme à partir de 2027.",
+      "federalStates": {
+        "vienna": "Vienne",
+        "other": "Autre Bundesland"
+      },
+      "operatorCategory": "Catégorie d'exploitant",
+      "operatorCategoryPlaceholder": "Personne physique ou morale",
+      "operatorCategoryUnset": "Non renseigné",
+      "operatorCategories": {
+        "natural": "Personne physique",
+        "legal": "Personne morale"
+      },
+      "dossierSection": "Dossier WKVRG",
+      "dossierPreparedAt": "Dossier préparé le",
+      "transitionDeadline": "Date limite de transition (annonces existantes)",
+      "transitionHint": "Fin T1 2027 annoncée (31 mars 2027) pour les annonces déjà en ligne avant le 1er janvier 2027.",
+      "registrationSection": "Numéro d'enregistrement",
+      "registrationNumber": "Numéro d'enregistrement",
+      "registrationNumberPlaceholder": "Numéro WKVRG viennois (une fois délivré)",
+      "registrationStatusLabel": "Statut d'enregistrement",
+      "displayedOnListings": "Numéro affiché sur toutes les annonces plateformes",
+      "officialAnnouncement": "Annonce officielle de la ville",
+      "disclaimer": "Glint Host Registry publie des guides uniquement. Vous déposez sur le portail officiel viennois dès son ouverture et restez responsable légalement.",
+      "save": "Enregistrer",
+      "saving": "Enregistrement…",
+      "saved": "Conformité Autriche enregistrée",
+      "saveError": "Échec de l'enregistrement",
+      "registrationStatus": {
+        "not_started": "Non démarré",
+        "dossier_in_progress": "Dossier en cours",
+        "pending": "En attente autorité",
+        "active": "Actif",
+        "expired": "Expiré",
+        "unknown": "Inconnu"
       }
     }
   },

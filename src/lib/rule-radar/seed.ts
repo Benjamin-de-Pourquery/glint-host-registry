@@ -5,8 +5,10 @@ import {
   LEGIFRANCE_L324_1_1_URL,
   SERVICE_PUBLIC_STR_URL,
 } from "@/lib/france/night-cap";
+import { VIENNA_WKVRG_OTS_URL } from "@/lib/austria/official-links";
 
 const SEED_EFFECTIVE_FROM = new Date("2020-01-01T00:00:00.000Z");
+const VIENNA_WKVRG_EFFECTIVE_FROM = new Date("2027-01-01T00:00:00.000Z");
 
 type SeedRow = {
   key: string;
@@ -16,6 +18,7 @@ type SeedRow = {
   residency?: string | null;
   value: unknown;
   sourceUrl?: string | null;
+  effectiveFrom?: Date;
 };
 
 const SEED_ROWS: SeedRow[] = [
@@ -76,6 +79,14 @@ const SEED_ROWS: SeedRow[] = [
     value: HARDCODED_DEFAULTS[RULE_KEYS.FR_GUEST_FICHE_DEADLINE_DAYS],
     sourceUrl: SERVICE_PUBLIC_STR_URL,
   },
+  {
+    key: RULE_KEYS.AT_VIENNA_WKVRG_REGISTRATION,
+    country: "AT",
+    city: "Vienna",
+    value: HARDCODED_DEFAULTS[RULE_KEYS.AT_VIENNA_WKVRG_REGISTRATION],
+    sourceUrl: VIENNA_WKVRG_OTS_URL,
+    effectiveFrom: VIENNA_WKVRG_EFFECTIVE_FROM,
+  },
 ];
 
 let seedPromise: Promise<void> | null = null;
@@ -92,6 +103,7 @@ export async function seedJurisdictionRules(): Promise<{ created: number; skippe
   let skipped = 0;
 
   for (const row of SEED_ROWS) {
+    const effectiveFrom = row.effectiveFrom ?? SEED_EFFECTIVE_FROM;
     const existing = await prisma.jurisdictionRule.findFirst({
       where: {
         key: row.key,
@@ -99,7 +111,7 @@ export async function seedJurisdictionRules(): Promise<{ created: number; skippe
         city: row.city ?? null,
         zone: row.zone ?? null,
         residency: row.residency ?? null,
-        effectiveFrom: SEED_EFFECTIVE_FROM,
+        effectiveFrom,
       },
     });
 
@@ -116,7 +128,7 @@ export async function seedJurisdictionRules(): Promise<{ created: number; skippe
         zone: row.zone ?? null,
         residency: row.residency ?? null,
         valueJson: JSON.stringify(row.value),
-        effectiveFrom: SEED_EFFECTIVE_FROM,
+        effectiveFrom,
         sourceUrl: row.sourceUrl ?? null,
         reviewedAt: new Date(),
       },
@@ -124,5 +136,30 @@ export async function seedJurisdictionRules(): Promise<{ created: number; skippe
     created++;
   }
 
+  await seedViennaWkvgrRuleChange();
+
   return { created, skipped };
+}
+
+const VIENNA_WKVRG_RULE_CHANGE_SUMMARY_EN =
+  "Vienna announced WKVRG: platform STR registration from 1 Jan 2027 (existing listings until 31 Mar 2027). Law still pending Wiener Landtag; final text may change.";
+
+const VIENNA_WKVRG_RULE_CHANGE_SUMMARY_FR =
+  "Vienne a annoncé le WKVRG : enregistrement LCD plateforme dès le 1er janv. 2027 (annonces existantes jusqu'au 31 mars 2027). Loi encore en attente au Landtag ; le texte final peut évoluer.";
+
+async function seedViennaWkvgrRuleChange(): Promise<void> {
+  const existing = await prisma.ruleChange.findFirst({
+    where: { summaryEn: VIENNA_WKVRG_RULE_CHANGE_SUMMARY_EN },
+  });
+  if (existing) return;
+
+  await prisma.ruleChange.create({
+    data: {
+      ruleKeysJson: JSON.stringify([RULE_KEYS.AT_VIENNA_WKVRG_REGISTRATION]),
+      summaryEn: VIENNA_WKVRG_RULE_CHANGE_SUMMARY_EN,
+      summaryFr: VIENNA_WKVRG_RULE_CHANGE_SUMMARY_FR,
+      confidence: "announced",
+      publishedAt: new Date("2026-09-19T12:00:00.000Z"),
+    },
+  });
 }

@@ -88,6 +88,13 @@ type Registration = {
   beInsuranceStatus?: string | null;
   beUrbanPlanningStatus?: string | null;
   beDossierSubmittedAt?: string | Date | null;
+  atRegistrationNumber?: string | null;
+  atRegistrationStatus?: string | null;
+  atRegistrationDisplayedOnListings?: boolean;
+  atFederalState?: string | null;
+  atOperatorCategory?: string | null;
+  atDossierPreparedAt?: string | Date | null;
+  atTransitionDeadline?: string | Date | null;
 };
 
 type PropertyData = {
@@ -364,6 +371,16 @@ export function PropertyDetailTabs({
                 </dd>
               </div>
             )}
+            {property.registration?.atRegistrationNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.atRegistration")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.atRegistrationNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -493,6 +510,7 @@ export function PropertyDetailTabs({
           greeceAlternateLicenseNumber={property.registration?.greeceAlternateLicenseNumber}
           nlRegistrationNumber={property.registration?.nlRegistrationNumber}
           beRegistrationNumber={property.registration?.beRegistrationNumber}
+          atRegistrationNumber={property.registration?.atRegistrationNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

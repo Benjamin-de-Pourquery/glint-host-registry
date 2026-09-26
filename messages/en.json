@@ -87,6 +87,22 @@
       "title": "Enregistrement Airbnb Bruxelles: guide déclaration préalable",
       "description": "Déclaration préalable Région Bruxelles-Capitale, dossier, numéro, logo à l'entrée et vérifications plateformes UE."
     },
+    "guideViennaStrRegistration": {
+      "title": "Vienna short-term rental registration: WKVRG host guide 2027",
+      "description": "Pending Wiener Kurzzeitvermietungsregistergesetz, timelines from 1 Jan 2027, platform numbers and honest Host Registry checklist. Not yet final law."
+    },
+    "guideViennaStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Vienne: guide WKVRG 2027",
+      "description": "Projet WKVRG viennois, échéances dès le 1er janvier 2027, numéros plateformes et checklist Host Registry. Loi non encore définitive."
+    },
+    "guideViennaAirbnbRegistration": {
+      "title": "Vienna Airbnb registration: WKVRG readiness guide",
+      "description": "Announced Vienna platform STR register, registration number on listings, fines and EU 2024/1028 context. Glint does not auto-submit."
+    },
+    "guideViennaAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Vienne: guide préparation WKVRG",
+      "description": "Registre LCD plateforme annoncé à Vienne, numéro sur les annonces, amendes et contexte UE 2024/1028. Pas de dépôt automatique Glint."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -335,6 +351,60 @@
         }
       }
     },
+    "viennaStrRegistration": {
+      "title": "Vienna short-term rental registration (WKVRG)",
+      "updated": "Updated: September 2026",
+      "intro": "On 19 September 2026 the City of Vienna announced a planned Wiener Kurzzeitvermietungsregistergesetz (WKVRG) for platform short-term rentals. The law still needs Wiener Landtag passage (targeted November 2026) and the final text may change. Glint Host Registry helps you prepare. We do not submit government forms or issue registration numbers.",
+      "sections": {
+        "announced": {
+          "title": "What was announced",
+          "body": "An electronic Vienna register for platform STR (Airbnb, Booking.com and similar). Natural and legal persons must register each unit. The city may refuse listings where local rules prohibit STR. WKVRG is announced policy, not yet adopted law."
+        },
+        "timelines": {
+          "title": "Timelines (as announced)",
+          "body": "Planned entry into force 1 January 2027 for new hosts. Existing listings: transition until end of Q1 2027 (31 March 2027). Registration numbers must appear on platform listings once the register is live."
+        },
+        "platforms": {
+          "title": "Platforms and fines",
+          "body": "Platforms will need a valid registration number to keep listings live after the transition. Proposed fines up to €50,000 per breach, with minimum fines for repeat offences. No guest-police submission is part of this Vienna register."
+        },
+        "eu": {
+          "title": "EU Regulation 2024/1028",
+          "body": "In force since 20 May 2026, the EU regulation requires platforms to verify registration numbers where Member States require them. Vienna's register is the local implementation path announced by the city."
+        },
+        "ninetyDay": {
+          "title": "90-day rule, Ortstaxe and Ausnahmebewilligung (separate from WKVRG)",
+          "body": "Today: you may share your home for tourist stays up to 90 days per year without Ausnahmebewilligung, register for Ortstaxe and tourism statistics (VIETour), and apply for Ausnahmebewilligung if you exceed 90 days. The announced WKVRG registration number from 2027 is an additional platform transparency requirement. It is not the Ortstaxe account and the register portal is not live yet. See Stadt Wien guidance on private tourist rental, Ausnahmebewilligung and Ortstaxe."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "City playbook, dossier checklist, transition deadline field, registration number storage and listing display tracking with official announcement links. You file on the city portal when it opens."
+        }
+      }
+    },
+    "viennaAirbnbRegistration": {
+      "title": "Vienna Airbnb registration under WKVRG",
+      "updated": "Updated: September 2026",
+      "intro": "Airbnb and other platform hosts in Vienna should prepare for mandatory registration numbers under the announced WKVRG. This guide is operational readiness only while the law is pending.",
+      "sections": {
+        "register": {
+          "title": "Register when the portal opens",
+          "body": "After Landtag adoption, apply on the official Vienna short-term rental register (portal URL to be published). Gather address, host identity, operator type and exclusion checks (e.g. Gemeindewohnung) before applying."
+        },
+        "number": {
+          "title": "Registration number on listings",
+          "body": "Display the city registration number on every OTA listing. Platforms must verify under EU 2024/1028. Listings without a valid number may be removed after 31 March 2027 for existing hosts."
+        },
+        "fines": {
+          "title": "Enforcement",
+          "body": "Proposed penalties up to €50,000. Host Registry tracks your number and display checklist but does not file on your behalf."
+        },
+        "glint": {
+          "title": "Host Registry workflow",
+          "body": "Use the Vienna playbook, save the number, mark listing display per channel, and export your dossier for your records."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatia: accommodation categorisation and eVisitor",
       "updated": "Updated: September 2026",
@@ -432,7 +502,7 @@
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking, with a clear next action per property.",
       "points": {
-        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, and Belgium",
+        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, and Austria (Vienna WKVRG readiness from 2027)",
         "2": "Guest register: French fiche, Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), eVisitor (HR); due queues with deadlines",
         "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run validation by default, optional live MIR submission when you enable it"
       }
@@ -459,6 +529,10 @@
       "belgiumOps": {
         "title": "Belgium tri-regional registration ops",
         "description": "Brussels prior-declaration dossier, Flanders aanmelding and Wallonia registration: region routing, dossier checklist, number tracking and EU listing display."
+      },
+      "austriaOps": {
+        "title": "Austria / Vienna WKVRG readiness (from 2027)",
+        "description": "Pending Vienna platform STR register: dossier tracking, transition deadlines, number storage and listing display. No auto-submit while the law is still before the Landtag."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -649,6 +723,8 @@
       "guideCroatiaEvisitor": "Croatia eVisitor",
       "guideBelgiumStrRegistration": "Belgium STR registration",
       "guideBrusselsAirbnbRegistration": "Brussels Airbnb registration",
+      "guideViennaStrRegistration": "Vienna STR registration (WKVRG)",
+      "guideViennaAirbnbRegistration": "Vienna Airbnb / WKVRG",
       "guideFrNerMigration": "France NER migration 2026",
       "account": "Account",
       "legal": "Legal",
@@ -741,6 +817,7 @@
       "croatiaEvisitor": "Croatia eVisitor",
       "netherlandsRegistration": "NL registration",
       "belgiumRegistration": "Belgium registration",
+      "austriaRegistration": "Austria / Vienna WKVRG",
       "nightCap": "Primary night cap",
       "touristTax": "Taxe de séjour"
     },
@@ -754,6 +831,7 @@
       "croatiaEvisitor": "{count, plural, one {# Croatia property — categorisation or eVisitor setup missing} other {# Croatia properties — categorisation or eVisitor setup missing}}",
       "netherlandsRegistration": "{count, plural, one {# Netherlands property — registration, permit or stay notification missing} other {# Netherlands properties — registration, permit or stay notification missing}}",
       "belgiumRegistration": "{count, plural, one {# Belgium property — region, dossier or registration missing} other {# Belgium properties — region, dossier or registration missing}}",
+      "austriaRegistration": "{count, plural, one {# Austria property — WKVRG dossier or registration missing} other {# Austria properties — WKVRG dossier or registration missing}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
       "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
     },
@@ -923,7 +1001,8 @@
         "ama": "AMA (AADE)",
         "categorisation": "Categorisation (HR)",
         "nlRegistration": "NL registration number",
-        "beRegistration": "Belgium registration number"
+        "beRegistration": "Belgium registration number",
+        "atRegistration": "Austria / Vienna registration number"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -1217,6 +1296,7 @@
       "croatia_evisitor": "Croatia eVisitor",
       "netherlands_registration": "NL registration",
       "belgium_registration": "Belgium registration",
+      "austria_registration": "Austria / Vienna WKVRG",
       "night_cap": "Primary night cap",
       "tourist_tax": "Taxe de séjour"
     }
@@ -2564,6 +2644,53 @@
         "pending": "Pending",
         "valid": "Valid",
         "expired": "Expired"
+      }
+    }
+  },
+  "at": {
+    "compliance": {
+      "title": "Austria / Vienna WKVRG readiness",
+      "description": "WKVRG is announced and pending Wiener Landtag adoption (targeted November 2026). Track WKVRG dossier prep, transition deadline, registration number and listing display separately from today's 90-day rule, Ortstaxe and Ausnahmebewilligung. Glint does not submit government forms.",
+      "locationSection": "Location",
+      "federalStateLabel": "Federal state focus",
+      "federalStatePlaceholder": "Select state",
+      "federalStateUnknown": "Unknown — select state",
+      "locationHint": "City hint: {city}. Vienna has the announced WKVRG register from 2027.",
+      "federalStates": {
+        "vienna": "Vienna",
+        "other": "Other Bundesland"
+      },
+      "operatorCategory": "Operator category",
+      "operatorCategoryPlaceholder": "Natural or legal person",
+      "operatorCategoryUnset": "Not set",
+      "operatorCategories": {
+        "natural": "Natural person",
+        "legal": "Legal person"
+      },
+      "dossierSection": "WKVRG dossier",
+      "dossierPreparedAt": "Dossier prepared on",
+      "transitionDeadline": "Transition deadline (existing listings)",
+      "transitionHint": "Announced end of Q1 2027 (31 March 2027) for listings already live before 1 January 2027.",
+      "registrationSection": "Registration number",
+      "registrationNumber": "Registration number",
+      "registrationNumberPlaceholder": "Vienna WKVRG number (when issued)",
+      "registrationStatusLabel": "Registration status",
+      "displayedOnListings": "Registration number displayed on all platform listings",
+      "officialAnnouncement": "WKVRG announcement (2026)",
+      "currentRulesLink": "Current Stadt Wien STR rules",
+      "ortstaxeLink": "Ortstaxe (not WKVRG number)",
+      "disclaimer": "Glint Host Registry is publisher guidance only. Ortstaxe is not the future WKVRG registration number. You file on the official WKVRG portal when the city opens it and remain legally responsible.",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Austria compliance saved",
+      "saveError": "Could not save",
+      "registrationStatus": {
+        "not_started": "Not started",
+        "dossier_in_progress": "Dossier in progress",
+        "pending": "Pending authority",
+        "active": "Active",
+        "expired": "Expired",
+        "unknown": "Unknown"
       }
     }
   },

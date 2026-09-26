@@ -1,7 +1,9 @@
 import type { Playbook, PlaybookStep } from "./types";
 import {
   EU_1028_URL,
-  VIENNA_EU_STR_POLICY_URL,
+  VIENNA_AUSNAHMEBEWILLIGUNG_URL,
+  VIENNA_ORTSTAXE_URL,
+  VIENNA_PRIVATE_TOURIST_RENTAL_URL,
   VIENNA_WKVRG_OTS_URL,
 } from "@/lib/austria/official-links";
 
@@ -13,10 +15,19 @@ const atSteps = {
       fr: "Confirmer une LCD sur plateforme à Vienne",
     },
     instruction: {
-      en: "The planned Wiener Kurzzeitvermietungsregistergesetz (WKVRG) targets short-term rentals offered on platforms such as Airbnb and Booking.com in Vienna. Confirm this property is a platform STR in Vienna (not a hotel or long-term lease) and note whether it is a Gemeindewohnung or another excluded category before building your dossier.",
-      fr: "Le projet de Wiener Kurzzeitvermietungsregistergesetz (WKVRG) vise les locations de courte durée proposées sur des plateformes comme Airbnb et Booking.com à Vienne. Confirmez que ce bien est une LCD sur plateforme à Vienne (pas un hôtel ni un bail longue durée) et notez s'il s'agit d'un logement communal (Gemeindewohnung) ou d'une autre catégorie exclue avant de constituer le dossier.",
+      en: "The planned Wiener Kurzzeitvermietungsregistergesetz (WKVRG) adds a future platform registration number from 2027. That is separate from today's building-law rules: up to 90 days per year home-sharing without Ausnahmebewilligung, Ortstaxe and tourism statistics (VIETour), and Ausnahmebewilligung if you exceed 90 days. Confirm this unit is a platform STR in Vienna and note Gemeindewohnung or other exclusions before WKVRG dossier prep.",
+      fr: "Le projet WKVRG ajoutera un futur numéro d'enregistrement plateforme à partir de 2027. C'est distinct des règles actuelles : partage du logement jusqu'à 90 jours/an sans Ausnahmebewilligung, Ortstaxe et statistiques touristiques (VIETour), et Ausnahmebewilligung au-delà de 90 jours. Confirmez une LCD sur plateforme à Vienne et les exclusions (ex. Gemeindewohnung) avant le dossier WKVRG.",
     },
     officialUrls: [
+      {
+        url: VIENNA_PRIVATE_TOURIST_RENTAL_URL,
+        label: {
+          en: "Stadt Wien — private tourist rental (current rules)",
+          fr: "Stadt Wien — location touristique privée (règles actuelles)",
+        },
+        role: "rules",
+        urlVerified: true,
+      },
       {
         url: VIENNA_WKVRG_OTS_URL,
         label: {
@@ -50,17 +61,35 @@ const atSteps = {
       fr: "Constituer le dossier de préparation WKVRG",
     },
     instruction: {
-      en: "WKVRG is announced and still pending Wiener Landtag passage (targeted November 2026). Prepare the dossier the city is expected to review: full address, host or entity identity, operator type (natural or legal person), whether the unit is a municipal flat (Gemeindewohnung) or subject to exclusions, and your existing 90-day home-sharing context (separate from the future registration number). Glint tracks readiness only. You file on the official register once the portal opens.",
-      fr: "Le WKVRG est annoncé et reste en attente au Landtag de Vienne (objectif novembre 2026). Préparez le dossier que la ville devrait examiner : adresse complète, identité de l'hôte ou de l'entité, type d'exploitant (personne physique ou morale), logement communal (Gemeindewohnung) ou exclusions, et contexte du partage du logement 90 jours (distinct du futur numéro d'enregistrement). Glint suit la préparation uniquement. Vous déposez sur le registre officiel dès l'ouverture du portail.",
+      en: "WKVRG is announced and pending Wiener Landtag passage (targeted November 2026). Prepare the dossier for the future register: address, host or entity identity, operator type, exclusions. Track today's obligations separately: 90-day home-sharing limit, Ortstaxe account (not the WKVRG number), VIETour reporting, and Ausnahmebewilligung if you rent beyond 90 days. The WKVRG portal is not live yet. Glint tracks readiness only. You file on the official register when the city opens it.",
+      fr: "Le WKVRG est annoncé et en attente au Landtag (objectif novembre 2026). Préparez le dossier pour le futur registre : adresse, identité, type d'exploitant, exclusions. Suivez à part les obligations actuelles : limite 90 jours, compte Ortstaxe (pas le numéro WKVRG), VIETour, Ausnahmebewilligung au-delà de 90 jours. Le portail WKVRG n'est pas encore ouvert. Glint suit la préparation. Vous déposez quand la ville ouvrira le registre.",
     },
     officialUrls: [
       {
-        url: VIENNA_EU_STR_POLICY_URL,
+        url: VIENNA_PRIVATE_TOURIST_RENTAL_URL,
         label: {
-          en: "Stadt Wien — EU short-term rental policy",
-          fr: "Stadt Wien — politique UE LCD",
+          en: "Stadt Wien — private tourist rental overview",
+          fr: "Stadt Wien — vue d'ensemble location touristique",
         },
         role: "rules",
+        urlVerified: true,
+      },
+      {
+        url: VIENNA_AUSNAHMEBEWILLIGUNG_URL,
+        label: {
+          en: "Ausnahmebewilligung (beyond 90 days)",
+          fr: "Ausnahmebewilligung (au-delà de 90 jours)",
+        },
+        role: "form",
+        urlVerified: true,
+      },
+      {
+        url: VIENNA_ORTSTAXE_URL,
+        label: {
+          en: "Ortstaxe account (local tax)",
+          fr: "Compte Ortstaxe (taxe locale)",
+        },
+        role: "tax",
         urlVerified: true,
       },
     ],
@@ -79,8 +108,8 @@ const atSteps = {
       ],
     },
     pitfalls: {
-      en: "Glint does not submit government forms or issue registration numbers. You remain responsible for official filing.",
-      fr: "Glint ne dépose pas les formulaires officiels et ne délivre pas de numéro. Vous restez responsable du dépôt officiel.",
+      en: "Do not confuse Ortstaxe with the future WKVRG registration number. Glint does not submit government forms or issue registration numbers.",
+      fr: "Ne confondez pas l'Ortstaxe avec le futur numéro WKVRG. Glint ne dépose pas les formulaires officiels et ne délivre pas de numéro.",
     },
     fieldHints: ["name", "address", "city", "residencyStatus"],
   }),
@@ -92,17 +121,26 @@ const atSteps = {
       fr: "S'inscrire au registre LCD viennois (quand ouvert)",
     },
     instruction: {
-      en: "Once WKVRG is adopted and the electronic Vienna short-term rental register opens, apply for a registration number per unit. New hosts: from 1 January 2027. Existing listings: transition until end of Q1 2027 (31 March 2027). The city may refuse registration where local rules prohibit STR. Fines up to €50,000 are proposed for non-compliance. Final law text may still change.",
-      fr: "Une fois le WKVRG adopté et le registre électronique viennois ouvert, demandez un numéro d'enregistrement par logement. Nouveaux hôtes : à partir du 1er janvier 2027. Annonces existantes : transition jusqu'à fin T1 2027 (31 mars 2027). La ville peut refuser l'inscription si la LCD est interdite. Des amendes jusqu'à 50 000 € sont annoncées. Le texte final peut encore évoluer.",
+      en: "Once WKVRG is adopted and the electronic Vienna platform STR register opens, apply for a WKVRG registration number per unit. There is no public registry portal URL yet: use the city announcement and current Wien.gv.at pages until the register goes live. New hosts: from 1 January 2027. Existing listings: transition until 31 March 2027. This number is additional to Ortstaxe and 90-day rules. Fines up to €50,000 are proposed. Final law text may still change.",
+      fr: "Une fois le WKVRG adopté et le registre LCD plateforme ouvert, demandez un numéro WKVRG par logement. Aucun portail public n'existe encore : utilisez l'annonce municipale et les pages Wien.gv.at actuelles. Nouveaux hôtes : 1er janvier 2027. Annonces existantes : jusqu'au 31 mars 2027. Ce numéro s'ajoute à l'Ortstaxe et aux règles 90 jours. Amendes jusqu'à 50 000 € annoncées. Texte final susceptible d'évoluer.",
     },
     officialUrls: [
       {
         url: VIENNA_WKVRG_OTS_URL,
         label: {
-          en: "Official city announcement (portal TBD)",
-          fr: "Annonce officielle de la ville (portail à venir)",
+          en: "WKVRG announcement (register portal not live yet)",
+          fr: "Annonce WKVRG (portail registre pas encore ouvert)",
         },
         role: "info",
+        urlVerified: true,
+      },
+      {
+        url: VIENNA_PRIVATE_TOURIST_RENTAL_URL,
+        label: {
+          en: "Current Stadt Wien STR guidance",
+          fr: "Guidage LCD actuel Stadt Wien",
+        },
+        role: "rules",
         urlVerified: true,
       },
       {

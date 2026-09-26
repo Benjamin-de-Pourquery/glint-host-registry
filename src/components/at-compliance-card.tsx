@@ -18,7 +18,11 @@ import {
 } from "@/components/ui/select";
 import { ExternalLink, Copy, Check, Shield } from "lucide-react";
 import type { AustriaRegistration } from "@/lib/austria/registration-compliance";
-import { getViennaWkvgrAnnouncementUrl } from "@/lib/austria/official-links";
+import {
+  getViennaOrtstaxeUrl,
+  getViennaPrivateTouristRentalUrl,
+  getViennaWkvgrAnnouncementUrl,
+} from "@/lib/austria/official-links";
 import { toast } from "sonner";
 
 export const AT_REGISTRATION_STATUSES = [
@@ -256,6 +260,18 @@ export function AtComplianceCard({ propertyId, city, registration }: Props) {
         </div>
 
         <div className="flex flex-wrap gap-2">
+          <Button type="button" variant="outline" size="sm" asChild>
+            <a href={getViennaPrivateTouristRentalUrl()} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="h-4 w-4" />
+              {t("currentRulesLink")}
+            </a>
+          </Button>
+          <Button type="button" variant="outline" size="sm" asChild>
+            <a href={getViennaOrtstaxeUrl()} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="h-4 w-4" />
+              {t("ortstaxeLink")}
+            </a>
+          </Button>
           <Button type="button" variant="outline" size="sm" asChild>
             <a href={getViennaWkvgrAnnouncementUrl()} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="h-4 w-4" />

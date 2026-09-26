@@ -373,8 +373,8 @@
           "body": "In force since 20 May 2026, the EU regulation requires platforms to verify registration numbers where Member States require them. Vienna's register is the local implementation path announced by the city."
         },
         "ninetyDay": {
-          "title": "90-day home sharing (separate)",
-          "body": "Vienna's existing 90-day home-sharing rules and conversion restrictions remain separate from WKVRG registration. Track both obligations in your compliance workspace."
+          "title": "90-day rule, Ortstaxe and Ausnahmebewilligung (separate from WKVRG)",
+          "body": "Today: you may share your home for tourist stays up to 90 days per year without Ausnahmebewilligung, register for Ortstaxe and tourism statistics (VIETour), and apply for Ausnahmebewilligung if you exceed 90 days. The announced WKVRG registration number from 2027 is an additional platform transparency requirement. It is not the Ortstaxe account and the register portal is not live yet. See Stadt Wien guidance on private tourist rental, Ausnahmebewilligung and Ortstaxe."
         },
         "glint": {
           "title": "How Host Registry helps",
@@ -2650,7 +2650,7 @@
   "at": {
     "compliance": {
       "title": "Austria / Vienna WKVRG readiness",
-      "description": "WKVRG is announced and pending Wiener Landtag adoption (targeted November 2026). Track federal state, dossier preparation, transition deadline, registration number and listing display. Glint does not submit government forms.",
+      "description": "WKVRG is announced and pending Wiener Landtag adoption (targeted November 2026). Track WKVRG dossier prep, transition deadline, registration number and listing display separately from today's 90-day rule, Ortstaxe and Ausnahmebewilligung. Glint does not submit government forms.",
       "locationSection": "Location",
       "federalStateLabel": "Federal state focus",
       "federalStatePlaceholder": "Select state",
@@ -2676,8 +2676,10 @@
       "registrationNumberPlaceholder": "Vienna WKVRG number (when issued)",
       "registrationStatusLabel": "Registration status",
       "displayedOnListings": "Registration number displayed on all platform listings",
-      "officialAnnouncement": "Official city announcement",
-      "disclaimer": "Glint Host Registry is publisher guidance only. You file on the official Vienna portal when available and remain legally responsible.",
+      "officialAnnouncement": "WKVRG announcement (2026)",
+      "currentRulesLink": "Current Stadt Wien STR rules",
+      "ortstaxeLink": "Ortstaxe (not WKVRG number)",
+      "disclaimer": "Glint Host Registry is publisher guidance only. Ortstaxe is not the future WKVRG registration number. You file on the official WKVRG portal when the city opens it and remain legally responsible.",
       "save": "Save",
       "saving": "Saving…",
       "saved": "Austria compliance saved",

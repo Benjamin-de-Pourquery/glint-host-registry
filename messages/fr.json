@@ -373,8 +373,8 @@
           "body": "En vigueur depuis le 20 mai 2026, le règlement impose aux plateformes de vérifier les numéros lorsque l'État membre l'exige. Le registre viennois est la voie locale annoncée par la ville."
         },
         "ninetyDay": {
-          "title": "Règle 90 jours (distincte)",
-          "body": "Les règles existantes de partage du logement (90 jours) et les restrictions de changement d'usage restent distinctes de l'enregistrement WKVRG. Suivez les deux obligations."
+          "title": "Règle 90 jours, Ortstaxe et Ausnahmebewilligung (distinct du WKVRG)",
+          "body": "Aujourd'hui : partage du logement jusqu'à 90 jours par an sans Ausnahmebewilligung, inscription Ortstaxe et statistiques touristiques (VIETour), et Ausnahmebewilligung au-delà de 90 jours. Le numéro WKVRG annoncé à partir de 2027 est une obligation de transparence plateforme supplémentaire. Ce n'est pas le compte Ortstaxe et le portail registre n'est pas encore ouvert. Voir les pages Stadt Wien sur la location touristique privée, l'Ausnahmebewilligung et l'Ortstaxe."
         },
         "glint": {
           "title": "Rôle de Host Registry",
@@ -2650,7 +2650,7 @@
   "at": {
     "compliance": {
       "title": "Autriche / Vienne — préparation WKVRG",
-      "description": "Le WKVRG est annoncé et en attente au Landtag de Vienne (objectif novembre 2026). Suivez le Land, la préparation du dossier, la date limite de transition, le numéro et l'affichage sur les annonces. Glint ne dépose pas les formulaires officiels.",
+      "description": "Le WKVRG est annoncé et en attente au Landtag de Vienne (objectif novembre 2026). Suivez dossier WKVRG, transition, numéro et affichage séparément des règles actuelles (90 jours, Ortstaxe, Ausnahmebewilligung). Glint ne dépose pas les formulaires officiels.",
       "locationSection": "Localisation",
       "federalStateLabel": "Land / focus",
       "federalStatePlaceholder": "Sélectionner",
@@ -2676,8 +2676,10 @@
       "registrationNumberPlaceholder": "Numéro WKVRG viennois (une fois délivré)",
       "registrationStatusLabel": "Statut d'enregistrement",
       "displayedOnListings": "Numéro affiché sur toutes les annonces plateformes",
-      "officialAnnouncement": "Annonce officielle de la ville",
-      "disclaimer": "Glint Host Registry publie des guides uniquement. Vous déposez sur le portail officiel viennois dès son ouverture et restez responsable légalement.",
+      "officialAnnouncement": "Annonce WKVRG (2026)",
+      "currentRulesLink": "Règles LCD actuelles Stadt Wien",
+      "ortstaxeLink": "Ortstaxe (pas le numéro WKVRG)",
+      "disclaimer": "Glint Host Registry publie des guides uniquement. L'Ortstaxe n'est pas le futur numéro WKVRG. Vous déposez sur le portail WKVRG quand la ville l'ouvrira et restez responsable légalement.",
       "save": "Enregistrer",
       "saving": "Enregistrement…",
       "saved": "Conformité Autriche enregistrée",

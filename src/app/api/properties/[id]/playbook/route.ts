@@ -25,6 +25,10 @@ import {
   isAtDossierPrepared,
 } from "@/lib/austria/registration-compliance";
 import {
+  hasDeRegistrationNumber,
+  isDeDossierPrepared,
+} from "@/lib/germany/registration-compliance";
+import {
   hasCroatiaCategorisationNumber,
   hasCroatiaEvisitorObjectId,
 } from "@/lib/croatia/categorisation-compliance";
@@ -176,6 +180,13 @@ export async function GET(
     isAtDossierPrepared: isAtDossierPrepared(property.registration),
     atDisplayedOnListings: Boolean(
       property.registration?.atRegistrationDisplayedOnListings
+    ),
+    deFederalState: property.registration?.deFederalState ?? null,
+    deCityOrDistrict: property.registration?.deCityOrDistrict ?? null,
+    hasDeRegistrationNumber: hasDeRegistrationNumber(property.registration),
+    isDeDossierPrepared: isDeDossierPrepared(property.registration),
+    deDisplayedOnListings: Boolean(
+      property.registration?.deRegistrationDisplayedOnListings
     ),
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,

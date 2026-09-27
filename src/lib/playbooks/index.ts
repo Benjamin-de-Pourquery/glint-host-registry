@@ -7,6 +7,7 @@ import { CROATIA_PLAYBOOKS } from "./croatia";
 import { NETHERLANDS_PLAYBOOKS } from "./netherlands";
 import { BELGIUM_PLAYBOOKS } from "./belgium";
 import { AUSTRIA_PLAYBOOKS } from "./austria";
+import { GERMANY_PLAYBOOKS } from "./germany";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -27,6 +28,7 @@ const ALL_PLAYBOOKS: Playbook[] = [
   ...NETHERLANDS_PLAYBOOKS,
   ...BELGIUM_PLAYBOOKS,
   ...AUSTRIA_PLAYBOOKS,
+  ...GERMANY_PLAYBOOKS,
 ];
 
 const CITY_ALIASES: Record<string, string> = {
@@ -123,6 +125,7 @@ const CITY_ALIASES: Record<string, string> = {
   vienna: "Vienna",
   wien: "Vienna",
   vienne: "Vienna",
+  berlin: "Berlin",
   charleroi: "Charleroi",
   mons: "Mons",
   bergen: "Mons",
@@ -156,6 +159,15 @@ function normalizeCountry(country: string): string {
     c === "autriche"
   ) {
     return "Austria";
+  }
+  if (
+    c === "de" ||
+    c === "germany" ||
+    c === "deutschland" ||
+    c === "allemagne" ||
+    c === "germania"
+  ) {
+    return "Germany";
   }
   return country.trim();
 }
@@ -261,6 +273,7 @@ export function listPlaybookCoverage(): {
   croatiaCities: string[];
   belgiumCities: string[];
   austriaCities: string[];
+  germanyCities: string[];
 } {
   return {
     fullFranceCities: FRANCE_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
@@ -268,6 +281,7 @@ export function listPlaybookCoverage(): {
     netherlandsCities: NETHERLANDS_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     belgiumCities: BELGIUM_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     austriaCities: AUSTRIA_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
+    germanyCities: GERMANY_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     spainCities: SPAIN_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     italyCities: ITALY_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),
     portugalCities: PORTUGAL_PLAYBOOKS.filter((p) => p.city).map((p) => p.city!),

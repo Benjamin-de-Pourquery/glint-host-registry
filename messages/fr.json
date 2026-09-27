@@ -103,6 +103,22 @@
       "title": "Airbnb Vienne et WKVRG: guide hôte",
       "description": "Préparation au registre viennois, numéro obligatoire sur les OTA, amendes annoncées. Host Registry ne dépose pas pour vous."
     },
+    "guideBerlinStrRegistration": {
+      "title": "Enregistrement LCD Berlin: guide ZwVbG hôte",
+      "description": "Zweckentfremdungsverbot berlinois, autorisation Bezirksamt, numéros sur les annonces, transition UE 2024/1028 et retard de délivrance numérique."
+    },
+    "guideBerlinStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Berlin: guide ZwVbG",
+      "description": "ZwVbG, Bezirksamt, affichage des numéros, règlement UE 2024/1028 et numéros numériques encore en test."
+    },
+    "guideBerlinAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Berlin: guide conformité ZwVbG",
+      "description": "Routage Bezirk, numéros berlinois existants pendant le retard numérique UE, affichage plateformes. Pas de dépôt automatique Glint."
+    },
+    "guideBerlinAirbnbRegistrationFr": {
+      "title": "Airbnb Berlin et ZwVbG: guide hôte",
+      "description": "Bezirk, numéro sur les OTA, transition UE 2024/1028. Host Registry ne dépose pas pour vous."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -405,6 +421,60 @@
         }
       }
     },
+    "berlinStrRegistration": {
+      "title": "Enregistrement location courte durée Berlin (ZwVbG)",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Le Zweckentfremdungsverbot (ZwVbG) berlinois impose une autorisation du Bezirksamt pour la location de vacances temporaire. Le numéro d'enregistrement doit figurer sur les annonces. Le règlement (UE) 2024/1028 s'applique depuis le 20 mai 2026. Glint Host Registry aide à préparer le dossier et suivre l'affichage. Nous ne déposons pas au Bezirksamt ni sur les portails publics.",
+      "sections": {
+        "zwvb": {
+          "title": "ZwVbG et autorisation Bezirksamt",
+          "body": "Chaque Bezirk berlinois traite les demandes de Zweckentfremdung. Utilisez les pages du Sénat et service.berlin.de pour Genehmigung, Anzeige ou pièces associées. Vous restez responsable du dépôt auprès du bon Bezirksamt."
+        },
+        "eu": {
+          "title": "Règlement UE 2024/1028",
+          "body": "Lorsqu'un enregistrement existe, les plateformes doivent collecter, vérifier et afficher des numéros uniques et partager des données au titre des règles SDEP. La quatrième modification du ZwVbG a aligné le droit local sur les règles UE LCD, en vigueur vers le 17 juin 2026."
+        },
+        "transition": {
+          "title": "Retard des numéros numériques alignés UE",
+          "body": "La délivrance numérique alignée UE est encore en test et retardée. Les hôtes disposant d'un numéro berlinois existant peuvent continuer à l'utiliser jusqu'à nouvel ordre. Les nouvelles délivrances sur le système numérique ne sont pas encore ouvertes. Ne retirez pas un numéro valide des annonces en attendant le nouveau format."
+        },
+        "operator": {
+          "title": "Hauptwohnung, Nebenwohnung et Anzeige",
+          "body": "Les absences de résidence principale peuvent être autorisées. La Nebenwohnung est en général plafonnée autour de 90 jours par an avec autorisation. Jusqu'à 49 % d'une Hauptwohnung peut faire l'objet d'une Anzeige sans permis complet de Zweckentfremdung, mais un numéro d'enregistrement reste requis."
+        },
+        "platforms": {
+          "title": "Affichage plateformes",
+          "body": "Ajoutez votre numéro berlinois sur Airbnb, Booking.com et toutes les OTA. Les plateformes vérifient les numéros au titre de l'UE 2024/1028. Host Registry suit l'affichage par canal sans mettre à jour les OTA pour vous."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Playbook Berlin, choix du Bezirk, catégorie d'exploitant et type de permis, date de dossier, échéance de transition, stockage du numéro et checklist d'affichage avec liens officiels du Sénat."
+        }
+      }
+    },
+    "berlinAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Berlin sous ZwVbG",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Les hôtes Airbnb à Berlin doivent respecter le ZwVbG et afficher le numéro d'enregistrement pendant le retard de la transition numérique UE. Ce guide couvre la préparation opérationnelle uniquement.",
+      "sections": {
+        "bezirk": {
+          "title": "Choisir le bon Bezirk",
+          "body": "Les demandes vont au Bezirksamt du quartier où se trouve le logement. Confirmez le Bezirk dans Host Registry avant de constituer le dossier."
+        },
+        "number": {
+          "title": "Numéro sur les annonces",
+          "body": "Affichez votre numéro berlinois sur chaque annonce Airbnb et OTA. Les numéros existants restent valides pendant le déploiement numérique UE retardé."
+        },
+        "euDigital": {
+          "title": "Numéros numériques UE (pas encore ouverts)",
+          "body": "Ne supposez pas pouvoir obtenir dès maintenant un nouveau numéro numérique aligné UE en ligne. Si vous avez déjà un numéro berlinois, enregistrez-le dans Host Registry et gardez-le sur les annonces."
+        },
+        "glint": {
+          "title": "Workflow Host Registry",
+          "body": "Utilisez le playbook Berlin, enregistrez le numéro, cochez l'affichage par canal et exportez votre dossier."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatie: catégorisation hébergement et eVisitor",
       "updated": "Mis à jour : septembre 2026",
@@ -533,6 +603,10 @@
       "austriaOps": {
         "title": "Autriche / Vienne WKVRG (dès 2027)",
         "description": "Registre LCD plateforme annoncé : suivi dossier, échéances de transition, stockage du numéro et affichage annonces. Pas de dépôt automatique tant que la loi est au Landtag."
+      },
+      "germanyOps": {
+        "title": "Allemagne / Berlin ZwVbG LCD",
+        "description": "Suivi dossier Bezirksamt, transition UE 2024/1028, numéros berlinois existants pendant le retard numérique, stockage et affichage annonces. Pas de dépôt automatique sur les portails publics."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -725,6 +799,8 @@
       "guideBrusselsAirbnbRegistration": "Airbnb Bruxelles",
       "guideViennaStrRegistration": "LCD Vienne (WKVRG)",
       "guideViennaAirbnbRegistration": "Airbnb Vienne / WKVRG",
+      "guideBerlinStrRegistration": "LCD Berlin (ZwVbG)",
+      "guideBerlinAirbnbRegistration": "Airbnb Berlin / ZwVbG",
       "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
@@ -818,6 +894,7 @@
       "netherlandsRegistration": "Enregistrement NL",
       "belgiumRegistration": "Enregistrement BE",
       "austriaRegistration": "Autriche / Vienne WKVRG",
+      "germanyRegistration": "Allemagne / Berlin ZwVbG",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -832,6 +909,7 @@
       "netherlandsRegistration": "{count, plural, one {# bien néerlandais — enregistrement, vergunning ou notification manquante} other {# biens néerlandais — enregistrement, vergunning ou notification manquante}}",
       "belgiumRegistration": "{count, plural, one {# bien belge — région, dossier ou enregistrement manquant} other {# biens belges — région, dossier ou enregistrement manquant}}",
       "austriaRegistration": "{count, plural, one {# bien autrichien — dossier ou enregistrement WKVRG manquant} other {# biens autrichiens — dossier ou enregistrement WKVRG manquant}}",
+      "germanyRegistration": "{count, plural, one {# bien allemand : dossier ou enregistrement ZwVbG Berlin manquant} other {# biens allemands : dossier ou enregistrement ZwVbG Berlin manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -1002,7 +1080,8 @@
         "categorisation": "Catégorisation (HR)",
         "nlRegistration": "Numéro d'enregistrement NL",
         "beRegistration": "Numéro d'enregistrement belge",
-        "atRegistration": "Numéro d'enregistrement Autriche / Vienne"
+        "atRegistration": "Numéro d'enregistrement Autriche / Vienne",
+        "deRegistration": "Numéro d'enregistrement Allemagne / Berlin"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1297,6 +1376,7 @@
       "netherlands_registration": "Enregistrement NL",
       "belgium_registration": "Enregistrement BE",
       "austria_registration": "Autriche / Vienne WKVRG",
+      "germany_registration": "Allemagne / Berlin ZwVbG",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -2683,6 +2763,71 @@
       "save": "Enregistrer",
       "saving": "Enregistrement…",
       "saved": "Conformité Autriche enregistrée",
+      "saveError": "Échec de l'enregistrement",
+      "registrationStatus": {
+        "not_started": "Non démarré",
+        "dossier_in_progress": "Dossier en cours",
+        "pending": "En attente autorité",
+        "active": "Actif",
+        "expired": "Expiré",
+        "unknown": "Inconnu"
+      }
+    }
+  },
+  "de": {
+    "compliance": {
+      "title": "Allemagne / Berlin conformité ZwVbG",
+      "description": "Suivez le dossier ZwVbG, le Bezirk, la catégorie d'exploitant, la voie de permis, l'échéance de transition UE, le numéro et l'affichage sur les annonces. La délivrance numérique alignée UE est retardée : conservez les numéros berlinois existants. Glint ne dépose pas sur les portails Bezirksamt.",
+      "locationSection": "Localisation",
+      "federalStateLabel": "État / ville",
+      "federalStatePlaceholder": "Choisir l'État",
+      "federalStateUnknown": "Inconnu — choisir l'État",
+      "locationHint": "Ville indiquée : {city}. À Berlin, le ZwVbG passe par le Bezirksamt.",
+      "federalStates": {
+        "berlin": "Berlin",
+        "other": "Autre Bundesland"
+      },
+      "bezirkLabel": "Bezirk berlinois",
+      "bezirkPlaceholder": "Choisir le Bezirk",
+      "bezirkUnknown": "Inconnu — choisir le Bezirk",
+      "operatorSection": "Profil exploitant",
+      "operatorCategory": "Catégorie d'exploitant",
+      "operatorCategoryPlaceholder": "Hauptwohnung ou Nebenwohnung",
+      "operatorCategoryUnset": "Non renseigné",
+      "operatorCategories": {
+        "hauptwohnung": "Hauptwohnung (résidence principale)",
+        "nebenwohnung": "Nebenwohnung (résidence secondaire)",
+        "partial_main": "Hauptwohnung partielle (≤49 %)",
+        "commercial": "Usage commercial / autre",
+        "other": "Autre"
+      },
+      "permitType": "Voie de permis / notification",
+      "permitTypePlaceholder": "Genehmigung, Anzeige, etc.",
+      "permitTypeUnset": "Non renseigné",
+      "permitTypes": {
+        "genehmigung": "Genehmigung (permis Zweckentfremdung)",
+        "anzeige_49pct": "Anzeige (≤49 % Hauptwohnung)",
+        "negativattest": "Negativattest / preuve d'exemption",
+        "pending_eu_number": "Numéro existant / attente numéro UE numérique",
+        "other": "Autre"
+      },
+      "permitTypeHint": "Choisissez l'attente du numéro UE numérique seulement si vous attendez le nouveau format mais disposez déjà d'un numéro berlinois valide.",
+      "dossierSection": "Dossier ZwVbG",
+      "dossierPreparedAt": "Dossier préparé le",
+      "transitionDeadline": "Échéance transition UE (optionnel)",
+      "transitionHint": "Suivez toute date publiée pour les numéros numériques alignés UE ou les contrôles plateformes.",
+      "registrationSection": "Numéro d'enregistrement",
+      "registrationNumber": "Numéro d'enregistrement",
+      "registrationNumberPlaceholder": "Numéro ZwVbG berlinois",
+      "registrationStatusLabel": "Statut d'enregistrement",
+      "displayedOnListings": "Numéro affiché sur toutes les annonces plateforme",
+      "zwvbOverviewLink": "Vue d'ensemble ZwVbG (Sénat)",
+      "zwvbFormsLink": "Textes et formulaires",
+      "serviceBerlinLink": "service.berlin.de",
+      "disclaimer": "Glint Host Registry est un outil d'éditeur. Vous déposez auprès de votre Bezirksamt et restez responsable juridiquement. Pas de dépôt automatique des formulaires officiels.",
+      "save": "Enregistrer",
+      "saving": "Enregistrement…",
+      "saved": "Conformité Allemagne enregistrée",
       "saveError": "Échec de l'enregistrement",
       "registrationStatus": {
         "not_started": "Non démarré",

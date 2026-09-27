@@ -28,9 +28,11 @@ import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import { isBelgiumCountry } from "@/lib/belgium/regions";
 import { isAustriaCountry } from "@/lib/austria/regions";
+import { isGermanyCountry } from "@/lib/germany/regions";
 import { NlComplianceCard } from "@/components/nl-compliance-card";
 import { BeComplianceCard } from "@/components/be-compliance-card";
 import { AtComplianceCard } from "@/components/at-compliance-card";
+import { DeComplianceCard } from "@/components/de-compliance-card";
 import { NlStayNotifyPanel } from "@/components/nl-stay-notify-panel";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { FrNerMigrationCard } from "@/components/fr-ner-migration-card";
@@ -95,6 +97,15 @@ type Registration = {
   atOperatorCategory?: string | null;
   atDossierPreparedAt?: string | Date | null;
   atTransitionDeadline?: string | Date | null;
+  deRegistrationNumber?: string | null;
+  deRegistrationStatus?: string | null;
+  deRegistrationDisplayedOnListings?: boolean;
+  deFederalState?: string | null;
+  deCityOrDistrict?: string | null;
+  deOperatorCategory?: string | null;
+  dePermitType?: string | null;
+  deDossierPreparedAt?: string | Date | null;
+  deTransitionDeadline?: string | Date | null;
 };
 
 type Props = {
@@ -230,6 +241,9 @@ export function PropertyRegisterTab({
       )}
       {isAustriaCountry(country) && (
         <AtComplianceCard propertyId={propertyId} city={city} registration={registration} />
+      )}
+      {isGermanyCountry(country) && (
+        <DeComplianceCard propertyId={propertyId} city={city} registration={registration} />
       )}
       <GuestRegisterPanel
         propertyId={propertyId}

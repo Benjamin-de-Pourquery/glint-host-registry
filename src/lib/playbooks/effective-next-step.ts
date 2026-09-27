@@ -11,6 +11,7 @@ import { getEffectiveNextStepForCroatia } from "@/lib/croatia/next-action";
 import { getEffectiveNextStepForNetherlands } from "@/lib/netherlands/next-action";
 import { getEffectiveNextStepForBelgium } from "@/lib/belgium/next-action";
 import { getEffectiveNextStepForAustria } from "@/lib/austria/next-action";
+import { getEffectiveNextStepForGermany } from "@/lib/germany/next-action";
 import { isSpainCountry } from "@/lib/spain/regions";
 import { isItalyCountry } from "@/lib/italy/regions";
 import { isPortugalCountry } from "@/lib/portugal/regions";
@@ -19,6 +20,7 @@ import { isCroatiaCountry } from "@/lib/croatia/regions";
 import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import { isBelgiumCountry } from "@/lib/belgium/regions";
 import { isAustriaCountry } from "@/lib/austria/regions";
+import { isGermanyCountry } from "@/lib/germany/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 import type { FrNerMigrationRecord } from "@/lib/fr-ner-migration/types";
@@ -50,6 +52,11 @@ export type EffectiveNextStepContext = {
   hasAtRegistrationNumber?: boolean;
   isAtDossierPrepared?: boolean;
   atDisplayedOnListings?: boolean;
+  deFederalState?: string | null;
+  deCityOrDistrict?: string | null;
+  hasDeRegistrationNumber?: boolean;
+  isDeDossierPrepared?: boolean;
+  deDisplayedOnListings?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
   frNerMigration?: FrNerMigrationRecord | null;
@@ -137,6 +144,18 @@ export function getEffectiveNextStep(
       hasAtRegistrationNumber: context.hasAtRegistrationNumber,
       isDossierPrepared: context.isAtDossierPrepared,
       isDisplayedOnListings: context.atDisplayedOnListings,
+    });
+  }
+
+  if (isGermanyCountry(context.country)) {
+    return getEffectiveNextStepForGermany(playbook, progress, residencyStatus, {
+      country: context.country,
+      city: context.city,
+      deFederalState: context.deFederalState,
+      deCityOrDistrict: context.deCityOrDistrict,
+      hasDeRegistrationNumber: context.hasDeRegistrationNumber,
+      isDossierPrepared: context.isDeDossierPrepared,
+      isDisplayedOnListings: context.deDisplayedOnListings,
     });
   }
 

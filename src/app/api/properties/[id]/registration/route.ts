@@ -9,6 +9,7 @@ import {
 import { isNetherlandsCountry, resolveNlNightCapSource } from "@/lib/netherlands/regions";
 import { isBelgiumCountry, getBelgiumRegion } from "@/lib/belgium/regions";
 import { isAustriaCountry, getAustriaFederalState } from "@/lib/austria/regions";
+import { isGermanyCountry, getGermanyFederalState } from "@/lib/germany/regions";
 import { z } from "zod";
 
 const schema = z.object({
@@ -92,6 +93,36 @@ const schema = z.object({
   atOperatorCategory: z.enum(["natural", "legal"]).nullable().optional(),
   atDossierPreparedAt: z.string().nullable().optional(),
   atTransitionDeadline: z.string().nullable().optional(),
+  deRegistrationNumber: z.string().nullable().optional(),
+  deRegistrationStatus: z
+    .enum([
+      "not_started",
+      "dossier_in_progress",
+      "pending",
+      "active",
+      "expired",
+      "unknown",
+    ])
+    .optional(),
+  deRegistrationDisplayedOnListings: z.boolean().optional(),
+  deFederalState: z.enum(["berlin", "other"]).nullable().optional(),
+  deCityOrDistrict: z.string().nullable().optional(),
+  deOperatorCategory: z
+    .enum(["hauptwohnung", "nebenwohnung", "partial_main", "commercial", "other"])
+    .nullable()
+    .optional(),
+  dePermitType: z
+    .enum([
+      "genehmigung",
+      "anzeige_49pct",
+      "negativattest",
+      "pending_eu_number",
+      "other",
+    ])
+    .nullable()
+    .optional(),
+  deDossierPreparedAt: z.string().nullable().optional(),
+  deTransitionDeadline: z.string().nullable().optional(),
 });
 
 export async function PATCH(
@@ -155,6 +186,22 @@ export async function PATCH(
               return inferred === "unknown" ? null : inferred;
             })()
           : null;
+
+    const deFederalState =
+      data.deFederalState !== undefined
+        ? data.deFederalState
+        : isGermanyCountry(property.country)
+          ? property.registration?.deFederalState ??
+            (() => {
+              const inferred = getGermanyFederalState(property.city);
+              return inferred === "unknown" ? null : inferred;
+            })()
+          : null;
+
+    const deCityOrDistrict =
+      data.deCityOrDistrict !== undefined
+        ? data.deCityOrDistrict
+        : property.registration?.deCityOrDistrict ?? null;
 
     const registration = await prisma.registration.upsert({
       where: { propertyId: id },
@@ -222,6 +269,20 @@ export async function PATCH(
           : null,
         atTransitionDeadline: data.atTransitionDeadline
           ? new Date(data.atTransitionDeadline)
+          : null,
+        deRegistrationNumber: data.deRegistrationNumber ?? null,
+        deRegistrationStatus: data.deRegistrationStatus ?? "not_started",
+        deRegistrationDisplayedOnListings:
+          data.deRegistrationDisplayedOnListings ?? false,
+        deFederalState,
+        deCityOrDistrict: deCityOrDistrict,
+        deOperatorCategory: data.deOperatorCategory ?? null,
+        dePermitType: data.dePermitType ?? null,
+        deDossierPreparedAt: data.deDossierPreparedAt
+          ? new Date(data.deDossierPreparedAt)
+          : null,
+        deTransitionDeadline: data.deTransitionDeadline
+          ? new Date(data.deTransitionDeadline)
           : null,
       },
       update: {
@@ -299,6 +360,24 @@ export async function PATCH(
         atTransitionDeadline: data.atTransitionDeadline
           ? new Date(data.atTransitionDeadline)
           : data.atTransitionDeadline === null
+            ? null
+            : undefined,
+        deRegistrationNumber: data.deRegistrationNumber,
+        deRegistrationStatus: data.deRegistrationStatus,
+        deRegistrationDisplayedOnListings: data.deRegistrationDisplayedOnListings,
+        deFederalState: data.deFederalState !== undefined ? data.deFederalState : deFederalState,
+        deCityOrDistrict:
+          data.deCityOrDistrict !== undefined ? data.deCityOrDistrict : deCityOrDistrict,
+        deOperatorCategory: data.deOperatorCategory,
+        dePermitType: data.dePermitType,
+        deDossierPreparedAt: data.deDossierPreparedAt
+          ? new Date(data.deDossierPreparedAt)
+          : data.deDossierPreparedAt === null
+            ? null
+            : undefined,
+        deTransitionDeadline: data.deTransitionDeadline
+          ? new Date(data.deTransitionDeadline)
+          : data.deTransitionDeadline === null
             ? null
             : undefined,
       },

@@ -21,6 +21,7 @@ import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-comp
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
+import { needsGermanyRegistrationAttention } from "@/lib/germany/registration-compliance";
 import { ListingHealthBadge } from "@/components/listing-health-badge";
 import type { ListingHealthScore } from "@/lib/listing-health/types";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
@@ -72,6 +73,15 @@ type PropertyItem = {
     atOperatorCategory?: string | null;
     atDossierPreparedAt?: Date | null;
     atTransitionDeadline?: Date | null;
+    deRegistrationNumber?: string | null;
+    deRegistrationStatus?: string | null;
+    deRegistrationDisplayedOnListings?: boolean;
+    deFederalState?: string | null;
+    deCityOrDistrict?: string | null;
+    deOperatorCategory?: string | null;
+    dePermitType?: string | null;
+    deDossierPreparedAt?: Date | null;
+    deTransitionDeadline?: Date | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
   listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
@@ -92,6 +102,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "netherlands_registration",
   "belgium_registration",
   "austria_registration",
+  "germany_registration",
   "night_cap",
   "tourist_tax",
 ];
@@ -199,6 +210,13 @@ export function PropertiesView({
           }
           if (statusFilter === "austria_registration") {
             return needsAustriaRegistrationAttention(
+              property.country,
+              property.registration,
+              property.city
+            );
+          }
+          if (statusFilter === "germany_registration") {
+            return needsGermanyRegistrationAttention(
               property.country,
               property.registration,
               property.city

@@ -40,6 +40,7 @@ type Props = {
   nlRegistrationNumber?: string | null;
   beRegistrationNumber?: string | null;
   atRegistrationNumber?: string | null;
+  deRegistrationNumber?: string | null;
   initialChannels: ListingChannelRecord[];
 };
 
@@ -72,6 +73,7 @@ export function PropertyListingsForm({
   nlRegistrationNumber,
   beRegistrationNumber,
   atRegistrationNumber,
+  deRegistrationNumber,
   initialChannels,
 }: Props) {
   const t = useTranslations("properties.detail.listings");
@@ -96,6 +98,7 @@ export function PropertyListingsForm({
     nlRegistrationNumber?.trim() ||
     beRegistrationNumber?.trim() ||
     atRegistrationNumber?.trim() ||
+    deRegistrationNumber?.trim() ||
     greeceNer ||
     rnalNumber?.trim() ||
     cinNumber?.trim() ||

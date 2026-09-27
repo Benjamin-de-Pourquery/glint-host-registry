@@ -11,6 +11,7 @@ export type RegistrationFields = {
   nlRegistrationNumber?: string | null;
   beRegistrationNumber?: string | null;
   atRegistrationNumber?: string | null;
+  deRegistrationNumber?: string | null;
   nlHolidayPermitExpiry?: Date | null;
   expiryDate?: Date | null;
 };
@@ -32,6 +33,7 @@ export function resolvePrimaryRegistrationNumber(
     registration.nlRegistrationNumber?.trim() ||
     registration.beRegistrationNumber?.trim() ||
     registration.atRegistrationNumber?.trim() ||
+    registration.deRegistrationNumber?.trim() ||
     greeceNer ||
     registration.rnalNumber?.trim() ||
     registration.cinNumber?.trim() ||

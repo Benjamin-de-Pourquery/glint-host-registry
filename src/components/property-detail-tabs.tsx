@@ -95,6 +95,7 @@ type Registration = {
   atOperatorCategory?: string | null;
   atDossierPreparedAt?: string | Date | null;
   atTransitionDeadline?: string | Date | null;
+  deRegistrationNumber?: string | null;
 };
 
 type PropertyData = {
@@ -381,6 +382,16 @@ export function PropertyDetailTabs({
                 </dd>
               </div>
             )}
+            {property.registration?.deRegistrationNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.deRegistration")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.deRegistrationNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -511,6 +522,7 @@ export function PropertyDetailTabs({
           nlRegistrationNumber={property.registration?.nlRegistrationNumber}
           beRegistrationNumber={property.registration?.beRegistrationNumber}
           atRegistrationNumber={property.registration?.atRegistrationNumber}
+          deRegistrationNumber={property.registration?.deRegistrationNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

@@ -1,9 +1,10 @@
 import type { Playbook, PlaybookStep } from "@/lib/playbooks/types";
 import { getNextPendingStep } from "@/lib/playbooks";
-import { isGermanyCountry } from "./regions";
+import { isGermanyCountry, isMunichCity, isMunichRentalUnitType } from "./regions";
 
 export const DE_CONFIRM_STEP_SUFFIX = "-de-confirm-str";
 export const DE_BEZIRK_STEP_SUFFIX = "-de-bezirk";
+export const DE_MUNICH_UNIT_STEP_SUFFIX = "-de-munich-unit";
 export const DE_DOSSIER_STEP_SUFFIX = "-de-dossier";
 export const DE_OFFICIAL_REG_STEP_SUFFIX = "-de-official-registration";
 export const DE_STORE_STEP_SUFFIX = "-de-store-registration";
@@ -72,10 +73,25 @@ export function getEffectiveNextStepForGermany(
     }
   }
 
+  const munichUnitStep = findStepBySuffix(playbook, DE_MUNICH_UNIT_STEP_SUFFIX);
+  const munichProperty = state === "bayern" && isMunichCity(context.city);
+  const missingMunichUnit =
+    munichProperty && !isMunichRentalUnitType(context.deCityOrDistrict);
+
+  if (munichUnitStep && missingMunichUnit && !missingState) {
+    const status = progressMap.get(munichUnitStep.key);
+    if (!status || status === "pending") {
+      if (pickEarlierStep(playbook, munichUnitStep, defaultNext)) return munichUnitStep;
+    }
+  }
+
+  const locationComplete =
+    !missingBezirk && !missingMunichUnit;
+
   const dossierStep = findStepBySuffix(playbook, DE_DOSSIER_STEP_SUFFIX);
   const dossierPrepared = context.isDossierPrepared ?? false;
 
-  if (dossierStep && !missingState && !missingBezirk && !dossierPrepared) {
+  if (dossierStep && !missingState && locationComplete && !dossierPrepared) {
     const status = progressMap.get(dossierStep.key);
     if (!status || status === "pending") {
       if (pickEarlierStep(playbook, dossierStep, defaultNext)) return dossierStep;
@@ -85,7 +101,13 @@ export function getEffectiveNextStepForGermany(
   const officialRegStep = findStepBySuffix(playbook, DE_OFFICIAL_REG_STEP_SUFFIX);
   const hasNumber = context.hasDeRegistrationNumber ?? false;
 
-  if (officialRegStep && !hasNumber && !missingState && !missingBezirk && dossierPrepared) {
+  if (
+    officialRegStep &&
+    !hasNumber &&
+    !missingState &&
+    locationComplete &&
+    dossierPrepared
+  ) {
     const status = progressMap.get(officialRegStep.key);
     if (!status || status === "pending") {
       return officialRegStep;

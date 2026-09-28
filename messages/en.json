@@ -119,6 +119,22 @@
       "title": "Enregistrement Airbnb Berlin: guide conformité ZwVbG",
       "description": "Routage Bezirk, numéros berlinois existants pendant le retard numérique UE, affichage plateformes (règlement 2024/1028). Pas de dépôt automatique Glint."
     },
+    "guideMunichStrRegistration": {
+      "title": "Munich short-term rental registration: ZeS host guide",
+      "description": "Munich Wohnraumzweckentfremdungssatzung, §5a registration readiness, eight-week Genehmigung threshold, EU 2024/1028. City portal not live yet."
+    },
+    "guideMunichStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Munich: guide ZeS",
+      "description": "ZeS munichoise, préparation §5a, seuil Genehmigung huit semaines, UE 2024/1028. Portail municipal pas encore live."
+    },
+    "guideMunichAirbnbRegistration": {
+      "title": "Munich Airbnb registration: ZeS compliance guide",
+      "description": "Room vs whole unit, §5a portal readiness, registration number on listings under Regulation 2024/1028. Glint does not auto-submit."
+    },
+    "guideMunichAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Munich: guide conformité ZeS",
+      "description": "Chambre vs logement entier, ouverture portail §5a, numéro sur les annonces (règlement 2024/1028). Pas de dépôt automatique Glint."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -475,6 +491,60 @@
         }
       }
     },
+    "munichStrRegistration": {
+      "title": "Munich short-term rental registration (ZeS)",
+      "updated": "Updated: September 2026",
+      "intro": "Munich's Wohnraumzweckentfremdungssatzung (ZeS) governs tourist use of housing. Section 5a requires registration before offering platform short-term rentals and displaying the registration number on listings once issued. Regulation (EU) 2024/1028 applies from 20 May 2026. Germany still has no national SDEP. Glint Host Registry helps you prepare dossiers and track readiness. We do not submit to Sozialreferat or city portals.",
+      "sections": {
+        "zes": {
+          "title": "ZeS and municipal Zweckentfremdung",
+          "body": "The renewed ZeS sets local rules for tourist use of residential space in Munich. Use official stadt.muenchen.de guidance and the Sozialreferat Zweckentfremdung service for Genehmigung paperwork when whole-unit tourist use may exceed about eight weeks per year."
+        },
+        "section5a": {
+          "title": "§5a registration duty",
+          "body": "Before listing on platforms, hosts must register and display a city registration number under §5a once the procedure is available. The infoblatt on Registrierungspflicht Kurzzeitvermietung explains the duty. Glint tracks readiness but does not register on your behalf."
+        },
+        "portal": {
+          "title": "Registration portal not live yet",
+          "body": "As of late September 2026 the Sozialreferat is still preparing the IT registration portal. You cannot obtain a Munich registration number online today. Use Host Registry status awaiting_registration_portal while monitoring official updates. Do not claim a live self-service portal exists."
+        },
+        "genehmigung": {
+          "title": "Room vs whole unit and eight weeks",
+          "body": "Private room rentals still fall under §5a once registration opens. Whole-apartment tourist use above roughly eight weeks per year typically requires a Zweckentfremdung Genehmigung in addition to registration readiness."
+        },
+        "eu": {
+          "title": "EU Regulation 2024/1028",
+          "body": "Where registration exists, platforms must collect, verify and display unique registration numbers under EU STR data rules. Munich local numbers will matter for OTA compliance alongside Genehmigung obligations."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Munich playbook, room vs whole unit, operator profile, Genehmigung vs §5a path, dossier date, portal readiness status, number storage and listing display checklist with official Munich links."
+        }
+      }
+    },
+    "munichAirbnbRegistration": {
+      "title": "Munich Airbnb registration under ZeS",
+      "updated": "Updated: September 2026",
+      "intro": "Airbnb hosts in Munich must prepare for ZeS §5a registration and listing display while the city portal is not live yet. This guide is operational readiness only.",
+      "sections": {
+        "unitType": {
+          "title": "Room vs whole apartment",
+          "body": "Confirm whether you list a private room or the whole unit. The eight-week Zweckentfremdung threshold mainly affects whole-unit tourist use. Set the layout in Host Registry before dossier prep."
+        },
+        "portal": {
+          "title": "§5a portal readiness",
+          "body": "The Sozialreferat registration procedure is not open as of late September 2026. Track awaiting_registration_portal in Host Registry and watch stadt.muenchen.de for the portal launch. Glint does not auto-register with the city."
+        },
+        "number": {
+          "title": "Registration number on listings",
+          "body": "When Munich issues your §5a number, display it on every Airbnb and OTA listing as required by local law and EU 2024/1028."
+        },
+        "glint": {
+          "title": "Host Registry workflow",
+          "body": "Use the Munich playbook, save the number when issued, mark listing display per channel, and export your dossier for your records."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatia: accommodation categorisation and eVisitor",
       "updated": "Updated: September 2026",
@@ -605,8 +675,8 @@
         "description": "Pending Vienna platform STR register: dossier tracking, transition deadlines, number storage and listing display. No auto-submit while the law is still before the Landtag."
       },
       "germanyOps": {
-        "title": "Germany / Berlin ZwVbG STR compliance",
-        "description": "Bezirksamt dossier tracking, EU 2024/1028 transition, existing Berlin numbers during delayed digital issuance, registration storage and listing display. No auto-submit to government portals."
+        "title": "Germany STR compliance (Berlin ZwVbG, Munich ZeS)",
+        "description": "Berlin Bezirksamt dossiers, Munich ZeS §5a readiness while the city portal is not live, EU 2024/1028 transition, registration storage and listing display. No auto-submit to government portals."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -801,6 +871,8 @@
       "guideViennaAirbnbRegistration": "Vienna Airbnb / WKVRG",
       "guideBerlinStrRegistration": "Berlin STR registration (ZwVbG)",
       "guideBerlinAirbnbRegistration": "Berlin Airbnb / ZwVbG",
+      "guideMunichStrRegistration": "Munich STR registration (ZeS)",
+      "guideMunichAirbnbRegistration": "Munich Airbnb / ZeS",
       "guideFrNerMigration": "France NER migration 2026",
       "account": "Account",
       "legal": "Legal",
@@ -894,7 +966,7 @@
       "netherlandsRegistration": "NL registration",
       "belgiumRegistration": "Belgium registration",
       "austriaRegistration": "Austria / Vienna WKVRG",
-      "germanyRegistration": "Germany / Berlin ZwVbG",
+      "germanyRegistration": "Germany STR (Berlin / Munich)",
       "nightCap": "Primary night cap",
       "touristTax": "Taxe de séjour"
     },
@@ -909,7 +981,7 @@
       "netherlandsRegistration": "{count, plural, one {# Netherlands property — registration, permit or stay notification missing} other {# Netherlands properties — registration, permit or stay notification missing}}",
       "belgiumRegistration": "{count, plural, one {# Belgium property — region, dossier or registration missing} other {# Belgium properties — region, dossier or registration missing}}",
       "austriaRegistration": "{count, plural, one {# Austria property — WKVRG dossier or registration missing} other {# Austria properties — WKVRG dossier or registration missing}}",
-      "germanyRegistration": "{count, plural, one {# Germany property: Berlin ZwVbG dossier or registration missing} other {# Germany properties: Berlin ZwVbG dossier or registration missing}}",
+      "germanyRegistration": "{count, plural, one {# Germany property: Berlin or Munich dossier or registration missing} other {# Germany properties: Berlin or Munich dossier or registration missing}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
       "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
     },
@@ -1081,7 +1153,7 @@
         "nlRegistration": "NL registration number",
         "beRegistration": "Belgium registration number",
         "atRegistration": "Austria / Vienna registration number",
-        "deRegistration": "Germany / Berlin registration number"
+        "deRegistration": "Germany STR registration number"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -1376,7 +1448,7 @@
       "netherlands_registration": "NL registration",
       "belgium_registration": "Belgium registration",
       "austria_registration": "Austria / Vienna WKVRG",
-      "germany_registration": "Germany / Berlin ZwVbG",
+      "germany_registration": "Germany STR (Berlin / Munich)",
       "night_cap": "Primary night cap",
       "tourist_tax": "Taxe de séjour"
     }
@@ -2776,16 +2848,31 @@
   },
   "de": {
     "compliance": {
-      "title": "Germany / Berlin ZwVbG compliance",
-      "description": "Track ZwVbG dossier prep, Bezirk, operator category, permit path, EU transition deadline, registration number and listing display. Digital EU-aligned number issuance is delayed: keep using existing Berlin numbers. Glint does not submit to Bezirksamt portals.",
+      "title": "Germany STR compliance",
+      "titleBerlin": "Germany / Berlin ZwVbG compliance",
+      "titleMunich": "Germany / Munich ZeS compliance",
+      "description": "Track local dossier prep, operator category, permit path, registration number and listing display under EU 2024/1028.",
+      "descriptionBerlin": "Track ZwVbG dossier prep, Bezirk, operator category, permit path, EU transition deadline, registration number and listing display. Digital EU-aligned number issuance is delayed: keep using existing Berlin numbers. Glint does not submit to Bezirksamt portals.",
+      "descriptionMunich": "Track ZeS dossier prep, room vs whole unit, Genehmigung when whole-unit tourist use may exceed about eight weeks per year, §5a registration readiness while the city portal is not live, number storage and listing display. Glint does not submit to Sozialreferat portals.",
       "locationSection": "Location",
       "federalStateLabel": "State / city focus",
       "federalStatePlaceholder": "Select state",
       "federalStateUnknown": "Unknown — select state",
-      "locationHint": "City hint: {city}. Berlin uses ZwVbG with Bezirksamt approval.",
+      "locationHint": "City hint: {city}. Select Berlin or Bavaria (Munich) when applicable.",
+      "locationHintBerlin": "City hint: {city}. Berlin uses ZwVbG with Bezirksamt approval.",
+      "locationHintMunich": "City hint: {city}. Munich uses ZeS §5a registration once the portal opens.",
       "federalStates": {
         "berlin": "Berlin",
+        "bayern": "Bavaria (Bayern)",
         "other": "Other Bundesland"
+      },
+      "munichUnitLabel": "Munich rental layout",
+      "munichUnitPlaceholder": "Room vs whole unit",
+      "munichUnitUnknown": "Unknown, select layout",
+      "munichUnitHint": "Whole-unit tourist use above roughly eight weeks per year typically needs Zweckentfremdung Genehmigung.",
+      "munichUnitTypes": {
+        "private_room": "Private room",
+        "whole_unit": "Whole apartment / unit"
       },
       "bezirkLabel": "Berlin Bezirk",
       "bezirkPlaceholder": "Select Bezirk",
@@ -2798,6 +2885,8 @@
         "hauptwohnung": "Hauptwohnung (primary)",
         "nebenwohnung": "Nebenwohnung (secondary)",
         "partial_main": "Partial Hauptwohnung (≤49%)",
+        "private_room": "Private room (Munich)",
+        "whole_unit": "Whole unit (Munich)",
         "commercial": "Commercial / other use",
         "other": "Other"
       },
@@ -2809,6 +2898,8 @@
         "anzeige_49pct": "Anzeige (≤49% Hauptwohnung)",
         "negativattest": "Negativattest / exemption proof",
         "pending_eu_number": "Existing number / pending EU digital number",
+        "zes_genehmigung_8w": "Munich ZeS Genehmigung (>8 weeks whole unit)",
+        "zes_5a_registration": "Munich §5a registration only",
         "other": "Other"
       },
       "permitTypeHint": "Choose pending EU digital number only if you are waiting on the new format but may already hold a valid Berlin number.",
@@ -2819,12 +2910,17 @@
       "registrationSection": "Registration number",
       "registrationNumber": "Registration number",
       "registrationNumberPlaceholder": "Berlin ZwVbG number",
+      "registrationNumberPlaceholderMunich": "Munich §5a number (when issued)",
       "registrationStatusLabel": "Registration status",
       "displayedOnListings": "Registration number displayed on all platform listings",
       "zwvbOverviewLink": "Senate ZwVbG overview",
       "zwvbFormsLink": "Rules and forms",
       "serviceBerlinLink": "service.berlin.de",
+      "zesLink": "Munich ZeS (§5a)",
+      "munichServiceLink": "stadt.muenchen.de Zweckentfremdung",
+      "munichInfoblattLink": "§5a registration infoblatt",
       "disclaimer": "Glint Host Registry is publisher guidance only. You file with your Bezirksamt and remain legally responsible. We do not auto-submit government forms.",
+      "disclaimerMunich": "Glint Host Registry is publisher guidance only. You file with the Sozialreferat when portals open and remain legally responsible. The §5a registration portal is not live yet. We do not auto-submit government forms.",
       "save": "Save",
       "saving": "Saving…",
       "saved": "Germany compliance saved",
@@ -2832,6 +2928,7 @@
       "registrationStatus": {
         "not_started": "Not started",
         "dossier_in_progress": "Dossier in progress",
+        "awaiting_registration_portal": "Awaiting city registration portal",
         "pending": "Pending authority",
         "active": "Active",
         "expired": "Expired",

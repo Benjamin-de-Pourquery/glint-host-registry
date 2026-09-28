@@ -28,3 +28,27 @@ export function getBerlinServiceZwvbUrl(): string {
 export function getEu1028Url(): string {
   return EU_1028_URL;
 }
+
+/** Munich ZeS (Wohnraumzweckentfremdungssatzung) incl. §5a (verified HTTP 200). */
+export const MUNICH_ZES_URL =
+  "https://stadt.muenchen.de/rathaus/stadtrecht/vorschrift/970/version2/0.html";
+
+/** Munich Sozialreferat: Zweckentfremdung / Bestandssicherung service (verified HTTP 200). */
+export const MUNICH_ZWECKENTFREMUNG_SERVICE_URL =
+  "https://stadt.muenchen.de/service/info/fachbereich-bestandssicherung/1076745/";
+
+/** Munich infoblatt: Registrierungspflicht Kurzzeitvermietung (verified HTTP 200). */
+export const MUNICH_STR_REGISTRATION_INFOBLATT_URL =
+  "https://stadt.muenchen.de/dam/Home/Stadtverwaltung/Sozialreferat/wohnungsamt/Zweckentfremdung/LHM_Infoblatt_Registrierungspflicht_Kurzzeitvermietung.pdf";
+
+export function getMunichZesUrl(): string {
+  return MUNICH_ZES_URL;
+}
+
+export function getMunichZweckentfremdungServiceUrl(): string {
+  return MUNICH_ZWECKENTFREMUNG_SERVICE_URL;
+}
+
+export function getMunichStrRegistrationInfoblattUrl(): string {
+  return MUNICH_STR_REGISTRATION_INFOBLATT_URL;
+}

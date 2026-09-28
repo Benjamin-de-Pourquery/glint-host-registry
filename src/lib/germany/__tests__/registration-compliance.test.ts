@@ -40,4 +40,43 @@ describe("needsGermanyRegistrationAttention", () => {
       false
     );
   });
+
+  it("flags Munich awaiting portal without number", () => {
+    assert.equal(
+      needsGermanyRegistrationAttention(
+        "Germany",
+        {
+          deFederalState: "bayern",
+          deCityOrDistrict: "whole_unit",
+          deOperatorCategory: "whole_unit",
+          dePermitType: "zes_5a_registration",
+          deDossierPreparedAt: new Date("2026-09-01"),
+          deRegistrationStatus: "awaiting_registration_portal",
+          deRegistrationDisplayedOnListings: false,
+        },
+        "Munich"
+      ),
+      true
+    );
+  });
+
+  it("clears when complete for Munich with number", () => {
+    assert.equal(
+      needsGermanyRegistrationAttention(
+        "Germany",
+        {
+          deFederalState: "bayern",
+          deCityOrDistrict: "private_room",
+          deOperatorCategory: "private_room",
+          dePermitType: "zes_5a_registration",
+          deDossierPreparedAt: new Date("2026-09-01"),
+          deRegistrationNumber: "MUC-123",
+          deRegistrationStatus: "active",
+          deRegistrationDisplayedOnListings: true,
+        },
+        "Munich"
+      ),
+      false
+    );
+  });
 });

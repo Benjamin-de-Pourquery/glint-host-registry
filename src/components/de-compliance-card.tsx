@@ -18,29 +18,40 @@ import {
 } from "@/components/ui/select";
 import { ExternalLink, Copy, Check, Shield } from "lucide-react";
 import type { GermanyRegistration } from "@/lib/germany/registration-compliance";
-import { BERLIN_BEZIRKE } from "@/lib/germany/regions";
+import {
+  BERLIN_BEZIRKE,
+  MUNICH_RENTAL_UNIT_TYPES,
+  getGermanyFederalState,
+  isMunichCity,
+} from "@/lib/germany/regions";
 import {
   getBerlinServiceZwvbUrl,
   getBerlinZwvbFormsUrl,
   getBerlinZwvbOverviewUrl,
+  getMunichStrRegistrationInfoblattUrl,
+  getMunichZesUrl,
+  getMunichZweckentfremdungServiceUrl,
 } from "@/lib/germany/official-links";
 import { toast } from "sonner";
 
 export const DE_REGISTRATION_STATUSES = [
   "not_started",
   "dossier_in_progress",
+  "awaiting_registration_portal",
   "pending",
   "active",
   "expired",
   "unknown",
 ] as const;
 
-export const DE_FEDERAL_STATES = ["berlin", "other"] as const;
+export const DE_FEDERAL_STATES = ["berlin", "bayern", "other"] as const;
 
 export const DE_OPERATOR_CATEGORIES = [
   "hauptwohnung",
   "nebenwohnung",
   "partial_main",
+  "private_room",
+  "whole_unit",
   "commercial",
   "other",
 ] as const;
@@ -50,6 +61,8 @@ export const DE_PERMIT_TYPES = [
   "anzeige_49pct",
   "negativattest",
   "pending_eu_number",
+  "zes_genehmigung_8w",
+  "zes_5a_registration",
   "other",
 ] as const;
 
@@ -122,14 +135,36 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
         ? "destructive"
         : "outline";
 
-  const showBezirk = form.deFederalState === "berlin" || !form.deFederalState;
+  const inferredState = getGermanyFederalState(city);
+  const effectiveState = form.deFederalState || inferredState;
+  const isBerlinFocus = effectiveState === "berlin";
+  const isMunichFocus = effectiveState === "bayern" && isMunichCity(city);
+
+  const showBezirk = isBerlinFocus;
+  const showMunichUnit = isMunichFocus;
+
+  const cardTitleKey = isMunichFocus
+    ? "titleMunich"
+    : isBerlinFocus
+      ? "titleBerlin"
+      : "title";
+  const cardDescriptionKey = isMunichFocus
+    ? "descriptionMunich"
+    : isBerlinFocus
+      ? "descriptionBerlin"
+      : "description";
+  const locationHintKey = isMunichFocus
+    ? "locationHintMunich"
+    : isBerlinFocus
+      ? "locationHintBerlin"
+      : "locationHint";
 
   return (
     <Card className="border-gray-300 bg-gray-50/40">
       <CardHeader>
         <CardTitle className="flex flex-wrap items-center gap-2 text-base">
           <Shield className="h-5 w-5 text-gray-800" />
-          {t("title")}
+          {t(cardTitleKey)}
           <Badge variant={regStatusVariant} className="text-xs">
             {t(
               `registrationStatus.${form.deRegistrationStatus}` as "registrationStatus.not_started"
@@ -138,7 +173,7 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6 text-sm text-gray-900">
-        <p className="text-xs text-gray-800">{t("description")}</p>
+        <p className="text-xs text-gray-800">{t(cardDescriptionKey)}</p>
 
         <div className="space-y-3 rounded-lg border border-gray-200 bg-white/60 p-4">
           <h4 className="font-medium">{t("locationSection")}</h4>
@@ -162,8 +197,33 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
                 ))}
               </SelectContent>
             </Select>
-            <p className="text-xs text-gray-700">{t("locationHint", { city })}</p>
+            <p className="text-xs text-gray-700">{t(locationHintKey, { city })}</p>
           </div>
+
+          {showMunichUnit && (
+            <div className="space-y-2">
+              <Label>{t("munichUnitLabel")}</Label>
+              <Select
+                value={form.deCityOrDistrict || "unknown"}
+                onValueChange={(v) =>
+                  setForm({ ...form, deCityOrDistrict: v === "unknown" ? "" : v })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={t("munichUnitPlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="unknown">{t("munichUnitUnknown")}</SelectItem>
+                  {MUNICH_RENTAL_UNIT_TYPES.map((u) => (
+                    <SelectItem key={u.id} value={u.id}>
+                      {t(`munichUnitTypes.${u.id}`)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-gray-700">{t("munichUnitHint")}</p>
+            </div>
+          )}
 
           {showBezirk && (
             <div className="space-y-2">
@@ -281,7 +341,11 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
                 onChange={(e) =>
                   setForm({ ...form, deRegistrationNumber: e.target.value })
                 }
-                placeholder={t("registrationNumberPlaceholder")}
+                placeholder={
+                  isMunichFocus
+                    ? t("registrationNumberPlaceholderMunich")
+                    : t("registrationNumberPlaceholder")
+                }
                 className="font-mono"
               />
               <Button
@@ -333,30 +397,66 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          <Button type="button" variant="outline" size="sm" asChild>
-            <a href={getBerlinZwvbOverviewUrl()} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4" />
-              {t("zwvbOverviewLink")}
-            </a>
-          </Button>
-          <Button type="button" variant="outline" size="sm" asChild>
-            <a href={getBerlinZwvbFormsUrl()} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4" />
-              {t("zwvbFormsLink")}
-            </a>
-          </Button>
-          <Button type="button" variant="outline" size="sm" asChild>
-            <a href={getBerlinServiceZwvbUrl()} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="h-4 w-4" />
-              {t("serviceBerlinLink")}
-            </a>
-          </Button>
+          {isBerlinFocus && (
+            <>
+              <Button type="button" variant="outline" size="sm" asChild>
+                <a href={getBerlinZwvbOverviewUrl()} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  {t("zwvbOverviewLink")}
+                </a>
+              </Button>
+              <Button type="button" variant="outline" size="sm" asChild>
+                <a href={getBerlinZwvbFormsUrl()} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  {t("zwvbFormsLink")}
+                </a>
+              </Button>
+              <Button type="button" variant="outline" size="sm" asChild>
+                <a href={getBerlinServiceZwvbUrl()} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  {t("serviceBerlinLink")}
+                </a>
+              </Button>
+            </>
+          )}
+          {isMunichFocus && (
+            <>
+              <Button type="button" variant="outline" size="sm" asChild>
+                <a href={getMunichZesUrl()} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" />
+                  {t("zesLink")}
+                </a>
+              </Button>
+              <Button type="button" variant="outline" size="sm" asChild>
+                <a
+                  href={getMunichZweckentfremdungServiceUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  {t("munichServiceLink")}
+                </a>
+              </Button>
+              <Button type="button" variant="outline" size="sm" asChild>
+                <a
+                  href={getMunichStrRegistrationInfoblattUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  {t("munichInfoblattLink")}
+                </a>
+              </Button>
+            </>
+          )}
           <Button type="button" onClick={save} disabled={saving}>
             {saving ? t("saving") : t("save")}
           </Button>
         </div>
 
-        <p className="text-xs text-gray-800">{t("disclaimer")}</p>
+        <p className="text-xs text-gray-800">
+          {isMunichFocus ? t("disclaimerMunich") : t("disclaimer")}
+        </p>
       </CardContent>
     </Card>
   );

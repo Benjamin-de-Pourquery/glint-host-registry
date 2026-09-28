@@ -1,4 +1,4 @@
-import { differenceInCalendarDays, isPast, startOfDay } from "date-fns";
+import { differenceInCalendarDays, startOfDay } from "date-fns";
 import type {
   ListingHealthComputeInput,
   ListingHealthFactor,
@@ -70,7 +70,7 @@ export function computeScore(input: ListingHealthComputeInput): ListingHealthRes
     const expiry = startOfDay(input.expiryDate);
     const daysLeft = differenceInCalendarDays(expiry, startOfDay(now));
 
-    if (isPast(expiry) && !isSameDay(expiry, now)) {
+    if (daysLeft < 0) {
       factors.push(
         factor(
           "expiry_passed",

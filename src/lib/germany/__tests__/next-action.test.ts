@@ -9,8 +9,13 @@ describe("Germany playbook resolution", () => {
     assert.equal(resolvePlaybook("de", "berlin")?.id, "de-berlin");
   });
 
-  it("falls back to generic Germany playbook", () => {
-    assert.equal(resolvePlaybook("Germany", "Munich")?.id, "de-generic");
+  it("resolves Munich city playbook", () => {
+    assert.equal(resolvePlaybook("Germany", "Munich")?.id, "de-munich");
+    assert.equal(resolvePlaybook("de", "München")?.id, "de-munich");
+  });
+
+  it("falls back to generic Germany playbook for other cities", () => {
+    assert.equal(resolvePlaybook("Germany", "Hamburg")?.id, "de-generic");
   });
 
   it("exposes expected Berlin step keys", () => {
@@ -83,5 +88,44 @@ describe("getEffectiveNextStepForGermany", () => {
       }
     );
     assert.equal(step?.key, "berlin-de-official-registration");
+  });
+});
+
+describe("Munich next actions", () => {
+  it("prioritizes unit type when missing", () => {
+    const playbook = resolvePlaybook("Germany", "Munich")!;
+    const step = getEffectiveNextStepForGermany(
+      playbook,
+      [{ stepKey: "munich-de-confirm-str", status: "done" }],
+      null,
+      {
+        country: "Germany",
+        city: "Munich",
+        deFederalState: "bayern",
+        deCityOrDistrict: null,
+        isDossierPrepared: false,
+      }
+    );
+    assert.equal(step?.key, "munich-de-munich-unit");
+  });
+
+  it("prioritizes dossier when unit type set", () => {
+    const playbook = resolvePlaybook("Germany", "Munich")!;
+    const step = getEffectiveNextStepForGermany(
+      playbook,
+      [
+        { stepKey: "munich-de-confirm-str", status: "done" },
+        { stepKey: "munich-de-munich-unit", status: "done" },
+      ],
+      null,
+      {
+        country: "Germany",
+        city: "Munich",
+        deFederalState: "bayern",
+        deCityOrDistrict: "whole_unit",
+        isDossierPrepared: false,
+      }
+    );
+    assert.equal(step?.key, "munich-de-dossier");
   });
 });

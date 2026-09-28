@@ -5,6 +5,8 @@ import {
   getGermanyFederalState,
   normalizeGermanyCity,
   isBerlinBezirk,
+  isMunichCity,
+  isMunichRentalUnitType,
 } from "../regions";
 
 describe("Germany regions", () => {
@@ -20,8 +22,21 @@ describe("Germany regions", () => {
     assert.equal(getGermanyFederalState("Berlin"), "berlin");
   });
 
+  it("normalizes Munich city and Bavaria state", () => {
+    assert.equal(normalizeGermanyCity("München"), "Munich");
+    assert.equal(normalizeGermanyCity("muenchen"), "Munich");
+    assert.equal(getGermanyFederalState("Munich"), "bayern");
+    assert.equal(isMunichCity("München"), true);
+  });
+
   it("validates Berlin Bezirke", () => {
     assert.equal(isBerlinBezirk("mitte"), true);
     assert.equal(isBerlinBezirk("invalid"), false);
+  });
+
+  it("validates Munich rental unit types", () => {
+    assert.equal(isMunichRentalUnitType("private_room"), true);
+    assert.equal(isMunichRentalUnitType("whole_unit"), true);
+    assert.equal(isMunichRentalUnitType("mitte"), false);
   });
 });

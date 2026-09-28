@@ -2,6 +2,8 @@ import {
   getGermanyFederalState,
   isBerlinBezirk,
   isGermanyCountry,
+  isMunichCity,
+  isMunichRentalUnitType,
   resolveGermanyFederalStateForProperty,
   type GermanyFederalState,
 } from "./regions";
@@ -42,6 +44,13 @@ export function isDeLocationComplete(
   if (state === "berlin") {
     return isBerlinBezirk(registration?.deCityOrDistrict);
   }
+  if (state === "bayern") {
+    const munichContext = city ? isMunichCity(city) : false;
+    if (munichContext) {
+      return isMunichRentalUnitType(registration?.deCityOrDistrict);
+    }
+    return true;
+  }
   return true;
 }
 
@@ -72,8 +81,18 @@ export function needsGermanyRegistrationAttention(
   if (!isDeDossierPrepared(registration)) return true;
 
   const hasNumber = hasDeRegistrationNumber(registration);
-  const registrationActive =
+  let registrationActive =
     registration.deRegistrationStatus === "active" || hasNumber;
+
+  if (
+    registration.deRegistrationStatus === "awaiting_registration_portal" &&
+    !hasNumber
+  ) {
+    registrationActive = false;
+  }
+  if (registration.deRegistrationStatus === "expired") {
+    registrationActive = false;
+  }
 
   if (!registrationActive) return true;
 

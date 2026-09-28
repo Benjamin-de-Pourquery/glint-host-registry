@@ -119,6 +119,22 @@
       "title": "Airbnb Berlin et ZwVbG: guide hôte",
       "description": "Bezirk, numéro sur les OTA, transition UE 2024/1028. Host Registry ne dépose pas pour vous."
     },
+    "guideMunichStrRegistration": {
+      "title": "Munich short-term rental registration: ZeS host guide",
+      "description": "ZeS munichoise, préparation §5a, seuil Genehmigung huit semaines, UE 2024/1028. Portail municipal pas encore live."
+    },
+    "guideMunichStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Munich: guide ZeS",
+      "description": "Wohnraumzweckentfremdungssatzung, §5a, huit semaines, règlement UE 2024/1028. Portail Sozialreferat en préparation."
+    },
+    "guideMunichAirbnbRegistration": {
+      "title": "Munich Airbnb registration: ZeS compliance guide",
+      "description": "Chambre vs logement entier, ouverture portail §5a, numéro sur les annonces (règlement 2024/1028). Pas de dépôt automatique Glint."
+    },
+    "guideMunichAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Munich: guide conformité ZeS",
+      "description": "Configuration du bien, portail §5a, affichage OTA. Host Registry ne dépose pas pour vous."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -475,6 +491,60 @@
         }
       }
     },
+    "munichStrRegistration": {
+      "title": "Enregistrement location courte durée Munich (ZeS)",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "La Wohnraumzweckentfremdungssatzung (ZeS) munichoise régit l'usage touristique du logement. Le §5a impose l'enregistrement avant toute LCD sur plateforme et l'affichage du numéro une fois délivré. Le règlement (UE) 2024/1028 s'applique depuis le 20 mai 2026. L'Allemagne n'a pas encore de SDEP national. Glint Host Registry aide à préparer les dossiers et suivre la préparation. Nous ne déposons pas au Sozialreferat ni aux portails municipaux.",
+      "sections": {
+        "zes": {
+          "title": "ZeS et Zweckentfremdung municipale",
+          "body": "La ZeS renouvelée fixe les règles locales pour l'usage touristique du logement à Munich. Utilisez les pages officielles stadt.muenchen.de et le service Zweckentfremdung du Sozialreferat pour la Genehmigung lorsque l'usage touristique du logement entier peut dépasser environ huit semaines par an."
+        },
+        "section5a": {
+          "title": "Obligation d'enregistrement §5a",
+          "body": "Avant de publier sur les plateformes, les hôtes doivent s'enregistrer et afficher un numéro municipal au titre du §5a lorsque la procédure sera disponible. L'infoblatt sur la Registrierungspflicht Kurzzeitvermietung détaille l'obligation. Glint suit la préparation sans enregistrer à votre place."
+        },
+        "portal": {
+          "title": "Portail d'enregistrement pas encore live",
+          "body": "Fin septembre 2026, le Sozialreferat prépare encore le portail informatique d'enregistrement. Vous ne pouvez pas obtenir un numéro munichois en ligne aujourd'hui. Utilisez le statut awaiting_registration_portal dans Host Registry en surveillant les mises à jour officielles."
+        },
+        "genehmigung": {
+          "title": "Chambre vs logement entier et huit semaines",
+          "body": "La location de chambre reste soumise au §5a une fois l'enregistrement ouvert. L'usage touristique d'un logement entier au-delà d'environ huit semaines par an exige en principe une Genehmigung Zweckentfremdung en plus de la préparation à l'enregistrement."
+        },
+        "eu": {
+          "title": "Règlement (UE) 2024/1028",
+          "body": "Lorsqu'un enregistrement existe, les plateformes doivent collecter, vérifier et afficher des numéros uniques au titre des règles UE sur les LCD. Les numéros munichois compteront pour la conformité OTA aux côtés des obligations de Genehmigung."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Playbook Munich, chambre vs logement entier, profil exploitant, voie Genehmigung vs §5a, date de dossier, statut portail, stockage du numéro et checklist d'affichage avec liens officiels Munich."
+        }
+      }
+    },
+    "munichAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Munich sous ZeS",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Les hôtes Airbnb à Munich doivent se préparer à l'enregistrement ZeS §5a et à l'affichage sur les annonces tant que le portail municipal n'est pas live. Ce guide couvre la préparation opérationnelle uniquement.",
+      "sections": {
+        "unitType": {
+          "title": "Chambre vs logement entier",
+          "body": "Confirmez si vous louez une chambre privée ou le logement entier. Le seuil d'environ huit semaines concerne surtout l'usage touristique du logement entier. Indiquez la configuration dans Host Registry avant le dossier."
+        },
+        "portal": {
+          "title": "Préparation portail §5a",
+          "body": "La procédure d'enregistrement du Sozialreferat n'est pas ouverte fin septembre 2026. Suivez awaiting_registration_portal dans Host Registry et surveillez stadt.muenchen.de pour l'ouverture. Glint n'enregistre pas automatiquement auprès de la ville."
+        },
+        "number": {
+          "title": "Numéro sur les annonces",
+          "body": "Lorsque Munich délivrera votre numéro §5a, affichez-le sur chaque annonce Airbnb et OTA comme l'exige la loi locale et l'UE 2024/1028."
+        },
+        "glint": {
+          "title": "Workflow Host Registry",
+          "body": "Utilisez le playbook Munich, enregistrez le numéro une fois délivré, cochez l'affichage par canal et exportez votre dossier."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatie: catégorisation hébergement et eVisitor",
       "updated": "Mis à jour : septembre 2026",
@@ -605,8 +675,8 @@
         "description": "Registre LCD plateforme annoncé : suivi dossier, échéances de transition, stockage du numéro et affichage annonces. Pas de dépôt automatique tant que la loi est au Landtag."
       },
       "germanyOps": {
-        "title": "Allemagne / Berlin ZwVbG LCD",
-        "description": "Suivi dossier Bezirksamt, transition UE 2024/1028, numéros berlinois existants pendant le retard numérique, stockage et affichage annonces. Pas de dépôt automatique sur les portails publics."
+        "title": "LCD Allemagne (Berlin ZwVbG, Munich ZeS)",
+        "description": "Dossiers Bezirksamt à Berlin, préparation ZeS §5a à Munich tant que le portail municipal n'est pas live, transition UE 2024/1028, stockage et affichage annonces. Pas de dépôt automatique sur les portails publics."
       },
       "tabs": {
         "title": "Fiche bien structurée",
@@ -801,6 +871,8 @@
       "guideViennaAirbnbRegistration": "Airbnb Vienne / WKVRG",
       "guideBerlinStrRegistration": "LCD Berlin (ZwVbG)",
       "guideBerlinAirbnbRegistration": "Airbnb Berlin / ZwVbG",
+      "guideMunichStrRegistration": "LCD Munich (ZeS)",
+      "guideMunichAirbnbRegistration": "Airbnb Munich / ZeS",
       "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
@@ -894,7 +966,7 @@
       "netherlandsRegistration": "Enregistrement NL",
       "belgiumRegistration": "Enregistrement BE",
       "austriaRegistration": "Autriche / Vienne WKVRG",
-      "germanyRegistration": "Allemagne / Berlin ZwVbG",
+      "germanyRegistration": "LCD Allemagne (Berlin / Munich)",
       "nightCap": "Plafond nuitées RP",
       "touristTax": "Taxe de séjour"
     },
@@ -909,7 +981,7 @@
       "netherlandsRegistration": "{count, plural, one {# bien néerlandais — enregistrement, vergunning ou notification manquante} other {# biens néerlandais — enregistrement, vergunning ou notification manquante}}",
       "belgiumRegistration": "{count, plural, one {# bien belge — région, dossier ou enregistrement manquant} other {# biens belges — région, dossier ou enregistrement manquant}}",
       "austriaRegistration": "{count, plural, one {# bien autrichien — dossier ou enregistrement WKVRG manquant} other {# biens autrichiens — dossier ou enregistrement WKVRG manquant}}",
-      "germanyRegistration": "{count, plural, one {# bien allemand : dossier ou enregistrement ZwVbG Berlin manquant} other {# biens allemands : dossier ou enregistrement ZwVbG Berlin manquant}}",
+      "germanyRegistration": "{count, plural, one {# bien allemand : dossier ou enregistrement Berlin ou Munich manquant} other {# biens allemands : dossier ou enregistrement Berlin ou Munich manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
     },
@@ -1081,7 +1153,7 @@
         "nlRegistration": "Numéro d'enregistrement NL",
         "beRegistration": "Numéro d'enregistrement belge",
         "atRegistration": "Numéro d'enregistrement Autriche / Vienne",
-        "deRegistration": "Numéro d'enregistrement Allemagne / Berlin"
+        "deRegistration": "Numéro d'enregistrement LCD Allemagne"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1376,7 +1448,7 @@
       "netherlands_registration": "Enregistrement NL",
       "belgium_registration": "Enregistrement BE",
       "austria_registration": "Autriche / Vienne WKVRG",
-      "germany_registration": "Allemagne / Berlin ZwVbG",
+      "germany_registration": "LCD Allemagne (Berlin / Munich)",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -2776,16 +2848,31 @@
   },
   "de": {
     "compliance": {
-      "title": "Allemagne / Berlin conformité ZwVbG",
-      "description": "Suivez le dossier ZwVbG, le Bezirk, la catégorie d'exploitant, la voie de permis, l'échéance de transition UE, le numéro et l'affichage sur les annonces. La délivrance numérique alignée UE est retardée : conservez les numéros berlinois existants. Glint ne dépose pas sur les portails Bezirksamt.",
+      "title": "Conformité LCD Allemagne",
+      "titleBerlin": "Allemagne / Berlin conformité ZwVbG",
+      "titleMunich": "Allemagne / Munich conformité ZeS",
+      "description": "Suivez le dossier local, la catégorie d'exploitant, la voie de permis, le numéro et l'affichage sur les annonces (UE 2024/1028).",
+      "descriptionBerlin": "Suivez le dossier ZwVbG, le Bezirk, la catégorie d'exploitant, la voie de permis, l'échéance de transition UE, le numéro et l'affichage sur les annonces. La délivrance numérique alignée UE est retardée : conservez les numéros berlinois existants. Glint ne dépose pas sur les portails Bezirksamt.",
+      "descriptionMunich": "Suivez le dossier ZeS, chambre vs logement entier, la Genehmigung si l'usage touristique du logement entier peut dépasser environ huit semaines par an, la préparation §5a tant que le portail municipal n'est pas live, le stockage du numéro et l'affichage. Glint ne dépose pas sur les portails du Sozialreferat.",
       "locationSection": "Localisation",
       "federalStateLabel": "État / ville",
       "federalStatePlaceholder": "Choisir l'État",
-      "federalStateUnknown": "Inconnu — choisir l'État",
-      "locationHint": "Ville indiquée : {city}. À Berlin, le ZwVbG passe par le Bezirksamt.",
+      "federalStateUnknown": "Inconnu, choisir l'État",
+      "locationHint": "Ville indiquée : {city}. Choisissez Berlin ou Bavière (Munich) le cas échéant.",
+      "locationHintBerlin": "Ville indiquée : {city}. À Berlin, le ZwVbG passe par le Bezirksamt.",
+      "locationHintMunich": "Ville indiquée : {city}. À Munich, l'enregistrement ZeS §5a s'appliquera une fois le portail ouvert.",
       "federalStates": {
         "berlin": "Berlin",
+        "bayern": "Bavière (Bayern)",
         "other": "Autre Bundesland"
+      },
+      "munichUnitLabel": "Configuration Munich",
+      "munichUnitPlaceholder": "Chambre vs logement entier",
+      "munichUnitUnknown": "Inconnu, choisir la configuration",
+      "munichUnitHint": "Logement entier > environ huit semaines/an : Genehmigung Zweckentfremdung en principe.",
+      "munichUnitTypes": {
+        "private_room": "Chambre privée",
+        "whole_unit": "Logement entier"
       },
       "bezirkLabel": "Bezirk berlinois",
       "bezirkPlaceholder": "Choisir le Bezirk",
@@ -2798,6 +2885,8 @@
         "hauptwohnung": "Hauptwohnung (résidence principale)",
         "nebenwohnung": "Nebenwohnung (résidence secondaire)",
         "partial_main": "Hauptwohnung partielle (≤49 %)",
+        "private_room": "Chambre privée (Munich)",
+        "whole_unit": "Logement entier (Munich)",
         "commercial": "Usage commercial / autre",
         "other": "Autre"
       },
@@ -2809,6 +2898,8 @@
         "anzeige_49pct": "Anzeige (≤49 % Hauptwohnung)",
         "negativattest": "Negativattest / preuve d'exemption",
         "pending_eu_number": "Numéro existant / attente numéro UE numérique",
+        "zes_genehmigung_8w": "ZeS Munich Genehmigung (>8 semaines entier)",
+        "zes_5a_registration": "Munich §5a enregistrement seul",
         "other": "Autre"
       },
       "permitTypeHint": "Choisissez l'attente du numéro UE numérique seulement si vous attendez le nouveau format mais disposez déjà d'un numéro berlinois valide.",
@@ -2819,12 +2910,17 @@
       "registrationSection": "Numéro d'enregistrement",
       "registrationNumber": "Numéro d'enregistrement",
       "registrationNumberPlaceholder": "Numéro ZwVbG berlinois",
+      "registrationNumberPlaceholderMunich": "Numéro §5a Munich (une fois délivré)",
       "registrationStatusLabel": "Statut d'enregistrement",
       "displayedOnListings": "Numéro affiché sur toutes les annonces plateforme",
       "zwvbOverviewLink": "Vue d'ensemble ZwVbG (Sénat)",
       "zwvbFormsLink": "Textes et formulaires",
       "serviceBerlinLink": "service.berlin.de",
+      "zesLink": "ZeS Munich (§5a)",
+      "munichServiceLink": "stadt.muenchen.de Zweckentfremdung",
+      "munichInfoblattLink": "Infoblatt enregistrement §5a",
       "disclaimer": "Glint Host Registry est un outil d'éditeur. Vous déposez auprès de votre Bezirksamt et restez responsable juridiquement. Pas de dépôt automatique des formulaires officiels.",
+      "disclaimerMunich": "Glint Host Registry est un outil d'éditeur. Vous déposez auprès du Sozialreferat lorsque les portails ouvrent et restez responsable juridiquement. Le portail §5a n'est pas encore live. Pas de dépôt automatique des formulaires officiels.",
       "save": "Enregistrer",
       "saving": "Enregistrement…",
       "saved": "Conformité Allemagne enregistrée",
@@ -2832,6 +2928,7 @@
       "registrationStatus": {
         "not_started": "Non démarré",
         "dossier_in_progress": "Dossier en cours",
+        "awaiting_registration_portal": "En attente du portail municipal",
         "pending": "En attente autorité",
         "active": "Actif",
         "expired": "Expiré",

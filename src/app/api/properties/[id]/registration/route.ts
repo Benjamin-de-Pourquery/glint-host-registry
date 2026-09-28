@@ -98,6 +98,7 @@ const schema = z.object({
     .enum([
       "not_started",
       "dossier_in_progress",
+      "awaiting_registration_portal",
       "pending",
       "active",
       "expired",
@@ -105,10 +106,18 @@ const schema = z.object({
     ])
     .optional(),
   deRegistrationDisplayedOnListings: z.boolean().optional(),
-  deFederalState: z.enum(["berlin", "other"]).nullable().optional(),
+  deFederalState: z.enum(["berlin", "bayern", "other"]).nullable().optional(),
   deCityOrDistrict: z.string().nullable().optional(),
   deOperatorCategory: z
-    .enum(["hauptwohnung", "nebenwohnung", "partial_main", "commercial", "other"])
+    .enum([
+      "hauptwohnung",
+      "nebenwohnung",
+      "partial_main",
+      "private_room",
+      "whole_unit",
+      "commercial",
+      "other",
+    ])
     .nullable()
     .optional(),
   dePermitType: z
@@ -117,6 +126,8 @@ const schema = z.object({
       "anzeige_49pct",
       "negativattest",
       "pending_eu_number",
+      "zes_genehmigung_8w",
+      "zes_5a_registration",
       "other",
     ])
     .nullable()

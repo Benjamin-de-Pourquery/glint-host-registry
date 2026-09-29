@@ -30,6 +30,7 @@ import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-com
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
 import { needsGermanyRegistrationAttention } from "@/lib/germany/registration-compliance";
+import { needsSpainRegistrationAttention } from "@/lib/spain/registration-compliance";
 import { getListingHealthScoresForUser } from "@/lib/listing-health";
 import { RuleRadarFeed } from "@/components/rule-radar-feed";
 
@@ -101,6 +102,7 @@ export default async function DashboardPage({ params }: Props) {
   let belgiumRegistrationCount = 0;
   let austriaRegistrationCount = 0;
   let germanyRegistrationCount = 0;
+  let spainRegistrationCount = 0;
 
   const propertyStatuses = properties.map((p) => {
     const completed = p.checklistItems.filter((c) => c.completed).length;
@@ -135,6 +137,9 @@ export default async function DashboardPage({ params }: Props) {
     }
     if (needsGermanyRegistrationAttention(p.country, p.registration, p.city)) {
       germanyRegistrationCount++;
+    }
+    if (needsSpainRegistrationAttention(p.country, p.registration, p.city)) {
+      spainRegistrationCount++;
     }
     return { ...p, complianceStatus: status };
   });
@@ -242,6 +247,7 @@ export default async function DashboardPage({ params }: Props) {
           belgiumRegistration: belgiumRegistrationCount,
           austriaRegistration: austriaRegistrationCount,
           germanyRegistration: germanyRegistrationCount,
+          spainRegistration: spainRegistrationCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,
           listingHealthAtRisk: listingHealthAtRiskCount,

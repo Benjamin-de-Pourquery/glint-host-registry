@@ -512,6 +512,13 @@ model Registration {
   dePermitType              String?
   deDossierPreparedAt       DateTime?
   deTransitionDeadline      DateTime?
+  /** Spain / Catalonia regional STR registration (HUT — post STS 620/2026) */
+  esRegistrationNumber      String?
+  esRegistrationStatus      String    @default("not_started")
+  esRegistrationDisplayedOnListings Boolean @default(false)
+  esAutonomousCommunity     String?
+  esLicenseKind             String?
+  esDossierPreparedAt       DateTime?
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

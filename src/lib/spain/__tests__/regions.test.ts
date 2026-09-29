@@ -1,63 +1,35 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
-  getSpainGuestReportingMode,
-  usesSesHospedajes,
-  isRegionalSpainReporting,
-  requiresAnnexOneCheckIn,
+  getSpainAutonomousCommunity,
+  isCataloniaLocation,
+  isLikelyCataloniaHutNumber,
+  supportsSpainStrRegistrationCompliance,
 } from "../regions";
 
-describe("Spain guest reporting mode routing", () => {
-  it("routes Barcelona to mossos", () => {
-    assert.equal(getSpainGuestReportingMode("Barcelona"), "mossos");
-    assert.equal(usesSesHospedajes("Barcelona"), false);
-    assert.equal(isRegionalSpainReporting("Barcelona"), true);
-    assert.equal(requiresAnnexOneCheckIn("Barcelona"), true);
+describe("Spain Catalonia region resolution", () => {
+  it("resolves Barcelona and Girona as Catalonia", () => {
+    assert.equal(isCataloniaLocation("Barcelona"), true);
+    assert.equal(isCataloniaLocation("Girona"), true);
+    assert.equal(getSpainAutonomousCommunity("Sitges"), "catalonia");
   });
 
-  it("routes Girona province cities to mossos", () => {
-    assert.equal(getSpainGuestReportingMode("Girona"), "mossos");
-    assert.equal(getSpainGuestReportingMode("Tarragona"), "mossos");
+  it("does not treat Madrid as Catalonia", () => {
+    assert.equal(isCataloniaLocation("Madrid"), false);
+    assert.equal(getSpainAutonomousCommunity("Madrid"), "other");
   });
 
-  it("routes Bilbao to ertzaintza", () => {
-    assert.equal(getSpainGuestReportingMode("Bilbao"), "ertzaintza");
-    assert.equal(usesSesHospedajes("Bilbao"), false);
-    assert.equal(isRegionalSpainReporting("Bilbao"), true);
+  it("scopes registration compliance to Catalonia only", () => {
+    assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Barcelona"), true);
+    assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Madrid"), false);
+    assert.equal(supportsSpainStrRegistrationCompliance("France", "Barcelona"), false);
   });
+});
 
-  it("routes Donostia-San Sebastián to ertzaintza", () => {
-    assert.equal(getSpainGuestReportingMode("Donostia"), "ertzaintza");
-    assert.equal(getSpainGuestReportingMode("San Sebastián"), "ertzaintza");
-  });
-
-  it("routes Vitoria-Gasteiz to ertzaintza", () => {
-    assert.equal(getSpainGuestReportingMode("Vitoria-Gasteiz"), "ertzaintza");
-    assert.equal(getSpainGuestReportingMode("Vitoria"), "ertzaintza");
-  });
-
-  it("routes Madrid to ses", () => {
-    assert.equal(getSpainGuestReportingMode("Madrid"), "ses");
-    assert.equal(usesSesHospedajes("Madrid"), true);
-    assert.equal(isRegionalSpainReporting("Madrid"), false);
-    assert.equal(requiresAnnexOneCheckIn("Madrid"), true);
-  });
-
-  it("routes Valencia and Málaga to ses", () => {
-    assert.equal(getSpainGuestReportingMode("Valencia"), "ses");
-    assert.equal(getSpainGuestReportingMode("Málaga"), "ses");
-  });
-
-  it("uses region hint for Catalonia", () => {
-    assert.equal(getSpainGuestReportingMode("Unknown", "Catalunya"), "mossos");
-  });
-
-  it("uses region hint for Euskadi", () => {
-    assert.equal(getSpainGuestReportingMode("Unknown", "Euskadi"), "ertzaintza");
-  });
-
-  it("returns none for empty city", () => {
-    assert.equal(getSpainGuestReportingMode(""), "none");
-    assert.equal(requiresAnnexOneCheckIn(""), false);
+describe("HUT number format", () => {
+  it("accepts likely HUT prefixes", () => {
+    assert.equal(isLikelyCataloniaHutNumber("HUT-123456"), true);
+    assert.equal(isLikelyCataloniaHutNumber("hut 999"), true);
+    assert.equal(isLikelyCataloniaHutNumber("NRUA-123"), false);
   });
 });

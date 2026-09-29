@@ -1,5 +1,6 @@
 import { FRANCE_PLAYBOOKS } from "./france";
 import { SPAIN_PLAYBOOKS } from "./spain";
+import { isCataloniaLocation, isSpainCountry } from "@/lib/spain/regions";
 import { ITALY_PLAYBOOKS } from "./italy";
 import { PORTUGAL_PLAYBOOKS } from "./portugal";
 import { GREECE_PLAYBOOKS } from "./greece";
@@ -247,6 +248,18 @@ export function getCtaLabelKey(role: OfficialUrlRole): CtaLabelKey {
 export function resolvePlaybook(country: string, city: string): Playbook | null {
   const normalizedCountry = normalizeCountry(country);
   const normalizedCity = normalizeCity(city);
+
+  if (isSpainCountry(normalizedCountry) && isCataloniaLocation(normalizedCity)) {
+    const cityPlaybook = ALL_PLAYBOOKS.find(
+      (p) =>
+        p.country === normalizedCountry &&
+        p.city &&
+        p.city.toLowerCase() === normalizedCity.toLowerCase()
+    );
+    if (cityPlaybook) return cityPlaybook;
+    const cataloniaPlaybook = ALL_PLAYBOOKS.find((p) => p.id === "es-catalonia");
+    if (cataloniaPlaybook) return cataloniaPlaybook;
+  }
 
   const cityPlaybook = ALL_PLAYBOOKS.find(
     (p) =>

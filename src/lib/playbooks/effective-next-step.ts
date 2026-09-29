@@ -57,6 +57,11 @@ export type EffectiveNextStepContext = {
   hasDeRegistrationNumber?: boolean;
   isDeDossierPrepared?: boolean;
   deDisplayedOnListings?: boolean;
+  esAutonomousCommunity?: string | null;
+  hasEsRegistrationNumber?: boolean;
+  isEsDossierPrepared?: boolean;
+  isEsLicenseKindSet?: boolean;
+  esDisplayedOnListings?: boolean;
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
   frNerMigration?: FrNerMigrationRecord | null;
@@ -74,6 +79,11 @@ export function getEffectiveNextStep(
       city: context.city,
       hasActiveStayNeedingSes: context.hasActiveStayNeedingSes,
       hasSesCredentials: context.hasSesCredentials,
+      esAutonomousCommunity: context.esAutonomousCommunity,
+      hasEsRegistrationNumber: context.hasEsRegistrationNumber,
+      isEsDossierPrepared: context.isEsDossierPrepared,
+      isEsLicenseKindSet: context.isEsLicenseKindSet,
+      esDisplayedOnListings: context.esDisplayedOnListings,
     });
   }
 

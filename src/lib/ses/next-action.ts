@@ -1,5 +1,6 @@
 import type { Playbook, PlaybookStep } from "@/lib/playbooks/types";
 import { getNextPendingStep } from "@/lib/playbooks";
+import { getEffectiveNextStepForSpainRegistration } from "@/lib/spain/next-action";
 import { isSpainCountry, usesSesHospedajes } from "@/lib/spain/regions";
 
 export function getSesStepKey(playbook: Playbook): string | null {
@@ -12,6 +13,11 @@ export type SesNextActionContext = {
   city: string;
   hasActiveStayNeedingSes?: boolean;
   hasSesCredentials?: boolean;
+  esAutonomousCommunity?: string | null;
+  hasEsRegistrationNumber?: boolean;
+  isEsDossierPrepared?: boolean;
+  isEsLicenseKindSet?: boolean;
+  esDisplayedOnListings?: boolean;
 };
 
 export function getEffectiveNextStepForSpain(
@@ -20,7 +26,23 @@ export function getEffectiveNextStepForSpain(
   residencyStatus: "primary" | "secondary" | "other" | null | undefined,
   context: SesNextActionContext
 ): PlaybookStep | null {
-  const defaultNext = getNextPendingStep(playbook, progress, residencyStatus);
+  const registrationNext = getEffectiveNextStepForSpainRegistration(
+    playbook,
+    progress,
+    residencyStatus,
+    {
+      country: context.country,
+      city: context.city,
+      esAutonomousCommunity: context.esAutonomousCommunity,
+      hasEsRegistrationNumber: context.hasEsRegistrationNumber,
+      isDossierPrepared: context.isEsDossierPrepared,
+      isLicenseKindSet: context.isEsLicenseKindSet,
+      isDisplayedOnListings: context.esDisplayedOnListings,
+    }
+  );
+
+  const defaultNext =
+    registrationNext ?? getNextPendingStep(playbook, progress, residencyStatus);
 
   if (!isSpainCountry(context.country)) {
     return defaultNext;

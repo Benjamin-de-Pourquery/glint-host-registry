@@ -29,6 +29,12 @@ import {
   isDeDossierPrepared,
 } from "@/lib/germany/registration-compliance";
 import {
+  hasEsRegistrationNumber,
+  isEsDossierPrepared,
+  isEsLicenseKindSet,
+} from "@/lib/spain/registration-compliance";
+import { resolveSpainAutonomousCommunityForProperty } from "@/lib/spain/regions";
+import {
   hasCroatiaCategorisationNumber,
   hasCroatiaEvisitorObjectId,
 } from "@/lib/croatia/categorisation-compliance";
@@ -187,6 +193,18 @@ export async function GET(
     isDeDossierPrepared: isDeDossierPrepared(property.registration),
     deDisplayedOnListings: Boolean(
       property.registration?.deRegistrationDisplayedOnListings
+    ),
+    esAutonomousCommunity:
+      property.registration?.esAutonomousCommunity ??
+      resolveSpainAutonomousCommunityForProperty(
+        property.city,
+        property.registration?.esAutonomousCommunity
+      ),
+    hasEsRegistrationNumber: hasEsRegistrationNumber(property.registration),
+    isEsDossierPrepared: isEsDossierPrepared(property.registration),
+    isEsLicenseKindSet: isEsLicenseKindSet(property.registration),
+    esDisplayedOnListings: Boolean(
+      property.registration?.esRegistrationDisplayedOnListings
     ),
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,

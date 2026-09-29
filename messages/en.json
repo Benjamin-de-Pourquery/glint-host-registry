@@ -135,6 +135,22 @@
       "title": "Enregistrement Airbnb Munich: guide conformité ZeS",
       "description": "Chambre vs logement entier, ouverture portail §5a, numéro sur les annonces (règlement 2024/1028). Pas de dépôt automatique Glint."
     },
+    "guideBarcelonaStrRegistration": {
+      "title": "Barcelona short-term rental registration: HUT host guide",
+      "description": "Catalonia HUT after STS 620/2026, not NRUA. EU 2024/1028 platform display, Mossos guest reporting separate from SES."
+    },
+    "guideBarcelonaStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Barcelone: guide HUT",
+      "description": "HUT Catalogne post-STS 620/2026, pas le NRUA. Affichage plateformes UE 2024/1028, déclaration Mossos distincte du SES."
+    },
+    "guideBarcelonaAirbnbRegistration": {
+      "title": "Barcelona Airbnb registration: HUT compliance guide",
+      "description": "Regional HUT on Airbnb and Booking, municipal rules, honest portal prep. Host Registry does not auto-submit to Generalitat."
+    },
+    "guideBarcelonaAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Barcelone: guide conformité HUT",
+      "description": "HUT régional sur Airbnb et Booking, règles municipales, préparation portails. Host Registry ne dépose pas à la Generalitat."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -545,6 +561,60 @@
         }
       }
     },
+    "barcelonaStrRegistration": {
+      "title": "Barcelona short-term rental registration (HUT)",
+      "updated": "Updated: September 2026",
+      "intro": "Catalonia registers tourist housing in the Registre de Turisme de Catalunya (HUT). Spain's Supreme Court STS 620/2026 annulled the national NRUA layer for listing verification. Platforms now expect your regional HUT under Regulation (EU) 2024/1028. Guest reporting in Catalonia uses Mossos Hotels, not SES.HOSPEDAJES. Glint Host Registry helps you prepare dossiers and track numbers. We do not submit to the Generalitat or Barcelona city portals.",
+      "sections": {
+        "nrua": {
+          "title": "NRUA vs HUT after STS 620/2026",
+          "body": "Do not treat a defunct NRUA code as your Airbnb or Booking registration number. The operative identifier for Catalonia is the HUT issued through the Catalan tourism register. VUDA or SDEP data-sharing obligations remain separate from the listing number field."
+        },
+        "hut": {
+          "title": "Obtain and store HUT",
+          "body": "Complete municipal and Generalitat steps for Habitatge d'Ús Turístic. Use Canal Empresa or published municipal procedures. When you receive HUT, enter it in Host Registry and set status to active."
+        },
+        "barcelona": {
+          "title": "Barcelona municipal rules",
+          "body": "Barcelona adds zone restrictions and municipal requirements on top of the Catalan HUT. Review Ajuntament guidance before publishing. Host Registry does not obtain municipal permits for you."
+        },
+        "platforms": {
+          "title": "EU 2024/1028 on platforms",
+          "body": "Display HUT on every OTA listing. Platforms validate regional numbers from 20 May 2026. Mark listing display in Host Registry per channel."
+        },
+        "mossos": {
+          "title": "Mossos guest reporting (separate)",
+          "body": "Within 24 hours of check-in you must report guests on Mossos Hotels under RD 933/2021. SES.HOSPEDAJES is the national Ministry of Interior system for other regions, not Catalonia. Host Registry prepares Annex I data. You submit on Mossos yourself."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Catalonia or Barcelona playbook, dossier date, HUT storage, listing display checklist, Mossos export prep, and evidence pack export with official links."
+        }
+      }
+    },
+    "barcelonaAirbnbRegistration": {
+      "title": "Barcelona Airbnb registration under HUT rules",
+      "updated": "Updated: September 2026",
+      "intro": "Airbnb hosts in Barcelona need a valid HUT, municipal compliance, and Mossos guest reporting. This guide covers operational readiness only.",
+      "sections": {
+        "airbnbField": {
+          "title": "Airbnb registration field",
+          "body": "Enter your HUT in the registration or license field Airbnb shows for Spain. Use the same HUT on Booking and other channels. If Airbnb still mentions NRUA in help articles, rely on your Catalan HUT after STS 620/2026."
+        },
+        "dossier": {
+          "title": "Before you list",
+          "body": "Prepare responsible declaration, urban planning, and energy certificate if required. Track dossier prepared date in Host Registry before applying for HUT."
+        },
+        "display": {
+          "title": "Listing display checklist",
+          "body": "After HUT is active, confirm the number appears in the listing UI and in guest communications where required. Toggle displayed on listings in Host Registry."
+        },
+        "glint": {
+          "title": "Host Registry workflow",
+          "body": "Use the Barcelona playbook, save HUT, mark channels, export guest data for Mossos manual entry, and keep SES credentials disabled for Catalonia properties."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatia: accommodation categorisation and eVisitor",
       "updated": "Updated: September 2026",
@@ -873,6 +943,8 @@
       "guideBerlinAirbnbRegistration": "Berlin Airbnb / ZwVbG",
       "guideMunichStrRegistration": "Munich STR registration (ZeS)",
       "guideMunichAirbnbRegistration": "Munich Airbnb / ZeS",
+      "guideBarcelonaStrRegistration": "Barcelona STR (HUT)",
+      "guideBarcelonaAirbnbRegistration": "Barcelona Airbnb / HUT",
       "guideFrNerMigration": "France NER migration 2026",
       "account": "Account",
       "legal": "Legal",
@@ -967,6 +1039,7 @@
       "belgiumRegistration": "Belgium registration",
       "austriaRegistration": "Austria / Vienna WKVRG",
       "germanyRegistration": "Germany STR (Berlin / Munich)",
+      "spainRegistration": "Spain / Catalonia HUT",
       "nightCap": "Primary night cap",
       "touristTax": "Taxe de séjour"
     },
@@ -982,6 +1055,7 @@
       "belgiumRegistration": "{count, plural, one {# Belgium property — region, dossier or registration missing} other {# Belgium properties — region, dossier or registration missing}}",
       "austriaRegistration": "{count, plural, one {# Austria property — WKVRG dossier or registration missing} other {# Austria properties — WKVRG dossier or registration missing}}",
       "germanyRegistration": "{count, plural, one {# Germany property: Berlin or Munich dossier or registration missing} other {# Germany properties: Berlin or Munich dossier or registration missing}}",
+      "spainRegistration": "{count, plural, one {# Catalonia property: HUT dossier or listing display missing} other {# Catalonia properties: HUT dossier or listing display missing}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
       "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
     },
@@ -1153,7 +1227,8 @@
         "nlRegistration": "NL registration number",
         "beRegistration": "Belgium registration number",
         "atRegistration": "Austria / Vienna registration number",
-        "deRegistration": "Germany STR registration number"
+        "deRegistration": "Germany STR registration number",
+        "esRegistration": "Spain / Catalonia HUT registration number"
       },
       "listings": {
         "urlsTitle": "Add a listing",
@@ -1449,6 +1524,7 @@
       "belgium_registration": "Belgium registration",
       "austria_registration": "Austria / Vienna WKVRG",
       "germany_registration": "Germany STR (Berlin / Munich)",
+      "spain_registration": "Spain / Catalonia HUT",
       "night_cap": "Primary night cap",
       "tourist_tax": "Taxe de séjour"
     }
@@ -2929,6 +3005,45 @@
         "not_started": "Not started",
         "dossier_in_progress": "Dossier in progress",
         "awaiting_registration_portal": "Awaiting city registration portal",
+        "pending": "Pending authority",
+        "active": "Active",
+        "expired": "Expired",
+        "unknown": "Unknown"
+      }
+    }
+  },
+  "es": {
+    "compliance": {
+      "titleCatalonia": "Spain / Catalonia HUT compliance",
+      "description": "Track HUT dossier prep, regional registration number, and listing display under EU 2024/1028. Guest reporting via Mossos is separate from SES.HOSPEDAJES.",
+      "nruaNotice": "After Spain's Supreme Court STS 620/2026, NRUA is not the number platforms verify. Use your Catalan HUT from the Registre de Turisme de Catalunya.",
+      "autonomousCommunity": "Autonomous community",
+      "community": {
+        "catalonia": "Catalonia"
+      },
+      "licenseKind": "License kind",
+      "licenseKind.hut": "HUT (Catalonia tourist housing)",
+      "licenseKind.other": "Other (out of scope)",
+      "dossierPreparedAt": "Dossier prepared on",
+      "registrationNumber": "HUT registration number",
+      "registrationNumberPlaceholder": "HUT-000000",
+      "hutFormatHint": "Catalonia listing numbers usually start with HUT. Verify against your Generalitat certificate.",
+      "registrationStatus": "Registration status",
+      "displayedOnListings": "HUT displayed on all platform listings",
+      "links": {
+        "cataloniaRegister": "Catalan Tourism Register (open data)",
+        "barcelonaRules": "Barcelona municipal tourism",
+        "eu1028": "EU Regulation 2024/1028",
+        "rd933": "RD 933/2021 (guest reporting)"
+      },
+      "disclaimer": "Host Registry is operational guidance from Glint. You file with the Generalitat, your municipality, and Mossos portals yourself. We do not auto-submit government forms.",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Catalonia compliance saved",
+      "saveError": "Could not save",
+      "status": {
+        "not_started": "Not started",
+        "dossier_in_progress": "Dossier in progress",
         "pending": "Pending authority",
         "active": "Active",
         "expired": "Expired",

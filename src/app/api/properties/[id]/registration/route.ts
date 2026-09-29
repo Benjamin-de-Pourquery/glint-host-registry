@@ -10,6 +10,10 @@ import { isNetherlandsCountry, resolveNlNightCapSource } from "@/lib/netherlands
 import { isBelgiumCountry, getBelgiumRegion } from "@/lib/belgium/regions";
 import { isAustriaCountry, getAustriaFederalState } from "@/lib/austria/regions";
 import { isGermanyCountry, getGermanyFederalState } from "@/lib/germany/regions";
+import {
+  isSpainCountry,
+  getSpainAutonomousCommunity,
+} from "@/lib/spain/regions";
 import { z } from "zod";
 
 const schema = z.object({
@@ -134,6 +138,21 @@ const schema = z.object({
     .optional(),
   deDossierPreparedAt: z.string().nullable().optional(),
   deTransitionDeadline: z.string().nullable().optional(),
+  esRegistrationNumber: z.string().nullable().optional(),
+  esRegistrationStatus: z
+    .enum([
+      "not_started",
+      "dossier_in_progress",
+      "pending",
+      "active",
+      "expired",
+      "unknown",
+    ])
+    .optional(),
+  esRegistrationDisplayedOnListings: z.boolean().optional(),
+  esAutonomousCommunity: z.enum(["catalonia", "other"]).nullable().optional(),
+  esLicenseKind: z.enum(["hut", "other"]).nullable().optional(),
+  esDossierPreparedAt: z.string().nullable().optional(),
 });
 
 export async function PATCH(
@@ -213,6 +232,17 @@ export async function PATCH(
       data.deCityOrDistrict !== undefined
         ? data.deCityOrDistrict
         : property.registration?.deCityOrDistrict ?? null;
+
+    const esAutonomousCommunity =
+      data.esAutonomousCommunity !== undefined
+        ? data.esAutonomousCommunity
+        : isSpainCountry(property.country)
+          ? property.registration?.esAutonomousCommunity ??
+            (() => {
+              const inferred = getSpainAutonomousCommunity(property.city);
+              return inferred === "catalonia" ? "catalonia" : inferred === "other" ? "other" : null;
+            })()
+          : null;
 
     const registration = await prisma.registration.upsert({
       where: { propertyId: id },
@@ -294,6 +324,15 @@ export async function PATCH(
           : null,
         deTransitionDeadline: data.deTransitionDeadline
           ? new Date(data.deTransitionDeadline)
+          : null,
+        esRegistrationNumber: data.esRegistrationNumber ?? null,
+        esRegistrationStatus: data.esRegistrationStatus ?? "not_started",
+        esRegistrationDisplayedOnListings:
+          data.esRegistrationDisplayedOnListings ?? false,
+        esAutonomousCommunity,
+        esLicenseKind: data.esLicenseKind ?? null,
+        esDossierPreparedAt: data.esDossierPreparedAt
+          ? new Date(data.esDossierPreparedAt)
           : null,
       },
       update: {
@@ -389,6 +428,17 @@ export async function PATCH(
         deTransitionDeadline: data.deTransitionDeadline
           ? new Date(data.deTransitionDeadline)
           : data.deTransitionDeadline === null
+            ? null
+            : undefined,
+        esRegistrationNumber: data.esRegistrationNumber,
+        esRegistrationStatus: data.esRegistrationStatus,
+        esRegistrationDisplayedOnListings: data.esRegistrationDisplayedOnListings,
+        esAutonomousCommunity:
+          data.esAutonomousCommunity !== undefined ? data.esAutonomousCommunity : esAutonomousCommunity,
+        esLicenseKind: data.esLicenseKind,
+        esDossierPreparedAt: data.esDossierPreparedAt
+          ? new Date(data.esDossierPreparedAt)
+          : data.esDossierPreparedAt === null
             ? null
             : undefined,
       },

@@ -29,6 +29,8 @@ import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import { isBelgiumCountry } from "@/lib/belgium/regions";
 import { isAustriaCountry } from "@/lib/austria/regions";
 import { isGermanyCountry } from "@/lib/germany/regions";
+import { supportsSpainStrRegistrationCompliance } from "@/lib/spain/regions";
+import { EsComplianceCard } from "@/components/es-compliance-card";
 import { NlComplianceCard } from "@/components/nl-compliance-card";
 import { BeComplianceCard } from "@/components/be-compliance-card";
 import { AtComplianceCard } from "@/components/at-compliance-card";
@@ -106,6 +108,12 @@ type Registration = {
   dePermitType?: string | null;
   deDossierPreparedAt?: string | Date | null;
   deTransitionDeadline?: string | Date | null;
+  esRegistrationNumber?: string | null;
+  esRegistrationStatus?: string | null;
+  esRegistrationDisplayedOnListings?: boolean;
+  esAutonomousCommunity?: string | null;
+  esLicenseKind?: string | null;
+  esDossierPreparedAt?: string | Date | null;
 };
 
 type Props = {
@@ -244,6 +252,18 @@ export function PropertyRegisterTab({
       )}
       {isGermanyCountry(country) && (
         <DeComplianceCard propertyId={propertyId} city={city} registration={registration} />
+      )}
+      {supportsSpainStrRegistrationCompliance(
+        country,
+        city,
+        registration?.esAutonomousCommunity
+      ) && (
+        <EsComplianceCard
+          propertyId={propertyId}
+          country={country}
+          city={city}
+          registration={registration}
+        />
       )}
       <GuestRegisterPanel
         propertyId={propertyId}

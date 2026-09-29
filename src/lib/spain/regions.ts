@@ -120,6 +120,53 @@ export function requiresAnnexOneCheckIn(city: string, region?: string | null): b
   return mode === "ses" || mode === "mossos" || mode === "ertzaintza";
 }
 
+export type SpainAutonomousCommunity = "catalonia" | "other" | "unknown";
+
+export function isCataloniaLocation(city: string, region?: string | null): boolean {
+  const cityKey = normalizeKey(city);
+  const regionKey = normalizeKey(region ?? "");
+  return isCatalonia(cityKey, regionKey);
+}
+
+export function getSpainAutonomousCommunity(
+  city: string,
+  region?: string | null
+): SpainAutonomousCommunity {
+  if (isCataloniaLocation(city, region)) return "catalonia";
+  if (!city.trim() && !region?.trim()) return "unknown";
+  return "other";
+}
+
+export function resolveSpainAutonomousCommunityForProperty(
+  city: string,
+  stored?: string | null,
+  region?: string | null
+): SpainAutonomousCommunity {
+  if (stored === "catalonia") return "catalonia";
+  if (stored === "other") return "other";
+  return getSpainAutonomousCommunity(city, region);
+}
+
+export function supportsSpainStrRegistrationCompliance(
+  country: string,
+  city: string,
+  esAutonomousCommunity?: string | null
+): boolean {
+  if (!isSpainCountry(country)) return false;
+  const community = resolveSpainAutonomousCommunityForProperty(
+    city,
+    esAutonomousCommunity
+  );
+  return community === "catalonia";
+}
+
+/** HUT numbers for Catalonia typically start with HUT (platforms verify regional codes after STS 620/2026). */
+export function isLikelyCataloniaHutNumber(value: string | null | undefined): boolean {
+  const trimmed = value?.trim() ?? "";
+  if (!trimmed) return false;
+  return /^HUT[\s-]?\d/i.test(trimmed);
+}
+
 export function getRegionalSystemLabel(
   mode: SpainGuestReportingMode,
   locale: "en" | "fr" = "en"

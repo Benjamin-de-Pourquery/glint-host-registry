@@ -22,6 +22,7 @@ import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-com
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
 import { needsGermanyRegistrationAttention } from "@/lib/germany/registration-compliance";
+import { needsSpainRegistrationAttention } from "@/lib/spain/registration-compliance";
 import { ListingHealthBadge } from "@/components/listing-health-badge";
 import type { ListingHealthScore } from "@/lib/listing-health/types";
 import { Building2, ExternalLink, LayoutGrid, List, Plus, X } from "lucide-react";
@@ -82,6 +83,12 @@ type PropertyItem = {
     dePermitType?: string | null;
     deDossierPreparedAt?: Date | null;
     deTransitionDeadline?: Date | null;
+    esRegistrationNumber?: string | null;
+    esRegistrationStatus?: string | null;
+    esRegistrationDisplayedOnListings?: boolean;
+    esAutonomousCommunity?: string | null;
+    esLicenseKind?: string | null;
+    esDossierPreparedAt?: Date | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
   listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
@@ -103,6 +110,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "belgium_registration",
   "austria_registration",
   "germany_registration",
+  "spain_registration",
   "night_cap",
   "tourist_tax",
 ];
@@ -217,6 +225,13 @@ export function PropertiesView({
           }
           if (statusFilter === "germany_registration") {
             return needsGermanyRegistrationAttention(
+              property.country,
+              property.registration,
+              property.city
+            );
+          }
+          if (statusFilter === "spain_registration") {
+            return needsSpainRegistrationAttention(
               property.country,
               property.registration,
               property.city

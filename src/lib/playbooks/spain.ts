@@ -1,4 +1,8 @@
 import type { Playbook, PlaybookStep } from "./types";
+import {
+  SPAIN_BARCELONA_REGISTRATION_PLAYBOOK,
+  SPAIN_CATALONIA_PLAYBOOK,
+} from "./catalonia";
 
 const SES_PORTAL_URL = "https://hospedajes.ses.mir.es/hospedajes-web/";
 const SES_PORTAL_TEST_URL = "https://hospedajes.pre-ses.mir.es/hospedajes-web/";
@@ -227,132 +231,7 @@ export const SPAIN_MADRID_PLAYBOOK: Playbook = {
   ],
 };
 
-export const SPAIN_BARCELONA_PLAYBOOK: Playbook = {
-  id: "es-barcelona",
-  country: "Spain",
-  city: "Barcelona",
-  sourceReviewedAt: "2026-09-12",
-  title: {
-    en: "Barcelona — regional system (not SES)",
-    fr: "Barcelone — système régional (pas SES)",
-  },
-  description: {
-    en: "Barcelona is in Catalonia, which uses the Mossos d'Esquadra regional guest-reporting system — not SES.HOSPEDAJES. This playbook covers HUT registration and regional obligations.",
-    fr: "Barcelone est en Catalogne, qui utilise le système régional Mossos d'Esquadra — pas SES.HOSPEDAJES. Ce guide couvre l'enregistrement HUT et les obligations régionales.",
-  },
-  steps: [
-    esSteps.postNruaContext(),
-    {
-      key: "barcelona-hut-registration",
-      title: {
-        en: "Register HUT with Generalitat de Catalunya",
-        fr: "Enregistrer HUT auprès de la Generalitat de Catalunya",
-      },
-      instruction: {
-        en: "Obtain your HUT (Habitatge d'Ús Turístic) number from the Catalan tourism register. Barcelona has additional municipal requirements and zone restrictions.",
-        fr: "Obtenez votre numéro HUT (Habitatge d'Ús Turístic) auprès du registre touristique catalan. Barcelone a des exigences municipales et restrictions de zone supplémentaires.",
-      },
-      officialUrls: [
-        {
-          url: "https://empresa.gencat.cat/web/.content/20_-_Turisme/Documents/Registre_dallotjaments_turistics.pdf",
-          label: {
-            en: "Generalitat — tourist accommodation register (verify current portal)",
-            fr: "Generalitat — registre hébergements touristiques",
-          },
-          role: "portal",
-          urlVerified: false,
-        },
-        {
-          url: "https://www.barcelona.cat/internationalwelcome/en/tourism-housing",
-          label: {
-            en: "Barcelona City — tourism housing rules",
-            fr: "Ville de Barcelone — logements touristiques",
-          },
-          role: "rules",
-          urlVerified: true,
-        },
-      ],
-      documents: {
-        en: ["NIE/NIF", "Property cadastral reference", "Community approval if required"],
-        fr: ["NIE/NIF", "Référence cadastrale", "Accord copropriété si requis"],
-      },
-      fieldHints: ["name", "address", "city", "propertyType"],
-    },
-    {
-      key: "barcelona-mossos-enrollment",
-      title: {
-        en: "Enroll establishment with Mossos (PI-15 alta)",
-        fr: "Inscrire l'établissement auprès des Mossos (alta PI-15)",
-      },
-      instruction: {
-        en: "Before your first guest report, register your establishment with Mossos d'Esquadra via the PI-15 procedure (Canal Empresa / ACCIÓ). Obtain your establishment code. Do NOT also submit to SES.HOSPEDAJES — Catalonia uses Mossos Hotels only.",
-        fr: "Avant votre première déclaration, inscrivez votre établissement auprès des Mossos d'Esquadra via la procédure PI-15 (Canal Empresa / ACCIÓ). Obtenez votre code établissement. Ne soumettez PAS aussi à SES.HOSPEDAJES — la Catalogne utilise uniquement Mossos Hotels.",
-      },
-      officialUrls: [
-        {
-          url: "https://empresa.gencat.cat/ca/ambits-actuacio/turisme/registre-allotjaments-turistics",
-          label: {
-            en: "Generalitat — tourist accommodation register & PI-15",
-            fr: "Generalitat — registre hébergements touristiques et PI-15",
-          },
-          role: "portal",
-          urlVerified: true,
-        },
-      ],
-      documents: {
-        en: ["HUT number", "NIE/NIF", "Property address", "Establishment type"],
-        fr: ["Numéro HUT", "NIE/NIF", "Adresse du bien", "Type d'établissement"],
-      },
-      fieldHints: ["name", "address", "city"],
-    },
-    {
-      key: "barcelona-mossos-guest-reporting",
-      title: {
-        en: "Report guests via Mossos Hotels within 24h",
-        fr: "Déclarer les voyageurs via Mossos Hotels sous 24h",
-      },
-      instruction: {
-        en: "Collect Annex I guest data via Glint check-in link, then export the fitxa/CSV and enter data manually on the Mossos Hotels portal (registreviatgers.mossos.gencat.cat). Glint prepares and validates — you submit on the official portal. Retain records 3 years (RD 933/2021).",
-        fr: "Collectez les données Annexe I via le lien check-in Glint, puis exportez la fitxa/CSV et saisissez les données manuellement sur le portail Mossos Hotels. Glint prépare et valide — vous soumettez sur le portail officiel. Conservez les registres 3 ans (RD 933/2021).",
-      },
-      officialUrls: [
-        {
-          url: "https://registreviatgers.mossos.gencat.cat/mossos_hotels/",
-          label: {
-            en: "Mossos Hotels — guest register portal",
-            fr: "Mossos Hotels — portail registre voyageurs",
-          },
-          role: "portal",
-          urlVerified: true,
-        },
-        {
-          url: "https://registreviatgers.mossos.gencat.cat/mossos_hotels/AppJava/login.do",
-          label: {
-            en: "Mossos Hotels — login",
-            fr: "Mossos Hotels — connexion",
-          },
-          role: "portal",
-          urlVerified: true,
-        },
-      ],
-      documents: {
-        en: ["Annex I guest data (from Glint export)", "Establishment code", "Check-in/check-out dates"],
-        fr: ["Données Annexe I (export Glint)", "Code établissement", "Dates arrivée/départ"],
-      },
-      timeline: {
-        en: "Within 24 hours of check-in. Retain register 3 years.",
-        fr: "Sous 24 heures après l'arrivée. Conserver le registre 3 ans.",
-      },
-      pitfalls: {
-        en: "Do not also submit to SES.HOSPEDAJES. Competitors like RegistroViajero only cover SES — Glint handles Mossos ops for multi-region Spain portfolios.",
-        fr: "Ne soumettez pas aussi à SES.HOSPEDAJES. Des concurrents comme RegistroViajero ne couvrent que le SES — Glint gère les ops Mossos pour les portefeuilles multi-régions.",
-      },
-      fieldHints: ["address", "city"],
-    },
-    esSteps.taxObligations("barcelona"),
-    esSteps.updatePlatforms("barcelona"),
-  ],
-};
+export const SPAIN_BARCELONA_PLAYBOOK = SPAIN_BARCELONA_REGISTRATION_PLAYBOOK;
 
 export const SPAIN_VALENCIA_PLAYBOOK: Playbook = {
   id: "es-valencia",
@@ -628,6 +507,7 @@ export const SPAIN_GENERIC_PLAYBOOK: Playbook = {
 export const SPAIN_PLAYBOOKS: Playbook[] = [
   SPAIN_MADRID_PLAYBOOK,
   SPAIN_BARCELONA_PLAYBOOK,
+  SPAIN_CATALONIA_PLAYBOOK,
   SPAIN_BILBAO_PLAYBOOK,
   SPAIN_DONOSTIA_PLAYBOOK,
   SPAIN_VITORIA_PLAYBOOK,

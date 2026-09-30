@@ -154,6 +154,10 @@
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
+    },
+    "toolStrPrePurchaseJourney": {
+      "title": "Parcours d'achat LCD Espagne (Barcelone / Catalogne)",
+      "description": "Checklist opérationnelle avant achat en Catalogne: règles de zone sourcées, recherche HUT open data, documents à demander. Pas un conseil juridique."
     }
   },
   "guides": {
@@ -564,6 +568,7 @@
     "barcelonaStrRegistration": {
       "title": "Enregistrement location courte durée Barcelone (HUT)",
       "updated": "Mis à jour : septembre 2026",
+      "prePurchaseToolLink": "Ouvrir le parcours public d'achat (règles de zone et recherche HUT)",
       "intro": "La Catalogne enregistre les logements touristiques au Registre de Turisme de Catalunya (HUT). Le Tribunal suprême espagnol (STS 620/2026) a annulé le registre national NRUA pour la vérification sur les plateformes. Les OTA attendent votre HUT régional au titre du règlement (UE) 2024/1028. La déclaration voyageurs en Catalogne passe par Mossos Hotels, pas SES.HOSPEDAJES. Glint Host Registry aide à préparer les dossiers et suivre les numéros. Nous ne déposons pas sur les portails Generalitat ou municipalité de Barcelone.",
       "sections": {
         "nrua": {
@@ -945,6 +950,7 @@
       "guideMunichAirbnbRegistration": "Airbnb Munich / ZeS",
       "guideBarcelonaStrRegistration": "LCD Barcelone (HUT)",
       "guideBarcelonaAirbnbRegistration": "Airbnb Barcelone / HUT",
+      "toolStrPrePurchase": "Parcours achat LCD (Espagne)",
       "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
@@ -3147,6 +3153,54 @@
       "changesTitle": "Changements de règles",
       "publishedLabel": "Publié",
       "draftLabel": "Brouillon"
+    }
+  },
+  "prePurchase": {
+    "pageTitle": "Parcours d'achat location courte durée (Espagne)",
+    "pageDescription": "Checklist opérationnelle pour acheteurs en Catalogne et Barcelone: règles de zone avec sources officielles, recherche registre touristique catalan, documents à demander. Pas un conseil juridique.",
+    "pageLead": "Checklist partageable pour l'Espagne (focus Catalogne, règles municipales Barcelone si sélectionné). Rien n'est stocké côté serveur: l'état est uniquement dans l'URL.",
+    "eyebrow": "Outil public",
+    "barcelonaGuideLink": "Guide hôte HUT Barcelone",
+    "disclaimer": {
+      "title": "Aide opérationnelle uniquement",
+      "body": "Glint publie des repères pratiques pour hôtes et acheteurs. Ce n'est pas un conseil juridique, une due diligence notariale, ni une recommandation d'acheter ou de renoncer. Confirmez chaque point avec des professionnels et les autorités officielles."
+    },
+    "form": {
+      "country": "Pays",
+      "countryPlaceholder": "Choisir le pays",
+      "countrySpain": "Espagne",
+      "region": "Communauté autonome",
+      "regionPlaceholder": "Choisir la région",
+      "regionCatalonia": "Catalogne",
+      "regionOther": "Autre Espagne (non couvert pour l'instant)",
+      "municipality": "Municipalité",
+      "municipalityPlaceholder": "ex. Barcelona",
+      "address": "Adresse ou URL d'annonce",
+      "addressPlaceholder": "Rue, lien d'annonce ou référence interne",
+      "addressHint": "Texte libre pour vos notes. Nous ne le stockons pas côté serveur.",
+      "licence": "Numéro de licence / HUT",
+      "licencePlaceholder": "ex. HUTB-012345",
+      "submit": "Mettre à jour la checklist",
+      "submitting": "Mise à jour..."
+    },
+    "results": {
+      "flagsTitle": "Signaux",
+      "lookupTitle": "Recherche registre touristique Catalogne",
+      "lookupStatus": "Résultat",
+      "lookupStatus_found": "Trouvé dans l'open data",
+      "lookupStatus_not_found": "Introuvable dans l'open data",
+      "lookupStatus_uncertain": "Incertain",
+      "lookupNumber": "Numéro normalisé",
+      "datasetDate": "Dernière mise à jour open data (métadonnées)",
+      "recordType": "Type d'établissement",
+      "recordStatus": "Statut registre",
+      "recordMunicipality": "Municipalité",
+      "recordPostal": "Code postal",
+      "recordAddress": "Adresse dans le jeu de données",
+      "rulesTitle": "Repères zone et régime",
+      "documentsTitle": "Documents à demander",
+      "confidence_to_confirm": "À confirmer",
+      "reviewedAt": "Source relue le {date}"
     }
   },
   "common": {

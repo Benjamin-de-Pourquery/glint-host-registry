@@ -29,6 +29,11 @@ export default async function GuideBarcelonaStrRegistrationFrPage({ params }: Pr
       <p>{t("sections.mossos.body")}</p>
       <h2>{t("sections.glint.title")}</h2>
       <p>{t("sections.glint.body")}</p>
+      <p>
+        <a href={`/${locale}/outils/parcours-achat-location-courte-duree`}>
+          {t("prePurchaseToolLink")}
+        </a>
+      </p>
     </GuideLayout>
   );
 }

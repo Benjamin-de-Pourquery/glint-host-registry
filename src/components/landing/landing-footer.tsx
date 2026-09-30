@@ -231,6 +231,18 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
+                  href={
+                    locale === "fr"
+                      ? `/${locale}/outils/parcours-achat-location-courte-duree`
+                      : `/${locale}/tools/str-pre-purchase-journey`
+                  }
+                  className="transition-colors hover:text-white"
+                >
+                  {t("toolStrPrePurchase")}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${locale}/guides/barcelona-airbnb-registration`}
                   className="transition-colors hover:text-white"
                 >

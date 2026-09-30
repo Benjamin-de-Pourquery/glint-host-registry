@@ -29,6 +29,9 @@ export default async function GuideBarcelonaStrRegistrationPage({ params }: Prop
       <p>{t("sections.mossos.body")}</p>
       <h2>{t("sections.glint.title")}</h2>
       <p>{t("sections.glint.body")}</p>
+      <p>
+        <a href={`/${locale}/tools/str-pre-purchase-journey`}>{t("prePurchaseToolLink")}</a>
+      </p>
     </GuideLayout>
   );
 }

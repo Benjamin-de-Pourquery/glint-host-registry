@@ -21,5 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  entries.push({
+    url: `${siteUrl}/en/tools/str-pre-purchase-journey`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.65,
+  });
+  entries.push({
+    url: `${siteUrl}/fr/outils/parcours-achat-location-courte-duree`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.65,
+  });
+
   return entries;
 }

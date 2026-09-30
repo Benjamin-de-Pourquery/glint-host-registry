@@ -151,6 +151,22 @@
       "title": "Airbnb Barcelone et HUT: guide hôte",
       "description": "Champ HUT sur les annonces, checklist affichage, Mossos pour les voyageurs. Pas de dépôt automatique."
     },
+    "guideMadridStrRegistration": {
+      "title": "Enregistrement location courte durée Madrid: guide VUT",
+      "description": "VUT Communauté de Madrid post-STS 620/2026, CIVUT et Décret 27/2026, contrôles municipaux, SES.HOSPEDAJES. Pas de dépôt automatique."
+    },
+    "guideMadridStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Madrid: guide VUT (FR)",
+      "description": "VUT Communauté de Madrid, affichage plateformes UE 2024/1028, déclaration SES. Host Registry ne dépose pas aux autorités."
+    },
+    "guideMadridAirbnbRegistration": {
+      "title": "Airbnb Madrid et VUT: guide conformité",
+      "description": "Numéro VUT sur Airbnb et Booking, PEH à confirmer par adresse, SES pour les voyageurs."
+    },
+    "guideMadridAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Madrid: guide VUT",
+      "description": "VUT régional sur les annonces, checklist affichage, SES distinct des Mossos."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -615,6 +631,64 @@
         }
       }
     },
+    "madridStrRegistration": {
+      "title": "Enregistrement location courte durée Madrid (VUT)",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "La Communauté de Madrid enregistre les viviendas de uso turístico (VUT) au Registro de Empresas Turísticas. Le STS 620/2026 a annulé le NRUA national pour la vérification des annonces. Les plateformes attendent votre VUT régional au titre du règlement (UE) 2024/1028. La déclaration voyageurs à Madrid passe par SES.HOSPEDAJES, pas Mossos. Host Registry aide à préparer les dossiers. Pas de dépôt automatique aux autorités.",
+      "sections": {
+        "nrua": {
+          "title": "NRUA vs VUT après STS 620/2026",
+          "body": "N'utilisez pas un code NRUA obsolète comme numéro Airbnb ou Booking. L'identifiant opérationnel est votre enregistrement VUT régional."
+        },
+        "decreto": {
+          "title": "Décret 79/2014 et Décret 27/2026",
+          "body": "Le cadre VUT est modifié par le Décret 27/2026 (BOCM, en vigueur au 26 avril 2026) : CIVUT, accord copropriété 3/5 LPH, interdiction en logement protégé, minima techniques. Adaptation possible jusqu'à trois ans pour les VUT existants."
+        },
+        "regional": {
+          "title": "Déclaration responsable régionale",
+          "body": "Finalisez la déclaration responsable sur le portail de la Communauté de Madrid et enregistrez le numéro VUT dans Host Registry. Ce numéro est vérifié par les plateformes, pas la légalité urbanistique municipale."
+        },
+        "municipal": {
+          "title": "Licence municipale Madrid et PEH (à confirmer)",
+          "body": "Madrid capitale peut exiger une licence d'activité urbanistique. Le PEH peut imposer un accès indépendant selon les zones. Le zonage dépend de l'adresse : confirmez auprès de l'Ayuntamiento."
+        },
+        "platforms": {
+          "title": "Règlement UE 2024/1028",
+          "body": "Affichez le VUT sur chaque annonce OTA. Cochez l'affichage dans Host Registry par canal."
+        },
+        "ses": {
+          "title": "Déclaration SES (distincte)",
+          "body": "Sous 24 h après l'arrivée, déclarez les voyageurs sur SES.HOSPEDAJES (RD 933/2021). Mossos ne s'applique qu'en Catalogne."
+        },
+        "glint": {
+          "title": "Rôle de Host Registry",
+          "body": "Playbook Madrid, date de dossier, stockage VUT, checklist annonces, file SES et export pack preuve."
+        }
+      }
+    },
+    "madridAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Madrid sous règles VUT",
+      "updated": "Mis à jour : septembre 2026",
+      "intro": "Les hôtes Airbnb à Madrid ont besoin d'un VUT régional valide, de contrôles municipaux si applicable, et de SES pour les voyageurs.",
+      "sections": {
+        "airbnbField": {
+          "title": "Champ d'enregistrement Airbnb",
+          "body": "Saisissez votre référence VUT dans le champ licence Espagne. Même numéro sur Booking. Pas de NRUA après STS 620/2026."
+        },
+        "dossier": {
+          "title": "Avant de publier",
+          "body": "Préparez CIVUT, accord copropriété si requis, et vérifiez la licence municipale pour votre adresse."
+        },
+        "display": {
+          "title": "Checklist affichage",
+          "body": "Une fois le VUT actif, vérifiez l'interface annonce et cochez affiché sur les annonces dans Host Registry."
+        },
+        "glint": {
+          "title": "Workflow Host Registry",
+          "body": "Playbook Madrid, VUT enregistré, identifiants SES, registre voyageurs Annexe I. Ne pas envoyer les voyageurs Madrid aux Mossos."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatie: catégorisation hébergement et eVisitor",
       "updated": "Mis à jour : septembre 2026",
@@ -945,6 +1019,8 @@
       "guideMunichAirbnbRegistration": "Airbnb Munich / ZeS",
       "guideBarcelonaStrRegistration": "LCD Barcelone (HUT)",
       "guideBarcelonaAirbnbRegistration": "Airbnb Barcelone / HUT",
+      "guideMadridStrRegistration": "Madrid LCD (VUT)",
+      "guideMadridAirbnbRegistration": "Airbnb Madrid / VUT",
       "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
@@ -1228,7 +1304,7 @@
         "beRegistration": "Numéro d'enregistrement belge",
         "atRegistration": "Numéro d'enregistrement Autriche / Vienne",
         "deRegistration": "Numéro d'enregistrement LCD Allemagne",
-        "esRegistration": "Numéro HUT Espagne / Catalogne"
+        "esRegistration": "Enregistrement régional Espagne (HUT / VUT)"
       },
       "listings": {
         "urlsTitle": "Ajouter une annonce",
@@ -1524,7 +1600,7 @@
       "belgium_registration": "Enregistrement BE",
       "austria_registration": "Autriche / Vienne WKVRG",
       "germany_registration": "LCD Allemagne (Berlin / Munich)",
-      "spain_registration": "Espagne / Catalogne HUT",
+      "spain_registration": "Espagne / Catalogne HUT ou Madrid VUT",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
     }
@@ -3015,31 +3091,44 @@
   "es": {
     "compliance": {
       "titleCatalonia": "Conformité HUT Espagne / Catalogne",
+      "titleMadrid": "Conformité VUT Espagne / Communauté de Madrid",
       "description": "Suivez le dossier HUT, le numéro régional et l'affichage sur les annonces (UE 2024/1028). La déclaration Mossos est distincte de SES.HOSPEDAJES.",
+      "descriptionMadrid": "Suivez le dossier VUT (CIVUT, copropriété, règles techniques), le numéro régional et l'affichage (UE 2024/1028). La déclaration voyageurs passe par SES.HOSPEDAJES, pas Mossos.",
       "nruaNotice": "Après STS 620/2026, le NRUA n'est plus le numéro vérifié par les plateformes. Utilisez votre HUT catalan au Registre de Turisme de Catalunya.",
+      "nruaNoticeMadrid": "Après STS 620/2026, le NRUA n'est plus le numéro vérifié. Utilisez votre enregistrement VUT au Registro de Empresas Turísticas. Un numéro régional ne prouve pas la conformité urbanistique municipale.",
       "autonomousCommunity": "Communauté autonome",
       "community": {
-        "catalonia": "Catalogne"
+        "catalonia": "Catalogne",
+        "madrid": "Communauté de Madrid"
       },
       "licenseKind": "Type de licence",
       "licenseKind.hut": "HUT (habitatge d'ús turístic)",
+      "licenseKind.vut": "VUT (vivienda de uso turístico)",
       "licenseKind.other": "Autre (hors périmètre)",
       "dossierPreparedAt": "Dossier prêt le",
       "registrationNumber": "Numéro HUT",
+      "registrationNumberVut": "Numéro VUT",
       "registrationNumberPlaceholder": "HUT-000000",
+      "registrationNumberVutPlaceholder": "Référence VUT régionale",
       "hutFormatHint": "Les numéros catalans commencent en général par HUT. Vérifiez avec votre certificat Generalitat.",
+      "vutFormatHint": "Les numéros VUT proviennent du registre régional (pas HUT). Vérifiez avec votre accusé Comunidad de Madrid.",
       "registrationStatus": "Statut d'enregistrement",
       "displayedOnListings": "HUT affiché sur toutes les annonces",
+      "displayedOnListingsVut": "VUT affiché sur toutes les annonces",
       "links": {
         "cataloniaRegister": "Registre touristique catalan (open data)",
         "barcelonaRules": "Tourisme municipal Barcelone",
+        "madridRegister": "Registre VUT Communauté de Madrid",
+        "madridCity": "Tourisme Ayuntamiento de Madrid",
         "eu1028": "Règlement UE 2024/1028",
         "rd933": "RD 933/2021 (déclaration voyageurs)"
       },
       "disclaimer": "Host Registry est un outil opérationnel édité par Glint. Vous déposez vous-même auprès de la Generalitat, de la municipalité et de Mossos. Pas de dépôt automatique.",
+      "disclaimerMadrid": "Host Registry est un outil opérationnel édité par Glint. Vous déposez vous-même auprès de la Communauté de Madrid, de la mairie et de SES.HOSPEDAJES. Pas de dépôt automatique.",
       "save": "Enregistrer",
       "saving": "Enregistrement…",
-      "saved": "Conformité Catalogne enregistrée",
+      "savedCatalonia": "Conformité Catalogne enregistrée",
+      "savedMadrid": "Conformité VUT Madrid enregistrée",
       "saveError": "Échec de l'enregistrement",
       "status": {
         "not_started": "Non démarré",

@@ -6,8 +6,24 @@ import {
 } from "../registration-compliance";
 
 describe("needsSpainRegistrationAttention", () => {
-  it("ignores non-Catalonia Spain", () => {
-    assert.equal(needsSpainRegistrationAttention("Spain", null, "Madrid"), false);
+  it("flags incomplete Madrid dossier", () => {
+    assert.equal(
+      needsSpainRegistrationAttention(
+        "Spain",
+        {
+          esAutonomousCommunity: "madrid",
+          esLicenseKind: null,
+          esDossierPreparedAt: null,
+          esRegistrationStatus: "not_started",
+        },
+        "Madrid"
+      ),
+      true
+    );
+  });
+
+  it("ignores non-supported Spain cities", () => {
+    assert.equal(needsSpainRegistrationAttention("Spain", null, "Valencia"), false);
   });
 
   it("flags incomplete Barcelona dossier", () => {
@@ -44,7 +60,7 @@ describe("needsSpainRegistrationAttention", () => {
     );
   });
 
-  it("clears when complete", () => {
+  it("clears when Catalonia complete", () => {
     assert.equal(
       needsSpainRegistrationAttention(
         "Spain",
@@ -57,6 +73,24 @@ describe("needsSpainRegistrationAttention", () => {
           esRegistrationDisplayedOnListings: true,
         },
         "Barcelona"
+      ),
+      false
+    );
+  });
+
+  it("clears when Madrid VUT complete", () => {
+    assert.equal(
+      needsSpainRegistrationAttention(
+        "Spain",
+        {
+          esAutonomousCommunity: "madrid",
+          esLicenseKind: "vut",
+          esDossierPreparedAt: "2026-09-01",
+          esRegistrationNumber: "VUT-REG-9988",
+          esRegistrationStatus: "active",
+          esRegistrationDisplayedOnListings: true,
+        },
+        "Madrid"
       ),
       false
     );

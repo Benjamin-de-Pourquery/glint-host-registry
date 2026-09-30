@@ -1,6 +1,10 @@
 import { FRANCE_PLAYBOOKS } from "./france";
 import { SPAIN_PLAYBOOKS } from "./spain";
-import { isCataloniaLocation, isSpainCountry } from "@/lib/spain/regions";
+import {
+  isCataloniaLocation,
+  isMadridLocation,
+  isSpainCountry,
+} from "@/lib/spain/regions";
 import { ITALY_PLAYBOOKS } from "./italy";
 import { PORTUGAL_PLAYBOOKS } from "./portugal";
 import { GREECE_PLAYBOOKS } from "./greece";
@@ -259,6 +263,20 @@ export function resolvePlaybook(country: string, city: string): Playbook | null 
     if (cityPlaybook) return cityPlaybook;
     const cataloniaPlaybook = ALL_PLAYBOOKS.find((p) => p.id === "es-catalonia");
     if (cataloniaPlaybook) return cataloniaPlaybook;
+  }
+
+  if (isSpainCountry(normalizedCountry) && isMadridLocation(normalizedCity)) {
+    const cityPlaybook = ALL_PLAYBOOKS.find(
+      (p) =>
+        p.country === normalizedCountry &&
+        p.city &&
+        p.city.toLowerCase() === normalizedCity.toLowerCase()
+    );
+    if (cityPlaybook) return cityPlaybook;
+    const madridCommunityPlaybook = ALL_PLAYBOOKS.find(
+      (p) => p.id === "es-madrid-community"
+    );
+    if (madridCommunityPlaybook) return madridCommunityPlaybook;
   }
 
   const cityPlaybook = ALL_PLAYBOOKS.find(

@@ -3,6 +3,10 @@ import {
   SPAIN_BARCELONA_REGISTRATION_PLAYBOOK,
   SPAIN_CATALONIA_PLAYBOOK,
 } from "./catalonia";
+import {
+  SPAIN_MADRID_CAPITAL_PLAYBOOK,
+  SPAIN_MADRID_COMMUNITY_PLAYBOOK,
+} from "./madrid";
 
 const SES_PORTAL_URL = "https://hospedajes.ses.mir.es/hospedajes-web/";
 const SES_PORTAL_TEST_URL = "https://hospedajes.pre-ses.mir.es/hospedajes-web/";
@@ -190,46 +194,7 @@ const esSteps = {
   }),
 };
 
-export const SPAIN_MADRID_PLAYBOOK: Playbook = {
-  id: "es-madrid",
-  country: "Spain",
-  city: "Madrid",
-  sourceReviewedAt: "2026-09-12",
-  title: {
-    en: "Madrid — tourist rental & SES compliance",
-    fr: "Madrid — location touristique et conformité SES",
-  },
-  description: {
-    en: "Guided steps for Madrid Community short-term rentals: regional VUT registration, SES guest reporting, taxes, and platform updates.",
-    fr: "Étapes guidées pour les locations courte durée à Madrid : enregistrement VUT régional, déclaration SES, taxes et mises à jour plateformes.",
-  },
-  steps: [
-    esSteps.postNruaContext(),
-    {
-      ...esSteps.regionalLicense("madrid", { en: "Comunidad de Madrid", fr: "Communauté de Madrid" }),
-      officialUrls: [
-        {
-          url: "https://www.comunidad.madrid/servicios/hacienda/registro-viviendas-uso-turistico",
-          label: {
-            en: "Madrid — VUT tourist housing register",
-            fr: "Madrid — registre VUT hébergement touristique",
-          },
-          role: "portal",
-          urlVerified: true,
-        },
-        {
-          url: EU_1028_URL,
-          label: { en: "EU Regulation 2024/1028", fr: "Règlement UE 2024/1028" },
-          role: "rules",
-          urlVerified: true,
-        },
-      ],
-    },
-    esSteps.sesHospedajes("madrid"),
-    esSteps.taxObligations("madrid"),
-    esSteps.updatePlatforms("madrid"),
-  ],
-};
+export const SPAIN_MADRID_PLAYBOOK = SPAIN_MADRID_CAPITAL_PLAYBOOK;
 
 export const SPAIN_BARCELONA_PLAYBOOK = SPAIN_BARCELONA_REGISTRATION_PLAYBOOK;
 
@@ -506,6 +471,7 @@ export const SPAIN_GENERIC_PLAYBOOK: Playbook = {
 
 export const SPAIN_PLAYBOOKS: Playbook[] = [
   SPAIN_MADRID_PLAYBOOK,
+  SPAIN_MADRID_COMMUNITY_PLAYBOOK,
   SPAIN_BARCELONA_PLAYBOOK,
   SPAIN_CATALONIA_PLAYBOOK,
   SPAIN_BILBAO_PLAYBOOK,

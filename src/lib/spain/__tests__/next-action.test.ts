@@ -13,6 +13,16 @@ describe("Catalonia playbook resolution", () => {
   });
 });
 
+describe("Madrid playbook resolution", () => {
+  it("resolves Madrid capital to es-madrid", () => {
+    assert.equal(resolvePlaybook("Spain", "Madrid")?.id, "es-madrid");
+  });
+
+  it("resolves Getafe to es-madrid-community", () => {
+    assert.equal(resolvePlaybook("Spain", "Getafe")?.id, "es-madrid-community");
+  });
+});
+
 describe("Spain registration next action", () => {
   it("prioritizes community confirmation before dossier", () => {
     const playbook = resolvePlaybook("Spain", "Barcelona")!;
@@ -54,5 +64,24 @@ describe("Spain registration next action", () => {
       }
     );
     assert.equal(step?.key, "barcelona-display-es-registration");
+  });
+
+  it("prioritizes Madrid community confirmation", () => {
+    const playbook = resolvePlaybook("Spain", "Madrid")!;
+    const step = getEffectiveNextStepForSpainRegistration(
+      playbook,
+      [],
+      null,
+      {
+        country: "Spain",
+        city: "Madrid",
+        esAutonomousCommunity: null,
+        hasEsRegistrationNumber: false,
+        isDossierPrepared: false,
+        isLicenseKindSet: false,
+        isDisplayedOnListings: false,
+      }
+    );
+    assert.equal(step?.key, "madrid-es-autonomous-community");
   });
 });

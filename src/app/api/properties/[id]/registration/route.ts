@@ -150,8 +150,8 @@ const schema = z.object({
     ])
     .optional(),
   esRegistrationDisplayedOnListings: z.boolean().optional(),
-  esAutonomousCommunity: z.enum(["catalonia", "other"]).nullable().optional(),
-  esLicenseKind: z.enum(["hut", "other"]).nullable().optional(),
+  esAutonomousCommunity: z.enum(["catalonia", "madrid", "other"]).nullable().optional(),
+  esLicenseKind: z.enum(["hut", "vut", "other"]).nullable().optional(),
   esDossierPreparedAt: z.string().nullable().optional(),
 });
 
@@ -240,7 +240,10 @@ export async function PATCH(
           ? property.registration?.esAutonomousCommunity ??
             (() => {
               const inferred = getSpainAutonomousCommunity(property.city);
-              return inferred === "catalonia" ? "catalonia" : inferred === "other" ? "other" : null;
+              if (inferred === "catalonia") return "catalonia";
+              if (inferred === "madrid") return "madrid";
+              if (inferred === "other") return "other";
+              return null;
             })()
           : null;
 

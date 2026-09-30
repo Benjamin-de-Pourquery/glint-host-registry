@@ -94,6 +94,71 @@ const PAGE_PATHS: Record<SeoPageKey, string> = {
   guideFrNerMigration: "/guides/migration-ner-2026",
 };
 
+/** City guides with distinct EN and FR URL slugs (same topic, locale-specific paths). */
+const GUIDE_LOCALE_PAIRS: ReadonlyArray<readonly [SeoPageKey, SeoPageKey]> = [
+  ["guideBelgiumStrRegistration", "guideBelgiumStrRegistrationFr"],
+  ["guideBrusselsAirbnbRegistration", "guideBrusselsAirbnbRegistrationFr"],
+  ["guideViennaStrRegistration", "guideViennaStrRegistrationFr"],
+  ["guideViennaAirbnbRegistration", "guideViennaAirbnbRegistrationFr"],
+  ["guideBerlinStrRegistration", "guideBerlinStrRegistrationFr"],
+  ["guideBerlinAirbnbRegistration", "guideBerlinAirbnbRegistrationFr"],
+  ["guideMunichStrRegistration", "guideMunichStrRegistrationFr"],
+  ["guideMunichAirbnbRegistration", "guideMunichAirbnbRegistrationFr"],
+  ["guideBarcelonaStrRegistration", "guideBarcelonaStrRegistrationFr"],
+  ["guideBarcelonaAirbnbRegistration", "guideBarcelonaAirbnbRegistrationFr"],
+  ["guideMadridStrRegistration", "guideMadridStrRegistrationFr"],
+  ["guideMadridAirbnbRegistration", "guideMadridAirbnbRegistrationFr"],
+];
+
+const PAGE_LOCALE_PAIR = new Map<SeoPageKey, { en: SeoPageKey; fr: SeoPageKey }>();
+for (const [enKey, frKey] of GUIDE_LOCALE_PAIRS) {
+  PAGE_LOCALE_PAIR.set(enKey, { en: enKey, fr: frKey });
+  PAGE_LOCALE_PAIR.set(frKey, { en: enKey, fr: frKey });
+}
+
+const GUIDE_SLUG_TO_PAGE = new Map<string, SeoPageKey>();
+for (const [page, path] of Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>) {
+  if (!path.startsWith("/guides/")) continue;
+  GUIDE_SLUG_TO_PAGE.set(path.slice("/guides/".length), page);
+}
+
+export function getPageLocales(page: SeoPageKey): Locale[] {
+  if (PAGE_LOCALE_PAIR.has(page)) {
+    return page.endsWith("Fr") ? ["fr"] : ["en"];
+  }
+  return [...routing.locales];
+}
+
+export function getLocalizedPageKey(page: SeoPageKey, locale: Locale): SeoPageKey {
+  const pair = PAGE_LOCALE_PAIR.get(page);
+  if (pair) {
+    return locale === "fr" ? pair.fr : pair.en;
+  }
+  return page;
+}
+
+/**
+ * When a guide slug is valid but not for the requested locale, return the
+ * locale-correct path (308 target). Unknown slugs return null (404).
+ */
+export function resolveGuideSlugRedirect(locale: Locale, slug: string): string | null {
+  const page = GUIDE_SLUG_TO_PAGE.get(slug);
+  if (!page) {
+    return null;
+  }
+  if (getPageLocales(page).includes(locale)) {
+    return null;
+  }
+  const targetPage = getLocalizedPageKey(page, locale);
+  const targetPath = PAGE_PATHS[targetPage];
+  return `/${locale}${targetPath}`;
+}
+
+/** Branded document title (root layout template also appends the site name). */
+export function formatBrandedPageTitle(title: string): string {
+  return `${title} | ${SITE_NAME}`;
+}
+
 function localeOpenGraphLocale(locale: Locale): string {
   return locale === "fr" ? "fr_FR" : "en_US";
 }
@@ -105,7 +170,8 @@ function alternateOpenGraphLocales(locale: Locale): string[] {
 }
 
 export function buildLocalizedPath(locale: Locale, page: SeoPageKey): string {
-  const suffix = PAGE_PATHS[page];
+  const localizedPage = getLocalizedPageKey(page, locale);
+  const suffix = PAGE_PATHS[localizedPage];
   return `/${locale}${suffix}`;
 }
 
@@ -114,6 +180,14 @@ export function buildCanonicalUrl(locale: Locale, page: SeoPageKey): string {
 }
 
 export function buildLanguageAlternates(page: SeoPageKey): Record<string, string> {
+  const pair = PAGE_LOCALE_PAIR.get(page);
+  if (pair) {
+    return {
+      en: buildCanonicalUrl("en", pair.en),
+      fr: buildCanonicalUrl("fr", pair.fr),
+      "x-default": buildCanonicalUrl(routing.defaultLocale, pair.en),
+    };
+  }
   const alternates: Record<string, string> = {};
   for (const locale of routing.locales) {
     alternates[locale] = buildCanonicalUrl(locale, page);
@@ -138,10 +212,10 @@ export function buildPageMetadata({
   noIndex = false,
 }: BuildMetadataOptions): Metadata {
   const canonical = buildCanonicalUrl(locale, page);
-  const fullTitle = page === "home" ? title : `${title} | ${SITE_NAME}`;
+  const brandedTitle = formatBrandedPageTitle(title);
 
   return {
-    title: fullTitle,
+    title,
     description,
     metadataBase: new URL(getSiteUrl()),
     alternates: {
@@ -154,12 +228,12 @@ export function buildPageMetadata({
       siteName: SITE_NAME,
       locale: localeOpenGraphLocale(locale),
       alternateLocale: alternateOpenGraphLocales(locale),
-      title: fullTitle,
+      title: brandedTitle,
       description,
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: brandedTitle,
       description,
     },
     robots: noIndex
@@ -176,8 +250,26 @@ export const NOINDEX_METADATA: Metadata = {
   },
 };
 
+export type PublicSitemapEntry = {
+  locale: Locale;
+  path: string;
+  page: SeoPageKey;
+};
+
+export function getPublicSitemapEntries(): PublicSitemapEntry[] {
+  const entries: PublicSitemapEntry[] = [];
+  for (const [page, path] of Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>) {
+    if (page === "forgotPassword" || page === "resetPassword") {
+      continue;
+    }
+    for (const locale of getPageLocales(page)) {
+      entries.push({ locale, path, page });
+    }
+  }
+  return entries;
+}
+
+/** @deprecated Use getPublicSitemapEntries for locale-aware sitemap rows. */
 export function getPublicSitemapPaths(): Array<{ path: string; page: SeoPageKey }> {
-  return (Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>)
-    .filter(([page]) => page !== "forgotPassword" && page !== "resetPassword")
-    .map(([page, path]) => ({ path, page }));
+  return getPublicSitemapEntries().map(({ path, page }) => ({ path, page }));
 }

@@ -4,3 +4,7 @@ export * from "./catalonia";
 export * from "./barcelona";
 export * from "./register-lookup";
 export * from "./evaluate-journey";
+export * from "./question-templates";
+export * from "./report";
+export * from "./signup-bridge";
+export * from "./render-report-pdf";

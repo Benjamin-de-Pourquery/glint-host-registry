@@ -3161,6 +3161,7 @@
     "pageLead": "Checklist partageable pour l'Espagne (focus Catalogne, règles municipales Barcelone si sélectionné). Rien n'est stocké côté serveur: l'état est uniquement dans l'URL.",
     "eyebrow": "Outil public",
     "barcelonaGuideLink": "Guide hôte HUT Barcelone",
+    "openPrintableReport": "Ouvrir le rapport imprimable (PDF ou impression)",
     "disclaimer": {
       "title": "Aide opérationnelle uniquement",
       "body": "Glint publie des repères pratiques pour hôtes et acheteurs. Ce n'est pas un conseil juridique, une due diligence notariale, ni une recommandation d'acheter ou de renoncer. Confirmez chaque point avec des professionnels et les autorités officielles."
@@ -3201,6 +3202,31 @@
       "documentsTitle": "Documents à demander",
       "confidence_to_confirm": "À confirmer",
       "reviewedAt": "Source relue le {date}"
+    },
+    "copy": {
+      "copy": "Copier dans le presse-papiers",
+      "copied": "Copié"
+    },
+    "questions": {
+      "title": "Modèles de questions écrites",
+      "hint": "Copiez-collez dans votre propre messagerie. Glint n'envoie pas de messages pour vous.",
+      "roleSeller": "Vendeur",
+      "roleSyndic": "Administrador de fincas",
+      "roleAgent": "Agent immobilier",
+      "copyBodyOnly": "Copier le corps seulement"
+    },
+    "signupCta": {
+      "title": "Après l'achat",
+      "body": "Suivez HUT, déclaration Mossos et affichage des annonces dans Glint Host Registry. Nous passons zone et numéro de licence dans le lien d'inscription si disponibles (aucune donnée stockée avant création de compte).",
+      "button": "Créer un compte Host Registry"
+    },
+    "report": {
+      "title": "Rapport imprimable parcours d'achat",
+      "backToJourney": "Retour à la checklist",
+      "generated": "Généré le {date}",
+      "datasetDate": "Métadonnées open data registre : {date}",
+      "print": "Imprimer",
+      "downloadPdf": "Télécharger PDF"
     }
   },
   "common": {

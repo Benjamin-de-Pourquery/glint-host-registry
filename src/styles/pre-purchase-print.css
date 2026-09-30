@@ -1,0 +1,15 @@
+@media print {
+  .pre-purchase-no-print {
+    display: none !important;
+  }
+
+  .pre-purchase-print-page {
+    background: white !important;
+    color: black !important;
+  }
+
+  .pre-purchase-print-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

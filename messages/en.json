@@ -154,6 +154,10 @@
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
+    },
+    "toolStrPrePurchaseJourney": {
+      "title": "Spain STR pre-purchase journey (Barcelona / Catalonia)",
+      "description": "Operational checklist before buying a short-term rental in Catalonia: sourced zone rules, HUT open data lookup, documents to request. Not legal advice."
     }
   },
   "guides": {
@@ -564,6 +568,7 @@
     "barcelonaStrRegistration": {
       "title": "Barcelona short-term rental registration (HUT)",
       "updated": "Updated: September 2026",
+      "prePurchaseToolLink": "Open the public pre-purchase journey (zone rules and HUT lookup)",
       "intro": "Catalonia registers tourist housing in the Registre de Turisme de Catalunya (HUT). Spain's Supreme Court STS 620/2026 annulled the national NRUA layer for listing verification. Platforms now expect your regional HUT under Regulation (EU) 2024/1028. Guest reporting in Catalonia uses Mossos Hotels, not SES.HOSPEDAJES. Glint Host Registry helps you prepare dossiers and track numbers. We do not submit to the Generalitat or Barcelona city portals.",
       "sections": {
         "nrua": {
@@ -945,6 +950,7 @@
       "guideMunichAirbnbRegistration": "Munich Airbnb / ZeS",
       "guideBarcelonaStrRegistration": "Barcelona STR (HUT)",
       "guideBarcelonaAirbnbRegistration": "Barcelona Airbnb / HUT",
+      "toolStrPrePurchase": "STR pre-purchase (Spain)",
       "guideFrNerMigration": "France NER migration 2026",
       "account": "Account",
       "legal": "Legal",
@@ -3147,6 +3153,54 @@
       "changesTitle": "Rule changes",
       "publishedLabel": "Published",
       "draftLabel": "Draft"
+    }
+  },
+  "prePurchase": {
+    "pageTitle": "Short-term rental pre-purchase journey (Spain)",
+    "pageDescription": "Operational checklist for buyers in Catalonia and Barcelona: zone rules with official sources, Catalan tourism register lookup, and documents to request. Not legal advice.",
+    "pageLead": "Shareable checklist for Spain (Catalonia focus, Barcelona municipal rules when selected). Nothing is stored on our servers: state lives in the URL query string only.",
+    "eyebrow": "Public tool",
+    "barcelonaGuideLink": "Barcelona HUT host guide",
+    "disclaimer": {
+      "title": "Operational help only",
+      "body": "Glint publishes practical pointers for hosts and buyers. This is not legal advice, notarial due diligence, or a recommendation to buy or walk away. Confirm every point with professionals and official authorities."
+    },
+    "form": {
+      "country": "Country",
+      "countryPlaceholder": "Select country",
+      "countrySpain": "Spain",
+      "region": "Autonomous community",
+      "regionPlaceholder": "Select region",
+      "regionCatalonia": "Catalonia",
+      "regionOther": "Other Spain (not covered yet)",
+      "municipality": "Municipality",
+      "municipalityPlaceholder": "e.g. Barcelona",
+      "address": "Address or listing URL",
+      "addressPlaceholder": "Street, listing link, or internal reference",
+      "addressHint": "Free text for your notes only. We do not store it server-side.",
+      "licence": "Licence / HUT number",
+      "licencePlaceholder": "e.g. HUTB-012345",
+      "submit": "Update checklist",
+      "submitting": "Updating..."
+    },
+    "results": {
+      "flagsTitle": "Flags",
+      "lookupTitle": "Catalonia tourism register lookup",
+      "lookupStatus": "Result",
+      "lookupStatus_found": "Found in open data",
+      "lookupStatus_not_found": "Not found in open data",
+      "lookupStatus_uncertain": "Uncertain",
+      "lookupNumber": "Normalised number",
+      "datasetDate": "Open data last update (metadata)",
+      "recordType": "Establishment type",
+      "recordStatus": "Register status",
+      "recordMunicipality": "Municipality",
+      "recordPostal": "Postal code",
+      "recordAddress": "Address in dataset",
+      "rulesTitle": "Zone and regime pointers",
+      "documentsTitle": "Documents to request",
+      "confidence_to_confirm": "To confirm",
+      "reviewedAt": "Source reviewed on {date}"
     }
   },
   "common": {

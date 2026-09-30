@@ -3161,6 +3161,7 @@
     "pageLead": "Shareable checklist for Spain (Catalonia focus, Barcelona municipal rules when selected). Nothing is stored on our servers: state lives in the URL query string only.",
     "eyebrow": "Public tool",
     "barcelonaGuideLink": "Barcelona HUT host guide",
+    "openPrintableReport": "Open printable report (PDF or print)",
     "disclaimer": {
       "title": "Operational help only",
       "body": "Glint publishes practical pointers for hosts and buyers. This is not legal advice, notarial due diligence, or a recommendation to buy or walk away. Confirm every point with professionals and official authorities."
@@ -3201,6 +3202,31 @@
       "documentsTitle": "Documents to request",
       "confidence_to_confirm": "To confirm",
       "reviewedAt": "Source reviewed on {date}"
+    },
+    "copy": {
+      "copy": "Copy to clipboard",
+      "copied": "Copied"
+    },
+    "questions": {
+      "title": "Written question templates",
+      "hint": "Copy and paste into your own email or messaging tool. Glint does not send messages for you.",
+      "roleSeller": "Seller",
+      "roleSyndic": "Property administrator (administrador de fincas)",
+      "roleAgent": "Estate agent",
+      "copyBodyOnly": "Copy body only"
+    },
+    "signupCta": {
+      "title": "After you complete the purchase",
+      "body": "Track HUT, Mossos guest reporting, and listing display in Glint Host Registry. We pass your zone and licence number in the signup link when available (no data stored until you create an account).",
+      "button": "Start Host Registry signup"
+    },
+    "report": {
+      "title": "Pre-purchase printable report",
+      "backToJourney": "Back to checklist",
+      "generated": "Generated {date}",
+      "datasetDate": "Register open data metadata: {date}",
+      "print": "Print",
+      "downloadPdf": "Download PDF"
     }
   },
   "common": {

@@ -6,6 +6,11 @@ export const PRE_PURCHASE_PATH: Record<Locale, string> = {
   fr: "/outils/parcours-achat-location-courte-duree",
 };
 
+export const PRE_PURCHASE_REPORT_PATH: Record<Locale, string> = {
+  en: "/tools/str-pre-purchase-journey/report",
+  fr: "/outils/parcours-achat-location-courte-duree/rapport",
+};
+
 export function prePurchasePathForLocale(locale: Locale): string {
   return PRE_PURCHASE_PATH[locale];
 }

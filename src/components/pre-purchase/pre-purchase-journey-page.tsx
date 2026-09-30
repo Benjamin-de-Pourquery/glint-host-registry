@@ -6,7 +6,11 @@ import { PrePurchaseDisclaimer } from "@/components/pre-purchase/pre-purchase-di
 import { PrePurchaseJourneyForm } from "@/components/pre-purchase/pre-purchase-journey-form";
 import { PrePurchaseResults } from "@/components/pre-purchase/pre-purchase-results";
 import { PrePurchaseJsonLd } from "@/components/pre-purchase/pre-purchase-json-ld";
+import { PrePurchaseQuestions } from "@/components/pre-purchase/pre-purchase-questions";
+import { PrePurchaseSignupCta } from "@/components/pre-purchase/pre-purchase-signup-cta";
 import { evaluatePrePurchaseJourney } from "@/lib/pre-purchase/evaluate-journey";
+import { generateQuestionTemplates } from "@/lib/pre-purchase/question-templates";
+import { PRE_PURCHASE_REPORT_PATH } from "@/lib/pre-purchase/paths";
 import {
   journeyInputFromSearchParams,
   normalizeJourneyInput,
@@ -77,7 +81,23 @@ export async function PrePurchaseJourneyPage({ locale: localeParam, searchParams
           <PrePurchaseJourneyForm initialInput={input} />
         </div>
 
-        {evaluation && <PrePurchaseResults locale={locale as Locale} evaluation={evaluation} />}
+        {evaluation && (
+          <>
+            <PrePurchaseResults locale={locale as Locale} evaluation={evaluation} />
+            <PrePurchaseQuestions
+              templates={generateQuestionTemplates(input, evaluation)}
+            />
+            <p className="mt-6 text-sm">
+              <Link
+                href={`/${locale}${PRE_PURCHASE_REPORT_PATH[locale as Locale]}?${params.toString()}`}
+                className="font-medium text-emerald-700 hover:underline"
+              >
+                {t("openPrintableReport")}
+              </Link>
+            </p>
+            <PrePurchaseSignupCta locale={locale as Locale} input={input} />
+          </>
+        )}
 
         <div className="mt-10">
           <PrePurchaseDisclaimer variant="compact" />

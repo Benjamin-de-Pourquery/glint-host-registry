@@ -32,6 +32,27 @@ export const ERTZAINTZA_PORTAL_URL =
 export const EUSKADI_HOSTELERO_URL =
   "https://www.euskadi.eus/informacion/tramitacion-registro-de-viajeros/web01a3wztram/es/";
 
+/** Comunidad de Madrid VUT tourist housing register (verified HTTP 200). */
+export const MADRID_VUT_REGISTER_URL =
+  "https://www.comunidad.madrid/servicios/hacienda/registro-viviendas-uso-turistico";
+
+/** Decreto 79/2014 Comunidad de Madrid — VUT framework (BOCM). */
+export const MADRID_DECRETO_79_2014_URL =
+  "https://www.bocm.es/bocm/2014/04/08/BOCM-20140408-1.PDF";
+
+/** Decreto 27/2026 Comunidad de Madrid — VUT amendments (BOCM). */
+export const MADRID_DECRETO_27_2026_URL =
+  "https://www.bocm.es/bocm/2026/04/26/BOCM-20260426-1.PDF";
+
+/** Ayuntamiento de Madrid tourism / urban planning entry point. */
+export const MADRID_AYUNTAMIENTO_TURISMO_URL =
+  "https://www.madrid.es/portales/munimadrid/es/Inicio/Turismo-y-Ocio/";
+
+export const SES_HOSPEDAJES_PORTAL_URL =
+  "https://hospedajes.ses.mir.es/hospedajes-web/";
+export const SES_HOSPEDAJES_TEST_URL =
+  "https://hospedajes.pre-ses.mir.es/hospedajes-web/";
+
 export function getOfficialPortalUrl(mode: SpainGuestReportingMode): string | null {
   switch (mode) {
     case "mossos":

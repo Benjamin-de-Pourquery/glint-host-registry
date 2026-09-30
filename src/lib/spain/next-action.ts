@@ -1,8 +1,10 @@
 import type { Playbook, PlaybookStep } from "@/lib/playbooks/types";
 import { getNextPendingStep } from "@/lib/playbooks";
 import {
+  getSpainAutonomousCommunity,
   isSpainCountry,
   supportsSpainStrRegistrationCompliance,
+  type SpainAutonomousCommunity,
 } from "./regions";
 
 export const ES_COMMUNITY_STEP_SUFFIX = "-es-autonomous-community";
@@ -63,13 +65,19 @@ export function getEffectiveNextStepForSpainRegistration(
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
 
   const communityStep = findStepBySuffix(playbook, ES_COMMUNITY_STEP_SUFFIX);
+  const expectedCommunity: SpainAutonomousCommunity | null =
+    getSpainAutonomousCommunity(context.city) === "catalonia" ||
+    getSpainAutonomousCommunity(context.city) === "madrid"
+      ? getSpainAutonomousCommunity(context.city)
+      : null;
   const missingCommunity =
-    context.esAutonomousCommunity !== "catalonia";
+    Boolean(expectedCommunity) &&
+    context.esAutonomousCommunity !== expectedCommunity;
 
   if (communityStep && missingCommunity) {
     const status = progressMap.get(communityStep.key);
     if (!status || status === "pending") {
-      if (pickEarlierStep(playbook, communityStep, defaultNext)) return communityStep;
+      return communityStep;
     }
   }
 

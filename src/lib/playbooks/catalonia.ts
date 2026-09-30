@@ -53,8 +53,8 @@ const cataloniaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       fr: "Confirmer la Catalogne comme communauté autonome",
     },
     instruction: {
-      en: "Host Registry tracks Catalonia (HUT) separately from other Spanish regions (VFT, VUT, VT, and others). Confirm Catalonia in the registration card before preparing your dossier. Andalusia and Madrid follow different regional registers and are out of scope for this playbook.",
-      fr: "Host Registry suit la Catalogne (HUT) séparément des autres régions espagnoles (VFT, VUT, VT, etc.). Confirmez la Catalogne dans la fiche d'enregistrement avant le dossier. L'Andalousie et Madrid relèvent d'autres registres régionaux, hors de ce playbook.",
+      en: "Host Registry tracks Catalonia (HUT) separately from Comunidad de Madrid (VUT) and other Spanish regions. Confirm Catalonia in the registration card before preparing your dossier. Madrid hosts should use the Madrid VUT playbook instead.",
+      fr: "Host Registry suit la Catalogne (HUT) séparément de la Communauté de Madrid (VUT) et des autres régions. Confirmez la Catalogne dans la fiche d'enregistrement avant le dossier. Les hôtes à Madrid doivent utiliser le playbook VUT Madrid.",
     },
     officialUrls: [
       {

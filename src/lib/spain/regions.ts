@@ -19,6 +19,31 @@ const BASQUE_PROVINCES = new Set([
   "gipuzkoa",
 ]);
 
+const MADRID_PROVINCES = new Set(["madrid"]);
+
+const MADRID_CITIES = new Set([
+  "madrid",
+  "alcalá de henares",
+  "alcala de henares",
+  "getafe",
+  "fuenlabrada",
+  "leganés",
+  "leganes",
+  "móstoles",
+  "mostoles",
+  "alcorcón",
+  "alcorcon",
+  "pozuelo de alarcón",
+  "pozuelo de alarcon",
+  "las rozas",
+  "san sebastián de los reyes",
+  "san sebastian de los reyes",
+  "rivas-vaciamadrid",
+  "rivas vaciamadrid",
+  "torrejón de ardoz",
+  "torrejon de ardoz",
+]);
+
 const CATALONIA_CITIES = new Set([
   "barcelona",
   "tarragona",
@@ -64,6 +89,16 @@ function isCatalonia(cityKey: string, regionKey: string): boolean {
     CATALONIA_CITIES.has(cityKey) ||
     regionKey.includes("catal") ||
     CATALONIA_PROVINCES.has(cityKey)
+  );
+}
+
+function isMadridCommunity(cityKey: string, regionKey: string): boolean {
+  return (
+    MADRID_CITIES.has(cityKey) ||
+    regionKey.includes("comunidad de madrid") ||
+    regionKey.includes("community of madrid") ||
+    regionKey === "madrid" ||
+    MADRID_PROVINCES.has(cityKey)
   );
 }
 
@@ -120,7 +155,12 @@ export function requiresAnnexOneCheckIn(city: string, region?: string | null): b
   return mode === "ses" || mode === "mossos" || mode === "ertzaintza";
 }
 
-export type SpainAutonomousCommunity = "catalonia" | "other" | "unknown";
+export type SpainAutonomousCommunity = "catalonia" | "madrid" | "other" | "unknown";
+
+export const SPAIN_STR_REGISTRATION_COMMUNITIES: SpainAutonomousCommunity[] = [
+  "catalonia",
+  "madrid",
+];
 
 export function isCataloniaLocation(city: string, region?: string | null): boolean {
   const cityKey = normalizeKey(city);
@@ -128,11 +168,18 @@ export function isCataloniaLocation(city: string, region?: string | null): boole
   return isCatalonia(cityKey, regionKey);
 }
 
+export function isMadridLocation(city: string, region?: string | null): boolean {
+  const cityKey = normalizeKey(city);
+  const regionKey = normalizeKey(region ?? "");
+  return isMadridCommunity(cityKey, regionKey);
+}
+
 export function getSpainAutonomousCommunity(
   city: string,
   region?: string | null
 ): SpainAutonomousCommunity {
   if (isCataloniaLocation(city, region)) return "catalonia";
+  if (isMadridLocation(city, region)) return "madrid";
   if (!city.trim() && !region?.trim()) return "unknown";
   return "other";
 }
@@ -143,6 +190,7 @@ export function resolveSpainAutonomousCommunityForProperty(
   region?: string | null
 ): SpainAutonomousCommunity {
   if (stored === "catalonia") return "catalonia";
+  if (stored === "madrid") return "madrid";
   if (stored === "other") return "other";
   return getSpainAutonomousCommunity(city, region);
 }
@@ -150,14 +198,16 @@ export function resolveSpainAutonomousCommunityForProperty(
 export function supportsSpainStrRegistrationCompliance(
   country: string,
   city: string,
-  esAutonomousCommunity?: string | null
+  esAutonomousCommunity?: string | null,
+  region?: string | null
 ): boolean {
   if (!isSpainCountry(country)) return false;
   const community = resolveSpainAutonomousCommunityForProperty(
     city,
-    esAutonomousCommunity
+    esAutonomousCommunity,
+    region
   );
-  return community === "catalonia";
+  return community === "catalonia" || community === "madrid";
 }
 
 /** HUT numbers for Catalonia typically start with HUT (platforms verify regional codes after STS 620/2026). */
@@ -165,6 +215,23 @@ export function isLikelyCataloniaHutNumber(value: string | null | undefined): bo
   const trimmed = value?.trim() ?? "";
   if (!trimmed) return false;
   return /^HUT[\s-]?\d/i.test(trimmed);
+}
+
+/** Madrid VUT numbers are regional register references (no HUT prefix). */
+export function isLikelyMadridVutNumber(value: string | null | undefined): boolean {
+  const trimmed = value?.trim() ?? "";
+  if (!trimmed || trimmed.length < 4) return false;
+  if (/^HUT[\s-]?\d/i.test(trimmed)) return false;
+  return true;
+}
+
+export function isLikelyEsRegistrationNumberForCommunity(
+  community: SpainAutonomousCommunity,
+  value: string | null | undefined
+): boolean {
+  if (community === "catalonia") return isLikelyCataloniaHutNumber(value);
+  if (community === "madrid") return isLikelyMadridVutNumber(value);
+  return Boolean(value?.trim());
 }
 
 export function getRegionalSystemLabel(

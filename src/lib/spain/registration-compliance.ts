@@ -1,10 +1,13 @@
 import {
-  isLikelyCataloniaHutNumber,
+  getSpainAutonomousCommunity,
+  isLikelyEsRegistrationNumberForCommunity,
   isSpainCountry,
   resolveSpainAutonomousCommunityForProperty,
   supportsSpainStrRegistrationCompliance,
   type SpainAutonomousCommunity,
 } from "./regions";
+
+const SUPPORTED_ES_STR_COMMUNITIES: SpainAutonomousCommunity[] = ["catalonia", "madrid"];
 
 export type SpainRegistration = {
   esRegistrationNumber?: string | null;
@@ -37,11 +40,15 @@ export function isEsCommunityConfirmed(
   registration: SpainRegistration | null | undefined,
   city?: string
 ): boolean {
-  const community = resolveSpainAutonomousCommunityForProperty(
-    city ?? "",
-    registration?.esAutonomousCommunity
-  );
-  return community === "catalonia";
+  const inferred = getSpainAutonomousCommunity(city ?? "");
+  const stored = registration?.esAutonomousCommunity;
+  if (!stored || !SUPPORTED_ES_STR_COMMUNITIES.includes(stored as SpainAutonomousCommunity)) {
+    return false;
+  }
+  if (inferred === "catalonia" || inferred === "madrid") {
+    return stored === inferred;
+  }
+  return SUPPORTED_ES_STR_COMMUNITIES.includes(stored as SpainAutonomousCommunity);
 }
 
 export function shouldRequireListingDisplay(
@@ -68,8 +75,9 @@ export function needsSpainRegistrationAttention(
     city ?? "",
     registration.esAutonomousCommunity
   );
-  if (community !== "catalonia") return true;
+  if (!SUPPORTED_ES_STR_COMMUNITIES.includes(community)) return true;
 
+  if (!isEsCommunityConfirmed(registration, city)) return true;
   if (!isEsLicenseKindSet(registration)) return true;
   if (!isEsDossierPrepared(registration)) return true;
 
@@ -80,7 +88,14 @@ export function needsSpainRegistrationAttention(
   if (!registrationActive) return true;
   if (registration.esRegistrationStatus === "expired") return true;
 
-  if (hasNumber && !isLikelyCataloniaHutNumber(registration.esRegistrationNumber)) {
+  const expectedLicense =
+    community === "catalonia" ? "hut" : community === "madrid" ? "vut" : null;
+  if (expectedLicense && registration.esLicenseKind !== expectedLicense) return true;
+
+  if (
+    hasNumber &&
+    !isLikelyEsRegistrationNumberForCommunity(community, registration.esRegistrationNumber)
+  ) {
     return true;
   }
 

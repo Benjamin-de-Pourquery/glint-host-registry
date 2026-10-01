@@ -3,6 +3,7 @@ import {
   STATUTORY_NIGHT_CAP,
 } from "@/lib/france/night-cap";
 import { AMSTERDAM_15_NIGHT_WIJKEN } from "@/lib/netherlands/regions";
+import { BNETZA_STR_ARTICLE_URL } from "@/lib/germany/official-links";
 import { RULE_KEYS } from "./keys";
 
 /** Hardcoded fallbacks when JurisdictionRule rows are absent. */
@@ -20,6 +21,14 @@ export const HARDCODED_DEFAULTS: Record<string, unknown> = {
     effectiveDate: "2027-01-01",
     existingListingTransitionEnd: "2027-03-31",
     confidence: "announced",
+  },
+  [RULE_KEYS.DE_STR_PLATFORM_DATA_TRANSMISSION]: {
+    sdepLiveFrom: "2026-07-01",
+    firstPlatformTransmissionFrom: "2026-09-01",
+    retroactiveReportingMonths: ["2026-07", "2026-08"],
+    reviewedAt: "2026-10-01",
+    sourceUrl: BNETZA_STR_ARTICLE_URL,
+    confidence: "official",
   },
 };
 

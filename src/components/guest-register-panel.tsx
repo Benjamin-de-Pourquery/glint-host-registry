@@ -50,6 +50,9 @@ import { AlloggiatiStayActions } from "@/components/alloggiati-stay-actions";
 import { SibaStayActions } from "@/components/siba-stay-actions";
 import { AadeStayActions } from "@/components/aade-stay-actions";
 import { EvisitorStayActions } from "@/components/evisitor-stay-actions";
+import { DeBusinessStayActions } from "@/components/de-business-stay-actions";
+import { isGermanyCountry } from "@/lib/germany/regions";
+import { isBusinessStayType } from "@/lib/germany/business-stay";
 import { toast } from "sonner";
 import QRCode from "qrcode";
 import { format } from "date-fns";
@@ -78,6 +81,11 @@ type GuestStaySummary = {
   notes: string | null;
   source: string;
   importStatus: string | null;
+  stayType?: string;
+  companyName?: string | null;
+  payer?: string | null;
+  projectRef?: string | null;
+  invoicePackJson?: string | null;
   hasMatchingFiche: boolean;
   guestCount: number;
   isMissingFiche: boolean;
@@ -121,6 +129,8 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
   const showEvisitor = isCroatiaCountry(country) && requiresEvisitorCheckIn(city);
   const showNlStayNotify =
     isNetherlandsCountry(country) && requiresNlStayNotification(city);
+  const showDeBusinessStay = isGermanyCountry(country);
+  const tDeStay = useTranslations("de.businessStay");
   const [data, setData] = useState<GuestRegisterData | null>(null);
   const [feeds, setFeeds] = useState<CalendarFeedSummary[]>([]);
   const [loading, setLoading] = useState(true);
@@ -138,6 +148,10 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
     expectsForeignGuest: true,
     guestLabel: "",
     notes: "",
+    stayType: "tourist",
+    companyName: "",
+    payer: "",
+    projectRef: "",
   });
   const [feedForm, setFeedForm] = useState<{
     url: string;
@@ -247,6 +261,10 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
         expectsForeignGuest: true,
         guestLabel: "",
         notes: "",
+        stayType: "tourist",
+        companyName: "",
+        payer: "",
+        projectRef: "",
       });
       toast.success(t("stays.added"));
     } catch {
@@ -726,6 +744,57 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                   {t("stays.expectsForeignGuest")}
                 </Label>
               </div>
+              {showDeBusinessStay && (
+                <>
+                  <div>
+                    <Label>{tDeStay("stayType")}</Label>
+                    <Select
+                      value={stayForm.stayType}
+                      onValueChange={(v) => setStayForm((f) => ({ ...f, stayType: v }))}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="tourist">{tDeStay("stayTypes.tourist")}</SelectItem>
+                        <SelectItem value="business">{tDeStay("stayTypes.business")}</SelectItem>
+                        <SelectItem value="mid_term">{tDeStay("stayTypes.mid_term")}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {isBusinessStayType(stayForm.stayType) && (
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div>
+                        <Label>{tDeStay("companyName")}</Label>
+                        <Input
+                          value={stayForm.companyName}
+                          onChange={(e) =>
+                            setStayForm((f) => ({ ...f, companyName: e.target.value }))
+                          }
+                        />
+                      </div>
+                      <div>
+                        <Label>{tDeStay("payer")}</Label>
+                        <Input
+                          value={stayForm.payer}
+                          onChange={(e) =>
+                            setStayForm((f) => ({ ...f, payer: e.target.value }))
+                          }
+                        />
+                      </div>
+                      <div className="sm:col-span-2">
+                        <Label>{tDeStay("projectRef")}</Label>
+                        <Input
+                          value={stayForm.projectRef}
+                          onChange={(e) =>
+                            setStayForm((f) => ({ ...f, projectRef: e.target.value }))
+                          }
+                        />
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
               <div className="flex gap-2">
                 <Button size="sm" onClick={addExpectedStay} disabled={stayLoading}>
                   {stayLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
@@ -749,12 +818,13 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
               {data.stays.map((stay) => (
                 <div
                   key={stay.id}
-                  className={`flex flex-wrap items-center justify-between gap-3 rounded-lg border p-3 ${
+                  className={`rounded-lg border p-3 ${
                     stay.isMissingFiche
                       ? "border-amber-200 bg-amber-50/50"
                       : "border-slate-100"
                   }`}
                 >
+                  <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="font-medium text-slate-900">
                       {stay.guestLabel || t("stays.unnamedGuest")}
@@ -774,6 +844,12 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                           {tc("importStatus.cancelled")}
                         </Badge>
                       )}
+                      {showDeBusinessStay &&
+                        isBusinessStayType(stay.stayType ?? "tourist") && (
+                          <Badge variant="secondary" className="text-xs">
+                            {tDeStay(`stayTypes.${stay.stayType ?? "business"}`)}
+                          </Badge>
+                        )}
                       {stay.expectsForeignGuest ? (
                         stay.hasMatchingFiche ? (
                           <Badge variant="secondary" className="text-xs">
@@ -862,6 +938,16 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
                       <Trash2 className="h-4 w-4 text-slate-400" />
                     </Button>
                   </div>
+                  </div>
+                  {showDeBusinessStay &&
+                    isBusinessStayType(stay.stayType ?? "tourist") && (
+                      <DeBusinessStayActions
+                        propertyId={propertyId}
+                        stayId={stay.id}
+                        locale={locale}
+                        initialInvoicePackJson={stay.invoicePackJson ?? null}
+                      />
+                    )}
                 </div>
               ))}
             </div>

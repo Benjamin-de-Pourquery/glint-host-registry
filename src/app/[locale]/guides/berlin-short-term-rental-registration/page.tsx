@@ -29,6 +29,10 @@ export default async function GuideBerlinStrRegistrationPage({ params }: Props) 
       <p>{t("sections.platforms.body")}</p>
       <h2>{t("sections.glint.title")}</h2>
       <p>{t("sections.glint.body")}</p>
+      <h2>{t("sections.monteur.title")}</h2>
+      <p>{t("sections.monteur.body")}</p>
+      <h2>{t("sections.businessStays.title")}</h2>
+      <p>{t("sections.businessStays.body")}</p>
     </GuideLayout>
   );
 }

@@ -18,6 +18,11 @@ export type GermanyRegistration = {
   dePermitType?: string | null;
   deDossierPreparedAt?: Date | string | null;
   deTransitionDeadline?: Date | string | null;
+  deRegistrationHolderName?: string | null;
+  deRegistrationHolderType?: string | null;
+  deHostChangeFlagged?: boolean;
+  deMonteurKitChecklistJson?: string | null;
+  deCompanyAgreementChecklistJson?: string | null;
 };
 
 export function hasDeRegistrationNumber(

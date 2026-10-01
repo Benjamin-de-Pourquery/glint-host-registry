@@ -92,6 +92,9 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
     dePermitType: registration?.dePermitType ?? "",
     deDossierPreparedAt: formatDate(registration?.deDossierPreparedAt),
     deTransitionDeadline: formatDate(registration?.deTransitionDeadline),
+    deRegistrationHolderName: registration?.deRegistrationHolderName ?? "",
+    deRegistrationHolderType: registration?.deRegistrationHolderType ?? "",
+    deHostChangeFlagged: registration?.deHostChangeFlagged ?? false,
   });
 
   const save = async () => {
@@ -108,6 +111,9 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
           dePermitType: form.dePermitType || null,
           deDossierPreparedAt: form.deDossierPreparedAt || null,
           deTransitionDeadline: form.deTransitionDeadline || null,
+          deRegistrationHolderName: form.deRegistrationHolderName || null,
+          deRegistrationHolderType: form.deRegistrationHolderType || null,
+          deHostChangeFlagged: form.deHostChangeFlagged,
         }),
       });
       if (!res.ok) throw new Error("Failed");
@@ -329,6 +335,62 @@ export function DeComplianceCard({ propertyId, city, registration }: Props) {
             <p className="text-xs text-gray-700">{t("transitionHint")}</p>
           </div>
         </div>
+
+        {isBerlinFocus && (
+          <div className="space-y-3 rounded-lg border border-amber-200 bg-amber-50/50 p-4">
+            <h4 className="font-medium">{t("holderSection")}</h4>
+            <p className="text-xs text-gray-800">{t("holderSectionHint")}</p>
+            <div className="space-y-2">
+              <Label htmlFor="deRegistrationHolderName">{t("holderName")}</Label>
+              <Input
+                id="deRegistrationHolderName"
+                value={form.deRegistrationHolderName}
+                onChange={(e) =>
+                  setForm({ ...form, deRegistrationHolderName: e.target.value })
+                }
+                placeholder={t("holderNamePlaceholder")}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>{t("holderType")}</Label>
+              <Select
+                value={form.deRegistrationHolderType || "unknown"}
+                onValueChange={(v) =>
+                  setForm({
+                    ...form,
+                    deRegistrationHolderType: v === "unknown" ? "" : v,
+                  })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={t("holderTypePlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="unknown">{t("holderTypeUnset")}</SelectItem>
+                  <SelectItem value="natural">{t("holderTypes.natural")}</SelectItem>
+                  <SelectItem value="legal">{t("holderTypes.legal")}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center gap-2">
+              <Checkbox
+                id="deHostChangeFlagged"
+                checked={form.deHostChangeFlagged}
+                onCheckedChange={(checked) =>
+                  setForm({ ...form, deHostChangeFlagged: checked === true })
+                }
+              />
+              <Label htmlFor="deHostChangeFlagged" className="font-normal">
+                {t("hostChangeFlag")}
+              </Label>
+            </div>
+            {form.deHostChangeFlagged && (
+              <p className="rounded-md border border-amber-300 bg-white p-2 text-xs text-amber-950">
+                {t("hostChangeAdvisory")}
+              </p>
+            )}
+          </div>
+        )}
 
         <div className="space-y-3 rounded-lg border border-gray-200 bg-white/60 p-4">
           <h4 className="font-medium">{t("registrationSection")}</h4>

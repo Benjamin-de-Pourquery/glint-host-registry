@@ -66,6 +66,10 @@ export function isMunichCity(city: string): boolean {
   return MUNICH_CITY_ALIASES.has(normalizeKey(city));
 }
 
+export function isBerlinCity(city: string): boolean {
+  return BERLIN_CITY_ALIASES.has(normalizeKey(city));
+}
+
 export function normalizeGermanyCity(city: string): string {
   const key = normalizeKey(city);
   if (BERLIN_CITY_ALIASES.has(key)) return "Berlin";

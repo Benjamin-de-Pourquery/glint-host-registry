@@ -6,6 +6,7 @@ import {
   isStayMissingFiche,
   stayHasMatchingFiche,
 } from "@/lib/guest-register/missing-fiches";
+import { GUEST_STAY_TYPES } from "@/lib/germany/business-stay";
 import { z } from "zod";
 
 const createStaySchema = z.object({
@@ -14,6 +15,10 @@ const createStaySchema = z.object({
   expectsForeignGuest: z.boolean().default(true),
   guestLabel: z.string().max(200).optional(),
   notes: z.string().max(500).optional(),
+  stayType: z.enum(GUEST_STAY_TYPES).optional(),
+  companyName: z.string().max(200).optional(),
+  payer: z.string().max(200).optional(),
+  projectRef: z.string().max(200).optional(),
 });
 
 export async function GET(
@@ -61,6 +66,11 @@ export async function GET(
       expectsForeignGuest: stay.expectsForeignGuest,
       guestLabel: stay.guestLabel,
       notes: stay.notes,
+      stayType: stay.stayType,
+      companyName: stay.companyName,
+      payer: stay.payer,
+      projectRef: stay.projectRef,
+      invoicePackJson: stay.invoicePackJson,
       source: stay.source,
       importStatus: stay.importStatus,
       hasMatchingFiche: stayHasMatchingFiche(stay),
@@ -111,6 +121,10 @@ export async function POST(
         expectsForeignGuest: data.expectsForeignGuest,
         guestLabel: data.guestLabel?.trim() || null,
         notes: data.notes?.trim() || null,
+        stayType: data.stayType ?? "tourist",
+        companyName: data.companyName?.trim() || null,
+        payer: data.payer?.trim() || null,
+        projectRef: data.projectRef?.trim() || null,
         source: "manual",
       },
     });

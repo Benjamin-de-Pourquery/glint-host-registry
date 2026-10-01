@@ -254,6 +254,13 @@ model GuestStay {
   source              String        @default("manual")
   importStatus        String?
   notes               String?
+  /** tourist | business | mid_term (Germany Monteur / Wohnen auf Zeit) */
+  stayType            String        @default("tourist")
+  companyName         String?
+  payer               String?
+  projectRef          String?
+  /** User-entered invoice line data for company bookings (JSON, not tax advice) */
+  invoicePackJson     String?
   createdAt           DateTime      @default(now())
   property            Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   calendarFeed        CalendarFeed? @relation(fields: [calendarFeedId], references: [id], onDelete: SetNull)
@@ -512,6 +519,12 @@ model Registration {
   dePermitType              String?
   deDossierPreparedAt       DateTime?
   deTransitionDeadline      DateTime?
+  /** Berlin: registration number is tied to unit and host (ZwVbG § 5a Abs. 5) */
+  deRegistrationHolderName  String?
+  deRegistrationHolderType  String?
+  deHostChangeFlagged       Boolean   @default(false)
+  deMonteurKitChecklistJson String    @default("[]")
+  deCompanyAgreementChecklistJson String @default("[]")
   /** Spain / Catalonia regional STR registration (HUT — post STS 620/2026) */
   esRegistrationNumber      String?
   esRegistrationStatus      String    @default("not_started")

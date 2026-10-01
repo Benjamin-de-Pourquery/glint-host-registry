@@ -13,6 +13,16 @@ describe("Catalonia playbook resolution", () => {
   });
 });
 
+describe("Valencian playbook resolution", () => {
+  it("resolves Valencia capital to es-valencia", () => {
+    assert.equal(resolvePlaybook("Spain", "Valencia")?.id, "es-valencia");
+  });
+
+  it("resolves Alicante to es-valencian-community", () => {
+    assert.equal(resolvePlaybook("Spain", "Alicante")?.id, "es-valencian-community");
+  });
+});
+
 describe("Madrid playbook resolution", () => {
   it("resolves Madrid capital to es-madrid", () => {
     assert.equal(resolvePlaybook("Spain", "Madrid")?.id, "es-madrid");
@@ -83,5 +93,24 @@ describe("Spain registration next action", () => {
       }
     );
     assert.equal(step?.key, "madrid-es-autonomous-community");
+  });
+
+  it("prioritizes Valencian community confirmation", () => {
+    const playbook = resolvePlaybook("Spain", "Valencia")!;
+    const step = getEffectiveNextStepForSpainRegistration(
+      playbook,
+      [],
+      null,
+      {
+        country: "Spain",
+        city: "Valencia",
+        esAutonomousCommunity: null,
+        hasEsRegistrationNumber: false,
+        isDossierPrepared: false,
+        isLicenseKindSet: false,
+        isDisplayedOnListings: false,
+      }
+    );
+    assert.equal(step?.key, "valencia-es-autonomous-community");
   });
 });

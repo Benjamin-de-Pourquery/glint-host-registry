@@ -167,6 +167,22 @@
       "title": "Enregistrement Airbnb Madrid: guide VUT",
       "description": "VUT régional sur les annonces, checklist affichage, SES distinct des Mossos."
     },
+    "guideValenciaStrRegistration": {
+      "title": "Enregistrement location courte durée Valence: guide VUT",
+      "description": "VUT Communauté valencienne post-STS 620/2026, ICU municipal, Registro de Turismo 5 ans, SES.HOSPEDAJES. Pas de dépôt automatique Turisme GVA."
+    },
+    "guideValenciaStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Valence: guide VUT (FR)",
+      "description": "VUT Communauté valencienne, affichage plateformes UE 2024/1028, déclaration SES. Host Registry ne dépose pas à la Generalitat."
+    },
+    "guideValenciaAirbnbRegistration": {
+      "title": "Airbnb Valence et VUT: guide conformité",
+      "description": "Numéro Registro Turismo sur Airbnb et Booking, ICU, renouvellement 5 ans, SES pour les voyageurs."
+    },
+    "guideValenciaAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Valence: guide VUT",
+      "description": "VUT Registro de Turismo sur les annonces, checklist affichage, SES distinct des Mossos."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -689,6 +705,64 @@
         }
       }
     },
+    "valenciaStrRegistration": {
+      "title": "Enregistrement location courte durée Valence (VUT)",
+      "updated": "Mis à jour : octobre 2026",
+      "intro": "La Communauté valencienne inscrit les viviendas de uso turístico (VUT) au Registro de Turismo via déclaration responsable / autoregistro. Le STS 620/2026 a annulé le NRUA national pour la vérification des annonces. Les plateformes attendent votre numéro Registro de Turismo au titre du règlement (UE) 2024/1028. La déclaration voyageurs passe par SES.HOSPEDAJES, pas Mossos. Glint Host Registry vous aide à préparer l'ICU et le dossier. Nous ne déposons pas à Turisme GVA, en mairie ni sur SES sans vos identifiants.",
+      "sections": {
+        "nrua": {
+          "title": "NRUA vs Registro de Turismo après STS 620/2026",
+          "body": "N'utilisez pas un code NRUA obsolète sur Airbnb ou Booking. L'identifiant opérationnel est votre inscription VUT Registro de Turismo Communauté valencienne. Le partage VUDA ou plateformes peut subsister ; traitez toute nuance nationale séparément du champ numéro d'annonce."
+        },
+        "decreto": {
+          "title": "Décret-loi 9/2024 (DOGV)",
+          "body": "Logement entier uniquement (pas de chambre), maximum 10 nuits consécutives pour le même voyageur, ICU municipal favorable requis avant l'inscription régionale, validité Registro de Turismo 5 ans avec renouvellement."
+        },
+        "icu": {
+          "title": "ICU municipal avant dépôt régional",
+          "body": "Obtenez un ICU favorable auprès de votre mairie avant l'autoregistro Generalitat. Host Registry suit les dates ICU et dossier uniquement. Pas d'ICU ni de dépôt automatique en mairie."
+        },
+        "regional": {
+          "title": "Autoregistro régional (vous déposez)",
+          "body": "Finalisez la déclaration responsable sur la procédure électronique GVA et enregistrez le numéro Registro de Turismo dans Host Registry. C'est le numéro vérifié par les plateformes."
+        },
+        "platforms": {
+          "title": "Règlement UE 2024/1028",
+          "body": "Affichez le VUT sur chaque annonce OTA à partir du 20 mai 2026. Cochez l'affichage dans Host Registry par canal."
+        },
+        "ses": {
+          "title": "Déclaration SES (distincte)",
+          "body": "Sous 24 h après l'arrivée, déclarez sur SES.HOSPEDAJES (RD 933/2021). Mossos ne s'applique qu'en Catalogne. Host Registry prépare les données Annexe I et l'envoi SOAP si vous configurez les identifiants."
+        },
+        "glint": {
+          "title": "Rôle de Host Registry",
+          "body": "Playbook valencien, suivi ICU/dossier, rappel 5 ans, stockage VUT, checklist annonces, file SES et export pack preuve."
+        }
+      }
+    },
+    "valenciaAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Valence sous règles VUT",
+      "updated": "Mis à jour : octobre 2026",
+      "intro": "Les hôtes Airbnb à Valence et en Communauté valencienne ont besoin d'un VUT Registro de Turismo valide, d'un ICU municipal si requis, et de SES pour les voyageurs.",
+      "sections": {
+        "airbnbField": {
+          "title": "Champ d'enregistrement Airbnb",
+          "body": "Saisissez votre référence VUT Registro de Turismo dans le champ licence Espagne. Même numéro sur Booking. Pas de NRUA après STS 620/2026."
+        },
+        "dossier": {
+          "title": "Avant de publier",
+          "body": "Obtenez un ICU favorable, confirmez logement entier et règle des 10 nuits, et suivez la date de dossier dans Host Registry. Notez l'expiration à 5 ans."
+        },
+        "display": {
+          "title": "Checklist affichage",
+          "body": "Une fois le VUT actif, vérifiez l'interface annonce et cochez affiché sur les annonces dans Host Registry."
+        },
+        "glint": {
+          "title": "Workflow Host Registry",
+          "body": "Playbook valencien, VUT enregistré, identifiants SES, registre voyageurs Annexe I. Ne pas envoyer les voyageurs valenciens aux Mossos."
+        }
+      }
+    },
     "croatiaEvisitor": {
       "title": "Croatie: catégorisation hébergement et eVisitor",
       "updated": "Mis à jour : septembre 2026",
@@ -1021,6 +1095,8 @@
       "guideBarcelonaAirbnbRegistration": "Airbnb Barcelone / HUT",
       "guideMadridStrRegistration": "Madrid LCD (VUT)",
       "guideMadridAirbnbRegistration": "Airbnb Madrid / VUT",
+      "guideValenciaStrRegistration": "Valence LCD (VUT)",
+      "guideValenciaAirbnbRegistration": "Airbnb Valence / VUT",
       "guideFrNerMigration": "Migration NER 2026",
       "account": "Compte",
       "legal": "Légal",
@@ -3092,14 +3168,18 @@
     "compliance": {
       "titleCatalonia": "Conformité HUT Espagne / Catalogne",
       "titleMadrid": "Conformité VUT Espagne / Communauté de Madrid",
+      "titleValencian": "Conformité VUT Espagne / Communauté valencienne",
       "description": "Suivez le dossier HUT, le numéro régional et l'affichage sur les annonces (UE 2024/1028). La déclaration Mossos est distincte de SES.HOSPEDAJES.",
       "descriptionMadrid": "Suivez le dossier VUT (CIVUT, copropriété, règles techniques), le numéro régional et l'affichage (UE 2024/1028). La déclaration voyageurs passe par SES.HOSPEDAJES, pas Mossos.",
+      "descriptionValencian": "Suivez l'ICU et le dossier VUT, le numéro Registro de Turismo (validité 5 ans) et l'affichage (UE 2024/1028). La déclaration voyageurs passe par SES.HOSPEDAJES, pas Mossos.",
       "nruaNotice": "Après STS 620/2026, le NRUA n'est plus le numéro vérifié par les plateformes. Utilisez votre HUT catalan au Registre de Turisme de Catalunya.",
       "nruaNoticeMadrid": "Après STS 620/2026, le NRUA n'est plus le numéro vérifié. Utilisez votre enregistrement VUT au Registro de Empresas Turísticas. Un numéro régional ne prouve pas la conformité urbanistique municipale.",
+      "nruaNoticeValencian": "Après STS 620/2026, le NRUA n'est plus le numéro vérifié. Utilisez votre numéro VUT Registro de Turismo Communauté valencienne. L'ICU municipal est distinct ; l'inscription expire après 5 ans sans renouvellement.",
       "autonomousCommunity": "Communauté autonome",
       "community": {
         "catalonia": "Catalogne",
-        "madrid": "Communauté de Madrid"
+        "madrid": "Communauté de Madrid",
+        "valencian": "Communauté valencienne"
       },
       "licenseKind": "Type de licence",
       "licenseKind.hut": "HUT (habitatge d'ús turístic)",
@@ -3110,8 +3190,10 @@
       "registrationNumberVut": "Numéro VUT",
       "registrationNumberPlaceholder": "HUT-000000",
       "registrationNumberVutPlaceholder": "Référence VUT régionale",
+      "registrationNumberVutValencianPlaceholder": "Référence VUT Registro de Turismo",
       "hutFormatHint": "Les numéros catalans commencent en général par HUT. Vérifiez avec votre certificat Generalitat.",
       "vutFormatHint": "Les numéros VUT proviennent du registre régional (pas HUT). Vérifiez avec votre accusé Comunidad de Madrid.",
+      "vutValencianFormatHint": "Les numéros valenciens proviennent du Registro de Turismo (pas HUT). Vérifiez avec votre accusé autoregistro GVA.",
       "registrationStatus": "Statut d'enregistrement",
       "displayedOnListings": "HUT affiché sur toutes les annonces",
       "displayedOnListingsVut": "VUT affiché sur toutes les annonces",
@@ -3120,15 +3202,22 @@
         "barcelonaRules": "Tourisme municipal Barcelone",
         "madridRegister": "Registre VUT Communauté de Madrid",
         "madridCity": "Tourisme Ayuntamiento de Madrid",
+        "valencianRegister": "Autoregistro GVA — procédure VUT",
+        "valencianInfo": "Turisme GVA — logements touristiques",
+        "valencianFaq": "FAQ VUT (PDF)",
+        "valencianDecreto": "Décret-loi 9/2024 (DOGV)",
+        "valenciaCity": "Tourisme Ajuntament de València",
         "eu1028": "Règlement UE 2024/1028",
         "rd933": "RD 933/2021 (déclaration voyageurs)"
       },
       "disclaimer": "Host Registry est un outil opérationnel édité par Glint. Vous déposez vous-même auprès de la Generalitat, de la municipalité et de Mossos. Pas de dépôt automatique.",
       "disclaimerMadrid": "Host Registry est un outil opérationnel édité par Glint. Vous déposez vous-même auprès de la Communauté de Madrid, de la mairie et de SES.HOSPEDAJES. Pas de dépôt automatique.",
+      "disclaimerValencian": "Host Registry est un outil opérationnel édité par Glint. Vous déposez vous-même auprès de Turisme GVA, de la mairie (ICU) et de SES.HOSPEDAJES. Pas de dépôt automatique.",
       "save": "Enregistrer",
       "saving": "Enregistrement…",
       "savedCatalonia": "Conformité Catalogne enregistrée",
       "savedMadrid": "Conformité VUT Madrid enregistrée",
+      "savedValencian": "Conformité VUT Communauté valencienne enregistrée",
       "saveError": "Échec de l'enregistrement",
       "status": {
         "not_started": "Non démarré",

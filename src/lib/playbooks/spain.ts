@@ -7,6 +7,10 @@ import {
   SPAIN_MADRID_CAPITAL_PLAYBOOK,
   SPAIN_MADRID_COMMUNITY_PLAYBOOK,
 } from "./madrid";
+import {
+  SPAIN_VALENCIA_CAPITAL_PLAYBOOK,
+  SPAIN_VALENCIAN_COMMUNITY_PLAYBOOK,
+} from "./valencia";
 
 const SES_PORTAL_URL = "https://hospedajes.ses.mir.es/hospedajes-web/";
 const SES_PORTAL_TEST_URL = "https://hospedajes.pre-ses.mir.es/hospedajes-web/";
@@ -198,43 +202,7 @@ export const SPAIN_MADRID_PLAYBOOK = SPAIN_MADRID_CAPITAL_PLAYBOOK;
 
 export const SPAIN_BARCELONA_PLAYBOOK = SPAIN_BARCELONA_REGISTRATION_PLAYBOOK;
 
-export const SPAIN_VALENCIA_PLAYBOOK: Playbook = {
-  id: "es-valencia",
-  country: "Spain",
-  city: "Valencia",
-  sourceReviewedAt: "2026-09-12",
-  title: {
-    en: "Valencia — tourist rental & SES compliance",
-    fr: "Valence — location touristique et conformité SES",
-  },
-  description: {
-    en: "Guided steps for Comunitat Valenciana: VT registration, SES guest reporting, and platform compliance.",
-    fr: "Étapes guidées pour la Communauté valencienne : enregistrement VT, déclaration SES et conformité plateformes.",
-  },
-  steps: [
-    esSteps.postNruaContext(),
-    {
-      ...esSteps.regionalLicense("valencia", {
-        en: "Comunitat Valenciana",
-        fr: "Communauté valencienne",
-      }),
-      officialUrls: [
-        {
-          url: "https://www.gva.es/va/inicio/procedimientos/id_proc/27369",
-          label: {
-            en: "Generalitat Valenciana — VT registration",
-            fr: "Generalitat Valenciana — enregistrement VT",
-          },
-          role: "portal",
-          urlVerified: true,
-        },
-      ],
-    },
-    esSteps.sesHospedajes("valencia"),
-    esSteps.taxObligations("valencia"),
-    esSteps.updatePlatforms("valencia"),
-  ],
-};
+export const SPAIN_VALENCIA_PLAYBOOK = SPAIN_VALENCIA_CAPITAL_PLAYBOOK;
 
 export const SPAIN_MALAGA_PLAYBOOK: Playbook = {
   id: "es-malaga",
@@ -478,6 +446,7 @@ export const SPAIN_PLAYBOOKS: Playbook[] = [
   SPAIN_DONOSTIA_PLAYBOOK,
   SPAIN_VITORIA_PLAYBOOK,
   SPAIN_VALENCIA_PLAYBOOK,
+  SPAIN_VALENCIAN_COMMUNITY_PLAYBOOK,
   SPAIN_MALAGA_PLAYBOOK,
   SPAIN_GENERIC_PLAYBOOK,
 ];

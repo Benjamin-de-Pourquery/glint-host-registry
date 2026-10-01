@@ -4,6 +4,7 @@ import {
   isCataloniaLocation,
   isMadridLocation,
   isSpainCountry,
+  isValencianLocation,
 } from "@/lib/spain/regions";
 import { ITALY_PLAYBOOKS } from "./italy";
 import { PORTUGAL_PLAYBOOKS } from "./portugal";
@@ -40,6 +41,11 @@ const CITY_ALIASES: Record<string, string> = {
   madrid: "Madrid",
   barcelona: "Barcelona",
   valencia: "Valencia",
+  valència: "Valencia",
+  alicante: "Alicante",
+  alacant: "Alicante",
+  "castellón de la plana": "Castellón de la Plana",
+  "castellon de la plana": "Castellón de la Plana",
   malaga: "Málaga",
   "málaga": "Málaga",
   seville: "Málaga",
@@ -277,6 +283,20 @@ export function resolvePlaybook(country: string, city: string): Playbook | null 
       (p) => p.id === "es-madrid-community"
     );
     if (madridCommunityPlaybook) return madridCommunityPlaybook;
+  }
+
+  if (isSpainCountry(normalizedCountry) && isValencianLocation(normalizedCity)) {
+    const cityPlaybook = ALL_PLAYBOOKS.find(
+      (p) =>
+        p.country === normalizedCountry &&
+        p.city &&
+        p.city.toLowerCase() === normalizedCity.toLowerCase()
+    );
+    if (cityPlaybook) return cityPlaybook;
+    const valencianCommunityPlaybook = ALL_PLAYBOOKS.find(
+      (p) => p.id === "es-valencian-community"
+    );
+    if (valencianCommunityPlaybook) return valencianCommunityPlaybook;
   }
 
   const cityPlaybook = ALL_PLAYBOOKS.find(

@@ -48,6 +48,25 @@ export const MADRID_DECRETO_27_2026_URL =
 export const MADRID_AYUNTAMIENTO_TURISMO_URL =
   "https://www.madrid.es/portales/munimadrid/es/Inicio/Turismo-y-Ocio/";
 
+/** Comunitat Valenciana VUT FAQ (verified HTTP 200). */
+export const CV_VUT_FAQ_PDF_URL =
+  "https://www.turisme.gva.es/turisme/es/files/pdf/FAQ_viviendas_uso_turistico.pdf";
+
+/** Turisme GVA tourist housing information (verified HTTP 200). */
+export const CV_VUT_CINDI_INFO_URL =
+  "https://cindi.gva.es/va/web/turisme/habitatges-dus-turistic";
+
+/** GVA electronic procedure entry for VUT autoregistro (redirects to sede.gva.es). */
+export const CV_VUT_REGISTER_PROCEDURE_URL =
+  "https://www.gva.es/va/inicio/procedimientos/id_proc/19207";
+
+/** Decreto-ley 9/2024 DOGV — VUT rules (verified HTTP 200). */
+export const CV_DECRETO_LEY_9_2024_URL =
+  "https://dogv.gva.es/disposicio-consolidada?sig=2024/9";
+
+/** Ajuntament de València tourism entry (verified HTTP 200). */
+export const VALENCIA_CITY_TURISME_URL = "https://www.valencia.es/es/turisme";
+
 export const SES_HOSPEDAJES_PORTAL_URL =
   "https://hospedajes.ses.mir.es/hospedajes-web/";
 export const SES_HOSPEDAJES_TEST_URL =

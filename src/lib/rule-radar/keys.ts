@@ -9,6 +9,7 @@ export const RULE_KEYS = {
   FR_TOURIST_TAX_DEFAULT_CADENCE: "fr.tourist_tax.default_declaration_cadence",
   FR_GUEST_FICHE_DEADLINE_DAYS: "fr.guest_fiche.deadline_days_after_checkin",
   AT_VIENNA_WKVRG_REGISTRATION: "at.vienna.wkvgr.registration",
+  DE_STR_PLATFORM_DATA_TRANSMISSION: "de.str.platform_data_transmission",
 } as const;
 
 export type RuleKey = (typeof RULE_KEYS)[keyof typeof RULE_KEYS];

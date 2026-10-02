@@ -29,6 +29,27 @@ export function getEu1028Url(): string {
   return EU_1028_URL;
 }
 
+/** BNetzA: EU STR / DDG platform data (verified for copy review 2026-10-01). */
+export const BNETZA_STR_ARTICLE_URL =
+  "https://www.bundesnetzagentur.de/DE/Fachthemen/Digitales/Kurzzeitvermietung/artikel.html";
+
+/** Berlin GVBl. 2026 Nr. 18 (Fourth ZwVbG amending act). */
+export const BERLIN_ZWVB_GVBL_2026_URL =
+  "https://pardok.parlament-berlin.de/starweb/adis/citat/VT/19/gvbl/g26180246.pdf";
+
+export const BMG_SECTION_29_URL = "https://www.gesetze-im-internet.de/bmg/__29.html";
+export const BMG_SECTION_30_URL = "https://www.gesetze-im-internet.de/bmg/__30.html";
+export const USTG_SECTION_12_URL = "https://www.gesetze-im-internet.de/ustg_1980/__12.html";
+export const USTG_SECTION_19_URL = "https://www.gesetze-im-internet.de/ustg_1980/__19.html";
+export const BERLIN_OVERNIGHT_TAX_2026_PDF_URL =
+  "https://www.berlin.de/sen/finanzen/steuern/downloads/uebernachtungsteuer/uebernachtungsteuergesetz-ab-2026.pdf";
+export const BERLIN_OVERNIGHT_TAX_FAQ_URL =
+  "https://www.berlin.de/sen/finanzen/steuern/informationen-fuer-steuerzahler-/faq-steuern/artikel.57911.php";
+
+/** Hessian VGH 4 B 1030/26 (reported text; Hessian law only). */
+export const HESSIAN_VGH_MONTEUR_REPORT_URL =
+  "https://www.baurechtsiegen.de/einzelzimmernutzung-arbeiter-nutzungsuntersagung-sofort-vollziehbar/";
+
 /** Munich ZeS (Wohnraumzweckentfremdungssatzung) incl. §5a (verified HTTP 200). */
 export const MUNICH_ZES_URL =
   "https://stadt.muenchen.de/rathaus/stadtrecht/vorschrift/970/version2/0.html";

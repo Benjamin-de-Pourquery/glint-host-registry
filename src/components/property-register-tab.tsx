@@ -35,6 +35,8 @@ import { NlComplianceCard } from "@/components/nl-compliance-card";
 import { BeComplianceCard } from "@/components/be-compliance-card";
 import { AtComplianceCard } from "@/components/at-compliance-card";
 import { DeComplianceCard } from "@/components/de-compliance-card";
+import { DeMonteurKitPanel } from "@/components/de-monteur-kit-panel";
+import { isBerlinCity } from "@/lib/germany/regions";
 import { NlStayNotifyPanel } from "@/components/nl-stay-notify-panel";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { FrNerMigrationCard } from "@/components/fr-ner-migration-card";
@@ -251,7 +253,12 @@ export function PropertyRegisterTab({
         <AtComplianceCard propertyId={propertyId} city={city} registration={registration} />
       )}
       {isGermanyCountry(country) && (
-        <DeComplianceCard propertyId={propertyId} city={city} registration={registration} />
+        <>
+          <DeComplianceCard propertyId={propertyId} city={city} registration={registration} />
+          {isBerlinCity(city) && (
+            <DeMonteurKitPanel propertyId={propertyId} registration={registration} />
+          )}
+        </>
       )}
       {supportsSpainStrRegistrationCompliance(
         country,

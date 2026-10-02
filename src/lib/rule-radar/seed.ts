@@ -6,6 +6,7 @@ import {
   SERVICE_PUBLIC_STR_URL,
 } from "@/lib/france/night-cap";
 import { VIENNA_WKVRG_OTS_URL } from "@/lib/austria/official-links";
+import { BNETZA_STR_ARTICLE_URL } from "@/lib/germany/official-links";
 
 const SEED_EFFECTIVE_FROM = new Date("2020-01-01T00:00:00.000Z");
 const VIENNA_WKVRG_EFFECTIVE_FROM = new Date("2027-01-01T00:00:00.000Z");
@@ -86,6 +87,14 @@ const SEED_ROWS: SeedRow[] = [
     value: HARDCODED_DEFAULTS[RULE_KEYS.AT_VIENNA_WKVRG_REGISTRATION],
     sourceUrl: VIENNA_WKVRG_OTS_URL,
     effectiveFrom: VIENNA_WKVRG_EFFECTIVE_FROM,
+  },
+  {
+    key: RULE_KEYS.DE_STR_PLATFORM_DATA_TRANSMISSION,
+    country: "DE",
+    city: "Berlin",
+    value: HARDCODED_DEFAULTS[RULE_KEYS.DE_STR_PLATFORM_DATA_TRANSMISSION],
+    sourceUrl: BNETZA_STR_ARTICLE_URL,
+    effectiveFrom: new Date("2026-09-01T00:00:00.000Z"),
   },
 ];
 

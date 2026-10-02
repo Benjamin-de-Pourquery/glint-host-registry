@@ -513,6 +513,14 @@
         "glint": {
           "title": "How Host Registry helps",
           "body": "Berlin playbook, Bezirk selection, operator category and permit type, dossier date, transition deadline, number storage and listing display checklist with official Senate links."
+        },
+        "monteur": {
+          "title": "Monteur and company stays",
+          "body": "Host Registry adds a Berlin Monteur kit on the Register tab: Zweckentfremdung track, building-law item to confirm with your adviser, Meldeschein track with private-flat item to confirm, invoicing prep, company agreement checklist, registration holder fields, and business stay records with Aufenthaltsbestätigung and invoice data export. EU 2024/1028 also covers business stays (BNetzA, reviewed 2026-10-01)."
+        },
+        "businessStays": {
+          "title": "Business stay records",
+          "body": "Mark stays as business or mid-term, capture company, payer and project reference, and export a stay confirmation for corporate clients. Invoice lines use user-entered VAT rates with § 12 and § 19 UStG references. Glint does not file taxes or send invoices."
         }
       }
     },
@@ -3153,6 +3161,19 @@
       "saving": "Saving…",
       "saved": "Germany compliance saved",
       "saveError": "Could not save",
+      "holderSection": "Registration number holder (Berlin)",
+      "holderSectionHint": "Berlin ties the EU registration number to the unit and the host (ZwVbG § 5a Abs. 5, reviewed 2026-10-01). Glint stores who you list as holder for your records.",
+      "holderName": "Holder name on file",
+      "holderNamePlaceholder": "Natural person or company name",
+      "holderType": "Holder type",
+      "holderTypePlaceholder": "Select type",
+      "holderTypeUnset": "Not set",
+      "holderTypes": {
+        "natural": "Natural person",
+        "legal": "Legal entity"
+      },
+      "hostChangeFlag": "Flag a host or operator change (purchase, new manager)",
+      "hostChangeAdvisory": "The current ZwVbG text assigns the registration number to the unit and the host. It does not state what happens when the host changes. To confirm with your adviser before relying on an existing number.",
       "registrationStatus": {
         "not_started": "Not started",
         "dossier_in_progress": "Dossier in progress",
@@ -3162,6 +3183,107 @@
         "expired": "Expired",
         "unknown": "Unknown"
       }
+    },
+    "monteurKit": {
+      "title": "Monteur and business stay kit (Berlin)",
+      "subtitle": "Tracks for Zweckentfremdung, building law, guest registration and invoicing prep. Operational checklist only, not legal advice.",
+      "reviewedAt": "Legal sources reviewed: {date}",
+      "progress": "{done} / {total} done",
+      "saved": "Checklist saved",
+      "saveError": "Could not save checklist",
+      "sourceLink": "Official source",
+      "companySection": "Company agreement checklist",
+      "referenceTitle": "VAT and Berlin tax references (reviewed 2026-10-01)",
+      "refresh": "Refresh",
+      "tracks": {
+        "zwvbg": "Zweckentfremdung and registration number",
+        "building": "Building-law use",
+        "guest_reg": "Guest registration (Meldeschein)",
+        "invoicing": "Invoicing to companies"
+      },
+      "items": {
+        "zwvbg_fourth_act_2026": {
+          "label": "Fourth ZwVbG amending act in force since 17 June 2026",
+          "body": "Berlin aligned local law with EU STR data rules. Source: GVBl. 2026 Nr. 18."
+        },
+        "zwvbg_existing_numbers": {
+          "label": "Keep using your existing Berlin number while digital issuance is delayed",
+          "body": "Senate guidance: no new EU-aligned numbers are issued yet; existing numbers remain usable until further notice."
+        },
+        "zwvbg_bundid_portal": {
+          "label": "Prepare BundID or Mein Unternehmenskonto for the digital procedure",
+          "body": "Identification for the future Berlin registration portal per Senate guidance."
+        },
+        "zwvbg_unit_and_host": {
+          "label": "Record that the number is assigned to the unit and the host",
+          "body": "ZwVbG § 5a Abs. 5 (GVBl. 2026 Nr. 18). Use the holder fields in Germany compliance."
+        },
+        "building_law_confirm": {
+          "label": "Building-law use for Monteur letting: confirm with your adviser",
+          "body": "A Hessian court (VGH 4 B 1030/26, 21 Aug 2026, reported) treated room-by-room worker use as a use change under Hessian law only. Berlin rules differ by case."
+        },
+        "guest_reg_foreign_meldeschein": {
+          "label": "Foreign guests: special registration form on arrival day (§ 29 BMG)",
+          "body": "Current federal text covers foreign guests. German nationals are not listed in § 29 Abs. 2 today."
+        },
+        "guest_reg_record_fields": {
+          "label": "Keep Meldeschein fields and retention per § 30 BMG",
+          "body": "Operators retain forms one year from departure and must show them on request."
+        },
+        "guest_reg_private_flat_confirm": {
+          "label": "Private holiday flat within Meldeschein duty: confirm with your adviser",
+          "body": "Whether your flat counts as a Beherbergungsstätte under § 29 BMG needs a local check."
+        },
+        "invoicing_before_first_booking": {
+          "label": "Prepare company invoice data before the first business booking",
+          "body": "Record VAT rates, small-business flag and Berlin city tax lines in Glint. Glint does not send invoices."
+        },
+        "milieuschutz_confirm": {
+          "label": "Milieuschutz temporary letting: confirm with your adviser",
+          "body": "Berlin administrative guidance (VV, 18 Apr 2026) may require an application in social preservation areas. Legal effect on third parties is disputed."
+        }
+      },
+      "companyItems": {
+        "mid_stay_cleaning": "Agree mid-stay cleaning rhythm with the company",
+        "linen_rhythm": "Agree linen and laundry rhythm",
+        "occupants_per_room": "Agree max occupants per room",
+        "key_handover": "Document key handover protocol",
+        "work_shoes_tools": "Agree rules for work shoes and tools indoors",
+        "hotel_like_services_tax": "Note that recurring hotel-like services may affect VAT classification: confirm with your Steuerberater"
+      },
+      "refs": {
+        "bnetza": "BNetzA: platform data transmission (from 1 Sep 2026, retroactive Jul and Aug 2026)",
+        "ustg12": "§ 12 UStG: 7% short-term accommodation",
+        "ustg19": "§ 19 UStG: small-business thresholds EUR 25,000 / 100,000",
+        "berlinTax": "Berlin overnight tax 7.5% of net stay (2026 law PDF)",
+        "berlinTaxFaq": "Berlin FAQ: business overnight stays taxed since 1 Apr 2024",
+        "hessianVgh": "Hessian VGH 4 B 1030/26 (reported summary, Hessian law only)"
+      }
+    },
+    "businessStay": {
+      "stayType": "Stay type",
+      "stayTypes": {
+        "tourist": "Tourist",
+        "business": "Business",
+        "mid_term": "Mid-term / Wohnen auf Zeit"
+      },
+      "companyName": "Company name",
+      "payer": "Payer (if different)",
+      "projectRef": "Project reference",
+      "invoicePackTitle": "Invoice data pack (not tax advice)",
+      "invoicePackHint": "Default 7% accommodation and 19% extras per § 12 UStG. Which extras are 19%: confirm with your Steuerberater. Berlin city tax 7.5% when enabled.",
+      "accommodationNet": "Accommodation net (EUR)",
+      "accommodationVat": "Accommodation VAT %",
+      "extrasNet": "Extras net (EUR)",
+      "extrasVat": "Extras VAT %",
+      "smallBusiness": "Small business (§ 19 UStG thresholds on file)",
+      "berlinCityTax": "Include Berlin overnight tax line (7.5%)",
+      "savePack": "Save invoice data",
+      "saving": "Saving…",
+      "saved": "Business stay data saved",
+      "saveError": "Could not save",
+      "exportCsv": "Export invoice CSV",
+      "exportConfirmation": "Export Aufenthaltsbestätigung"
     }
   },
   "es": {

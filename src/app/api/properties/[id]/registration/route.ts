@@ -138,6 +138,11 @@ const schema = z.object({
     .optional(),
   deDossierPreparedAt: z.string().nullable().optional(),
   deTransitionDeadline: z.string().nullable().optional(),
+  deRegistrationHolderName: z.string().nullable().optional(),
+  deRegistrationHolderType: z.enum(["natural", "legal"]).nullable().optional(),
+  deHostChangeFlagged: z.boolean().optional(),
+  deMonteurKitChecklistJson: z.string().optional(),
+  deCompanyAgreementChecklistJson: z.string().optional(),
   esRegistrationNumber: z.string().nullable().optional(),
   esRegistrationStatus: z
     .enum([
@@ -331,6 +336,11 @@ export async function PATCH(
         deTransitionDeadline: data.deTransitionDeadline
           ? new Date(data.deTransitionDeadline)
           : null,
+        deRegistrationHolderName: data.deRegistrationHolderName ?? null,
+        deRegistrationHolderType: data.deRegistrationHolderType ?? null,
+        deHostChangeFlagged: data.deHostChangeFlagged ?? false,
+        deMonteurKitChecklistJson: data.deMonteurKitChecklistJson ?? "[]",
+        deCompanyAgreementChecklistJson: data.deCompanyAgreementChecklistJson ?? "[]",
         esRegistrationNumber: data.esRegistrationNumber ?? null,
         esRegistrationStatus: data.esRegistrationStatus ?? "not_started",
         esRegistrationDisplayedOnListings:
@@ -436,6 +446,11 @@ export async function PATCH(
           : data.deTransitionDeadline === null
             ? null
             : undefined,
+        deRegistrationHolderName: data.deRegistrationHolderName,
+        deRegistrationHolderType: data.deRegistrationHolderType,
+        deHostChangeFlagged: data.deHostChangeFlagged,
+        deMonteurKitChecklistJson: data.deMonteurKitChecklistJson,
+        deCompanyAgreementChecklistJson: data.deCompanyAgreementChecklistJson,
         esRegistrationNumber: data.esRegistrationNumber,
         esRegistrationStatus: data.esRegistrationStatus,
         esRegistrationDisplayedOnListings: data.esRegistrationDisplayedOnListings,

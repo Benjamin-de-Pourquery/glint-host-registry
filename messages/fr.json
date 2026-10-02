@@ -513,6 +513,14 @@
         "glint": {
           "title": "Comment Host Registry aide",
           "body": "Playbook Berlin, choix du Bezirk, catégorie d'exploitant et type de permis, date de dossier, échéance de transition, stockage du numéro et checklist d'affichage avec liens officiels du Sénat."
+        },
+        "monteur": {
+          "title": "Séjours Monteur et entreprises",
+          "body": "Host Registry ajoute un kit Monteur berlinois dans l'onglet Registre : piste Zweckentfremdung, point droit de la construction à confirmer avec votre conseil, piste Meldeschein avec point logement privé à confirmer, préparation facturation, checklist accord entreprise, champs titulaire du numéro, et séjours affaires avec export Aufenthaltsbestätigung et pack facture. Le règlement UE 2024/1028 couvre aussi les séjours d'affaires (BNetzA, revu 2026-10-01)."
+        },
+        "businessStays": {
+          "title": "Enregistrement des séjours affaires",
+          "body": "Marquez les séjours affaires ou moyenne durée, saisissez société, payeur et référence projet, et exportez une confirmation pour les clients entreprise. Les lignes de facture utilisent des taux TVA saisis avec références § 12 et § 19 UStG. Glint ne déclare pas les impôts ni n'envoie de factures."
         }
       }
     },
@@ -3153,6 +3161,19 @@
       "saving": "Enregistrement…",
       "saved": "Conformité Allemagne enregistrée",
       "saveError": "Échec de l'enregistrement",
+      "holderSection": "Titulaire du numéro (Berlin)",
+      "holderSectionHint": "Berlin attache le numéro UE à l'unité et à l'hôte (ZwVbG § 5a Abs. 5, revu 2026-10-01). Glint enregistre le titulaire que vous indiquez.",
+      "holderName": "Nom du titulaire",
+      "holderNamePlaceholder": "Personne physique ou société",
+      "holderType": "Type de titulaire",
+      "holderTypePlaceholder": "Choisir le type",
+      "holderTypeUnset": "Non renseigné",
+      "holderTypes": {
+        "natural": "Personne physique",
+        "legal": "Personne morale"
+      },
+      "hostChangeFlag": "Signaler un changement d'hôte ou d'exploitant",
+      "hostChangeAdvisory": "Le texte ZwVbG actuel attribue le numéro à l'unité et à l'hôte. Il ne précise pas les conséquences d'un changement d'hôte. À confirmer avec votre conseil avant de réutiliser un numéro existant.",
       "registrationStatus": {
         "not_started": "Non démarré",
         "dossier_in_progress": "Dossier en cours",
@@ -3162,6 +3183,107 @@
         "expired": "Expiré",
         "unknown": "Inconnu"
       }
+    },
+    "monteurKit": {
+      "title": "Kit Monteur et séjours affaires (Berlin)",
+      "subtitle": "Pistes Zweckentfremdung, droit de la construction, enregistrement des hôtes et préparation facturation. Checklist opérationnelle, pas un conseil juridique.",
+      "reviewedAt": "Sources juridiques revues : {date}",
+      "progress": "{done} / {total} cochés",
+      "saved": "Checklist enregistrée",
+      "saveError": "Échec de l'enregistrement",
+      "sourceLink": "Source officielle",
+      "companySection": "Checklist accord avec l'entreprise",
+      "referenceTitle": "Références TVA et taxe Berlin (revu 2026-10-01)",
+      "refresh": "Actualiser",
+      "tracks": {
+        "zwvbg": "Zweckentfremdung et numéro",
+        "building": "Droit de la construction",
+        "guest_reg": "Enregistrement des hôtes (Meldeschein)",
+        "invoicing": "Facturation aux entreprises"
+      },
+      "items": {
+        "zwvbg_fourth_act_2026": {
+          "label": "Quatrième loi modificative ZwVbG en vigueur depuis le 17 juin 2026",
+          "body": "Berlin a aligné le droit local sur les données LCD UE. Source : GVBl. 2026 Nr. 18."
+        },
+        "zwvbg_existing_numbers": {
+          "label": "Conserver votre numéro berlinois pendant le retard de délivrance numérique",
+          "body": "Consigne du Sénat : pas de nouveaux numéros alignés UE pour l'instant ; les numéros existants restent utilisables jusqu'à nouvel ordre."
+        },
+        "zwvbg_bundid_portal": {
+          "label": "Préparer BundID ou Mein Unternehmenskonto pour la procédure numérique",
+          "body": "Identification pour le futur portail berlinois selon le Sénat."
+        },
+        "zwvbg_unit_and_host": {
+          "label": "Noter que le numéro est attribué à l'unité et à l'hôte",
+          "body": "ZwVbG § 5a Abs. 5 (GVBl. 2026 Nr. 18). Utilisez les champs titulaire dans la conformité Allemagne."
+        },
+        "building_law_confirm": {
+          "label": "Usage au regard du droit de la construction pour Monteur : à confirmer avec votre conseil",
+          "body": "Un tribunal hessois (VGH 4 B 1030/26, 21 août 2026, texte rapporté) a qualifié l'usage chambre par chambre de changement d'usage en Hesse uniquement. À Berlin, l'analyse est au cas par cas."
+        },
+        "guest_reg_foreign_meldeschein": {
+          "label": "Hôtes étrangers : formulaire spécial le jour d'arrivée (§ 29 BMG)",
+          "body": "Le texte fédéral actuel vise les personnes étrangères. Les ressortissants allemands ne figurent pas au § 29 Abs. 2 aujourd'hui."
+        },
+        "guest_reg_record_fields": {
+          "label": "Conserver les champs Meldeschein et délais du § 30 BMG",
+          "body": "L'exploitant conserve les formulaires un an après le départ et les présente sur demande."
+        },
+        "guest_reg_private_flat_confirm": {
+          "label": "Logement de vacances privé soumis au Meldeschein : à confirmer avec votre conseil",
+          "body": "Vérifier si votre logement est une Beherbergungsstätte au sens du § 29 BMG."
+        },
+        "invoicing_before_first_booking": {
+          "label": "Préparer les données de facturation entreprise avant la première réservation affaires",
+          "body": "Saisir taux de TVA, statut petite entreprise et ligne taxe Berlin dans Glint. Glint n'envoie pas de factures."
+        },
+        "milieuschutz_confirm": {
+          "label": "Location temporaire en secteur Milieuschutz : à confirmer avec votre conseil",
+          "body": "La VV berlinoise (18 avr. 2026) peut exiger une demande en secteurs de préservation sociale. L'effet juridique pour les tiers est contesté."
+        }
+      },
+      "companyItems": {
+        "mid_stay_cleaning": "Accord sur la fréquence de ménage en cours de séjour",
+        "linen_rhythm": "Accord sur le linge et la blanchisserie",
+        "occupants_per_room": "Accord sur le nombre d'occupants par pièce",
+        "key_handover": "Protocole de remise des clés documenté",
+        "work_shoes_tools": "Règles pour chaussures de travail et outils à l'intérieur",
+        "hotel_like_services_tax": "Les services récurrents de type hôtel peuvent modifier la qualification TVA : à confirmer avec votre Steuerberater"
+      },
+      "refs": {
+        "bnetza": "BNetzA : transmission données plateformes (dès 1 sep. 2026, rétroactif juil. et août 2026)",
+        "ustg12": "§ 12 UStG : 7 % hébergement de courte durée",
+        "ustg19": "§ 19 UStG : seuils petite entreprise 25 000 / 100 000 EUR",
+        "berlinTax": "Taxe de séjour Berlin 7,5 % du net (PDF loi 2026)",
+        "berlinTaxFaq": "FAQ Berlin : nuitées professionnelles taxées depuis le 1 avr. 2024",
+        "hessianVgh": "VGH hessois 4 B 1030/26 (résumé rapporté, droit hessois uniquement)"
+      }
+    },
+    "businessStay": {
+      "stayType": "Type de séjour",
+      "stayTypes": {
+        "tourist": "Touristique",
+        "business": "Affaires",
+        "mid_term": "Moyenne durée / Wohnen auf Zeit"
+      },
+      "companyName": "Nom de l'entreprise",
+      "payer": "Payeur (si différent)",
+      "projectRef": "Référence projet",
+      "invoicePackTitle": "Pack données facture (pas un conseil fiscal)",
+      "invoicePackHint": "Par défaut 7 % hébergement et 19 % extras selon § 12 UStG. Quels extras à 19 % : à confirmer avec votre Steuerberater. Taxe Berlin 7,5 % si activée.",
+      "accommodationNet": "Net hébergement (EUR)",
+      "accommodationVat": "TVA hébergement %",
+      "extrasNet": "Net extras (EUR)",
+      "extrasVat": "TVA extras %",
+      "smallBusiness": "Petite entreprise (seuils § 19 UStG)",
+      "berlinCityTax": "Inclure la taxe de séjour Berlin (7,5 %)",
+      "savePack": "Enregistrer les données facture",
+      "saving": "Enregistrement…",
+      "saved": "Données séjour affaires enregistrées",
+      "saveError": "Échec de l'enregistrement",
+      "exportCsv": "Exporter CSV facture",
+      "exportConfirmation": "Exporter Aufenthaltsbestätigung"
     }
   },
   "es": {

@@ -3,6 +3,8 @@ import {
   BERLIN_SERVICE_ZWVB_URL,
   BERLIN_ZWVB_FORMS_URL,
   BERLIN_ZWVB_URL,
+  BERLIN_ZWVB_GVBL_2026_URL,
+  BNETZA_STR_ARTICLE_URL,
   EU_1028_URL,
   MUNICH_STR_REGISTRATION_INFOBLATT_URL,
   MUNICH_ZES_URL,
@@ -188,6 +190,60 @@ const deSteps = {
     documents: {
       en: ["Registration number"],
       fr: ["Numéro d'enregistrement"],
+    },
+    fieldHints: ["name", "address", "city"],
+  }),
+
+  berlinMonteurKit: (cityKey: string): PlaybookStep => ({
+    key: `${cityKey}-de-monteur-business-kit`,
+    title: {
+      en: "Monteur and business stay checklist (Berlin)",
+      fr: "Checklist séjours Monteur et affaires (Berlin)",
+    },
+    instruction: {
+      en: "Open the Monteur kit on the Register tab: Zweckentfremdung (fourth ZwVbG act in force 17 June 2026, existing numbers still usable, BundID or Mein Unternehmenskonto for the digital procedure), building-law use (Hessian VGH 4 B 1030/26 cited as Hessian only: confirm with your adviser), guest registration (§§ 29 and 30 BMG for foreign guests; private flats: confirm with your adviser), invoicing prep, and company agreement items. Record business stays with company, payer and project ref; export Aufenthaltsbestätigung and invoice data pack. EU 2024/1028 also covers business stays (BNetzA, reviewed 2026-10-01). Glint does not file permits or invoices.",
+      fr: "Ouvrez le kit Monteur dans l'onglet Registre : Zweckentfremdung (4e loi en vigueur le 17 juin 2026, numéros existants toujours utilisables, BundID ou Mein Unternehmenskonto), droit de la construction (arrêt VGH 4 B 1030/26 cité pour la Hesse uniquement : à confirmer avec votre conseil), enregistrement des hôtes (§§ 29 et 30 BMG pour les personnes étrangères ; logements privés : à confirmer), préparation facturation et checklist accord entreprise. Enregistrez les séjours affaires avec société, payeur et réf. projet ; exportez Aufenthaltsbestätigung et pack données facture. Le règlement UE 2024/1028 couvre aussi les séjours d'affaires (BNetzA, revu 2026-10-01). Glint ne dépose pas les permis ni les factures.",
+    },
+    officialUrls: [
+      {
+        url: BERLIN_ZWVB_GVBL_2026_URL,
+        label: {
+          en: "Berlin GVBl. 2026 Nr. 18 (ZwVbG)",
+          fr: "Berlin GVBl. 2026 n° 18 (ZwVbG)",
+        },
+        role: "rules",
+        urlVerified: true,
+      },
+      {
+        url: BNETZA_STR_ARTICLE_URL,
+        label: {
+          en: "BNetzA: EU STR platform data",
+          fr: "BNetzA : données plateformes LCD UE",
+        },
+        role: "rules",
+        urlVerified: true,
+      },
+      {
+        url: BERLIN_ZWVB_FORMS_URL,
+        label: {
+          en: "Berlin ZwVbG forms and guidance",
+          fr: "Formulaires et consignes ZwVbG Berlin",
+        },
+        role: "form",
+        urlVerified: true,
+      },
+    ],
+    documents: {
+      en: [
+        "Monteur kit checklist progress in Host Registry",
+        "Registration holder name on file",
+        "Business stay records with project ref",
+      ],
+      fr: [
+        "Progression checklist kit Monteur dans Host Registry",
+        "Nom du titulaire du numéro enregistré",
+        "Séjours affaires avec réf. projet",
+      ],
     },
     fieldHints: ["name", "address", "city"],
   }),
@@ -488,6 +544,7 @@ export const GERMANY_PLAYBOOKS: Playbook[] = [
       deSteps.officialRegistration("berlin"),
       deSteps.storeInGlint("berlin"),
       deSteps.displayRegistration("berlin"),
+      deSteps.berlinMonteurKit("berlin"),
     ],
   },
   {

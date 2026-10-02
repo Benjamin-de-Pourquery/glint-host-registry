@@ -65,10 +65,12 @@ export function getEffectiveNextStepForSpainRegistration(
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
 
   const communityStep = findStepBySuffix(playbook, ES_COMMUNITY_STEP_SUFFIX);
+  const inferredCommunity = getSpainAutonomousCommunity(context.city);
   const expectedCommunity: SpainAutonomousCommunity | null =
-    getSpainAutonomousCommunity(context.city) === "catalonia" ||
-    getSpainAutonomousCommunity(context.city) === "madrid"
-      ? getSpainAutonomousCommunity(context.city)
+    inferredCommunity === "catalonia" ||
+    inferredCommunity === "madrid" ||
+    inferredCommunity === "valencian"
+      ? inferredCommunity
       : null;
   const missingCommunity =
     Boolean(expectedCommunity) &&

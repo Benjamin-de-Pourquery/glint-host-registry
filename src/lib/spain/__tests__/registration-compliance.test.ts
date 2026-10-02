@@ -22,8 +22,24 @@ describe("needsSpainRegistrationAttention", () => {
     );
   });
 
+  it("flags incomplete Valencian dossier", () => {
+    assert.equal(
+      needsSpainRegistrationAttention(
+        "Spain",
+        {
+          esAutonomousCommunity: "valencian",
+          esLicenseKind: null,
+          esDossierPreparedAt: null,
+          esRegistrationStatus: "not_started",
+        },
+        "Valencia"
+      ),
+      true
+    );
+  });
+
   it("ignores non-supported Spain cities", () => {
-    assert.equal(needsSpainRegistrationAttention("Spain", null, "Valencia"), false);
+    assert.equal(needsSpainRegistrationAttention("Spain", null, "Seville"), false);
   });
 
   it("flags incomplete Barcelona dossier", () => {
@@ -73,6 +89,24 @@ describe("needsSpainRegistrationAttention", () => {
           esRegistrationDisplayedOnListings: true,
         },
         "Barcelona"
+      ),
+      false
+    );
+  });
+
+  it("clears when Valencian VUT complete", () => {
+    assert.equal(
+      needsSpainRegistrationAttention(
+        "Spain",
+        {
+          esAutonomousCommunity: "valencian",
+          esLicenseKind: "vut",
+          esDossierPreparedAt: "2026-10-01",
+          esRegistrationNumber: "VT-CV-445566",
+          esRegistrationStatus: "active",
+          esRegistrationDisplayedOnListings: true,
+        },
+        "Valencia"
       ),
       false
     );

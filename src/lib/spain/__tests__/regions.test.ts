@@ -6,7 +6,9 @@ import {
   isCataloniaLocation,
   isLikelyCataloniaHutNumber,
   isLikelyMadridVutNumber,
+  isLikelyValencianVutNumber,
   isMadridLocation,
+  isValencianLocation,
   supportsSpainStrRegistrationCompliance,
 } from "../regions";
 
@@ -35,11 +37,23 @@ describe("Spain Madrid region resolution", () => {
   });
 });
 
+describe("Spain Valencian region resolution", () => {
+  it("resolves Valencia capital and Alicante as Comunitat Valenciana", () => {
+    assert.equal(isValencianLocation("Valencia"), true);
+    assert.equal(isValencianLocation("Alicante"), true);
+    assert.equal(getSpainAutonomousCommunity("Benidorm"), "valencian");
+  });
+
+  it("uses SES guest reporting for Valencia", () => {
+    assert.equal(getSpainGuestReportingMode("Valencia"), "ses");
+  });
+});
+
 describe("Spain STR registration compliance scope", () => {
-  it("includes Catalonia and Madrid", () => {
+  it("includes Catalonia, Madrid, and Comunitat Valenciana", () => {
     assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Barcelona"), true);
     assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Madrid"), true);
-    assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Valencia"), false);
+    assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Valencia"), true);
     assert.equal(supportsSpainStrRegistrationCompliance("France", "Barcelona"), false);
   });
 });
@@ -54,5 +68,10 @@ describe("Regional registration number format", () => {
   it("accepts Madrid VUT references without HUT prefix", () => {
     assert.equal(isLikelyMadridVutNumber("CM-VUT-12345"), true);
     assert.equal(isLikelyMadridVutNumber("HUT-1"), false);
+  });
+
+  it("accepts Valencian Registro Turismo references without HUT prefix", () => {
+    assert.equal(isLikelyValencianVutNumber("VT-CV-12345"), true);
+    assert.equal(isLikelyValencianVutNumber("HUT-1"), false);
   });
 });

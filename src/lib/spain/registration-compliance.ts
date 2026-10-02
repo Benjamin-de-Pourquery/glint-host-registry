@@ -7,7 +7,11 @@ import {
   type SpainAutonomousCommunity,
 } from "./regions";
 
-const SUPPORTED_ES_STR_COMMUNITIES: SpainAutonomousCommunity[] = ["catalonia", "madrid"];
+const SUPPORTED_ES_STR_COMMUNITIES: SpainAutonomousCommunity[] = [
+  "catalonia",
+  "madrid",
+  "valencian",
+];
 
 export type SpainRegistration = {
   esRegistrationNumber?: string | null;
@@ -45,7 +49,11 @@ export function isEsCommunityConfirmed(
   if (!stored || !SUPPORTED_ES_STR_COMMUNITIES.includes(stored as SpainAutonomousCommunity)) {
     return false;
   }
-  if (inferred === "catalonia" || inferred === "madrid") {
+  if (
+    inferred === "catalonia" ||
+    inferred === "madrid" ||
+    inferred === "valencian"
+  ) {
     return stored === inferred;
   }
   return SUPPORTED_ES_STR_COMMUNITIES.includes(stored as SpainAutonomousCommunity);
@@ -89,7 +97,11 @@ export function needsSpainRegistrationAttention(
   if (registration.esRegistrationStatus === "expired") return true;
 
   const expectedLicense =
-    community === "catalonia" ? "hut" : community === "madrid" ? "vut" : null;
+    community === "catalonia"
+      ? "hut"
+      : community === "madrid" || community === "valencian"
+        ? "vut"
+        : null;
   if (expectedLicense && registration.esLicenseKind !== expectedLicense) return true;
 
   if (

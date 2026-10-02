@@ -21,6 +21,44 @@ const BASQUE_PROVINCES = new Set([
 
 const MADRID_PROVINCES = new Set(["madrid"]);
 
+const VALENCIAN_PROVINCES = new Set([
+  "valencia",
+  "valència",
+  "alicante",
+  "alacant",
+  "castellón",
+  "castellon",
+  "castelló",
+]);
+
+const VALENCIAN_CITIES = new Set([
+  "valencia",
+  "valència",
+  "alicante",
+  "alacant",
+  "castellón de la plana",
+  "castellon de la plana",
+  "castelló de la plana",
+  "elche",
+  "elx",
+  "benidorm",
+  "torrevieja",
+  "gandia",
+  "gandía",
+  "denia",
+  "dénia",
+  "xàtiva",
+  "xativa",
+  "sagunto",
+  "sagunt",
+  "benicàssim",
+  "benicassim",
+  "peñíscola",
+  "peniscola",
+  "villajoyosa",
+  "la vila joiosa",
+]);
+
 const MADRID_CITIES = new Set([
   "madrid",
   "alcalá de henares",
@@ -102,6 +140,17 @@ function isMadridCommunity(cityKey: string, regionKey: string): boolean {
   );
 }
 
+function isValencianCommunity(cityKey: string, regionKey: string): boolean {
+  return (
+    VALENCIAN_CITIES.has(cityKey) ||
+    regionKey.includes("comunitat valenciana") ||
+    regionKey.includes("comunidad valenciana") ||
+    regionKey.includes("valencian community") ||
+    regionKey.includes("valencia community") ||
+    VALENCIAN_PROVINCES.has(cityKey)
+  );
+}
+
 function isBasqueCountry(cityKey: string, regionKey: string): boolean {
   return (
     BASQUE_CITIES.has(cityKey) ||
@@ -155,11 +204,17 @@ export function requiresAnnexOneCheckIn(city: string, region?: string | null): b
   return mode === "ses" || mode === "mossos" || mode === "ertzaintza";
 }
 
-export type SpainAutonomousCommunity = "catalonia" | "madrid" | "other" | "unknown";
+export type SpainAutonomousCommunity =
+  | "catalonia"
+  | "madrid"
+  | "valencian"
+  | "other"
+  | "unknown";
 
 export const SPAIN_STR_REGISTRATION_COMMUNITIES: SpainAutonomousCommunity[] = [
   "catalonia",
   "madrid",
+  "valencian",
 ];
 
 export function isCataloniaLocation(city: string, region?: string | null): boolean {
@@ -174,12 +229,19 @@ export function isMadridLocation(city: string, region?: string | null): boolean 
   return isMadridCommunity(cityKey, regionKey);
 }
 
+export function isValencianLocation(city: string, region?: string | null): boolean {
+  const cityKey = normalizeKey(city);
+  const regionKey = normalizeKey(region ?? "");
+  return isValencianCommunity(cityKey, regionKey);
+}
+
 export function getSpainAutonomousCommunity(
   city: string,
   region?: string | null
 ): SpainAutonomousCommunity {
   if (isCataloniaLocation(city, region)) return "catalonia";
   if (isMadridLocation(city, region)) return "madrid";
+  if (isValencianLocation(city, region)) return "valencian";
   if (!city.trim() && !region?.trim()) return "unknown";
   return "other";
 }
@@ -191,6 +253,7 @@ export function resolveSpainAutonomousCommunityForProperty(
 ): SpainAutonomousCommunity {
   if (stored === "catalonia") return "catalonia";
   if (stored === "madrid") return "madrid";
+  if (stored === "valencian") return "valencian";
   if (stored === "other") return "other";
   return getSpainAutonomousCommunity(city, region);
 }
@@ -207,7 +270,11 @@ export function supportsSpainStrRegistrationCompliance(
     esAutonomousCommunity,
     region
   );
-  return community === "catalonia" || community === "madrid";
+  return (
+    community === "catalonia" ||
+    community === "madrid" ||
+    community === "valencian"
+  );
 }
 
 /** HUT numbers for Catalonia typically start with HUT (platforms verify regional codes after STS 620/2026). */
@@ -225,12 +292,18 @@ export function isLikelyMadridVutNumber(value: string | null | undefined): boole
   return true;
 }
 
+/** Comunitat Valenciana Registro Turismo VUT references (no HUT prefix). */
+export function isLikelyValencianVutNumber(value: string | null | undefined): boolean {
+  return isLikelyMadridVutNumber(value);
+}
+
 export function isLikelyEsRegistrationNumberForCommunity(
   community: SpainAutonomousCommunity,
   value: string | null | undefined
 ): boolean {
   if (community === "catalonia") return isLikelyCataloniaHutNumber(value);
   if (community === "madrid") return isLikelyMadridVutNumber(value);
+  if (community === "valencian") return isLikelyValencianVutNumber(value);
   return Boolean(value?.trim());
 }
 

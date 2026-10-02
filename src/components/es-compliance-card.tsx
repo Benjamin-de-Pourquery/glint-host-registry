@@ -27,10 +27,15 @@ import {
 import {
   BARCELONA_TOURISM_HOUSING_URL,
   CATALONIA_TOURISM_REGISTER_OPEN_DATA_URL,
+  CV_DECRETO_LEY_9_2024_URL,
+  CV_VUT_CINDI_INFO_URL,
+  CV_VUT_FAQ_PDF_URL,
+  CV_VUT_REGISTER_PROCEDURE_URL,
   EU_1028_URL,
   MADRID_AYUNTAMIENTO_TURISMO_URL,
   MADRID_VUT_REGISTER_URL,
   RD_933_URL,
+  VALENCIA_CITY_TURISME_URL,
 } from "@/lib/spain/official-links";
 import { toast } from "sonner";
 
@@ -54,9 +59,22 @@ type Props = {
 };
 
 function defaultLicenseKind(community: SpainAutonomousCommunity): string {
-  if (community === "madrid") return "vut";
+  if (community === "madrid" || community === "valencian") return "vut";
   if (community === "catalonia") return "hut";
   return "other";
+}
+
+function isVutCommunity(community: SpainAutonomousCommunity): boolean {
+  return community === "madrid" || community === "valencian";
+}
+
+function supportedCommunity(
+  community: SpainAutonomousCommunity
+): SpainAutonomousCommunity {
+  if (community === "catalonia" || community === "madrid" || community === "valencian") {
+    return community;
+  }
+  return "catalonia";
 }
 
 export function EsComplianceCard({ propertyId, country, city, registration }: Props) {
@@ -81,7 +99,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
 
   const initialCommunity =
     registration?.esAutonomousCommunity ??
-    (inferredCommunity === "catalonia" || inferredCommunity === "madrid"
+    (inferredCommunity === "catalonia" ||
+    inferredCommunity === "madrid" ||
+    inferredCommunity === "valencian"
       ? inferredCommunity
       : "catalonia");
 
@@ -103,14 +123,16 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
   const numberFormatOk =
     !form.esRegistrationNumber.trim() ||
     isLikelyEsRegistrationNumberForCommunity(
-      activeCommunity === "madrid" || activeCommunity === "catalonia"
-        ? activeCommunity
-        : "catalonia",
+      supportedCommunity(activeCommunity),
       form.esRegistrationNumber
     );
 
   const titleKey =
-    activeCommunity === "madrid" ? "titleMadrid" : "titleCatalonia";
+    activeCommunity === "madrid"
+      ? "titleMadrid"
+      : activeCommunity === "valencian"
+        ? "titleValencian"
+        : "titleCatalonia";
 
   const save = async () => {
     setSaving(true);
@@ -128,7 +150,11 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
       if (!res.ok) throw new Error("Failed");
       router.refresh();
       toast.success(
-        activeCommunity === "madrid" ? t("savedMadrid") : t("savedCatalonia")
+        activeCommunity === "madrid"
+          ? t("savedMadrid")
+          : activeCommunity === "valencian"
+            ? t("savedValencian")
+            : t("savedCatalonia")
       );
     } catch {
       toast.error(t("saveError"));
@@ -166,7 +192,11 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
               {t(titleKey)}
             </CardTitle>
             <p className="mt-1 text-sm text-slate-600">
-              {activeCommunity === "madrid" ? t("descriptionMadrid") : t("description")}
+              {activeCommunity === "madrid"
+                ? t("descriptionMadrid")
+                : activeCommunity === "valencian"
+                  ? t("descriptionValencian")
+                  : t("description")}
             </p>
           </div>
           <Badge variant={regStatusVariant}>{t(`status.${form.esRegistrationStatus}`)}</Badge>
@@ -174,7 +204,11 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">
-          {activeCommunity === "madrid" ? t("nruaNoticeMadrid") : t("nruaNotice")}
+          {activeCommunity === "madrid"
+            ? t("nruaNoticeMadrid")
+            : activeCommunity === "valencian"
+              ? t("nruaNoticeValencian")
+              : t("nruaNotice")}
         </p>
 
         <div className="grid gap-3 sm:grid-cols-2">
@@ -196,6 +230,7 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
               <SelectContent>
                 <SelectItem value="catalonia">{t("community.catalonia")}</SelectItem>
                 <SelectItem value="madrid">{t("community.madrid")}</SelectItem>
+                <SelectItem value="valencian">{t("community.valencian")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -229,7 +264,7 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
 
         <div className="space-y-2">
           <Label htmlFor="esRegistrationNumber">
-            {activeCommunity === "madrid"
+            {isVutCommunity(activeCommunity)
               ? t("registrationNumberVut")
               : t("registrationNumber")}
           </Label>
@@ -239,8 +274,10 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
               value={form.esRegistrationNumber}
               onChange={(e) => setForm({ ...form, esRegistrationNumber: e.target.value })}
               placeholder={
-                activeCommunity === "madrid"
-                  ? t("registrationNumberVutPlaceholder")
+                isVutCommunity(activeCommunity)
+                  ? activeCommunity === "valencian"
+                    ? t("registrationNumberVutValencianPlaceholder")
+                    : t("registrationNumberVutPlaceholder")
                   : t("registrationNumberPlaceholder")
               }
             />
@@ -250,7 +287,11 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
           </div>
           {!numberFormatOk && (
             <p className="text-xs text-red-600">
-              {activeCommunity === "madrid" ? t("vutFormatHint") : t("hutFormatHint")}
+              {isVutCommunity(activeCommunity)
+                ? activeCommunity === "valencian"
+                  ? t("vutValencianFormatHint")
+                  : t("vutFormatHint")
+                : t("hutFormatHint")}
             </p>
           )}
         </div>
@@ -281,7 +322,7 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
             }
           />
           <Label htmlFor="esDisplayed" className="font-normal">
-            {activeCommunity === "madrid"
+            {isVutCommunity(activeCommunity)
               ? t("displayedOnListingsVut")
               : t("displayedOnListings")}
           </Label>
@@ -306,6 +347,54 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
                 className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
               >
                 {t("links.madridCity")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </>
+          ) : activeCommunity === "valencian" ? (
+            <>
+              <a
+                href={CV_VUT_REGISTER_PROCEDURE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.valencianRegister")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={CV_VUT_CINDI_INFO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.valencianInfo")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={CV_VUT_FAQ_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.valencianFaq")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={CV_DECRETO_LEY_9_2024_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.valencianDecreto")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={VALENCIA_CITY_TURISME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.valenciaCity")}
                 <ExternalLink className="h-3 w-3" />
               </a>
             </>
@@ -352,7 +441,11 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
         </div>
 
         <p className="text-xs text-slate-500">
-          {activeCommunity === "madrid" ? t("disclaimerMadrid") : t("disclaimer")}
+          {activeCommunity === "madrid"
+            ? t("disclaimerMadrid")
+            : activeCommunity === "valencian"
+              ? t("disclaimerValencian")
+              : t("disclaimer")}
         </p>
 
         <Button onClick={save} disabled={saving}>

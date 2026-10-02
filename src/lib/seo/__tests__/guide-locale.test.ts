@@ -29,6 +29,8 @@ const PAIRED_GUIDE_IDS = [
   "barcelonaAirbnb",
   "madridStr",
   "madridAirbnb",
+  "valenciaStr",
+  "valenciaAirbnb",
 ] as const;
 
 const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
@@ -44,6 +46,8 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
   barcelonaAirbnb: ["guideBarcelonaAirbnbRegistration", "guideBarcelonaAirbnbRegistrationFr"],
   madridStr: ["guideMadridStrRegistration", "guideMadridStrRegistrationFr"],
   madridAirbnb: ["guideMadridAirbnbRegistration", "guideMadridAirbnbRegistrationFr"],
+  valenciaStr: ["guideValenciaStrRegistration", "guideValenciaStrRegistrationFr"],
+  valenciaAirbnb: ["guideValenciaAirbnbRegistration", "guideValenciaAirbnbRegistrationFr"],
 };
 
 function enSlug(enKey: string): string {
@@ -94,7 +98,14 @@ describe("single-locale and shared guides", () => {
   });
 
   it("returns null for unknown slugs", () => {
-    assert.equal(resolveGuideSlugRedirect("en", "valencia-short-term-rental-registration"), null);
+    assert.equal(resolveGuideSlugRedirect("en", "not-a-real-guide-slug"), null);
+  });
+
+  it("Valencia STR French slug on /en redirects to English slug", () => {
+    assert.equal(
+      resolveGuideSlugRedirect("en", "enregistrement-location-courte-duree-valence"),
+      "/en/guides/valencia-short-term-rental-registration"
+    );
   });
 });
 
@@ -164,6 +175,10 @@ describe("sitemap entries", () => {
     assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-madrid"));
     assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-madrid"));
     assert.ok(!urls.includes("/fr/guides/madrid-short-term-rental-registration"));
+    assert.ok(urls.includes("/en/guides/valencia-short-term-rental-registration"));
+    assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-valence"));
+    assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-valence"));
+    assert.ok(!urls.includes("/fr/guides/valencia-short-term-rental-registration"));
   });
 
   it("lists NER migration only under /fr", () => {

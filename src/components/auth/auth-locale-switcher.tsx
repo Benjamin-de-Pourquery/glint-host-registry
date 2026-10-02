@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { NavLink } from "@/components/navigation/nav-link";
 import { cn } from "@/lib/utils";
+import { switchLocaleInPathname } from "@/lib/seo/guide-routing";
 
 type Props = {
   className?: string;
@@ -17,11 +18,8 @@ export function AuthLocaleSwitcher({ className }: Props) {
   const pathname = usePathname();
   const t = useTranslations("auth.shell");
 
-  const buildHref = (targetLocale: string) => {
-    const segments = pathname.split("/");
-    segments[1] = targetLocale;
-    return segments.join("/") || `/${targetLocale}`;
-  };
+  const buildHref = (targetLocale: string) =>
+    switchLocaleInPathname(pathname, targetLocale as "en" | "fr");
 
   const locales = [
     { code: "fr", label: "fr" },

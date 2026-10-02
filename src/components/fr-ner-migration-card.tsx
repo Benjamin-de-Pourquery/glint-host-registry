@@ -18,6 +18,7 @@ import type { FrNerMigrationRecord, FrNerMigrationStatus } from "@/lib/fr-ner-mi
 import { ExternalLink, Plane } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { buildLocalizedGuidePath } from "@/lib/seo/guide-routing";
 
 type Props = {
   propertyId: string;
@@ -324,7 +325,7 @@ export function FrNerMigrationCard({
             {t("ctaPlaybook")}
           </Button>
         </Link>
-        <Link href={`/${locale}/guides/migration-ner-2026`}>
+        <Link href={buildLocalizedGuidePath(locale as "en" | "fr", "guideFrNerMigration")}>
           <Button variant="outline" size="sm" className="bg-white/80">
             {t("ctaGuide")}
           </Button>

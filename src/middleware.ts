@@ -2,6 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
+import { resolveGuideSlugRedirect } from "@/lib/seo/guide-routing";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -9,6 +10,18 @@ const protectedPaths = ["/app", "/export"];
 
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  const guideMatch = pathname.match(/^\/(en|fr)\/guides\/([^/]+)\/?$/);
+  if (guideMatch) {
+    const locale = guideMatch[1] as "en" | "fr";
+    const slug = guideMatch[2];
+    const redirectPath = resolveGuideSlugRedirect(locale, slug);
+    if (redirectPath) {
+      const url = request.nextUrl.clone();
+      url.pathname = redirectPath;
+      return NextResponse.redirect(url, 308);
+    }
+  }
 
   const isProtected = protectedPaths.some((path) =>
     pathname.match(new RegExp(`^/(en|fr)${path}`))

@@ -1,107 +1,28 @@
 import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import { getSiteUrl, SITE_NAME } from "./site";
+import {
+  buildLocalizedGuidePath,
+  getGuideLocalePair,
+  getPageLocales,
+  getPublicSitemapEntries,
+} from "./guide-routing";
+import type { SeoPageKey } from "./page-paths";
+import { PAGE_PATHS } from "./page-paths";
+
+export type { SeoPageKey } from "./page-paths";
+export {
+  buildLocalizedGuidePath,
+  getGuideLocalePairs,
+  getGuideSlugToPageMap,
+  getPageLocales,
+  getPublicSitemapEntries,
+  resolveGuidePathForLocale,
+  resolveGuideSlugRedirect,
+  switchLocaleInPathname,
+} from "./guide-routing";
 
 type Locale = (typeof routing.locales)[number];
-
-export type SeoPageKey =
-  | "home"
-  | "login"
-  | "signup"
-  | "forgotPassword"
-  | "resetPassword"
-  | "privacy"
-  | "terms"
-  | "mentions"
-  | "guideRegistration"
-  | "guideSes"
-  | "guideGuestRegister"
-  | "guideAmsterdamNightCap"
-  | "guideItalyCinAlloggiati"
-  | "guidePortugalRnalSiba"
-  | "guideGreeceAmaAade"
-  | "guideCroatiaEvisitor"
-  | "guideBelgiumStrRegistration"
-  | "guideBelgiumStrRegistrationFr"
-  | "guideBrusselsAirbnbRegistration"
-  | "guideBrusselsAirbnbRegistrationFr"
-  | "guideViennaStrRegistration"
-  | "guideViennaStrRegistrationFr"
-  | "guideViennaAirbnbRegistration"
-  | "guideViennaAirbnbRegistrationFr"
-  | "guideBerlinStrRegistration"
-  | "guideBerlinStrRegistrationFr"
-  | "guideBerlinAirbnbRegistration"
-  | "guideBerlinAirbnbRegistrationFr"
-  | "guideMunichStrRegistration"
-  | "guideMunichStrRegistrationFr"
-  | "guideMunichAirbnbRegistration"
-  | "guideMunichAirbnbRegistrationFr"
-  | "guideBarcelonaStrRegistration"
-  | "guideBarcelonaStrRegistrationFr"
-  | "guideBarcelonaAirbnbRegistration"
-  | "guideBarcelonaAirbnbRegistrationFr"
-  | "guideMadridStrRegistration"
-  | "guideMadridStrRegistrationFr"
-  | "guideMadridAirbnbRegistration"
-  | "guideMadridAirbnbRegistrationFr"
-  | "guideValenciaStrRegistration"
-  | "guideValenciaStrRegistrationFr"
-  | "guideValenciaAirbnbRegistration"
-  | "guideValenciaAirbnbRegistrationFr"
-  | "guideFrNerMigration";
-
-const PAGE_PATHS: Record<SeoPageKey, string> = {
-  home: "",
-  login: "/login",
-  signup: "/signup",
-  forgotPassword: "/forgot-password",
-  resetPassword: "/reset-password",
-  privacy: "/legal/privacy",
-  terms: "/legal/terms",
-  mentions: "/legal/mentions",
-  guideRegistration: "/guides/numero-enregistrement-meuble",
-  guideSes: "/guides/ses-hospedajes-espagne",
-  guideGuestRegister: "/guides/fiche-police-voyageurs",
-  guideAmsterdamNightCap: "/guides/amsterdam-night-cap",
-  guideItalyCinAlloggiati: "/guides/italy-cin-alloggiati",
-  guidePortugalRnalSiba: "/guides/rnal-siba-portugal",
-  guideGreeceAmaAade: "/guides/greece-ama-aade",
-  guideCroatiaEvisitor: "/guides/croatia-evisitor",
-  guideBelgiumStrRegistration: "/guides/belgium-short-term-rental-registration",
-  guideBelgiumStrRegistrationFr: "/guides/enregistrement-location-courte-duree-belgique",
-  guideBrusselsAirbnbRegistration: "/guides/brussels-airbnb-registration",
-  guideBrusselsAirbnbRegistrationFr: "/guides/enregistrement-airbnb-bruxelles",
-  guideViennaStrRegistration: "/guides/vienna-short-term-rental-registration",
-  guideViennaStrRegistrationFr: "/guides/enregistrement-location-courte-duree-vienne",
-  guideViennaAirbnbRegistration: "/guides/vienna-airbnb-registration",
-  guideViennaAirbnbRegistrationFr: "/guides/enregistrement-airbnb-vienne",
-  guideBerlinStrRegistration: "/guides/berlin-short-term-rental-registration",
-  guideBerlinStrRegistrationFr: "/guides/enregistrement-location-courte-duree-berlin",
-  guideBerlinAirbnbRegistration: "/guides/berlin-airbnb-registration",
-  guideBerlinAirbnbRegistrationFr: "/guides/enregistrement-airbnb-berlin",
-  guideMunichStrRegistration: "/guides/munich-short-term-rental-registration",
-  guideMunichStrRegistrationFr:
-    "/guides/enregistrement-location-courte-duree-munich",
-  guideMunichAirbnbRegistration: "/guides/munich-airbnb-registration",
-  guideMunichAirbnbRegistrationFr: "/guides/enregistrement-airbnb-munich",
-  guideBarcelonaStrRegistration: "/guides/barcelona-short-term-rental-registration",
-  guideBarcelonaStrRegistrationFr:
-    "/guides/enregistrement-location-courte-duree-barcelone",
-  guideBarcelonaAirbnbRegistration: "/guides/barcelona-airbnb-registration",
-  guideBarcelonaAirbnbRegistrationFr: "/guides/enregistrement-airbnb-barcelone",
-  guideMadridStrRegistration: "/guides/madrid-short-term-rental-registration",
-  guideMadridStrRegistrationFr:
-    "/guides/enregistrement-location-courte-duree-madrid",
-  guideMadridAirbnbRegistration: "/guides/madrid-airbnb-registration",
-  guideMadridAirbnbRegistrationFr: "/guides/enregistrement-airbnb-madrid",
-  guideValenciaStrRegistration: "/guides/valencia-short-term-rental-registration",
-  guideValenciaStrRegistrationFr:
-    "/guides/enregistrement-location-courte-duree-valence",
-  guideValenciaAirbnbRegistration: "/guides/valencia-airbnb-registration",
-  guideValenciaAirbnbRegistrationFr: "/guides/enregistrement-airbnb-valence",
-  guideFrNerMigration: "/guides/migration-ner-2026",
-};
 
 function localeOpenGraphLocale(locale: Locale): string {
   return locale === "fr" ? "fr_FR" : "en_US";
@@ -114,6 +35,9 @@ function alternateOpenGraphLocales(locale: Locale): string[] {
 }
 
 export function buildLocalizedPath(locale: Locale, page: SeoPageKey): string {
+  if (page.startsWith("guide")) {
+    return buildLocalizedGuidePath(locale, page);
+  }
   const suffix = PAGE_PATHS[page];
   return `/${locale}${suffix}`;
 }
@@ -123,12 +47,34 @@ export function buildCanonicalUrl(locale: Locale, page: SeoPageKey): string {
 }
 
 export function buildLanguageAlternates(page: SeoPageKey): Record<string, string> {
+  const pair = getGuideLocalePair(page);
+  if (pair) {
+    return {
+      en: buildCanonicalUrl("en", pair.en),
+      fr: buildCanonicalUrl("fr", pair.fr),
+      "x-default": buildCanonicalUrl(routing.defaultLocale, pair.en),
+    };
+  }
+  const singleLocales = getPageLocales(page);
+  if (singleLocales.length === 1) {
+    const only = singleLocales[0];
+    const url = buildCanonicalUrl(only, page);
+    return {
+      [only]: url,
+      "x-default": url,
+    };
+  }
   const alternates: Record<string, string> = {};
   for (const locale of routing.locales) {
     alternates[locale] = buildCanonicalUrl(locale, page);
   }
   alternates["x-default"] = buildCanonicalUrl(routing.defaultLocale, page);
   return alternates;
+}
+
+/** Branded document title (root layout template also appends the site name). */
+export function formatBrandedPageTitle(title: string): string {
+  return `${title} | ${SITE_NAME}`;
 }
 
 type BuildMetadataOptions = {
@@ -147,10 +93,10 @@ export function buildPageMetadata({
   noIndex = false,
 }: BuildMetadataOptions): Metadata {
   const canonical = buildCanonicalUrl(locale, page);
-  const fullTitle = page === "home" ? title : `${title} | ${SITE_NAME}`;
+  const brandedTitle = formatBrandedPageTitle(title);
 
   return {
-    title: fullTitle,
+    title,
     description,
     metadataBase: new URL(getSiteUrl()),
     alternates: {
@@ -163,12 +109,12 @@ export function buildPageMetadata({
       siteName: SITE_NAME,
       locale: localeOpenGraphLocale(locale),
       alternateLocale: alternateOpenGraphLocales(locale),
-      title: fullTitle,
+      title: brandedTitle,
       description,
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: brandedTitle,
       description,
     },
     robots: noIndex
@@ -185,8 +131,13 @@ export const NOINDEX_METADATA: Metadata = {
   },
 };
 
+export type PublicSitemapEntry = {
+  locale: Locale;
+  path: string;
+  page: SeoPageKey;
+};
+
+/** @deprecated Use getPublicSitemapEntries for locale-aware sitemap rows. */
 export function getPublicSitemapPaths(): Array<{ path: string; page: SeoPageKey }> {
-  return (Object.entries(PAGE_PATHS) as Array<[SeoPageKey, string]>)
-    .filter(([page]) => page !== "forgotPassword" && page !== "resetPassword")
-    .map(([page, path]) => ({ path, page }));
+  return getPublicSitemapEntries().map(({ path, page }) => ({ path, page }));
 }

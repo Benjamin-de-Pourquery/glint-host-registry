@@ -4,6 +4,7 @@ import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { switchLocaleInPathname } from "@/lib/seo/guide-routing";
 
 type Props = {
   className?: string;
@@ -15,9 +16,7 @@ export function LanguageSwitcher({ className }: Props) {
   const router = useRouter();
 
   const switchLocale = (newLocale: string) => {
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    router.push(segments.join("/") || "/");
+    router.push(switchLocaleInPathname(pathname, newLocale as "en" | "fr"));
   };
 
   return (

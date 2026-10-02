@@ -3,8 +3,14 @@ import { getTranslations } from "next-intl/server";
 import { GlintBrandIcon } from "@/components/brand/glint-brand-icon";
 import { BrandWordmark } from "@/components/brand/brand-wordmark";
 import { suiteProductUrl } from "@/lib/suite-urls";
+import { buildLocalizedPath } from "@/lib/seo/metadata";
+import type { SeoPageKey } from "@/lib/seo/metadata";
 
 type Props = { locale: string };
+
+function guideHref(locale: string, page: SeoPageKey): string {
+  return buildLocalizedPath(locale as "en" | "fr", page);
+}
 
 export async function LandingFooter({ locale }: Props) {
   const t = await getTranslations("landing.footer");
@@ -87,7 +93,7 @@ export async function LandingFooter({ locale }: Props) {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <Link
-                  href={`/${locale}/guides/numero-enregistrement-meuble`}
+                  href={guideHref(locale, "guideRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideRegistration")}
@@ -95,7 +101,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/migration-ner-2026`}
+                  href={guideHref(locale, "guideFrNerMigration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideFrNerMigration")}
@@ -103,7 +109,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/ses-hospedajes-espagne`}
+                  href={guideHref(locale, "guideSes")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideSes")}
@@ -111,7 +117,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/fiche-police-voyageurs`}
+                  href={guideHref(locale, "guideGuestRegister")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideGuestRegister")}
@@ -119,7 +125,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/amsterdam-night-cap`}
+                  href={guideHref(locale, "guideAmsterdamNightCap")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideAmsterdamNightCap")}
@@ -127,7 +133,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/italy-cin-alloggiati`}
+                  href={guideHref(locale, "guideItalyCinAlloggiati")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideItalyCinAlloggiati")}
@@ -135,7 +141,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/rnal-siba-portugal`}
+                  href={guideHref(locale, "guidePortugalRnalSiba")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guidePortugalRnalSiba")}
@@ -143,7 +149,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/greece-ama-aade`}
+                  href={guideHref(locale, "guideGreeceAmaAade")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideGreeceAmaAade")}
@@ -151,7 +157,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/croatia-evisitor`}
+                  href={guideHref(locale, "guideCroatiaEvisitor")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideCroatiaEvisitor")}
@@ -159,7 +165,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/belgium-short-term-rental-registration`}
+                  href={guideHref(locale, "guideBelgiumStrRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideBelgiumStrRegistration")}
@@ -167,7 +173,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/brussels-airbnb-registration`}
+                  href={guideHref(locale, "guideBrusselsAirbnbRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideBrusselsAirbnbRegistration")}
@@ -175,7 +181,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/vienna-short-term-rental-registration`}
+                  href={guideHref(locale, "guideViennaStrRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideViennaStrRegistration")}
@@ -183,7 +189,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/vienna-airbnb-registration`}
+                  href={guideHref(locale, "guideViennaAirbnbRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideViennaAirbnbRegistration")}
@@ -191,7 +197,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/berlin-short-term-rental-registration`}
+                  href={guideHref(locale, "guideBerlinStrRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideBerlinStrRegistration")}
@@ -199,7 +205,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/berlin-airbnb-registration`}
+                  href={guideHref(locale, "guideBerlinAirbnbRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideBerlinAirbnbRegistration")}
@@ -207,7 +213,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/munich-short-term-rental-registration`}
+                  href={guideHref(locale, "guideMunichStrRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideMunichStrRegistration")}
@@ -215,7 +221,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/munich-airbnb-registration`}
+                  href={guideHref(locale, "guideMunichAirbnbRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideMunichAirbnbRegistration")}
@@ -223,7 +229,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/barcelona-short-term-rental-registration`}
+                  href={guideHref(locale, "guideBarcelonaStrRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideBarcelonaStrRegistration")}
@@ -231,7 +237,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/barcelona-airbnb-registration`}
+                  href={guideHref(locale, "guideBarcelonaAirbnbRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideBarcelonaAirbnbRegistration")}
@@ -239,7 +245,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/madrid-short-term-rental-registration`}
+                  href={guideHref(locale, "guideMadridStrRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideMadridStrRegistration")}
@@ -247,7 +253,7 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/guides/madrid-airbnb-registration`}
+                  href={guideHref(locale, "guideMadridAirbnbRegistration")}
                   className="transition-colors hover:text-white"
                 >
                   {t("guideMadridAirbnbRegistration")}

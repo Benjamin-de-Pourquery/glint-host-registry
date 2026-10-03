@@ -7,6 +7,10 @@ export const RIJKSOVERHEID_TOURIST_RENTAL_URL =
 export const NATIONAL_REGISTRATION_PORTAL_URL =
   "https://www.registratietoeristischeverhuur.nl/";
 
+export const AMSTERDAM_HOLIDAY_RENTALS_URL =
+  "https://www.amsterdam.nl/en/housing/holiday-rentals/";
+
+/** @deprecated Use AMSTERDAM_HOLIDAY_RENTALS_URL; kept for deep links that still resolve. */
 export const AMSTERDAM_HOME_SHARING_URL =
   "https://www.amsterdam.nl/en/housing/rent-out/home-sharing/";
 

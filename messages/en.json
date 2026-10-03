@@ -55,6 +55,22 @@
       "title": "Amsterdam & Netherlands: night caps, permit & registration",
       "description": "Host guide: national toeristische verhuur registration, Amsterdam holiday permit, per-stay notification and 30/15 night caps (wijken from April 2026)."
     },
+    "guideAmsterdamStrRegistration": {
+      "title": "Amsterdam short-term rental registration: toeristische verhuur host guide",
+      "description": "National registratienummer, Amsterdam holiday-rental vergunning, per-stay municipal notification, EU 2024/1028 platform rules. Host Registry does not auto-submit to government portals."
+    },
+    "guideAmsterdamStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Amsterdam: guide toeristische verhuur",
+      "description": "Numéro national, vergunning Amsterdam, notification par séjour, règlement UE 2024/1028. Host Registry ne dépose pas automatiquement aux portails officiels."
+    },
+    "guideAmsterdamAirbnbRegistration": {
+      "title": "Amsterdam Airbnb registration: toeristische verhuur compliance guide",
+      "description": "Registration number and vergunning on Airbnb, per-stay notify portal, night-cap awareness. Glint tracks ops; you file on registratietoeristischeverhuur.nl and amsterdam.nl."
+    },
+    "guideAmsterdamAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Amsterdam: guide conformité toeristische verhuur",
+      "description": "Numéro et vergunning sur Airbnb, notification par séjour, plafonds de nuitées. Glint suit le dossier ; vous déposez sur les portails officiels."
+    },
     "guideItalyCinAlloggiati": {
       "title": "Italy CIN & Alloggiati Web: host guide 2026",
       "description": "Codice Identificativo Nazionale (BDSR) on listings and Alloggiati Web schedine within 24h, separate obligations for Italian hosts."
@@ -300,7 +316,7 @@
       "sections": {
         "registration": {
           "title": "National registration (registratietoeristischeverhuur.nl)",
-          "body": "Since 2024, every short-term rental must be registered on the national portal registratietoeristischeverhuur.nl. The number is free and must appear on all listings. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify this number before publishing or maintaining a listing."
+          "body": "Since 2024, every short-term rental must be registered on the national portal registratietoeristischeverhuur.nl. The number is free and must appear on all listings. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify this number before publishing or maintaining a listing. For a step-by-step Amsterdam registration checklist, see /en/guides/amsterdam-short-term-rental-registration."
         },
         "permit": {
           "title": "Holiday-rental permit (Amsterdam vergunning)",
@@ -315,8 +331,62 @@
           "body": "Before every guest stay, you must notify Amsterdam via the official portal (amsterdam.nl, notify stay). Prepare registration number, permit number, dates and guest count. Glint tracks upcoming stays and prepares copy fields. You submit manually on the municipal portal."
         },
         "glint": {
-          "title": "How Glint helps",
-          "body": "Glint does not file on your behalf with registratietoeristischeverhuur.nl or gemeente portals, it centralizes national number tracking, permit status, per-stay notifications and night counting (30/15), with a clear next action per property."
+          "title": "How Host Registry helps",
+          "body": "Host Registry, by Glint, does not file on your behalf with registratietoeristischeverhuur.nl or gemeente portals. It centralizes national number tracking, permit status, per-stay notification prep and night counting (30/15), with a clear next action per property."
+        }
+      }
+    },
+    "amsterdamStrRegistration": {
+      "title": "Amsterdam short-term rental registration (toeristische verhuur)",
+      "updated": "Updated: October 2026",
+      "intro": "Holiday rentals (toeristische verhuur) in Amsterdam combine a national registration number (registratienummer), a municipal holiday-rental permit (vergunning), notification before each temporary stay, and night caps for eligible primary residences. These layers sit on top of Dutch housing law (Huisvestingswet 2014) and the Besluit registratie toeristische verhuur (BWBR0044586 on wetten.overheid.nl). Regulation (EU) 2024/1028 adds platform verification from 20 May 2026 but does not replace local licensing. Host Registry, by Glint, helps you track numbers, permits, notifications and caps. We do not certify listings or auto-submit to government portals.",
+      "sections": {
+        "national": {
+          "title": "National registratienummer (free, mandatory on listings)",
+          "body": "Municipalities that adopted art. 23a Huisvestingswet require hosts to obtain a registratienummer before offering tourist rental. The Besluit registratie toeristische verhuur states the number is issued free of charge via the gemeente registration system and must be shown on listings. Amsterdam hosts typically apply through registratietoeristischeverhuur.nl (national portal). The number is not a permit: it identifies the rental for enforcement and platform checks."
+        },
+        "permit": {
+          "title": "Amsterdam holiday-rental vergunning (separate from the number)",
+          "body": "Amsterdam requires an additional home-sharing / holiday-rental vergunning for eligible primary residences. Official rules, fees and renewal steps are published on amsterdam.nl (holiday rentals / home sharing). As of our October 2026 review, municipal guidance cites a permit fee around €76 with renewal; confirm the current amount on the live portal before paying. Whole-unit tourist use, secondary homes and permit transfer when selling are address-specific: treat as adviser-only until you confirm with Gemeente Amsterdam."
+        },
+        "notification": {
+          "title": "Notify the city before each stay",
+          "body": "Amsterdam requires hosts to notify the municipality before each temporary rental period via the official stay-notification flow (amsterdam.nl, notify stay). Prepare registratienummer, vergunning reference, dates and guest count. Host Registry tracks upcoming stays and prepares copy fields. You submit manually; there is no live Glint API to gemeente systems."
+        },
+        "nightCap": {
+          "title": "Night caps (30 / 15 nights)",
+          "body": "Eligible Amsterdam primary residences face annual rental night limits (30 nights citywide, with eight wijken at 15 nights from 1 April 2026). Cap Guard in Host Registry counts calendar nights and alerts before limits. Details and wijk list: /en/guides/amsterdam-night-cap."
+        },
+        "platforms": {
+          "title": "EU Regulation 2024/1028 on platforms",
+          "body": "From 20 May 2026, platforms must collect, verify and display registration data where Member States require it, and share information under EU rules. Display your registratienummer on Airbnb, Booking.com and every OTA. Mark per-channel display in Host Registry. Glint does not update OTA profiles for you."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Amsterdam playbook: national number storage, holiday-permit tracker, per-stay notification queue, 30/15 night-cap engine with wijk selection, and listing display checklist with links to registratietoeristischeverhuur.nl, wetten.overheid.nl BWBR0044586 and amsterdam.nl. Not legal advice."
+        }
+      }
+    },
+    "amsterdamAirbnbRegistration": {
+      "title": "Amsterdam Airbnb registration under toeristische verhuur rules",
+      "updated": "Updated: October 2026",
+      "intro": "Airbnb hosts in Amsterdam must align with Dutch national registration, Amsterdam vergunning rules, per-stay notification and night caps. This guide is operational readiness only, not legal advice. Host Registry, by Glint, does not auto-submit to Airbnb or government portals.",
+      "sections": {
+        "airbnbField": {
+          "title": "Airbnb registration / license field",
+          "body": "Enter your national registratienummer in the registration or license field Airbnb shows for the Netherlands. Use the same number on Booking.com and other channels. Airbnb may also ask for permit details separately: keep vergunning references consistent with Gemeente Amsterdam records."
+        },
+        "beforeList": {
+          "title": "Before you publish on Airbnb",
+          "body": "Complete national registration on registratietoeristischeverhuur.nl, obtain a valid Amsterdam vergunning if your primary-residence home sharing is eligible, and confirm night-cap rules for your wijk. Set up the municipal stay-notification habit before accepting bookings. See /en/guides/amsterdam-short-term-rental-registration for the full checklist."
+        },
+        "display": {
+          "title": "Listing display checklist",
+          "body": "After your registratienummer is active, confirm it appears in the Airbnb listing UI and in house rules where required. Toggle displayed on listings in Host Registry per channel. Under EU 2024/1028, platforms verify numbers from 20 May 2026."
+        },
+        "glint": {
+          "title": "Host Registry workflow",
+          "body": "Select Amsterdam in your property profile to load the nl-amsterdam playbook, sync iCal for night-cap counting, use the stay-notification queue for copy-ready fields, and export evidence packs with official links. You remain responsible for Airbnb content and municipal filings."
         }
       }
     },
@@ -1079,6 +1149,8 @@
       "guideSes": "SES Hospedajes & regions",
       "guideGuestRegister": "Guest police fiche",
       "guideAmsterdamNightCap": "Amsterdam & night caps",
+      "guideAmsterdamStrRegistration": "Amsterdam STR registration",
+      "guideAmsterdamAirbnbRegistration": "Amsterdam Airbnb / toeristische verhuur",
       "guideItalyCinAlloggiati": "Italy CIN & Alloggiati",
       "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
       "guideGreeceAmaAade": "Greece AMA & AADE",

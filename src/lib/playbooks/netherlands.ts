@@ -3,7 +3,7 @@ import {
   EU_1028_URL,
   RIJKSOVERHEID_TOURIST_RENTAL_URL,
   NATIONAL_REGISTRATION_PORTAL_URL,
-  AMSTERDAM_HOME_SHARING_URL,
+  AMSTERDAM_HOLIDAY_RENTALS_URL,
   AMSTERDAM_STAY_NOTIFICATION_URL,
   ROTTERDAM_TOURIST_RENTAL_URL,
   DEN_HAAG_TOURIST_RENTAL_URL,
@@ -83,8 +83,8 @@ const nlSteps = {
       fr: ["Numéro d'enregistrement national", "Justificatif résidence principale", "Compte bancaire pour les frais"],
     },
     pitfalls: {
-      en: "Registration number ≠ permit. Both are required in Amsterdam. Operating without a valid permit risks fines.",
-      fr: "Numéro d'enregistrement ≠ vergunning. Les deux sont requis à Amsterdam. Exploitation sans vergunning valide expose à des amendes.",
+      en: "Registration number ≠ permit. Both are required in Amsterdam for eligible primary-residence home sharing. Operating without a valid permit risks fines. Permit transfer, co-hosting, and whole-unit tourist use rules are address-specific: confirm with Gemeente Amsterdam before listing (adviser-only).",
+      fr: "Numéro d'enregistrement ≠ vergunning. Les deux sont requis à Amsterdam pour le home sharing en résidence principale éligible. Sans vergunning valide, amendes possibles. Transfert de vergunning, co-hébergement et usage touristique : règles selon l'adresse — confirmer avec la Gemeente Amsterdam (conseil uniquement).",
     },
     fieldHints: ["name", "address", "city", "residencyStatus"],
     appliesWhen: "primaryResidence",
@@ -128,6 +128,10 @@ const nlSteps = {
       en: `Before every guest stay, notify ${cityName} via the official portal. Glint tracks upcoming stays and prepares copy fields — you submit manually on the gemeente portal. No live API integration.`,
       fr: `Avant chaque séjour, notifiez ${cityName} via le portail officiel. Glint suit les séjours à venir et prépare les champs à copier — vous soumettez manuellement sur le portail municipal.`,
     },
+    timeline: {
+      en: "Confirm how far in advance Amsterdam requires notification and whether the portal blocks overlapping stays (check amsterdam.nl; adviser-only if unclear).",
+      fr: "Vérifiez le délai de notification exigé par Amsterdam et les règles de chevauchement sur amsterdam.nl (conseil uniquement si le texte officiel n'est pas clair).",
+    },
     officialUrls: [
       {
         url: notifyUrl,
@@ -168,7 +172,7 @@ const nlSteps = {
         },
     officialUrls: [
       {
-        url: isAmsterdam ? AMSTERDAM_HOME_SHARING_URL : RIJKSOVERHEID_TOURIST_RENTAL_URL,
+        url: isAmsterdam ? AMSTERDAM_HOLIDAY_RENTALS_URL : RIJKSOVERHEID_TOURIST_RENTAL_URL,
         label: {
           en: isAmsterdam ? "Amsterdam — home sharing rules" : "Dutch government — tourist rental",
           fr: isAmsterdam ? "Amsterdam — règles home sharing" : "Gouvernement néerlandais — location touristique",
@@ -219,6 +223,7 @@ export const NETHERLANDS_PLAYBOOKS: Playbook[] = [
     id: "nl-amsterdam",
     country: "Netherlands",
     city: "Amsterdam",
+    sourceReviewedAt: "2026-10-03",
     title: {
       en: "Amsterdam — tourist rental compliance",
       fr: "Amsterdam — conformité location touristique",
@@ -229,7 +234,7 @@ export const NETHERLANDS_PLAYBOOKS: Playbook[] = [
     },
     steps: [
       nlSteps.nationalRegistration("amsterdam"),
-      nlSteps.holidayPermit("amsterdam", "Amsterdam", AMSTERDAM_HOME_SHARING_URL),
+      nlSteps.holidayPermit("amsterdam", "Amsterdam", AMSTERDAM_HOLIDAY_RENTALS_URL),
       nlSteps.displayRegistration("amsterdam"),
       nlSteps.stayNotification("amsterdam", "Amsterdam", AMSTERDAM_STAY_NOTIFICATION_URL),
       nlSteps.nightCap("amsterdam", true),

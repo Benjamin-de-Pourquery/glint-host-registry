@@ -53,7 +53,7 @@
     },
     "guideAmsterdamNightCap": {
       "title": "Amsterdam & Netherlands: night caps, permit & registration",
-      "description": "Host guide: national toeristische verhuur registration, Amsterdam holiday permit, per-stay notification and 30/15 night caps (wijken from April 2026)."
+      "description": "Host guide: toeristischeverhuur.nl registration, Amsterdam holiday permit (€76), per-stay reporting before guests arrive, and 30/15 night caps (Centrum and De Pijp)."
     },
     "guideAmsterdamStrRegistration": {
       "title": "Amsterdam short-term rental registration: toeristische verhuur host guide",
@@ -65,7 +65,7 @@
     },
     "guideAmsterdamAirbnbRegistration": {
       "title": "Amsterdam Airbnb registration: toeristische verhuur compliance guide",
-      "description": "Registration number and vergunning on Airbnb, per-stay notify portal, night-cap awareness. Glint tracks ops; you file on registratietoeristischeverhuur.nl and amsterdam.nl."
+      "description": "Registration number and vergunning on Airbnb, per-stay reporting on toeristischeverhuur.nl, night-cap awareness. Glint tracks ops; you file on official portals yourself."
     },
     "guideAmsterdamAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Amsterdam: guide conformité toeristische verhuur",
@@ -316,19 +316,19 @@
       "sections": {
         "registration": {
           "title": "National registration (registratietoeristischeverhuur.nl)",
-          "body": "Since 2024, every short-term rental must be registered on the national portal registratietoeristischeverhuur.nl. The number is free and must appear on all listings. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify this number before publishing or maintaining a listing. For a step-by-step Amsterdam registration checklist, see /en/guides/amsterdam-short-term-rental-registration."
+          "body": "You need a registration number before you can rent out your home. Amsterdam hosts request it on toeristischeverhuur.nl (linked from amsterdam.nl); you register once and it is free. The number must appear on all listings. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify this number before publishing or maintaining a listing. Step-by-step checklist: /en/guides/amsterdam-short-term-rental-registration."
         },
         "permit": {
           "title": "Holiday-rental permit (Amsterdam vergunning)",
-          "body": "In Amsterdam, the national number alone is not enough: a separate home-sharing vergunning is required for primary residences (approximately €76 in 2026, with renewal). Without a valid permit, you risk fines. Other gemeenten (Rotterdam, The Hague, Utrecht) apply similar rules. Verify locally on amsterdam.nl and municipal portals."
+          "body": "In Amsterdam, the registration number alone is not enough: you need a holiday-rental permit (vergunning vakantieverhuur) for eligible homes where you live and are registered. The permit costs €76, as shown by the City of Amsterdam in October 2026, and is valid until 1 April of the following calendar year. You may host a maximum of 4 guests at a time. Without a valid permit, you risk fines. Other gemeenten apply their own rules; check local portals."
         },
         "nightCap": {
           "title": "Night caps: 30 / 15 nights",
-          "body": "For primary residences in Amsterdam: 30 rental nights per calendar year citywide. From 1 April 2026, eight wijken are capped at 15 nights/year: Burgwallen-Nieuwe Zijde, De Weteringschans, Grachtengordel-West, Grachtengordel-Zuid, Haarlemmerbuurt, Jordaan, Nieuwmarkt/Lastage and Oude Pijp. Other Dutch municipalities also enforce night caps. Check rijksoverheid.nl."
+          "body": "The City of Amsterdam allows up to 30 rental nights per calendar year. In parts of Centrum and De Pijp, the maximum is 15 nights. The official permit page does not state when the 15-night rule took effect; confirm how it applies to your address. Host Registry Cap Guard can map inner-city wijken for counting (see /en/guides/amsterdam-short-term-rental-registration). Other Dutch municipalities also enforce night caps."
         },
         "notification": {
           "title": "Municipal notification before each stay",
-          "body": "Before every guest stay, you must notify Amsterdam via the official portal (amsterdam.nl, notify stay). Prepare registration number, permit number, dates and guest count. Glint tracks upcoming stays and prepares copy fields. You submit manually on the municipal portal."
+          "body": "You must report each period that you rent out your home before your guests arrive. Use the online \"Report a holiday rental\" service on toeristischeverhuur.nl (see amsterdam.nl reporting holiday rentals for context). The city does not publish a fixed number of days or hours in advance. Prepare registration number, permit number, dates and guest count. Host Registry tracks upcoming stays and prepares copy fields. You submit manually."
         },
         "glint": {
           "title": "How Host Registry helps",
@@ -343,19 +343,19 @@
       "sections": {
         "national": {
           "title": "National registratienummer (free, mandatory on listings)",
-          "body": "Municipalities that adopted art. 23a Huisvestingswet require hosts to obtain a registratienummer before offering tourist rental. The Besluit registratie toeristische verhuur states the number is issued free of charge via the gemeente registration system and must be shown on listings. Amsterdam hosts typically apply through registratietoeristischeverhuur.nl (national portal). The number is not a permit: it identifies the rental for enforcement and platform checks."
+          "body": "You need a registration number before you can rent out your home. Amsterdam hosts request it on toeristischeverhuur.nl (linked from amsterdam.nl holiday rentals). You only register once and it is free. The Besluit registratie toeristische verhuur (BWBR0044586) requires displaying the registratienummer on listings. The number is not a permit: it identifies the rental for enforcement and EU platform checks."
         },
         "permit": {
           "title": "Amsterdam holiday-rental vergunning (separate from the number)",
-          "body": "Amsterdam requires an additional home-sharing / holiday-rental vergunning for eligible primary residences. Official rules, fees and renewal steps are published on amsterdam.nl (holiday rentals / home sharing). As of our October 2026 review, municipal guidance cites a permit fee around €76 with renewal; confirm the current amount on the live portal before paying. Whole-unit tourist use, secondary homes and permit transfer when selling are address-specific: treat as adviser-only until you confirm with Gemeente Amsterdam."
+          "body": "Amsterdam requires a holiday-rental permit (vergunning vakantieverhuur) in addition to the registration number. The permit costs €76, as shown by the City of Amsterdam in October 2026, and is valid until 1 April of the following calendar year. You may host a maximum of 4 guests at a time. You must live at the address and be registered there. If you rent from a private landlord, you need the owner's permission. You cannot rent out a home owned by a housing association. Homes that are not your registered residence do not qualify under this live-and-register rule. Whether a permit can transfer to a new owner, occupant, or address is not described on the live permit page: check with Gemeente Amsterdam (adviser-only)."
         },
         "notification": {
           "title": "Notify the city before each stay",
-          "body": "Amsterdam requires hosts to notify the municipality before each temporary rental period via the official stay-notification flow (amsterdam.nl, notify stay). Prepare registratienummer, vergunning reference, dates and guest count. Host Registry tracks upcoming stays and prepares copy fields. You submit manually; there is no live Glint API to gemeente systems."
+          "body": "You must report each period that you rent out your home before your guests arrive. Use the online \"Report a holiday rental\" service on toeristischeverhuur.nl. Amsterdam's reporting holiday rentals page does not state a number of days or hours in advance. Prepare registratienummer, vergunning reference, dates and guest count. Host Registry tracks upcoming stays and prepares copy fields. You submit manually; there is no live Glint API to gemeente systems."
         },
         "nightCap": {
           "title": "Night caps (30 / 15 nights)",
-          "body": "Eligible Amsterdam primary residences face annual rental night limits (30 nights citywide, with eight wijken at 15 nights from 1 April 2026). Cap Guard in Host Registry counts calendar nights and alerts before limits. Details and wijk list: /en/guides/amsterdam-night-cap."
+          "body": "The City of Amsterdam allows up to 30 rental nights per calendar year. In parts of Centrum and De Pijp, the maximum is 15 nights. The permit page does not list an effective date for the 15-night rule. Cap Guard in Host Registry counts calendar nights (including wijk mapping for inner-city areas) and alerts before limits. Overview: /en/guides/amsterdam-night-cap."
         },
         "platforms": {
           "title": "EU Regulation 2024/1028 on platforms",
@@ -363,7 +363,7 @@
         },
         "glint": {
           "title": "How Host Registry helps",
-          "body": "Amsterdam playbook: national number storage, holiday-permit tracker, per-stay notification queue, 30/15 night-cap engine with wijk selection, and listing display checklist with links to registratietoeristischeverhuur.nl, wetten.overheid.nl BWBR0044586 and amsterdam.nl. Not legal advice."
+          "body": "Amsterdam playbook: national number storage, holiday-permit tracker, per-stay reporting queue (toeristischeverhuur.nl), 30/15 night-cap engine with wijk selection, and listing display checklist with links to toeristischeverhuur.nl, amsterdam.nl permit and reporting pages, wetten.overheid.nl BWBR0044586. Not legal advice."
         }
       }
     },
@@ -378,7 +378,7 @@
         },
         "beforeList": {
           "title": "Before you publish on Airbnb",
-          "body": "Complete national registration on registratietoeristischeverhuur.nl, obtain a valid Amsterdam vergunning if your primary-residence home sharing is eligible, and confirm night-cap rules for your wijk. Set up the municipal stay-notification habit before accepting bookings. See /en/guides/amsterdam-short-term-rental-registration for the full checklist."
+          "body": "Obtain your free registration number on toeristischeverhuur.nl (once per home), secure a valid Amsterdam holiday-rental vergunning if you live and are registered at the address, and confirm night caps (30 nights per year, 15 in parts of Centrum and De Pijp). Report each rental period on toeristischeverhuur.nl before guests arrive. Register for Amsterdam tourist tax (12.5% of the overnight price excluding VAT, per amsterdam.nl). See /en/guides/amsterdam-short-term-rental-registration for the full checklist."
         },
         "display": {
           "title": "Listing display checklist",

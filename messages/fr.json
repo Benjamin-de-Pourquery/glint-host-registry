@@ -53,7 +53,23 @@
     },
     "guideAmsterdamNightCap": {
       "title": "Amsterdam & Pays-Bas: plafonds de nuitées, vergunning et enregistrement",
-      "description": "Guide hôte : enregistrement national toeristische verhuur, vergunning Amsterdam, notification par séjour et plafonds 30/15 nuitées (wijken dès avril 2026)."
+      "description": "Guide hôte : enregistrement sur toeristischeverhuur.nl, vergunning Amsterdam (76 €), déclaration avant l'arrivée des voyageurs, plafonds 30/15 nuitées (Centrum et De Pijp)."
+    },
+    "guideAmsterdamStrRegistration": {
+      "title": "Enregistrement location courte durée Amsterdam: guide toeristische verhuur",
+      "description": "Registratienummer national, vergunning Amsterdam, notification par séjour, règlement UE 2024/1028. Host Registry ne dépose pas automatiquement aux portails officiels."
+    },
+    "guideAmsterdamStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Amsterdam: guide hôte (FR)",
+      "description": "Numéro national, vergunning, notification municipale, affichage plateformes. Host Registry, par Glint, ne certifie pas les annonces."
+    },
+    "guideAmsterdamAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Amsterdam: guide conformité toeristische verhuur",
+      "description": "Numéro et vergunning sur Airbnb, notification par séjour, plafonds de nuitées. Glint suit le dossier ; vous déposez sur les portails officiels."
+    },
+    "guideAmsterdamAirbnbRegistrationFr": {
+      "title": "Airbnb Amsterdam et toeristische verhuur: guide hôte",
+      "description": "Champ numéro sur Airbnb, checklist vergunning et notification, Cap Guard. Pas de dépôt automatique vers Airbnb ou la gemeente."
     },
     "guideItalyCinAlloggiati": {
       "title": "Italie CIN & Alloggiati Web: guide hôtes 2026",
@@ -300,23 +316,77 @@
       "sections": {
         "registration": {
           "title": "Enregistrement national (registratietoeristischeverhuur.nl)",
-          "body": "Depuis 2024, chaque location de courte durée doit être enregistrée sur le portail national registratietoeristischeverhuur.nl. Le numéro est gratuit et doit figurer sur toutes les annonces. Au titre du règlement (UE) 2024/1028 (applicable depuis le 20 mai 2026), les plateformes vérifient ce numéro avant publication ou maintien d'une annonce."
+          "body": "Vous devez disposer d'un numéro d'enregistrement avant de louer votre logement. À Amsterdam, la demande passe par toeristischeverhuur.nl (lien depuis amsterdam.nl) ; une seule inscription, gratuite. Le numéro doit figurer sur toutes les annonces. Au titre du règlement (UE) 2024/1028 (applicable depuis le 20 mai 2026), les plateformes vérifient ce numéro. Checklist : /fr/guides/enregistrement-location-courte-duree-amsterdam."
         },
         "permit": {
           "title": "Vergunning location de vacances (Amsterdam)",
-          "body": "À Amsterdam, le numéro national ne suffit pas : une vergunning distincte pour le home sharing est requise pour les résidences principales (environ 76 € en 2026, avec renouvellement). Sans vergunning valide, vous exposez votre bien à des amendes. D'autres gemeenten (Rotterdam, La Haye, Utrecht) appliquent des règles similaires. Vérifiez localement sur amsterdam.nl et les portails municipaux."
+          "body": "À Amsterdam, le numéro d'enregistrement ne suffit pas : une vergunning de location de vacances (vergunning vakantieverhuur) est requise pour les logements éligibles où vous habitez et êtes enregistré(e). Les frais sont de 76 €, selon la Ville d'Amsterdam en octobre 2026, avec validité jusqu'au 1er avril de l'année civile suivante. Maximum 4 voyageurs à la fois. Sans vergunning valide, amendes possibles. Les autres gemeenten appliquent leurs propres règles."
         },
         "nightCap": {
           "title": "Plafonds de nuitées : 30 / 15 nuits",
-          "body": "Pour les résidences principales à Amsterdam : 30 nuitées de location par an dans toute la ville. Depuis le 1er avril 2026, huit wijken sont limitées à 15 nuitées/an : Burgwallen-Nieuwe Zijde, De Weteringschans, Grachtengordel-West, Grachtengordel-Zuid, Haarlemmerbuurt, Jordaan, Nieuwmarkt/Lastage et Oude Pijp. D'autres municipalités néerlandaises imposent aussi des plafonds. Consultez rijksoverheid.nl."
+          "body": "La Ville d'Amsterdam autorise jusqu'à 30 nuitées de location par année civile. Dans certaines parties de Centrum et De Pijp, le maximum est de 15 nuitées. La page vergunning ne précise pas la date d'entrée en vigueur de la règle des 15 nuitées ; confirmez avec la ville. Cap Guard peut mapper des wijken du centre (voir /fr/guides/enregistrement-location-courte-duree-amsterdam). D'autres municipalités néerlandaises imposent aussi des plafonds."
         },
         "notification": {
           "title": "Notification municipale avant chaque séjour",
-          "body": "Avant chaque séjour, vous devez notifier Amsterdam via le portail officiel (amsterdam.nl, notify stay). Préparez numéro d'enregistrement, numéro de vergunning, dates et nombre de voyageurs. Glint suit les séjours à venir et prépare les champs à copier. Vous soumettez manuellement sur le portail municipal."
+          "body": "Vous devez déclarer chaque période de location avant l'arrivée des voyageurs. Utilisez le service en ligne « Report a holiday rental » sur toeristischeverhuur.nl (voir la page amsterdam.nl sur le reporting des locations). La ville ne publie pas de délai fixe en jours ou heures. Préparez numéro d'enregistrement, vergunning, dates et nombre de voyageurs. Host Registry suit les séjours à venir et prépare les champs à copier. Vous soumettez manuellement."
         },
         "glint": {
-          "title": "Comment Glint vous aide",
-          "body": "Glint ne dépose pas vos dossiers sur registratietoeristischeverhuur.nl ni sur les portails gemeente, il centralise le suivi du numéro national, de la vergunning, des notifications par séjour et du compteur de nuitées (30/15), avec une prochaine action claire par bien."
+          "title": "Comment Host Registry vous aide",
+          "body": "Host Registry, par Glint, ne dépose pas vos dossiers sur registratietoeristischeverhuur.nl ni sur les portails gemeente. Il centralise le suivi du numéro national, de la vergunning, des notifications par séjour et du compteur de nuitées (30/15), avec une prochaine action claire par bien."
+        }
+      }
+    },
+    "amsterdamStrRegistration": {
+      "title": "Enregistrement location courte durée Amsterdam (toeristische verhuur)",
+      "updated": "Mis à jour : octobre 2026",
+      "intro": "La location touristique (toeristische verhuur) à Amsterdam combine un numéro d'enregistrement national (registratienummer), une vergunning municipale de location de vacances, une notification avant chaque séjour temporaire et des plafonds de nuitées pour les résidences principales éligibles. Ces couches s'appuient sur la Huisvestingswet 2014 et le Besluit registratie toeristische verhuur (BWBR0044586 sur wetten.overheid.nl). Le règlement (UE) 2024/1028 ajoute la vérification par les plateformes à partir du 20 mai 2026 sans remplacer les licences locales. Host Registry, par Glint, vous aide à suivre numéros, vergunning, notifications et plafonds. Nous ne certifions pas les annonces et ne déposons pas automatiquement aux autorités.",
+      "sections": {
+        "national": {
+          "title": "Registratienummer national (gratuit, obligatoire sur les annonces)",
+          "body": "Vous devez disposer d'un numéro d'enregistrement avant de louer votre logement. À Amsterdam, la demande passe par toeristischeverhuur.nl (lien depuis amsterdam.nl). Une seule inscription, gratuite. Le Besluit registratie toeristische verhuur (BWBR0044586) impose l'affichage du registratienummer sur les annonces. Ce numéro n'est pas une vergunning : il identifie la location pour le contrôle et les plateformes."
+        },
+        "permit": {
+          "title": "Vergunning Amsterdam (distincte du numéro)",
+          "body": "Amsterdam exige une vergunning de location de vacances (vergunning vakantieverhuur) en plus du numéro d'enregistrement. Les frais sont de 76 €, selon la Ville d'Amsterdam en octobre 2026, avec validité jusqu'au 1er avril de l'année civile suivante. Maximum 4 voyageurs à la fois. Vous devez habiter l'adresse et y être enregistré(e). Location auprès d'un propriétaire privé : accord du propriétaire requis. Logement d'une association de logement : location touristique interdite. Les logements qui ne sont pas votre résidence enregistrée ne sont pas éligibles. Le transfert de vergunning vers un nouveau propriétaire, occupant ou adresse n'apparaît pas sur la page officielle : confirmer avec la Gemeente Amsterdam (conseil uniquement)."
+        },
+        "notification": {
+          "title": "Notifier la ville avant chaque séjour",
+          "body": "Vous devez déclarer chaque période de location avant l'arrivée des voyageurs. Utilisez le service en ligne « Report a holiday rental » sur toeristischeverhuur.nl. La page amsterdam.nl sur le reporting ne précise pas de délai en jours ou heures. Préparez registratienummer, référence de vergunning, dates et nombre de voyageurs. Host Registry suit les séjours à venir et prépare les champs à copier. Vous soumettez manuellement ; pas d'API Glint vers la gemeente."
+        },
+        "nightCap": {
+          "title": "Plafonds de nuitées (30 / 15)",
+          "body": "La Ville d'Amsterdam autorise jusqu'à 30 nuitées de location par année civile. Dans certaines parties de Centrum et De Pijp, le maximum est de 15 nuitées. La page vergunning ne mentionne pas de date d'entrée en vigueur pour la règle des 15 nuitées. Cap Guard dans Host Registry compte les nuitées calendaires (y compris le mapping wijk en centre). Vue d'ensemble : /fr/guides/amsterdam-night-cap."
+        },
+        "platforms": {
+          "title": "Règlement (UE) 2024/1028 sur les plateformes",
+          "body": "À partir du 20 mai 2026, les plateformes doivent collecter, vérifier et afficher les données d'enregistrement lorsque les États membres l'exigent. Affichez votre registratienummer sur Airbnb, Booking.com et toutes les OTA. Cochez l'affichage par canal dans Host Registry. Glint ne met pas à jour vos profils OTA."
+        },
+        "glint": {
+          "title": "Comment Host Registry vous aide",
+          "body": "Playbook Amsterdam : stockage du numéro national, suivi vergunning, file de déclaration par séjour (toeristischeverhuur.nl), moteur 30/15 avec sélection de wijk, checklist d'affichage et liens vers toeristischeverhuur.nl, pages vergunning et reporting amsterdam.nl, wetten.overheid.nl BWBR0044586. Ce n'est pas un conseil juridique."
+        }
+      }
+    },
+    "amsterdamAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Amsterdam (toeristische verhuur)",
+      "updated": "Mis à jour : octobre 2026",
+      "intro": "Les hôtes Airbnb à Amsterdam doivent respecter l'enregistrement national, la vergunning Amsterdam, la notification par séjour et les plafonds de nuitées. Guide opérationnel uniquement, pas un conseil juridique. Host Registry, par Glint, ne dépose pas automatiquement sur Airbnb ni sur les portails publics.",
+      "sections": {
+        "airbnbField": {
+          "title": "Champ enregistrement / licence Airbnb",
+          "body": "Saisissez votre registratienummer national dans le champ licence ou enregistrement affiché par Airbnb pour les Pays-Bas. Utilisez le même numéro sur Booking et les autres canaux. Airbnb peut demander la vergunning séparément : alignez-vous sur les dossiers de la Gemeente Amsterdam."
+        },
+        "beforeList": {
+          "title": "Avant de publier sur Airbnb",
+          "body": "Obtenez votre numéro d'enregistrement gratuit sur toeristischeverhuur.nl (une fois par logement), une vergunning Amsterdam valide si vous habitez et êtes enregistré(e) à l'adresse, et confirmez les plafonds (30 nuitées par an, 15 dans certaines parties de Centrum et De Pijp). Déclarez chaque période sur toeristischeverhuur.nl avant l'arrivée des voyageurs. Inscrivez-vous à la taxe de séjour d'Amsterdam (12,5 % du prix de la nuitée hors TVA, selon amsterdam.nl). Checklist : /fr/guides/enregistrement-location-courte-duree-amsterdam."
+        },
+        "display": {
+          "title": "Checklist d'affichage sur l'annonce",
+          "body": "Une fois le registratienummer actif, vérifiez qu'il apparaît dans l'interface Airbnb et dans le règlement intérieur si requis. Cochez l'affichage par canal dans Host Registry. Au titre du règlement UE 2024/1028, les plateformes vérifient les numéros à partir du 20 mai 2026."
+        },
+        "glint": {
+          "title": "Workflow Host Registry",
+          "body": "Sélectionnez Amsterdam sur le bien pour charger le playbook nl-amsterdam, synchronisez iCal pour les plafonds, utilisez la file de notification par séjour et exportez des dossiers de preuve avec liens officiels. Vous restez responsable du contenu Airbnb et des dépôts municipaux."
         }
       }
     },
@@ -1079,6 +1149,8 @@
       "guideSes": "SES Hospedajes & régions",
       "guideGuestRegister": "Fiche de police voyageurs",
       "guideAmsterdamNightCap": "Amsterdam & plafonds nuitées",
+      "guideAmsterdamStrRegistration": "Amsterdam LCD (toeristische verhuur)",
+      "guideAmsterdamAirbnbRegistration": "Airbnb Amsterdam / toeristische verhuur",
       "guideItalyCinAlloggiati": "Italie CIN & Alloggiati",
       "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
       "guideGreeceAmaAade": "Grèce AMA & AADE",

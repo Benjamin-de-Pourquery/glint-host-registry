@@ -3,8 +3,11 @@ import {
   EU_1028_URL,
   RIJKSOVERHEID_TOURIST_RENTAL_URL,
   NATIONAL_REGISTRATION_PORTAL_URL,
-  AMSTERDAM_HOME_SHARING_URL,
-  AMSTERDAM_STAY_NOTIFICATION_URL,
+  AMSTERDAM_HOLIDAY_RENTALS_URL,
+  AMSTERDAM_HOLIDAY_RENTAL_PERMIT_URL,
+  AMSTERDAM_REPORTING_HOLIDAY_RENTALS_URL,
+  AMSTERDAM_TOURIST_TAX_URL,
+  AMSTERDAM_TOERISTISCHEVERHUUR_PORTAL_URL,
   ROTTERDAM_TOURIST_RENTAL_URL,
   DEN_HAAG_TOURIST_RENTAL_URL,
   UTRECHT_TOURIST_RENTAL_URL,
@@ -25,11 +28,39 @@ const nlSteps = {
       en: "Obtain national tourist rental registration number",
       fr: "Obtenir le numéro d'enregistrement national (toeristische verhuur)",
     },
-    instruction: {
-      en: "Register your short-term rental on the national portal (registratietoeristischeverhuur.nl). The registration number is free and must be displayed on every listing. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify and display registration numbers.",
-      fr: "Enregistrez votre location de courte durée sur le portail national (registratietoeristischeverhuur.nl). Le numéro est gratuit et doit figurer sur chaque annonce. Le règlement (UE) 2024/1028 (applicable depuis le 20 mai 2026) impose la vérification par les plateformes.",
-    },
-    officialUrls: [
+    instruction:
+      cityKey === "amsterdam"
+        ? {
+            en: "You need a registration number before you can rent out your home. Amsterdam hosts request it on toeristischeverhuur.nl (linked from amsterdam.nl holiday rentals). You only register once and it is free. Display the number on every listing. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify registration numbers.",
+            fr: "Vous devez disposer d'un numéro d'enregistrement avant de louer votre logement. À Amsterdam, la demande passe par toeristischeverhuur.nl (lien depuis amsterdam.nl). Une seule inscription, gratuite. Affichez le numéro sur chaque annonce. Le règlement (UE) 2024/1028 (applicable depuis le 20 mai 2026) impose la vérification par les plateformes.",
+          }
+        : {
+            en: "Register your short-term rental on the national portal (registratietoeristischeverhuur.nl). The registration number is free and must be displayed on every listing. Under Regulation (EU) 2024/1028 (applicable from 20 May 2026), platforms verify and display registration numbers.",
+            fr: "Enregistrez votre location de courte durée sur le portail national (registratietoeristischeverhuur.nl). Le numéro est gratuit et doit figurer sur chaque annonce. Le règlement (UE) 2024/1028 (applicable depuis le 20 mai 2026) impose la vérification par les plateformes.",
+          },
+    officialUrls:
+      cityKey === "amsterdam"
+        ? [
+            {
+              url: AMSTERDAM_TOERISTISCHEVERHUUR_PORTAL_URL,
+              label: {
+                en: "toeristischeverhuur.nl: registration (Amsterdam)",
+                fr: "toeristischeverhuur.nl: enregistrement (Amsterdam)",
+              },
+              role: "portal",
+              urlVerified: true,
+            },
+            {
+              url: AMSTERDAM_HOLIDAY_RENTALS_URL,
+              label: {
+                en: "Amsterdam: holiday rentals overview",
+                fr: "Amsterdam: location de vacances (vue d'ensemble)",
+              },
+              role: "rules",
+              urlVerified: true,
+            },
+          ]
+        : [
       {
         url: NATIONAL_REGISTRATION_PORTAL_URL,
         label: {
@@ -57,16 +88,27 @@ const nlSteps = {
     appliesWhen: "primaryResidence",
   }),
 
-  holidayPermit: (cityKey: string, cityName: string, portalUrl: string): PlaybookStep => ({
+  holidayPermit: (
+    cityKey: string,
+    cityName: string,
+    portalUrl: string,
+    options?: { urlVerified?: boolean },
+  ): PlaybookStep => ({
     key: `${cityKey}-nl-holiday-permit`,
     title: {
       en: `Apply for holiday-rental permit (${cityName})`,
       fr: `Demander la vergunning location de vacances (${cityName})`,
     },
-    instruction: {
-      en: `In addition to the national registration number, ${cityName} requires a separate holiday-rental permit (vergunning) for home sharing. In Amsterdam the permit fee is approximately €76 (2026) and must be renewed. Primary residence only; typically max 4 guests.`,
-      fr: `En plus du numéro national, ${cityName} exige une vergunning distincte pour la location de vacances. À Amsterdam, les frais sont d'environ 76 € (2026) avec renouvellement. Résidence principale uniquement ; max. 4 voyageurs en général.`,
-    },
+    instruction:
+      cityKey === "amsterdam"
+        ? {
+            en: `In addition to the registration number, ${cityName} requires a holiday-rental permit (vergunning vakantieverhuur). The permit costs €76, as shown by the City of Amsterdam in October 2026. It is valid until 1 April of the following calendar year. You may host a maximum of 4 guests at a time. You must live at the address and be registered there. If you rent from a private landlord, you need the owner's permission. You cannot rent out a home owned by a housing association. Addresses where you do not live and register do not qualify.`,
+            fr: `En plus du numéro d'enregistrement, ${cityName} exige une vergunning de location de vacances (vergunning vakantieverhuur). Les frais sont de 76 €, selon la Ville d'Amsterdam en octobre 2026. Validité jusqu'au 1er avril de l'année civile suivante. Maximum 4 voyageurs à la fois. Vous devez habiter l'adresse et y être enregistré(e). Location auprès d'un propriétaire privé : accord du propriétaire requis. Logement d'une association de logement : location touristique interdite. Les adresses où vous n'habitez pas et n'êtes pas enregistré(e) ne sont pas éligibles.`,
+          }
+        : {
+            en: `In addition to the national registration number, ${cityName} requires a separate holiday-rental permit (vergunning) for home sharing. Check your gemeente for current fees and renewal rules.`,
+            fr: `En plus du numéro national, ${cityName} exige une vergunning distincte pour la location de vacances. Vérifiez les frais et le renouvellement auprès de votre gemeente.`,
+          },
     officialUrls: [
       {
         url: portalUrl,
@@ -75,17 +117,23 @@ const nlSteps = {
           fr: `${cityName} — home sharing / vergunning`,
         },
         role: "portal",
-        urlVerified: false,
+        urlVerified: options?.urlVerified ?? false,
       },
     ],
     documents: {
       en: ["National registration number", "Proof of primary residence", "Bank account for permit fee"],
       fr: ["Numéro d'enregistrement national", "Justificatif résidence principale", "Compte bancaire pour les frais"],
     },
-    pitfalls: {
-      en: "Registration number ≠ permit. Both are required in Amsterdam. Operating without a valid permit risks fines.",
-      fr: "Numéro d'enregistrement ≠ vergunning. Les deux sont requis à Amsterdam. Exploitation sans vergunning valide expose à des amendes.",
-    },
+    pitfalls:
+      cityKey === "amsterdam"
+        ? {
+            en: "Registration number ≠ permit. Both are required before renting out. Permit transfer to a new owner, occupant, or address is not described on the live permit page: check with Gemeente Amsterdam before listing (adviser-only).",
+            fr: "Numéro d'enregistrement ≠ vergunning. Les deux sont requis avant de louer. Le transfert de vergunning vers un nouveau propriétaire, occupant ou adresse n'apparaît pas sur la page officielle : confirmer avec la Gemeente Amsterdam (conseil uniquement).",
+          }
+        : {
+            en: "Registration number ≠ permit. Both may be required. Operating without a valid permit risks fines. Confirm local rules with your gemeente.",
+            fr: "Numéro d'enregistrement ≠ vergunning. Les deux peuvent être requis. Sans vergunning valide, amendes possibles. Confirmez les règles locales auprès de votre gemeente.",
+          },
     fieldHints: ["name", "address", "city", "residencyStatus"],
     appliesWhen: "primaryResidence",
   }),
@@ -118,26 +166,50 @@ const nlSteps = {
     fieldHints: ["name", "address", "city"],
   }),
 
-  stayNotification: (cityKey: string, cityName: string, notifyUrl: string): PlaybookStep => ({
+  stayNotification: (
+    cityKey: string,
+    cityName: string,
+    notifyUrl: string,
+    options?: { urlVerified?: boolean; rulesUrl?: string },
+  ): PlaybookStep => ({
     key: `${cityKey}-nl-stay-notification`,
     title: {
       en: `Notify municipality before each stay (${cityName})`,
       fr: `Notifier la municipalité avant chaque séjour (${cityName})`,
     },
-    instruction: {
-      en: `Before every guest stay, notify ${cityName} via the official portal. Glint tracks upcoming stays and prepares copy fields — you submit manually on the gemeente portal. No live API integration.`,
-      fr: `Avant chaque séjour, notifiez ${cityName} via le portail officiel. Glint suit les séjours à venir et prépare les champs à copier — vous soumettez manuellement sur le portail municipal.`,
-    },
+    instruction:
+      cityKey === "amsterdam"
+        ? {
+            en: `You must report each period that you rent out your home before your guests arrive. Use the online "Report a holiday rental" service on toeristischeverhuur.nl. The City of Amsterdam does not state a number of days or hours in advance on its reporting page. Host Registry tracks upcoming stays and prepares copy fields. You submit manually; there is no live Glint API to gemeente systems.`,
+            fr: `Vous devez déclarer chaque période de location avant l'arrivée des voyageurs. Utilisez le service en ligne « Report a holiday rental » sur toeristischeverhuur.nl. La Ville d'Amsterdam ne précise pas de délai en jours ou heures sur sa page dédiée. Host Registry suit les séjours à venir et prépare les champs à copier. Vous soumettez manuellement ; pas d'API Glint vers la gemeente.`,
+          }
+        : {
+            en: `Before every guest stay, notify ${cityName} via the official portal. Glint tracks upcoming stays and prepares copy fields. You submit manually on the gemeente portal. No live API integration.`,
+            fr: `Avant chaque séjour, notifiez ${cityName} via le portail officiel. Glint suit les séjours à venir et prépare les champs à copier. Vous soumettez manuellement sur le portail municipal.`,
+          },
     officialUrls: [
       {
         url: notifyUrl,
         label: {
-          en: `${cityName} — stay notification portal`,
-          fr: `${cityName} — portail notification de séjour`,
+          en: `${cityName}: report a holiday rental (toeristischeverhuur.nl)`,
+          fr: `${cityName}: déclarer une location (toeristischeverhuur.nl)`,
         },
         role: "portal",
-        urlVerified: false,
+        urlVerified: options?.urlVerified ?? false,
       },
+      ...(options?.rulesUrl
+        ? [
+            {
+              url: options.rulesUrl,
+              label: {
+                en: `${cityName}: reporting holiday rentals (rules)`,
+                fr: `${cityName}: déclaration des locations (règles)`,
+              },
+              role: "rules" as const,
+              urlVerified: true,
+            },
+          ]
+        : []),
     ],
     documents: {
       en: ["Registration number", "Permit number", "Check-in/check-out dates", "Guest count"],
@@ -159,8 +231,8 @@ const nlSteps = {
     },
     instruction: isAmsterdam
       ? {
-          en: `Amsterdam primary residences: 30 rental nights per calendar year citywide. From 1 April 2026, eight wijken are capped at 15 nights/year: ${wijkListEn}. Glint counts nights from your calendar and alerts when approaching limits.`,
-          fr: `Résidences principales Amsterdam : 30 nuitées/an dans toute la ville. Depuis le 1er avril 2026, huit wijken sont limitées à 15 nuitées/an : ${wijkListFr}. Glint compte les nuitées depuis votre calendrier.`,
+          en: `Eligible Amsterdam homes may rent out up to 30 nights per calendar year. In parts of Centrum and De Pijp, the maximum is 15 nights. The permit page does not list an effective date for the 15-night rule; confirm how it applies to your address with the city. Host Registry Cap Guard also maps these inner-city areas to wijken (${wijkListEn}) for night counting. Glint counts nights from your calendar and alerts when approaching limits.`,
+          fr: `À Amsterdam, jusqu'à 30 nuitées de location par année civile. Dans certaines parties de Centrum et De Pijp, le maximum est de 15 nuitées. La page vergunning ne mentionne pas de date d'entrée en vigueur pour la règle des 15 nuitées ; confirmez avec la ville. Cap Guard mappe aussi ces zones vers des wijken (${wijkListFr}) pour le comptage. Glint compte les nuitées depuis votre calendrier.`,
         }
       : {
           en: "Many Dutch municipalities enforce night caps on tourist rentals. Check your gemeente rules and track nights in Glint.",
@@ -168,13 +240,13 @@ const nlSteps = {
         },
     officialUrls: [
       {
-        url: isAmsterdam ? AMSTERDAM_HOME_SHARING_URL : RIJKSOVERHEID_TOURIST_RENTAL_URL,
+        url: isAmsterdam ? AMSTERDAM_HOLIDAY_RENTAL_PERMIT_URL : RIJKSOVERHEID_TOURIST_RENTAL_URL,
         label: {
-          en: isAmsterdam ? "Amsterdam — home sharing rules" : "Dutch government — tourist rental",
-          fr: isAmsterdam ? "Amsterdam — règles home sharing" : "Gouvernement néerlandais — location touristique",
+          en: isAmsterdam ? "Amsterdam: holiday rental permit (night limits)" : "Dutch government — tourist rental",
+          fr: isAmsterdam ? "Amsterdam: vergunning location de vacances (plafonds)" : "Gouvernement néerlandais — location touristique",
         },
         role: "rules",
-        urlVerified: isAmsterdam ? false : true,
+        urlVerified: true,
       },
     ],
     documents: {
@@ -185,22 +257,28 @@ const nlSteps = {
     appliesWhen: "primaryResidence",
   }),
 
-  touristTax: (cityKey: string): PlaybookStep => ({
+  touristTax: (cityKey: string, taxRulesUrl?: string): PlaybookStep => ({
     key: `${cityKey}-nl-tourist-tax`,
     title: {
       en: "Register for tourist tax (toeristenbelasting)",
       fr: "S'inscrire à la taxe de séjour (toeristenbelasting)",
     },
-    instruction: {
-      en: "Register with your municipality to collect and remit tourist tax on overnight stays.",
-      fr: "Inscrivez-vous auprès de votre municipalité pour collecter et reverser la toeristenbelasting.",
-    },
+    instruction:
+      cityKey === "amsterdam"
+        ? {
+            en: "Register with the City of Amsterdam for toeristenbelasting. Amsterdam charges 12.5% of the overnight price (excluding VAT), as shown on amsterdam.nl. Collect and remit according to municipal rules.",
+            fr: "Inscrivez-vous à la toeristenbelasting auprès de la Ville d'Amsterdam. Le taux est de 12,5 % du prix de la nuitée (hors TVA), selon amsterdam.nl. Collectez et reversez selon les règles municipales.",
+          }
+        : {
+            en: "Register with your municipality to collect and remit tourist tax on overnight stays.",
+            fr: "Inscrivez-vous auprès de votre municipalité pour collecter et reverser la toeristenbelasting.",
+          },
     officialUrls: [
       {
-        url: RIJKSOVERHEID_TOURIST_RENTAL_URL,
+        url: taxRulesUrl ?? RIJKSOVERHEID_TOURIST_RENTAL_URL,
         label: {
-          en: "Dutch government — renting to tourists",
-          fr: "Gouvernement néerlandais — location aux touristes",
+          en: cityKey === "amsterdam" ? "Amsterdam: tourist tax" : "Dutch government — renting to tourists",
+          fr: cityKey === "amsterdam" ? "Amsterdam: taxe de séjour" : "Gouvernement néerlandais — location aux touristes",
         },
         role: "tax",
         urlVerified: true,
@@ -219,6 +297,7 @@ export const NETHERLANDS_PLAYBOOKS: Playbook[] = [
     id: "nl-amsterdam",
     country: "Netherlands",
     city: "Amsterdam",
+    sourceReviewedAt: "2026-10-03",
     title: {
       en: "Amsterdam — tourist rental compliance",
       fr: "Amsterdam — conformité location touristique",
@@ -229,11 +308,16 @@ export const NETHERLANDS_PLAYBOOKS: Playbook[] = [
     },
     steps: [
       nlSteps.nationalRegistration("amsterdam"),
-      nlSteps.holidayPermit("amsterdam", "Amsterdam", AMSTERDAM_HOME_SHARING_URL),
+      nlSteps.holidayPermit("amsterdam", "Amsterdam", AMSTERDAM_HOLIDAY_RENTAL_PERMIT_URL, {
+        urlVerified: true,
+      }),
       nlSteps.displayRegistration("amsterdam"),
-      nlSteps.stayNotification("amsterdam", "Amsterdam", AMSTERDAM_STAY_NOTIFICATION_URL),
+      nlSteps.stayNotification("amsterdam", "Amsterdam", AMSTERDAM_TOERISTISCHEVERHUUR_PORTAL_URL, {
+        urlVerified: true,
+        rulesUrl: AMSTERDAM_REPORTING_HOLIDAY_RENTALS_URL,
+      }),
       nlSteps.nightCap("amsterdam", true),
-      nlSteps.touristTax("amsterdam"),
+      nlSteps.touristTax("amsterdam", AMSTERDAM_TOURIST_TAX_URL),
     ],
   },
   {

@@ -201,7 +201,7 @@
     },
     "guideMalagaStrRegistration": {
       "title": "Enregistrement location courte durée Málaga: guide VUT Andalousie",
-      "description": "VUT Junta de Andalucía post-STS 620/2026, contrôles municipaux Málaga, déclaration responsable, SES.HOSPEDAJES."
+      "description": "VUT Junta post-STS 620/2026, suspension municipale VUT Málaga (PL07-2026), déclaration responsable, SES.HOSPEDAJES."
     },
     "guideMalagaStrRegistrationFr": {
       "title": "Enregistrement location courte durée Málaga: guide VUT Andalousie",
@@ -217,7 +217,7 @@
     },
     "guideSevilleStrRegistration": {
       "title": "Enregistrement location courte durée Séville: guide VUT Andalousie",
-      "description": "VUT Junta, dossier municipal Séville, déclaration responsable, SES.HOSPEDAJES."
+      "description": "VUT Junta, plafond VUT 10 % par barrio à Séville (Gerencia de Urbanismo), déclaration responsable, SES.HOSPEDAJES."
     },
     "guideSevilleStrRegistrationFr": {
       "title": "Enregistrement location courte durée Séville: guide VUT Andalousie",
@@ -879,8 +879,8 @@
           "body": "Le Décret 28/2016 fixe le cadre VUT andalou. Utilisez la FAQ et le guide déclaration responsable Junta. Certificat numérique requis sur l'Oficina Virtual."
         },
         "municipal": {
-          "title": "Dossier municipal Málaga (à confirmer par adresse)",
-          "body": "Avant le dépôt régional, confirmez auprès de l'Ayuntamiento de Málaga compatibilité urbanistique, licences, moratoires ou PGOU selon l'adresse. Host Registry suit la checklist uniquement."
+          "title": "Suspension VUT et proposition PGOU à Málaga",
+          "body": "La Gerencia de Urbanismo de l'Ayuntamiento de Málaga a acté la suspension des autorisations de nouvelles VUT sur tout le territoire municipal pour un maximum de trois ans pendant l'élaboration des règles (Decreto-ley 1/2025, art. 6.2, cité dans PL07-2026). Résumé exécutif : https://urbanismo.malaga.eu/export/sites/urbanismo/anuncios-de-planeamiento/planificacion/modificacion-de-elementos/Anuncios-Planeamiento-Modificacion/PL07-2026/06-Resumen_Ejecutivo_PL7-26.pdf. La Modificación Pormenorizada del PGOU nº 28 (PL07-2026, juin 2026) propose d'incompatibiliser l'hébergement touristique, y compris les VUT, dans les zones C-1 Centro Histórico, C-2 Perchel Alto, C-3 Trinidad-Perchel et C-4 PEPRI Perchel Sur. C'est une proposition en cours, pas une loi adoptée. Les annexes (https://urbanismo.malaga.eu/export/sites/urbanismo/anuncios-de-planeamiento/planificacion/modificacion-de-elementos/Anuncios-Planeamiento-Modificacion/PL07-2026/08-Anexos_2_Y_3_PL7-26.pdf) utilisent un indice de pression touristique résidentielle : au-dessus de 8 %, un barrio est saturé ou doit diminuer ; 48 des 417 barrios étaient au-dessus de ce niveau dans l'étude municipale. Cet indice n'est pas un plafond juridique. Nous n'indiquons pas les dates de début de suspension ou de BOP, l'entrée indépendante ni les sanctions. Confirmez avec l'urbanisme avant le dépôt Junta. Host Registry suit la checklist uniquement."
         },
         "regional": {
           "title": "Déclaration responsable régionale (vous déposez)",
@@ -911,7 +911,7 @@
         },
         "dossier": {
           "title": "Avant de publier",
-          "body": "Confirmez l'urbanisme municipal avec l'Ayuntamiento de Málaga, préparez la déclaration responsable, et suivez la date de dossier dans Host Registry."
+          "body": "Vérifiez si une nouvelle VUT est possible pendant la suspension municipale et les propositions PGOU pour votre adresse. Préparez la déclaration responsable et suivez la date de dossier dans Host Registry avant le dépôt Junta."
         },
         "display": {
           "title": "Checklist affichage",
@@ -937,8 +937,8 @@
           "body": "Suivez le Décret 28/2016 et la FAQ Junta pour le contenu de la déclaration responsable et la distinction entre nouvelles inscriptions et logements déjà inscrits."
         },
         "municipal": {
-          "title": "Dossier municipal Séville (à confirmer)",
-          "body": "Confirmez auprès de l'Ayuntamiento de Sevilla changement d'usage, saturation ou autres étapes municipales avant le dépôt régional."
+          "title": "Plafond VUT par barrio à Séville",
+          "body": "La Gerencia de Urbanismo de l'Ayuntamiento de Sevilla fixe un plafond de 10 % des viviendas familiares disponibles par barrio, sur 108 barrios. Approuvé définitivement par le Pleno le 17 octobre 2024 ; en vigueur depuis le 29 octobre 2024 (BOP Sevilla nº 210 du 28 octobre 2024). Lors de l'approbation, onze barrios des districts Casco Antiguo et Triana dépassaient le plafond et n'admettaient pas de nouvelles VUT. Le plafond est réexaminé un an après l'entrée en vigueur : vérifiez le statut actuel sur https://www.urbanismosevilla.org/paginas/limitacion-viviendas-uso-turistico. Nous n'avons pas vérifié les URL de sede pour rapports urbanistiques ni les montants de sanctions. Demandez à la Gerencia de Urbanismo si votre barrio est au-dessus du plafond et quels documents s'appliquent avant la déclaration responsable Junta. Host Registry ne demande pas de rapports municipaux."
         },
         "regional": {
           "title": "Déclaration responsable (vous déposez)",
@@ -969,7 +969,7 @@
         },
         "dossier": {
           "title": "Avant de publier",
-          "body": "Confirmez les étapes municipales avec l'Ayuntamiento de Sevilla et suivez la date de dossier dans Host Registry."
+          "body": "Vérifiez le plafond de votre barrio sur la page Gerencia de Urbanismo, confirmez les documents urbanistiques requis, et suivez la date de dossier dans Host Registry avant le dépôt Junta."
         },
         "display": {
           "title": "Checklist affichage",

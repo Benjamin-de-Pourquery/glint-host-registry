@@ -97,6 +97,18 @@ export const MALAGA_AYUNTAMIENTO_URL = "https://www.malaga.eu/";
 /** Ayuntamiento de Málaga — urban agenda entry (verified HTTP 200). */
 export const MALAGA_AGENDA_URBANA_URL = "https://www.malaga.eu/la-ciudad/agenda-urbana/";
 
+/** Gerencia de Urbanismo, Ayuntamiento de Málaga — PL07-2026 executive summary (PDF, reviewed 2026-10-04). */
+export const MALAGA_PGOU_PL07_EXEC_SUMMARY_PDF_URL =
+  "https://urbanismo.malaga.eu/export/sites/urbanismo/anuncios-de-planeamiento/planificacion/modificacion-de-elementos/Anuncios-Planeamiento-Modificacion/PL07-2026/06-Resumen_Ejecutivo_PL7-26.pdf";
+
+/** Gerencia de Urbanismo, Ayuntamiento de Málaga — PL07-2026 annexes 2 and 3 (PDF, reviewed 2026-10-04). */
+export const MALAGA_PGOU_PL07_ANNEXES_PDF_URL =
+  "https://urbanismo.malaga.eu/export/sites/urbanismo/anuncios-de-planeamiento/planificacion/modificacion-de-elementos/Anuncios-Planeamiento-Modificacion/PL07-2026/08-Anexos_2_Y_3_PL7-26.pdf";
+
+/** Gerencia de Urbanismo, Ayuntamiento de Sevilla — VUT barrio cap (reviewed 2026-10-04). */
+export const SEVILLE_VUT_BARRIO_CAP_URL =
+  "https://www.urbanismosevilla.org/paginas/limitacion-viviendas-uso-turistico";
+
 /** Turismo de Sevilla municipal promotion portal (verified HTTP 200). */
 export const SEVILLE_TURISMO_URL = "https://www.visitasevilla.es/";
 

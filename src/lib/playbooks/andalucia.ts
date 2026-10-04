@@ -7,12 +7,14 @@ import {
   ANDALUCIA_VUT_FAQ_URL,
   ANDALUCIA_VUT_INFO_URL,
   EU_1028_URL,
-  MALAGA_AGENDA_URBANA_URL,
   MALAGA_AYUNTAMIENTO_URL,
+  MALAGA_PGOU_PL07_ANNEXES_PDF_URL,
+  MALAGA_PGOU_PL07_EXEC_SUMMARY_PDF_URL,
   RD_933_URL,
   SES_HOSPEDAJES_PORTAL_URL,
   SES_HOSPEDAJES_TEST_URL,
   SEVILLE_TURISMO_URL,
+  SEVILLE_VUT_BARRIO_CAP_URL,
 } from "@/lib/spain/official-links";
 
 const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
@@ -330,28 +332,37 @@ const sesGuestSteps = (cityKey: string): PlaybookStep[] => [
 const malagaMunicipalStep: PlaybookStep = {
   key: "malaga-municipal-dossier",
   title: {
-    en: "Málaga city municipal dossier (confirm with Ayuntamiento)",
-    fr: "Dossier municipal Málaga (à confirmer auprès de la mairie)",
+    en: "Málaga municipal VUT suspension and PGOU proposal (Gerencia de Urbanismo)",
+    fr: "Suspension VUT et proposition PGOU à Málaga (Gerencia de Urbanismo)",
   },
   instruction: {
-    en: "Málaga capital may apply additional urban planning, licensing, or zoning rules before or after regional VUT registration. Moratoriums, PGOU limits, and neighbourhood rules are address-specific and change over time: confirm current requirements with Ayuntamiento de Málaga (urbanismo and tourism channels) before filing your Junta declaración responsable. Host Registry tracks checklist status only.",
-    fr: "Málaga capitale peut appliquer des règles d'urbanisme, de licence ou de zonage avant ou après l'inscription VUT régionale. Moratoires, PGOU et règles de quartier dépendent de l'adresse et évoluent : confirmez les exigences actuelles auprès de l'Ayuntamiento de Málaga (urbanismo et tourisme) avant votre déclaration responsable Junta. Host Registry suit uniquement la checklist.",
+    en: "Ayuntamiento de Málaga (Gerencia de Urbanismo) has agreed to suspend new VUT authorisations across the whole municipality for a maximum of three years while planning rules are prepared (legal basis cited in PL07-2026: Decreto-ley 1/2025, de 24 de febrero, art. 6.2). The Modificación Pormenorizada del PGOU no. 28 (document PL07-2026, signed June 2026) proposes making tourist lodging, including VUT, incompatible in zones C-1 Centro Histórico, C-2 Perchel Alto, C-3 Trinidad-Perchel, and C-4 PEPRI Perchel Sur. Treat that as a proposal in progress, not adopted law. Annexes use a residential tourist-pressure index: above 8% means a barrio is saturated or needs to decrease; 48 of 417 barrios were above that level in the city's study. That index is a planning metric, not a legal cap. Before your Junta declaración responsable, confirm with urbanismo whether new VUT can proceed for your address. Host Registry tracks checklist status only.",
+    fr: "L'Ayuntamiento de Málaga (Gerencia de Urbanismo) a acté la suspension des autorisations de nouvelles VUT sur tout le territoire municipal pour un maximum de trois ans pendant l'élaboration des règles d'urbanisme (base juridique citée dans PL07-2026 : Decreto-ley 1/2025, de 24 de febrero, art. 6.2). La Modificación Pormenorizada del PGOU nº 28 (document PL07-2026, signé en juin 2026) propose d'incompatibiliser l'hébergement touristique, y compris les VUT, dans les zones C-1 Centro Histórico, C-2 Perchel Alto, C-3 Trinidad-Perchel et C-4 PEPRI Perchel Sur. C'est une proposition en cours, pas une loi adoptée. Les annexes utilisent un indice de pression touristique résidentielle : au-dessus de 8 %, un barrio est saturé ou doit diminuer ; 48 des 417 barrios étaient au-dessus de ce niveau dans l'étude municipale. Cet indice est une métrique d'étude, pas un plafond juridique. Avant votre déclaration responsable Junta, confirmez auprès de l'urbanisme si une nouvelle VUT est possible pour votre adresse. Host Registry suit uniquement la checklist.",
   },
   officialUrls: [
+    {
+      url: MALAGA_PGOU_PL07_EXEC_SUMMARY_PDF_URL,
+      label: {
+        en: "Ayuntamiento de Málaga — PL07-2026 executive summary (PDF)",
+        fr: "Ayuntamiento de Málaga — résumé exécutif PL07-2026 (PDF)",
+      },
+      role: "rules",
+      urlVerified: true,
+    },
+    {
+      url: MALAGA_PGOU_PL07_ANNEXES_PDF_URL,
+      label: {
+        en: "Ayuntamiento de Málaga — PL07-2026 annexes 2 and 3 (PDF)",
+        fr: "Ayuntamiento de Málaga — annexes 2 et 3 PL07-2026 (PDF)",
+      },
+      role: "rules",
+      urlVerified: true,
+    },
     {
       url: MALAGA_AYUNTAMIENTO_URL,
       label: {
         en: "Ayuntamiento de Málaga — portal",
         fr: "Ayuntamiento de Málaga — portail",
-      },
-      role: "info",
-      urlVerified: true,
-    },
-    {
-      url: MALAGA_AGENDA_URBANA_URL,
-      label: {
-        en: "Ayuntamiento de Málaga — urban agenda",
-        fr: "Ayuntamiento de Málaga — agenda urbaine",
       },
       role: "info",
       urlVerified: true,
@@ -368,13 +379,17 @@ const malagaMunicipalStep: PlaybookStep = {
   ],
   documents: {
     en: [
-      "Municipal urban compatibility confirmation (to obtain)",
-      "Any local licence or cambio de uso status",
+      "Confirmation whether new VUT is allowed during municipal suspension (to obtain)",
+      "PGOU zone compatibility for your address (proposal vs final rules)",
     ],
     fr: [
-      "Confirmation compatibilité urbanistique municipale (à obtenir)",
-      "Statut licence locale ou changement d'usage",
+      "Confirmation si une nouvelle VUT est possible pendant la suspension municipale (à obtenir)",
+      "Compatibilité zone PGOU pour votre adresse (proposition vs règles finales)",
     ],
+  },
+  pitfalls: {
+    en: "We did not verify suspension start date, BOP publication date, independent-entrance requirements for VUT, or municipal sanction amounts. Do not treat the 8% tourist-pressure index as a legal authorisation cap.",
+    fr: "Nous n'avons pas vérifié la date de début de suspension, la date BOP, l'exigence d'entrée indépendante pour les VUT ni les montants de sanctions municipales. Ne traitez pas l'indice de pression à 8 % comme un plafond juridique d'autorisation.",
   },
   fieldHints: ["address", "city"],
 };
@@ -382,14 +397,23 @@ const malagaMunicipalStep: PlaybookStep = {
 const sevilleMunicipalStep: PlaybookStep = {
   key: "seville-municipal-dossier",
   title: {
-    en: "Seville city municipal dossier (confirm with Ayuntamiento)",
-    fr: "Dossier municipal Séville (à confirmer auprès de la mairie)",
+    en: "Seville municipal VUT barrio cap (Gerencia de Urbanismo)",
+    fr: "Plafond VUT par barrio à Séville (Gerencia de Urbanismo)",
   },
   instruction: {
-    en: "Seville capital may require urban compatibility, cambio de uso, saturation limits, or other municipal steps in addition to Junta VUT registration. Requirements are address-specific: confirm with Ayuntamiento de Sevilla (urbanismo and municipal tourism channels) before listing. Host Registry does not obtain municipal reports or auto-submit to the city.",
-    fr: "Séville capitale peut exiger compatibilité urbanistique, changement d'usage, limites de saturation ou autres démarches municipales en plus du VUT Junta. Les exigences dépendent de l'adresse : confirmez auprès de l'Ayuntamiento de Sevilla (urbanismo et tourisme municipal) avant de publier. Host Registry ne demande pas de rapports municipaux ni ne dépose en mairie.",
+    en: "Gerencia de Urbanismo, Ayuntamiento de Sevilla, caps VUT at 10% of available family homes in each of the city's 108 barrios. The Pleno approved the rule definitively on 17 October 2024; it has been in force since 29 October 2024 (BOP Sevilla no. 210 of 28 October 2024). At approval, eleven barrios in Casco Antiguo and Triana districts were already above the cap and would not admit new VUT. The limit must be reviewed one year after entry into force, so check current barrio status on the Urbanismo page before filing. Ask the Gerencia de Urbanismo whether your barrio is above the cap and what urbanistic paperwork applies before your Junta declaración responsable. Host Registry does not obtain municipal reports or auto-submit to the city.",
+    fr: "La Gerencia de Urbanismo de l'Ayuntamiento de Sevilla fixe un plafond de 10 % des viviendas familiares disponibles par barrio, sur les 108 barrios de la ville. Le Pleno a approuvé définitivement la règle le 17 octobre 2024 ; elle est en vigueur depuis le 29 octobre 2024 (BOP Sevilla nº 210 du 28 octobre 2024). Lors de l'approbation, onze barrios des districts Casco Antiguo et Triana dépassaient déjà le plafond et n'admettaient pas de nouvelles VUT. Le plafond doit être réexaminé un an après l'entrée en vigueur : vérifiez le statut actuel de votre barrio sur la page Urbanismo avant le dépôt. Demandez à la Gerencia de Urbanismo si votre barrio est au-dessus du plafond et quels documents urbanistiques s'appliquent avant votre déclaration responsable Junta. Host Registry ne demande pas de rapports municipaux ni ne dépose en mairie.",
   },
   officialUrls: [
+    {
+      url: SEVILLE_VUT_BARRIO_CAP_URL,
+      label: {
+        en: "Gerencia de Urbanismo — VUT barrio limit (Ayuntamiento de Sevilla)",
+        fr: "Gerencia de Urbanismo — limitation VUT par barrio (Ayuntamiento de Sevilla)",
+      },
+      role: "rules",
+      urlVerified: true,
+    },
     {
       url: SEVILLE_TURISMO_URL,
       label: {
@@ -411,13 +435,17 @@ const sevilleMunicipalStep: PlaybookStep = {
   ],
   documents: {
     en: [
-      "Municipal urban compatibility or cambio de uso status (to confirm)",
-      "Saturation or zoning checklist for your district",
+      "Barrio cap status confirmation from Gerencia de Urbanismo (to obtain)",
+      "Urbanistic paperwork checklist before Junta filing (to confirm)",
     ],
     fr: [
-      "Statut compatibilité urbanistique ou changement d'usage (à confirmer)",
-      "Checklist saturation ou zonage pour votre quartier",
+      "Confirmation du statut de plafond du barrio auprès de la Gerencia de Urbanismo (à obtenir)",
+      "Checklist documents urbanistiques avant dépôt Junta (à confirmer)",
     ],
+  },
+  pitfalls: {
+    en: "We did not verify the exact municipal sede URL for urbanistic reports or city sanction amounts. The barrio cap may change after the one-year review: use the official Urbanismo page for current status.",
+    fr: "Nous n'avons pas vérifié l'URL exacte de la sede municipale pour les rapports urbanistiques ni les montants de sanctions municipales. Le plafond par barrio peut évoluer après la révision annuelle : utilisez la page Urbanismo officielle pour le statut actuel.",
   },
   fieldHints: ["address", "city"],
 };
@@ -450,8 +478,8 @@ export const SPAIN_SEVILLE_CAPITAL_PLAYBOOK: Playbook = {
     fr: "Séville — VUT, dossier municipal et SES",
   },
   description: {
-    en: "Seville capital and Andalucía: municipal urban dossier checks (address-specific), Junta Registro de Turismo VUT, platform display, and SES guest reporting. NRUA is not the listing number.",
-    fr: "Séville capitale et Andalousie : contrôles dossier municipal (selon adresse), VUT Registro de Turismo Junta, affichage plateformes et déclaration SES. Le NRUA n'est pas le numéro d'annonce.",
+    en: "Seville capital and Andalucía: 10% per-barrio VUT cap (Gerencia de Urbanismo), Junta Registro de Turismo VUT, platform display, and SES guest reporting. NRUA is not the listing number.",
+    fr: "Séville capitale et Andalousie : plafond VUT de 10 % par barrio (Gerencia de Urbanismo), VUT Registro de Turismo Junta, affichage plateformes et déclaration SES. Le NRUA n'est pas le numéro d'annonce.",
   },
   steps: [
     ...andaluciaRegistrationSteps("seville"),
@@ -470,8 +498,8 @@ export const SPAIN_MALAGA_PLAYBOOK: Playbook = {
     fr: "Málaga — VUT, dossier municipal et SES",
   },
   description: {
-    en: "Málaga capital and Andalucía: confirm municipal urban rules with Ayuntamiento de Málaga, Junta VUT declaración responsable, platform display, and SES guest reporting.",
-    fr: "Málaga capitale et Andalousie : confirmer l'urbanisme municipal auprès de l'Ayuntamiento de Málaga, déclaration responsable VUT Junta, affichage plateformes et déclaration SES.",
+    en: "Málaga capital and Andalucía: municipal VUT authorisation suspension (up to three years), PGOU PL07-2026 proposal, Junta declaración responsable, platform display, and SES guest reporting.",
+    fr: "Málaga capitale et Andalousie : suspension municipale des autorisations VUT (jusqu'à trois ans), proposition PGOU PL07-2026, déclaration responsable VUT Junta, affichage plateformes et déclaration SES.",
   },
   steps: [
     ...andaluciaRegistrationSteps("malaga"),

@@ -41,8 +41,8 @@ const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       {
         url: ANDALUCIA_VUT_INFO_URL,
         label: {
-          en: "Junta de Andalucía — tourist dwellings (VUT)",
-          fr: "Junta de Andalucía — logements touristiques (VUT)",
+          en: "Junta de Andalucía: tourist dwellings (VUT)",
+          fr: "Junta de Andalucía: logements touristiques (VUT)",
         },
         role: "info",
         urlVerified: true,
@@ -68,8 +68,8 @@ const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       {
         url: ANDALUCIA_DECRETO_28_2016_PDF_URL,
         label: {
-          en: "Decreto 28/2016 — VUT framework (PDF)",
-          fr: "Décret 28/2016 — cadre VUT (PDF)",
+          en: "Decreto 28/2016: VUT framework (PDF)",
+          fr: "Décret 28/2016: cadre VUT (PDF)",
         },
         role: "rules",
         urlVerified: true,
@@ -104,8 +104,8 @@ const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       {
         url: ANDALUCIA_VUT_FAQ_URL,
         label: {
-          en: "Junta FAQ — municipal and regional steps",
-          fr: "FAQ Junta — étapes municipales et régionales",
+          en: "Junta FAQ: municipal and regional steps",
+          fr: "FAQ Junta: étapes municipales et régionales",
         },
         role: "rules",
         urlVerified: true,
@@ -143,8 +143,8 @@ const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       {
         url: ANDALUCIA_DR_GUIA_PDF_URL,
         label: {
-          en: "Junta guía — declaración responsable VUT (PDF)",
-          fr: "Guide Junta — déclaration responsable VUT (PDF)",
+          en: "Junta guía: declaración responsable VUT (PDF)",
+          fr: "Guide Junta: déclaration responsable VUT (PDF)",
         },
         role: "rules",
         urlVerified: true,
@@ -152,8 +152,8 @@ const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       {
         url: ANDALUCIA_SEDE_VUT_PROCEDURE_URL,
         label: {
-          en: "Junta electronic office — tourism register procedure",
-          fr: "Sede électronique Junta — procédure registre tourisme",
+          en: "Junta electronic office: tourism register procedure",
+          fr: "Sede électronique Junta: procédure registre tourisme",
         },
         role: "portal",
         urlVerified: true,
@@ -195,8 +195,8 @@ const andaluciaRegistrationSteps = (cityKey: string): PlaybookStep[] => [
       {
         url: ANDALUCIA_SEDE_VUT_PROCEDURE_URL,
         label: {
-          en: "Junta sede — VUT registration procedure",
-          fr: "Sede Junta — procédure inscription VUT",
+          en: "Junta sede: VUT registration procedure",
+          fr: "Sede Junta: procédure inscription VUT",
         },
         role: "portal",
         urlVerified: true,
@@ -343,8 +343,8 @@ const malagaMunicipalStep: PlaybookStep = {
     {
       url: MALAGA_PGOU_PL07_EXEC_SUMMARY_PDF_URL,
       label: {
-        en: "Ayuntamiento de Málaga — PL07-2026 executive summary (PDF)",
-        fr: "Ayuntamiento de Málaga — résumé exécutif PL07-2026 (PDF)",
+        en: "Ayuntamiento de Málaga: PL07-2026 executive summary (PDF)",
+        fr: "Ayuntamiento de Málaga: résumé exécutif PL07-2026 (PDF)",
       },
       role: "rules",
       urlVerified: true,
@@ -352,8 +352,8 @@ const malagaMunicipalStep: PlaybookStep = {
     {
       url: MALAGA_PGOU_PL07_ANNEXES_PDF_URL,
       label: {
-        en: "Ayuntamiento de Málaga — PL07-2026 annexes 2 and 3 (PDF)",
-        fr: "Ayuntamiento de Málaga — annexes 2 et 3 PL07-2026 (PDF)",
+        en: "Ayuntamiento de Málaga: PL07-2026 annexes 2 and 3 (PDF)",
+        fr: "Ayuntamiento de Málaga: annexes 2 et 3 PL07-2026 (PDF)",
       },
       role: "rules",
       urlVerified: true,
@@ -361,8 +361,8 @@ const malagaMunicipalStep: PlaybookStep = {
     {
       url: MALAGA_AYUNTAMIENTO_URL,
       label: {
-        en: "Ayuntamiento de Málaga — portal",
-        fr: "Ayuntamiento de Málaga — portail",
+        en: "Ayuntamiento de Málaga: portal",
+        fr: "Ayuntamiento de Málaga: portail",
       },
       role: "info",
       urlVerified: true,
@@ -408,8 +408,8 @@ const sevilleMunicipalStep: PlaybookStep = {
     {
       url: SEVILLE_VUT_BARRIO_CAP_URL,
       label: {
-        en: "Gerencia de Urbanismo — VUT barrio limit (Ayuntamiento de Sevilla)",
-        fr: "Gerencia de Urbanismo — limitation VUT par barrio (Ayuntamiento de Sevilla)",
+        en: "Gerencia de Urbanismo: VUT barrio limit (Ayuntamiento de Sevilla)",
+        fr: "Gerencia de Urbanismo: limitation VUT par barrio (Ayuntamiento de Sevilla)",
       },
       role: "rules",
       urlVerified: true,
@@ -417,8 +417,8 @@ const sevilleMunicipalStep: PlaybookStep = {
     {
       url: SEVILLE_TURISMO_URL,
       label: {
-        en: "Turismo de Sevilla — municipal tourism entry",
-        fr: "Turismo de Sevilla — entrée tourisme municipal",
+        en: "Turismo de Sevilla: municipal tourism entry",
+        fr: "Turismo de Sevilla: entrée tourisme municipal",
       },
       role: "info",
       urlVerified: true,
@@ -455,8 +455,8 @@ export const SPAIN_ANDALUCIA_COMMUNITY_PLAYBOOK: Playbook = {
   country: "Spain",
   sourceReviewedAt: "2026-10-04",
   title: {
-    en: "Andalucía — VUT registration and SES guest reporting",
-    fr: "Andalousie — enregistrement VUT et déclaration SES",
+    en: "Andalucía: VUT registration and SES guest reporting",
+    fr: "Andalousie: enregistrement VUT et déclaration SES",
   },
   description: {
     en: "Junta de Andalucía VUT (declaración responsable, Registro de Turismo), municipal prerequisites, platform display under EU 2024/1028, and SES.HOSPEDAJES guest reporting.",
@@ -474,8 +474,8 @@ export const SPAIN_SEVILLE_CAPITAL_PLAYBOOK: Playbook = {
   city: "Seville",
   sourceReviewedAt: "2026-10-04",
   title: {
-    en: "Seville — VUT, municipal dossier, and SES",
-    fr: "Séville — VUT, dossier municipal et SES",
+    en: "Seville: VUT, municipal dossier, and SES",
+    fr: "Séville: VUT, dossier municipal et SES",
   },
   description: {
     en: "Seville capital and Andalucía: 10% per-barrio VUT cap (Gerencia de Urbanismo), Junta Registro de Turismo VUT, platform display, and SES guest reporting. NRUA is not the listing number.",
@@ -494,8 +494,8 @@ export const SPAIN_MALAGA_PLAYBOOK: Playbook = {
   city: "Málaga",
   sourceReviewedAt: "2026-10-04",
   title: {
-    en: "Málaga — VUT, municipal dossier, and SES",
-    fr: "Málaga — VUT, dossier municipal et SES",
+    en: "Málaga: VUT, municipal dossier, and SES",
+    fr: "Málaga: VUT, dossier municipal et SES",
   },
   description: {
     en: "Málaga capital and Andalucía: municipal VUT authorisation suspension (up to three years), PGOU PL07-2026 proposal, Junta declaración responsable, platform display, and SES guest reporting.",

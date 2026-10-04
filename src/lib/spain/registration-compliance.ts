@@ -11,6 +11,7 @@ const SUPPORTED_ES_STR_COMMUNITIES: SpainAutonomousCommunity[] = [
   "catalonia",
   "madrid",
   "valencian",
+  "andalucia",
 ];
 
 export type SpainRegistration = {
@@ -52,7 +53,8 @@ export function isEsCommunityConfirmed(
   if (
     inferred === "catalonia" ||
     inferred === "madrid" ||
-    inferred === "valencian"
+    inferred === "valencian" ||
+    inferred === "andalucia"
   ) {
     return stored === inferred;
   }
@@ -99,7 +101,9 @@ export function needsSpainRegistrationAttention(
   const expectedLicense =
     community === "catalonia"
       ? "hut"
-      : community === "madrid" || community === "valencian"
+      : community === "madrid" ||
+          community === "valencian" ||
+          community === "andalucia"
         ? "vut"
         : null;
   if (expectedLicense && registration.esLicenseKind !== expectedLicense) return true;

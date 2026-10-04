@@ -11,6 +11,11 @@ import {
   SPAIN_VALENCIA_CAPITAL_PLAYBOOK,
   SPAIN_VALENCIAN_COMMUNITY_PLAYBOOK,
 } from "./valencia";
+import {
+  SPAIN_ANDALUCIA_COMMUNITY_PLAYBOOK,
+  SPAIN_MALAGA_PLAYBOOK,
+  SPAIN_SEVILLE_CAPITAL_PLAYBOOK,
+} from "./andalucia";
 
 const SES_PORTAL_URL = "https://hospedajes.ses.mir.es/hospedajes-web/";
 const SES_PORTAL_TEST_URL = "https://hospedajes.pre-ses.mir.es/hospedajes-web/";
@@ -203,44 +208,6 @@ export const SPAIN_MADRID_PLAYBOOK = SPAIN_MADRID_CAPITAL_PLAYBOOK;
 export const SPAIN_BARCELONA_PLAYBOOK = SPAIN_BARCELONA_REGISTRATION_PLAYBOOK;
 
 export const SPAIN_VALENCIA_PLAYBOOK = SPAIN_VALENCIA_CAPITAL_PLAYBOOK;
-
-export const SPAIN_MALAGA_PLAYBOOK: Playbook = {
-  id: "es-malaga",
-  country: "Spain",
-  city: "Málaga",
-  sourceReviewedAt: "2026-09-12",
-  title: {
-    en: "Málaga / Andalusia — tourist rental & SES compliance",
-    fr: "Málaga / Andalousie — location touristique et conformité SES",
-  },
-  description: {
-    en: "Guided steps for Andalusia (Junta de Andalucía): VFT registration, SES guest reporting, and taxes.",
-    fr: "Étapes guidées pour l'Andalousie (Junta de Andalucía) : enregistrement VFT, déclaration SES et taxes.",
-  },
-  steps: [
-    esSteps.postNruaContext(),
-    {
-      ...esSteps.regionalLicense("malaga", {
-        en: "Junta de Andalucía",
-        fr: "Junta de Andalucía",
-      }),
-      officialUrls: [
-        {
-          url: "https://www.juntadeandalucia.es/turismoydeporte/ventanilla-unica-de-la-junta-de-andalucia",
-          label: {
-            en: "Junta de Andalucía — VFT registration portal",
-            fr: "Junta de Andalucía — portail enregistrement VFT",
-          },
-          role: "portal",
-          urlVerified: true,
-        },
-      ],
-    },
-    esSteps.sesHospedajes("malaga"),
-    esSteps.taxObligations("malaga"),
-    esSteps.updatePlatforms("malaga"),
-  ],
-};
 
 const basqueRegionalSteps = (cityKey: string, cityName: string): PlaybookStep[] => [
   esSteps.postNruaContext(),
@@ -447,6 +414,10 @@ export const SPAIN_PLAYBOOKS: Playbook[] = [
   SPAIN_VITORIA_PLAYBOOK,
   SPAIN_VALENCIA_PLAYBOOK,
   SPAIN_VALENCIAN_COMMUNITY_PLAYBOOK,
+  SPAIN_SEVILLE_CAPITAL_PLAYBOOK,
   SPAIN_MALAGA_PLAYBOOK,
+  SPAIN_ANDALUCIA_COMMUNITY_PLAYBOOK,
   SPAIN_GENERIC_PLAYBOOK,
 ];
+
+export { SPAIN_SEVILLE_CAPITAL_PLAYBOOK, SPAIN_ANDALUCIA_COMMUNITY_PLAYBOOK };

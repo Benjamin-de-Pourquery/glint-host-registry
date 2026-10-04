@@ -39,7 +39,11 @@ describe("needsSpainRegistrationAttention", () => {
   });
 
   it("ignores non-supported Spain cities", () => {
-    assert.equal(needsSpainRegistrationAttention("Spain", null, "Seville"), false);
+    assert.equal(needsSpainRegistrationAttention("Spain", null, "Zaragoza"), false);
+  });
+
+  it("flags missing Andalucía registration for Seville", () => {
+    assert.equal(needsSpainRegistrationAttention("Spain", null, "Seville"), true);
   });
 
   it("flags incomplete Barcelona dossier", () => {

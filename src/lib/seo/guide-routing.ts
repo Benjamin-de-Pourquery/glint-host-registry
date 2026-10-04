@@ -20,6 +20,10 @@ const GUIDE_LOCALE_PAIRS: ReadonlyArray<readonly [SeoPageKey, SeoPageKey]> = [
   ["guideMadridAirbnbRegistration", "guideMadridAirbnbRegistrationFr"],
   ["guideValenciaStrRegistration", "guideValenciaStrRegistrationFr"],
   ["guideValenciaAirbnbRegistration", "guideValenciaAirbnbRegistrationFr"],
+  ["guideMalagaStrRegistration", "guideMalagaStrRegistrationFr"],
+  ["guideMalagaAirbnbRegistration", "guideMalagaAirbnbRegistrationFr"],
+  ["guideSevilleStrRegistration", "guideSevilleStrRegistrationFr"],
+  ["guideSevilleAirbnbRegistration", "guideSevilleAirbnbRegistrationFr"],
   ["guideAmsterdamStrRegistration", "guideAmsterdamStrRegistrationFr"],
   ["guideAmsterdamAirbnbRegistration", "guideAmsterdamAirbnbRegistrationFr"],
 ];

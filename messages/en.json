@@ -199,6 +199,38 @@
       "title": "Enregistrement Airbnb Valence: guide conformité VUT",
       "description": "VUT Registro de Turismo sur Airbnb et Booking, contrôles ICU, renouvellement 5 ans, déclaration SES distincte des Mossos."
     },
+    "guideMalagaStrRegistration": {
+      "title": "Málaga short-term rental registration: Andalucía VUT host guide",
+      "description": "Junta VUT after STS 620/2026, Málaga municipal VUT suspension (PL07-2026), declaración responsable, SES.HOSPEDAJES. No auto-submit."
+    },
+    "guideMalagaStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Málaga: guide VUT Andalousie",
+      "description": "VUT Junta de Andalucía post-STS 620/2026, contrôles municipaux Málaga, déclaration responsable, SES.HOSPEDAJES. Pas de dépôt automatique."
+    },
+    "guideMalagaAirbnbRegistration": {
+      "title": "Málaga Airbnb registration: Andalucía VUT compliance guide",
+      "description": "Registro de Turismo VUT on Airbnb and Booking, municipal dossier checks, SES guest reporting separate from Mossos."
+    },
+    "guideMalagaAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Málaga: guide conformité VUT Andalousie",
+      "description": "VUT Registro de Turismo sur Airbnb et Booking, contrôles municipaux, déclaration SES distincte des Mossos."
+    },
+    "guideSevilleStrRegistration": {
+      "title": "Seville short-term rental registration: Andalucía VUT host guide",
+      "description": "Junta VUT after STS 620/2026, Seville 10% per-barrio VUT cap (Gerencia de Urbanismo), declaración responsable, SES.HOSPEDAJES."
+    },
+    "guideSevilleStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Séville: guide VUT Andalousie",
+      "description": "VUT Junta de Andalucía post-STS 620/2026, dossier municipal Séville, déclaration responsable, SES.HOSPEDAJES."
+    },
+    "guideSevilleAirbnbRegistration": {
+      "title": "Seville Airbnb registration: Andalucía VUT compliance guide",
+      "description": "Registro de Turismo VUT on Airbnb and Booking, address-specific municipal steps, SES guest reporting."
+    },
+    "guideSevilleAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Séville: guide conformité VUT Andalousie",
+      "description": "VUT Registro de Turismo sur Airbnb et Booking, étapes municipales selon adresse, déclaration SES."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -810,6 +842,122 @@
         }
       }
     },
+    "malagaStrRegistration": {
+      "title": "Málaga short-term rental registration (VUT)",
+      "updated": "Updated: October 2026",
+      "intro": "Andalucía registers viviendas de uso turístico (VUT) in the Registro de Turismo de Andalucía through declaración responsable on the Junta electronic office. Spain's Supreme Court STS 620/2026 annulled the national NRUA layer for listing verification. Platforms expect your regional VUT code under Regulation (EU) 2024/1028. Guest reporting uses SES.HOSPEDAJES, not Mossos. Glint Host Registry helps you prepare municipal and regional dossier steps and track numbers. We do not submit to the Junta, your ayuntamiento, or SES on your behalf unless you configure live SES credentials yourself.",
+      "sections": {
+        "nrua": {
+          "title": "NRUA vs Registro de Turismo after STS 620/2026",
+          "body": "Do not treat a defunct NRUA code as your Airbnb or Booking registration number. The operative identifier is your Junta Registro de Turismo VUT inscription, often shown as VUT/MA/##### for Málaga province. VUDA or platform data-sharing may still apply separately from the listing number field."
+        },
+        "decreto": {
+          "title": "Decreto 28/2016 and Junta guidance",
+          "body": "Decreto 28/2016 sets the Andalusian VUT framework. Use the Junta declaración responsable guide and FAQ for technical, habitability, and documentation requirements. Digital certificate filing is required on the Oficina Virtual."
+        },
+        "municipal": {
+          "title": "Málaga municipal VUT suspension and PGOU proposal",
+          "body": "Gerencia de Urbanismo, Ayuntamiento de Málaga, has agreed to suspend new VUT authorisations across the whole municipality for a maximum of three years while planning rules are prepared (Decreto-ley 1/2025, art. 6.2, cited in PL07-2026). Executive summary: https://urbanismo.malaga.eu/export/sites/urbanismo/anuncios-de-planeamiento/planificacion/modificacion-de-elementos/Anuncios-Planeamiento-Modificacion/PL07-2026/06-Resumen_Ejecutivo_PL7-26.pdf. Modificación Pormenorizada del PGOU no. 28 (PL07-2026, June 2026) proposes making tourist lodging, including VUT, incompatible in zones C-1 Centro Histórico, C-2 Perchel Alto, C-3 Trinidad-Perchel, and C-4 PEPRI Perchel Sur. That is a proposal in progress, not adopted law. Annexes (https://urbanismo.malaga.eu/export/sites/urbanismo/anuncios-de-planeamiento/planificacion/modificacion-de-elementos/Anuncios-Planeamiento-Modificacion/PL07-2026/08-Anexos_2_Y_3_PL7-26.pdf) use a residential tourist-pressure index: above 8% means a barrio is saturated or needs to decrease; 48 of 417 barrios were above that level in the city's study. That index is not a legal cap. We do not state suspension start or BOP dates, independent-entrance rules, or sanction amounts. Confirm with urbanismo before Junta filing. Host Registry tracks checklist status only."
+        },
+        "regional": {
+          "title": "Regional declaración responsable (you file)",
+          "body": "Complete declaración responsable through the Junta sede procedure and store your VUT code in Host Registry when issued. This is the number platforms verify. It is not proof that municipal urban rules are satisfied."
+        },
+        "platforms": {
+          "title": "EU 2024/1028 on platforms",
+          "body": "Display your VUT registration on every OTA listing. Mark listing display in Host Registry per channel."
+        },
+        "ses": {
+          "title": "SES guest reporting (separate)",
+          "body": "Within 24 hours of check-in you must report guests on SES.HOSPEDAJES under RD 933/2021. Mossos applies only in Catalonia. Host Registry prepares Annex I data and optional SOAP submission when you configure credentials."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Málaga and Andalucía playbooks, dossier date, VUT storage, listing display checklist, SES queue, and evidence pack export with official Junta links."
+        }
+      }
+    },
+    "malagaAirbnbRegistration": {
+      "title": "Málaga Airbnb registration under VUT rules",
+      "updated": "Updated: October 2026",
+      "intro": "Airbnb hosts in Málaga need a valid Registro de Turismo VUT code, municipal confirmations where required, and SES guest reporting. This guide covers operational readiness only.",
+      "sections": {
+        "airbnbField": {
+          "title": "Airbnb registration field",
+          "body": "Enter your Registro de Turismo VUT reference in the registration or license field Airbnb shows for Spain. Use the same number on Booking and other channels. Do not use NRUA after STS 620/2026."
+        },
+        "dossier": {
+          "title": "Before you list",
+          "body": "Confirm whether new VUT is allowed during the municipal suspension and check PGOU zone proposals for your address. Prepare declaración responsable materials and track dossier prepared date in Host Registry before Junta filing."
+        },
+        "display": {
+          "title": "Listing display checklist",
+          "body": "After VUT is active, confirm the number appears in the listing UI. Toggle displayed on listings in Host Registry per channel."
+        },
+        "glint": {
+          "title": "Host Registry workflow",
+          "body": "Use the Málaga playbook, save VUT, configure SES credentials, and use the guest register for Annex I data. Do not route Andalusian guests to Mossos."
+        }
+      }
+    },
+    "sevilleStrRegistration": {
+      "title": "Seville short-term rental registration (VUT)",
+      "updated": "Updated: October 2026",
+      "intro": "Andalucía registers viviendas de uso turístico (VUT) in the Registro de Turismo de Andalucía through declaración responsable on the Junta electronic office. STS 620/2026 ended NRUA as the platform verification layer. Platforms expect your regional VUT code under Regulation (EU) 2024/1028, often VUT/SE/##### for Sevilla province. Guest reporting uses SES.HOSPEDAJES. Glint Host Registry tracks dossier and listing steps. We do not auto-submit to the Junta, Ayuntamiento de Sevilla, or SES.",
+      "sections": {
+        "nrua": {
+          "title": "NRUA vs Registro de Turismo after STS 620/2026",
+          "body": "Use your Junta VUT inscription on listings, not NRUA. Regional registration and municipal urban rules are separate obligations."
+        },
+        "decreto": {
+          "title": "Decreto 28/2016 and Junta guidance",
+          "body": "Follow Decreto 28/2016 and the Junta FAQ for declaración responsable content, digital certificate requirements, and distinctions between new registrations and already inscribed dwellings."
+        },
+        "municipal": {
+          "title": "Seville municipal VUT barrio cap",
+          "body": "Gerencia de Urbanismo, Ayuntamiento de Sevilla, caps VUT at 10% of available family homes in each of the city's 108 barrios. Approved definitively by the Pleno on 17 October 2024; in force since 29 October 2024 (BOP Sevilla no. 210 of 28 October 2024). At approval, eleven barrios in Casco Antiguo and Triana districts exceeded the cap and would not admit new VUT. The limit is reviewed one year after entry into force: check current status on https://www.urbanismosevilla.org/paginas/limitacion-viviendas-uso-turistico. We did not verify municipal sede URLs for urbanistic reports or sanction amounts. Ask the Gerencia de Urbanismo whether your barrio is above the cap and what paperwork applies before Junta declaración responsable. Host Registry does not obtain municipal reports."
+        },
+        "regional": {
+          "title": "Regional declaración responsable (you file)",
+          "body": "File on the Junta Oficina Virtual and store your VUT code in Host Registry when issued. Platforms verify this regional number."
+        },
+        "platforms": {
+          "title": "EU 2024/1028 on platforms",
+          "body": "Display your VUT registration on every OTA listing. Mark listing display in Host Registry per channel."
+        },
+        "ses": {
+          "title": "SES guest reporting (separate)",
+          "body": "Report guests on SES.HOSPEDAJES within 24 hours of check-in under RD 933/2021. Host Registry can prepare Annex I data when you configure SOAP credentials."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Seville and Andalucía playbooks, VUT storage, municipal checklist tracking, SES queue, and evidence pack export."
+        }
+      }
+    },
+    "sevilleAirbnbRegistration": {
+      "title": "Seville Airbnb registration under VUT rules",
+      "updated": "Updated: October 2026",
+      "intro": "Airbnb hosts in Seville need a valid Registro de Turismo VUT code, address-specific municipal confirmations, and SES guest reporting.",
+      "sections": {
+        "airbnbField": {
+          "title": "Airbnb registration field",
+          "body": "Enter your VUT reference in the registration field Airbnb shows for Spain. Use the same code on other channels. Do not use NRUA after STS 620/2026."
+        },
+        "dossier": {
+          "title": "Before you list",
+          "body": "Check your barrio cap status on the Gerencia de Urbanismo page, confirm required urbanistic paperwork, prepare declaración responsable materials, and track dossier prepared date in Host Registry before Junta filing."
+        },
+        "display": {
+          "title": "Listing display checklist",
+          "body": "After VUT is active, confirm the number appears in the listing UI. Toggle displayed on listings in Host Registry per channel."
+        },
+        "glint": {
+          "title": "Host Registry workflow",
+          "body": "Use the Seville playbook, save VUT, configure SES credentials, and use the guest register for Annex I data."
+        }
+      }
+    },
     "madridAirbnbRegistration": {
       "title": "Madrid Airbnb registration under VUT rules",
       "updated": "Updated: September 2026",
@@ -1169,6 +1317,10 @@
       "guideMadridAirbnbRegistration": "Madrid Airbnb / VUT",
       "guideValenciaStrRegistration": "Valencia STR (VUT)",
       "guideValenciaAirbnbRegistration": "Valencia Airbnb / VUT",
+      "guideMalagaStrRegistration": "Málaga STR (VUT)",
+      "guideMalagaAirbnbRegistration": "Málaga Airbnb / VUT",
+      "guideSevilleStrRegistration": "Seville STR (VUT)",
+      "guideSevilleAirbnbRegistration": "Seville Airbnb / VUT",
       "guideFrNerMigration": "France NER migration 2026",
       "account": "Account",
       "legal": "Legal",
@@ -3241,17 +3393,21 @@
       "titleCatalonia": "Spain / Catalonia HUT compliance",
       "titleMadrid": "Spain / Comunidad de Madrid VUT compliance",
       "titleValencian": "Spain / Comunitat Valenciana VUT compliance",
+      "titleAndalucia": "Spain / Andalucía VUT compliance",
       "description": "Track HUT dossier prep, regional registration number, and listing display under EU 2024/1028. Guest reporting via Mossos is separate from SES.HOSPEDAJES.",
       "descriptionMadrid": "Track VUT dossier prep (CIVUT, owners, technical rules), regional registration number, and listing display under EU 2024/1028. Guest reporting uses SES.HOSPEDAJES, not Mossos.",
       "descriptionValencian": "Track ICU and VUT dossier prep, Registro Turismo number (5-year validity), and listing display under EU 2024/1028. Guest reporting uses SES.HOSPEDAJES, not Mossos.",
+      "descriptionAndalucia": "Track municipal prerequisites and VUT dossier prep, Registro de Turismo code (VUT/province pattern), and listing display under EU 2024/1028. Guest reporting uses SES.HOSPEDAJES, not Mossos.",
       "nruaNotice": "After Spain's Supreme Court STS 620/2026, NRUA is not the number platforms verify. Use your Catalan HUT from the Registre de Turisme de Catalunya.",
       "nruaNoticeMadrid": "After STS 620/2026, NRUA is not the number platforms verify. Use your Comunidad de Madrid VUT registration from the Registro de Empresas Turísticas. A regional number does not prove municipal urban legality.",
       "nruaNoticeValencian": "After STS 620/2026, NRUA is not the number platforms verify. Use your Comunitat Valenciana Registro Turismo VUT number. ICU and municipal rules are separate; inscription expires after 5 years unless renewed.",
+      "nruaNoticeAndalucia": "After STS 620/2026, NRUA is not the number platforms verify. Use your Junta Registro de Turismo VUT code. Municipal urban rules and regional inscription are separate; confirm ayuntamiento steps before filing.",
       "autonomousCommunity": "Autonomous community",
       "community": {
         "catalonia": "Catalonia",
         "madrid": "Comunidad de Madrid",
-        "valencian": "Comunitat Valenciana"
+        "valencian": "Comunitat Valenciana",
+        "andalucia": "Andalucía"
       },
       "licenseKind": "License kind",
       "licenseKind.hut": "HUT (Catalonia tourist housing)",
@@ -3263,9 +3419,11 @@
       "registrationNumberPlaceholder": "HUT-000000",
       "registrationNumberVutPlaceholder": "Regional VUT reference",
       "registrationNumberVutValencianPlaceholder": "Registro Turismo VUT reference",
+      "registrationNumberVutAndaluciaPlaceholder": "VUT/MA/##### or Junta receipt reference",
       "hutFormatHint": "Catalonia listing numbers usually start with HUT. Verify against your Generalitat certificate.",
       "vutFormatHint": "Madrid VUT numbers come from the Comunidad register (not HUT). Verify against your regional receipt.",
       "vutValencianFormatHint": "Valencian VUT numbers come from Registro de Turismo (not HUT). Verify against your GVA autoregistro receipt.",
+      "vutAndaluciaFormatHint": "Andalusian codes often use VUT/PROVINCE/##### (for example VUT/SE/#####). Verify against your Junta declaración responsable receipt.",
       "registrationStatus": "Registration status",
       "displayedOnListings": "HUT displayed on all platform listings",
       "displayedOnListingsVut": "VUT displayed on all platform listings",
@@ -3279,17 +3437,24 @@
         "valencianFaq": "VUT FAQ (PDF)",
         "valencianDecreto": "Decreto-ley 9/2024 (DOGV)",
         "valenciaCity": "Ajuntament de València tourism",
+        "andaluciaRegister": "Junta sede: VUT procedure",
+        "andaluciaInfo": "Junta: tourist dwellings (VUT)",
+        "andaluciaFaq": "Junta VUT FAQ",
+        "andaluciaDecreto": "Decreto 28/2016 (PDF)",
+        "andaluciaDrGuia": "Junta declaración responsable guide (PDF)",
         "eu1028": "EU Regulation 2024/1028",
         "rd933": "RD 933/2021 (guest reporting)"
       },
       "disclaimer": "Host Registry is operational guidance from Glint. You file with the Generalitat, your municipality, and Mossos portals yourself. We do not auto-submit government forms.",
       "disclaimerMadrid": "Host Registry is operational guidance from Glint. You file with the Comunidad de Madrid, your ayuntamiento, and SES.HOSPEDAJES yourself. We do not auto-submit government forms.",
       "disclaimerValencian": "Host Registry is operational guidance from Glint. You file with Turisme GVA, your ayuntamiento (ICU), and SES.HOSPEDAJES yourself. We do not auto-submit government forms.",
+      "disclaimerAndalucia": "Host Registry is operational guidance from Glint. You file with the Junta de Andalucía, your ayuntamiento, and SES.HOSPEDAJES yourself. We do not auto-submit government forms.",
       "save": "Save",
       "saving": "Saving…",
       "savedCatalonia": "Catalonia compliance saved",
       "savedMadrid": "Madrid VUT compliance saved",
       "savedValencian": "Comunitat Valenciana VUT compliance saved",
+      "savedAndalucia": "Andalucía VUT compliance saved",
       "saveError": "Could not save",
       "status": {
         "not_started": "Not started",

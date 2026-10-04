@@ -6,7 +6,9 @@ import {
   isCataloniaLocation,
   isLikelyCataloniaHutNumber,
   isLikelyMadridVutNumber,
+  isLikelyAndaluciaVutNumber,
   isLikelyValencianVutNumber,
+  isAndaluciaLocation,
   isMadridLocation,
   isValencianLocation,
   supportsSpainStrRegistrationCompliance,
@@ -49,11 +51,22 @@ describe("Spain Valencian region resolution", () => {
   });
 });
 
+describe("Spain Andalucía region resolution", () => {
+  it("resolves Seville and Málaga as Andalucía", () => {
+    assert.equal(isAndaluciaLocation("Seville"), true);
+    assert.equal(isAndaluciaLocation("Sevilla"), true);
+    assert.equal(isAndaluciaLocation("Málaga"), true);
+    assert.equal(getSpainAutonomousCommunity("Granada"), "andalucia");
+  });
+
+});
+
 describe("Spain STR registration compliance scope", () => {
-  it("includes Catalonia, Madrid, and Comunitat Valenciana", () => {
+  it("includes Catalonia, Madrid, Comunitat Valenciana, and Andalucía", () => {
     assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Barcelona"), true);
     assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Madrid"), true);
     assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Valencia"), true);
+    assert.equal(supportsSpainStrRegistrationCompliance("Spain", "Seville"), true);
     assert.equal(supportsSpainStrRegistrationCompliance("France", "Barcelona"), false);
   });
 });
@@ -73,5 +86,11 @@ describe("Regional registration number format", () => {
   it("accepts Valencian Registro Turismo references without HUT prefix", () => {
     assert.equal(isLikelyValencianVutNumber("VT-CV-12345"), true);
     assert.equal(isLikelyValencianVutNumber("HUT-1"), false);
+  });
+
+  it("accepts Andalucía VUT/PROVINCE pattern", () => {
+    assert.equal(isLikelyAndaluciaVutNumber("VUT/MA/12345"), true);
+    assert.equal(isLikelyAndaluciaVutNumber("VUT-SE-99999"), true);
+    assert.equal(isLikelyAndaluciaVutNumber("HUT-1"), false);
   });
 });

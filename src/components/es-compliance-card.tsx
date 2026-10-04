@@ -27,6 +27,11 @@ import {
 import {
   BARCELONA_TOURISM_HOUSING_URL,
   CATALONIA_TOURISM_REGISTER_OPEN_DATA_URL,
+  ANDALUCIA_DECRETO_28_2016_PDF_URL,
+  ANDALUCIA_DR_GUIA_PDF_URL,
+  ANDALUCIA_SEDE_VUT_PROCEDURE_URL,
+  ANDALUCIA_VUT_FAQ_URL,
+  ANDALUCIA_VUT_INFO_URL,
   CV_DECRETO_LEY_9_2024_URL,
   CV_VUT_CINDI_INFO_URL,
   CV_VUT_FAQ_PDF_URL,
@@ -58,20 +63,29 @@ type Props = {
   registration: SpainRegistration | null;
 };
 
-function defaultLicenseKind(community: SpainAutonomousCommunity): string {
-  if (community === "madrid" || community === "valencian") return "vut";
-  if (community === "catalonia") return "hut";
-  return "other";
+function isVutCommunity(community: SpainAutonomousCommunity): boolean {
+  return (
+    community === "madrid" ||
+    community === "valencian" ||
+    community === "andalucia"
+  );
 }
 
-function isVutCommunity(community: SpainAutonomousCommunity): boolean {
-  return community === "madrid" || community === "valencian";
+function defaultLicenseKind(community: SpainAutonomousCommunity): string {
+  if (isVutCommunity(community)) return "vut";
+  if (community === "catalonia") return "hut";
+  return "other";
 }
 
 function supportedCommunity(
   community: SpainAutonomousCommunity
 ): SpainAutonomousCommunity {
-  if (community === "catalonia" || community === "madrid" || community === "valencian") {
+  if (
+    community === "catalonia" ||
+    community === "madrid" ||
+    community === "valencian" ||
+    community === "andalucia"
+  ) {
     return community;
   }
   return "catalonia";
@@ -101,7 +115,8 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
     registration?.esAutonomousCommunity ??
     (inferredCommunity === "catalonia" ||
     inferredCommunity === "madrid" ||
-    inferredCommunity === "valencian"
+    inferredCommunity === "valencian" ||
+    inferredCommunity === "andalucia"
       ? inferredCommunity
       : "catalonia");
 
@@ -132,7 +147,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
       ? "titleMadrid"
       : activeCommunity === "valencian"
         ? "titleValencian"
-        : "titleCatalonia";
+        : activeCommunity === "andalucia"
+          ? "titleAndalucia"
+          : "titleCatalonia";
 
   const save = async () => {
     setSaving(true);
@@ -154,7 +171,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
           ? t("savedMadrid")
           : activeCommunity === "valencian"
             ? t("savedValencian")
-            : t("savedCatalonia")
+            : activeCommunity === "andalucia"
+              ? t("savedAndalucia")
+              : t("savedCatalonia")
       );
     } catch {
       toast.error(t("saveError"));
@@ -196,7 +215,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
                 ? t("descriptionMadrid")
                 : activeCommunity === "valencian"
                   ? t("descriptionValencian")
-                  : t("description")}
+                  : activeCommunity === "andalucia"
+                    ? t("descriptionAndalucia")
+                    : t("description")}
             </p>
           </div>
           <Badge variant={regStatusVariant}>{t(`status.${form.esRegistrationStatus}`)}</Badge>
@@ -208,7 +229,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
             ? t("nruaNoticeMadrid")
             : activeCommunity === "valencian"
               ? t("nruaNoticeValencian")
-              : t("nruaNotice")}
+              : activeCommunity === "andalucia"
+                ? t("nruaNoticeAndalucia")
+                : t("nruaNotice")}
         </p>
 
         <div className="grid gap-3 sm:grid-cols-2">
@@ -231,6 +254,7 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
                 <SelectItem value="catalonia">{t("community.catalonia")}</SelectItem>
                 <SelectItem value="madrid">{t("community.madrid")}</SelectItem>
                 <SelectItem value="valencian">{t("community.valencian")}</SelectItem>
+                <SelectItem value="andalucia">{t("community.andalucia")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -277,7 +301,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
                 isVutCommunity(activeCommunity)
                   ? activeCommunity === "valencian"
                     ? t("registrationNumberVutValencianPlaceholder")
-                    : t("registrationNumberVutPlaceholder")
+                    : activeCommunity === "andalucia"
+                      ? t("registrationNumberVutAndaluciaPlaceholder")
+                      : t("registrationNumberVutPlaceholder")
                   : t("registrationNumberPlaceholder")
               }
             />
@@ -290,7 +316,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
               {isVutCommunity(activeCommunity)
                 ? activeCommunity === "valencian"
                   ? t("vutValencianFormatHint")
-                  : t("vutFormatHint")
+                  : activeCommunity === "andalucia"
+                    ? t("vutAndaluciaFormatHint")
+                    : t("vutFormatHint")
                 : t("hutFormatHint")}
             </p>
           )}
@@ -347,6 +375,54 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
                 className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
               >
                 {t("links.madridCity")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </>
+          ) : activeCommunity === "andalucia" ? (
+            <>
+              <a
+                href={ANDALUCIA_SEDE_VUT_PROCEDURE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.andaluciaRegister")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={ANDALUCIA_VUT_INFO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.andaluciaInfo")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={ANDALUCIA_VUT_FAQ_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.andaluciaFaq")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={ANDALUCIA_DECRETO_28_2016_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.andaluciaDecreto")}
+                <ExternalLink className="h-3 w-3" />
+              </a>
+              <a
+                href={ANDALUCIA_DR_GUIA_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+              >
+                {t("links.andaluciaDrGuia")}
                 <ExternalLink className="h-3 w-3" />
               </a>
             </>
@@ -445,7 +521,9 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
             ? t("disclaimerMadrid")
             : activeCommunity === "valencian"
               ? t("disclaimerValencian")
-              : t("disclaimer")}
+              : activeCommunity === "andalucia"
+                ? t("disclaimerAndalucia")
+                : t("disclaimer")}
         </p>
 
         <Button onClick={save} disabled={saving}>

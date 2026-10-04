@@ -31,6 +31,70 @@ const VALENCIAN_PROVINCES = new Set([
   "castelló",
 ]);
 
+const ANDALUCIA_PROVINCES = new Set([
+  "sevilla",
+  "málaga",
+  "malaga",
+  "granada",
+  "cádiz",
+  "cadiz",
+  "córdoba",
+  "cordoba",
+  "jaén",
+  "jaen",
+  "huelva",
+  "almería",
+  "almeria",
+  "andalucía",
+  "andalucia",
+]);
+
+const ANDALUCIA_CITIES = new Set([
+  "seville",
+  "sevilla",
+  "málaga",
+  "malaga",
+  "marbella",
+  "granada",
+  "cádiz",
+  "cadiz",
+  "córdoba",
+  "cordoba",
+  "jaén",
+  "jaen",
+  "huelva",
+  "almería",
+  "almeria",
+  "jerez de la frontera",
+  "jerez",
+  "estepona",
+  "fuengirola",
+  "torremolinos",
+  "benalmádena",
+  "benalmadena",
+  "ronda",
+  "ubrique",
+  "el puerto de santa maría",
+  "el puerto de santa maria",
+  "sanlúcar de barrameda",
+  "sanlucar de barrameda",
+  "rota",
+  "chiclana de la frontera",
+  "linares",
+  "úbeda",
+  "ubeda",
+  "baza",
+  "motril",
+  "almuñécar",
+  "almunecar",
+  "nerja",
+  "antequera",
+  "dos hermanas",
+  "alcalá de guadaíra",
+  "alcala de guadaira",
+  "mairena del aljarafe",
+]);
+
 const VALENCIAN_CITIES = new Set([
   "valencia",
   "valència",
@@ -140,6 +204,16 @@ function isMadridCommunity(cityKey: string, regionKey: string): boolean {
   );
 }
 
+function isAndaluciaCommunity(cityKey: string, regionKey: string): boolean {
+  return (
+    ANDALUCIA_CITIES.has(cityKey) ||
+    regionKey.includes("andalucía") ||
+    regionKey.includes("andalucia") ||
+    regionKey.includes("andalousie") ||
+    ANDALUCIA_PROVINCES.has(cityKey)
+  );
+}
+
 function isValencianCommunity(cityKey: string, regionKey: string): boolean {
   return (
     VALENCIAN_CITIES.has(cityKey) ||
@@ -208,6 +282,7 @@ export type SpainAutonomousCommunity =
   | "catalonia"
   | "madrid"
   | "valencian"
+  | "andalucia"
   | "other"
   | "unknown";
 
@@ -215,6 +290,7 @@ export const SPAIN_STR_REGISTRATION_COMMUNITIES: SpainAutonomousCommunity[] = [
   "catalonia",
   "madrid",
   "valencian",
+  "andalucia",
 ];
 
 export function isCataloniaLocation(city: string, region?: string | null): boolean {
@@ -235,6 +311,12 @@ export function isValencianLocation(city: string, region?: string | null): boole
   return isValencianCommunity(cityKey, regionKey);
 }
 
+export function isAndaluciaLocation(city: string, region?: string | null): boolean {
+  const cityKey = normalizeKey(city);
+  const regionKey = normalizeKey(region ?? "");
+  return isAndaluciaCommunity(cityKey, regionKey);
+}
+
 export function getSpainAutonomousCommunity(
   city: string,
   region?: string | null
@@ -242,6 +324,7 @@ export function getSpainAutonomousCommunity(
   if (isCataloniaLocation(city, region)) return "catalonia";
   if (isMadridLocation(city, region)) return "madrid";
   if (isValencianLocation(city, region)) return "valencian";
+  if (isAndaluciaLocation(city, region)) return "andalucia";
   if (!city.trim() && !region?.trim()) return "unknown";
   return "other";
 }
@@ -254,6 +337,7 @@ export function resolveSpainAutonomousCommunityForProperty(
   if (stored === "catalonia") return "catalonia";
   if (stored === "madrid") return "madrid";
   if (stored === "valencian") return "valencian";
+  if (stored === "andalucia") return "andalucia";
   if (stored === "other") return "other";
   return getSpainAutonomousCommunity(city, region);
 }
@@ -273,7 +357,8 @@ export function supportsSpainStrRegistrationCompliance(
   return (
     community === "catalonia" ||
     community === "madrid" ||
-    community === "valencian"
+    community === "valencian" ||
+    community === "andalucia"
   );
 }
 
@@ -297,6 +382,14 @@ export function isLikelyValencianVutNumber(value: string | null | undefined): bo
   return isLikelyMadridVutNumber(value);
 }
 
+/** Andalucía Registro de Turismo VUT codes often use VUT/PROVINCE/##### pattern. */
+export function isLikelyAndaluciaVutNumber(value: string | null | undefined): boolean {
+  const trimmed = value?.trim() ?? "";
+  if (!trimmed) return false;
+  if (/^VUT[\s\/-][A-Z]{2}[\s\/-]\d+/i.test(trimmed)) return true;
+  return isLikelyMadridVutNumber(value);
+}
+
 export function isLikelyEsRegistrationNumberForCommunity(
   community: SpainAutonomousCommunity,
   value: string | null | undefined
@@ -304,6 +397,7 @@ export function isLikelyEsRegistrationNumberForCommunity(
   if (community === "catalonia") return isLikelyCataloniaHutNumber(value);
   if (community === "madrid") return isLikelyMadridVutNumber(value);
   if (community === "valencian") return isLikelyValencianVutNumber(value);
+  if (community === "andalucia") return isLikelyAndaluciaVutNumber(value);
   return Boolean(value?.trim());
 }
 

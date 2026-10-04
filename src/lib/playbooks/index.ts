@@ -1,6 +1,7 @@
 import { FRANCE_PLAYBOOKS } from "./france";
 import { SPAIN_PLAYBOOKS } from "./spain";
 import {
+  isAndaluciaLocation,
   isCataloniaLocation,
   isMadridLocation,
   isSpainCountry,
@@ -48,8 +49,8 @@ const CITY_ALIASES: Record<string, string> = {
   "castellon de la plana": "Castellón de la Plana",
   malaga: "Málaga",
   "málaga": "Málaga",
-  seville: "Málaga",
-  sevilla: "Málaga",
+  seville: "Seville",
+  sevilla: "Seville",
   bilbao: "Bilbao",
   "donostia": "Donostia-San Sebastián",
   "donostia-san sebastián": "Donostia-San Sebastián",
@@ -297,6 +298,20 @@ export function resolvePlaybook(country: string, city: string): Playbook | null 
       (p) => p.id === "es-valencian-community"
     );
     if (valencianCommunityPlaybook) return valencianCommunityPlaybook;
+  }
+
+  if (isSpainCountry(normalizedCountry) && isAndaluciaLocation(normalizedCity)) {
+    const cityPlaybook = ALL_PLAYBOOKS.find(
+      (p) =>
+        p.country === normalizedCountry &&
+        p.city &&
+        p.city.toLowerCase() === normalizedCity.toLowerCase()
+    );
+    if (cityPlaybook) return cityPlaybook;
+    const andaluciaCommunityPlaybook = ALL_PLAYBOOKS.find(
+      (p) => p.id === "es-andalucia"
+    );
+    if (andaluciaCommunityPlaybook) return andaluciaCommunityPlaybook;
   }
 
   const cityPlaybook = ALL_PLAYBOOKS.find(

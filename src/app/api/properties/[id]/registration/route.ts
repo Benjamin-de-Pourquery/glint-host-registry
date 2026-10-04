@@ -151,7 +151,7 @@ const schema = z.object({
     .optional(),
   esRegistrationDisplayedOnListings: z.boolean().optional(),
   esAutonomousCommunity: z
-    .enum(["catalonia", "madrid", "valencian", "other"])
+    .enum(["catalonia", "madrid", "valencian", "andalucia", "other"])
     .nullable()
     .optional(),
   esLicenseKind: z.enum(["hut", "vut", "other"]).nullable().optional(),

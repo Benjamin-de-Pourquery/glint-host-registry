@@ -47,6 +47,14 @@ export type SeoPageKey =
   | "guideValenciaStrRegistrationFr"
   | "guideValenciaAirbnbRegistration"
   | "guideValenciaAirbnbRegistrationFr"
+  | "guideMalagaStrRegistration"
+  | "guideMalagaStrRegistrationFr"
+  | "guideMalagaAirbnbRegistration"
+  | "guideMalagaAirbnbRegistrationFr"
+  | "guideSevilleStrRegistration"
+  | "guideSevilleStrRegistrationFr"
+  | "guideSevilleAirbnbRegistration"
+  | "guideSevilleAirbnbRegistrationFr"
   | "guideFrNerMigration";
 
 export const PAGE_PATHS: Record<SeoPageKey, string> = {
@@ -98,5 +106,13 @@ export const PAGE_PATHS: Record<SeoPageKey, string> = {
   guideValenciaStrRegistrationFr: "/guides/enregistrement-location-courte-duree-valence",
   guideValenciaAirbnbRegistration: "/guides/valencia-airbnb-registration",
   guideValenciaAirbnbRegistrationFr: "/guides/enregistrement-airbnb-valence",
+  guideMalagaStrRegistration: "/guides/malaga-short-term-rental-registration",
+  guideMalagaStrRegistrationFr: "/guides/enregistrement-location-courte-duree-malaga",
+  guideMalagaAirbnbRegistration: "/guides/malaga-airbnb-registration",
+  guideMalagaAirbnbRegistrationFr: "/guides/enregistrement-airbnb-malaga",
+  guideSevilleStrRegistration: "/guides/seville-short-term-rental-registration",
+  guideSevilleStrRegistrationFr: "/guides/enregistrement-location-courte-duree-seville",
+  guideSevilleAirbnbRegistration: "/guides/seville-airbnb-registration",
+  guideSevilleAirbnbRegistrationFr: "/guides/enregistrement-airbnb-seville",
   guideFrNerMigration: "/guides/migration-ner-2026",
 };

@@ -67,6 +67,39 @@ export const CV_DECRETO_LEY_9_2024_URL =
 /** Ajuntament de València tourism entry (verified HTTP 200). */
 export const VALENCIA_CITY_TURISME_URL = "https://www.valencia.es/es/turisme";
 
+/** Junta de Andalucía — VUT information (verified HTTP 200). */
+export const ANDALUCIA_VUT_INFO_URL =
+  "https://www.juntadeandalucia.es/organismos/turismojusticiadesregulacionyadministracionlocal/areas/turismo/registro-turismo/establecimientos-servicios/paginas/viviendas-turisticas.html";
+
+/** Junta de Andalucía — VUT FAQ (verified HTTP 200). */
+export const ANDALUCIA_VUT_FAQ_URL =
+  "https://www.juntadeandalucia.es/organismos/turismojusticiadesregulacionyadministracionlocal/areas/turismo/registro-turismo/establecimientos-servicios/paginas/faq-viviendas-turismo.html";
+
+/** Decreto 28/2016 consolidated VUT text (PDF, verified HTTP 200). */
+export const ANDALUCIA_DECRETO_28_2016_PDF_URL =
+  "https://www.juntadeandalucia.es/sites/default/files/inline-files/2025/04/Decreto%2028-2016%20de%202%20de%20febrero%20de%20las%20viviendas%20de%20uso%20turistico.pdf";
+
+/** Junta guía — declaración responsable VUT (PDF, verified HTTP 200). */
+export const ANDALUCIA_DR_GUIA_PDF_URL =
+  "https://www.juntadeandalucia.es/sites/default/files/inline-files/2024/02/2%20Gu%C3%ADa%20cumplimentaci%C3%B3n%20DR%20VUT_0.pdf";
+
+/** Junta electronic office — tourism register procedure entry (verified HTTP 200). */
+export const ANDALUCIA_SEDE_VUT_PROCEDURE_URL =
+  "https://www.juntadeandalucia.es/servicios/sede/tramites/procedimientos/detalle/24421.html";
+
+/** Junta tourism register establishment search (verified HTTP 200). */
+export const ANDALUCIA_TURISMO_REGISTER_SEARCH_URL =
+  "https://www.juntadeandalucia.es/organismos/turismojusticiadesregulacionyadministracionlocal/areas/turismo/registro-turismo/buscador-establecimientos-servicios-turisticos.html";
+
+/** Ayuntamiento de Málaga portal (verified HTTP 200). */
+export const MALAGA_AYUNTAMIENTO_URL = "https://www.malaga.eu/";
+
+/** Ayuntamiento de Málaga — urban agenda entry (verified HTTP 200). */
+export const MALAGA_AGENDA_URBANA_URL = "https://www.malaga.eu/la-ciudad/agenda-urbana/";
+
+/** Turismo de Sevilla municipal promotion portal (verified HTTP 200). */
+export const SEVILLE_TURISMO_URL = "https://www.visitasevilla.es/";
+
 export const SES_HOSPEDAJES_PORTAL_URL =
   "https://hospedajes.ses.mir.es/hospedajes-web/";
 export const SES_HOSPEDAJES_TEST_URL =

@@ -23,6 +23,28 @@ describe("Valencian playbook resolution", () => {
   });
 });
 
+describe("Andalucía playbook resolution", () => {
+  it("resolves Seville to es-seville", () => {
+    assert.equal(resolvePlaybook("Spain", "Seville")?.id, "es-seville");
+  });
+
+  it("resolves Sevilla alias to es-seville", () => {
+    assert.equal(resolvePlaybook("Spain", "Sevilla")?.id, "es-seville");
+  });
+
+  it("resolves Málaga to es-malaga", () => {
+    assert.equal(resolvePlaybook("Spain", "Málaga")?.id, "es-malaga");
+  });
+
+  it("resolves Granada to es-andalucia", () => {
+    assert.equal(resolvePlaybook("Spain", "Granada")?.id, "es-andalucia");
+  });
+
+  it("does not resolve Seville to Málaga playbook", () => {
+    assert.notEqual(resolvePlaybook("Spain", "Seville")?.id, "es-malaga");
+  });
+});
+
 describe("Madrid playbook resolution", () => {
   it("resolves Madrid capital to es-madrid", () => {
     assert.equal(resolvePlaybook("Spain", "Madrid")?.id, "es-madrid");
@@ -93,6 +115,25 @@ describe("Spain registration next action", () => {
       }
     );
     assert.equal(step?.key, "madrid-es-autonomous-community");
+  });
+
+  it("prioritizes Andalucía community confirmation", () => {
+    const playbook = resolvePlaybook("Spain", "Seville")!;
+    const step = getEffectiveNextStepForSpainRegistration(
+      playbook,
+      [],
+      null,
+      {
+        country: "Spain",
+        city: "Seville",
+        esAutonomousCommunity: null,
+        hasEsRegistrationNumber: false,
+        isDossierPrepared: false,
+        isLicenseKindSet: false,
+        isDisplayedOnListings: false,
+      }
+    );
+    assert.equal(step?.key, "seville-es-autonomous-community");
   });
 
   it("prioritizes Valencian community confirmation", () => {

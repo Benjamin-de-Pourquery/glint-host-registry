@@ -69,7 +69,8 @@ export function getEffectiveNextStepForSpainRegistration(
   const expectedCommunity: SpainAutonomousCommunity | null =
     inferredCommunity === "catalonia" ||
     inferredCommunity === "madrid" ||
-    inferredCommunity === "valencian"
+    inferredCommunity === "valencian" ||
+    inferredCommunity === "andalucia"
       ? inferredCommunity
       : null;
   const missingCommunity =

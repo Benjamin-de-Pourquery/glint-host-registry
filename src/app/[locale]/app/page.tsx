@@ -24,12 +24,14 @@ import { SibaDueQueue } from "@/components/siba-due-queue";
 import { AadeDueQueue } from "@/components/aade-due-queue";
 import { EvisitorDueQueue } from "@/components/evisitor-due-queue";
 import { NlDueQueue } from "@/components/nl-due-queue";
+import { IrelandDueQueue } from "@/components/ireland-due-queue";
 import { needsGreeceAmaAttention } from "@/lib/greece/ama-compliance";
 import { needsCroatiaEvisitorAttention } from "@/lib/croatia/categorisation-compliance";
 import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-compliance";
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
 import { needsGermanyRegistrationAttention } from "@/lib/germany/registration-compliance";
+import { needsIrelandRegistrationAttention } from "@/lib/ireland/registration-compliance";
 import { needsSpainRegistrationAttention } from "@/lib/spain/registration-compliance";
 import { getListingHealthScoresForUser } from "@/lib/listing-health";
 import { RuleRadarFeed } from "@/components/rule-radar-feed";
@@ -102,6 +104,7 @@ export default async function DashboardPage({ params }: Props) {
   let belgiumRegistrationCount = 0;
   let austriaRegistrationCount = 0;
   let germanyRegistrationCount = 0;
+  let irelandRegistrationCount = 0;
   let spainRegistrationCount = 0;
 
   const propertyStatuses = properties.map((p) => {
@@ -137,6 +140,15 @@ export default async function DashboardPage({ params }: Props) {
     }
     if (needsGermanyRegistrationAttention(p.country, p.registration, p.city)) {
       germanyRegistrationCount++;
+    }
+    if (
+      needsIrelandRegistrationAttention(
+        p.country,
+        p.registration,
+        p.listingChannels.map((c) => ({ displayStatus: c.displayStatus }))
+      )
+    ) {
+      irelandRegistrationCount++;
     }
     if (needsSpainRegistrationAttention(p.country, p.registration, p.city)) {
       spainRegistrationCount++;
@@ -209,6 +221,7 @@ export default async function DashboardPage({ params }: Props) {
       <AadeDueQueue locale={locale} />
       <EvisitorDueQueue locale={locale} />
       <NlDueQueue locale={locale} />
+      <IrelandDueQueue locale={locale} />
       <RuleRadarFeed locale={locale} />
 
       {properties.length === 0 && (
@@ -247,6 +260,7 @@ export default async function DashboardPage({ params }: Props) {
           belgiumRegistration: belgiumRegistrationCount,
           austriaRegistration: austriaRegistrationCount,
           germanyRegistration: germanyRegistrationCount,
+          irelandRegistration: irelandRegistrationCount,
           spainRegistration: spainRegistrationCount,
           nightCapAttention: nightCapAttentionCount,
           touristTaxAttention: touristTaxAttentionCount,

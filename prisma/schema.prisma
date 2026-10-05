@@ -519,6 +519,16 @@ model Registration {
   esAutonomousCommunity     String?
   esLicenseKind             String?
   esDossierPreparedAt       DateTime?
+  /** Ireland Fáilte Ireland national STL register */
+  ieStlNumber               String?
+  ieStlStatus               String    @default("not_started")
+  ieRegisteredAt            DateTime?
+  ieRenewalDueAt            DateTime?
+  iePlanningStatus          String?
+  ieEircode                 String?
+  ieMaxGuests               Int?
+  ieBedPlaces               Int?
+  ieResidenceType           String?
   createdAt                 DateTime  @default(now())
   updatedAt                 DateTime  @updatedAt
   property                  Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)

@@ -231,6 +231,22 @@
       "title": "Enregistrement Airbnb Séville: guide conformité VUT Andalousie",
       "description": "VUT Registro de Turismo sur Airbnb et Booking, étapes municipales selon adresse, déclaration SES."
     },
+    "guideIrelandStrRegistration": {
+      "title": "Ireland short-term letting register: Fáilte Ireland host guide 2026",
+      "description": "National STL register (portal not yet open as of Oct 2026), government-announced December 2026 dates, planning Forms 15/16/17, platform display. Host Registry prepares and reminds. You file on official portals."
+    },
+    "guideIrelandStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Irlande: guide registre LCD Fáilte 2026",
+      "description": "Registre national LCD (portail pas encore ouvert en oct. 2026), dates décembre 2026 annoncées par le gouvernement, urbanisme formulaires 15/16/17, affichage plateformes."
+    },
+    "guideDublinAirbnbRegistration": {
+      "title": "Dublin Airbnb registration: Ireland STL register readiness",
+      "description": "Dublin hosts: Fáilte Ireland STL number on Airbnb, local authority planning, portal not yet open, EU 2024/1028 platform checks. Glint does not submit to Fáilte Ireland."
+    },
+    "guideDublinAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Dublin: préparation registre LCD Irlande",
+      "description": "Hôtes à Dublin : numéro LCD Fáilte sur Airbnb, urbanisme local, portail pas encore ouvert, contrôles plateformes UE 2024/1028."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -530,6 +546,48 @@
         "glint": {
           "title": "How Glint helps",
           "body": "Track dossier progress, operator category, submission date and registration number in one place. Glint prepares your checklist and export. You file on the official Brussels portal."
+        }
+      }
+    },
+    "irelandStrRegistration": {
+      "title": "Ireland short-term letting register (2026)",
+      "updated": "Updated: October 2026",
+      "intro": "Ireland is introducing a national short-term letting (STL) register run by Fáilte Ireland for paid stays up to and including 21 nights. As of October 2026, failteireland.ie states registration is not yet open and that the portal will open once the Short Term Letting and Tourism Bill has passed. The government announced, on gov.ie (updated 6 August 2026) and enterprise.gov.ie, an opening on 1 December 2026 and a legal obligation to register by 31 December 2026. Host Registry, by Glint, helps you prepare. We do not submit to Fáilte Ireland or your local authority.",
+      "sections": {
+        "portal": {
+          "title": "Portal status and announced dates",
+          "body": "Portal status: not yet open (as of October 2026). Treat 1 and 31 December 2026 as government-announced targets until the bill passes and Fáilte confirms the portal is live. enterprise.gov.ie states a nominal annual registration fee will apply; the amount is not yet published. Agents cannot register on behalf of a host unless the unit belongs to a company."
+        },
+        "planning": {
+          "title": "Planning and Forms 15, 16, 17",
+          "body": "Fáilte Ireland has no planning role. Under 2019 rules still in force, check your local authority. Exempt principal-private-residence hosts file Form 15, Form 16 and Form 17 with Citizens Information deadlines. A proposed regime (STL under 21 days, towns over 20,000 population) is not yet law; under that proposal, larger towns would confirm planning at registration and smaller towns would have two years to meet planning compliance."
+        },
+        "platforms": {
+          "title": "Platforms, display and enforcement",
+          "body": "From the government-announced date of 31 December 2026, platforms must facilitate and display STL numbers. enterprise.gov.ie states platforms will run random checks, share monthly data with Fáilte Ireland, and Fáilte can order removal of listings with invalid or missing numbers. Citizens Information notes hosts and platforms can face fines; official sources read do not publish penalty amounts."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Track Eircode, capacity, planning status, readiness checklist, countdown to the announced registration deadline, Forms 15/16/17 reminders, STL number storage, listing-channel display checks and annual renewal dates. Glint prepares and reminds. You file on failteireland.ie and with your local authority."
+        }
+      }
+    },
+    "dublinAirbnbRegistration": {
+      "title": "Dublin Airbnb and the Ireland STL register",
+      "updated": "Updated: October 2026",
+      "intro": "Dublin hosts use the same national Fáilte Ireland STL register as the rest of Ireland. Planning is handled by your local authority, not Fáilte. The register portal is not yet open as of October 2026.",
+      "sections": {
+        "register": {
+          "title": "National register readiness",
+          "body": "Prepare host and unit data (including Eircode), self-declaration readiness and one STL number per unit when the portal opens. Fáilte lists exclusions such as hotels, apartment hotels, hostels and camping or RV parks; Citizens Information also lists motels and guesthouses."
+        },
+        "airbnb": {
+          "title": "Airbnb listing display",
+          "body": "When you have an STL number, add it to your Airbnb listing and every other channel. Use Host Registry listing health to mark whether the number is present on each channel."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Dublin playbook, compliance card with portal status note, due queue for registration deadline and planning forms, and EU 2024/1028 context. No automatic filing to Fáilte Ireland."
         }
       }
     },
@@ -1431,6 +1489,7 @@
       "belgiumRegistration": "{count, plural, one {# Belgium property — region, dossier or registration missing} other {# Belgium properties — region, dossier or registration missing}}",
       "austriaRegistration": "{count, plural, one {# Austria property — WKVRG dossier or registration missing} other {# Austria properties — WKVRG dossier or registration missing}}",
       "germanyRegistration": "{count, plural, one {# Germany property: Berlin or Munich dossier or registration missing} other {# Germany properties: Berlin or Munich dossier or registration missing}}",
+      "irelandRegistration": "{count, plural, one {# Ireland property: STL register readiness or listing display missing} other {# Ireland properties: STL register readiness or listing display missing}}",
       "spainRegistration": "{count, plural, one {# Catalonia property: HUT dossier or listing display missing} other {# Catalonia properties: HUT dossier or listing display missing}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
       "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
@@ -1604,6 +1663,7 @@
         "beRegistration": "Belgium registration number",
         "atRegistration": "Austria / Vienna registration number",
         "deRegistration": "Germany STR registration number",
+        "ieRegistration": "Ireland STL registration number",
         "esRegistration": "Spain regional registration (HUT / VUT)"
       },
       "listings": {
@@ -1900,6 +1960,7 @@
       "belgium_registration": "Belgium registration",
       "austria_registration": "Austria / Vienna WKVRG",
       "germany_registration": "Germany STR (Berlin / Munich)",
+      "ireland_registration": "Ireland STL register",
       "spain_registration": "Spain / Catalonia HUT or Madrid VUT",
       "night_cap": "Primary night cap",
       "tourist_tax": "Taxe de séjour"
@@ -3385,6 +3446,90 @@
         "active": "Active",
         "expired": "Expired",
         "unknown": "Unknown"
+      }
+    }
+  },
+  "ie": {
+    "compliance": {
+      "title": "Ireland STL register readiness",
+      "description": "Track planning status, register data, Fáilte Ireland STL number, listing display and renewal for {city}. Glint prepares and reminds. You file on official portals.",
+      "portalStatusTitle": "Portal status: not yet open (as of October 2026)",
+      "portalStatusBody": "failteireland.ie states registration is not yet open and will open once the Short Term Letting and Tourism Bill has passed. The government announced, via gov.ie and enterprise.gov.ie, opening on 1 December 2026 and registration by 31 December 2026. Confirm the portal is live before you pay any nominal annual fee (amount not yet published).",
+      "registrationDeadlineCountdown": "{days} days until the government-announced registration deadline (31 December 2026).",
+      "readinessTitle": "Readiness before you register",
+      "readinessProgress": "{done} of {total} checks complete",
+      "readinessItems": {
+        "planning_status": "Planning status selected",
+        "eircode": "Valid Eircode for the unit",
+        "residence_type": "Primary, secondary or other residence type",
+        "max_guests": "Maximum guests set",
+        "bed_places": "Bed places set",
+        "register_data": "Core register data complete",
+        "stl_number": "STL number stored after Fáilte issues it",
+        "listing_display": "STL number marked present on listing channels"
+      },
+      "planningSection": "Planning (local authority)",
+      "planningStatus": "Current planning position",
+      "planningStatusPlaceholder": "Select status",
+      "planningStatusUnknown": "Unknown",
+      "planningStatuses": {
+        "permission": "Planning permission / change of use",
+        "exempt_home_sharing": "Exempt home sharing (Forms 15/16/17 may apply)",
+        "exempt_ppr_under_90": "Exempt PPR under 90 days (Forms 15/16/17)",
+        "not_required_15_plus_nights": "Not required (only 15+ night lets)",
+        "unknown": "Unknown"
+      },
+      "planningHint": "Fáilte Ireland does not decide planning. Exempt hosts may see Form 15, 16 and 17 reminders in your dashboard due queue.",
+      "eircode": "Unit Eircode",
+      "eircodePlaceholder": "e.g. D02 AF30",
+      "eircodeInvalid": "Eircode must be 7 letters or digits (routing key plus unique identifier).",
+      "residenceType": "Residence type for the register",
+      "residenceTypePlaceholder": "Select type",
+      "residenceTypeUnset": "Not set",
+      "residenceTypes": {
+        "primary": "Primary residence (part or whole)",
+        "secondary": "Secondary residence",
+        "other": "Other accommodation"
+      },
+      "maxGuests": "Maximum guests",
+      "bedPlaces": "Bed places",
+      "registrationSection": "Fáilte Ireland STL registration",
+      "stlNumber": "STL registration number",
+      "stlNumberPlaceholder": "Paste when Fáilte issues your number",
+      "stlStatusLabel": "Registration status",
+      "stlStatus": {
+        "not_started": "Not started",
+        "data_ready": "Data ready",
+        "registered": "Registered",
+        "renewal_due": "Renewal due",
+        "expired": "Expired"
+      },
+      "registeredAt": "Registered on",
+      "renewalDueAt": "Renewal due on",
+      "listingDisplayHint": "Mark each listing channel in the Listings tab when your STL number appears on that platform.",
+      "failtePortalLink": "Fáilte register page",
+      "govIeLink": "gov.ie announcement",
+      "deteLink": "enterprise.gov.ie",
+      "citizensInfoLink": "Citizens Information",
+      "disclaimer": "Host Registry, by Glint, is publisher guidance only. You register on failteireland.ie and remain legally responsible. We do not submit government forms or issue STL numbers. Property managers: agents cannot register for a host unless the unit belongs to a company.",
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Ireland STL compliance saved",
+      "saveError": "Could not save"
+    },
+    "dueQueue": {
+      "title": "Ireland: register deadline and planning forms",
+      "loading": "Loading Ireland due items…",
+      "dueBy": "Due by {date}",
+      "daysLeft": "{days} days left",
+      "overdue": "Overdue",
+      "officialLink": "Official guidance",
+      "kinds": {
+        "registration_deadline": "Government-announced STL registration deadline (31 Dec 2026)",
+        "renewal_due": "Annual STL register renewal",
+        "form_15": "Form 15 (exempt PPR planning notification)",
+        "form_16": "Form 16 (after 90-day threshold)",
+        "form_17": "Form 17 (1 to 28 January)"
       }
     }
   },

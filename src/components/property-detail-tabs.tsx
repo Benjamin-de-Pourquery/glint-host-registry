@@ -96,6 +96,16 @@ type Registration = {
   atDossierPreparedAt?: string | Date | null;
   atTransitionDeadline?: string | Date | null;
   deRegistrationNumber?: string | null;
+  deRegistrationStatus?: string | null;
+  ieStlNumber?: string | null;
+  ieStlStatus?: string | null;
+  ieRegisteredAt?: string | Date | null;
+  ieRenewalDueAt?: string | Date | null;
+  iePlanningStatus?: string | null;
+  ieEircode?: string | null;
+  ieMaxGuests?: number | null;
+  ieBedPlaces?: number | null;
+  ieResidenceType?: string | null;
 };
 
 type PropertyData = {
@@ -392,6 +402,16 @@ export function PropertyDetailTabs({
                 </dd>
               </div>
             )}
+            {property.registration?.ieStlNumber && (
+              <div className="sm:col-span-2">
+                <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                  {t("overview.ieRegistration")}
+                </dt>
+                <dd className="mt-1 font-mono text-sm text-slate-900">
+                  {property.registration.ieStlNumber}
+                </dd>
+              </div>
+            )}
           </dl>
 
           {isItalyCountry(property.country) && (
@@ -504,6 +524,7 @@ export function PropertyDetailTabs({
           city={property.city}
           registration={property.registration}
           checklistItems={property.checklistItems}
+          listingChannels={property.listingChannels}
         />
       </TabsContent>
 
@@ -523,6 +544,7 @@ export function PropertyDetailTabs({
           beRegistrationNumber={property.registration?.beRegistrationNumber}
           atRegistrationNumber={property.registration?.atRegistrationNumber}
           deRegistrationNumber={property.registration?.deRegistrationNumber}
+          ieStlNumber={property.registration?.ieStlNumber}
           initialChannels={property.listingChannels}
         />
       </TabsContent>

@@ -29,6 +29,11 @@ import {
   isDeDossierPrepared,
 } from "@/lib/germany/registration-compliance";
 import {
+  hasIeStlNumber,
+  isIeRenewalDue,
+} from "@/lib/ireland/registration-compliance";
+import { computeIrelandReadiness } from "@/lib/ireland/readiness";
+import {
   hasEsRegistrationNumber,
   isEsDossierPrepared,
   isEsLicenseKindSet,
@@ -69,6 +74,7 @@ export async function GET(
     include: {
       playbookProgress: true,
       registration: true,
+      listingChannels: true,
       sesCredential: true,
       nightCapSettings: true,
       touristTaxSettings: true,
@@ -194,6 +200,19 @@ export async function GET(
     deDisplayedOnListings: Boolean(
       property.registration?.deRegistrationDisplayedOnListings
     ),
+    isIeRegisterDataReady: computeIrelandReadiness(
+      property.registration,
+      property.listingChannels.map((c) => ({ displayStatus: c.displayStatus }))
+    ).dataReady,
+    hasIeStlNumber: hasIeStlNumber(property.registration),
+    ieDisplayedOnListings: (() => {
+      const channels = property.listingChannels.filter(
+        (c) => c.displayStatus !== "BLOCKED"
+      );
+      if (channels.length === 0) return true;
+      return channels.every((c) => c.displayStatus === "PRESENT");
+    })(),
+    isIeRenewalDue: isIeRenewalDue(property.registration),
     esAutonomousCommunity:
       property.registration?.esAutonomousCommunity ??
       resolveSpainAutonomousCommunityForProperty(

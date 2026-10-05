@@ -231,6 +231,22 @@
       "title": "Enregistrement Airbnb Séville: guide conformité VUT",
       "description": "VUT Registro de Turismo sur les annonces, dossier municipal, SES."
     },
+    "guideIrelandStrRegistration": {
+      "title": "Ireland short-term letting register: guide hôte Fáilte 2026",
+      "description": "Registre national LCD (portail pas encore ouvert en oct. 2026), dates décembre 2026 annoncées, formulaires 15/16/17, affichage plateformes."
+    },
+    "guideIrelandStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Irlande: guide registre LCD Fáilte 2026",
+      "description": "Registre national LCD, portail pas encore ouvert en oct. 2026, dates annoncées par le gouvernement, urbanisme et plateformes."
+    },
+    "guideDublinAirbnbRegistration": {
+      "title": "Dublin Airbnb registration: préparation registre LCD",
+      "description": "Hôtes à Dublin : numéro LCD Fáilte, urbanisme local, portail pas encore ouvert, UE 2024/1028."
+    },
+    "guideDublinAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Dublin: préparation registre LCD Irlande",
+      "description": "Numéro LCD sur Airbnb, autorité locale, portail pas encore ouvert, contrôles plateformes."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -530,6 +546,48 @@
         "glint": {
           "title": "Comment Glint aide",
           "body": "Suivez l'avancement du dossier, la catégorie d'exploitant, la date de dépôt et le numéro d'enregistrement. Glint prépare la checklist. Vous déposez sur le portail bruxellois officiel."
+        }
+      }
+    },
+    "irelandStrRegistration": {
+      "title": "Registre LCD Irlande (2026)",
+      "updated": "Mis à jour : octobre 2026",
+      "intro": "L'Irlande met en place un registre national des locations de courte durée (LCD) géré par Fáilte Ireland pour les séjours payants jusqu'à 21 nuits incluses. En octobre 2026, failteireland.ie indique que l'inscription n'est pas encore ouverte et que le portail ouvrira une fois le Short Term Letting and Tourism Bill adopté. Le gouvernement a annoncé, sur gov.ie (mis à jour le 6 août 2026) et enterprise.gov.ie, une ouverture le 1er décembre 2026 et une obligation légale d'inscription avant le 31 décembre 2026. Host Registry, par Glint, vous aide à préparer. Nous ne déposons pas auprès de Fáilte Ireland ni de votre autorité locale.",
+      "sections": {
+        "portal": {
+          "title": "Statut du portail et dates annoncées",
+          "body": "Statut du portail : pas encore ouvert (en octobre 2026). Considérez le 1er et le 31 décembre 2026 comme des objectifs annoncés par le gouvernement jusqu'à adoption du texte et confirmation par Fáilte que le portail est live. enterprise.gov.ie indique des frais d'inscription annuels nominaux ; le montant n'est pas encore publié. Un agent ne peut pas inscrire au nom d'un hôte sauf si le logement appartient à une société."
+        },
+        "planning": {
+          "title": "Urbanisme et formulaires 15, 16, 17",
+          "body": "Fáilte Ireland n'a pas de rôle en urbanisme. Sous les règles de 2019 toujours en vigueur, vérifiez votre autorité locale. Les hôtes exemptés en résidence principale privée déposent les formulaires 15, 16 et 17 selon les échéances Citizens Information. Un régime proposé (LCD moins de 21 jours, villes de plus de 20 000 habitants) n'est pas encore loi ; ce projet prévoit une confirmation urbanistique à l'inscription dans les grandes villes et deux ans pour les villes de 20 000 habitants ou moins."
+        },
+        "platforms": {
+          "title": "Plateformes, affichage et contrôles",
+          "body": "À partir de la date annoncée du 31 décembre 2026, les plateformes doivent faciliter et afficher les numéros LCD. enterprise.gov.ie indique des contrôles aléatoires, un partage mensuel de données avec Fáilte Ireland, et la possibilité pour Fáilte d'ordonner le retrait d'annonces sans numéro valide. Citizens Information mentionne des amendes pour hôtes et plateformes ; les sources officielles consultées ne publient pas de montants."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Suivez Eircode, capacité, statut urbanistique, checklist de préparation, compte à rebours vers l'échéance annoncée, rappels formulaires 15/16/17, stockage du numéro LCD, contrôle d'affichage sur les canaux et renouvellement annuel. Glint prépare et rappelle. Vous déposez sur failteireland.ie et auprès de votre autorité locale."
+        }
+      }
+    },
+    "dublinAirbnbRegistration": {
+      "title": "Airbnb Dublin et le registre LCD Irlande",
+      "updated": "Mis à jour : octobre 2026",
+      "intro": "Les hôtes à Dublin utilisent le même registre national Fáilte Ireland que le reste du pays. L'urbanisme relève de l'autorité locale, pas de Fáilte. Le portail n'est pas encore ouvert en octobre 2026.",
+      "sections": {
+        "register": {
+          "title": "Préparation au registre national",
+          "body": "Préparez les données hôte et logement (dont Eircode), l'auto-déclaration et un numéro LCD par logement à l'ouverture du portail. Fáilte cite des exclusions comme hôtels, résidences hôtelières, auberges de jeunesse et campings ; Citizens Information cite aussi motels et maisons d'hôtes."
+        },
+        "airbnb": {
+          "title": "Affichage sur Airbnb",
+          "body": "Une fois le numéro LCD obtenu, ajoutez-le sur Airbnb et chaque autre canal. Utilisez la santé des annonces Host Registry pour marquer la présence du numéro sur chaque canal."
+        },
+        "glint": {
+          "title": "Host Registry, par Glint",
+          "body": "Playbook Dublin, carte de conformité avec note sur le portail, file d'attente pour l'échéance d'inscription et les formulaires urbanistiques, contexte UE 2024/1028. Pas de dépôt automatique à Fáilte Ireland."
         }
       }
     },
@@ -1431,6 +1489,7 @@
       "belgiumRegistration": "{count, plural, one {# bien belge — région, dossier ou enregistrement manquant} other {# biens belges — région, dossier ou enregistrement manquant}}",
       "austriaRegistration": "{count, plural, one {# bien autrichien — dossier ou enregistrement WKVRG manquant} other {# biens autrichiens — dossier ou enregistrement WKVRG manquant}}",
       "germanyRegistration": "{count, plural, one {# bien allemand : dossier ou enregistrement Berlin ou Munich manquant} other {# biens allemands : dossier ou enregistrement Berlin ou Munich manquant}}",
+      "irelandRegistration": "{count, plural, one {# bien Irlande : préparation registre LCD ou affichage annonce manquant} other {# biens Irlande : préparation registre LCD ou affichage annonce manquant}}",
       "spainRegistration": "{count, plural, one {# bien Catalogne : dossier HUT ou affichage annonce manquant} other {# biens Catalogne : dossier HUT ou affichage annonce manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
       "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
@@ -1604,6 +1663,7 @@
         "beRegistration": "Numéro d'enregistrement belge",
         "atRegistration": "Numéro d'enregistrement Autriche / Vienne",
         "deRegistration": "Numéro d'enregistrement LCD Allemagne",
+        "ieRegistration": "Numéro d'enregistrement LCD Irlande",
         "esRegistration": "Enregistrement régional Espagne (HUT / VUT)"
       },
       "listings": {
@@ -1900,6 +1960,7 @@
       "belgium_registration": "Enregistrement BE",
       "austria_registration": "Autriche / Vienne WKVRG",
       "germany_registration": "LCD Allemagne (Berlin / Munich)",
+      "ireland_registration": "Registre LCD Irlande",
       "spain_registration": "Espagne / Catalogne HUT ou Madrid VUT",
       "night_cap": "Plafond nuitées RP",
       "tourist_tax": "Taxe de séjour"
@@ -3385,6 +3446,90 @@
         "active": "Actif",
         "expired": "Expiré",
         "unknown": "Inconnu"
+      }
+    }
+  },
+  "ie": {
+    "compliance": {
+      "title": "Préparation registre LCD Irlande",
+      "description": "Suivez l'urbanisme, les données d'inscription, le numéro LCD Fáilte Ireland, l'affichage sur les annonces et le renouvellement pour {city}. Glint prépare et rappelle. Vous déposez sur les portails officiels.",
+      "portalStatusTitle": "Statut du portail : pas encore ouvert (octobre 2026)",
+      "portalStatusBody": "failteireland.ie indique que l'inscription n'est pas encore ouverte et ouvrira une fois le Short Term Letting and Tourism Bill adopté. Le gouvernement a annoncé, via gov.ie et enterprise.gov.ie, une ouverture le 1er décembre 2026 et une inscription avant le 31 décembre 2026. Confirmez que le portail est live avant de payer des frais annuels nominaux (montant non encore publié).",
+      "registrationDeadlineCountdown": "{days} jours avant l'échéance d'inscription annoncée par le gouvernement (31 décembre 2026).",
+      "readinessTitle": "Préparation avant inscription",
+      "readinessProgress": "{done} sur {total} contrôles complétés",
+      "readinessItems": {
+        "planning_status": "Statut urbanistique renseigné",
+        "eircode": "Eircode valide pour le logement",
+        "residence_type": "Type de résidence (principale, secondaire ou autre)",
+        "max_guests": "Nombre maximal de voyageurs",
+        "bed_places": "Nombre de couchages",
+        "register_data": "Données d'inscription principales complètes",
+        "stl_number": "Numéro LCD enregistré après délivrance Fáilte",
+        "listing_display": "Numéro LCD marqué présent sur les canaux"
+      },
+      "planningSection": "Urbanisme (autorité locale)",
+      "planningStatus": "Situation urbanistique actuelle",
+      "planningStatusPlaceholder": "Choisir un statut",
+      "planningStatusUnknown": "Inconnu",
+      "planningStatuses": {
+        "permission": "Permis / changement d'usage",
+        "exempt_home_sharing": "Partage du logement exempté (formulaires 15/16/17 possibles)",
+        "exempt_ppr_under_90": "RPP exemptée sous 90 jours (formulaires 15/16/17)",
+        "not_required_15_plus_nights": "Non requis (séjours de 15 nuits et plus uniquement)",
+        "unknown": "Inconnu"
+      },
+      "planningHint": "Fáilte Ireland ne décide pas de l'urbanisme. Les hôtes exemptés peuvent voir des rappels formulaires 15, 16 et 17 dans la file d'attente du tableau de bord.",
+      "eircode": "Eircode du logement",
+      "eircodePlaceholder": "ex. D02 AF30",
+      "eircodeInvalid": "L'Eircode doit comporter 7 lettres ou chiffres (clé de routage et identifiant unique).",
+      "residenceType": "Type de résidence pour le registre",
+      "residenceTypePlaceholder": "Choisir un type",
+      "residenceTypeUnset": "Non renseigné",
+      "residenceTypes": {
+        "primary": "Résidence principale (partielle ou entière)",
+        "secondary": "Résidence secondaire",
+        "other": "Autre hébergement"
+      },
+      "maxGuests": "Voyageurs maximum",
+      "bedPlaces": "Couchages",
+      "registrationSection": "Inscription LCD Fáilte Ireland",
+      "stlNumber": "Numéro d'enregistrement LCD",
+      "stlNumberPlaceholder": "Coller quand Fáilte délivre le numéro",
+      "stlStatusLabel": "Statut d'inscription",
+      "stlStatus": {
+        "not_started": "Non commencé",
+        "data_ready": "Données prêtes",
+        "registered": "Inscrit",
+        "renewal_due": "Renouvellement à faire",
+        "expired": "Expiré"
+      },
+      "registeredAt": "Inscrit le",
+      "renewalDueAt": "Renouvellement dû le",
+      "listingDisplayHint": "Marquez chaque canal dans l'onglet Annonces lorsque le numéro LCD figure sur cette plateforme.",
+      "failtePortalLink": "Page registre Fáilte",
+      "govIeLink": "Annonce gov.ie",
+      "deteLink": "enterprise.gov.ie",
+      "citizensInfoLink": "Citizens Information",
+      "disclaimer": "Host Registry, par Glint, est un guide éditeur uniquement. Vous vous inscrivez sur failteireland.ie et restez responsable légalement. Nous ne déposons pas les formulaires officiels et ne délivrons pas de numéros LCD. Gestionnaires : un agent ne peut pas inscrire pour un hôte sauf si le logement appartient à une société.",
+      "save": "Enregistrer",
+      "saving": "Enregistrement…",
+      "saved": "Conformité LCD Irlande enregistrée",
+      "saveError": "Enregistrement impossible"
+    },
+    "dueQueue": {
+      "title": "Irlande : échéance d'inscription et formulaires urbanisme",
+      "loading": "Chargement des échéances Irlande…",
+      "dueBy": "Échéance le {date}",
+      "daysLeft": "{days} jours restants",
+      "overdue": "En retard",
+      "officialLink": "Source officielle",
+      "kinds": {
+        "registration_deadline": "Échéance d'inscription LCD annoncée (31 déc. 2026)",
+        "renewal_due": "Renouvellement annuel du registre LCD",
+        "form_15": "Formulaire 15 (notification urbanisme RPP exemptée)",
+        "form_16": "Formulaire 16 (après seuil 90 jours)",
+        "form_17": "Formulaire 17 (1er au 28 janvier)"
       }
     }
   },

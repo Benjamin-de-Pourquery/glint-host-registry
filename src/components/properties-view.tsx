@@ -22,6 +22,7 @@ import { needsNlRegistrationAttention } from "@/lib/netherlands/registration-com
 import { needsBelgiumRegistrationAttention } from "@/lib/belgium/registration-compliance";
 import { needsAustriaRegistrationAttention } from "@/lib/austria/registration-compliance";
 import { needsGermanyRegistrationAttention } from "@/lib/germany/registration-compliance";
+import { needsIrelandRegistrationAttention } from "@/lib/ireland/registration-compliance";
 import { needsSpainRegistrationAttention } from "@/lib/spain/registration-compliance";
 import { ListingHealthBadge } from "@/components/listing-health-badge";
 import type { ListingHealthScore } from "@/lib/listing-health/types";
@@ -89,6 +90,15 @@ type PropertyItem = {
     esAutonomousCommunity?: string | null;
     esLicenseKind?: string | null;
     esDossierPreparedAt?: Date | null;
+    ieStlNumber?: string | null;
+    ieStlStatus?: string | null;
+    ieRegisteredAt?: Date | null;
+    ieRenewalDueAt?: Date | null;
+    iePlanningStatus?: string | null;
+    ieEircode?: string | null;
+    ieMaxGuests?: number | null;
+    ieBedPlaces?: number | null;
+    ieResidenceType?: string | null;
   } | null;
   checklistItems: Array<{ completed: boolean }>;
   listingChannels?: Array<{ displayStatus: string; listingUrl: string }>;
@@ -110,6 +120,7 @@ const STATUS_FILTER_OPTIONS: PortfolioStatusFilter[] = [
   "belgium_registration",
   "austria_registration",
   "germany_registration",
+  "ireland_registration",
   "spain_registration",
   "night_cap",
   "tourist_tax",
@@ -228,6 +239,13 @@ export function PropertiesView({
               property.country,
               property.registration,
               property.city
+            );
+          }
+          if (statusFilter === "ireland_registration") {
+            return needsIrelandRegistrationAttention(
+              property.country,
+              property.registration,
+              property.listingChannels ?? []
             );
           }
           if (statusFilter === "spain_registration") {

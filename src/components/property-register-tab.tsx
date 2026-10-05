@@ -29,12 +29,14 @@ import { isNetherlandsCountry } from "@/lib/netherlands/regions";
 import { isBelgiumCountry } from "@/lib/belgium/regions";
 import { isAustriaCountry } from "@/lib/austria/regions";
 import { isGermanyCountry } from "@/lib/germany/regions";
+import { isIrelandCountry } from "@/lib/ireland/regions";
 import { supportsSpainStrRegistrationCompliance } from "@/lib/spain/regions";
 import { EsComplianceCard } from "@/components/es-compliance-card";
 import { NlComplianceCard } from "@/components/nl-compliance-card";
 import { BeComplianceCard } from "@/components/be-compliance-card";
 import { AtComplianceCard } from "@/components/at-compliance-card";
 import { DeComplianceCard } from "@/components/de-compliance-card";
+import { IeComplianceCard } from "@/components/ie-compliance-card";
 import { NlStayNotifyPanel } from "@/components/nl-stay-notify-panel";
 import { NationalTransitionCard } from "@/components/national-transition-card";
 import { FrNerMigrationCard } from "@/components/fr-ner-migration-card";
@@ -114,6 +116,19 @@ type Registration = {
   esAutonomousCommunity?: string | null;
   esLicenseKind?: string | null;
   esDossierPreparedAt?: string | Date | null;
+  ieStlNumber?: string | null;
+  ieStlStatus?: string | null;
+  ieRegisteredAt?: string | Date | null;
+  ieRenewalDueAt?: string | Date | null;
+  iePlanningStatus?: string | null;
+  ieEircode?: string | null;
+  ieMaxGuests?: number | null;
+  ieBedPlaces?: number | null;
+  ieResidenceType?: string | null;
+};
+
+type ListingChannelSummary = {
+  displayStatus: string;
 };
 
 type Props = {
@@ -123,6 +138,7 @@ type Props = {
   city: string;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
+  listingChannels?: ListingChannelSummary[];
 };
 
 export function PropertyRegisterTab({
@@ -132,6 +148,7 @@ export function PropertyRegisterTab({
   city,
   registration,
   checklistItems: initialChecklist,
+  listingChannels = [],
 }: Props) {
   const t = useTranslations("compliance");
   const router = useRouter();
@@ -252,6 +269,14 @@ export function PropertyRegisterTab({
       )}
       {isGermanyCountry(country) && (
         <DeComplianceCard propertyId={propertyId} city={city} registration={registration} />
+      )}
+      {isIrelandCountry(country) && (
+        <IeComplianceCard
+          propertyId={propertyId}
+          city={city}
+          registration={registration}
+          listingChannels={listingChannels}
+        />
       )}
       {supportsSpainStrRegistrationCompliance(
         country,

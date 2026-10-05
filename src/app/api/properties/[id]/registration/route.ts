@@ -15,6 +15,9 @@ import {
   getSpainAutonomousCommunity,
 } from "@/lib/spain/regions";
 import { z } from "zod";
+import { isIrelandCountry } from "@/lib/ireland/regions";
+import { isValidEircode, normalizeEircode } from "@/lib/ireland/eircode";
+import { trimIrelandStlNumber } from "@/lib/ireland/readiness";
 
 const schema = z.object({
   registrationNumber: z.string().nullable().optional(),
@@ -156,6 +159,26 @@ const schema = z.object({
     .optional(),
   esLicenseKind: z.enum(["hut", "vut", "other"]).nullable().optional(),
   esDossierPreparedAt: z.string().nullable().optional(),
+  ieStlNumber: z.string().nullable().optional(),
+  ieStlStatus: z
+    .enum(["not_started", "data_ready", "registered", "renewal_due", "expired"])
+    .optional(),
+  ieRegisteredAt: z.string().nullable().optional(),
+  ieRenewalDueAt: z.string().nullable().optional(),
+  iePlanningStatus: z
+    .enum([
+      "permission",
+      "exempt_home_sharing",
+      "exempt_ppr_under_90",
+      "not_required_15_plus_nights",
+      "unknown",
+    ])
+    .nullable()
+    .optional(),
+  ieEircode: z.string().nullable().optional(),
+  ieMaxGuests: z.number().int().positive().nullable().optional(),
+  ieBedPlaces: z.number().int().positive().nullable().optional(),
+  ieResidenceType: z.enum(["primary", "secondary", "other"]).nullable().optional(),
 });
 
 export async function PATCH(
@@ -180,7 +203,27 @@ export async function PATCH(
 
   try {
     const body = await request.json();
-    const data = schema.parse(body);
+    const parsed = schema.parse(body);
+    if (
+      isIrelandCountry(property.country) &&
+      parsed.ieEircode &&
+      !isValidEircode(parsed.ieEircode)
+    ) {
+      return NextResponse.json({ error: "Invalid Eircode" }, { status: 400 });
+    }
+    const data = {
+      ...parsed,
+      ieStlNumber:
+        parsed.ieStlNumber !== undefined
+          ? trimIrelandStlNumber(parsed.ieStlNumber)
+          : undefined,
+      ieEircode:
+        parsed.ieEircode !== undefined
+          ? parsed.ieEircode
+            ? normalizeEircode(parsed.ieEircode)
+            : null
+          : undefined,
+    };
 
     const defaultStatus = defaultNationalTransitionStatus(property.country);
     const nationalTransitionStatus = isFranceCountry(property.country)
@@ -340,6 +383,15 @@ export async function PATCH(
         esDossierPreparedAt: data.esDossierPreparedAt
           ? new Date(data.esDossierPreparedAt)
           : null,
+        ieStlNumber: data.ieStlNumber ?? null,
+        ieStlStatus: data.ieStlStatus ?? "not_started",
+        ieRegisteredAt: data.ieRegisteredAt ? new Date(data.ieRegisteredAt) : null,
+        ieRenewalDueAt: data.ieRenewalDueAt ? new Date(data.ieRenewalDueAt) : null,
+        iePlanningStatus: data.iePlanningStatus ?? null,
+        ieEircode: data.ieEircode ?? null,
+        ieMaxGuests: data.ieMaxGuests ?? null,
+        ieBedPlaces: data.ieBedPlaces ?? null,
+        ieResidenceType: data.ieResidenceType ?? null,
       },
       update: {
         registrationNumber: data.registrationNumber,
@@ -447,6 +499,23 @@ export async function PATCH(
           : data.esDossierPreparedAt === null
             ? null
             : undefined,
+        ieStlNumber: data.ieStlNumber,
+        ieStlStatus: data.ieStlStatus,
+        ieRegisteredAt: data.ieRegisteredAt
+          ? new Date(data.ieRegisteredAt)
+          : data.ieRegisteredAt === null
+            ? null
+            : undefined,
+        ieRenewalDueAt: data.ieRenewalDueAt
+          ? new Date(data.ieRenewalDueAt)
+          : data.ieRenewalDueAt === null
+            ? null
+            : undefined,
+        iePlanningStatus: data.iePlanningStatus,
+        ieEircode: data.ieEircode,
+        ieMaxGuests: data.ieMaxGuests,
+        ieBedPlaces: data.ieBedPlaces,
+        ieResidenceType: data.ieResidenceType,
       },
     });
 

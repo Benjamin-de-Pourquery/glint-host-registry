@@ -247,6 +247,22 @@
       "title": "Enregistrement Airbnb Dublin: préparation registre LCD Irlande",
       "description": "Hôtes à Dublin : numéro LCD Fáilte sur Airbnb, urbanisme local, portail pas encore ouvert, contrôles plateformes UE 2024/1028."
     },
+    "guideParisStrRegistration": {
+      "title": "Paris short-term rental registration: meublé de tourisme host guide",
+      "description": "Ville de Paris rules (updated 25 March 2026): four situations, 90-night primary cap, teleservices.paris.fr declaration, sanctions and honest Host Registry checklist. Not legal advice."
+    },
+    "guideParisStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Paris: guide meublé de tourisme",
+      "description": "Règles Ville de Paris (mise à jour 25/03/2026): quatre situations, plafond 90 nuitées résidence principale, déclaration teleservices.paris.fr, sanctions. Informations pratiques, pas un avis juridique."
+    },
+    "guideParisAirbnbRegistration": {
+      "title": "Paris Airbnb registration: meublé de tourisme compliance guide",
+      "description": "Airbnb hosts in Paris: municipal declaration on teleservices.paris.fr, registration number on listings, 90-night primary cap, urbanism paths for non-primary and other premises."
+    },
+    "guideParisAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Paris: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Paris: déclaration municipale sur teleservices.paris.fr, numéro sur les annonces, plafond 90 nuitées en résidence principale, voies urbanisme selon le bien."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -588,6 +604,72 @@
         "glint": {
           "title": "Host Registry, by Glint",
           "body": "Dublin playbook, compliance card with portal status note, due queue for registration deadline and planning forms, and EU 2024/1028 context. No automatic filing to Fáilte Ireland."
+        }
+      }
+    },
+    "parisStrRegistration": {
+      "title": "Paris furnished tourist rental registration",
+      "updated": "Updated: March 2026 (Ville de Paris page reviewed 25 March 2026)",
+      "intro": "This page summarizes practical steps from the official Ville de Paris guide « La location meublée touristique : les règles à suivre » (paris.fr, updated 25/03/2026). It is not legal advice. For usage or destination questions, the City directs you to a notaire or avocat. Host Registry, by Glint, helps you track your situation, documents, registration number display and the 90-night count for primary residences. We do not file anything with the Ville de Paris for you.",
+      "sections": {
+        "fourSituations": {
+          "title": "Four situations on paris.fr",
+          "body": "(1) Primary residence: whole dwelling rented up to 90 nights per year. Online declaration on teleservices.paris.fr/meubles-tourisme/, then taxe de séjour. (2) Housing that is not your primary residence: change-of-use with compensation, then change of destination to hébergement hôtelier via BASU (Direction de l'Urbanisme), then declaration, then taxe de séjour. All authorizations before day 1. (3) Commercial or artisanal premises: prior authorization under the municipal commercial/artisan regulation via Démarches d'urbanisme (paris.fr/pages/les-demarches-d-urbanisme-4458), then declaration, then taxe de séjour, from day 1. (4) Other premises (office, garage, etc.): change of destination via Démarches d'urbanisme, then declaration, then taxe de séjour, from day 1."
+        },
+        "singleRoom": {
+          "title": "Single room exemption",
+          "body": "A meublé de tourisme is a whole dwelling let by day, week or month. Renting a single room inside your primary residence does not require prior authorization or Paris declaration, except chambres d'hôtes."
+        },
+        "coproTenant": {
+          "title": "Copropriété, tenants, social housing, key boxes",
+          "body": "STR must comply with the règlement de copropriété. Since 21 November 2024, new bylaws must state whether furnished tourist rental is allowed. Registered co-owners and tenants must inform the syndic. Tenants need landlord authorization. STR is strictly forbidden in social housing. A 2025 mayoral arrêté bans key boxes on street furniture; they may be removed."
+        },
+        "declare": {
+          "title": "Online declaration (loueur, not conciergerie)",
+          "body": "File on https://teleservices.paris.fr/meubles-tourisme/ (the official link on paris.fr; it redirects to the meubles-tourisme portal). The registration number is issued immediately and must appear on every listing. The loueur must file personally, not in the name of a conciergerie. Before starting, have your last taxe d'habitation notice for the identifiant du local at step 3 (bottom of page 4), or tick « J'identifie mon local autrement »."
+        },
+        "updateWithdraw": {
+          "title": "Update or stop renting",
+          "body": "If your situation changes, log in to the téléservice, open your dashboard and click « Retirer ma déclaration », then file a new declaration. You receive a new number; the old one is invalid. Update all listings."
+        },
+        "sanctions": {
+          "title": "Maximum sanctions listed by the City",
+          "body": "Primary residence over 90 nights per year: fine up to €10,000 per year of overrun. Secondary housing without change-of-use authorization: up to €100,000 plus astreinte up to €1,000 per day per m² until regularized. Commercial or artisanal premises without authorization: up to €25,000. Other premises without urbanism authorization: penal sanction (no amount published on the page). Missing registration: up to €5,000. False declarations or concealment: up to one year imprisonment and €80,000. Obstructing municipal housing agents: €2,250."
+        },
+        "national": {
+          "title": "National register context",
+          "body": "France is preparing a national furnished-rental téléservice. See our guide /guides/migration-ner-2026 for cautious notes on the transition window for existing municipal numbers. Paris municipal declaration remains required under current City rules."
+        },
+        "related": {
+          "title": "Related Host Registry guides",
+          "body": "Registration numbers overview: /guides/numero-enregistrement-meuble. Guest police fiche: /guides/fiche-police-voyageurs. National NER migration: /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Paris on your property, set residency status and property type (including commercial or non-habitation premises) to load the fr-paris playbook with the correct ordered steps. Track the registration number on each channel, Cap Guard night counting at 90 nights for primary residences, taxe de séjour periods and guest register exports. Glint prepares and reminds. You submit on teleservices.paris.fr and urbanism portals yourself."
+        }
+      }
+    },
+    "parisAirbnbRegistration": {
+      "title": "Paris Airbnb and the meublé de tourisme register",
+      "updated": "Updated: March 2026 (Ville de Paris page reviewed 25 March 2026)",
+      "intro": "Airbnb hosts in Paris follow the same Ville de Paris meublé de tourisme rules as other platforms. This is practical information with links to official sources, not legal advice.",
+      "sections": {
+        "airbnbField": {
+          "title": "Registration number on Airbnb",
+          "body": "After you declare on https://teleservices.paris.fr/meubles-tourisme/, paste the municipal registration number into the field Airbnb shows for France. Use the same number on Booking and other channels. Host Registry listing health tracks per-channel display."
+        },
+        "ninetyDay": {
+          "title": "90-night cap (primary residence)",
+          "body": "If the listing is your primary residence whole dwelling, Paris caps furnished tourist rental at 90 nights per year. Connect iCal in Host Registry to count nights. Exceeding the cap may lead to fines up to €10,000 per year of overrun under City rules."
+        },
+        "urbanism": {
+          "title": "Non-primary, commercial and other premises",
+          "body": "Secondary homes need change-of-use with compensation and BASU change of destination before declaration. Commercial or artisanal premises and other non-habitation premises need urbanism authorizations on Démarches d'urbanisme before day 1. See the full Paris STR guide for step order and official links."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Paris playbook branching, document checklist, 90-night Cap Guard for primary residences, registration number storage and guest register. No automatic filing with the Ville de Paris."
         }
       }
     },
@@ -1380,6 +1462,8 @@
       "guideSevilleStrRegistration": "Seville STR (VUT)",
       "guideSevilleAirbnbRegistration": "Seville Airbnb / VUT",
       "guideFrNerMigration": "France NER migration 2026",
+      "guideParisStrRegistration": "Paris STR registration",
+      "guideParisAirbnbRegistration": "Paris Airbnb / meublé de tourisme",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint, micro-entreprise",
@@ -1566,6 +1650,8 @@
         "house": "House",
         "studio": "Studio",
         "room": "Private room",
+        "commercial": "Commercial or artisanal premises",
+        "non_habitation": "Other non-habitation (office, garage, etc.)",
         "other": "Other"
       },
       "airbnb": "Airbnb listing URL",

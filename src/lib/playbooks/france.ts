@@ -1,14 +1,6 @@
 import type { Playbook, PlaybookStep, LocalizedText, OfficialUrl } from "./types";
 import { buildNerMigrationPrepStep } from "@/lib/fr-ner-migration/playbook-step";
-
-const PARIS_RULES_URL =
-  "https://www.paris.fr/pages/meubles-touristiques-3637";
-const PARIS_FORM_URL =
-  "https://meubles-tourisme.paris.fr/meubles-tourisme/jsp/site/Portal.jsp?page=accueil";
-const PARIS_CHANGE_OF_USE_PORTAL =
-  "https://s29-sndcu.apps.paris.fr/changement-usage/jsp/site/Portal.jsp?page=accueil";
-const PARIS_CHANGE_OF_USE_INFO =
-  "https://www.paris.fr/pages/exercer-une-activite-dans-un-logement-172";
+import { buildParisPlaybook } from "./paris-steps";
 
 const LYON_DECLARE_URL =
   "https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme";
@@ -469,259 +461,8 @@ const frSteps = {
   }),
 };
 
-const parisDocumentsDetailed = [
-  {
-    name: {
-      en: "Last taxe d'habitation notice (avis de taxe d'habitation)",
-      fr: "Dernier avis de taxe d'habitation",
-    },
-    why: {
-      en: "Required at step 3 of the online declaration to identify the local (identifiant du local, bottom of page 4). If unavailable, check « J'identifie mon local autrement ».",
-      fr: "Requis à l'étape 3 de la déclaration en ligne pour identifier le local (identifiant du local, bas de la page 4). Si indisponible, cochez « J'identifie mon local autrement ».",
-    },
-  },
-  {
-    name: {
-      en: "National ID or passport of the loueur (landlord)",
-      fr: "Pièce d'identité du loueur",
-    },
-    why: {
-      en: "The declaration must be submitted in the name of the loueur (owner/landlord), not the property manager or conciergerie.",
-      fr: "La déclaration doit être déposée au nom du loueur (propriétaire), pas du gestionnaire ou de la conciergerie.",
-    },
-  },
-  {
-    name: {
-      en: "Proof of ownership or lease authorization",
-      fr: "Justificatif de propriété ou autorisation de sous-location",
-    },
-    why: {
-      en: "Tenants must have landlord authorization for sub-letting; social housing tenants cannot register STR properties.",
-      fr: "Les locataires doivent avoir l'autorisation du bailleur ; les locataires du parc social ne peuvent pas enregistrer un meublé touristique.",
-    },
-  },
-];
-
 const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
-  {
-    id: "fr-paris",
-    country: "France",
-    city: "Paris",
-    title: {
-      en: "Paris furnished tourist rental",
-      fr: "Location meublée touristique — Paris",
-    },
-    description: {
-      en: "Step-by-step guide for registering a short-term rental in Paris. Primary residences: online declaration only (90 nights/year max). Non-primary: change-of-use authorization required first.",
-      fr: "Guide pas à pas pour enregistrer une location courte durée à Paris. Résidence principale : déclaration en ligne uniquement (90 nuitées/an max). Non principale : autorisation de changement d'usage requise au préalable.",
-    },
-    sourceReviewedAt: "2026-03-25",
-    steps: [
-      {
-        key: "paris-verify-rules",
-        title: {
-          en: "Check Paris STR rules for your situation",
-          fr: "Vérifier la réglementation parisienne selon votre situation",
-        },
-        instruction: {
-          en: "Paris rules depend on whether the property is your primary residence. Primary residences may be rented up to 90 nights/year via online declaration only. Non-primary properties (secondary residence, investment) generally require change-of-use authorization with compensation before any rental. Renting a single room in your primary home (chambre chez l'habitant) may be exempt from registration — verify on the official page.",
-          fr: "Les règles parisiennes dépendent du statut du bien. Les résidences principales peuvent être louées jusqu'à 90 nuitées/an via la déclaration en ligne uniquement. Les biens non principaux (résidence secondaire, investissement) nécessitent généralement une autorisation de changement d'usage avec compensation avant toute location. La location d'une chambre dans votre résidence principale (chambre chez l'habitant) peut être exemptée d'enregistrement — vérifiez sur la page officielle.",
-        },
-        officialUrls: [
-          {
-            url: PARIS_RULES_URL,
-            label: {
-              en: "City of Paris — tourist furnished rental rules",
-              fr: "Ville de Paris — règles meublés touristiques",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-          {
-            url: "https://www.service-public.fr/particuliers/vosdroits/F2043",
-            label: {
-              en: "Service-Public — national STR framework",
-              fr: "Service-Public — cadre national location meublée",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Confirm primary vs non-primary residence status",
-            "Co-ownership bylaws (if applicable)",
-            "Estimated annual rental nights",
-          ],
-          fr: [
-            "Confirmer le statut résidence principale ou non",
-            "Règlement de copropriété (le cas échéant)",
-            "Estimation du nombre de nuitées annuelles",
-          ],
-        },
-        pitfalls: {
-          en: "Primary residences do NOT require change-of-use — only the online declaration (max 90 nights/year). Non-primary properties require change-of-use authorization BEFORE registration. Platforms require the 13-character registration number; fines apply if missing.",
-          fr: "Les résidences principales ne nécessitent PAS de changement d'usage — uniquement la déclaration en ligne (max 90 nuitées/an). Les biens non principaux exigent une autorisation de changement d'usage AVANT l'enregistrement. Les plateformes exigent le numéro à 13 caractères ; des amendes s'appliquent en cas d'absence.",
-        },
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      {
-        key: "paris-change-of-use",
-        title: {
-          en: "Obtain change-of-use authorization (non-primary only)",
-          fr: "Obtenir l'autorisation de changement d'usage (non principale uniquement)",
-        },
-        instruction: {
-          en: "For properties that are NOT your primary residence, you must obtain change-of-use authorization with compensation before registering. Use the official simulator — select « meublés de tourisme ». You may also need a change-of-destination authorization from the BASU (Direction de l'Urbanisme) before registration.",
-          fr: "Pour les biens qui ne sont PAS votre résidence principale, vous devez obtenir une autorisation de changement d'usage avec compensation avant l'enregistrement. Utilisez le simulateur officiel — choisissez « meublés de tourisme ». Un changement de destination auprès du BASU (Direction de l'Urbanisme) peut également être requis avant l'enregistrement.",
-        },
-        officialUrls: [
-          {
-            url: PARIS_CHANGE_OF_USE_PORTAL,
-            label: {
-              en: "Paris — change-of-use simulator and application portal",
-              fr: "Paris — simulateur et portail changement d'usage",
-            },
-            role: "portal",
-            urlVerified: true,
-          },
-          {
-            url: PARIS_CHANGE_OF_USE_INFO,
-            label: {
-              en: "City of Paris — change-of-use procedures and contacts",
-              fr: "Ville de Paris — procédures et contacts changement d'usage",
-            },
-            role: "info",
-            urlVerified: true,
-          },
-          {
-            url: PARIS_RULES_URL,
-            label: {
-              en: "City of Paris — non-primary rental rules (reference)",
-              fr: "Ville de Paris — règles location non principale (référence)",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Property deed and floor plans",
-            "Compensation property details (transforming non-residential space to housing)",
-            "Co-ownership bylaws (if applicable)",
-          ],
-          fr: [
-            "Titre de propriété et plans",
-            "Détails du bien de compensation (transformation de locaux non résidentiels en logement)",
-            "Règlement de copropriété (le cas échéant)",
-          ],
-        },
-        timeline: {
-          en: "Authorization can take several months. Do not rent until all authorizations are granted.",
-          fr: "L'autorisation peut prendre plusieurs mois. Ne louez pas avant l'obtention de toutes les autorisations.",
-        },
-        pitfalls: {
-          en: "Unlike primary residences, non-primary rentals require authorization from day 1. Fines up to €100,000 plus daily penalties apply for unauthorized secondary STR in Paris.",
-          fr: "Contrairement aux résidences principales, les locations non principales exigent une autorisation dès le 1er jour. Des amendes jusqu'à 100 000 € plus astreintes journalières s'appliquent pour une location non autorisée.",
-        },
-        appliesWhen: "nonPrimary",
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      {
-        key: "paris-declare-registration",
-        title: {
-          en: "Declare your furnished tourist rental online",
-          fr: "Déclarer votre meublé de tourisme en ligne",
-        },
-        instruction: {
-          en: "Submit your declaration on the Paris dedicated portal (not the rules page on paris.fr). The 13-character registration number is issued immediately after validation. The declaration must be in the name of the loueur (owner/landlord), not the property manager.",
-          fr: "Déposez votre déclaration sur le portail dédié de Paris (pas la page de règles sur paris.fr). Le numéro d'enregistrement à 13 caractères est délivré immédiatement après validation. La déclaration doit être au nom du loueur (propriétaire), pas du gestionnaire.",
-        },
-        officialUrls: [
-          {
-            url: PARIS_FORM_URL,
-            label: {
-              en: "Paris — online tourist rental declaration form",
-              fr: "Paris — formulaire de déclaration meublé touristique",
-            },
-            role: "form",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Last taxe d'habitation notice (identifiant du local, page 4)",
-            "National ID of the loueur",
-            "Proof of ownership or sub-letting authorization",
-          ],
-          fr: [
-            "Dernier avis de taxe d'habitation (identifiant du local, page 4)",
-            "Pièce d'identité du loueur",
-            "Justificatif de propriété ou autorisation de sous-location",
-          ],
-        },
-        documentsDetailed: parisDocumentsDetailed,
-        timeline: {
-          en: "Registration number issued immediately after online submission.",
-          fr: "Numéro d'enregistrement délivré immédiatement après la déclaration en ligne.",
-        },
-        pitfalls: {
-          en: "Do not use the paris.fr rules page for declaration — use meubles-tourisme.paris.fr. Without the registration number on your listings, platforms may block publication and fines up to €5,000 apply.",
-          fr: "N'utilisez pas la page de règles paris.fr pour la déclaration — utilisez meubles-tourisme.paris.fr. Sans le numéro sur vos annonces, les plateformes peuvent bloquer la publication et des amendes jusqu'à 5 000 € s'appliquent.",
-        },
-        appliesWhen: "primaryResidence",
-        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      {
-        key: "paris-declare-registration-nonPrimary",
-        title: {
-          en: "Declare your furnished tourist rental online (after authorization)",
-          fr: "Déclarer votre meublé de tourisme en ligne (après autorisation)",
-        },
-        instruction: {
-          en: "After obtaining change-of-use authorization, submit your declaration on the Paris dedicated portal. The 13-character registration number is issued immediately. Declaration must be in the name of the loueur, not the gestionnaire.",
-          fr: "Après obtention de l'autorisation de changement d'usage, déposez votre déclaration sur le portail dédié de Paris. Le numéro à 13 caractères est délivré immédiatement. La déclaration doit être au nom du loueur, pas du gestionnaire.",
-        },
-        officialUrls: [
-          {
-            url: PARIS_FORM_URL,
-            label: {
-              en: "Paris — online tourist rental declaration form",
-              fr: "Paris — formulaire de déclaration meublé touristique",
-            },
-            role: "form",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Change-of-use authorization decision",
-            "Last taxe d'habitation notice or alternative local ID",
-            "National ID of the loueur",
-          ],
-          fr: [
-            "Décision d'autorisation de changement d'usage",
-            "Dernier avis de taxe d'habitation ou identification alternative du local",
-            "Pièce d'identité du loueur",
-          ],
-        },
-        documentsDetailed: parisDocumentsDetailed,
-        timeline: {
-          en: "Registration number issued immediately after online submission.",
-          fr: "Numéro d'enregistrement délivré immédiatement après la déclaration en ligne.",
-        },
-        pitfalls: {
-          en: "Only register after all required authorizations are granted. Renting before authorization exposes you to fines up to €100,000.",
-          fr: "Enregistrez uniquement après obtention de toutes les autorisations requises. Louer avant l'autorisation expose à des amendes jusqu'à 100 000 €.",
-        },
-        appliesWhen: "nonPrimary",
-        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.taxDeclaration("paris"),
-      frSteps.updateListings("paris"),
-      frSteps.guestRegister("paris"),
-    ],
-  },
+  buildParisPlaybook(frSteps),
   {
     id: "fr-lyon",
     country: "France",
@@ -1987,7 +1728,21 @@ function withNationalTransitionStep(playbook: Playbook): Playbook {
 
 function withPrimaryNightCapStep(playbook: Playbook): Playbook {
   const cityKey = cityKeyFromPlaybook(playbook);
-  const nightCapStep = frSteps.primaryNightCap(cityKey);
+  let nightCapStep = frSteps.primaryNightCap(cityKey);
+
+  if (playbook.id === "fr-paris") {
+    nightCapStep = {
+      ...nightCapStep,
+      instruction: {
+        en: "For your primary residence in Paris, the City caps furnished tourist rental at 90 nights per year. Connect iCal feeds or add stays manually in Host Registry. The night cap card counts nights and warns you before you breach. Exceeding 90 nights may trigger a fine up to €10,000 per year of overrun under Paris municipal rules.",
+        fr: "Pour votre résidence principale à Paris, la Ville plafonne la location meublée touristique à 90 nuitées par an. Connectez vos flux iCal ou saisissez les séjours dans Host Registry. La carte plafond nuitées compte et vous alerte avant dépassement. Au-delà de 90 nuitées, une amende pouvant atteindre 10 000 € par année de dépassement peut s'appliquer selon les règles parisiennes.",
+      },
+      pitfalls: {
+        en: "Cancelled bookings may still appear in some feeds. Glint excludes cancelled iCal events. The cap is per year, not a rolling 12 months.",
+        fr: "Les réservations annulées peuvent rester visibles dans certains flux. Glint exclut les événements iCal annulés. Le plafond est par an, pas glissant sur 12 mois.",
+      },
+    };
+  }
 
   if (playbook.steps.some((s) => s.key.endsWith("-primary-night-cap"))) {
     return playbook;

@@ -73,7 +73,8 @@ export function getEffectiveNextStep(
   registration: NationalTransitionRegistration | null | undefined,
   nightCapComputation?: NightCapComputation | null,
   touristTaxSummary?: TouristTaxSummary | null,
-  frNerMigration?: FrNerMigrationRecord | null
+  frNerMigration?: FrNerMigrationRecord | null,
+  propertyType?: string | null
 ): PlaybookStep | null {
   const nationalStepKey = getNationalStepKey(playbook);
   const nationalStep = nationalStepKey
@@ -81,7 +82,12 @@ export function getEffectiveNextStep(
     : null;
 
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const defaultNext = getNextPendingStep(playbook, progress, residencyStatus);
+  const defaultNext = getNextPendingStep(
+    playbook,
+    progress,
+    residencyStatus,
+    propertyType
+  );
 
   if (!isFranceCountry(country) || !nationalStep) {
     return defaultNext;

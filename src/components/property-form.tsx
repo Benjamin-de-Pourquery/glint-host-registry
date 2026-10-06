@@ -90,7 +90,15 @@ export function PropertyForm({
     router.push(`/${locale}/app/properties/${property.id}`);
   };
 
-  const propertyTypes = ["apartment", "house", "studio", "room", "other"];
+  const propertyTypes = [
+    "apartment",
+    "house",
+    "studio",
+    "room",
+    "commercial",
+    "non_habitation",
+    "other",
+  ];
 
   return (
     <Card>

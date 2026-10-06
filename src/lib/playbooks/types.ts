@@ -26,7 +26,10 @@ export type StepAppliesWhen =
   | "always"
   | "primaryResidence"
   | "secondaryResidence"
-  | "nonPrimary";
+  | "nonPrimary"
+  | "commercialPremises"
+  | "otherPremises"
+  | "singleRoomExempt";
 
 export type ResidencyStatus = "primary" | "secondary" | "other";
 

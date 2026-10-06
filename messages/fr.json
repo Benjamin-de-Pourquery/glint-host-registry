@@ -247,6 +247,22 @@
       "title": "Enregistrement Airbnb Dublin: préparation registre LCD Irlande",
       "description": "Numéro LCD sur Airbnb, autorité locale, portail pas encore ouvert, contrôles plateformes."
     },
+    "guideParisStrRegistration": {
+      "title": "Enregistrement location courte durée Paris: guide meublé de tourisme",
+      "description": "Règles Ville de Paris (mise à jour 25/03/2026): quatre situations, plafond 90 nuitées, déclaration teleservices.paris.fr, sanctions. Informations pratiques."
+    },
+    "guideParisStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Paris: guide meublé de tourisme",
+      "description": "Règles Ville de Paris (mise à jour 25/03/2026): quatre situations, plafond 90 nuitées résidence principale, déclaration teleservices.paris.fr."
+    },
+    "guideParisAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Paris: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Paris: déclaration teleservices.paris.fr, numéro sur les annonces, plafond 90 nuitées en résidence principale."
+    },
+    "guideParisAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Paris: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Paris: déclaration municipale, numéro sur les annonces, voies urbanisme selon le bien."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -588,6 +604,72 @@
         "glint": {
           "title": "Host Registry, par Glint",
           "body": "Playbook Dublin, carte de conformité avec note sur le portail, file d'attente pour l'échéance d'inscription et les formulaires urbanistiques, contexte UE 2024/1028. Pas de dépôt automatique à Fáilte Ireland."
+        }
+      }
+    },
+    "parisStrRegistration": {
+      "title": "Enregistrement meublé de tourisme à Paris",
+      "updated": "Mis à jour : mars 2026 (page Ville de Paris relue le 25/03/2026)",
+      "intro": "Cette page résume les démarches pratiques issues du guide officiel « La location meublée touristique : les règles à suivre » sur paris.fr (mise à jour 25/03/2026). Ce n'est pas un avis juridique. Pour l'usage ou la destination du local, la Ville vous oriente vers un notaire ou un avocat. Host Registry, par Glint, vous aide à suivre votre situation, vos pièces, l'affichage du numéro et le décompte des 90 nuitées en résidence principale. Nous ne déposons rien à la Ville de Paris pour vous.",
+      "sections": {
+        "fourSituations": {
+          "title": "Les quatre situations sur paris.fr",
+          "body": "(1) Résidence principale : logement entier loué jusqu'à 90 nuitées par an. Déclaration en ligne sur teleservices.paris.fr/meubles-tourisme/, puis taxe de séjour. (2) Logement qui n'est pas votre résidence principale : changement d'usage avec compensation, puis changement de destination en hébergement hôtelier via le BASU (Direction de l'Urbanisme), puis déclaration, puis taxe de séjour. Toutes les autorisations avant le 1er jour. (3) Local commercial ou artisanal : autorisation préalable au titre du règlement municipal via Démarches d'urbanisme (paris.fr/pages/les-demarches-d-urbanisme-4458), puis déclaration, puis taxe de séjour, dès le 1er jour. (4) Autre local (bureau, garage, etc.) : changement de destination via Démarches d'urbanisme, puis déclaration, puis taxe de séjour, dès le 1er jour."
+        },
+        "singleRoom": {
+          "title": "Exemption chambre seule",
+          "body": "Le meublé de tourisme est un logement entier loué à la journée, à la semaine ou au mois. La location d'une simple chambre au sein de votre résidence principale ne nécessite pas d'autorisation ni de déclaration préalable, sauf chambres d'hôtes."
+        },
+        "coproTenant": {
+          "title": "Copropriété, locataires, parc social, boîtes à clés",
+          "body": "La location doit respecter le règlement de copropriété. Depuis le 21 novembre 2024, les nouveaux règlements doivent prévoir si la location meublée touristique est autorisée. Copropriétaires et locataires enregistrés doivent informer le syndic. Le bailleur doit autoriser la sous-location. La location est strictement interdite dans le parc social. Un arrêté de 2025 interdit les boîtes à clés sur le mobilier urbain ; elles peuvent être retirées."
+        },
+        "declare": {
+          "title": "Déclaration en ligne (loueur, pas conciergerie)",
+          "body": "Déposez sur https://teleservices.paris.fr/meubles-tourisme/ (lien officiel sur paris.fr, redirection vers le portail meubles-tourisme). Le numéro est délivré immédiatement et doit figurer sur chaque annonce. Le loueur dépose personnellement, pas au nom d'une conciergerie. Munissez-vous de votre avis de taxe d'habitation pour l'identifiant du local à l'étape 3 (bas de la page 4), ou cochez « J'identifie mon local autrement »."
+        },
+        "updateWithdraw": {
+          "title": "Mise à jour ou arrêt d'activité",
+          "body": "Si votre situation change, connectez-vous au téléservice, ouvrez le tableau de suivi et cliquez sur « Retirer ma déclaration », puis déposez une nouvelle déclaration. Un nouveau numéro est délivré ; l'ancien n'est plus valable. Mettez à jour toutes vos annonces."
+        },
+        "sanctions": {
+          "title": "Sanctions maximales indiquées par la Ville",
+          "body": "Résidence principale au-delà de 90 nuitées par an : amende jusqu'à 10 000 € par année de dépassement. Résidence secondaire sans changement d'usage : jusqu'à 100 000 € plus astreinte jusqu'à 1 000 € par jour et par m² jusqu'à régularisation. Local commercial ou artisanal sans autorisation : jusqu'à 25 000 €. Autre local sans autorisation d'urbanisme : sanction pénale (pas de montant publié sur la page). Absence d'enregistrement : jusqu'à 5 000 €. Fausses déclarations ou dissimulation : jusqu'à un an de prison et 80 000 €. Entrave aux agents : 2 250 €."
+        },
+        "national": {
+          "title": "Contexte national",
+          "body": "La France prépare un téléservice national. Voir notre guide /guides/migration-ner-2026 pour des notes prudentes sur la fenêtre de transition des numéros communaux. La déclaration parisienne reste requise selon les règles actuelles de la Ville."
+        },
+        "related": {
+          "title": "Autres guides Host Registry",
+          "body": "Numéro d'enregistrement : /guides/numero-enregistrement-meuble. Fiche police voyageurs : /guides/fiche-police-voyageurs. Migration NER : /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Sélectionnez Paris, renseignez statut de résidence et type de bien (dont local commercial ou non résidentiel) pour charger le playbook fr-paris avec les étapes ordonnées. Suivez le numéro sur chaque canal, le plafond 90 nuitées (Cap Guard) en résidence principale, les périodes de taxe de séjour et le registre voyageurs. Glint prépare et rappelle. Vous déposez sur teleservices.paris.fr et les portails d'urbanisme vous-même."
+        }
+      }
+    },
+    "parisAirbnbRegistration": {
+      "title": "Airbnb Paris et le registre meublé de tourisme",
+      "updated": "Mis à jour : mars 2026 (page Ville de Paris relue le 25/03/2026)",
+      "intro": "Les hôtes Airbnb à Paris suivent les mêmes règles Ville de Paris que sur les autres plateformes. Informations pratiques avec liens officiels, pas un avis juridique.",
+      "sections": {
+        "airbnbField": {
+          "title": "Numéro sur Airbnb",
+          "body": "Après déclaration sur https://teleservices.paris.fr/meubles-tourisme/, saisissez le numéro municipal dans le champ prévu par Airbnb pour la France. Utilisez le même numéro sur Booking et les autres canaux. La santé des annonces Host Registry suit l'affichage par canal."
+        },
+        "ninetyDay": {
+          "title": "Plafond 90 nuitées (résidence principale)",
+          "body": "Si vous louez votre résidence principale en logement entier, Paris plafonne à 90 nuitées par an. Connectez iCal dans Host Registry pour compter les nuitées. Le dépassement peut entraîner une amende jusqu'à 10 000 € par année de dépassement selon la Ville."
+        },
+        "urbanism": {
+          "title": "Non principale, commercial et autre local",
+          "body": "Les résidences secondaires exigent changement d'usage avec compensation et changement de destination BASU avant déclaration. Locaux commerciaux ou artisanaux et autres locaux non résidentiels : autorisations d'urbanisme sur Démarches d'urbanisme avant le 1er jour. Voir le guide Paris complet pour l'ordre des étapes."
+        },
+        "glint": {
+          "title": "Host Registry, par Glint",
+          "body": "Playbook Paris, checklist documents, Cap Guard 90 nuitées en résidence principale, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Paris."
         }
       }
     },
@@ -1380,6 +1462,8 @@
       "guideSevilleStrRegistration": "Séville LCD (VUT)",
       "guideSevilleAirbnbRegistration": "Airbnb Séville / VUT",
       "guideFrNerMigration": "Migration NER 2026",
+      "guideParisStrRegistration": "Enregistrement LCD Paris",
+      "guideParisAirbnbRegistration": "Airbnb Paris / meublé de tourisme",
       "account": "Compte",
       "legal": "Légal",
       "company": "Glint, micro-entreprise",
@@ -1566,6 +1650,8 @@
         "house": "Maison",
         "studio": "Studio",
         "room": "Chambre privée",
+        "commercial": "Local commercial ou artisanal",
+        "non_habitation": "Autre local non résidentiel (bureau, garage, etc.)",
         "other": "Autre"
       },
       "airbnb": "URL annonce Airbnb",

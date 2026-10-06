@@ -45,7 +45,15 @@ export function PropertyOverviewForm({ propertyId, initial }: Props) {
   const [form, setForm] = useState<FormData>(initial);
   const [loading, setLoading] = useState(false);
 
-  const propertyTypes = ["apartment", "house", "studio", "room", "other"];
+  const propertyTypes = [
+    "apartment",
+    "house",
+    "studio",
+    "room",
+    "commercial",
+    "non_habitation",
+    "other",
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

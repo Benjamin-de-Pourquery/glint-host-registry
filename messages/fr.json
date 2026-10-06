@@ -614,7 +614,7 @@
       "sections": {
         "fourSituations": {
           "title": "Les quatre situations sur paris.fr",
-          "body": "(1) Résidence principale : logement entier loué jusqu'à 90 nuitées par an civile. Déclaration en ligne sur teleservices.paris.fr/meubles-tourisme/, puis taxe de séjour. (2) Logement qui n'est pas votre résidence principale : changement d'usage avec compensation, puis changement de destination en hébergement hôtelier via le BASU (Direction de l'Urbanisme), puis déclaration, puis taxe de séjour. Toutes les autorisations avant le 1er jour. (3) Local commercial ou artisanal : autorisation préalable au titre du règlement municipal via Démarches d'urbanisme (paris.fr/pages/les-demarches-d-urbanisme-4458), puis déclaration, puis taxe de séjour, dès le 1er jour. (4) Autre local (bureau, garage, etc.) : changement de destination via Démarches d'urbanisme, puis déclaration, puis taxe de séjour, dès le 1er jour."
+          "body": "(1) Résidence principale : logement entier loué jusqu'à 90 nuitées par an. Déclaration en ligne sur teleservices.paris.fr/meubles-tourisme/, puis taxe de séjour. (2) Logement qui n'est pas votre résidence principale : changement d'usage avec compensation, puis changement de destination en hébergement hôtelier via le BASU (Direction de l'Urbanisme), puis déclaration, puis taxe de séjour. Toutes les autorisations avant le 1er jour. (3) Local commercial ou artisanal : autorisation préalable au titre du règlement municipal via Démarches d'urbanisme (paris.fr/pages/les-demarches-d-urbanisme-4458), puis déclaration, puis taxe de séjour, dès le 1er jour. (4) Autre local (bureau, garage, etc.) : changement de destination via Démarches d'urbanisme, puis déclaration, puis taxe de séjour, dès le 1er jour."
         },
         "singleRoom": {
           "title": "Exemption chambre seule",
@@ -661,7 +661,7 @@
         },
         "ninetyDay": {
           "title": "Plafond 90 nuitées (résidence principale)",
-          "body": "Si vous louez votre résidence principale en logement entier, Paris plafonne à 90 nuitées par an civile. Connectez iCal dans Host Registry pour compter les nuitées. Le dépassement peut entraîner une amende jusqu'à 10 000 € par année de dépassement selon la Ville."
+          "body": "Si vous louez votre résidence principale en logement entier, Paris plafonne à 90 nuitées par an. Connectez iCal dans Host Registry pour compter les nuitées. Le dépassement peut entraîner une amende jusqu'à 10 000 € par année de dépassement selon la Ville."
         },
         "urbanism": {
           "title": "Non principale, commercial et autre local",

@@ -1734,12 +1734,12 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
     nightCapStep = {
       ...nightCapStep,
       instruction: {
-        en: "For your primary residence in Paris, the City caps furnished tourist rental at 90 nights per calendar year. Connect iCal feeds or add stays manually in Host Registry. The night cap card counts nights and warns you before you breach. Exceeding 90 nights may trigger a fine up to €10,000 per year of overrun under Paris municipal rules.",
-        fr: "Pour votre résidence principale à Paris, la Ville plafonne la location meublée touristique à 90 nuitées par an civile. Connectez vos flux iCal ou saisissez les séjours dans Host Registry. La carte plafond nuitées compte et vous alerte avant dépassement. Au-delà de 90 nuitées, une amende pouvant atteindre 10 000 € par année de dépassement peut s'appliquer selon les règles parisiennes.",
+        en: "For your primary residence in Paris, the City caps furnished tourist rental at 90 nights per year. Connect iCal feeds or add stays manually in Host Registry. The night cap card counts nights and warns you before you breach. Exceeding 90 nights may trigger a fine up to €10,000 per year of overrun under Paris municipal rules.",
+        fr: "Pour votre résidence principale à Paris, la Ville plafonne la location meublée touristique à 90 nuitées par an. Connectez vos flux iCal ou saisissez les séjours dans Host Registry. La carte plafond nuitées compte et vous alerte avant dépassement. Au-delà de 90 nuitées, une amende pouvant atteindre 10 000 € par année de dépassement peut s'appliquer selon les règles parisiennes.",
       },
       pitfalls: {
-        en: "Cancelled bookings may still appear in some feeds. Glint excludes cancelled iCal events. The cap is per calendar year, not a rolling 12 months.",
-        fr: "Les réservations annulées peuvent rester visibles dans certains flux. Glint exclut les événements iCal annulés. Le plafond est annuel civil, pas glissant sur 12 mois.",
+        en: "Cancelled bookings may still appear in some feeds. Glint excludes cancelled iCal events. The cap is per year, not a rolling 12 months.",
+        fr: "Les réservations annulées peuvent rester visibles dans certains flux. Glint exclut les événements iCal annulés. Le plafond est par an, pas glissant sur 12 mois.",
       },
     };
   }

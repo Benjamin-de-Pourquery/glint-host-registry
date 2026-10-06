@@ -63,8 +63,8 @@ const declareStep = (
     {
       url: PARIS_FORM_URL,
       label: {
-        en: "Paris — online tourist rental declaration (téléservice)",
-        fr: "Paris — déclaration meublé touristique (téléservice)",
+        en: "Paris: online tourist rental declaration (téléservice)",
+        fr: "Paris : déclaration meublé touristique (téléservice)",
       },
       role: "form",
       urlVerified: true,
@@ -72,8 +72,8 @@ const declareStep = (
     {
       url: PARIS_RULES_URL,
       label: {
-        en: "City of Paris — rules and FAQ (information only)",
-        fr: "Ville de Paris — règles et FAQ (information uniquement)",
+        en: "City of Paris: rules and FAQ (information only)",
+        fr: "Ville de Paris : règles et FAQ (information uniquement)",
       },
       role: "rules",
       urlVerified: true,
@@ -126,8 +126,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_RULES_URL,
           label: {
-            en: "City of Paris — tourist furnished rental rules",
-            fr: "Ville de Paris — règles meublés touristiques",
+            en: "City of Paris: tourist furnished rental rules",
+            fr: "Ville de Paris : règles meublés touristiques",
           },
           role: "rules",
           urlVerified: true,
@@ -146,8 +146,8 @@ export function buildParisPlaybookSteps(
         ],
       },
       pitfalls: {
-        en: "Non-primary, commercial and other premises require all urbanism authorizations before day 1 of rental. Primary residence is capped at 90 nights per calendar year in Paris.",
-        fr: "Non principale, local commercial et autre local exigent toutes les autorisations d'urbanisme dès le 1er jour de location. La résidence principale est plafonnée à 90 nuitées par an civile à Paris.",
+        en: "Non-primary, commercial and other premises require all urbanism authorizations before day 1 of rental. Primary residence is capped at 90 nights per year in Paris.",
+        fr: "Non principale, local commercial et autre local exigent toutes les autorisations d'urbanisme dès le 1er jour de location. La résidence principale est plafonnée à 90 nuitées par an à Paris.",
       },
       fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
     },
@@ -165,8 +165,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_RULES_URL,
           label: {
-            en: "City of Paris — copropriété and tenant section",
-            fr: "Ville de Paris — section copropriété et locataire",
+            en: "City of Paris: copropriété and tenant section",
+            fr: "Ville de Paris : section copropriété et locataire",
           },
           role: "rules",
           urlVerified: true,
@@ -196,8 +196,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_CHANGE_OF_USE_PORTAL,
           label: {
-            en: "Paris — change-of-use simulator and portal",
-            fr: "Paris — simulateur et portail changement d'usage",
+            en: "Paris: change-of-use simulator and portal",
+            fr: "Paris : simulateur et portail changement d'usage",
           },
           role: "portal",
           urlVerified: true,
@@ -205,8 +205,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_CHANGE_OF_USE_INFO,
           label: {
-            en: "City of Paris — change-of-use information",
-            fr: "Ville de Paris — informations changement d'usage",
+            en: "City of Paris: change-of-use information",
+            fr: "Ville de Paris : informations changement d'usage",
           },
           role: "info",
           urlVerified: true,
@@ -214,8 +214,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_OPENDATA_CHANGE_OF_USE_URL,
           label: {
-            en: "Open data — change-of-use with compensation authorisations",
-            fr: "Open data — autorisations changement d'usage avec compensation",
+            en: "Open data: change-of-use with compensation authorisations",
+            fr: "Open data : autorisations changement d'usage avec compensation",
           },
           role: "info",
           urlVerified: true,
@@ -254,8 +254,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_BASU_CONTACT_URL,
           label: {
-            en: "City of Paris — BASU contacts",
-            fr: "Ville de Paris — contacts BASU",
+            en: "City of Paris: BASU contacts",
+            fr: "Ville de Paris : contacts BASU",
           },
           role: "info",
           urlVerified: true,
@@ -263,8 +263,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_RULES_URL,
           label: {
-            en: "City of Paris — non-primary housing steps (reference)",
-            fr: "Ville de Paris — étapes logement non principale (référence)",
+            en: "City of Paris: non-primary housing steps (reference)",
+            fr: "Ville de Paris : étapes logement non principale (référence)",
           },
           role: "rules",
           urlVerified: true,
@@ -295,8 +295,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_URBANISM_DEMARCHES_URL,
           label: {
-            en: "City of Paris — Démarches d'urbanisme",
-            fr: "Ville de Paris — Démarches d'urbanisme",
+            en: "City of Paris: Démarches d'urbanisme",
+            fr: "Ville de Paris : Démarches d'urbanisme",
           },
           role: "portal",
           urlVerified: true,
@@ -304,8 +304,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_RULES_URL,
           label: {
-            en: "City of Paris — commercial or artisanal premises section",
-            fr: "Ville de Paris — section local commercial ou artisanal",
+            en: "City of Paris: commercial or artisanal premises section",
+            fr: "Ville de Paris : section local commercial ou artisanal",
           },
           role: "rules",
           urlVerified: true,
@@ -336,8 +336,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_URBANISM_DEMARCHES_URL,
           label: {
-            en: "City of Paris — Démarches d'urbanisme",
-            fr: "Ville de Paris — Démarches d'urbanisme",
+            en: "City of Paris: Démarches d'urbanisme",
+            fr: "Ville de Paris : Démarches d'urbanisme",
           },
           role: "portal",
           urlVerified: true,
@@ -345,8 +345,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_RULES_URL,
           label: {
-            en: "City of Paris — other premises section",
-            fr: "Ville de Paris — section autre type de local",
+            en: "City of Paris: other premises section",
+            fr: "Ville de Paris : section autre type de local",
           },
           role: "rules",
           urlVerified: true,
@@ -413,8 +413,8 @@ export function buildParisPlaybookSteps(
         {
           url: PARIS_RULES_URL,
           label: {
-            en: "City of Paris — single room exemption",
-            fr: "Ville de Paris — exemption chambre seule",
+            en: "City of Paris: single room exemption",
+            fr: "Ville de Paris : exemption chambre seule",
           },
           role: "rules",
           urlVerified: true,
@@ -446,7 +446,7 @@ export function buildParisPlaybook(
     city: "Paris",
     title: {
       en: "Paris furnished tourist rental",
-      fr: "Location meublée touristique — Paris",
+      fr: "Location meublée touristique : Paris",
     },
     description: {
       en: "Four official situations: primary residence (90 nights/year), non-primary housing (change-of-use, BASU, then declaration), commercial or artisanal premises, and other premises. Host Registry tracks steps and documents; you file on Ville de Paris portals.",

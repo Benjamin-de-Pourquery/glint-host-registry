@@ -16,6 +16,7 @@ import { BELGIUM_PLAYBOOKS } from "./belgium";
 import { AUSTRIA_PLAYBOOKS } from "./austria";
 import { GERMANY_PLAYBOOKS } from "./germany";
 import { IRELAND_PLAYBOOKS } from "./ireland";
+import { stepAppliesForParis } from "@/lib/france/paris-playbook";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -223,16 +224,35 @@ export function stepAppliesToResidency(
       return residencyStatus === "secondary";
     case "nonPrimary":
       return residencyStatus === "secondary" || residencyStatus === "other";
+    case "commercialPremises":
+    case "otherPremises":
+    case "singleRoomExempt":
+      return false;
     default:
       return true;
   }
 }
 
+export function stepApplies(
+  playbook: Playbook,
+  step: PlaybookStep,
+  residencyStatus?: ResidencyStatus | null,
+  propertyType?: string | null
+): boolean {
+  if (playbook.id === "fr-paris") {
+    return stepAppliesForParis(step, residencyStatus, propertyType);
+  }
+  return stepAppliesToResidency(step, residencyStatus);
+}
+
 export function getApplicableSteps(
   playbook: Playbook,
-  residencyStatus?: ResidencyStatus | null
+  residencyStatus?: ResidencyStatus | null,
+  propertyType?: string | null
 ): PlaybookStep[] {
-  return playbook.steps.filter((step) => stepAppliesToResidency(step, residencyStatus));
+  return playbook.steps.filter((step) =>
+    stepApplies(playbook, step, residencyStatus, propertyType)
+  );
 }
 
 export function getPrimaryCtaUrl(step: PlaybookStep): OfficialUrl | null {
@@ -465,10 +485,11 @@ export function getStepWhyNow(
 export function getNextPendingStep(
   playbook: Playbook,
   progress: Array<{ stepKey: string; status: string }>,
-  residencyStatus?: ResidencyStatus | null
+  residencyStatus?: ResidencyStatus | null,
+  propertyType?: string | null
 ): PlaybookStep | null {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const applicableSteps = getApplicableSteps(playbook, residencyStatus);
+  const applicableSteps = getApplicableSteps(playbook, residencyStatus, propertyType);
 
   for (const step of applicableSteps) {
     const status = progressMap.get(step.key);
@@ -483,10 +504,11 @@ export function getNextPendingStep(
 export function getPlaybookProgressSummary(
   playbook: Playbook,
   progress: Array<{ stepKey: string; status: string }>,
-  residencyStatus?: ResidencyStatus | null
+  residencyStatus?: ResidencyStatus | null,
+  propertyType?: string | null
 ): { completed: number; total: number; skipped: number } {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const applicableSteps = getApplicableSteps(playbook, residencyStatus);
+  const applicableSteps = getApplicableSteps(playbook, residencyStatus, propertyType);
   let completed = 0;
   let skipped = 0;
 

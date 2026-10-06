@@ -160,6 +160,7 @@ export async function GET(
   const nextStep = getEffectiveNextStep(playbook, progress, residencyStatus, {
     country: property.country,
     city: property.city,
+    propertyType: property.propertyType,
     registration: property.registration,
     hasActiveStayNeedingSes: sesDueForProperty,
     hasSesCredentials: Boolean(property.sesCredential),
@@ -229,7 +230,12 @@ export async function GET(
     touristTaxSummary: touristTaxResult.summary,
     frNerMigration,
   });
-  const summary = getPlaybookProgressSummary(playbook, progress, residencyStatus);
+  const summary = getPlaybookProgressSummary(
+    playbook,
+    progress,
+    residencyStatus,
+    property.propertyType
+  );
 
   const touristTaxPriority = touristTaxResult.summary
     ? getTouristTaxPriorityAction(touristTaxResult.summary)

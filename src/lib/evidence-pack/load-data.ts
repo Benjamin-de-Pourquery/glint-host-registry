@@ -30,6 +30,7 @@ function buildPlaybookSteps(
   country: string,
   city: string,
   residencyStatus: string | null,
+  propertyType: string | null,
   progressRows: Array<{ stepKey: string; status: string; completedAt: Date | null }>
 ): {
   steps: EvidencePackPlaybookStep[];
@@ -52,7 +53,8 @@ function buildPlaybookSteps(
 
   const applicable = getApplicableSteps(
     playbook,
-    residencyStatus as ResidencyStatus | null
+    residencyStatus as ResidencyStatus | null,
+    propertyType
   );
 
   const steps: EvidencePackPlaybookStep[] = applicable.map((step) => {
@@ -68,7 +70,8 @@ function buildPlaybookSteps(
   const summary = getPlaybookProgressSummary(
     playbook,
     progressRows.map((row) => ({ stepKey: row.stepKey, status: row.status })),
-    residencyStatus as ResidencyStatus | null
+    residencyStatus as ResidencyStatus | null,
+    propertyType
   );
 
   return { steps, summary };
@@ -108,6 +111,7 @@ export async function loadEvidencePackData(
     property.country,
     property.city,
     property.residencyStatus,
+    property.propertyType,
     property.playbookProgress
   );
 

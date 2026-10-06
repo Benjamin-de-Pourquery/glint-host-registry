@@ -39,6 +39,8 @@ const PAIRED_GUIDE_IDS = [
   "amsterdamAirbnb",
   "irelandStr",
   "dublinAirbnb",
+  "parisStr",
+  "parisAirbnb",
 ] as const;
 
 const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
@@ -64,6 +66,8 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
   amsterdamAirbnb: ["guideAmsterdamAirbnbRegistration", "guideAmsterdamAirbnbRegistrationFr"],
   irelandStr: ["guideIrelandStrRegistration", "guideIrelandStrRegistrationFr"],
   dublinAirbnb: ["guideDublinAirbnbRegistration", "guideDublinAirbnbRegistrationFr"],
+  parisStr: ["guideParisStrRegistration", "guideParisStrRegistrationFr"],
+  parisAirbnb: ["guideParisAirbnbRegistration", "guideParisAirbnbRegistrationFr"],
 };
 
 function enSlug(enKey: string): string {
@@ -199,6 +203,10 @@ describe("sitemap entries", () => {
     assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-amsterdam"));
     assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-amsterdam"));
     assert.ok(!urls.includes("/fr/guides/amsterdam-short-term-rental-registration"));
+    assert.ok(urls.includes("/en/guides/paris-short-term-rental-registration"));
+    assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-paris"));
+    assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-paris"));
+    assert.ok(!urls.includes("/fr/guides/paris-short-term-rental-registration"));
   });
 
   it("lists NER migration only under /fr", () => {

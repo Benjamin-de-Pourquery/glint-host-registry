@@ -71,6 +71,7 @@ export type EffectiveNextStepContext = {
   nightCapComputation?: NightCapComputation | null;
   touristTaxSummary?: TouristTaxSummary | null;
   frNerMigration?: FrNerMigrationRecord | null;
+  propertyType?: string | null;
 };
 
 export function getEffectiveNextStep(
@@ -194,6 +195,7 @@ export function getEffectiveNextStep(
     context.registration ?? null,
     context.nightCapComputation ?? null,
     context.touristTaxSummary ?? null,
-    context.frNerMigration ?? null
+    context.frNerMigration ?? null,
+    context.propertyType ?? null
   );
 }

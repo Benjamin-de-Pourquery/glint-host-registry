@@ -1,11 +1,7 @@
 import type { Playbook, PlaybookStep, LocalizedText, OfficialUrl } from "./types";
 import { buildNerMigrationPrepStep } from "@/lib/fr-ner-migration/playbook-step";
 import { buildParisPlaybook } from "./paris-steps";
-
-const LYON_DECLARE_URL =
-  "https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme";
-const LYON_CHANGE_OF_USE_URL =
-  "https://www.lyon.fr/demarche/logement-habitat/demander-le-changement-dusage-dun-logement-0";
+import { buildLyonPlaybook, LYON_TAXE_SEJOUR_URL } from "./lyon-steps";
 
 const MARSEILLE_RULES_URL =
   "https://www.marseille.fr/index.php/decouvrir-marseille/une-ville-de-tourisme/la-taxe-de-sejour";
@@ -463,130 +459,7 @@ const frSteps = {
 
 const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
   buildParisPlaybook(frSteps),
-  {
-    id: "fr-lyon",
-    country: "France",
-    city: "Lyon",
-    title: {
-      en: "Lyon furnished tourist rental",
-      fr: "Location meublée touristique — Lyon",
-    },
-    description: {
-      en: "Registration via Ville de Lyon téléservice. Primary residence: online form only (90 nights/year). Non-primary: change-of-use authorization required first. National API Meublés planned Q4 2026 — Lyon téléservice remains mandatory until then.",
-      fr: "Enregistrement via le téléservice de la Ville de Lyon. Résidence principale : formulaire en ligne uniquement (90 nuitées/an). Non principale : autorisation de changement d'usage requise au préalable. API Meublés national prévu T4 2026 — le téléservice lyonnais reste obligatoire jusque-là.",
-    },
-    sourceReviewedAt: "2026-03-25",
-    steps: [
-      {
-        key: "lyon-verify-rules",
-        title: {
-          en: "Check Lyon STR rules for your situation",
-          fr: "Vérifier la réglementation lyonnaise selon votre situation",
-        },
-        instruction: {
-          en: "Primary residences: complete the online declaration form to obtain a registration number immediately (max 90 nights/year, no other formalities). Non-primary: the registration number does NOT constitute authorization — you must first obtain change-of-use approval. National API Meublés portal opens Q4 2026; Lyon téléservice remains mandatory until then.",
-          fr: "Résidence principale : complétez le formulaire en ligne pour obtenir immédiatement un numéro d'enregistrement (max 90 nuitées/an, sans autre formalité). Non principale : le numéro d'enregistrement ne vaut pas autorisation — vous devez d'abord obtenir un changement d'usage. L'API Meublés national ouvre au T4 2026 ; le téléservice lyonnais reste obligatoire jusque-là.",
-        },
-        officialUrls: [
-          {
-            url: LYON_DECLARE_URL,
-            label: {
-              en: "Ville de Lyon — tourist furnished rental rules and conditions",
-              fr: "Ville de Lyon — règles et conditions meublé de tourisme",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Confirm primary vs non-primary residence status",
-            "Property surface area (compensation rules vary by zone and size)",
-            "Co-ownership bylaws (if applicable)",
-          ],
-          fr: [
-            "Confirmer le statut résidence principale ou non",
-            "Surface du bien (règles de compensation selon zone et taille)",
-            "Règlement de copropriété (le cas échéant)",
-          ],
-        },
-        pitfalls: {
-          en: "In copropriété, you must inform the syndic of your télédéclaration. Hypercentre properties face stricter change-of-use rules.",
-          fr: "En copropriété, vous devez informer le syndic de votre télédéclaration. Les biens en hypercentre font face à des règles de changement d'usage plus strictes.",
-        },
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.changeOfUse(
-        "lyon",
-        [
-          {
-            url: LYON_CHANGE_OF_USE_URL,
-            label: {
-              en: "Ville de Lyon — change-of-use application procedures",
-              fr: "Ville de Lyon — procédures demande de changement d'usage",
-            },
-            role: "info",
-            urlVerified: true,
-          },
-        ],
-        {
-          en: "For non-primary residences, submit a change-of-use request to the Service habitat before registering. Download the form from the official page and send by email to habitat.usages@mairie-lyon.fr or by post. Compensation may be required depending on location and surface area.",
-          fr: "Pour les résidences non principales, déposez une demande de changement d'usage au Service habitat avant l'enregistrement. Téléchargez le formulaire sur la page officielle et envoyez-le par email à habitat.usages@mairie-lyon.fr ou par courrier. Une compensation peut être exigée selon la localisation et la surface.",
-        },
-        {
-          en: "The online registration number does NOT authorize non-primary STR without prior change-of-use approval.",
-          fr: "Le numéro d'enregistrement en ligne ne vaut PAS autorisation pour une location non principale sans changement d'usage préalable.",
-        }
-      ),
-      {
-        key: "lyon-declare-registration",
-        title: {
-          en: "Declare your furnished tourist rental online",
-          fr: "Déclarer votre meublé de tourisme en ligne",
-        },
-        instruction: {
-          en: "Access the Ville de Lyon online declaration form from the official page. Complete and validate to obtain your registration number immediately. This number must appear on all rental listings.",
-          fr: "Accédez au formulaire de déclaration en ligne de la Ville de Lyon depuis la page officielle. Complétez et validez pour obtenir immédiatement votre numéro d'enregistrement. Ce numéro doit figurer sur toutes vos annonces.",
-        },
-        officialUrls: [
-          {
-            url: LYON_DECLARE_URL,
-            label: {
-              en: "Ville de Lyon — online tourist rental declaration",
-              fr: "Ville de Lyon — déclaration en ligne meublé de tourisme",
-            },
-            role: "form",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "National ID or passport",
-            "Proof of ownership",
-            "Change-of-use authorization (if non-primary)",
-          ],
-          fr: [
-            "Pièce d'identité",
-            "Justificatif de propriété",
-            "Autorisation de changement d'usage (si non principale)",
-          ],
-        },
-        timeline: {
-          en: "Registration number issued immediately after online submission.",
-          fr: "Numéro d'enregistrement délivré immédiatement après la déclaration en ligne.",
-        },
-        pitfalls: {
-          en: "National API Meublés (Q4 2026) will not replace Lyon téléservice until officially announced. Keep using the Lyon portal.",
-          fr: "L'API Meublés national (T4 2026) ne remplacera pas le téléservice lyonnais tant que ce n'est pas officiellement annoncé. Continuez d'utiliser le portail lyonnais.",
-        },
-        appliesWhen: "always",
-        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.taxDeclaration("lyon"),
-      frSteps.updateListings("lyon"),
-      frSteps.guestRegister("lyon"),
-    ],
-  },
+  buildLyonPlaybook(frSteps),
   {
     id: "fr-marseille",
     country: "France",
@@ -1730,6 +1603,16 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
   const cityKey = cityKeyFromPlaybook(playbook);
   let nightCapStep = frSteps.primaryNightCap(cityKey);
 
+  if (playbook.id === "fr-lyon") {
+    nightCapStep = {
+      ...nightCapStep,
+      instruction: {
+        en: "For your primary residence in Lyon, the City caps furnished tourist rental at 90 nights per calendar year (lowered from 120 on 1 January 2026 on lyon.fr). Connect iCal feeds or add stays manually in Host Registry. The night cap card counts nights and warns you before you breach. lyon.fr does not publish a specific fine for exceeding 90 nights; national L.324-1-1 civil fines up to €15,000 may still apply.",
+        fr: "Pour votre résidence principale à Lyon, la Ville plafonne la location meublée touristique à 90 nuitées par an civile (abaissé de 120 au 1er janvier 2026 sur lyon.fr). Connectez vos flux iCal ou saisissez les séjours dans Host Registry. La carte plafond nuitées compte et vous alerte avant dépassement. lyon.fr ne publie pas d'amende spécifique pour le dépassement des 90 nuitées ; l'art. L.324-1-1 peut exposer à une amende civile jusqu'à 15 000 €.",
+      },
+    };
+  }
+
   if (playbook.id === "fr-paris") {
     nightCapStep = {
       ...nightCapStep,
@@ -1763,7 +1646,29 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
 
 function withTouristTaxDeclarationStep(playbook: Playbook): Playbook {
   const cityKey = cityKeyFromPlaybook(playbook);
-  const touristTaxStep = frSteps.touristTaxDeclaration(cityKey);
+  let touristTaxStep = frSteps.touristTaxDeclaration(cityKey);
+
+  if (playbook.id === "fr-lyon") {
+    touristTaxStep = {
+      ...touristTaxStep,
+      instruction: {
+        en: "Taxe de séjour for Lyon is collected by the Métropole de Lyon. Declare each period on taxe-sejour.grandlyon.com. Glint queues periods from your calendar; you submit on the official portal yourself.",
+        fr: "La taxe de séjour à Lyon est collectée par la Métropole de Lyon. Déclarez chaque période sur taxe-sejour.grandlyon.com. Glint prépare les périodes depuis votre calendrier ; vous déposez sur le portail officiel vous-même.",
+      },
+      officialUrls: [
+        {
+          url: LYON_TAXE_SEJOUR_URL,
+          label: {
+            en: "Métropole de Lyon: taxe de séjour portal",
+            fr: "Métropole de Lyon : portail taxe de séjour",
+          },
+          role: "tax",
+          urlVerified: true,
+        },
+        ...touristTaxStep.officialUrls,
+      ],
+    };
+  }
 
   if (playbook.steps.some((s) => s.key.endsWith("-tourist-tax-declaration"))) {
     return playbook;

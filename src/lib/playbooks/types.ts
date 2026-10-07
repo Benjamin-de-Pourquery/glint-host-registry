@@ -29,7 +29,11 @@ export type StepAppliesWhen =
   | "nonPrimary"
   | "commercialPremises"
   | "otherPremises"
-  | "singleRoomExempt";
+  | "singleRoomExempt"
+  | "lyonNonPrimaryHypercentre"
+  | "lyonOutsideUnder35NaturalConfirm"
+  | "lyonNonPrimaryCompensationRequired"
+  | "lyonNonPrimaryDetailsPending";
 
 export type ResidencyStatus = "primary" | "secondary" | "other";
 
@@ -54,6 +58,10 @@ export type PlaybookStep = {
     | "propertyType"
     | "notes"
     | "residencyStatus"
+    | "postalCode"
+    | "habitableSurfaceM2"
+    | "lyonInHypercentre"
+    | "ownerIsLegalEntity"
   >;
 };
 
@@ -84,4 +92,8 @@ export type PropertyFieldValues = {
   propertyType: string;
   notes?: string | null;
   residencyStatus?: ResidencyStatus | null;
+  postalCode?: string | null;
+  habitableSurfaceM2?: number | null;
+  lyonInHypercentre?: boolean | null;
+  ownerIsLegalEntity?: boolean | null;
 };

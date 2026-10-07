@@ -141,6 +141,22 @@ export async function LandingFooter({ locale }: Props) {
               </li>
               <li>
                 <Link
+                  href={guideHref(locale, "guideLyonStrRegistration")}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideLyonStrRegistration")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={guideHref(locale, "guideLyonAirbnbRegistration")}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideLyonAirbnbRegistration")}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={guideHref(locale, "guideAmsterdamNightCap")}
                   className="transition-colors hover:text-white"
                 >

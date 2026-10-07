@@ -18,7 +18,8 @@ import {
   getPreparedFieldsForStep,
   getPrimaryCtaUrl,
   getStepWhyNow,
-  stepAppliesToResidency,
+  lyonInputFromProperty,
+  stepApplies,
 } from "@/lib/playbooks";
 import type {
   Playbook,
@@ -275,8 +276,15 @@ export function PlaybookPanel({
   const nextCta = nextStep ? getPrimaryCtaUrl(nextStep) : null;
   const nextCtaLabelKey = nextCta ? getCtaLabelKey(nextCta.role) : "openOfficial";
 
+  const lyonInput = lyonInputFromProperty(property);
   const visibleSteps = playbook.steps.filter((step) =>
-    stepAppliesToResidency(step, residencyStatus)
+    stepApplies(
+      playbook,
+      step,
+      residencyStatus,
+      property.propertyType,
+      lyonInput
+    )
   );
 
   const propertyWithResidency = { ...property, residencyStatus };

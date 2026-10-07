@@ -263,6 +263,22 @@
       "title": "Enregistrement Airbnb Paris: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Paris: déclaration municipale sur teleservices.paris.fr, numéro sur les annonces, plafond 90 nuitées en résidence principale, voies urbanisme selon le bien."
     },
+    "guideLyonStrRegistration": {
+      "title": "Lyon short-term rental registration: meublé de tourisme host guide",
+      "description": "Ville de Lyon rules (October 2026): primary 90-night cap, hypercentre compensation, changement d'usage paths, lyon.fr declaration page, Métropole règlement sanctions. Practical information, not legal advice."
+    },
+    "guideLyonStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Lyon: guide meublé de tourisme",
+      "description": "Règles Ville de Lyon (octobre 2026): plafond 90 nuitées, compensation hypercentre, voies changement d'usage, page déclaration lyon.fr, sanctions du règlement métropole. Informations pratiques, pas un avis juridique."
+    },
+    "guideLyonAirbnbRegistration": {
+      "title": "Lyon Airbnb registration: meublé de tourisme compliance guide",
+      "description": "Airbnb hosts in Lyon: municipal declaration via lyon.fr, registration number on listings, 90-night primary cap, changement d'usage before non-primary rentals."
+    },
+    "guideLyonAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Lyon: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Lyon: déclaration via lyon.fr, numéro sur les annonces, plafond 90 nuitées en résidence principale, changement d'usage pour les non principales."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -670,6 +686,68 @@
         "glint": {
           "title": "Host Registry, by Glint",
           "body": "Paris playbook branching, document checklist, 90-night Cap Guard for primary residences, registration number storage and guest register. No automatic filing with the Ville de Paris."
+        }
+      }
+    },
+    "lyonStrRegistration": {
+      "title": "Lyon furnished tourist rental registration",
+      "updated": "Updated: October 2026 (lyon.fr and Métropole règlement reviewed 7 October 2026)",
+      "intro": "This page summarizes practical steps from the official Ville de Lyon pages « Déclarer un meublé de tourisme » and « Demander le changement d'usage d'un logement », and the Métropole de Lyon change-of-use règlement (CP-2022-1301 as amended, requests from 10 September 2023). It is not legal advice. Host Registry, by Glint, helps you track your situation, documents, registration number display and the 90-night count for primary residences. We do not file anything with the Ville de Lyon for you.",
+      "sections": {
+        "fourPaths": {
+          "title": "Four paths on lyon.fr",
+          "body": "(1) Primary residence (occupied at least 8 months per year under art. 2 loi 89-462): complete the online declaration starting from https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme (the page links to the téléservice). Registration number immediately, up to 90 nights per year without other formalities (cap lowered from 120 on 1 January 2026 on lyon.fr). (2) Non-primary inside the hypercentre (see map linked from lyon.fr): changement d'usage with compensation from the 1st m²; compensation premises in the hypercentre and same arrondissement (règlement art. 12). (3) Non-primary outside hypercentre, under 35 m², natural person: règlement art. 13.1.a describes one temporary personal authorization without compensation (9 years, non-renewable, one dwelling per owner in Lyon), but the changement d'usage page states the 9-year authorization is conditional on compensation. Confirm with Service habitat before relying on either wording. (4) Outside hypercentre, 35 m² or more, or legal entity: compensation from the 1st m² (art. 13.1.b and 13.2)."
+        },
+        "declare": {
+          "title": "Declaration (start on lyon.fr)",
+          "body": "Use the official declaration page as your primary link. It routes to the online form on e-services3.lyon.fr when available. The registration number is issued immediately for primary residences; for non-primary, obtain changement d'usage authorization first. The number must appear on every listing. After authorization, registration is completed via the same online declaration (number by email per lyon.fr)."
+        },
+        "copro": {
+          "title": "Copropriété and syndic",
+          "body": "Inform the syndic of your declaration. The syndic must add an information point to the next general meeting agenda (art. 9-2 loi 65-557, loi 2024-1039 art. 8). Obtain co-ownership and landlord approvals where required."
+        },
+        "sanctions": {
+          "title": "Sanctions quoted in the 2023 règlement",
+          "body": "Article 15 (CCH L.651-2 / L.651-3) quotes a civil fine up to €50,000 by the president of the Tribunal judiciaire, an order to return premises to housing, and astreinte up to €1,000 per day per m². False declarations or concealment: up to one year imprisonment and €80,000. National ceilings may have changed since loi 2024-1039. lyon.fr does not publish a specific fine for exceeding 90 nights or missing the registration number."
+        },
+        "taxe": {
+          "title": "Taxe de séjour",
+          "body": "Collected by the Métropole de Lyon: https://taxe-sejour.grandlyon.com/"
+        },
+        "national": {
+          "title": "National API Meublés",
+          "body": "National téléservice opening planned Q4 2026. Until then, Lyon municipal registration remains mandatory on lyon.fr. See /guides/migration-ner-2026 for transition notes. Décrets 2026-196 and 2026-197 (19 March 2026): platforms will transmit rental activity data to API Meublés."
+        },
+        "related": {
+          "title": "Related guides",
+          "body": "Paris comparison: /guides/paris-short-term-rental-registration. Registration numbers overview: /guides/numero-enregistrement-meuble. National NER migration: /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Lyon, postal code 69001 to 69009, residency, surface, hypercentre and owner type to load the fr-lyon playbook (including confirm with Service habitat on the under-35 natural-person branch). Cap Guard at 90 nights for primary residences, taxe de séjour period queue, registration number tracking. You file on lyon.fr and email habitat.usages@mairie-lyon.fr yourself."
+        }
+      }
+    },
+    "lyonAirbnbRegistration": {
+      "title": "Lyon Airbnb and the meublé de tourisme register",
+      "updated": "Updated: October 2026",
+      "intro": "Airbnb hosts in Lyon follow the same Ville de Lyon rules as other platforms. Start from the official lyon.fr declaration page, not a direct e-services bookmark alone.",
+      "sections": {
+        "airbnbField": {
+          "title": "Registration number on Airbnb",
+          "body": "After declaration via https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme, paste the municipal number into Airbnb's France field and mirror it on other channels."
+        },
+        "ninetyDay": {
+          "title": "90-night cap (primary residence)",
+          "body": "Primary residence whole dwellings are capped at 90 nights per year on lyon.fr. Use Host Registry night cap tracking with iCal. lyon.fr does not list a specific overrun fine."
+        },
+        "urbanism": {
+          "title": "Non-primary and hypercentre",
+          "body": "Non-primary rentals need changement d'usage before the registration number authorizes anything. Hypercentre: compensation from 1st m². Outside hypercentre under 35 m² as a natural person: confirm compensation rules with Service habitat (04 26 99 62 18, habitat.usages@mairie-lyon.fr). See the full Lyon STR guide for step order."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Lyon playbook, 90-night Cap Guard, listing health for channel display. No automatic filing with the Ville de Lyon."
         }
       }
     },
@@ -1464,6 +1542,8 @@
       "guideFrNerMigration": "France NER migration 2026",
       "guideParisStrRegistration": "Paris STR registration",
       "guideParisAirbnbRegistration": "Paris Airbnb / meublé de tourisme",
+      "guideLyonStrRegistration": "Lyon STR registration",
+      "guideLyonAirbnbRegistration": "Lyon Airbnb / meublé de tourisme",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint, micro-entreprise",
@@ -1667,6 +1747,17 @@
         "secondary": "Secondary residence",
         "other": "Other / non-primary"
       },
+      "postalCode": "Postal code",
+      "lyonSectionTitle": "Lyon changement d'usage details (communes 69001 to 69009)",
+      "habitableSurfaceM2": "Habitable surface (m²)",
+      "lyonInHypercentre": "Property in hypercentre",
+      "lyonHypercentrePlaceholder": "Select if known",
+      "lyonHypercentreYes": "Yes, inside hypercentre",
+      "lyonHypercentreNo": "No, outside hypercentre",
+      "ownerIsLegalEntity": "Owner type",
+      "ownerTypePlaceholder": "Select owner type",
+      "ownerNaturalPerson": "Natural person (individual)",
+      "ownerLegalEntity": "Legal entity (company, SCI, etc.)",
       "save": "Save property",
       "cancel": "Cancel",
       "create": "Create property",

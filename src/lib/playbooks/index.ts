@@ -17,6 +17,10 @@ import { AUSTRIA_PLAYBOOKS } from "./austria";
 import { GERMANY_PLAYBOOKS } from "./germany";
 import { IRELAND_PLAYBOOKS } from "./ireland";
 import { stepAppliesForParis } from "@/lib/france/paris-playbook";
+import {
+  stepAppliesForLyon,
+  type LyonPlaybookInput,
+} from "@/lib/france/lyon-playbook";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -24,7 +28,6 @@ import type {
   PlaybookStep,
   PropertyFieldValues,
   ResidencyStatus,
-  StepAppliesWhen,
 } from "./types";
 
 const ALL_PLAYBOOKS: Playbook[] = [
@@ -227,20 +230,41 @@ export function stepAppliesToResidency(
     case "commercialPremises":
     case "otherPremises":
     case "singleRoomExempt":
+    case "lyonNonPrimaryHypercentre":
+    case "lyonOutsideUnder35NaturalConfirm":
+    case "lyonNonPrimaryCompensationRequired":
+    case "lyonNonPrimaryDetailsPending":
       return false;
     default:
       return true;
   }
 }
 
+export function lyonInputFromProperty(
+  property: Pick<
+    PropertyFieldValues,
+    "habitableSurfaceM2" | "lyonInHypercentre" | "ownerIsLegalEntity"
+  >
+): LyonPlaybookInput {
+  return {
+    inHypercentre: property.lyonInHypercentre ?? null,
+    habitableSurfaceM2: property.habitableSurfaceM2 ?? null,
+    ownerIsLegalEntity: property.ownerIsLegalEntity ?? null,
+  };
+}
+
 export function stepApplies(
   playbook: Playbook,
   step: PlaybookStep,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  lyonInput?: LyonPlaybookInput | null
 ): boolean {
   if (playbook.id === "fr-paris") {
     return stepAppliesForParis(step, residencyStatus, propertyType);
+  }
+  if (playbook.id === "fr-lyon") {
+    return stepAppliesForLyon(step, residencyStatus, propertyType, lyonInput);
   }
   return stepAppliesToResidency(step, residencyStatus);
 }
@@ -248,10 +272,11 @@ export function stepApplies(
 export function getApplicableSteps(
   playbook: Playbook,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  lyonInput?: LyonPlaybookInput | null
 ): PlaybookStep[] {
   return playbook.steps.filter((step) =>
-    stepApplies(playbook, step, residencyStatus, propertyType)
+    stepApplies(playbook, step, residencyStatus, propertyType, lyonInput)
   );
 }
 
@@ -417,6 +442,10 @@ const FIELD_LABELS: Record<string, { en: string; fr: string }> = {
   propertyType: { en: "Property type", fr: "Type de bien" },
   notes: { en: "Notes", fr: "Notes" },
   residencyStatus: { en: "Residency status", fr: "Statut de résidence" },
+  postalCode: { en: "Postal code", fr: "Code postal" },
+  habitableSurfaceM2: { en: "Habitable surface (m²)", fr: "Surface habitable (m²)" },
+  lyonInHypercentre: { en: "Inside Lyon hypercentre", fr: "Dans l'hypercentre lyonnais" },
+  ownerIsLegalEntity: { en: "Owner is legal entity", fr: "Propriétaire personne morale" },
 };
 
 export function getPreparedFieldsForStep(
@@ -486,10 +515,16 @@ export function getNextPendingStep(
   playbook: Playbook,
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  lyonInput?: LyonPlaybookInput | null
 ): PlaybookStep | null {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const applicableSteps = getApplicableSteps(playbook, residencyStatus, propertyType);
+  const applicableSteps = getApplicableSteps(
+    playbook,
+    residencyStatus,
+    propertyType,
+    lyonInput
+  );
 
   for (const step of applicableSteps) {
     const status = progressMap.get(step.key);
@@ -505,10 +540,16 @@ export function getPlaybookProgressSummary(
   playbook: Playbook,
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  lyonInput?: LyonPlaybookInput | null
 ): { completed: number; total: number; skipped: number } {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const applicableSteps = getApplicableSteps(playbook, residencyStatus, propertyType);
+  const applicableSteps = getApplicableSteps(
+    playbook,
+    residencyStatus,
+    propertyType,
+    lyonInput
+  );
   let completed = 0;
   let skipped = 0;
 

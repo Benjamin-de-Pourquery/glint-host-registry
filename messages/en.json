@@ -1441,7 +1441,7 @@
       },
       "coverage": {
         "title": "European coverage",
-        "description": "City playbooks and country checklists for registration, guest reporting, and listing display. No automatic filing to government portals.",
+        "description": "City playbooks and country checklists for registration, guest reporting, and listing display. Nothing is filed on your behalf unless you turn on optional live submission.",
         "link": "See all guides by country"
       },
       "tabs": {

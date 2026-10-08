@@ -1393,7 +1393,7 @@
       "regulation": "Règlement (UE) 2024/1028",
       "countriesLabel": "pays",
       "guidesLink": "Guides par pays",
-      "guestReporting": "Ops déclarations voyageurs",
+      "guestReporting": "Suivi des déclarations voyageurs",
       "bilingual": "Interface FR + EN",
       "softwareOnly": "Outil logiciel uniquement : pas certificateur, avocat ni organisme notifié"
     },
@@ -1441,7 +1441,7 @@
       },
       "coverage": {
         "title": "Couverture européenne",
-        "description": "Playbooks ville et checklists pays pour l'enregistrement, les déclarations voyageurs et l'affichage sur les annonces. Pas de dépôt automatique sur les portails publics.",
+        "description": "Playbooks ville et checklists pays pour l'enregistrement, les déclarations voyageurs et l'affichage sur les annonces. Rien n'est déposé à votre place, sauf si vous activez l'envoi live optionnel.",
         "link": "Voir tous les guides par pays"
       },
       "tabs": {

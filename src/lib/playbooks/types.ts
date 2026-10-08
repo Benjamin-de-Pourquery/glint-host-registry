@@ -29,7 +29,14 @@ export type StepAppliesWhen =
   | "nonPrimary"
   | "commercialPremises"
   | "otherPremises"
-  | "singleRoomExempt";
+  | "singleRoomExempt"
+  | "marseillePrimaryResidence"
+  | "marseilleNonPrimaryChangeOfUse"
+  | "marseilleSocialHousing"
+  | "marseilleLegacy2021"
+  | "marseilleArrondissementPending"
+  | "marseilleNonPrimaryWithArrondissement"
+  | "marseilleNotSocialHousing";
 
 export type ResidencyStatus = "primary" | "secondary" | "other";
 

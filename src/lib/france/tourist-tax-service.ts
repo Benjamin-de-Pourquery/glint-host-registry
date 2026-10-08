@@ -47,6 +47,7 @@ export type TouristTaxPeriodRecord = {
 export type PropertyTouristTaxContext = {
   propertyId: string;
   country: string;
+  city?: string | null;
   settings: TouristTaxSettingsRecord | null;
 };
 
@@ -77,14 +78,15 @@ function toPeriodInput(record: TouristTaxPeriodRecord): TouristTaxPeriodInput {
 }
 
 export async function getOrCreateTouristTaxSettings(
-  propertyId: string
+  propertyId: string,
+  city?: string | null
 ): Promise<TouristTaxSettingsRecord> {
   const existing = await prisma.touristTaxSettings.findUnique({
     where: { propertyId },
   });
   if (existing) return existing;
 
-  const defaults = buildDefaultTouristTaxSettings();
+  const defaults = buildDefaultTouristTaxSettings(city);
   return prisma.touristTaxSettings.create({
     data: {
       propertyId,
@@ -171,7 +173,8 @@ export async function loadPropertyTouristTax(
   }
 
   const settings =
-    context.settings ?? await getOrCreateTouristTaxSettings(context.propertyId);
+    context.settings ??
+    await getOrCreateTouristTaxSettings(context.propertyId, context.city);
   const settingsInput = toSettingsInput(settings);
 
   await ensureTouristTaxPeriods(

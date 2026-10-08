@@ -2,6 +2,8 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
   buildDefaultTouristTaxSettings,
+  defaultTouristTaxPortalUrlForCity,
+  MARSEILLE_TOURIST_TAX_PORTAL_URL,
   computeTouristTaxSummary,
   countRentalNightsInPeriod,
   countStayNightsInPeriod,
@@ -18,6 +20,20 @@ describe("touristTaxApplies", () => {
     assert.equal(touristTaxApplies("France"), true);
     assert.equal(touristTaxApplies("FR"), true);
     assert.equal(touristTaxApplies("Spain"), false);
+  });
+});
+
+describe("defaultTouristTaxPortalUrlForCity", () => {
+  it("returns Marseille portal URL", () => {
+    assert.equal(defaultTouristTaxPortalUrlForCity("Marseille"), MARSEILLE_TOURIST_TAX_PORTAL_URL);
+    assert.equal(defaultTouristTaxPortalUrlForCity("Lyon"), null);
+  });
+
+  it("sets Marseille portal on default settings", () => {
+    assert.equal(
+      buildDefaultTouristTaxSettings("Marseille").portalUrl,
+      MARSEILLE_TOURIST_TAX_PORTAL_URL
+    );
   });
 });
 

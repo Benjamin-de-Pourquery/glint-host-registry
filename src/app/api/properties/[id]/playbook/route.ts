@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import {
   resolvePlaybook,
   getPlaybookProgressSummary,
+  marseilleInputFromProperty,
 } from "@/lib/playbooks";
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
 import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
@@ -144,8 +145,11 @@ export async function GET(
   const touristTaxResult = await loadPropertyTouristTax({
     propertyId: property.id,
     country: property.country,
+    city: property.city,
     settings: property.touristTaxSettings,
   });
+
+  const marseilleInput = marseilleInputFromProperty(property);
 
   let frNerMigration = null;
   if (frNerMigrationApplies(property.country) && property.registration) {
@@ -229,12 +233,14 @@ export async function GET(
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,
     frNerMigration,
+    marseilleInput,
   });
   const summary = getPlaybookProgressSummary(
     playbook,
     progress,
     residencyStatus,
-    property.propertyType
+    property.propertyType,
+    marseilleInput
   );
 
   const touristTaxPriority = touristTaxResult.summary

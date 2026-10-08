@@ -74,6 +74,7 @@ export async function PATCH(
     const result = await loadPropertyTouristTax({
       propertyId: property.id,
       country: property.country,
+      city: property.city,
       settings: property.touristTaxSettings,
     });
 

@@ -17,6 +17,11 @@ import { AUSTRIA_PLAYBOOKS } from "./austria";
 import { GERMANY_PLAYBOOKS } from "./germany";
 import { IRELAND_PLAYBOOKS } from "./ireland";
 import { stepAppliesForParis } from "@/lib/france/paris-playbook";
+import {
+  marseilleInputFromProperty,
+  stepAppliesForMarseille,
+  type MarseillePlaybookInput,
+} from "@/lib/france/marseille-playbook";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -24,7 +29,6 @@ import type {
   PlaybookStep,
   PropertyFieldValues,
   ResidencyStatus,
-  StepAppliesWhen,
 } from "./types";
 
 const ALL_PLAYBOOKS: Playbook[] = [
@@ -227,20 +231,38 @@ export function stepAppliesToResidency(
     case "commercialPremises":
     case "otherPremises":
     case "singleRoomExempt":
+    case "marseillePrimaryResidence":
+    case "marseilleNonPrimaryChangeOfUse":
+    case "marseilleSocialHousing":
+    case "marseilleLegacy2021":
+    case "marseilleArrondissementPending":
+    case "marseilleNonPrimaryWithArrondissement":
+    case "marseilleNotSocialHousing":
       return false;
     default:
       return true;
   }
 }
 
+export { marseilleInputFromProperty };
+
 export function stepApplies(
   playbook: Playbook,
   step: PlaybookStep,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  marseilleInput?: MarseillePlaybookInput | null
 ): boolean {
   if (playbook.id === "fr-paris") {
     return stepAppliesForParis(step, residencyStatus, propertyType);
+  }
+  if (playbook.id === "fr-marseille") {
+    return stepAppliesForMarseille(
+      step,
+      residencyStatus,
+      propertyType,
+      marseilleInput ?? null
+    );
   }
   return stepAppliesToResidency(step, residencyStatus);
 }
@@ -248,10 +270,11 @@ export function stepApplies(
 export function getApplicableSteps(
   playbook: Playbook,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  marseilleInput?: MarseillePlaybookInput | null
 ): PlaybookStep[] {
   return playbook.steps.filter((step) =>
-    stepApplies(playbook, step, residencyStatus, propertyType)
+    stepApplies(playbook, step, residencyStatus, propertyType, marseilleInput)
   );
 }
 
@@ -486,10 +509,16 @@ export function getNextPendingStep(
   playbook: Playbook,
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  marseilleInput?: MarseillePlaybookInput | null
 ): PlaybookStep | null {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const applicableSteps = getApplicableSteps(playbook, residencyStatus, propertyType);
+  const applicableSteps = getApplicableSteps(
+    playbook,
+    residencyStatus,
+    propertyType,
+    marseilleInput
+  );
 
   for (const step of applicableSteps) {
     const status = progressMap.get(step.key);
@@ -505,10 +534,16 @@ export function getPlaybookProgressSummary(
   playbook: Playbook,
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  marseilleInput?: MarseillePlaybookInput | null
 ): { completed: number; total: number; skipped: number } {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const applicableSteps = getApplicableSteps(playbook, residencyStatus, propertyType);
+  const applicableSteps = getApplicableSteps(
+    playbook,
+    residencyStatus,
+    propertyType,
+    marseilleInput
+  );
   let completed = 0;
   let skipped = 0;
 

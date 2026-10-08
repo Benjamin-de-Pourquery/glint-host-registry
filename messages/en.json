@@ -263,6 +263,22 @@
       "title": "Enregistrement Airbnb Paris: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Paris: déclaration municipale sur teleservices.paris.fr, numéro sur les annonces, plafond 90 nuitées en résidence principale, voies urbanisme selon le bien."
     },
+    "guideMarseilleStrRegistration": {
+      "title": "Marseille short-term rental registration: meublé de tourisme guide",
+      "description": "Ville de Marseille rules (checked October 2026): declaration on taxedesejour.marseille.fr, 90-night primary cap, change-of-use with compensation for non-primary homes, sanctions and Host Registry checklist. Not legal advice."
+    },
+    "guideMarseilleStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Marseille: guide meublé de tourisme",
+      "description": "Règles Ville de Marseille (vérifiées en octobre 2026): déclaration taxedesejour.marseille.fr, plafond 90 nuitées, changement d'usage avec compensation hors principale, sanctions. Informations pratiques."
+    },
+    "guideMarseilleAirbnbRegistration": {
+      "title": "Marseille Airbnb registration: meublé de tourisme compliance guide",
+      "description": "Airbnb hosts in Marseille: host account on taxedesejour.marseille.fr, 13-digit number on listings, 90-night primary cap, change-of-use for non-primary units."
+    },
+    "guideMarseilleAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Marseille: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Marseille: compte taxedesejour.marseille.fr, numéro à 13 chiffres, plafond 90 nuitées en résidence principale, changement d'usage hors principale."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -670,6 +686,84 @@
         "glint": {
           "title": "Host Registry, by Glint",
           "body": "Paris playbook branching, document checklist, 90-night Cap Guard for primary residences, registration number storage and guest register. No automatic filing with the Ville de Paris."
+        }
+      }
+    },
+    "marseilleStrRegistration": {
+      "title": "Marseille furnished tourist rental registration",
+      "updated": "Checked against marseille.fr in October 2026",
+      "intro": "This page summarizes practical steps from official Ville de Marseille pages on furnished tourist rentals and taxe de séjour (checked October 2026). It is not legal advice. Host Registry, by Glint, helps you track your situation, documents, registration number display and the 90-night count for primary residences. We do not file anything with the Ville de Marseille for you.",
+      "sections": {
+        "declaration": {
+          "title": "Mandatory declaration (all cases)",
+          "body": "Declaration is required whether the home is your primary residence or not. Create a host account on taxedesejour.marseille.fr (the browser redirects to the official portal). After validation you receive a 13-digit registration number that must appear on every listing. The number is not change-of-use authorisation when that authorisation is required. You can print a récépissé from the account. Chambres d'hôtes use CERFA 13566*03 plus the account."
+        },
+        "primaryCap": {
+          "title": "Primary residence: 90-night cap",
+          "body": "A primary residence (occupied at least 8 months per year) may be rented to tourists up to 90 nights per year without change-of-use authorisation. Marseille lowered the cap from 120 to 90 nights. Exceeding the cap may lead to a civil fine of 10 000 EUR. The city may request a count of nights for the previous year (one month to answer). No answer may lead to a civil fine of 5 000 EUR. Check copropriété rules."
+        },
+        "nonPrimary": {
+          "title": "Non-primary: change of use from day 1",
+          "body": "Secondary homes, vacant units and investment properties need change-of-use authorisation from the first day of tourist rental, granted only with compensation, in all 16 arrondissements (regime applicable 29 April 2025). Tourist furnished rental is prohibited in social housing. Existing temporary authorisations under the June 2021 regime are not retroactively cancelled, but when they end you need a new authorisation under the 2025 compensation rules."
+        },
+        "compensation": {
+          "title": "Compensation forms and arrondissement groups",
+          "body": "Compensation may be: (1) concomitant transformation of non-residential premises into housing, or (2) purchase of droits de commercialité from owners who transformed other premises into housing. For a meublé de tourisme, compensation premises must be in the same arrondissement group: 1-2-3, 4-5-6, 7-8-9, 10-11-12, 13-14-15-16. Compensation outside the group is allowed only for professional or commercial uses, or when the compensation creates social housing anywhere in the city."
+        },
+        "dpeBuilding": {
+          "title": "DPE and 50% building balance",
+          "body": "Change of use requires a valid DPE in classes A to E (classes A to D from 1 January 2034). The building must keep at least 50% habitable surface and the number of homes must not fall below the number of meublés de tourisme in the building (no derogation for meublés)."
+        },
+        "procedure": {
+          "title": "Paper file at the Guichet unique",
+          "body": "File a duplicate paper dossier (form with compensation, Annexe 2 comparative schedule, listed documents, DPE, copropriété sworn statement) at Service des Autorisations d'urbanisme, 38-40 rue Fauchier (ground floor), 13233 Marseille Cedex 20, in person or by post. Follow up at autorisationchangementusage@marseille.fr. Incomplete file: two months to complete or tacit rejection. The sector (arrondissement) mayor gives an opinion within one month; silence counts as favourable. Decision within two months of a complete file; silence after two months means deemed acceptance, but the city may still withdraw or repeal the decision under the Code des relations entre le public et l'administration. Authorisation becomes final only after DAACT; without DAACT after two years the city may revoke."
+        },
+        "sanctions": {
+          "title": "Sanctions",
+          "body": "Change of use without authorisation: civil fine up to 100 000 EUR per unit, restitution order with astreinte up to 1 000 EUR per day per m², and the court may order the unit returned to housing use. Intermediaries (not platforms) up to 100 000 EUR. Fraud: up to one year imprisonment and/or 80 000 EUR."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour",
+          "body": "Taxe de séjour is per person per night. You must create a host account on taxedesejour.marseille.fr even when a platform collects for you. Airbnb, Abritel, Homelidays and HomeAway may collect and remit twice a year only if you rent exclusively through them. Any direct booking: you collect from guests, declare and pay online in your host account. Contact: Service de la taxe de séjour, 1 rue Nau, 13233 Marseille Cedex 20, guichettaxedesejour@marseille.fr."
+        },
+        "national": {
+          "title": "National register context",
+          "body": "France is preparing a national furnished-rental téléservice (API Meublés). See /guides/migration-ner-2026 for cautious transition notes. Marseille municipal declaration remains required under current City rules. Glint never auto-submits to any authority."
+        },
+        "related": {
+          "title": "Related Host Registry guides",
+          "body": "Registration numbers overview: /guides/numero-enregistrement-meuble. Guest police fiche: /guides/fiche-police-voyageurs. National NER migration: /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Marseille, set residency status and add marseille:social-housing or marseille:legacy-2021 in notes when relevant. Include a postal code 13001 to 13016 in the address for arrondissement groups. Track the fr-marseille playbook, 90-night Cap Guard, taxe de séjour periods, registration number on each channel and guest register exports. Glint prepares and reminds. You submit on marseille.fr and taxedesejour.marseille.fr yourself."
+        }
+      }
+    },
+    "marseilleAirbnbRegistration": {
+      "title": "Marseille Airbnb and the meublé de tourisme register",
+      "updated": "Checked against marseille.fr in October 2026",
+      "intro": "Airbnb hosts in Marseille follow the same Ville de Marseille rules as other platforms. Practical information with links to official sources, not legal advice.",
+      "sections": {
+        "airbnbField": {
+          "title": "Registration number on Airbnb",
+          "body": "After you open a host account on taxedesejour.marseille.fr and validate your property, paste the 13-digit number into the field Airbnb shows for France. Use the same number on Booking and other channels. Host Registry listing health tracks per-channel display."
+        },
+        "ninetyDay": {
+          "title": "90-night cap (primary residence)",
+          "body": "Primary residences are capped at 90 furnished tourist nights per year in Marseille. Connect iCal in Host Registry to count nights. Exceeding the cap may lead to a civil fine of 10 000 EUR."
+        },
+        "nonPrimary": {
+          "title": "Non-primary homes",
+          "body": "Secondary and investment units need change-of-use authorisation with compensation before day 1. The online registration number is not authorisation. See the full Marseille STR guide for compensation, DPE, Guichet unique filing and DAACT."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour and platforms",
+          "body": "Create your taxedesejour.marseille.fr account even if Airbnb collects tax for you. Platform collection applies only when you rent exclusively through Airbnb, Abritel, Homelidays or HomeAway. Direct bookings: you collect, declare and pay online."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Marseille playbook branching, 90-night Cap Guard, tourist tax period queue, registration number storage and guest register. No automatic filing with the Ville de Marseille."
         }
       }
     },
@@ -1394,7 +1488,7 @@
         },
         "14": {
           "q": "Does Glint track the 120-night primary residence cap?",
-          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice), and alerts you before you breach, under Code du tourisme art. L324-1-1."
+          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice, Marseille), and alerts you before you breach, under Code du tourisme art. L324-1-1."
         },
         "15": {
           "q": "If Airbnb collects taxe de séjour, am I done?",
@@ -1464,6 +1558,8 @@
       "guideFrNerMigration": "France NER migration 2026",
       "guideParisStrRegistration": "Paris STR registration",
       "guideParisAirbnbRegistration": "Paris Airbnb / meublé de tourisme",
+      "guideMarseilleStrRegistration": "Marseille STR registration",
+      "guideMarseilleAirbnbRegistration": "Marseille Airbnb / meublé de tourisme",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint, micro-entreprise",

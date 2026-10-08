@@ -1,15 +1,12 @@
 import type { Playbook, PlaybookStep, LocalizedText, OfficialUrl } from "./types";
 import { buildNerMigrationPrepStep } from "@/lib/fr-ner-migration/playbook-step";
 import { buildParisPlaybook } from "./paris-steps";
+import { buildMarseillePlaybook } from "./marseille-steps";
 
 const LYON_DECLARE_URL =
   "https://www.lyon.fr/demarche/logement-habitat/declarer-un-meuble-de-tourisme";
 const LYON_CHANGE_OF_USE_URL =
   "https://www.lyon.fr/demarche/logement-habitat/demander-le-changement-dusage-dun-logement-0";
-
-const MARSEILLE_RULES_URL =
-  "https://www.marseille.fr/index.php/decouvrir-marseille/une-ville-de-tourisme/la-taxe-de-sejour";
-const MARSEILLE_PORTAL_URL = "https://taxedesejour.ofeaweb.fr/ts/marseille";
 
 const BORDEAUX_GUIDE_URL =
   "https://www.bordeaux.fr/location-touristique-bordeaux--guide-proprietaires";
@@ -463,6 +460,7 @@ const frSteps = {
 
 const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
   buildParisPlaybook(frSteps),
+  buildMarseillePlaybook(frSteps),
   {
     id: "fr-lyon",
     country: "France",
@@ -585,123 +583,6 @@ const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
       frSteps.taxDeclaration("lyon"),
       frSteps.updateListings("lyon"),
       frSteps.guestRegister("lyon"),
-    ],
-  },
-  {
-    id: "fr-marseille",
-    country: "France",
-    city: "Marseille",
-    title: {
-      en: "Marseille furnished tourist rental",
-      fr: "Location meublée touristique — Marseille",
-    },
-    description: {
-      en: "Registration via the Marseille tourist tax portal. Rules on marseille.fr. Change-of-use is a separate track when applicable.",
-      fr: "Enregistrement via le portail de taxe de séjour de Marseille. Règles sur marseille.fr. Le changement d'usage est une démarche distincte le cas échéant.",
-    },
-    sourceReviewedAt: "2026-03-25",
-    steps: [
-      {
-        key: "marseille-verify-rules",
-        title: {
-          en: "Check Marseille STR and tourist tax rules",
-          fr: "Vérifier la réglementation marseillaise et la taxe de séjour",
-        },
-        instruction: {
-          en: "Review the official Marseille tourist tax page for local STR rules, registration requirements, and change-of-use obligations where applicable.",
-          fr: "Consultez la page officielle de la taxe de séjour de Marseille pour les règles locales, les exigences d'enregistrement et les obligations de changement d'usage le cas échéant.",
-        },
-        officialUrls: [
-          {
-            url: MARSEILLE_RULES_URL,
-            label: {
-              en: "City of Marseille — tourist tax and furnished rental rules",
-              fr: "Ville de Marseille — taxe de séjour et location meublée",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Confirm primary vs non-primary residence status",
-            "Property address and type",
-            "Co-ownership bylaws (if applicable)",
-          ],
-          fr: [
-            "Confirmer le statut résidence principale ou non",
-            "Adresse et type du bien",
-            "Règlement de copropriété (le cas échéant)",
-          ],
-        },
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.changeOfUse(
-        "marseille",
-        [
-          {
-            url: MARSEILLE_RULES_URL,
-            label: {
-              en: "City of Marseille — change-of-use information (see rules page)",
-              fr: "Ville de Marseille — informations changement d'usage (voir page règles)",
-            },
-            role: "info",
-            urlVerified: true,
-          },
-        ],
-        {
-          en: "If your property is not your primary residence, check the Marseille rules page for change-of-use requirements before registering on the tourist tax portal. This is a separate administrative track from registration.",
-          fr: "Si votre bien n'est pas votre résidence principale, consultez la page des règles de Marseille pour les exigences de changement d'usage avant l'enregistrement sur le portail de taxe de séjour. C'est une démarche distincte de l'enregistrement.",
-        },
-        {
-          en: "Change-of-use and registration are separate procedures — complete change-of-use first if required.",
-          fr: "Le changement d'usage et l'enregistrement sont des procédures distinctes — effectuez d'abord le changement d'usage si requis.",
-        }
-      ),
-      {
-        key: "marseille-declare-registration",
-        title: {
-          en: "Register on the Marseille tourist tax portal",
-          fr: "S'inscrire sur le portail taxe de séjour de Marseille",
-        },
-        instruction: {
-          en: "Create a host account on the Marseille tourist tax portal and add your property to obtain your registration number. This is the official registration channel — not the marseille.fr rules page.",
-          fr: "Créez un compte hébergeur sur le portail de taxe de séjour de Marseille et ajoutez votre bien pour obtenir votre numéro d'enregistrement. C'est le canal officiel d'enregistrement — pas la page de règles marseille.fr.",
-        },
-        officialUrls: [
-          {
-            url: MARSEILLE_PORTAL_URL,
-            label: {
-              en: "Marseille tourist tax portal — host registration",
-              fr: "Portail taxe de séjour Marseille — inscription hébergeur",
-            },
-            role: "portal",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "National ID or passport",
-            "Proof of ownership or authorization to rent",
-            "Property address",
-            "IBAN for tourist tax payments",
-          ],
-          fr: [
-            "Pièce d'identité",
-            "Justificatif de propriété ou autorisation de louer",
-            "Adresse du bien",
-            "IBAN pour le paiement de la taxe de séjour",
-          ],
-        },
-        timeline: {
-          en: "Account setup and property registration typically take a few days.",
-          fr: "La création de compte et l'enregistrement du bien prennent généralement quelques jours.",
-        },
-        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.taxDeclaration("marseille"),
-      frSteps.updateListings("marseille"),
-      frSteps.guestRegister("marseille"),
     ],
   },
   {
@@ -1744,6 +1625,20 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
     };
   }
 
+  if (playbook.id === "fr-marseille") {
+    nightCapStep = {
+      ...nightCapStep,
+      instruction: {
+        en: "For your primary residence in Marseille, the City caps furnished tourist rental at 90 nights per year (lowered from 120). Connect iCal feeds or add stays manually in Host Registry. Exceeding 90 nights may trigger a civil fine of 10 000 EUR. The city can request a nights count for the previous year; failure to answer within one month may lead to a civil fine of 5 000 EUR.",
+        fr: "Pour votre résidence principale à Marseille, la Ville plafonne la location meublée touristique à 90 nuitées par an (abaissé de 120). Connectez vos flux iCal ou saisissez les séjours dans Host Registry. Au-delà de 90 nuitées : amende civile de 10 000 EUR. La Ville peut demander le décompte des nuitées de l'année précédente ; sans réponse sous un mois : amende civile de 5 000 EUR.",
+      },
+      pitfalls: {
+        en: "Cancelled bookings may still appear in some feeds. Glint excludes cancelled iCal events. The cap is per calendar year.",
+        fr: "Les réservations annulées peuvent rester visibles dans certains flux. Glint exclut les événements iCal annulés. Le plafond est par année civile.",
+      },
+    };
+  }
+
   if (playbook.steps.some((s) => s.key.endsWith("-primary-night-cap"))) {
     return playbook;
   }
@@ -1763,7 +1658,29 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
 
 function withTouristTaxDeclarationStep(playbook: Playbook): Playbook {
   const cityKey = cityKeyFromPlaybook(playbook);
-  const touristTaxStep = frSteps.touristTaxDeclaration(cityKey);
+  let touristTaxStep = frSteps.touristTaxDeclaration(cityKey);
+
+  if (playbook.id === "fr-marseille") {
+    touristTaxStep = {
+      ...touristTaxStep,
+      instruction: {
+        en: "Taxe de séjour is per person per night. You must still create a host account on taxedesejour.marseille.fr even when a platform collects for you. Airbnb, Abritel, Homelidays and HomeAway may collect and remit twice a year only if you rent exclusively through them. Any direct booking: you collect from guests, then declare and pay online in your host account. Glint tracks taxable nights and queues periods; you submit on the official portal.",
+        fr: "La taxe de séjour est due par personne et par nuit. Vous devez créer un compte hébergeur sur taxedesejour.marseille.fr même si une plateforme collecte pour vous. Airbnb, Abritel, Homelidays et HomeAway peuvent collecter et reverser deux fois par an uniquement si vous louez exclusivement via ces plateformes. Toute réservation directe : vous encaissez, déclarez et payez en ligne dans votre compte. Glint suit les nuitées et file les périodes ; vous déposez sur le portail officiel.",
+      },
+      officialUrls: [
+        ...touristTaxStep.officialUrls,
+        {
+          url: "https://taxedesejour.ofeaweb.fr/ts/marseille",
+          label: {
+            en: "taxedesejour.marseille.fr (host account)",
+            fr: "taxedesejour.marseille.fr (compte hébergeur)",
+          },
+          role: "portal",
+          urlVerified: true,
+        },
+      ],
+    };
+  }
 
   if (playbook.steps.some((s) => s.key.endsWith("-tourist-tax-declaration"))) {
     return playbook;

@@ -41,6 +41,8 @@ const PAIRED_GUIDE_IDS = [
   "dublinAirbnb",
   "parisStr",
   "parisAirbnb",
+  "marseilleStr",
+  "marseilleAirbnb",
 ] as const;
 
 const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
@@ -68,6 +70,11 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
   dublinAirbnb: ["guideDublinAirbnbRegistration", "guideDublinAirbnbRegistrationFr"],
   parisStr: ["guideParisStrRegistration", "guideParisStrRegistrationFr"],
   parisAirbnb: ["guideParisAirbnbRegistration", "guideParisAirbnbRegistrationFr"],
+  marseilleStr: ["guideMarseilleStrRegistration", "guideMarseilleStrRegistrationFr"],
+  marseilleAirbnb: [
+    "guideMarseilleAirbnbRegistration",
+    "guideMarseilleAirbnbRegistrationFr",
+  ],
 };
 
 function enSlug(enKey: string): string {

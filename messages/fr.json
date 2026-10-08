@@ -263,6 +263,22 @@
       "title": "Enregistrement Airbnb Paris: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Paris: déclaration municipale, numéro sur les annonces, voies urbanisme selon le bien."
     },
+    "guideMarseilleStrRegistration": {
+      "title": "Marseille short-term rental registration: meublé de tourisme guide",
+      "description": "Ville de Marseille rules (checked October 2026): declaration on taxedesejour.marseille.fr, 90-night primary cap, change-of-use with compensation. Not legal advice."
+    },
+    "guideMarseilleStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Marseille: guide meublé de tourisme",
+      "description": "Règles Ville de Marseille (vérifiées en octobre 2026): déclaration taxedesejour.marseille.fr, plafond 90 nuitées, changement d'usage avec compensation hors principale."
+    },
+    "guideMarseilleAirbnbRegistration": {
+      "title": "Marseille Airbnb registration: meublé de tourisme compliance guide",
+      "description": "Airbnb hosts in Marseille: compte taxedesejour.marseille.fr, numéro à 13 chiffres, plafond 90 nuitées en résidence principale."
+    },
+    "guideMarseilleAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Marseille: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Marseille: compte taxedesejour.marseille.fr, numéro sur les annonces, plafond 90 nuitées, changement d'usage hors principale."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -670,6 +686,84 @@
         "glint": {
           "title": "Host Registry, par Glint",
           "body": "Playbook Paris, checklist documents, Cap Guard 90 nuitées en résidence principale, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Paris."
+        }
+      }
+    },
+    "marseilleStrRegistration": {
+      "title": "Enregistrement meublé de tourisme à Marseille",
+      "updated": "Vérifié sur marseille.fr en octobre 2026",
+      "intro": "Cette page résume les démarches pratiques issues des pages officielles de la Ville de Marseille sur la location meublée touristique et la taxe de séjour (vérifiées en octobre 2026). Ce n'est pas un avis juridique. Host Registry, par Glint, vous aide à suivre votre situation, vos pièces, l'affichage du numéro et le décompte des 90 nuitées en résidence principale. Nous ne déposons rien à la Ville de Marseille pour vous.",
+      "sections": {
+        "declaration": {
+          "title": "Déclaration obligatoire (tous les cas)",
+          "body": "La déclaration est obligatoire que le logement soit votre résidence principale ou non. Créez un compte hébergeur sur taxedesejour.marseille.fr (redirection vers le portail officiel). Après validation, vous recevez un numéro à 13 chiffres à afficher sur chaque annonce. Ce numéro ne vaut pas autorisation de changement d'usage lorsque celle-ci est requise. Un récépissé peut être imprimé depuis le compte. Chambres d'hôtes : CERFA 13566*03 et compte."
+        },
+        "primaryCap": {
+          "title": "Résidence principale : plafond 90 nuitées",
+          "body": "La résidence principale (occupée au moins 8 mois par an) peut être louée en meublé touristique jusqu'à 90 nuitées par an sans autorisation de changement d'usage. Marseille a abaissé le plafond de 120 à 90 nuitées. Dépassement : amende civile de 10 000 EUR. La Ville peut demander le décompte des nuitées de l'année précédente (un mois pour répondre). Absence de réponse : amende civile de 5 000 EUR. Vérifiez le règlement de copropriété."
+        },
+        "nonPrimary": {
+          "title": "Hors résidence principale : changement d'usage dès le 1er jour",
+          "body": "Résidences secondaires, logements vacants ou d'investissement : autorisation de changement d'usage dès le premier jour de location touristique, accordée uniquement avec compensation, dans les 16 arrondissements (régime applicable au 29 avril 2025). Location meublée touristique interdite dans le logement social. Les autorisations temporaires au titre de juin 2021 ne sont pas annulées rétroactivement, mais à l'échéance une nouvelle autorisation au régime 2025 est nécessaire."
+        },
+        "compensation": {
+          "title": "Formes de compensation et groupes d'arrondissements",
+          "body": "La compensation peut être : (1) transformation concomitante de locaux non résidentiels en logement, ou (2) achat de droits de commercialité auprès de propriétaires ayant transformé d'autres locaux en logement. Pour un meublé de tourisme, le bien de compensation doit être dans le même groupe d'arrondissements : 1-2-3, 4-5-6, 7-8-9, 10-11-12, 13-14-15-16. Hors groupe : usages professionnels ou commerciaux, ou compensation en logement social n'importe où dans la ville."
+        },
+        "dpeBuilding": {
+          "title": "DPE et équilibre du bâtiment à 50 %",
+          "body": "Le changement d'usage exige un DPE valide en classes A à E (classes A à D à partir du 1er janvier 2034). La surface habitable doit rester au moins à 50 % du bâtiment et le nombre de logements ne doit pas descendre en dessous du nombre de meublés de tourisme dans l'immeuble (pas de dérogation pour les meublés)."
+        },
+        "procedure": {
+          "title": "Dossier papier au Guichet unique",
+          "body": "Déposez un dossier papier en double (formulaire avec compensation, Annexe 2 comparative, pièces listées, DPE, attestation sur l'honneur copropriété) au Service des Autorisations d'urbanisme, 38-40 rue Fauchier (rez-de-chaussée), 13233 Marseille Cedex 20, sur place ou par courrier. Suivi : autorisationchangementusage@marseille.fr. Dossier incomplet : deux mois pour compléter sinon rejet tacite. Le maire de secteur (arrondissement) rend un avis sous un mois ; le silence vaut avis favorable. Décision sous deux mois après dossier complet ; silence à deux mois : acceptation tacite, sous réserve de retrait ou abrogation par la collectivité (CRPA). L'autorisation ne devient définitive qu'après DAACT ; sans DAACT après deux ans, la Ville peut retirer l'autorisation."
+        },
+        "sanctions": {
+          "title": "Sanctions",
+          "body": "Changement d'usage sans autorisation : amende civile jusqu'à 100 000 EUR par logement, mise en demeure de remise en état avec astreinte jusqu'à 1 000 EUR par jour et par m², et le tribunal peut ordonner la remise du logement à l'usage d'habitation. Intermédiaires (hors plateformes) : jusqu'à 100 000 EUR. Fraude : un an d'emprisonnement et/ou 80 000 EUR."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour",
+          "body": "La taxe de séjour est due par personne et par nuit. Vous devez créer un compte sur taxedesejour.marseille.fr même si une plateforme collecte pour vous. Airbnb, Abritel, Homelidays et HomeAway peuvent collecter et reverser deux fois par an uniquement si vous louez exclusivement via ces plateformes. Toute réservation directe : vous encaissez, déclarez et payez en ligne. Contact : Service de la taxe de séjour, 1 rue Nau, 13233 Marseille Cedex 20, guichettaxedesejour@marseille.fr."
+        },
+        "national": {
+          "title": "Contexte registre national",
+          "body": "La France prépare un téléservice national (API Meublés). Voir /guides/migration-ner-2026 pour des notes prudentes sur la transition. La déclaration marseillaise reste requise selon les règles actuelles de la Ville. Glint ne dépose jamais automatiquement auprès d'une autorité."
+        },
+        "related": {
+          "title": "Autres guides Host Registry",
+          "body": "Vue d'ensemble des numéros : /guides/numero-enregistrement-meuble. Fiche police voyageurs : /guides/fiche-police-voyageurs. Migration NER : /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Sélectionnez Marseille, renseignez le statut de résidence et ajoutez marseille:social-housing ou marseille:legacy-2021 dans les notes si pertinent. Indiquez un code postal 13001 à 13016 dans l'adresse pour les groupes d'arrondissements. Suivez le playbook fr-marseille, Cap Guard 90 nuitées, périodes de taxe de séjour, numéro sur chaque canal et registre voyageurs. Glint prépare et rappelle. Vous déposez sur marseille.fr et taxedesejour.marseille.fr vous-même."
+        }
+      }
+    },
+    "marseilleAirbnbRegistration": {
+      "title": "Airbnb Marseille et le registre meublé de tourisme",
+      "updated": "Vérifié sur marseille.fr en octobre 2026",
+      "intro": "Les hôtes Airbnb à Marseille suivent les mêmes règles que sur les autres plateformes. Informations pratiques avec liens officiels, pas un avis juridique.",
+      "sections": {
+        "airbnbField": {
+          "title": "Numéro sur Airbnb",
+          "body": "Après ouverture d'un compte sur taxedesejour.marseille.fr et validation du bien, saisissez le numéro à 13 chiffres dans le champ prévu par Airbnb pour la France. Utilisez le même numéro sur Booking et les autres canaux. Host Registry suit l'affichage par canal."
+        },
+        "ninetyDay": {
+          "title": "Plafond 90 nuitées (résidence principale)",
+          "body": "La résidence principale est plafonnée à 90 nuitées meublées touristiques par an à Marseille. Connectez iCal dans Host Registry. Dépassement : amende civile de 10 000 EUR."
+        },
+        "nonPrimary": {
+          "title": "Hors résidence principale",
+          "body": "Les biens non principaux exigent une autorisation de changement d'usage avec compensation avant le 1er jour. Le numéro en ligne ne vaut pas autorisation. Voir le guide Marseille complet pour compensation, DPE, Guichet unique et DAACT."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour et plateformes",
+          "body": "Créez votre compte taxedesejour.marseille.fr même si Airbnb collecte la taxe. La collecte plateforme s'applique uniquement si vous louez exclusivement via Airbnb, Abritel, Homelidays ou HomeAway. Réservations directes : vous encaissez, déclarez et payez en ligne."
+        },
+        "glint": {
+          "title": "Host Registry, par Glint",
+          "body": "Playbook Marseille, Cap Guard 90 nuitées, file taxe de séjour, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Marseille."
         }
       }
     },
@@ -1394,7 +1488,7 @@
         },
         "14": {
           "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
-          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
+          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice, Marseille) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
         },
         "15": {
           "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
@@ -1464,6 +1558,8 @@
       "guideFrNerMigration": "Migration NER 2026",
       "guideParisStrRegistration": "Enregistrement LCD Paris",
       "guideParisAirbnbRegistration": "Airbnb Paris / meublé de tourisme",
+      "guideMarseilleStrRegistration": "Enregistrement LCD Marseille",
+      "guideMarseilleAirbnbRegistration": "Airbnb Marseille / meublé de tourisme",
       "account": "Compte",
       "legal": "Légal",
       "company": "Glint, micro-entreprise",

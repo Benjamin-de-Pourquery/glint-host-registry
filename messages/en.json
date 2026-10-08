@@ -708,7 +708,7 @@
         },
         "compensation": {
           "title": "Compensation forms and arrondissement groups",
-          "body": "Compensation may be: (1) concomitant transformation of non-residential premises into housing, or (2) purchase of droits de commercialité from owners who transformed other premises into housing. For a meublé de tourisme, compensation premises must be in the same arrondissement group: 1-2-3, 4-5-6, 7-8-9, 10-11-12, 13-14-15-16. Compensation outside the group is allowed only for professional or commercial uses, or when the compensation creates social housing anywhere in the city."
+          "body": "Compensation may be: (1) concomitant transformation of non-residential premises into housing, or (2) purchase of droits de commercialité from owners who transformed other premises into housing. For a meublé de tourisme, compensation premises must be in the same arrondissement group: 1-2-3, 4-5-6, 7-8-9, 10-11-12, 13-14-15-16. The only exception: if the compensation premises are social housing (loi SRU), they may be anywhere in Marseille."
         },
         "dpeBuilding": {
           "title": "DPE and 50% building balance",
@@ -720,7 +720,7 @@
         },
         "sanctions": {
           "title": "Sanctions",
-          "body": "Change of use without authorisation: civil fine up to 100 000 EUR per unit, restitution order with astreinte up to 1 000 EUR per day per m², and the court may order the unit returned to housing use. Intermediaries (not platforms) up to 100 000 EUR. Fraud: up to one year imprisonment and/or 80 000 EUR."
+          "body": "Change of use without authorisation: civil fine up to 100 000 EUR per unit, and the court may order the unit returned to housing use, with a penalty (astreinte) of up to 1 000 EUR per day per m². Intermediaries (not platforms) up to 100 000 EUR. Fraud: up to one year imprisonment and/or 80 000 EUR."
         },
         "taxeSejour": {
           "title": "Taxe de séjour",

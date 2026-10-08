@@ -708,7 +708,7 @@
         },
         "compensation": {
           "title": "Formes de compensation et groupes d'arrondissements",
-          "body": "La compensation peut être : (1) transformation concomitante de locaux non résidentiels en logement, ou (2) achat de droits de commercialité auprès de propriétaires ayant transformé d'autres locaux en logement. Pour un meublé de tourisme, le bien de compensation doit être dans le même groupe d'arrondissements : 1-2-3, 4-5-6, 7-8-9, 10-11-12, 13-14-15-16. Hors groupe : usages professionnels ou commerciaux, ou compensation en logement social n'importe où dans la ville."
+          "body": "La compensation peut être : (1) transformation concomitante de locaux non résidentiels en logement, ou (2) achat de droits de commercialité auprès de propriétaires ayant transformé d'autres locaux en logement. Pour un meublé de tourisme, le bien de compensation doit être dans le même groupe d'arrondissements : 1-2-3, 4-5-6, 7-8-9, 10-11-12, 13-14-15-16. Seule exception : si la compensation porte sur du logement social (loi SRU), elle peut se situer n'importe où dans la commune."
         },
         "dpeBuilding": {
           "title": "DPE et équilibre du bâtiment à 50 %",
@@ -716,11 +716,11 @@
         },
         "procedure": {
           "title": "Dossier papier au Guichet unique",
-          "body": "Déposez un dossier papier en double (formulaire avec compensation, Annexe 2 comparative, pièces listées, DPE, attestation sur l'honneur copropriété) au Service des Autorisations d'urbanisme, 38-40 rue Fauchier (rez-de-chaussée), 13233 Marseille Cedex 20, sur place ou par courrier. Suivi : autorisationchangementusage@marseille.fr. Dossier incomplet : deux mois pour compléter sinon rejet tacite. Le maire de secteur (arrondissement) rend un avis sous un mois ; le silence vaut avis favorable. Décision sous deux mois après dossier complet ; silence à deux mois : acceptation tacite, sous réserve de retrait ou abrogation par la collectivité (CRPA). L'autorisation ne devient définitive qu'après DAACT ; sans DAACT après deux ans, la Ville peut retirer l'autorisation."
+          "body": "Déposez un dossier papier en double (formulaire avec compensation, Annexe 2 comparative, pièces listées, DPE, attestation sur l'honneur copropriété) au Service des Autorisations d'urbanisme, 38-40 rue Fauchier (rez-de-chaussée), 13233 Marseille Cedex 20, sur place ou par courrier. Suivi : autorisationchangementusage@marseille.fr. Dossier incomplet : deux mois pour compléter sinon rejet tacite. Le maire de secteur (arrondissement) rend un avis sous un mois ; le silence vaut avis favorable. Décision sous deux mois après dossier complet ; silence à deux mois : acceptation tacite, sous réserve de retrait ou abrogation par la collectivité (CRPA). L'autorisation ne devient définitive qu'après DAACT ; sans DAACT après deux ans, la Ville peut abroger l'autorisation."
         },
         "sanctions": {
           "title": "Sanctions",
-          "body": "Changement d'usage sans autorisation : amende civile jusqu'à 100 000 EUR par logement, mise en demeure de remise en état avec astreinte jusqu'à 1 000 EUR par jour et par m², et le tribunal peut ordonner la remise du logement à l'usage d'habitation. Intermédiaires (hors plateformes) : jusqu'à 100 000 EUR. Fraude : un an d'emprisonnement et/ou 80 000 EUR."
+          "body": "Changement d'usage sans autorisation : amende civile jusqu'à 100 000 EUR par logement, le tribunal peut ordonner le retour du logement à l'habitation, sous astreinte jusqu'à 1 000 EUR par jour et par m². Intermédiaires (hors plateformes) : jusqu'à 100 000 EUR. Fraude : jusqu'à un an d'emprisonnement et/ou 80 000 EUR."
         },
         "taxeSejour": {
           "title": "Taxe de séjour",

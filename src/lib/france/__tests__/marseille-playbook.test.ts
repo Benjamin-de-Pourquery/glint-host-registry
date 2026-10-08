@@ -103,13 +103,35 @@ describe("stepAppliesForMarseille", () => {
     );
   });
 
-  it("shows compensation steps when arrondissement is known", () => {
-    const compensation = step("marseilleNonPrimaryWithArrondissement");
+  it("shows non-primary change-of-use steps without a postal code", () => {
+    const changeOfUse = step("marseilleNonPrimaryChangeOfUse");
     assert.equal(
-      stepAppliesForMarseille(compensation, "secondary", "apartment", {
+      stepAppliesForMarseille(changeOfUse, "secondary", "apartment", {
+        address: "Marseille without code",
+      }),
+      true
+    );
+    assert.equal(
+      stepAppliesForMarseille(changeOfUse, "primary", "apartment", {
+        address: "13007 Marseille",
+      }),
+      false
+    );
+  });
+
+  it("shows arrondissement group check only when postal code is known", () => {
+    const groupCheck = step("marseilleNonPrimaryWithArrondissement");
+    assert.equal(
+      stepAppliesForMarseille(groupCheck, "secondary", "apartment", {
         address: "13007 Marseille",
       }),
       true
+    );
+    assert.equal(
+      stepAppliesForMarseille(groupCheck, "secondary", "apartment", {
+        address: "Marseille without code",
+      }),
+      false
     );
   });
 

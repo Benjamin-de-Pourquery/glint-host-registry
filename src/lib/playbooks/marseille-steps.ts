@@ -60,7 +60,7 @@ export function buildMarseillePlaybookSteps(
             fr: "Métropole AMP : règlement changement d'usage (PDF, fév. 2025)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -96,7 +96,7 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 12 (motifs de refus)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: { en: [], fr: [] },
@@ -130,7 +130,7 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 18 (autorisations 2021)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: { en: [], fr: [] },
@@ -144,8 +144,8 @@ export function buildMarseillePlaybookSteps(
         fr: "Ajouter le code postal pour le groupe d'arrondissements",
       },
       instruction: {
-        en: `For non-primary change of use, compensation premises for a meublé de tourisme must sit in the same arrondissement group as the unit (${ARRONDISSEMENT_GROUPS_EN}). Outside the group is only allowed for professional or commercial uses, or when compensation is social housing. Add a Marseille postal code (13001 to 13016) to the property address so Host Registry can confirm your group.`,
-        fr: `Pour un changement d'usage hors résidence principale, le bien de compensation d'un meublé de tourisme doit être dans le même groupe d'arrondissements (${ARRONDISSEMENT_GROUPS_FR}). Hors groupe : usages professionnels ou commerciaux, ou compensation en logement social uniquement. Ajoutez un code postal marseillais (13001 à 13016) à l'adresse du bien pour que Host Registry confirme votre groupe.`,
+        en: `For non-primary change of use, compensation premises for a meublé de tourisme must sit in the same arrondissement group as the unit (${ARRONDISSEMENT_GROUPS_EN}). The only exception: if the compensation premises are social housing (loi SRU), they may be anywhere in Marseille. Add a Marseille postal code (13001 to 13016) to the property address so Host Registry can show the playbook steps that apply to your unit.`,
+        fr: `Pour un changement d'usage hors résidence principale, le bien de compensation d'un meublé de tourisme doit être dans le même groupe d'arrondissements (${ARRONDISSEMENT_GROUPS_FR}). Seule exception : si la compensation porte sur du logement social (loi SRU), elle peut se situer n'importe où dans la commune. Ajoutez un code postal marseillais (13001 à 13016) à l'adresse du bien pour que Host Registry affiche les étapes du playbook qui s'appliquent à votre bien.`,
       },
       officialUrls: [
         {
@@ -155,7 +155,7 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 6 (groupes d'arrondissements)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -211,7 +211,7 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 4 (formes de compensation)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
         {
           url: MARSEILLE_CHANGE_OF_USE_PAGE_URL,
@@ -227,7 +227,7 @@ export function buildMarseillePlaybookSteps(
         en: ["Compensation project outline", "Proof of non-residential or commercialité purchase"],
         fr: ["Projet de compensation", "Justificatif transformation ou droits de commercialité"],
       },
-      appliesWhen: "marseilleNonPrimaryWithArrondissement",
+      appliesWhen: "marseilleNonPrimaryChangeOfUse",
       fieldHints: ["address", "notes"],
     },
     {
@@ -237,8 +237,8 @@ export function buildMarseillePlaybookSteps(
         fr: "Confirmer le groupe d'arrondissements pour la compensation",
       },
       instruction: {
-        en: `For a meublé de tourisme, compensation premises must be in the same arrondissement group as the unit: ${ARRONDISSEMENT_GROUPS_EN}. Compensation outside the group is only allowed for professional or commercial uses, or when the compensation creates social housing anywhere in the city.`,
-        fr: `Pour un meublé de tourisme, le bien de compensation doit être dans le même groupe d'arrondissements : ${ARRONDISSEMENT_GROUPS_FR}. Hors groupe : usages professionnels ou commerciaux, ou compensation en logement social n'importe où dans la ville.`,
+        en: `For a meublé de tourisme, compensation premises must be in the same arrondissement group as the unit: ${ARRONDISSEMENT_GROUPS_EN}. The only exception: if the compensation premises are social housing (loi SRU), they may be anywhere in Marseille.`,
+        fr: `Pour un meublé de tourisme, le bien de compensation doit être dans le même groupe d'arrondissements : ${ARRONDISSEMENT_GROUPS_FR}. Seule exception : si la compensation porte sur du logement social (loi SRU), elle peut se situer n'importe où dans la commune.`,
       },
       officialUrls: [
         {
@@ -248,7 +248,7 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 6 (règle du même groupe)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
@@ -276,14 +276,14 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 12.3 (DPE)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
         en: ["Valid DPE certificate (classes A to E)"],
         fr: ["DPE valide (classes A à E)"],
       },
-      appliesWhen: "marseilleNonPrimaryWithArrondissement",
+      appliesWhen: "marseilleNonPrimaryChangeOfUse",
       fieldHints: ["address", "propertyType"],
     },
     {
@@ -304,14 +304,14 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 2 (équilibre du bâtiment)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
         en: ["Building surface breakdown", "Unit count in building"],
         fr: ["Répartition des surfaces", "Nombre de logements dans l'immeuble"],
       },
-      appliesWhen: "marseilleNonPrimaryWithArrondissement",
+      appliesWhen: "marseilleNonPrimaryChangeOfUse",
       fieldHints: ["address", "propertyType"],
     },
     {
@@ -332,14 +332,14 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 13 (pièces du dossier)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
         en: ["Sworn statement that copropriété rules allow the project"],
         fr: ["Attestation sur l'honneur d'autorisation copropriété"],
       },
-      appliesWhen: "marseilleNonPrimaryWithArrondissement",
+      appliesWhen: "marseilleNonPrimaryChangeOfUse",
       fieldHints: ["address", "propertyType"],
     },
     {
@@ -369,10 +369,10 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 13 à 15 (procédure)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
-      appliesWhen: "marseilleNonPrimaryWithArrondissement",
+      appliesWhen: "marseilleNonPrimaryChangeOfUse",
       documents: {
         en: [
           "Form with compensation + Annexe 2 comparative",
@@ -405,7 +405,7 @@ export function buildMarseillePlaybookSteps(
       },
       instruction: {
         en: "Authorisation becomes final only after the attestation d'achèvement et de conformité des travaux (DAACT). Without a DAACT after two years the city may revoke the authorisation. Compensation is published at the service de la publicité foncière.",
-        fr: "L'autorisation ne devient définitive qu'après l'attestation d'achèvement et de conformité des travaux (DAACT). Sans DAACT après deux ans, la Ville peut retirer l'autorisation. La compensation est publiée au service de la publicité foncière.",
+        fr: "L'autorisation ne devient définitive qu'après l'attestation d'achèvement et de conformité des travaux (DAACT). Sans DAACT après deux ans, la Ville peut abroger l'autorisation. La compensation est publiée au service de la publicité foncière.",
       },
       officialUrls: [
         {
@@ -415,14 +415,14 @@ export function buildMarseillePlaybookSteps(
             fr: "Règlement art. 6 (DAACT)",
           },
           role: "rules",
-          urlVerified: true,
+          urlVerified: false,
         },
       ],
       documents: {
         en: ["DAACT timeline plan", "Works completion evidence"],
         fr: ["Calendrier DAACT", "Justificatifs d'achèvement des travaux"],
       },
-      appliesWhen: "marseilleNonPrimaryWithArrondissement",
+      appliesWhen: "marseilleNonPrimaryChangeOfUse",
       fieldHints: ["address", "notes"],
     },
     {

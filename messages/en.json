@@ -1362,8 +1362,8 @@
   },
   "landing": {
     "hero": {
-      "title": "EU short-term rental compliance across 11 countries and Spanish regional regimes",
-      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza plus Madrid/Valencia VUT, Barcelona HUT and Andalucía VUT, Italy CIN + Alloggiati, Portugal RNAL + SIBA, Greece AMA + AADE, Croatia categorisation + eVisitor, Netherlands stay notifications, Belgium tri-regional registration, Germany Berlin/Munich, Austria Vienna WKVRG readiness, and Ireland STL register prep. Host Registry, by Glint, prepares; you submit on official portals.",
+      "title": "Stay on top of EU short-term rental compliance",
+      "subtitle": "One cockpit for registration numbers, guest reporting, and a clear next action per property. Eleven European countries, from Paris to Dublin. Host Registry, by Glint, prepares your steps and exports. You submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -1391,8 +1391,9 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR + ES + IT + PT + GR + HR + NL + BE + DE + AT + IE",
-      "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor ops",
+      "countriesLabel": "countries",
+      "guidesLink": "Guides by country",
+      "guestReporting": "Guest-reporting ops",
       "bilingual": "FR + EN interface",
       "softwareOnly": "Software only: not a certifier, law firm, or notified body"
     },
@@ -1410,57 +1411,38 @@
       "description": "Between EU Regulation 2024/1028, municipal rules, and police forms for foreign guests, hosts navigate different procedures per country and city, often across multiple properties.",
       "points": {
         "1": "Each country and city has its own registration tunnels, change-of-use rules, and official forms",
-        "2": "In Spain, guest reports are due within 24h (SES, Mossos, or Ertzaintza). In Italy, Alloggiati schedine are separate from CIN. In Portugal, SIBA boletim within 3 working days. In Greece, AADE stay declarations by the 20th after departure. In Croatia, eVisitor check-in/out within 24h of arrival and departure",
+        "2": "Guest reporting deadlines and forms differ by jurisdiction, often within 24 hours of arrival. Host Registry queues what is due and prepares export kits for official portals.",
         "3": "France keeps the fiche de police for foreign guests; platforms verify CIN/RNAL/AMA/NER under EU 2024/1028 from May 2026"
       }
     },
     "solution": {
       "title": "One compliance cockpit for your portfolio",
-      "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking, with a clear next action per property.",
+      "description": "Host Registry, by Glint, centralizes guided steps, guest register, reporting queues, iCal stay sync, and registration tracking, with a clear next action per property.",
       "points": {
-        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany (Berlin, Munich), Austria (Vienna WKVRG readiness from 2027), and Ireland (Dublin playbook, national STL register prep), with country-level fallbacks",
-        "2": "Guest register: French fiche, Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), eVisitor (HR); due queues with deadlines",
-        "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run validation by default, optional live MIR submission when you enable it"
+        "1": "Guided playbooks with official links, residency branching, and country fallbacks where they exist.",
+        "2": "Guest register with check-in link, signature where required, retention windows, and due queues.",
+        "3": "iCal stay sync, export kits for regional portals, SES dry-run validation by default, and optional live MIR when you enable it."
       }
     },
     "features": {
       "title": "Everything you need to stay compliant",
       "subtitle": "Local guidance, operational guest register, and portfolio tracking, in a clean bilingual interface.",
       "compliance": {
-        "title": "Country and city-guided compliance",
-        "description": "Step-by-step playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany, Austria, and Ireland, with official form links, regulations, and residency branching."
+        "title": "Guided compliance steps",
+        "description": "Step-by-step playbooks keyed to your property location, with official form links, regulations, and residency branching."
       },
       "guestRegister": {
-        "title": "Guest register (FR + ES + IT + PT + GR + HR)",
-        "description": "Public check-in link or QR with French fiche de police, Annex I fields (Spain), Alloggiati schedina (Italy), SIBA boletim (Portugal), AADE stay data (Greece), eVisitor fields (Croatia), digital signature, and CSV export."
+        "title": "Guest register",
+        "description": "Public check-in link or QR with jurisdiction-specific fields, digital signature where required, retention windows, and CSV export."
       },
       "sesQueue": {
         "title": "EU guest-reporting queues",
-        "description": "SES, Mossos, and Ertzaintza for Spain; Alloggiati Web for Italy; SIBA for Portugal; AADE for Greece; eVisitor for Croatia; Amsterdam stay-notification ops for Netherlands; Brussels / Flanders / Wallonia registration ops for Belgium. Export kits and due queues where single-country tools leave gaps."
+        "description": "Due queues and export kits for national and regional guest-reporting portals, without replacing your filing identity."
       },
-      "netherlandsOps": {
-        "title": "Netherlands & Amsterdam compliance ops",
-        "description": "National registration number, holiday-rental permit tracker, per-stay municipal notification queue, and 30/15 night-cap engine for Amsterdam wijken."
-      },
-      "belgiumOps": {
-        "title": "Belgium tri-regional registration ops",
-        "description": "Brussels prior-declaration dossier, Flanders aanmelding and Wallonia registration: region routing, dossier checklist, number tracking and EU listing display."
-      },
-      "austriaOps": {
-        "title": "Austria / Vienna WKVRG readiness (from 2027)",
-        "description": "Pending Vienna platform STR register: dossier tracking, transition deadlines, number storage and listing display. No auto-submit while the law is still before the Landtag."
-      },
-      "germanyOps": {
-        "title": "Germany STR compliance (Berlin ZwVbG, Munich ZeS)",
-        "description": "Berlin Bezirksamt dossiers, Munich ZeS §5a readiness while the city portal is not live, EU 2024/1028 transition, registration storage and listing display. No auto-submit to government portals."
-      },
-      "spainRegionsOps": {
-        "title": "Spain regional registration ops",
-        "description": "Madrid and Valencia VUT, Barcelona HUT, Andalucía VUT for Málaga and Seville, plus SES/Mossos/Ertzaintza guest-reporting queues. Region routing, dossier checklists and export kits. You file on regional, municipal and MIR (SES.Hospedajes) portals."
-      },
-      "irelandOps": {
-        "title": "Ireland STL register readiness",
-        "description": "Fáilte Ireland short-term letting register prep (portal timing per government notices), Dublin planning Forms 15/16/17, dossier tracking, registration storage and listing display. No auto-submit while portals are not live."
+      "coverage": {
+        "title": "European coverage",
+        "description": "City playbooks and country checklists for registration, guest reporting, and listing display. No automatic filing to government portals.",
+        "link": "See all guides by country"
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -1554,7 +1536,7 @@
         },
         "2": {
           "q": "Who is Glint for?",
-          "a": "Independent hosts and small managers with one or many listings on Airbnb, Booking.com, Vrbo, and similar platforms. It fits portfolios across France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany, Austria, and Ireland, especially when you need one bilingual FR/EN workspace instead of several single-country tools."
+          "a": "Independent hosts and small property managers with listings on Airbnb, Booking.com, Vrbo, and similar platforms who want one bilingual FR/EN workspace instead of juggling several single-country tools."
         },
         "3": {
           "q": "Does Glint file compliance steps with authorities for me?",
@@ -1566,7 +1548,7 @@
         },
         "5": {
           "q": "Which countries and cities have guided playbooks?",
-          "a": "Full city tunnels ship for France (Paris, Lyon, Marseille, Bordeaux, Nice, Lille, Toulouse, Nantes, Strasbourg, plus other French cities via adaptable templates), Spain (Madrid, Valencia, Málaga, Seville, Barcelona, Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz), Italy (Roma, Milano, Firenze, Venezia), Portugal (Lisboa, Porto, Faro, Funchal), Greece (Athina, Thessaloniki, Heraklion, Rhodes, Corfu), Croatia (Zagreb, Split, Dubrovnik, Zadar), the Netherlands (Amsterdam, Rotterdam, Den Haag, Utrecht), Belgium (Brussels, Antwerp, Ghent, Bruges, Liège, Namur), Germany (Berlin, Munich), Austria (Vienna), and Ireland (Dublin), each with a country-level fallback guide where applicable."
+          "a": "Host Registry ships guided city playbooks and national checklists across eleven European countries. The full country and city list is on the guides index at /en/guides, linked from the footer and the trust strip on this page."
         },
         "6": {
           "q": "How do guided playbooks and the next-action engine work?",
@@ -1574,7 +1556,7 @@
         },
         "7": {
           "q": "What is the guest register?",
-          "a": "A public check-in link or QR that collects the right guest fields for your jurisdiction: French fiche de police for foreign guests, Spain Annex I (SES, Mossos, or Ertzaintza), Italy Alloggiati schedina, Portugal SIBA boletim, Greece AADE stay data, and Croatia eVisitor fields. Hosts get signature capture where required, retention windows that match local rules, CSV or print export, and due queues with deadlines."
+          "a": "A public check-in link or QR that collects the guest fields your jurisdiction expects. Host Registry supports signature capture where required, retention windows that match local rules, CSV or print export, and due queues with deadlines."
         },
         "8": {
           "q": "Does Glint sync stays from iCal?",
@@ -1598,7 +1580,7 @@
         },
         "13": {
           "q": "Does Host Registry cover the Netherlands, Belgium, Germany, Austria and Ireland?",
-          "a": "Yes. Netherlands: national registration number, holiday-rental permit tracking, Amsterdam per-stay municipal notification queue, and the 30/15 night-cap engine for Amsterdam wijken. Belgium: tri-regional registration for Brussels prior declaration, Flanders aanmelding, and Wallonia registration, with region routing, dossier checklist, and listing display tracking. Germany: Berlin ZwVbG and Munich ZeS playbooks, dossier tracking and listing display, no auto-submit to Bezirksamt or city portals. Austria: Vienna WKVRG readiness from 2027, dossier tracking while the law is pending. Ireland: Fáilte Ireland STL register prep and Dublin planning checklist, due queues and listing display, no auto-submit to Fáilte Ireland. No fake government API push."
+          "a": "Yes. Host Registry tracks registration, regional dossiers, stay-notification queues, night-cap counting where applicable, and listing display prep for those markets. See the guides index for official links and city playbooks. No auto-submit to government portals and no fake government API push."
         },
         "14": {
           "q": "Does Glint track the 120-night primary residence cap?",
@@ -1622,13 +1604,13 @@
         },
         "19": {
           "q": "How do I get support?",
-          "a": "Use in-app help from your dashboard, and Pro plans include priority support. Legal pages and the guides index in the footer list registration numbers, France NER migration, guest register, Paris/Lyon/Marseille, SES and Spanish city VUT/HUT guides, Amsterdam night caps, Italy CIN and Alloggiati, Portugal RNAL and SIBA, Greece AMA and AADE, Croatia eVisitor, Belgium registration, Berlin/Munich, Vienna WKVRG, and Ireland/Dublin STL register prep."
+          "a": "Use in-app help from your dashboard, and Pro plans include priority support. Legal pages and the guides index in the footer cover registration, guest reporting, city playbooks, and platform NER topics by country. Open /en/guides for the full list."
         }
       }
     },
     "cta": {
       "title": "Take control of your compliance",
-      "subtitle": "France, Spain, Italy, Portugal, Greece, Croatia, Netherlands, Belgium, Germany, Austria, and Ireland compliance ops in one cockpit. Playbooks, guest register, reporting queues, and portfolio tracking.",
+      "subtitle": "Registration, guest reporting, and portfolio tracking in one bilingual workspace. Host Registry, by Glint, prepares your steps. You file on official portals.",
       "button": "Start 14-day free trial",
       "login": "Sign in"
     },

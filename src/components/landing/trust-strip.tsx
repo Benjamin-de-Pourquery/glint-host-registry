@@ -1,13 +1,15 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { Shield, MapPin, Languages, FileCheck, Building2 } from "lucide-react";
+import { Shield, Globe, Languages, FileCheck, Building2 } from "lucide-react";
 
-export async function TrustStrip() {
+type Props = { locale: string };
+
+export async function TrustStrip({ locale }: Props) {
   const t = await getTranslations("landing.trust");
 
   const items = [
     { icon: Shield, label: t("regulation") },
-    { icon: MapPin, label: t("cities") },
-    { icon: FileCheck, label: t("ses") },
+    { icon: FileCheck, label: t("guestReporting") },
     { icon: Languages, label: t("bilingual") },
     { icon: Building2, label: t("softwareOnly") },
   ];
@@ -16,6 +18,18 @@ export async function TrustStrip() {
     <section className="border-y border-emerald-200/50 bg-gradient-to-r from-emerald-50/80 via-white to-emerald-50/80">
       <div className="mx-auto max-w-6xl px-4 py-5 sm:px-6 sm:py-6">
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+          <Link
+            href={`/${locale}/guides`}
+            className="landing-trust-badge inline-flex max-w-full items-center gap-2 rounded-lg border border-emerald-300/90 bg-white px-3 py-1.5 text-emerald-900 shadow-sm shadow-emerald-900/[0.06] transition-colors hover:border-emerald-400 hover:bg-emerald-50/50"
+          >
+            <Globe className="h-3.5 w-3.5 shrink-0 text-emerald-600" aria-hidden />
+            <span className="font-bold tabular-nums text-emerald-800">11</span>
+            <span>{t("countriesLabel")}</span>
+            <span className="text-emerald-500" aria-hidden>·</span>
+            <span className="font-medium text-emerald-700 underline-offset-2 hover:underline">
+              {t("guidesLink")}
+            </span>
+          </Link>
           {items.map(({ icon: Icon, label }) => (
             <span
               key={label}

@@ -15,7 +15,7 @@ export default async function GuidePortugalRnalSibaPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "guides.portugalRnalSiba" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guidePortugalRnalSiba" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.rnal.title")}</h2>
       <p>{t("sections.rnal.body")}</p>

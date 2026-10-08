@@ -39,6 +39,10 @@
       "title": "Legal notice",
       "description": "Legal information about Glint Host Registry: publisher, hosting and contact."
     },
+    "guidesIndex": {
+      "title": "Host Registry guides by country and city",
+      "description": "Practical short-term rental guides for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany, Austria and Ireland. Registration, guest reporting and city playbooks."
+    },
     "guideRegistration": {
       "title": "Registration numbers for short-term rentals & platforms in 2026",
       "description": "Practical guide: Regulation (EU) 2024/1028, French furnished tourism registration, Airbnb and Booking NER checks. What hosts should prepare."
@@ -303,6 +307,30 @@
   "guides": {
     "label": "Host guide",
     "backHome": "Back to home",
+    "backToIndex": "All guides",
+    "crossLinks": {
+      "nationalTitle": "Country guides",
+      "citiesTitle": "City guides in this country"
+    },
+    "index": {
+      "label": "Guides",
+      "title": "Host Registry guides",
+      "intro": "Practical checklists and official links for short-term rental hosts. Host Registry, by Glint, prepares your steps and exports. You submit on official portals.",
+      "backHome": "Back to home",
+      "groups": {
+        "france": "France",
+        "spain": "Spain",
+        "italy": "Italy",
+        "portugal": "Portugal",
+        "greece": "Greece",
+        "croatia": "Croatia",
+        "netherlands": "Netherlands",
+        "belgium": "Belgium",
+        "germany": "Germany",
+        "austria": "Austria",
+        "ireland": "Ireland"
+      }
+    },
     "cta": {
       "title": "Centralize compliance with Glint",
       "description": "Guest register, registration number tracking, SES queue and city playbooks, 14-day free trial.",
@@ -520,7 +548,7 @@
         },
         "siba": {
           "title": "SIBA: Boletim de Alojamento (foreign guests)",
-          "body": "Hosts lodging foreign guests for pay must register the establishment on siba.ssi.gov.pt (SSI/UCFE) and submit a Boletim de Alojamento for each foreign guest arrival AND departure. Portuguese nationals are not reported. Fines €100–€2,000 for late communication (Lei 23/2007 art. 203)."
+          "body": "Hosts lodging foreign guests for pay must register the establishment on siba.ssi.gov.pt (SSI/UCFE) and submit a Boletim de Alojamento for each foreign guest arrival AND departure. Portuguese nationals are not reported. Fines from €100 to €2,000 for late communication (Lei 23/2007 art. 203)."
         },
         "phases": {
           "title": "SIBA reporting phases",
@@ -562,7 +590,7 @@
       "sections": {
         "regions": {
           "title": "Three regions, three systems",
-          "body": "Brussels-Capital: prior declaration dossier to Brussels Economy and Employment before any rental (1–90 consecutive nights). Flanders: mandatory aanmelding at Toerisme Vlaanderen under the Logiesdecreet, even occasional Airbnb. Wallonia: compulsory registration with Tourisme Wallonie before guests arrive, including fire safety and planning compliance."
+          "body": "Brussels-Capital: prior declaration dossier to Brussels Economy and Employment before any rental (1 to 90 consecutive nights). Flanders: mandatory aanmelding at Toerisme Vlaanderen under the Logiesdecreet, even occasional Airbnb. Wallonia: compulsory registration with Tourisme Wallonie before guests arrive, including fire safety and planning compliance."
         },
         "eu": {
           "title": "EU 2024/1028 and platform checks",
@@ -1334,8 +1362,8 @@
   },
   "landing": {
     "hero": {
-      "title": "EU short-term rental compliance: France, Spain, Italy, Portugal, Greece, Croatia, and beyond",
-      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza, Italy CIN + Alloggiati, Portugal RNAL + SIBA, Greece AMA + AADE, Croatia categorisation + eVisitor guest reporting, Netherlands stay notifications, and Belgium tri-regional registration. Glint prepares; you submit on official portals.",
+      "title": "EU short-term rental compliance across 11 countries and Spanish regional regimes",
+      "subtitle": "One EU compliance layer: France playbooks, Spain SES/Mossos/Ertzaintza plus Madrid/Valencia VUT, Barcelona HUT and Andalucía VUT, Italy CIN + Alloggiati, Portugal RNAL + SIBA, Greece AMA + AADE, Croatia categorisation + eVisitor, Netherlands stay notifications, Belgium tri-regional registration, Germany Berlin/Munich, Austria Vienna WKVRG readiness, and Ireland STL register prep. Host Registry, by Glint, prepares; you submit on official portals.",
       "cta": "Start 14-day free trial",
       "ctaLogin": "Sign in",
       "ctaSecondary": "Explore features",
@@ -1363,7 +1391,7 @@
     },
     "trust": {
       "regulation": "Regulation (EU) 2024/1028",
-      "cities": "FR + ES + IT + PT + GR + HR + NL + BE",
+      "cities": "FR + ES + IT + PT + GR + HR + NL + BE + DE + AT + IE",
       "ses": "SES + Mossos/Ertzaintza + Alloggiati + SIBA + AADE + eVisitor ops",
       "bilingual": "FR + EN interface",
       "softwareOnly": "Software only: not a certifier, law firm, or notified body"
@@ -1390,7 +1418,7 @@
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking, with a clear next action per property.",
       "points": {
-        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, and Austria (Vienna WKVRG readiness from 2027)",
+        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany (Berlin, Munich), Austria (Vienna WKVRG readiness from 2027), and Ireland (Dublin STL register prep), with country-level fallbacks",
         "2": "Guest register: French fiche, Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), eVisitor (HR); due queues with deadlines",
         "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run validation by default, optional live MIR submission when you enable it"
       }
@@ -1400,7 +1428,7 @@
       "subtitle": "Local guidance, operational guest register, and portfolio tracking, in a clean bilingual interface.",
       "compliance": {
         "title": "Country and city-guided compliance",
-        "description": "Step-by-step playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, and Belgium, with official form links, regulations, and residency branching."
+        "description": "Step-by-step playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany, Austria, and Ireland, with official form links, regulations, and residency branching."
       },
       "guestRegister": {
         "title": "Guest register (FR + ES + IT + PT + GR + HR)",
@@ -1425,6 +1453,14 @@
       "germanyOps": {
         "title": "Germany STR compliance (Berlin ZwVbG, Munich ZeS)",
         "description": "Berlin Bezirksamt dossiers, Munich ZeS §5a readiness while the city portal is not live, EU 2024/1028 transition, registration storage and listing display. No auto-submit to government portals."
+      },
+      "spainRegionsOps": {
+        "title": "Spain regional registration ops",
+        "description": "Madrid and Valencia VUT, Barcelona HUT, Andalucía VUT for Málaga and Seville, plus SES/Mossos/Ertzaintza guest-reporting queues. Region routing, dossier checklists and export kits. You file on comunidad, ayuntamiento and MIR portals."
+      },
+      "irelandOps": {
+        "title": "Ireland STL register readiness",
+        "description": "Fáilte Ireland short-term letting register prep (portal timing per government notices), Dublin planning Forms 15/16/17, dossier tracking, registration storage and listing display. No auto-submit while portals are not live."
       },
       "tabs": {
         "title": "Structured property workspace",
@@ -1518,7 +1554,7 @@
         },
         "2": {
           "q": "Who is Glint for?",
-          "a": "Independent hosts and small managers with one or many listings on Airbnb, Booking.com, Vrbo, and similar platforms. It fits portfolios across France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, and Belgium, especially when you need one bilingual FR/EN workspace instead of several single-country tools."
+          "a": "Independent hosts and small managers with one or many listings on Airbnb, Booking.com, Vrbo, and similar platforms. It fits portfolios across France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany, Austria, and Ireland, especially when you need one bilingual FR/EN workspace instead of several single-country tools."
         },
         "3": {
           "q": "Does Glint file compliance steps with authorities for me?",
@@ -1530,7 +1566,7 @@
         },
         "5": {
           "q": "Which countries and cities have guided playbooks?",
-          "a": "Full city tunnels ship for France (Paris, Lyon, Marseille, Bordeaux, Nice, plus other French cities via adaptable templates), Spain (Madrid, Valencia, Málaga, Barcelona, Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz), Italy (Roma, Milano, Firenze, Venezia), Portugal (Lisboa, Porto, Faro, Funchal), Greece (Athina, Thessaloniki, Heraklion, Rhodes, Corfu), Croatia (Zagreb, Split, Dubrovnik, Zadar), the Netherlands (Amsterdam, Rotterdam, Den Haag, Utrecht), and Belgium (Brussels, Antwerp, Ghent, Bruges, Liège, Namur), each with a country-level fallback guide."
+          "a": "Full city tunnels ship for France (Paris, Lyon, Marseille, Bordeaux, Nice, Lille, Toulouse, Nantes, Strasbourg, plus other French cities via adaptable templates), Spain (Madrid, Valencia, Málaga, Seville, Barcelona, Bilbao, Donostia-San Sebastián, Vitoria-Gasteiz), Italy (Roma, Milano, Firenze, Venezia), Portugal (Lisboa, Porto, Faro, Funchal), Greece (Athina, Thessaloniki, Heraklion, Rhodes, Corfu), Croatia (Zagreb, Split, Dubrovnik, Zadar), the Netherlands (Amsterdam, Rotterdam, Den Haag, Utrecht), Belgium (Brussels, Antwerp, Ghent, Bruges, Liège, Namur), Germany (Berlin, Munich), Austria (Vienna), and Ireland (Dublin), each with a country-level fallback guide where applicable."
         },
         "6": {
           "q": "How do guided playbooks and the next-action engine work?",
@@ -1561,8 +1597,8 @@
           "a": "Yes. Portugal: RNAL for listings plus SIBA boletim for foreign guests within 3 working days. Greece: AMA for listings plus AADE Short-Term Stay Declarations (by the 20th of the month after departure). Croatia: tourist categorisation tracking plus eVisitor check-in and check-out within 24h. In each case Glint prepares export kits and queues. You submit on the official portal."
         },
         "13": {
-          "q": "Does Glint cover the Netherlands and Belgium?",
-          "a": "Yes. Netherlands: national registration number, holiday-rental permit tracking, Amsterdam per-stay municipal notification queue, and the 30/15 night-cap engine for Amsterdam wijken. Belgium: tri-regional registration for Brussels prior declaration, Flanders aanmelding, and Wallonia registration, with region routing, dossier checklist, and listing display tracking. No fake government API push."
+          "q": "Does Glint cover the Netherlands, Belgium, Germany, Austria and Ireland?",
+          "a": "Yes. Netherlands: national registration number, holiday-rental permit tracking, Amsterdam per-stay municipal notification queue, and the 30/15 night-cap engine for Amsterdam wijken. Belgium: tri-regional registration for Brussels prior declaration, Flanders aanmelding, and Wallonia registration, with region routing, dossier checklist, and listing display tracking. Germany: Berlin ZwVbG and Munich ZeS playbooks, dossier tracking and listing display, no auto-submit to Bezirksamt or city portals. Austria: Vienna WKVRG readiness from 2027, dossier tracking while the law is pending. Ireland: Fáilte Ireland STL register prep and Dublin planning checklist, due queues and listing display, no auto-submit to Fáilte Ireland. No fake government API push."
         },
         "14": {
           "q": "Does Glint track the 120-night primary residence cap?",
@@ -1586,13 +1622,13 @@
         },
         "19": {
           "q": "How do I get support?",
-          "a": "Use in-app help from your dashboard, and Pro plans include priority support. Legal pages and country guides in the footer cover registration numbers, SES regions, guest register, Amsterdam night caps, Italy CIN and Alloggiati, Portugal RNAL and SIBA, Greece AMA and AADE, Croatia eVisitor, and Belgium registration."
+          "a": "Use in-app help from your dashboard, and Pro plans include priority support. Legal pages and the guides index in the footer list registration numbers, France NER migration, guest register, Paris/Lyon/Marseille, SES and Spanish city VUT/HUT guides, Amsterdam night caps, Italy CIN and Alloggiati, Portugal RNAL and SIBA, Greece AMA and AADE, Croatia eVisitor, Belgium registration, Berlin/Munich, Vienna WKVRG, and Ireland/Dublin STL register prep."
         }
       }
     },
     "cta": {
       "title": "Take control of your compliance",
-      "subtitle": "France, Spain, Italy, Portugal, Greece, Croatia, Netherlands, and Belgium compliance ops in one cockpit. Playbooks, guest register, reporting queues, and portfolio tracking.",
+      "subtitle": "France, Spain, Italy, Portugal, Greece, Croatia, Netherlands, Belgium, Germany, Austria, and Ireland compliance ops in one cockpit. Playbooks, guest register, reporting queues, and portfolio tracking.",
       "button": "Start 14-day free trial",
       "login": "Sign in"
     },
@@ -1605,6 +1641,7 @@
       "suiteProduct": "Product Registry",
       "suiteCurrent": "this site",
       "guides": "Guides",
+      "guidesIndexAll": "All guides",
       "guideRegistration": "Registration numbers 2026",
       "guideSes": "SES Hospedajes & regions",
       "guideGuestRegister": "Guest police fiche",
@@ -1640,6 +1677,8 @@
       "guideLyonAirbnbRegistration": "Lyon Airbnb / meublé de tourisme",
       "guideMarseilleStrRegistration": "Marseille STR registration",
       "guideMarseilleAirbnbRegistration": "Marseille Airbnb / meublé de tourisme",
+      "guideIrelandStrRegistration": "Ireland STL register",
+      "guideDublinAirbnbRegistration": "Dublin Airbnb / STL register",
       "account": "Account",
       "legal": "Legal",
       "company": "Glint, micro-entreprise",

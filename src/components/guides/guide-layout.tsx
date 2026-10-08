@@ -2,16 +2,19 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { MarketingHeader } from "@/components/marketing-header";
 import { LandingFooter } from "@/components/landing/landing-footer";
+import { GuideCountryNav } from "@/components/guides/guide-country-nav";
 import { Button } from "@/components/ui/button";
+import type { SeoPageKey } from "@/lib/seo/page-paths";
 
 type Props = {
   locale: string;
   title: string;
   updated: string;
+  seoPage?: SeoPageKey;
   children: React.ReactNode;
 };
 
-export async function GuideLayout({ locale, title, updated, children }: Props) {
+export async function GuideLayout({ locale, title, updated, seoPage, children }: Props) {
   const t = await getTranslations({ locale, namespace: "guides" });
 
   return (
@@ -24,6 +27,7 @@ export async function GuideLayout({ locale, title, updated, children }: Props) {
         </h1>
         <p className="mt-2 text-sm text-slate-500">{updated}</p>
         <div className="prose prose-slate mt-10 max-w-none">{children}</div>
+        {seoPage ? <GuideCountryNav locale={locale} seoPage={seoPage} /> : null}
         <div className="mt-12 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 sm:p-8">
           <h2 className="text-xl font-bold text-slate-900">{t("cta.title")}</h2>
           <p className="mt-2 text-slate-600">{t("cta.description")}</p>
@@ -36,9 +40,12 @@ export async function GuideLayout({ locale, title, updated, children }: Props) {
             </Link>
           </div>
         </div>
-        <p className="mt-8">
+        <p className="mt-8 flex flex-wrap gap-x-4 gap-y-2">
+          <Link href={`/${locale}/guides`} className="text-sm font-medium text-emerald-700 hover:underline">
+            ← {t("backToIndex")}
+          </Link>
           <Link href={`/${locale}`} className="text-sm font-medium text-emerald-700 hover:underline">
-            ← {t("backHome")}
+            {t("backHome")}
           </Link>
         </p>
       </article>

@@ -1,4 +1,5 @@
 export type SeoPageKey =
+  | "guidesIndex"
   | "home"
   | "login"
   | "signup"
@@ -74,6 +75,7 @@ export type SeoPageKey =
   | "guideMarseilleAirbnbRegistrationFr";
 
 export const PAGE_PATHS: Record<SeoPageKey, string> = {
+  guidesIndex: "/guides",
   home: "",
   login: "/login",
   signup: "/signup",

@@ -15,7 +15,7 @@ export default async function GuideValenciaAirbnbRegistrationPage({ params }: Pr
   const t = await getTranslations({ locale, namespace: "guides.valenciaAirbnbRegistration" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideValenciaAirbnbRegistration" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.airbnbField.title")}</h2>
       <p>{t("sections.airbnbField.body")}</p>

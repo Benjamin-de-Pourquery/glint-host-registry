@@ -92,6 +92,11 @@ export async function LandingFooter({ locale }: Props) {
             <h4 className="font-semibold text-white">{t("guides")}</h4>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
+                <Link href={`/${locale}/guides`} className="font-medium transition-colors hover:text-white">
+                  {t("guidesIndexAll")}
+                </Link>
+              </li>
+              <li>
                 <Link
                   href={guideHref(locale, "guideRegistration")}
                   className="transition-colors hover:text-white"
@@ -369,6 +374,22 @@ export async function LandingFooter({ locale }: Props) {
                   className="transition-colors hover:text-white"
                 >
                   {t("guideSevilleAirbnbRegistration")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={guideHref(locale, "guideIrelandStrRegistration")}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideIrelandStrRegistration")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={guideHref(locale, "guideDublinAirbnbRegistration")}
+                  className="transition-colors hover:text-white"
+                >
+                  {t("guideDublinAirbnbRegistration")}
                 </Link>
               </li>
             </ul>

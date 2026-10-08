@@ -33,7 +33,14 @@ export type StepAppliesWhen =
   | "lyonNonPrimaryHypercentre"
   | "lyonOutsideUnder35NaturalConfirm"
   | "lyonNonPrimaryCompensationRequired"
-  | "lyonNonPrimaryDetailsPending";
+  | "lyonNonPrimaryDetailsPending"
+  | "marseillePrimaryResidence"
+  | "marseilleNonPrimaryChangeOfUse"
+  | "marseilleSocialHousing"
+  | "marseilleLegacy2021"
+  | "marseilleArrondissementPending"
+  | "marseilleNonPrimaryWithArrondissement"
+  | "marseilleNotSocialHousing";
 
 export type ResidencyStatus = "primary" | "secondary" | "other";
 

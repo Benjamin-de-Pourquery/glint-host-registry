@@ -21,6 +21,11 @@ import {
   stepAppliesForLyon,
   type LyonPlaybookInput,
 } from "@/lib/france/lyon-playbook";
+import {
+  marseilleInputFromProperty,
+  stepAppliesForMarseille,
+  type MarseillePlaybookInput,
+} from "@/lib/france/marseille-playbook";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -234,6 +239,13 @@ export function stepAppliesToResidency(
     case "lyonOutsideUnder35NaturalConfirm":
     case "lyonNonPrimaryCompensationRequired":
     case "lyonNonPrimaryDetailsPending":
+    case "marseillePrimaryResidence":
+    case "marseilleNonPrimaryChangeOfUse":
+    case "marseilleSocialHousing":
+    case "marseilleLegacy2021":
+    case "marseilleArrondissementPending":
+    case "marseilleNonPrimaryWithArrondissement":
+    case "marseilleNotSocialHousing":
       return false;
     default:
       return true;
@@ -253,18 +265,30 @@ export function lyonInputFromProperty(
   };
 }
 
+export { marseilleInputFromProperty };
+
+export type FrCityPlaybookInput = LyonPlaybookInput & MarseillePlaybookInput;
+
 export function stepApplies(
   playbook: Playbook,
   step: PlaybookStep,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  lyonInput?: LyonPlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): boolean {
   if (playbook.id === "fr-paris") {
     return stepAppliesForParis(step, residencyStatus, propertyType);
   }
   if (playbook.id === "fr-lyon") {
-    return stepAppliesForLyon(step, residencyStatus, propertyType, lyonInput);
+    return stepAppliesForLyon(step, residencyStatus, propertyType, cityInput);
+  }
+  if (playbook.id === "fr-marseille") {
+    return stepAppliesForMarseille(
+      step,
+      residencyStatus,
+      propertyType,
+      cityInput ?? null
+    );
   }
   return stepAppliesToResidency(step, residencyStatus);
 }
@@ -273,10 +297,10 @@ export function getApplicableSteps(
   playbook: Playbook,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  lyonInput?: LyonPlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): PlaybookStep[] {
   return playbook.steps.filter((step) =>
-    stepApplies(playbook, step, residencyStatus, propertyType, lyonInput)
+    stepApplies(playbook, step, residencyStatus, propertyType, cityInput)
   );
 }
 
@@ -516,14 +540,14 @@ export function getNextPendingStep(
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  lyonInput?: LyonPlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): PlaybookStep | null {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
   const applicableSteps = getApplicableSteps(
     playbook,
     residencyStatus,
     propertyType,
-    lyonInput
+    cityInput
   );
 
   for (const step of applicableSteps) {
@@ -541,14 +565,14 @@ export function getPlaybookProgressSummary(
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  lyonInput?: LyonPlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): { completed: number; total: number; skipped: number } {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
   const applicableSteps = getApplicableSteps(
     playbook,
     residencyStatus,
     propertyType,
-    lyonInput
+    cityInput
   );
   let completed = 0;
   let skipped = 0;

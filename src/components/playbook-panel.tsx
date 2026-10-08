@@ -19,6 +19,7 @@ import {
   getPrimaryCtaUrl,
   getStepWhyNow,
   lyonInputFromProperty,
+  marseilleInputFromProperty,
   stepApplies,
 } from "@/lib/playbooks";
 import type {
@@ -276,18 +277,22 @@ export function PlaybookPanel({
   const nextCta = nextStep ? getPrimaryCtaUrl(nextStep) : null;
   const nextCtaLabelKey = nextCta ? getCtaLabelKey(nextCta.role) : "openOfficial";
 
-  const lyonInput = lyonInputFromProperty(property);
+  const propertyWithResidency = { ...property, residencyStatus };
+  const cityInput =
+    playbook.id === "fr-lyon"
+      ? lyonInputFromProperty(property)
+      : playbook.id === "fr-marseille"
+        ? marseilleInputFromProperty(propertyWithResidency)
+        : null;
   const visibleSteps = playbook.steps.filter((step) =>
     stepApplies(
       playbook,
       step,
       residencyStatus,
       property.propertyType,
-      lyonInput
+      cityInput
     )
   );
-
-  const propertyWithResidency = { ...property, residencyStatus };
   const nextPreparedFields = nextStep
     ? getPreparedFieldsForStep(nextStep.key, playbook, propertyWithResidency, uiLocale)
     : [];

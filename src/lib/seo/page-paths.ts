@@ -67,7 +67,11 @@ export type SeoPageKey =
   | "guideLyonStrRegistration"
   | "guideLyonStrRegistrationFr"
   | "guideLyonAirbnbRegistration"
-  | "guideLyonAirbnbRegistrationFr";
+  | "guideLyonAirbnbRegistrationFr"
+  | "guideMarseilleStrRegistration"
+  | "guideMarseilleStrRegistrationFr"
+  | "guideMarseilleAirbnbRegistration"
+  | "guideMarseilleAirbnbRegistrationFr";
 
 export const PAGE_PATHS: Record<SeoPageKey, string> = {
   home: "",
@@ -139,4 +143,9 @@ export const PAGE_PATHS: Record<SeoPageKey, string> = {
   guideLyonStrRegistrationFr: "/guides/enregistrement-location-courte-duree-lyon",
   guideLyonAirbnbRegistration: "/guides/lyon-airbnb-registration",
   guideLyonAirbnbRegistrationFr: "/guides/enregistrement-airbnb-lyon",
+  guideMarseilleStrRegistration: "/guides/marseille-short-term-rental-registration",
+  guideMarseilleStrRegistrationFr:
+    "/guides/enregistrement-location-courte-duree-marseille",
+  guideMarseilleAirbnbRegistration: "/guides/marseille-airbnb-registration",
+  guideMarseilleAirbnbRegistrationFr: "/guides/enregistrement-airbnb-marseille",
 };

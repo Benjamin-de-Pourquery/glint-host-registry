@@ -6,8 +6,7 @@ import { GUIDE_INDEX_GROUPS, footerLabelKeyForGuide } from "@/lib/guides/catalog
 import { buildLocalizedPath } from "@/lib/seo/metadata";
 import { generatePageMetadata } from "@/lib/seo/generate-page-metadata";
 import { routing } from "@/i18n/routing";
-import type { SeoPageKey } from "@/lib/seo/page-paths";
-import { getPageLocales } from "@/lib/seo/guide-routing";
+import { guideVisibleInLocale } from "@/lib/guides/visible-in-locale";
 
 type Locale = (typeof routing.locales)[number];
 
@@ -16,10 +15,6 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   return generatePageMetadata(locale, "guidesIndex");
-}
-
-function guideVisibleInLocale(locale: Locale, page: SeoPageKey): boolean {
-  return getPageLocales(page).includes(locale);
 }
 
 export default async function GuidesIndexPage({ params }: Props) {

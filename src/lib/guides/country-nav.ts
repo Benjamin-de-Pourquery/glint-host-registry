@@ -68,7 +68,7 @@ const COUNTRY_NAV: Record<GuideCountryId, CountryNav> = {
   },
   austria: {
     national: [],
-    cities: ["guideViennaStrRegistration"],
+    cities: ["guideViennaStrRegistration", "guideViennaAirbnbRegistration"],
   },
   ireland: {
     national: ["guideIrelandStrRegistration"],

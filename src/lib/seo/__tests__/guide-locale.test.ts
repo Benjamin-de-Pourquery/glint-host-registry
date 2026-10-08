@@ -13,6 +13,8 @@ import {
   resolveGuideSlugRedirect,
   switchLocaleInPathname,
 } from "@/lib/seo/guide-routing";
+import { countGuideIndexLinks } from "@/lib/guides/visible-in-locale";
+import { GUIDE_INDEX_GROUPS } from "@/lib/guides/catalog";
 import { PAGE_PATHS } from "@/lib/seo/page-paths";
 import { SITE_NAME } from "@/lib/seo/site";
 
@@ -291,5 +293,18 @@ describe("guides index sitemap", () => {
     const urls = getPublicSitemapEntries().map(({ locale, path }) => `/${locale}${path}`);
     assert.ok(urls.includes("/en/guides"));
     assert.ok(urls.includes("/fr/guides"));
+  });
+
+  it("indexes every locale guide URL listed in the sitemap", () => {
+    const guidePathsInSitemap = (locale: "en" | "fr") =>
+      getPublicSitemapEntries().filter(
+        ({ locale: loc, path }) => loc === locale && path.startsWith("/guides/"),
+      ).length;
+
+    assert.equal(countGuideIndexLinks("en"), 36);
+    assert.equal(countGuideIndexLinks("fr"), 37);
+    assert.equal(countGuideIndexLinks("en"), guidePathsInSitemap("en"));
+    assert.equal(countGuideIndexLinks("fr"), guidePathsInSitemap("fr"));
+    assert.equal(GUIDE_INDEX_GROUPS.length, 11);
   });
 });

@@ -1418,7 +1418,7 @@
       "title": "One compliance cockpit for your portfolio",
       "description": "Glint centralizes guided compliance steps, guest register, Spain SES queue, iCal stay sync, and registration tracking, with a clear next action per property.",
       "points": {
-        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany (Berlin, Munich), Austria (Vienna WKVRG readiness from 2027), and Ireland (Dublin STL register prep), with country-level fallbacks",
+        "1": "Playbooks for France, Spain, Italy, Portugal, Greece, Croatia, the Netherlands, Belgium, Germany (Berlin, Munich), Austria (Vienna WKVRG readiness from 2027), and Ireland (Dublin playbook, national STL register prep), with country-level fallbacks",
         "2": "Guest register: French fiche, Annex I (ES), Alloggiati (IT), SIBA (PT), AADE declarations (GR), eVisitor (HR); due queues with deadlines",
         "3": "iCal → stay registry → export kits for Mossos, Ertzaintza, Alloggiati, SIBA, and AADE; SES dry-run validation by default, optional live MIR submission when you enable it"
       }
@@ -1456,7 +1456,7 @@
       },
       "spainRegionsOps": {
         "title": "Spain regional registration ops",
-        "description": "Madrid and Valencia VUT, Barcelona HUT, Andalucía VUT for Málaga and Seville, plus SES/Mossos/Ertzaintza guest-reporting queues. Region routing, dossier checklists and export kits. You file on comunidad, ayuntamiento and MIR portals."
+        "description": "Madrid and Valencia VUT, Barcelona HUT, Andalucía VUT for Málaga and Seville, plus SES/Mossos/Ertzaintza guest-reporting queues. Region routing, dossier checklists and export kits. You file on regional, municipal and MIR (SES.Hospedajes) portals."
       },
       "irelandOps": {
         "title": "Ireland STL register readiness",
@@ -1597,7 +1597,7 @@
           "a": "Yes. Portugal: RNAL for listings plus SIBA boletim for foreign guests within 3 working days. Greece: AMA for listings plus AADE Short-Term Stay Declarations (by the 20th of the month after departure). Croatia: tourist categorisation tracking plus eVisitor check-in and check-out within 24h. In each case Glint prepares export kits and queues. You submit on the official portal."
         },
         "13": {
-          "q": "Does Glint cover the Netherlands, Belgium, Germany, Austria and Ireland?",
+          "q": "Does Host Registry cover the Netherlands, Belgium, Germany, Austria and Ireland?",
           "a": "Yes. Netherlands: national registration number, holiday-rental permit tracking, Amsterdam per-stay municipal notification queue, and the 30/15 night-cap engine for Amsterdam wijken. Belgium: tri-regional registration for Brussels prior declaration, Flanders aanmelding, and Wallonia registration, with region routing, dossier checklist, and listing display tracking. Germany: Berlin ZwVbG and Munich ZeS playbooks, dossier tracking and listing display, no auto-submit to Bezirksamt or city portals. Austria: Vienna WKVRG readiness from 2027, dossier tracking while the law is pending. Ireland: Fáilte Ireland STL register prep and Dublin planning checklist, due queues and listing display, no auto-submit to Fáilte Ireland. No fake government API push."
         },
         "14": {

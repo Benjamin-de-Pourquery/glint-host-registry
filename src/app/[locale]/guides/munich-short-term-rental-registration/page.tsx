@@ -15,7 +15,7 @@ export default async function GuideMunichStrRegistrationPage({ params }: Props) 
   const t = await getTranslations({ locale, namespace: "guides.munichStrRegistration" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideMunichStrRegistration" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.zes.title")}</h2>
       <p>{t("sections.zes.body")}</p>

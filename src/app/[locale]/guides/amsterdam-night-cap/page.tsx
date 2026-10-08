@@ -15,7 +15,7 @@ export default async function GuideAmsterdamNightCapPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "guides.amsterdamNightCap" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideAmsterdamNightCap" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.registration.title")}</h2>
       <p>{t("sections.registration.body")}</p>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import { getSiteUrl, SITE_NAME } from "./site";
+
+const OG_IMAGE_PATH = "/opengraph-image";
 import {
   buildLocalizedGuidePath,
   getGuideLocalePair,
@@ -94,6 +96,7 @@ export function buildPageMetadata({
 }: BuildMetadataOptions): Metadata {
   const canonical = buildCanonicalUrl(locale, page);
   const brandedTitle = formatBrandedPageTitle(title);
+  const ogImageUrl = new URL(OG_IMAGE_PATH, getSiteUrl()).toString();
 
   return {
     title,
@@ -111,11 +114,20 @@ export function buildPageMetadata({
       alternateLocale: alternateOpenGraphLocales(locale),
       title: brandedTitle,
       description,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: SITE_NAME,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: brandedTitle,
       description,
+      images: [ogImageUrl],
     },
     robots: noIndex
       ? { index: false, follow: false, googleBot: { index: false, follow: false } }

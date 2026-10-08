@@ -7,7 +7,7 @@ export const alt = SITE_NAME;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const COUNTRY_CHIPS = ["FR", "ES", "IT", "PT", "GR", "HR"];
+const COUNTRY_CHIPS = ["FR", "ES", "IT", "PT", "GR", "HR", "NL", "BE", "DE", "AT", "IE"];
 
 const FEATURE_CHIPS = [
   "Regulation 2024/1028",
@@ -56,7 +56,7 @@ export default async function OpenGraphImage() {
                 lineHeight: 1.35,
               }}
             >
-              EU short-term rental compliance — France, Spain &amp; beyond
+              EU short-term rental compliance: France, Spain, and beyond
             </div>
           </div>
         </div>

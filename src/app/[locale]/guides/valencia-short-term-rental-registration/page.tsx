@@ -15,7 +15,7 @@ export default async function GuideValenciaStrRegistrationPage({ params }: Props
   const t = await getTranslations({ locale, namespace: "guides.valenciaStrRegistration" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideValenciaStrRegistration" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.nrua.title")}</h2>
       <p>{t("sections.nrua.body")}</p>

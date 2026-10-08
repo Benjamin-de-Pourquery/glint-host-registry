@@ -88,7 +88,7 @@ export default async function LandingPage({ params }: Props) {
         </div>
       </section>
 
-      <TrustStrip />
+      <TrustStrip locale={locale} />
 
       <section className="border-b border-slate-200/80 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
@@ -144,7 +144,7 @@ export default async function LandingPage({ params }: Props) {
         </div>
       </section>
 
-      <FeatureBento />
+      <FeatureBento locale={locale} />
       <PricingSection locale={locale} />
       <RelatedSuiteNote locale={locale} />
       <FaqSection />

@@ -15,7 +15,7 @@ export default async function GuideItalyCinAlloggiatiPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "guides.italyCinAlloggiati" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideItalyCinAlloggiati" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.cin.title")}</h2>
       <p>{t("sections.cin.body")}</p>

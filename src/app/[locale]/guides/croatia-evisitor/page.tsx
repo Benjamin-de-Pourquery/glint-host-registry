@@ -15,7 +15,7 @@ export default async function GuideCroatiaEvisitorPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "guides.croatiaEvisitor" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideCroatiaEvisitor" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.categorisation.title")}</h2>
       <p>{t("sections.categorisation.body")}</p>

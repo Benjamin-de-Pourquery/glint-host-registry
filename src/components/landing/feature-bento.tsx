@@ -1,8 +1,37 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { Route, Users, Zap, Building2, Clock, Moon, Receipt, ArrowRight, QrCode, CheckCircle2, Activity, MapPin, FileDown } from "lucide-react";
+import {
+  Route,
+  Users,
+  Zap,
+  Building2,
+  Clock,
+  Moon,
+  Receipt,
+  ArrowRight,
+  QrCode,
+  CheckCircle2,
+  Activity,
+  MapPin,
+  FileDown,
+  Globe,
+} from "lucide-react";
 
-export async function FeatureBento() {
+type Props = { locale: string };
+
+export async function FeatureBento({ locale }: Props) {
   const t = await getTranslations("landing.features");
+
+  const secondaryFeatures = [
+    { key: "listingHealth" as const, icon: Activity },
+    { key: "frNerMigration" as const, icon: MapPin },
+    { key: "evidencePack" as const, icon: FileDown },
+    { key: "nextAction" as const, icon: Zap },
+    { key: "sesQueue" as const, icon: Clock },
+    { key: "nightCap" as const, icon: Moon },
+    { key: "touristTax" as const, icon: Receipt },
+    { key: "portfolio" as const, icon: Building2 },
+  ];
 
   return (
     <section id="features" className="scroll-mt-20 overflow-x-hidden bg-white py-20 sm:py-28">
@@ -15,7 +44,6 @@ export async function FeatureBento() {
         </div>
 
         <div className="mt-14 grid gap-4 md:grid-cols-3">
-          {/* Hero feature: Démarches */}
           <article className="group relative min-w-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-lg hover:shadow-slate-900/5 sm:p-7 md:col-span-2 md:row-span-2">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <Route className="h-6 w-6" />
@@ -25,7 +53,6 @@ export async function FeatureBento() {
               {t("compliance.description")}
             </p>
 
-            {/* Mini-UI: compliance steps */}
             <div className="mt-6 rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
               <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
                 <span>{t("miniUi.complianceHeader")}</span>
@@ -61,7 +88,6 @@ export async function FeatureBento() {
             </div>
           </article>
 
-          {/* Hero feature: Registre */}
           <article className="group relative min-w-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-lg hover:shadow-slate-900/5 sm:p-7 md:row-span-2">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
               <Users className="h-6 w-6" />
@@ -71,7 +97,6 @@ export async function FeatureBento() {
               {t("guestRegister.description")}
             </p>
 
-            {/* Mini-UI: guest register */}
             <div className="mt-6 rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
@@ -92,21 +117,22 @@ export async function FeatureBento() {
             </div>
           </article>
 
-          {/* Secondary features */}
-          {[
-            { key: "listingHealth" as const, icon: Activity },
-            { key: "frNerMigration" as const, icon: MapPin },
-            { key: "evidencePack" as const, icon: FileDown },
-            { key: "nextAction" as const, icon: Zap },
-            { key: "sesQueue" as const, icon: Clock },
-            { key: "netherlandsOps" as const, icon: Clock },
-            { key: "belgiumOps" as const, icon: Clock },
-            { key: "austriaOps" as const, icon: Clock },
-            { key: "germanyOps" as const, icon: Clock },
-            { key: "nightCap" as const, icon: Moon },
-            { key: "touristTax" as const, icon: Receipt },
-            { key: "portfolio" as const, icon: Building2 },
-          ].map(({ key, icon: Icon }) => (
+          <article className="group rounded-2xl border border-slate-200/80 bg-slate-50/50 p-5 shadow-sm transition-shadow hover:shadow-md hover:shadow-slate-900/5 md:col-span-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-emerald-600 ring-1 ring-slate-200/80">
+              <Globe className="h-4 w-4" />
+            </div>
+            <h3 className="mt-3 text-sm font-semibold text-slate-900">{t("coverage.title")}</h3>
+            <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{t("coverage.description")}</p>
+            <Link
+              href={`/${locale}/guides`}
+              className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:underline"
+            >
+              {t("coverage.link")}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            </Link>
+          </article>
+
+          {secondaryFeatures.map(({ key, icon: Icon }) => (
             <article
               key={key}
               className="group rounded-2xl border border-slate-200/80 bg-slate-50/50 p-5 shadow-sm transition-shadow hover:shadow-md hover:shadow-slate-900/5"

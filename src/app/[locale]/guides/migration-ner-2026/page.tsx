@@ -15,7 +15,7 @@ export default async function GuideFrNerMigrationPage({ params }: Props) {
   const t = await getTranslations({ locale, namespace: "guides.frNerMigration" });
 
   return (
-    <GuideLayout locale={locale} title={t("title")} updated={t("updated")}>
+    <GuideLayout locale={locale} seoPage="guideFrNerMigration" title={t("title")} updated={t("updated")}>
       <p>{t("intro")}</p>
       <h2>{t("sections.timeline.title")}</h2>
       <p>{t("sections.timeline.body")}</p>

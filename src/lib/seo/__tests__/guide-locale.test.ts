@@ -13,6 +13,8 @@ import {
   resolveGuideSlugRedirect,
   switchLocaleInPathname,
 } from "@/lib/seo/guide-routing";
+import { countGuideIndexLinks } from "@/lib/guides/visible-in-locale";
+import { GUIDE_INDEX_GROUPS } from "@/lib/guides/catalog";
 import { PAGE_PATHS } from "@/lib/seo/page-paths";
 import { SITE_NAME } from "@/lib/seo/site";
 
@@ -257,5 +259,52 @@ describe("buildPageMetadata title", () => {
       meta.openGraph?.title,
       `Madrid short-term rental registration: VUT host guide | ${SITE_NAME}`
     );
+  });
+
+  it("includes openGraph and twitter preview images", () => {
+    const meta = buildPageMetadata({
+      locale: "en",
+      page: "home",
+      title: "Home",
+      description: "Test",
+    });
+    const ogImages = meta.openGraph?.images;
+    assert.ok(ogImages);
+    const first = Array.isArray(ogImages) ? ogImages[0] : ogImages;
+    const ogUrl =
+      typeof first === "string"
+        ? first
+        : first instanceof URL
+          ? first.toString()
+          : String((first as { url: string }).url);
+    assert.match(ogUrl, /opengraph-image$/);
+    const twitterImages = meta.twitter?.images;
+    const twitterList = Array.isArray(twitterImages)
+      ? twitterImages
+      : twitterImages
+        ? [twitterImages]
+        : [];
+    assert.ok(twitterList.length > 0);
+  });
+});
+
+describe("guides index sitemap", () => {
+  it("lists /en/guides and /fr/guides hub paths", () => {
+    const urls = getPublicSitemapEntries().map(({ locale, path }) => `/${locale}${path}`);
+    assert.ok(urls.includes("/en/guides"));
+    assert.ok(urls.includes("/fr/guides"));
+  });
+
+  it("indexes every locale guide URL listed in the sitemap", () => {
+    const guidePathsInSitemap = (locale: "en" | "fr") =>
+      getPublicSitemapEntries().filter(
+        ({ locale: loc, path }) => loc === locale && path.startsWith("/guides/"),
+      ).length;
+
+    assert.equal(countGuideIndexLinks("en"), 36);
+    assert.equal(countGuideIndexLinks("fr"), 37);
+    assert.equal(countGuideIndexLinks("en"), guidePathsInSitemap("en"));
+    assert.equal(countGuideIndexLinks("fr"), guidePathsInSitemap("fr"));
+    assert.equal(GUIDE_INDEX_GROUPS.length, 11);
   });
 });

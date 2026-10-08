@@ -14,6 +14,10 @@ const updateSchema = z.object({
   bookingUrl: z.string().nullable().optional(),
   vrboUrl: z.string().nullable().optional(),
   notes: z.string().nullable().optional(),
+  postalCode: z.string().max(20).nullable().optional(),
+  habitableSurfaceM2: z.coerce.number().int().positive().nullable().optional(),
+  lyonInHypercentre: z.boolean().nullable().optional(),
+  ownerIsLegalEntity: z.boolean().nullable().optional(),
   archived: z.boolean().optional(),
 });
 

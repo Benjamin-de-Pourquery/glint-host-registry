@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import {
   resolvePlaybook,
   getPlaybookProgressSummary,
+  lyonInputFromProperty,
   marseilleInputFromProperty,
 } from "@/lib/playbooks";
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
@@ -235,12 +236,17 @@ export async function GET(
     frNerMigration,
     marseilleInput,
   });
+  const lyonInput = lyonInputFromProperty({
+    habitableSurfaceM2: property.habitableSurfaceM2,
+    lyonInHypercentre: property.lyonInHypercentre,
+    ownerIsLegalEntity: property.ownerIsLegalEntity,
+  });
   const summary = getPlaybookProgressSummary(
     playbook,
     progress,
     residencyStatus,
     property.propertyType,
-    marseilleInput
+    { ...lyonInput, ...marseilleInput }
   );
 
   const touristTaxPriority = touristTaxResult.summary

@@ -36,6 +36,10 @@ type PropertyData = {
   bookingUrl?: string | null;
   vrboUrl?: string | null;
   notes?: string | null;
+  postalCode?: string | null;
+  habitableSurfaceM2?: number | null | "";
+  lyonInHypercentre?: boolean | null;
+  ownerIsLegalEntity?: boolean | null;
 };
 
 export function PropertyForm({
@@ -60,7 +64,13 @@ export function PropertyForm({
     bookingUrl: initial?.bookingUrl || "",
     vrboUrl: initial?.vrboUrl || "",
     notes: initial?.notes || "",
+    postalCode: initial?.postalCode || "",
+    habitableSurfaceM2: initial?.habitableSurfaceM2 ?? "",
+    lyonInHypercentre: initial?.lyonInHypercentre ?? null,
+    ownerIsLegalEntity: initial?.ownerIsLegalEntity ?? null,
   });
+  const isLyon =
+    form.country === "France" && form.city.trim().toLowerCase() === "lyon";
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -73,10 +83,22 @@ export function PropertyForm({
       ? "/api/properties"
       : `/api/properties/${initial?.id}`;
 
+    const payload = {
+      ...form,
+      postalCode: form.postalCode?.trim() || null,
+      habitableSurfaceM2:
+        form.habitableSurfaceM2 === "" || form.habitableSurfaceM2 === null
+          ? null
+          : Number(form.habitableSurfaceM2),
+      lyonInHypercentre: isLyon ? form.lyonInHypercentre ?? null : null,
+      ownerIsLegalEntity: isLyon ? form.ownerIsLegalEntity ?? null : null,
+      locale,
+    };
+
     const res = await fetch(url, {
       method: mode === "create" ? "POST" : "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, locale }),
+      body: JSON.stringify(payload),
     });
 
     if (!res.ok) {
@@ -137,6 +159,15 @@ export function PropertyForm({
               />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="postalCode">{t("postalCode")}</Label>
+              <Input
+                id="postalCode"
+                value={form.postalCode || ""}
+                onChange={(e) => setForm({ ...form, postalCode: e.target.value })}
+                placeholder={isLyon ? "69001" : undefined}
+              />
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="country">{t("country")}</Label>
               <Select
                 value={form.country}
@@ -189,6 +220,89 @@ export function PropertyForm({
               </Select>
             </div>
           </div>
+
+          {isLyon && (
+            <div className="grid gap-4 rounded-lg border border-slate-200 bg-slate-50/80 p-4 sm:grid-cols-2">
+              <p className="text-sm font-medium text-slate-800 sm:col-span-2">
+                {t("lyonSectionTitle")}
+              </p>
+              <div className="space-y-2">
+                <Label htmlFor="habitableSurfaceM2">{t("habitableSurfaceM2")}</Label>
+                <Input
+                  id="habitableSurfaceM2"
+                  type="number"
+                  min={1}
+                  value={
+                    form.habitableSurfaceM2 === "" ||
+                    form.habitableSurfaceM2 === null ||
+                    form.habitableSurfaceM2 === undefined
+                      ? ""
+                      : form.habitableSurfaceM2
+                  }
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      habitableSurfaceM2: e.target.value
+                        ? Number.parseInt(e.target.value, 10)
+                        : "",
+                    })
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>{t("lyonInHypercentre")}</Label>
+                <Select
+                  value={
+                    form.lyonInHypercentre === null || form.lyonInHypercentre === undefined
+                      ? ""
+                      : form.lyonInHypercentre
+                        ? "yes"
+                        : "no"
+                  }
+                  onValueChange={(v) =>
+                    setForm({
+                      ...form,
+                      lyonInHypercentre: v === "" ? null : v === "yes",
+                    })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("lyonHypercentrePlaceholder")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="yes">{t("lyonHypercentreYes")}</SelectItem>
+                    <SelectItem value="no">{t("lyonHypercentreNo")}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label>{t("ownerIsLegalEntity")}</Label>
+                <Select
+                  value={
+                    form.ownerIsLegalEntity === null || form.ownerIsLegalEntity === undefined
+                      ? ""
+                      : form.ownerIsLegalEntity
+                        ? "yes"
+                        : "no"
+                  }
+                  onValueChange={(v) =>
+                    setForm({
+                      ...form,
+                      ownerIsLegalEntity: v === "" ? null : v === "yes",
+                    })
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("ownerTypePlaceholder")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="no">{t("ownerNaturalPerson")}</SelectItem>
+                    <SelectItem value="yes">{t("ownerLegalEntity")}</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="airbnb">{t("airbnb")}</Label>

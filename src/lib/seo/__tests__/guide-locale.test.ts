@@ -41,6 +41,8 @@ const PAIRED_GUIDE_IDS = [
   "dublinAirbnb",
   "parisStr",
   "parisAirbnb",
+  "lyonStr",
+  "lyonAirbnb",
   "marseilleStr",
   "marseilleAirbnb",
 ] as const;
@@ -70,6 +72,8 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
   dublinAirbnb: ["guideDublinAirbnbRegistration", "guideDublinAirbnbRegistrationFr"],
   parisStr: ["guideParisStrRegistration", "guideParisStrRegistrationFr"],
   parisAirbnb: ["guideParisAirbnbRegistration", "guideParisAirbnbRegistrationFr"],
+  lyonStr: ["guideLyonStrRegistration", "guideLyonStrRegistrationFr"],
+  lyonAirbnb: ["guideLyonAirbnbRegistration", "guideLyonAirbnbRegistrationFr"],
   marseilleStr: ["guideMarseilleStrRegistration", "guideMarseilleStrRegistrationFr"],
   marseilleAirbnb: [
     "guideMarseilleAirbnbRegistration",

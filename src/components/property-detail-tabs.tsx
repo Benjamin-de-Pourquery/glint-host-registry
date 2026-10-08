@@ -120,6 +120,10 @@ type PropertyData = {
   bookingUrl?: string | null;
   vrboUrl?: string | null;
   notes?: string | null;
+  postalCode?: string | null;
+  habitableSurfaceM2?: number | null;
+  lyonInHypercentre?: boolean | null;
+  ownerIsLegalEntity?: boolean | null;
   registration: Registration | null;
   checklistItems: ChecklistItem[];
   listingChannels: ListingChannelRecord[];
@@ -510,6 +514,10 @@ export function PropertyDetailTabs({
               | "other"
               | null,
             notes: property.notes,
+            postalCode: property.postalCode,
+            habitableSurfaceM2: property.habitableSurfaceM2,
+            lyonInHypercentre: property.lyonInHypercentre,
+            ownerIsLegalEntity: property.ownerIsLegalEntity,
           }}
           locale={locale}
         />

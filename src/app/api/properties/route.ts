@@ -17,6 +17,10 @@ const schema = z.object({
   bookingUrl: z.string().optional(),
   vrboUrl: z.string().optional(),
   notes: z.string().optional(),
+  postalCode: z.string().max(20).nullable().optional(),
+  habitableSurfaceM2: z.coerce.number().int().positive().nullable().optional(),
+  lyonInHypercentre: z.boolean().nullable().optional(),
+  ownerIsLegalEntity: z.boolean().nullable().optional(),
   locale: z.string().optional(),
 });
 
@@ -88,6 +92,10 @@ export async function POST(request: Request) {
         bookingUrl: data.bookingUrl || null,
         vrboUrl: data.vrboUrl || null,
         notes: data.notes || null,
+        postalCode: data.postalCode ?? null,
+        habitableSurfaceM2: data.habitableSurfaceM2 ?? null,
+        lyonInHypercentre: data.lyonInHypercentre ?? null,
+        ownerIsLegalEntity: data.ownerIsLegalEntity ?? null,
       },
     });
 

@@ -18,6 +18,10 @@ import { GERMANY_PLAYBOOKS } from "./germany";
 import { IRELAND_PLAYBOOKS } from "./ireland";
 import { stepAppliesForParis } from "@/lib/france/paris-playbook";
 import {
+  stepAppliesForLyon,
+  type LyonPlaybookInput,
+} from "@/lib/france/lyon-playbook";
+import {
   marseilleInputFromProperty,
   stepAppliesForMarseille,
   type MarseillePlaybookInput,
@@ -231,6 +235,10 @@ export function stepAppliesToResidency(
     case "commercialPremises":
     case "otherPremises":
     case "singleRoomExempt":
+    case "lyonNonPrimaryHypercentre":
+    case "lyonOutsideUnder35NaturalConfirm":
+    case "lyonNonPrimaryCompensationRequired":
+    case "lyonNonPrimaryDetailsPending":
     case "marseillePrimaryResidence":
     case "marseilleNonPrimaryChangeOfUse":
     case "marseilleSocialHousing":
@@ -244,24 +252,42 @@ export function stepAppliesToResidency(
   }
 }
 
+export function lyonInputFromProperty(
+  property: Pick<
+    PropertyFieldValues,
+    "habitableSurfaceM2" | "lyonInHypercentre" | "ownerIsLegalEntity"
+  >
+): LyonPlaybookInput {
+  return {
+    inHypercentre: property.lyonInHypercentre ?? null,
+    habitableSurfaceM2: property.habitableSurfaceM2 ?? null,
+    ownerIsLegalEntity: property.ownerIsLegalEntity ?? null,
+  };
+}
+
 export { marseilleInputFromProperty };
+
+export type FrCityPlaybookInput = LyonPlaybookInput & MarseillePlaybookInput;
 
 export function stepApplies(
   playbook: Playbook,
   step: PlaybookStep,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  marseilleInput?: MarseillePlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): boolean {
   if (playbook.id === "fr-paris") {
     return stepAppliesForParis(step, residencyStatus, propertyType);
+  }
+  if (playbook.id === "fr-lyon") {
+    return stepAppliesForLyon(step, residencyStatus, propertyType, cityInput);
   }
   if (playbook.id === "fr-marseille") {
     return stepAppliesForMarseille(
       step,
       residencyStatus,
       propertyType,
-      marseilleInput ?? null
+      cityInput ?? null
     );
   }
   return stepAppliesToResidency(step, residencyStatus);
@@ -271,10 +297,10 @@ export function getApplicableSteps(
   playbook: Playbook,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  marseilleInput?: MarseillePlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): PlaybookStep[] {
   return playbook.steps.filter((step) =>
-    stepApplies(playbook, step, residencyStatus, propertyType, marseilleInput)
+    stepApplies(playbook, step, residencyStatus, propertyType, cityInput)
   );
 }
 
@@ -440,6 +466,10 @@ const FIELD_LABELS: Record<string, { en: string; fr: string }> = {
   propertyType: { en: "Property type", fr: "Type de bien" },
   notes: { en: "Notes", fr: "Notes" },
   residencyStatus: { en: "Residency status", fr: "Statut de résidence" },
+  postalCode: { en: "Postal code", fr: "Code postal" },
+  habitableSurfaceM2: { en: "Habitable surface (m²)", fr: "Surface habitable (m²)" },
+  lyonInHypercentre: { en: "Inside Lyon hypercentre", fr: "Dans l'hypercentre lyonnais" },
+  ownerIsLegalEntity: { en: "Owner is legal entity", fr: "Propriétaire personne morale" },
 };
 
 export function getPreparedFieldsForStep(
@@ -510,14 +540,14 @@ export function getNextPendingStep(
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  marseilleInput?: MarseillePlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): PlaybookStep | null {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
   const applicableSteps = getApplicableSteps(
     playbook,
     residencyStatus,
     propertyType,
-    marseilleInput
+    cityInput
   );
 
   for (const step of applicableSteps) {
@@ -535,14 +565,14 @@ export function getPlaybookProgressSummary(
   progress: Array<{ stepKey: string; status: string }>,
   residencyStatus?: ResidencyStatus | null,
   propertyType?: string | null,
-  marseilleInput?: MarseillePlaybookInput | null
+  cityInput?: FrCityPlaybookInput | null
 ): { completed: number; total: number; skipped: number } {
   const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
   const applicableSteps = getApplicableSteps(
     playbook,
     residencyStatus,
     propertyType,
-    marseilleInput
+    cityInput
   );
   let completed = 0;
   let skipped = 0;

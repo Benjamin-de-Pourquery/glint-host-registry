@@ -74,7 +74,8 @@ export function getEffectiveNextStep(
   nightCapComputation?: NightCapComputation | null,
   touristTaxSummary?: TouristTaxSummary | null,
   frNerMigration?: FrNerMigrationRecord | null,
-  propertyType?: string | null
+  propertyType?: string | null,
+  marseilleInput?: import("@/lib/france/marseille-playbook").MarseillePlaybookInput | null
 ): PlaybookStep | null {
   const nationalStepKey = getNationalStepKey(playbook);
   const nationalStep = nationalStepKey
@@ -86,7 +87,8 @@ export function getEffectiveNextStep(
     playbook,
     progress,
     residencyStatus,
-    propertyType
+    propertyType,
+    marseilleInput
   );
 
   if (!isFranceCountry(country) || !nationalStep) {

@@ -26,6 +26,7 @@ import { isIrelandCountry } from "@/lib/ireland/regions";
 import type { NightCapComputation } from "@/lib/france/night-cap";
 import type { TouristTaxSummary } from "@/lib/france/tourist-tax";
 import type { FrNerMigrationRecord } from "@/lib/fr-ner-migration/types";
+import type { MarseillePlaybookInput } from "@/lib/france/marseille-playbook";
 
 export type EffectiveNextStepContext = {
   country: string;
@@ -72,6 +73,7 @@ export type EffectiveNextStepContext = {
   touristTaxSummary?: TouristTaxSummary | null;
   frNerMigration?: FrNerMigrationRecord | null;
   propertyType?: string | null;
+  marseilleInput?: MarseillePlaybookInput | null;
 };
 
 export function getEffectiveNextStep(
@@ -196,6 +198,7 @@ export function getEffectiveNextStep(
     context.nightCapComputation ?? null,
     context.touristTaxSummary ?? null,
     context.frNerMigration ?? null,
-    context.propertyType ?? null
+    context.propertyType ?? null,
+    context.marseilleInput ?? null
   );
 }

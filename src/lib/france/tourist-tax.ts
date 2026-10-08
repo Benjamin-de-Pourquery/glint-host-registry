@@ -110,12 +110,27 @@ export function touristTaxApplies(country: string): boolean {
   return isFranceCountry(country);
 }
 
-export function buildDefaultTouristTaxSettings(): TouristTaxSettingsInput {
+export const MARSEILLE_TOURIST_TAX_PORTAL_URL =
+  "https://taxedesejour.ofeaweb.fr/ts/marseille";
+
+export function defaultTouristTaxPortalUrlForCity(
+  city: string | null | undefined
+): string | null {
+  const key = (city ?? "").trim().toLowerCase();
+  if (key === "marseille") {
+    return MARSEILLE_TOURIST_TAX_PORTAL_URL;
+  }
+  return null;
+}
+
+export function buildDefaultTouristTaxSettings(
+  city?: string | null
+): TouristTaxSettingsInput {
   return {
     enabled: true,
     collectionMode: "unknown",
     declarationCadence: "monthly",
-    portalUrl: null,
+    portalUrl: defaultTouristTaxPortalUrlForCity(city),
     classification: "unclassified",
     attestationOnFile: false,
     notes: null,

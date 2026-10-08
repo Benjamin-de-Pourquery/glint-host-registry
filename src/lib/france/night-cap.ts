@@ -6,7 +6,7 @@ import type { ResidencyStatus } from "@/lib/playbooks/types";
 /** Statutory default under Code du tourisme L324-1-1 (120 nights / calendar year). */
 export const STATUTORY_NIGHT_CAP = 120;
 
-/** Commune may lower cap to 90 (e.g. Paris, Lyon, Nice). */
+/** Commune may lower cap to 90 (e.g. Paris, Lyon, Nice, Marseille). */
 export const COMMUNE_NIGHT_CAP_90 = 90;
 
 export const NIGHT_CAP_SOURCES = ["statutory_120", "commune_90", "custom"] as const;
@@ -50,7 +50,7 @@ export const SERVICE_PUBLIC_STR_URL =
   "https://www.service-public.fr/particuliers/vosdroits/F2043";
 
 /** Cities where playbooks document a 90-night commune cap for primary residences. */
-const COMMUNE_90_CITIES = new Set(["paris", "lyon", "nice"]);
+const COMMUNE_90_CITIES = new Set(["paris", "lyon", "nice", "marseille"]);
 
 const EXCLUDED_IMPORT_STATUSES = new Set(["cancelled", "removed_from_feed"]);
 

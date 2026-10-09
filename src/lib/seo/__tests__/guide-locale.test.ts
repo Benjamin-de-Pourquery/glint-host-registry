@@ -47,6 +47,8 @@ const PAIRED_GUIDE_IDS = [
   "lyonAirbnb",
   "marseilleStr",
   "marseilleAirbnb",
+  "bordeauxStr",
+  "bordeauxAirbnb",
 ] as const;
 
 const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
@@ -80,6 +82,11 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
   marseilleAirbnb: [
     "guideMarseilleAirbnbRegistration",
     "guideMarseilleAirbnbRegistrationFr",
+  ],
+  bordeauxStr: ["guideBordeauxStrRegistration", "guideBordeauxStrRegistrationFr"],
+  bordeauxAirbnb: [
+    "guideBordeauxAirbnbRegistration",
+    "guideBordeauxAirbnbRegistrationFr",
   ],
 };
 
@@ -301,8 +308,8 @@ describe("guides index sitemap", () => {
         ({ locale: loc, path }) => loc === locale && path.startsWith("/guides/"),
       ).length;
 
-    assert.equal(countGuideIndexLinks("en"), 36);
-    assert.equal(countGuideIndexLinks("fr"), 37);
+    assert.equal(countGuideIndexLinks("en"), 38);
+    assert.equal(countGuideIndexLinks("fr"), 39);
     assert.equal(countGuideIndexLinks("en"), guidePathsInSitemap("en"));
     assert.equal(countGuideIndexLinks("fr"), guidePathsInSitemap("fr"));
     assert.equal(GUIDE_INDEX_GROUPS.length, 11);

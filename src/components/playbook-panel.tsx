@@ -20,6 +20,7 @@ import {
   getStepWhyNow,
   lyonInputFromProperty,
   marseilleInputFromProperty,
+  bordeauxInputFromProperty,
   stepApplies,
 } from "@/lib/playbooks";
 import type {
@@ -283,7 +284,9 @@ export function PlaybookPanel({
       ? lyonInputFromProperty(property)
       : playbook.id === "fr-marseille"
         ? marseilleInputFromProperty(propertyWithResidency)
-        : null;
+        : playbook.id === "fr-bordeaux"
+          ? bordeauxInputFromProperty(propertyWithResidency)
+          : null;
   const visibleSteps = playbook.steps.filter((step) =>
     stepApplies(
       playbook,

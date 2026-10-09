@@ -299,6 +299,22 @@
       "title": "Enregistrement Airbnb Marseille: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Marseille: compte taxedesejour.marseille.fr, numéro sur les annonces, plafond 90 nuitées, changement d'usage hors principale."
     },
+    "guideBordeauxStrRegistration": {
+      "title": "Bordeaux short-term rental registration: meublé de tourisme guide",
+      "description": "Ville de Bordeaux rules (October 2026): 90-night primary cap, formulaire UB, registration taxedesejour.bordeaux-metropole.fr. Not legal advice."
+    },
+    "guideBordeauxStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Bordeaux: guide meublé de tourisme",
+      "description": "Règles Ville de Bordeaux (octobre 2026): plafond 90 nuitées, changement d'usage formulaire UB, enregistrement taxedesejour.bordeaux-metropole.fr."
+    },
+    "guideBordeauxAirbnbRegistration": {
+      "title": "Bordeaux Airbnb registration: meublé de tourisme compliance guide",
+      "description": "Airbnb hosts in Bordeaux: taxedesejour.bordeaux-metropole.fr, numéro sur les annonces, 90 nuitées en résidence principale."
+    },
+    "guideBordeauxAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Bordeaux: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Bordeaux: portail taxedesejour.bordeaux-metropole.fr, numéro sur les annonces, 90 nuitées, changement d'usage hors principale."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -870,6 +886,88 @@
         "glint": {
           "title": "Host Registry, par Glint",
           "body": "Playbook Marseille, Cap Guard 90 nuitées, file taxe de séjour, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Marseille."
+        }
+      }
+    },
+    "bordeauxStrRegistration": {
+      "title": "Enregistrement meublé de tourisme à Bordeaux",
+      "updated": "Vérifié sur bordeaux.fr en octobre 2026",
+      "intro": "Cette page résume les démarches issues des pages officielles de la Ville de Bordeaux (guide propriétaires, urbanisme, règlement PDF, taxedesejour.bordeaux-metropole.fr). Ce n'est pas un avis juridique. Host Registry, par Glint, vous aide à suivre votre situation, vos pièces, l'affichage du numéro et le décompte des 90 nuitées en résidence principale. Nous ne déposons rien à la Ville pour vous.",
+      "sections": {
+        "primaryCap": {
+          "title": "Résidence principale : 90 nuitées sans changement d'usage",
+          "body": "Lorsque le logement est votre résidence principale, vous pouvez le louer en meublé de tourisme jusqu'à 90 nuitées par année civile sans autorisation préalable de changement d'usage (guide propriétaires et page urbanisme). La déclaration et le numéro d'enregistrement restent obligatoires sur taxedesejour.bordeaux-metropole.fr. Au-delà du plafond : changement d'usage requis sauf cas limités au règlement (obligation professionnelle, santé, force majeure)."
+        },
+        "nonPrimary": {
+          "title": "Hors résidence principale : formulaire UB avec compensation",
+          "body": "Les meublés de tourisme (logement entier) hors résidence principale exigent une autorisation réelle et définitive de changement d'usage avec compensation avant toute location. Téléchargez le formulaire UB (PDF), la notice et la liste des pièces sur la page urbanisme. Dépôt au guichet unique droit des sols (Cité municipale, 4 rue Claude Bonnier) ou portail urbanisme selon bordeaux.fr. Instruction : 2 mois à compter du dossier complet. Dossier incomplet : demande de pièces sous 1 mois, puis 2 mois pour compléter, sinon rejet implicite. Sans réponse à l'issue de l'instruction, l'autorisation est tacitement accordée (règlement art. 4.2)."
+        },
+        "secteurA": {
+          "title": "Secteur A : compensation renforcée (depuis le 1er avril 2026)",
+          "body": "En secteur A, la surface de compensation doit être double, sauf si les locaux de compensation deviennent des logements sociaux (règlement art. 2.2.2, alors règles 1:1). La page urbanisme (mise à jour juin 2026) le reflète. Le guide propriétaires (mis à jour en février 2026) ne mentionne pas encore la surface double ; la page urbanisme et le règlement font foi."
+        },
+        "sectors": {
+          "title": "Secteurs A, B et C",
+          "body": "La compensation suit les secteurs (règlement art. 2.2.1) : bien en A compensé en A ; en B en A ou B ; en C en A, B ou C. Le rez-de-chaussée ne peut pas servir de compensation. Consultez l'Annexe 1 sur bordeaux.fr."
+        },
+        "registration": {
+          "title": "Numéro sur annonces et portail",
+          "body": "Déclaration et numéro obligatoires pour le meublé entier, résidence principale ou non (règlement art. 4.4). Inscription sur taxedesejour.bordeaux-metropole.fr (portail : uniquement pour la ville de Bordeaux). Numéro sur toutes les annonces et contrats ; toute modification peut imposer un nouveau numéro (guide propriétaires). Pour les non principales, autorisation de changement d'usage et enregistrement sont distincts."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour",
+          "body": "Les plateformes peuvent collecter la taxe de séjour, mais le guide propriétaires exige de déclarer sur le site Bordeaux Métropole. Host Registry prépare les périodes depuis votre calendrier ; vous déposez sur le portail vous-même."
+        },
+        "roomNote": {
+          "title": "Option : chambre en résidence principale",
+          "body": "Le guide propriétaires indique qu'une chambre louée dans votre résidence principale (sans meublé sur la totalité du logement) ne nécessite pas de numéro d'enregistrement et n'a pas de limite de durée. Host Registry vise surtout le meublé entier ; confirmez avec la Ville si besoin."
+        },
+        "sanctions": {
+          "title": "Sanctions",
+          "body": "Ne pas déclarer ou ne pas obtenir de numéro est passible d'une contravention de troisième classe (code du tourisme, règlement art. 2.1). Les autres sanctions relèvent du CCH et du code du tourisme (règlement art. 5)."
+        },
+        "contact": {
+          "title": "Courriel usage",
+          "body": "Pour les questions d'usage : usagebordeaux@bordeaux-metropole.fr (indiqué sur le portail taxedesejour.bordeaux-metropole.fr)."
+        },
+        "national": {
+          "title": "Contexte registre national",
+          "body": "L'API Meublés est en préparation. Voir /guides/migration-ner-2026. L'enregistrement municipal Bordeaux reste requis. Host Registry ne télédéclare jamais pour vous."
+        },
+        "related": {
+          "title": "Guides Host Registry associés",
+          "body": "Vue d'ensemble numéros : /guides/numero-enregistrement-meuble. Fiche police voyageurs : /guides/fiche-police-voyageurs. Migration NER : /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Sélectionnez Bordeaux, renseignez le statut de résidence et ajoutez bordeaux:secteur-a/b/c ou bordeaux:social-housing dans les notes si pertinent. Suivez le playbook fr-bordeaux, Cap Guard 90 nuitées, périodes taxe de séjour, numéro sur chaque canal et registre voyageurs. Vous déposez sur bordeaux.fr et taxedesejour.bordeaux-metropole.fr vous-même."
+        }
+      }
+    },
+    "bordeauxAirbnbRegistration": {
+      "title": "Airbnb Bordeaux et le registre meublé de tourisme",
+      "updated": "Vérifié sur bordeaux.fr en octobre 2026",
+      "intro": "Les hôtes Airbnb à Bordeaux suivent les mêmes règles que sur les autres plateformes. Informations pratiques, pas un avis juridique.",
+      "sections": {
+        "airbnbField": {
+          "title": "Numéro sur Airbnb",
+          "body": "Après inscription sur taxedesejour.bordeaux-metropole.fr, saisissez le numéro municipal dans le champ Airbnb pour la France. Même numéro sur les autres canaux. Host Registry suit l'affichage par canal."
+        },
+        "ninetyDay": {
+          "title": "Plafond 90 nuitées (résidence principale)",
+          "body": "La résidence principale est plafonnée à 90 nuitées meublées touristiques par an à Bordeaux. Connectez iCal dans Host Registry. Au-delà de 90 nuitées, changement d'usage requis sauf exceptions limitées au règlement."
+        },
+        "nonPrimary": {
+          "title": "Hors résidence principale",
+          "body": "Les biens non principaux exigent le formulaire UB et une compensation avant location. Le numéro d'enregistrement ne remplace pas l'autorisation. Voir le guide Bordeaux complet pour le secteur A et le dépôt."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour et plateformes",
+          "body": "Créez votre compte sur le portail Métropole même si Airbnb collecte la taxe. Vous devez déclarer sur taxedesejour.bordeaux-metropole.fr selon le guide propriétaires."
+        },
+        "glint": {
+          "title": "Host Registry, par Glint",
+          "body": "Playbook Bordeaux, Cap Guard 90 nuitées, file taxe de séjour, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville."
         }
       }
     },
@@ -1584,7 +1682,7 @@
         },
         "14": {
           "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
-          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice, Marseille) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
+          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice, Marseille, Bordeaux) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
         },
         "15": {
           "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
@@ -1659,6 +1757,8 @@
       "guideLyonAirbnbRegistration": "Airbnb Lyon / meublé de tourisme",
       "guideMarseilleStrRegistration": "Enregistrement LCD Marseille",
       "guideMarseilleAirbnbRegistration": "Airbnb Marseille / meublé de tourisme",
+      "guideBordeauxStrRegistration": "Enregistrement LCD Bordeaux",
+      "guideBordeauxAirbnbRegistration": "Airbnb Bordeaux / meublé de tourisme",
       "guideIrelandStrRegistration": "Registre LCD Irlande",
       "guideDublinAirbnbRegistration": "Airbnb Dublin / registre LCD",
       "account": "Compte",

@@ -40,7 +40,16 @@ export type StepAppliesWhen =
   | "marseilleLegacy2021"
   | "marseilleArrondissementPending"
   | "marseilleNonPrimaryWithArrondissement"
-  | "marseilleNotSocialHousing";
+  | "marseilleNotSocialHousing"
+  | "bordeauxPrimaryResidence"
+  | "bordeauxNonPrimaryChangeOfUse"
+  | "bordeauxSocialHousing"
+  | "bordeauxNotSocialHousing"
+  | "bordeauxSecteurA"
+  | "bordeauxSecteurPending"
+  | "bordeauxSecteurKnown"
+  | "bordeauxRoomInPrimary"
+  | "bordeauxChambreHote";
 
 export type ResidencyStatus = "primary" | "secondary" | "other";
 

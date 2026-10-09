@@ -113,12 +113,18 @@ export function touristTaxApplies(country: string): boolean {
 export const MARSEILLE_TOURIST_TAX_PORTAL_URL =
   "https://taxedesejour.ofeaweb.fr/ts/marseille";
 
+export const BORDEAUX_TOURIST_TAX_PORTAL_URL =
+  "https://taxedesejour.bordeaux-metropole.fr/";
+
 export function defaultTouristTaxPortalUrlForCity(
   city: string | null | undefined
 ): string | null {
   const key = (city ?? "").trim().toLowerCase();
   if (key === "marseille") {
     return MARSEILLE_TOURIST_TAX_PORTAL_URL;
+  }
+  if (key === "bordeaux") {
+    return BORDEAUX_TOURIST_TAX_PORTAL_URL;
   }
   return null;
 }

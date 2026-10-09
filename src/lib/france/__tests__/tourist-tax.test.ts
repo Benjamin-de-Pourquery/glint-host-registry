@@ -1,6 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
+  BORDEAUX_TOURIST_TAX_PORTAL_URL,
   buildDefaultTouristTaxSettings,
   defaultTouristTaxPortalUrlForCity,
   MARSEILLE_TOURIST_TAX_PORTAL_URL,
@@ -26,6 +27,7 @@ describe("touristTaxApplies", () => {
 describe("defaultTouristTaxPortalUrlForCity", () => {
   it("returns Marseille portal URL", () => {
     assert.equal(defaultTouristTaxPortalUrlForCity("Marseille"), MARSEILLE_TOURIST_TAX_PORTAL_URL);
+    assert.equal(defaultTouristTaxPortalUrlForCity("Bordeaux"), BORDEAUX_TOURIST_TAX_PORTAL_URL);
     assert.equal(defaultTouristTaxPortalUrlForCity("Lyon"), null);
   });
 

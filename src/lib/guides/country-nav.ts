@@ -26,6 +26,7 @@ const COUNTRY_NAV: Record<GuideCountryId, CountryNav> = {
       "guideParisStrRegistration",
       "guideLyonStrRegistration",
       "guideMarseilleStrRegistration",
+      "guideBordeauxStrRegistration",
     ],
   },
   spain: {
@@ -86,6 +87,8 @@ const PAGE_TO_COUNTRY = new Map<SeoPageKey, GuideCountryId>([
   ["guideLyonAirbnbRegistration", "france"],
   ["guideMarseilleStrRegistration", "france"],
   ["guideMarseilleAirbnbRegistration", "france"],
+  ["guideBordeauxStrRegistration", "france"],
+  ["guideBordeauxAirbnbRegistration", "france"],
   ["guideSes", "spain"],
   ["guideMadridStrRegistration", "spain"],
   ["guideMadridAirbnbRegistration", "spain"],

@@ -896,15 +896,15 @@
       "sections": {
         "primaryCap": {
           "title": "Résidence principale : 90 nuitées sans changement d'usage",
-          "body": "Lorsque le logement est votre résidence principale, vous pouvez le louer en meublé de tourisme jusqu'à 90 nuitées par an civile sans autorisation préalable de changement d'usage (guide propriétaires et page urbanisme). La déclaration et le numéro d'enregistrement restent obligatoires sur taxedesejour.bordeaux-metropole.fr. Au-delà du plafond : changement d'usage requis sauf cas limités au règlement (obligation professionnelle, santé, force majeure)."
+          "body": "Lorsque le logement est votre résidence principale, vous pouvez le louer en meublé de tourisme jusqu'à 90 nuitées par année civile sans autorisation préalable de changement d'usage (guide propriétaires et page urbanisme). La déclaration et le numéro d'enregistrement restent obligatoires sur taxedesejour.bordeaux-metropole.fr. Au-delà du plafond : changement d'usage requis sauf cas limités au règlement (obligation professionnelle, santé, force majeure)."
         },
         "nonPrimary": {
           "title": "Hors résidence principale : formulaire UB avec compensation",
-          "body": "Les meublés de tourisme (logement entier) hors résidence principale exigent une autorisation réelle et définitive de changement d'usage avec compensation avant toute location. Téléchargez le formulaire UB (PDF), la notice et la liste des pièces sur la page urbanisme. Dépôt au guichet unique droit des sols (Cité municipale, 4 rue Claude Bonnier) ou portail urbanisme selon bordeaux.fr. Instruction d'environ deux mois à dossier complet (règlement art. 4)."
+          "body": "Les meublés de tourisme (logement entier) hors résidence principale exigent une autorisation réelle et définitive de changement d'usage avec compensation avant toute location. Téléchargez le formulaire UB (PDF), la notice et la liste des pièces sur la page urbanisme. Dépôt au guichet unique droit des sols (Cité municipale, 4 rue Claude Bonnier) ou portail urbanisme selon bordeaux.fr. Instruction : 2 mois à compter du dossier complet. Dossier incomplet : demande de pièces sous 1 mois, puis 2 mois pour compléter, sinon rejet implicite. Sans réponse à l'issue de l'instruction, l'autorisation est tacitement accordée (règlement art. 4.2)."
         },
         "secteurA": {
           "title": "Secteur A : compensation renforcée (depuis le 1er avril 2026)",
-          "body": "En secteur A, la surface de compensation doit être double, sauf si les locaux de compensation deviennent des logements sociaux (règlement art. 2.2.2, alors règles 1:1). La page urbanisme (mise à jour juin 2026) le reflète. Le guide propriétaires (février 2026) décrit encore une compensation à surface équivalente seulement : page obsolète sur le dimensionnement secteur A ; privilégiez urbanisme et règlement PDF."
+          "body": "En secteur A, la surface de compensation doit être double, sauf si les locaux de compensation deviennent des logements sociaux (règlement art. 2.2.2, alors règles 1:1). La page urbanisme (mise à jour juin 2026) le reflète. Le guide propriétaires (mis à jour en février 2026) ne mentionne pas encore la surface double ; la page urbanisme et le règlement font foi."
         },
         "sectors": {
           "title": "Secteurs A, B et C",
@@ -924,11 +924,11 @@
         },
         "sanctions": {
           "title": "Sanctions",
-          "body": "Le règlement art. 5 renvoie au CCH et au code du tourisme sans publier de montants en euros sur bordeaux.fr. Ne vous fiez pas à des chiffres inventés hors sources officielles."
+          "body": "Ne pas déclarer ou ne pas obtenir de numéro est passible d'une contravention de troisième classe (code du tourisme, règlement art. 2.1). Les autres sanctions relèvent du CCH et du code du tourisme (règlement art. 5)."
         },
         "contact": {
           "title": "Courriel usage",
-          "body": "usagebordeaux@bordeaux-metropole.fr figure sur le portail taxedesejour.bordeaux-metropole.fr pour les questions d'usage ; non repéré sur les pages bordeaux.fr vérifiées en octobre 2026."
+          "body": "Pour les questions d'usage : usagebordeaux@bordeaux-metropole.fr (indiqué sur le portail taxedesejour.bordeaux-metropole.fr)."
         },
         "national": {
           "title": "Contexte registre national",

@@ -292,7 +292,7 @@
       "description": "Règles Ville de Marseille (vérifiées en octobre 2026): déclaration taxedesejour.marseille.fr, plafond 90 nuitées, changement d'usage avec compensation hors principale, sanctions. Informations pratiques."
     },
     "guideMarseilleAirbnbRegistration": {
-      "title": "Marseille Airbnb registration: meublé de tourisme compliance guide",
+      "title": "Marseille Airbnb registration: furnished tourist rental compliance guide",
       "description": "Airbnb hosts in Marseille: host account on taxedesejour.marseille.fr, 13-digit number on listings, 90-night primary cap, change-of-use for non-primary units."
     },
     "guideMarseilleAirbnbRegistrationFr": {
@@ -308,8 +308,8 @@
       "description": "Règles Ville de Bordeaux (octobre 2026): plafond 90 nuitées, changement d'usage formulaire UB, enregistrement taxedesejour.bordeaux-metropole.fr."
     },
     "guideBordeauxAirbnbRegistration": {
-      "title": "Bordeaux Airbnb registration: meublé de tourisme compliance guide",
-      "description": "Airbnb hosts in Bordeaux: taxedesejour.bordeaux-metropole.fr, registration number on ads, 90-night primary cap, UB change-of-use for non-primary units."
+      "title": "Bordeaux Airbnb registration: furnished tourist rental compliance guide",
+      "description": "Airbnb hosts in Bordeaux: taxedesejour.bordeaux-metropole.fr registration portal, registration number on ads, 90-night primary cap, UB change-of-use for non-primary units."
     },
     "guideBordeauxAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Bordeaux: guide meublé de tourisme",
@@ -900,11 +900,11 @@
         },
         "nonPrimary": {
           "title": "Non-primary: formulaire UB with compensation",
-          "body": "Secondary and other non-primary whole-unit meublés need real and definitive change-of-use authorisation with compensation before any rental. Download formulaire UB (PDF), notice and document list from the urbanisme page. File at the droit des sols guichet unique (Cité municipale, 4 rue Claude Bonnier) or via the urbanisme portal as described on bordeaux.fr. Instruction is about two months from a complete file (règlement art. 4)."
+          "body": "Secondary and other non-primary whole-unit meublés need real and definitive change-of-use authorisation with compensation before any rental. Download formulaire UB (PDF), notice and document list from the urbanisme page. File at the droit des sols guichet unique (Cité municipale, 4 rue Claude Bonnier) or via the urbanisme portal as described on bordeaux.fr. Instruction: 2 months from a complete file. If incomplete, the city requests documents within 1 month; without them within 2 months the request is implicitly rejected. Silence after the instruction period means tacit grant (règlement art. 4.2)."
         },
         "secteurA": {
           "title": "Secteur A reinforced compensation (since 1 April 2026)",
-          "body": "For units in secteur A, compensation surface must be double the unit surface unless compensation premises become social housing (then normal 1:1 rules apply). The urbanisme page (updated June 2026) reflects this. The February 2026 owner guide still describes same-surface compensation only and is stale on secteur A sizing; prefer the urbanisme page and règlement PDF."
+          "body": "For units in secteur A, compensation surface must be double the unit surface unless compensation premises become social housing (then normal 1:1 rules apply). The urbanisme page (updated June 2026) reflects this. The owner guide (updated February 2026) does not yet mention the double surface; the urbanisme page and règlement prevail."
         },
         "sectors": {
           "title": "Sectors A, B and C",
@@ -924,11 +924,11 @@
         },
         "sanctions": {
           "title": "Sanctions",
-          "body": "The règlement art. 5 refers to the Code de la construction et de l'habitation and tourism code without publishing specific euro amounts on bordeaux.fr. Do not rely on invented fine figures from unofficial sources."
+          "body": "Failing to declare or obtain a number is a third-class contravention under the tourism code (règlement art. 2.1). Other sanctions follow the CCH and tourism code (règlement art. 5)."
         },
         "contact": {
           "title": "Usage questions email",
-          "body": "usagebordeaux@bordeaux-metropole.fr appears on the taxedesejour.bordeaux-metropole.fr portal for usage questions; it was not found on bordeaux.fr pages checked in October 2026."
+          "body": "Usage questions: usagebordeaux@bordeaux-metropole.fr (listed on the taxedesejour.bordeaux-metropole.fr portal)."
         },
         "national": {
           "title": "National register context",

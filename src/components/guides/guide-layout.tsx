@@ -26,7 +26,11 @@ export async function GuideLayout({ locale, title, updated, seoPage, children }:
           {title}
         </h1>
         <p className="mt-2 text-sm text-slate-500">{updated}</p>
-        <div className="prose prose-slate mt-10 max-w-none">{children}</div>
+        <div
+          className="guide-prose prose prose-slate mt-10 max-w-none text-slate-700 prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-900 prose-h2:mt-10 prose-h2:text-xl prose-h2:scroll-mt-24 prose-p:leading-7 prose-a:font-medium prose-a:text-emerald-700 prose-a:no-underline hover:prose-a:underline"
+        >
+          {children}
+        </div>
         {seoPage ? <GuideCountryNav locale={locale} seoPage={seoPage} /> : null}
         <div className="mt-12 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6 sm:p-8">
           <h2 className="text-xl font-bold text-slate-900">{t("cta.title")}</h2>

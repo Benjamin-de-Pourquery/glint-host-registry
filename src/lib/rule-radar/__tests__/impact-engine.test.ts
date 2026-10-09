@@ -17,7 +17,7 @@ describe("rule radar impact helpers", () => {
         city: null,
         zone: null,
         residency: "primary",
-        valueJson: JSON.stringify(["paris", "lyon", "nice", "bordeaux"]),
+        valueJson: JSON.stringify(["paris", "lyon", "nice", "marseille", "bordeaux", "toulouse"]),
         effectiveFrom: new Date("2026-06-01"),
         effectiveTo: null,
       },
@@ -34,7 +34,7 @@ describe("rule radar impact helpers", () => {
     const beforeSettings = await resolveNightCapSettingsForProperty(
       {
         country: "France",
-        city: "Bordeaux",
+        city: "Toulouse",
         residencyStatus: "primary",
       },
       beforeSnapshot
@@ -42,7 +42,7 @@ describe("rule radar impact helpers", () => {
     const afterSettings = await resolveNightCapSettingsForProperty(
       {
         country: "France",
-        city: "Bordeaux",
+        city: "Toulouse",
         residencyStatus: "primary",
       },
       afterSnapshot
@@ -50,20 +50,20 @@ describe("rule radar impact helpers", () => {
 
     const before = computePropertyNightCapFromSettings(stays, {
       country: "France",
-      city: "Bordeaux",
+      city: "Toulouse",
       residencyStatus: "primary",
       settings: beforeSettings,
     });
     const after = computePropertyNightCapFromSettings(stays, {
       country: "France",
-      city: "Bordeaux",
+      city: "Toulouse",
       residencyStatus: "primary",
       settings: afterSettings,
     });
 
     assert.equal(before?.limit, 120);
     assert.equal(after?.limit, 90);
-    assert.equal(resolveFrNightCapLimit(afterSnapshot, "Bordeaux").limit, 90);
+    assert.equal(resolveFrNightCapLimit(afterSnapshot, "Toulouse").limit, 90);
   });
 
   it("applies Amsterdam 15-night wijk cap from snapshot", async () => {

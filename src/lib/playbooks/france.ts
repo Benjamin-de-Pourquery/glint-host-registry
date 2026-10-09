@@ -3,10 +3,7 @@ import { buildNerMigrationPrepStep } from "@/lib/fr-ner-migration/playbook-step"
 import { buildParisPlaybook } from "./paris-steps";
 import { buildLyonPlaybook, LYON_TAXE_SEJOUR_URL } from "./lyon-steps";
 import { buildMarseillePlaybook } from "./marseille-steps";
-
-const BORDEAUX_GUIDE_URL =
-  "https://www.bordeaux.fr/location-touristique-bordeaux--guide-proprietaires";
-const BORDEAUX_PORTAL_URL = "https://taxedesejour.bordeaux-metropole.fr/";
+import { buildBordeauxPlaybook, BORDEAUX_PORTAL_URL } from "./bordeaux-steps";
 
 const NICE_CHANGE_OF_USE_RULES_URL =
   "https://www.nicecotedazur.org/services/logement/autorisations-de-changements-dusage/";
@@ -458,123 +455,7 @@ const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
   buildParisPlaybook(frSteps),
   buildLyonPlaybook(frSteps),
   buildMarseillePlaybook(frSteps),
-  {
-    id: "fr-bordeaux",
-    country: "France",
-    city: "Bordeaux",
-    title: {
-      en: "Bordeaux Metropole furnished rental",
-      fr: "Location meublée — Bordeaux Métropole",
-    },
-    description: {
-      en: "Registration and registration number via Bordeaux Metropole tourist tax portal. Owner guide on bordeaux.fr. Secondary residences need change-of-use — contact usagebordeaux@bordeaux-metropole.fr.",
-      fr: "Enregistrement et numéro via le portail taxe de séjour de Bordeaux Métropole. Guide propriétaires sur bordeaux.fr. Les résidences secondaires nécessitent un changement d'usage — contacter usagebordeaux@bordeaux-metropole.fr.",
-    },
-    sourceReviewedAt: "2026-03-25",
-    steps: [
-      {
-        key: "bordeaux-verify-rules",
-        title: {
-          en: "Read the Bordeaux owner guide and local rules",
-          fr: "Lire le guide propriétaires et la réglementation bordelaise",
-        },
-        instruction: {
-          en: "Review the official Bordeaux owner guide for registration steps, primary vs secondary residence rules, and change-of-use requirements. Secondary residences require change-of-use authorization before registration.",
-          fr: "Consultez le guide propriétaires officiel de Bordeaux pour les étapes d'enregistrement, les règles résidence principale vs secondaire et les exigences de changement d'usage. Les résidences secondaires nécessitent une autorisation de changement d'usage avant l'enregistrement.",
-        },
-        officialUrls: [
-          {
-            url: BORDEAUX_GUIDE_URL,
-            label: {
-              en: "City of Bordeaux — tourist rental guide for owners",
-              fr: "Ville de Bordeaux — guide location touristique propriétaires",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Confirm primary vs secondary residence status",
-            "Property deed or proof of ownership",
-            "Co-ownership bylaws (if applicable)",
-          ],
-          fr: [
-            "Confirmer le statut résidence principale ou secondaire",
-            "Titre de propriété ou justificatif",
-            "Règlement de copropriété (le cas échéant)",
-          ],
-        },
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.changeOfUse(
-        "bordeaux",
-        [
-          {
-            url: BORDEAUX_GUIDE_URL,
-            label: {
-              en: "Bordeaux owner guide — change-of-use section",
-              fr: "Guide propriétaires Bordeaux — section changement d'usage",
-            },
-            role: "info",
-            urlVerified: true,
-          },
-        ],
-        {
-          en: "For secondary residences, contact usagebordeaux@bordeaux-metropole.fr (mentioned on the official portal) to initiate change-of-use procedures before registering. There is no separate online form — follow the guide and contact the authority.",
-          fr: "Pour les résidences secondaires, contactez usagebordeaux@bordeaux-metropole.fr (mentionné sur le portail officiel) pour initier les démarches de changement d'usage avant l'enregistrement. Il n'existe pas de formulaire en ligne distinct — suivez le guide et contactez l'autorité.",
-        },
-        {
-          en: "Do not register on the tourist tax portal until change-of-use is approved for secondary residences. Contact: usagebordeaux@bordeaux-metropole.fr.",
-          fr: "N'enregistrez pas sur le portail de taxe de séjour tant que le changement d'usage n'est pas approuvé pour les résidences secondaires. Contact : usagebordeaux@bordeaux-metropole.fr.",
-        }
-      ),
-      {
-        key: "bordeaux-declare-registration",
-        title: {
-          en: "Register on the Bordeaux Metropole tourist tax portal",
-          fr: "S'inscrire sur le portail taxe de séjour Bordeaux Métropole",
-        },
-        instruction: {
-          en: "Register your furnished tourist rental on the Bordeaux Metropole tourist tax portal to obtain your registration number. This is the registration channel — not the bordeaux.fr guide page.",
-          fr: "Enregistrez votre location meublée touristique sur le portail de taxe de séjour de Bordeaux Métropole pour obtenir votre numéro d'enregistrement. C'est le canal d'enregistrement — pas la page guide bordeaux.fr.",
-        },
-        officialUrls: [
-          {
-            url: BORDEAUX_PORTAL_URL,
-            label: {
-              en: "Bordeaux Metropole — tourist tax and registration portal",
-              fr: "Bordeaux Métropole — portail taxe de séjour et enregistrement",
-            },
-            role: "portal",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "National ID or passport",
-            "Proof of ownership",
-            "Property address",
-            "Change-of-use authorization (if secondary residence)",
-          ],
-          fr: [
-            "Pièce d'identité",
-            "Justificatif de propriété",
-            "Adresse du bien",
-            "Autorisation de changement d'usage (si résidence secondaire)",
-          ],
-        },
-        timeline: {
-          en: "Registration number issued after portal account setup and property submission.",
-          fr: "Numéro d'enregistrement délivré après création du compte et soumission du bien sur le portail.",
-        },
-        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.taxDeclaration("bordeaux"),
-      frSteps.updateListings("bordeaux"),
-      frSteps.guestRegister("bordeaux"),
-    ],
-  },
+  buildBordeauxPlaybook(frSteps),
   {
     id: "fr-nice",
     country: "France",
@@ -1522,6 +1403,20 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
     };
   }
 
+  if (playbook.id === "fr-bordeaux") {
+    nightCapStep = {
+      ...nightCapStep,
+      instruction: {
+        en: "For your primary residence in Bordeaux, the City caps furnished tourist rental at 90 nights per calendar year without prior change-of-use authorisation (owner guide and urbanisme page, checked October 2026). Connect iCal feeds or add stays manually in Host Registry. Exceeding the cap requires change-of-use except limited cases in the règlement (professional obligation, health, force majeure). National L.324-1-1 civil fines up to 15 000 EUR may still apply; the règlement points to tourism code sanctions for declaration breaches without publishing a specific euro amount for night overruns on bordeaux.fr.",
+        fr: "Pour votre résidence principale à Bordeaux, la Ville plafonne la location meublée touristique à 90 nuitées par an civile sans autorisation préalable de changement d'usage (guide propriétaires et page urbanisme, vérifiées en octobre 2026). Connectez iCal ou saisissez les séjours dans Host Registry. Au-delà du plafond : changement d'usage requis sauf cas limités au règlement (obligation professionnelle, santé, force majeure). L'art. L324-1-1 peut exposer à une amende civile jusqu'à 15 000 € ; le règlement renvoie au code du tourisme pour les déclarations sans montant spécifique publié sur bordeaux.fr pour le dépassement de nuitées.",
+      },
+      pitfalls: {
+        en: "Room-only lets in a primary home follow different owner-guide rules (optional note in playbook). Whole-unit meublé counts toward the 90-night cap.",
+        fr: "La location d'une chambre seule en résidence principale suit d'autres règles du guide (note optionnelle). Le meublé (logement entier) compte dans les 90 nuitées.",
+      },
+    };
+  }
+
   if (playbook.steps.some((s) => s.key.endsWith("-primary-night-cap"))) {
     return playbook;
   }
@@ -1583,6 +1478,28 @@ function withTouristTaxDeclarationStep(playbook: Playbook): Playbook {
           role: "portal",
           urlVerified: true,
         },
+      ],
+    };
+  }
+
+  if (playbook.id === "fr-bordeaux") {
+    touristTaxStep = {
+      ...touristTaxStep,
+      instruction: {
+        en: "Platforms may collect taxe de séjour as tiers collecteur, but the owner guide requires you to declare on taxedesejour.bordeaux-metropole.fr (city of Bordeaux scope). Glint queues periods from your calendar; you submit on the Métropole portal yourself.",
+        fr: "Les plateformes peuvent collecter la taxe de séjour en tiers collecteur, mais le guide propriétaires exige de déclarer sur taxedesejour.bordeaux-metropole.fr (périmètre ville de Bordeaux). Glint prépare les périodes depuis votre calendrier ; vous déposez sur le portail Métropole vous-même.",
+      },
+      officialUrls: [
+        {
+          url: BORDEAUX_PORTAL_URL,
+          label: {
+            en: "taxedesejour.bordeaux-metropole.fr",
+            fr: "taxedesejour.bordeaux-metropole.fr",
+          },
+          role: "portal",
+          urlVerified: true,
+        },
+        ...touristTaxStep.officialUrls,
       ],
     };
   }

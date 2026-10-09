@@ -26,6 +26,11 @@ import {
   stepAppliesForMarseille,
   type MarseillePlaybookInput,
 } from "@/lib/france/marseille-playbook";
+import {
+  bordeauxInputFromProperty,
+  stepAppliesForBordeaux,
+  type BordeauxPlaybookInput,
+} from "@/lib/france/bordeaux-playbook";
 import type {
   OfficialUrl,
   OfficialUrlRole,
@@ -265,9 +270,11 @@ export function lyonInputFromProperty(
   };
 }
 
-export { marseilleInputFromProperty };
+export { marseilleInputFromProperty, bordeauxInputFromProperty };
 
-export type FrCityPlaybookInput = LyonPlaybookInput & MarseillePlaybookInput;
+export type FrCityPlaybookInput = LyonPlaybookInput &
+  MarseillePlaybookInput &
+  BordeauxPlaybookInput;
 
 export function stepApplies(
   playbook: Playbook,
@@ -284,6 +291,14 @@ export function stepApplies(
   }
   if (playbook.id === "fr-marseille") {
     return stepAppliesForMarseille(
+      step,
+      residencyStatus,
+      propertyType,
+      cityInput ?? null
+    );
+  }
+  if (playbook.id === "fr-bordeaux") {
+    return stepAppliesForBordeaux(
       step,
       residencyStatus,
       propertyType,

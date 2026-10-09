@@ -6,6 +6,7 @@ import {
   getPlaybookProgressSummary,
   lyonInputFromProperty,
   marseilleInputFromProperty,
+  bordeauxInputFromProperty,
 } from "@/lib/playbooks";
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
 import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
@@ -150,7 +151,14 @@ export async function GET(
     settings: property.touristTaxSettings,
   });
 
+  const lyonInput = lyonInputFromProperty({
+    habitableSurfaceM2: property.habitableSurfaceM2,
+    lyonInHypercentre: property.lyonInHypercentre,
+    ownerIsLegalEntity: property.ownerIsLegalEntity,
+  });
   const marseilleInput = marseilleInputFromProperty(property);
+  const bordeauxInput = bordeauxInputFromProperty(property);
+  const cityPlaybookInput = { ...lyonInput, ...marseilleInput, ...bordeauxInput };
 
   let frNerMigration = null;
   if (frNerMigrationApplies(property.country) && property.registration) {
@@ -234,19 +242,14 @@ export async function GET(
     nightCapComputation: nightCapResult.computation,
     touristTaxSummary: touristTaxResult.summary,
     frNerMigration,
-    marseilleInput,
-  });
-  const lyonInput = lyonInputFromProperty({
-    habitableSurfaceM2: property.habitableSurfaceM2,
-    lyonInHypercentre: property.lyonInHypercentre,
-    ownerIsLegalEntity: property.ownerIsLegalEntity,
+    cityPlaybookInput,
   });
   const summary = getPlaybookProgressSummary(
     playbook,
     progress,
     residencyStatus,
     property.propertyType,
-    { ...lyonInput, ...marseilleInput }
+    cityPlaybookInput
   );
 
   const touristTaxPriority = touristTaxResult.summary

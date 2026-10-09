@@ -299,6 +299,22 @@
       "title": "Enregistrement Airbnb Marseille: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Marseille: compte taxedesejour.marseille.fr, numéro à 13 chiffres, plafond 90 nuitées en résidence principale, changement d'usage hors principale."
     },
+    "guideBordeauxStrRegistration": {
+      "title": "Bordeaux short-term rental registration: meublé de tourisme guide",
+      "description": "Ville de Bordeaux rules (October 2026): 90-night primary cap, formulaire UB change-of-use with compensation, registration on taxedesejour.bordeaux-metropole.fr. Not legal advice."
+    },
+    "guideBordeauxStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Bordeaux: guide meublé de tourisme",
+      "description": "Règles Ville de Bordeaux (octobre 2026): plafond 90 nuitées, changement d'usage formulaire UB, enregistrement taxedesejour.bordeaux-metropole.fr."
+    },
+    "guideBordeauxAirbnbRegistration": {
+      "title": "Bordeaux Airbnb registration: meublé de tourisme compliance guide",
+      "description": "Airbnb hosts in Bordeaux: taxedesejour.bordeaux-metropole.fr, registration number on ads, 90-night primary cap, UB change-of-use for non-primary units."
+    },
+    "guideBordeauxAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Bordeaux: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Bordeaux: portail taxedesejour.bordeaux-metropole.fr, numéro sur les annonces, 90 nuitées en résidence principale."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -870,6 +886,88 @@
         "glint": {
           "title": "Host Registry, by Glint",
           "body": "Marseille playbook branching, 90-night Cap Guard, tourist tax period queue, registration number storage and guest register. No automatic filing with the Ville de Marseille."
+        }
+      }
+    },
+    "bordeauxStrRegistration": {
+      "title": "Bordeaux furnished tourist rental registration",
+      "updated": "Checked against bordeaux.fr in October 2026",
+      "intro": "This page summarizes practical steps from official City of Bordeaux pages on furnished tourist rentals (owner guide, urbanisme change-of-use, règlement PDF, and taxedesejour.bordeaux-metropole.fr). It is not legal advice. Host Registry, by Glint, helps you track your situation, documents, registration number display and the 90-night count for primary residences. We do not file anything with the city for you.",
+      "sections": {
+        "primaryCap": {
+          "title": "Primary residence: 90 nights without change of use",
+          "body": "When the unit is your primary residence, you may rent it as a furnished tourist rental up to 90 nights per calendar year without prior change-of-use authorisation (owner guide and urbanisme page). Declaration and a registration number are still mandatory on taxedesejour.bordeaux-metropole.fr. Exceeding the cap requires change-of-use except limited cases in the règlement (professional obligation, health, force majeure)."
+        },
+        "nonPrimary": {
+          "title": "Non-primary: formulaire UB with compensation",
+          "body": "Secondary and other non-primary whole-unit meublés need real and definitive change-of-use authorisation with compensation before any rental. Download formulaire UB (PDF), notice and document list from the urbanisme page. File at the droit des sols guichet unique (Cité municipale, 4 rue Claude Bonnier) or via the urbanisme portal as described on bordeaux.fr. Instruction is about two months from a complete file (règlement art. 4)."
+        },
+        "secteurA": {
+          "title": "Secteur A reinforced compensation (since 1 April 2026)",
+          "body": "For units in secteur A, compensation surface must be double the unit surface unless compensation premises become social housing (then normal 1:1 rules apply). The urbanisme page (updated June 2026) reflects this. The February 2026 owner guide still describes same-surface compensation only and is stale on secteur A sizing; prefer the urbanisme page and règlement PDF."
+        },
+        "sectors": {
+          "title": "Sectors A, B and C",
+          "body": "Compensation must follow sector rules (règlement art. 2.2.1): unit in A compensates in A; in B in A or B; in C in A, B or C. Ground-floor premises cannot serve as compensation. Check Annexe 1 on bordeaux.fr."
+        },
+        "registration": {
+          "title": "Registration number on ads and portal",
+          "body": "Whole-unit meublé declaration and registration number are required for primary and non-primary homes (règlement art. 4.4). Register on taxedesejour.bordeaux-metropole.fr (portal scope: city of Bordeaux only). Display the number on all ads and contracts; updates may require a new number (owner guide). Change-of-use approval and registration are separate steps for non-primary units."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour",
+          "body": "Platforms may collect taxe de séjour, but the owner guide requires hosts to declare on the Bordeaux Métropole site. Host Registry queues periods from your calendar; you submit on the portal yourself."
+        },
+        "roomNote": {
+          "title": "Optional: room in primary home",
+          "body": "The owner guide states that renting a room inside your primary home (not the whole unit as a meublé) does not require a registration number and has no duration limit. Host Registry focuses on whole-unit meublé paths; confirm with the city if your layout is unclear."
+        },
+        "sanctions": {
+          "title": "Sanctions",
+          "body": "The règlement art. 5 refers to the Code de la construction et de l'habitation and tourism code without publishing specific euro amounts on bordeaux.fr. Do not rely on invented fine figures from unofficial sources."
+        },
+        "contact": {
+          "title": "Usage questions email",
+          "body": "usagebordeaux@bordeaux-metropole.fr appears on the taxedesejour.bordeaux-metropole.fr portal for usage questions; it was not found on bordeaux.fr pages checked in October 2026."
+        },
+        "national": {
+          "title": "National register context",
+          "body": "France is preparing API Meublés. See /guides/migration-ner-2026. Bordeaux municipal registration remains required under current rules. Host Registry never auto-submits."
+        },
+        "related": {
+          "title": "Related Host Registry guides",
+          "body": "Registration overview: /guides/numero-enregistrement-meuble. Guest police fiche: /guides/fiche-police-voyageurs. National NER migration: /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Bordeaux, set residency status and add bordeaux:secteur-a/b/c or bordeaux:social-housing in notes when relevant. Track the fr-bordeaux playbook, 90-night Cap Guard, taxe de séjour periods, registration number on each channel and guest register exports. You submit on bordeaux.fr and taxedesejour.bordeaux-metropole.fr yourself."
+        }
+      }
+    },
+    "bordeauxAirbnbRegistration": {
+      "title": "Bordeaux Airbnb and the meublé de tourisme register",
+      "updated": "Checked against bordeaux.fr in October 2026",
+      "intro": "Airbnb hosts in Bordeaux follow the same city rules as other platforms. Practical information with official links, not legal advice.",
+      "sections": {
+        "airbnbField": {
+          "title": "Registration number on Airbnb",
+          "body": "After you register on taxedesejour.bordeaux-metropole.fr, paste your municipal number into the field Airbnb shows for France. Use the same number on other channels. Host Registry tracks per-channel display."
+        },
+        "ninetyDay": {
+          "title": "90-night cap (primary residence)",
+          "body": "Primary residences are capped at 90 furnished tourist nights per year in Bordeaux. Connect iCal in Host Registry. Beyond 90 nights, change-of-use is required except limited règlement exceptions."
+        },
+        "nonPrimary": {
+          "title": "Non-primary homes",
+          "body": "Non-primary units need formulaire UB change-of-use with compensation before renting. The registration number does not replace authorisation. See the full Bordeaux STR guide for secteur A rules and filing."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour and platforms",
+          "body": "Create your Métropole portal account even if Airbnb collects tax. You must still declare on taxedesejour.bordeaux-metropole.fr per the owner guide."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Bordeaux playbook branching, 90-night Cap Guard, tourist tax queue, registration storage and guest register. No automatic filing with the city."
         }
       }
     },
@@ -1584,7 +1682,7 @@
         },
         "14": {
           "q": "Does Glint track the 120-night primary residence cap?",
-          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice, Marseille), and alerts you before you breach, under Code du tourisme art. L324-1-1."
+          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice, Marseille, Bordeaux), and alerts you before you breach, under Code du tourisme art. L324-1-1."
         },
         "15": {
           "q": "If Airbnb collects taxe de séjour, am I done?",
@@ -1659,6 +1757,8 @@
       "guideLyonAirbnbRegistration": "Lyon Airbnb / meublé de tourisme",
       "guideMarseilleStrRegistration": "Marseille STR registration",
       "guideMarseilleAirbnbRegistration": "Marseille Airbnb / meublé de tourisme",
+      "guideBordeauxStrRegistration": "Bordeaux STR registration",
+      "guideBordeauxAirbnbRegistration": "Bordeaux Airbnb / meublé de tourisme",
       "guideIrelandStrRegistration": "Ireland STL register",
       "guideDublinAirbnbRegistration": "Dublin Airbnb / STL register",
       "account": "Account",

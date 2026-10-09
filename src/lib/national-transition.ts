@@ -75,7 +75,7 @@ export function getEffectiveNextStep(
   touristTaxSummary?: TouristTaxSummary | null,
   frNerMigration?: FrNerMigrationRecord | null,
   propertyType?: string | null,
-  marseilleInput?: import("@/lib/france/marseille-playbook").MarseillePlaybookInput | null
+  cityPlaybookInput?: import("@/lib/playbooks").FrCityPlaybookInput | null
 ): PlaybookStep | null {
   const nationalStepKey = getNationalStepKey(playbook);
   const nationalStep = nationalStepKey
@@ -88,7 +88,7 @@ export function getEffectiveNextStep(
     progress,
     residencyStatus,
     propertyType,
-    marseilleInput
+    cityPlaybookInput
   );
 
   if (!isFranceCountry(country) || !nationalStep) {

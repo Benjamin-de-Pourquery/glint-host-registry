@@ -34,6 +34,8 @@ const GUIDE_LOCALE_PAIRS: ReadonlyArray<readonly [SeoPageKey, SeoPageKey]> = [
   ["guideLyonAirbnbRegistration", "guideLyonAirbnbRegistrationFr"],
   ["guideMarseilleStrRegistration", "guideMarseilleStrRegistrationFr"],
   ["guideMarseilleAirbnbRegistration", "guideMarseilleAirbnbRegistrationFr"],
+  ["guideBordeauxStrRegistration", "guideBordeauxStrRegistrationFr"],
+  ["guideBordeauxAirbnbRegistration", "guideBordeauxAirbnbRegistrationFr"],
 ];
 
 /** Guides served only under one locale (no translated slug pair). */

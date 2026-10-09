@@ -16,7 +16,13 @@ describe("rule radar resolver", () => {
       resolveFromSnapshot(snapshot, RULE_KEYS.FR_NIGHT_CAP_STATUTORY_LIMIT, 0),
       120
     );
-    assert.deepEqual(resolveFrCommune90Cities(snapshot), ["paris", "lyon", "nice"]);
+    assert.deepEqual(resolveFrCommune90Cities(snapshot), [
+      "paris",
+      "lyon",
+      "nice",
+      "marseille",
+      "bordeaux",
+    ]);
   });
 
   it("uses newer effective row for the same key", () => {
@@ -56,8 +62,8 @@ describe("rule radar resolver", () => {
     assert.equal(paris.source, "commune_90");
 
     const bordeaux = resolveFrNightCapLimit(snapshot, "Bordeaux");
-    assert.equal(bordeaux.limit, 120);
-    assert.equal(bordeaux.source, "statutory_120");
+    assert.equal(bordeaux.limit, 90);
+    assert.equal(bordeaux.source, "commune_90");
   });
 
   it("resolves Amsterdam wijk 15 cap from snapshot", () => {

@@ -50,7 +50,7 @@ export const SERVICE_PUBLIC_STR_URL =
   "https://www.service-public.fr/particuliers/vosdroits/F2043";
 
 /** Cities where playbooks document a 90-night commune cap for primary residences. */
-const COMMUNE_90_CITIES = new Set(["paris", "lyon", "nice", "marseille"]);
+const COMMUNE_90_CITIES = new Set(["paris", "lyon", "nice", "marseille", "bordeaux"]);
 
 const EXCLUDED_IMPORT_STATUSES = new Set(["cancelled", "removed_from_feed"]);
 

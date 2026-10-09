@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #f8fafc;
@@ -16,6 +17,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Public guides — section headings inside shared layout (prose + display type) */
+.guide-prose h2 {
+  font-family: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
 }
 
 /* Marketing landing — scoped animations & typography */

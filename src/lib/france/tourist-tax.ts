@@ -116,6 +116,9 @@ export const MARSEILLE_TOURIST_TAX_PORTAL_URL =
 export const BORDEAUX_TOURIST_TAX_PORTAL_URL =
   "https://taxedesejour.bordeaux-metropole.fr/";
 
+export const NICE_TOURIST_TAX_PORTAL_URL =
+  "https://taxedesejour.ofeaweb.fr/ts/metropole-nca";
+
 export function defaultTouristTaxPortalUrlForCity(
   city: string | null | undefined
 ): string | null {
@@ -126,16 +129,21 @@ export function defaultTouristTaxPortalUrlForCity(
   if (key === "bordeaux") {
     return BORDEAUX_TOURIST_TAX_PORTAL_URL;
   }
+  if (key === "nice") {
+    return NICE_TOURIST_TAX_PORTAL_URL;
+  }
   return null;
 }
 
 export function buildDefaultTouristTaxSettings(
   city?: string | null
 ): TouristTaxSettingsInput {
+  const key = (city ?? "").trim().toLowerCase();
+  const declarationCadence = key === "nice" ? "quarterly" : "monthly";
   return {
     enabled: true,
     collectionMode: "unknown",
-    declarationCadence: "monthly",
+    declarationCadence,
     portalUrl: defaultTouristTaxPortalUrlForCity(city),
     classification: "unclassified",
     attestationOnFile: false,

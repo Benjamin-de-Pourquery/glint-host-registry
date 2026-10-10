@@ -49,6 +49,8 @@ const PAIRED_GUIDE_IDS = [
   "marseilleAirbnb",
   "bordeauxStr",
   "bordeauxAirbnb",
+  "niceStr",
+  "niceAirbnb",
 ] as const;
 
 const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
@@ -88,6 +90,8 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
     "guideBordeauxAirbnbRegistration",
     "guideBordeauxAirbnbRegistrationFr",
   ],
+  niceStr: ["guideNiceStrRegistration", "guideNiceStrRegistrationFr"],
+  niceAirbnb: ["guideNiceAirbnbRegistration", "guideNiceAirbnbRegistrationFr"],
 };
 
 function enSlug(enKey: string): string {
@@ -227,6 +231,10 @@ describe("sitemap entries", () => {
     assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-paris"));
     assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-paris"));
     assert.ok(!urls.includes("/fr/guides/paris-short-term-rental-registration"));
+    assert.ok(urls.includes("/en/guides/nice-short-term-rental-registration"));
+    assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-nice"));
+    assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-nice"));
+    assert.ok(!urls.includes("/fr/guides/nice-short-term-rental-registration"));
   });
 
   it("lists NER migration only under /fr", () => {
@@ -308,8 +316,8 @@ describe("guides index sitemap", () => {
         ({ locale: loc, path }) => loc === locale && path.startsWith("/guides/"),
       ).length;
 
-    assert.equal(countGuideIndexLinks("en"), 38);
-    assert.equal(countGuideIndexLinks("fr"), 39);
+    assert.equal(countGuideIndexLinks("en"), 40);
+    assert.equal(countGuideIndexLinks("fr"), 41);
     assert.equal(countGuideIndexLinks("en"), guidePathsInSitemap("en"));
     assert.equal(countGuideIndexLinks("fr"), guidePathsInSitemap("fr"));
     assert.equal(GUIDE_INDEX_GROUPS.length, 11);

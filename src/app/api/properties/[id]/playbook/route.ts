@@ -7,6 +7,7 @@ import {
   lyonInputFromProperty,
   marseilleInputFromProperty,
   bordeauxInputFromProperty,
+  niceInputFromProperty,
 } from "@/lib/playbooks";
 import { getEffectiveNextStep } from "@/lib/playbooks/effective-next-step";
 import { getSesDueQueueForUser } from "@/lib/ses/due-queue";
@@ -158,7 +159,8 @@ export async function GET(
   });
   const marseilleInput = marseilleInputFromProperty(property);
   const bordeauxInput = bordeauxInputFromProperty(property);
-  const cityPlaybookInput = { ...lyonInput, ...marseilleInput, ...bordeauxInput };
+  const niceInput = niceInputFromProperty(property);
+  const cityPlaybookInput = { ...lyonInput, ...marseilleInput, ...bordeauxInput, ...niceInput };
 
   let frNerMigration = null;
   if (frNerMigrationApplies(property.country) && property.registration) {

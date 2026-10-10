@@ -9,3 +9,5 @@ export const FRANCE_CITY_RELATED: SeoPageKey[] = [
 export const LYON_EXTRA_RELATED: SeoPageKey[] = ["guideParisStrRegistration"];
 
 export const BORDEAUX_EXTRA_RELATED: SeoPageKey[] = ["guideMarseilleStrRegistration"];
+
+export const NICE_EXTRA_RELATED: SeoPageKey[] = ["guideBordeauxStrRegistration"];

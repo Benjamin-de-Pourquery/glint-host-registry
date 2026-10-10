@@ -315,6 +315,22 @@
       "title": "Enregistrement Airbnb Bordeaux: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Bordeaux: portail taxedesejour.bordeaux-metropole.fr, numéro sur les annonces, 90 nuitées en résidence principale."
     },
+    "guideNiceStrRegistration": {
+      "title": "Nice short-term rental registration: meublé de tourisme guide",
+      "description": "Nice and Métropole NCA rules (October 2026): change-of-use on changementdusage.fr/nice, registration on tax portal, 90-day primary cap, quotas and compensation. Not legal advice."
+    },
+    "guideNiceStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Nice: guide meublé de tourisme",
+      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage, numéro d'enregistrement, plafond 90 jours en principale, quotas et compensation."
+    },
+    "guideNiceAirbnbRegistration": {
+      "title": "Nice Airbnb registration: furnished tourist rental compliance guide",
+      "description": "Airbnb hosts in Nice: Métropole tax portal registration number, change-of-use when required, 90-day primary cap, quadrimestre taxe de séjour declarations."
+    },
+    "guideNiceAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Nice: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Nice: numéro portail taxe de séjour, changement d'usage si requis, plafond 90 jours en résidence principale, déclarations taxe de séjour."
+    },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "description": "Prepare for API Meublés: inventory municipal numbers, document checklist, national NER and listing updates."
@@ -971,6 +987,80 @@
         }
       }
     },
+    "niceStrRegistration": {
+      "title": "Nice furnished tourist rental registration",
+      "updated": "Checked against nicecotedazur.org in October 2026",
+      "intro": "This page summarizes practical steps from official Métropole Nice Côte d'Azur and Ville de Nice pages on furnished tourist rentals, change-of-use and taxe de séjour (owner guide PDF June 2026, règlement 2.1 from 1 September 2026). It is not legal advice. Host Registry, by Glint, helps you track documents, registration number display and the 90-night count for primary residences on Nice commune. We do not file anything with the Ville de Nice for you.",
+      "sections": {
+        "primaryCap": {
+          "title": "Primary residence: 90 days without change of use",
+          "body": "When the whole dwelling is your primary residence, the owner guide states you may rent it as a furnished tourist rental up to 90 days per calendar year without change-of-use authorisation on Nice commune. The meublés touristiques page describes a dispense up to 120 days per year unless communal rules lower the cap. The owner guide applies 90 days for Nice. Beyond that duration you need change-of-use authorisation. Copropriété rules still apply (sworn statement required in dossiers)."
+        },
+        "nonPrimary": {
+          "title": "Non-primary: change of use before day 1",
+          "body": "Secondary homes and investment units need change-of-use authorisation before any tourist rental. File online on changementdusage.fr/nice (paper only on request to changement.usage@ville-nice.fr). Natural persons may receive one 5-year temporary authorisation per tax household for a first meublé without compensation under règlement 2.1 (particuliers page). Legal entities need compensation from the 1st meublé (personnes morales page). Valid DPE classes A to E is required (A to D from 1 January 2034 per public quota notice)."
+        },
+        "compensation": {
+          "title": "Compensation and location mixte",
+          "body": "Compensation means transforming non-housing premises into housing on Nice at the same time as the change-of-use request, or buying titres de commercialité from a third party who transforms premises into housing (local must be in Nice). Legal entities compensate from the 1st meublé. Natural persons compensate from the 2nd meublé or after the 5-year temporary period unless they use the location mixte path (student during the academic year, tourists in summer) with annual renewal. Details are in the meublés touristiques page, FAQ and règlement 2.1 PDF."
+        },
+        "quotaZones": {
+          "title": "Quota sectors (Vieux-Nice, Riquier-Port-Mont Boron, Centre-Ville, Ouest)",
+          "body": "First-time change-of-use requests in the four quota sectors are capped (691 authorisations across the sectors in 2026). Online filing reopens from 1 September to 31 December 2026. Test your address on changementdusage.fr/nice. Renewals, location mixte and compensation dossiers are not quota-limited and may be filed year-round per the August 2026 public notice PDF."
+        },
+        "registration": {
+          "title": "Registration number (déclaration en mairie) on the tax portal",
+          "body": "All furnished tourist rentals need a 13-character registration number on platform listings. It is obtained on the Métropole taxe de séjour portal after account validation. This number is different from the change-of-use authorisation reference. For non-primary units, obtain change-of-use authorisation first. The secondary or investment PDF on the portal explains host account setup and quadrimestre declarations."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour quadrimestre declarations",
+          "body": "Declare stays three times per year on the Métropole portal (May for January to April, September for May to August, January for September to December per owner guide). Even when platforms collect tax, upload platform CSV summaries and declare to reach 0 EUR due. Declare zero when you had no stays. Contact: taxedesejour@nicecotedazur.org for portal questions, regie.taxedesejour@nicecotedazur.org for payment."
+        },
+        "sanctions": {
+          "title": "Sanctions",
+          "body": "The meublés touristiques page cites CCH articles: civil fine up to 50 000 EUR per illegally transformed unit, daily astreinte up to 1 000 EUR per m², and criminal penalties up to one year imprisonment and/or 80 000 EUR for false declarations or concealment."
+        },
+        "national": {
+          "title": "National register context",
+          "body": "France is preparing API Meublés. See /guides/migration-ner-2026. Nice municipal registration on the Métropole tax portal remains required under current rules. Host Registry never auto-submits."
+        },
+        "related": {
+          "title": "Related Host Registry guides",
+          "body": "Registration overview: /guides/numero-enregistrement-meuble. Guest police fiche: /guides/fiche-police-voyageurs. National NER migration: /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Nice, set residency status and owner type. Add nice:quota-zone, nice:location-mixte, nice:second-meuble or nice:compensation in notes when relevant. Track the fr-nice playbook, 90-night Cap Guard, taxe de séjour periods, registration number on each channel and guest register exports. You submit on changementdusage.fr/nice and the Métropole tax portal yourself."
+        }
+      }
+    },
+    "niceAirbnbRegistration": {
+      "title": "Nice Airbnb and the meublé de tourisme register",
+      "updated": "Checked against nicecotedazur.org in October 2026",
+      "intro": "Airbnb hosts in Nice follow the same Ville de Nice and Métropole rules as other platforms. Practical information with official links, not legal advice.",
+      "sections": {
+        "airbnbField": {
+          "title": "Registration number on Airbnb",
+          "body": "After you validate your host account on taxedesejour.ofeaweb.fr/ts/metropole-nca, paste the 13-character registration number into the field Airbnb shows for France. Use the same number on other channels. It is not your change-of-use authorisation number."
+        },
+        "ninetyDay": {
+          "title": "90-day cap (primary residence on Nice commune)",
+          "body": "Primary residences are capped at 90 furnished tourist days per year in the owner guide for Nice commune. Connect iCal in Host Registry to count nights. Beyond the cap you need change-of-use authorisation."
+        },
+        "nonPrimary": {
+          "title": "Non-primary homes",
+          "body": "Secondary and investment units need change-of-use on changementdusage.fr/nice before day 1. The tax portal registration number does not replace authorisation. See the full Nice STR guide for quotas, compensation and location mixte."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour and platforms",
+          "body": "Create your Métropole portal account even if Airbnb collects tax. Declare each quadrimestre in your host account, including platform stays with CSV upload when applicable."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Nice playbook branching, 90-night Cap Guard, tourist tax period queue, registration storage and guest register. No automatic filing with the Ville de Nice or Métropole."
+        }
+      }
+    },
     "viennaStrRegistration": {
       "title": "Vienna short-term rental registration (WKVRG)",
       "updated": "Updated: September 2026",
@@ -1527,7 +1617,7 @@
       "subtitle": "Local guidance, operational guest register, and portfolio tracking, in a clean bilingual interface.",
       "compliance": {
         "title": "Guided compliance steps",
-        "description": "Step-by-step playbooks keyed to your property location, with official form links, regulations, and residency branching."
+        "description": "Step-by-step playbooks keyed to your property location, with official portal links, residency branching, and tier-A French commune paths where published (see guides index)."
       },
       "guestRegister": {
         "title": "Guest register",
@@ -1759,6 +1849,8 @@
       "guideMarseilleAirbnbRegistration": "Marseille Airbnb / meublé de tourisme",
       "guideBordeauxStrRegistration": "Bordeaux STR registration",
       "guideBordeauxAirbnbRegistration": "Bordeaux Airbnb / meublé de tourisme",
+      "guideNiceStrRegistration": "Nice STR registration",
+      "guideNiceAirbnbRegistration": "Nice Airbnb / meublé de tourisme",
       "guideIrelandStrRegistration": "Ireland STL register",
       "guideDublinAirbnbRegistration": "Dublin Airbnb / STL register",
       "account": "Account",
@@ -2562,7 +2654,7 @@
     "nerShort": "NER",
     "localCommune": "Issuing commune / authority",
     "localPlaceholder": "e.g. 75112-STR-2024-00847",
-    "localCommunePlaceholder": "e.g. Paris, Lyon, Bordeaux Métropole",
+    "localCommunePlaceholder": "e.g. Paris, Lyon, Nice, Bordeaux Métropole",
     "noLocalYet": "Inventory your situation: enter your current municipal number if you have one, or prepare to register when the national portal opens.",
     "documentsTitle": "Document checklist",
     "documents": {

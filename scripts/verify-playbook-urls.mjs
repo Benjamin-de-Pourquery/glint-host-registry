@@ -18,6 +18,7 @@ const PLAYBOOK_FILES = [
   "src/lib/playbooks/france.ts",
   "src/lib/playbooks/paris-steps.ts",
   "src/lib/playbooks/lyon-steps.ts",
+  "src/lib/playbooks/nice-steps.ts",
   "src/lib/playbooks/international.ts",
   "src/lib/playbooks/spain.ts",
   "src/lib/playbooks/italy.ts",

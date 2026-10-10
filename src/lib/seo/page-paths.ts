@@ -76,7 +76,11 @@ export type SeoPageKey =
   | "guideBordeauxStrRegistration"
   | "guideBordeauxStrRegistrationFr"
   | "guideBordeauxAirbnbRegistration"
-  | "guideBordeauxAirbnbRegistrationFr";
+  | "guideBordeauxAirbnbRegistrationFr"
+  | "guideNiceStrRegistration"
+  | "guideNiceStrRegistrationFr"
+  | "guideNiceAirbnbRegistration"
+  | "guideNiceAirbnbRegistrationFr";
 
 export const PAGE_PATHS: Record<SeoPageKey, string> = {
   guidesIndex: "/guides",
@@ -159,4 +163,8 @@ export const PAGE_PATHS: Record<SeoPageKey, string> = {
     "/guides/enregistrement-location-courte-duree-bordeaux",
   guideBordeauxAirbnbRegistration: "/guides/bordeaux-airbnb-registration",
   guideBordeauxAirbnbRegistrationFr: "/guides/enregistrement-airbnb-bordeaux",
+  guideNiceStrRegistration: "/guides/nice-short-term-rental-registration",
+  guideNiceStrRegistrationFr: "/guides/enregistrement-location-courte-duree-nice",
+  guideNiceAirbnbRegistration: "/guides/nice-airbnb-registration",
+  guideNiceAirbnbRegistrationFr: "/guides/enregistrement-airbnb-nice",
 };

@@ -317,19 +317,19 @@
     },
     "guideNiceStrRegistration": {
       "title": "Enregistrement location courte durée Nice: guide meublé de tourisme",
-      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage sur changementdusage.fr/nice, enregistrement portail taxe, plafond 90 jours en principale, quotas et compensation. Informations pratiques."
+      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage sur changementdusage.fr/nice, enregistrement portail taxe, plafond 120 jours en principale (depuis le 1er sept. 2026), quotas et compensation. Informations pratiques."
     },
     "guideNiceStrRegistrationFr": {
       "title": "Enregistrement location courte durée Nice: guide meublé de tourisme",
-      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage, numéro d'enregistrement, plafond 90 jours en principale, quotas et compensation."
+      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage, numéro d'enregistrement, plafond 120 jours en principale, quotas et compensation."
     },
     "guideNiceAirbnbRegistration": {
       "title": "Enregistrement Airbnb Nice: guide meublé de tourisme",
-      "description": "Hôtes Airbnb à Nice: numéro portail taxe de séjour métropolitain, changement d'usage si requis, plafond 90 jours en principale, déclarations taxe de séjour par quadrimestre."
+      "description": "Hôtes Airbnb à Nice: numéro portail taxe de séjour métropolitain, changement d'usage si requis, plafond 120 jours en principale, déclarations taxe de séjour par quadrimestre."
     },
     "guideNiceAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Nice: guide meublé de tourisme",
-      "description": "Hôtes Airbnb à Nice: numéro sur le portail taxe de séjour, changement d'usage si requis, plafond 90 jours en résidence principale."
+      "description": "Hôtes Airbnb à Nice: numéro sur le portail taxe de séjour, changement d'usage si requis, plafond 120 jours en résidence principale."
     },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
@@ -990,23 +990,23 @@
     "niceStrRegistration": {
       "title": "Enregistrement location meublée touristique à Nice",
       "updated": "Vérifié sur nicecotedazur.org en octobre 2026",
-      "intro": "Cette page résume les étapes issues des pages officielles Métropole Nice Côte d'Azur et Ville de Nice sur les meublés touristiques, le changement d'usage et la taxe de séjour (guide propriétaires PDF juin 2026, règlement 2.1 au 1er septembre 2026). Ce n'est pas un avis juridique. Host Registry, par Glint, vous aide à suivre vos pièces, l'affichage du numéro et le décompte des 90 nuitées en résidence principale sur la commune de Nice. Nous ne déposons rien à la Ville de Nice pour vous.",
+      "intro": "Cette page résume les étapes issues des pages officielles Métropole Nice Côte d'Azur et Ville de Nice sur les meublés touristiques, le changement d'usage et la taxe de séjour (guide propriétaires PDF juin 2026, règlement 2.1 au 1er septembre 2026). Ce n'est pas un avis juridique. Host Registry, par Glint, vous aide à suivre vos pièces, l'affichage du numéro et le décompte des 120 nuitées en résidence principale sur la commune de Nice (plafond porté à 120 jours par délibération n° 5.2 du 19 juin 2026, à partir du 1er septembre 2026 ; 90 jours avant cette date). Nous ne déposons rien à la Ville de Nice pour vous.",
       "sections": {
         "primaryCap": {
-          "title": "Résidence principale : 90 jours sans changement d'usage",
-          "body": "Pour la totalité du logement en résidence principale, le guide propriétaires indique jusqu'à 90 jours de location meublée touristique par an civile sans autorisation de changement d'usage sur la commune de Nice. La page meublés touristiques évoque une dispense jusqu'à 120 jours par an sauf abaissement communal. Le guide propriétaires applique 90 jours à Nice. Au-delà, autorisation de changement d'usage. Le règlement de copropriété reste applicable (attestation sur l'honneur dans les dossiers)."
+          "title": "Résidence principale : 120 jours sans changement d'usage",
+          "body": "Pour la totalité du logement en résidence principale, la page meublés touristiques et le règlement 2.1 (article 5) plafonnent la location meublée touristique à 120 jours cumulés par année civile sans autorisation de changement d'usage sur la commune de Nice à partir du 1er septembre 2026 (délibération n° 5.2 du 19 juin 2026). Avant cette date, le plafond communal était de 90 jours par an. Au-delà, autorisation de changement d'usage. Le règlement de copropriété reste applicable (attestation sur l'honneur dans les dossiers)."
         },
         "nonPrimary": {
           "title": "Hors résidence principale : changement d'usage avant le 1er jour",
-          "body": "Résidences secondaires et investissements locatifs : autorisation de changement d'usage avant toute location touristique. Dépôt en ligne sur changementdusage.fr/nice (papier sur demande à changement.usage@ville-nice.fr). Personnes physiques : une autorisation temporaire de 5 ans par foyer fiscal pour un 1er meublé sans compensation (règlement 2.1, page particuliers). Personnes morales : compensation dès le 1er meublé (page personnes morales). DPE valide classes A à E requis (A à D à partir du 1er janvier 2034 selon l'avis quotas)."
+          "body": "Résidences secondaires et investissements locatifs : autorisation de changement d'usage avant toute location touristique. Dépôt en ligne sur changementdusage.fr/nice (papier sur demande à changement.usage@ville-nice.fr). Personnes physiques : une autorisation temporaire de 5 ans par foyer fiscal pour un 1er meublé sans compensation (règlement 2.1, page particuliers). Personnes morales à vocation commerciale : compensation dès le 1er meublé (page personnes morales). Les autres personnes morales suivent les règles des personnes physiques. DPE valide classes A à E requis (A à D à partir du 1er janvier 2034 selon l'avis quotas)."
         },
         "compensation": {
           "title": "Compensation et location mixte",
-          "body": "La compensation consiste à transformer des locaux non habitables en logement sur Nice de façon concomitante, ou à acheter des titres de commercialité auprès d'un tiers qui transforme des locaux en logement (local à Nice). Les personnes morales compensent dès le 1er meublé. Les personnes physiques compensent à partir du 2e meublé ou après la période temporaire de 5 ans, sauf location mixte (étudiant sur l'année universitaire, touristes l'été) avec renouvellement annuel. Voir la page meublés touristiques, la FAQ et le PDF règlement 2.1."
+          "body": "La compensation consiste à transformer des locaux non habitables en logement sur Nice de façon concomitante, ou à acheter des titres de commercialité auprès d'un tiers qui transforme des locaux en logement (local à Nice). Les personnes morales à vocation commerciale compensent dès le 1er meublé. Les personnes physiques compensent à partir du 2e meublé ou après la période temporaire de 5 ans, sauf location mixte (étudiant sur l'année universitaire, touristes l'été) avec renouvellement annuel. Voir la page meublés touristiques, la FAQ et le PDF règlement 2.1."
         },
         "quotaZones": {
           "title": "Secteurs à quotas (Vieux-Nice, Riquier-Port-Mont Boron, Centre-Ville, Ouest)",
-          "body": "Les premières demandes dans les quatre secteurs à quotas sont plafonnées (691 autorisations sur les secteurs en 2026). Réouverture du dépôt en ligne du 1er septembre au 31 décembre 2026. Testez l'adresse sur changementdusage.fr/nice. Renouvellements, location mixte et dossiers de compensation ne sont pas soumis aux quotas et restent déposables toute l'année (avis au public août 2026)."
+          "body": "Les premières demandes dans les quatre secteurs à quotas sont plafonnées (691 autorisations sur les secteurs en 2026). Le dépôt en ligne rouvre le 1er septembre 2026 et se clôt en fin décembre 2026 (les pages web Métropole indiquent le 31 décembre, l'avis au public du 15 août 2026 cite le 21 décembre pour les premières demandes : vérifiez la date exacte sur nicecotedazur.org). Testez l'adresse sur changementdusage.fr/nice. Renouvellements, location mixte et dossiers de compensation ne sont pas soumis aux quotas et restent déposables toute l'année (avis au public août 2026)."
         },
         "registration": {
           "title": "Numéro d'enregistrement (déclaration en mairie) sur le portail taxe",
@@ -1014,7 +1014,7 @@
         },
         "taxeSejour": {
           "title": "Déclarations taxe de séjour par quadrimestre",
-          "body": "Déclarez trois fois par an sur le portail Métropole (mai pour janvier-avril, septembre pour mai-août, janvier pour septembre-décembre selon le guide propriétaires). Même si les plateformes collectent la taxe, importez le CSV plateforme et déclarez pour arriver à 0 € dû. Déclarez à 0 € sans séjour. Contacts : taxedesejour@nicecotedazur.org (portail), regie.taxedesejour@nicecotedazur.org (paiement)."
+          "body": "Déclarez trois fois par an par quadrimestre sur le portail Métropole (mai pour janvier-avril, septembre pour mai-août, janvier pour septembre-décembre selon le guide propriétaires). Même si les plateformes collectent la taxe, importez le CSV plateforme et déclarez pour arriver à 0 € dû. Déclarez à 0 € sans séjour. Contacts et aide : taxedesejour.ofeaweb.fr/ts/metropole-nca et les pages meublés touristiques sur nicecotedazur.org."
         },
         "sanctions": {
           "title": "Sanctions",
@@ -1030,7 +1030,7 @@
         },
         "glint": {
           "title": "Comment Host Registry aide",
-          "body": "Sélectionnez Nice, renseignez le statut de résidence et le type de propriétaire. Ajoutez nice:quota-zone, nice:location-mixte, nice:second-meuble ou nice:compensation dans les notes si pertinent. Suivez le playbook fr-nice, Cap Guard 90 nuitées, périodes taxe de séjour, numéro sur chaque canal et registre voyageurs. Vous déposez sur changementdusage.fr/nice et le portail taxe Métropole vous-même."
+          "body": "Sélectionnez Nice, renseignez le statut de résidence et le type de propriétaire. Ajoutez nice:quota-zone, nice:location-mixte, nice:second-meuble ou nice:compensation dans les notes si pertinent. Suivez le playbook fr-nice, Cap Guard 120 nuitées, périodes taxe de séjour, numéro sur chaque canal et registre voyageurs. Vous déposez sur changementdusage.fr/nice et le portail taxe Métropole vous-même."
         }
       }
     },
@@ -1044,8 +1044,8 @@
           "body": "Après validation de votre compte hébergeur sur taxedesejour.ofeaweb.fr/ts/metropole-nca, saisissez le numéro à 13 caractères dans le champ Airbnb pour la France. Même numéro sur les autres canaux. Ce n'est pas le numéro d'autorisation de changement d'usage."
         },
         "ninetyDay": {
-          "title": "Plafond 90 jours (résidence principale sur Nice)",
-          "body": "La résidence principale est plafonnée à 90 jours de location meublée touristique par an sur la commune de Nice selon le guide propriétaires. Connectez iCal dans Host Registry. Au-delà du plafond : autorisation de changement d'usage."
+          "title": "Plafond 120 jours (résidence principale sur Nice)",
+          "body": "La résidence principale est plafonnée à 120 jours cumulés de location meublée touristique par an civile sur la commune de Nice à partir du 1er septembre 2026 (90 jours avant cette date). Connectez iCal dans Host Registry. Au-delà du plafond : autorisation de changement d'usage."
         },
         "nonPrimary": {
           "title": "Hors résidence principale",
@@ -1057,7 +1057,7 @@
         },
         "glint": {
           "title": "Host Registry, par Glint",
-          "body": "Playbook Nice, Cap Guard 90 nuitées, file taxe de séjour, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Nice ou de la Métropole."
+          "body": "Playbook Nice, Cap Guard 120 nuitées, file taxe de séjour, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Nice ou de la Métropole."
         }
       }
     },
@@ -1772,7 +1772,7 @@
         },
         "14": {
           "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
-          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice, Marseille, Bordeaux) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
+          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Marseille, Bordeaux ; 120 sur Nice commune à partir du 1er septembre 2026) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
         },
         "15": {
           "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
@@ -2489,6 +2489,7 @@
       "monthly": "Mensuelle",
       "bimonthly": "Bimestrielle",
       "quarterly": "Trimestrielle",
+      "quadrimestral": "Quadrimestrielle (3 fois par an)",
       "annual": "Annuelle",
       "unknown": "Inconnue"
     },

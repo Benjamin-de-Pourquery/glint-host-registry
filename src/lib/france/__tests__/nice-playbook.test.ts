@@ -87,7 +87,7 @@ describe("Nice notes helpers", () => {
 });
 
 describe("Nice night cap default", () => {
-  it("uses commune 90 for Nice", () => {
-    assert.equal(defaultNightCapLimitForCity("Nice"), 90);
+  it("uses 120-night statutory cap for Nice from September 2026 rules", () => {
+    assert.equal(defaultNightCapLimitForCity("Nice"), 120);
   });
 });

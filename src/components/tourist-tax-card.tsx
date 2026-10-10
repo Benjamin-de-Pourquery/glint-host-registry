@@ -279,7 +279,9 @@ export function TouristTaxCard({ propertyId, country, locale }: Props) {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              {(["monthly", "bimonthly", "quarterly", "annual", "unknown"] as const).map(
+              {(
+                ["monthly", "bimonthly", "quarterly", "quadrimestral", "annual", "unknown"] as const
+              ).map(
                 (cadence) => (
                   <SelectItem key={cadence} value={cadence}>
                     {t(`cadence.${cadence}`)}

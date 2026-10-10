@@ -80,11 +80,13 @@ describe("night cap — night counting", () => {
 });
 
 describe("night cap — city defaults", () => {
-  it("uses commune 90 for Paris, Lyon, Nice, Marseille, Bordeaux and statutory 120 for Lille", () => {
+  it("uses commune 90 for Paris, Lyon, Marseille, Bordeaux and statutory 120 for Nice and Lille", () => {
     assert.equal(defaultNightCapSourceForCity("Paris"), "commune_90");
     assert.equal(defaultNightCapLimitForCity("Paris"), 90);
     assert.equal(defaultNightCapLimitForCity("Marseille"), 90);
     assert.equal(defaultNightCapLimitForCity("Bordeaux"), 90);
+    assert.equal(defaultNightCapSourceForCity("Nice"), "statutory_120");
+    assert.equal(defaultNightCapLimitForCity("Nice"), 120);
     assert.equal(defaultNightCapSourceForCity("Lille"), "statutory_120");
     assert.equal(defaultNightCapLimitForCity("Lille"), 120);
   });

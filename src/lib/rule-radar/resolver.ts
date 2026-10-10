@@ -120,11 +120,12 @@ export function resolveFrCommune90Cities(snapshot: RuleSnapshot): string[] {
   const cities = resolveFromSnapshot(snapshot, RULE_KEYS.FR_NIGHT_CAP_COMMUNE_90_CITIES, [
     "paris",
     "lyon",
-    "nice",
+    "marseille",
+    "bordeaux",
   ]);
   return Array.isArray(cities)
     ? cities.map((c) => String(c).trim().toLowerCase())
-    : ["paris", "lyon", "nice"];
+    : ["paris", "lyon", "marseille", "bordeaux"];
 }
 
 export function resolveFrNightCapLimit(

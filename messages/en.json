@@ -317,19 +317,19 @@
     },
     "guideNiceStrRegistration": {
       "title": "Nice short-term rental registration: meublé de tourisme guide",
-      "description": "Nice and Métropole NCA rules (October 2026): change-of-use on changementdusage.fr/nice, registration on tax portal, 90-day primary cap, quotas and compensation. Not legal advice."
+      "description": "Nice and Métropole NCA rules (October 2026): change-of-use on changementdusage.fr/nice, registration on tax portal, 120-day primary cap (from 1 Sep 2026), quotas and compensation. Not legal advice."
     },
     "guideNiceStrRegistrationFr": {
       "title": "Enregistrement location courte durée Nice: guide meublé de tourisme",
-      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage, numéro d'enregistrement, plafond 90 jours en principale, quotas et compensation."
+      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage, numéro d'enregistrement, plafond 120 jours en principale, quotas et compensation."
     },
     "guideNiceAirbnbRegistration": {
       "title": "Nice Airbnb registration: furnished tourist rental compliance guide",
-      "description": "Airbnb hosts in Nice: Métropole tax portal registration number, change-of-use when required, 90-day primary cap, quadrimestre taxe de séjour declarations."
+      "description": "Airbnb hosts in Nice: Métropole tax portal registration number, change-of-use when required, 120-day primary cap, quadrimestre taxe de séjour declarations."
     },
     "guideNiceAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Nice: guide meublé de tourisme",
-      "description": "Hôtes Airbnb à Nice: numéro portail taxe de séjour, changement d'usage si requis, plafond 90 jours en résidence principale, déclarations taxe de séjour."
+      "description": "Hôtes Airbnb à Nice: numéro portail taxe de séjour, changement d'usage si requis, plafond 120 jours en résidence principale, déclarations taxe de séjour par quadrimestre."
     },
     "guideFrNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
@@ -990,23 +990,23 @@
     "niceStrRegistration": {
       "title": "Nice furnished tourist rental registration",
       "updated": "Checked against nicecotedazur.org in October 2026",
-      "intro": "This page summarizes practical steps from official Métropole Nice Côte d'Azur and Ville de Nice pages on furnished tourist rentals, change-of-use and taxe de séjour (owner guide PDF June 2026, règlement 2.1 from 1 September 2026). It is not legal advice. Host Registry, by Glint, helps you track documents, registration number display and the 90-night count for primary residences on Nice commune. We do not file anything with the Ville de Nice for you.",
+      "intro": "This page summarizes practical steps from official Métropole Nice Côte d'Azur and Ville de Nice pages on furnished tourist rentals, change-of-use and taxe de séjour (owner guide PDF June 2026, règlement 2.1 from 1 September 2026). It is not legal advice. Host Registry, by Glint, helps you track documents, registration number display and the 120-night count for primary residences on Nice commune (cap raised to 120 days by deliberation no. 5.2 of 19 June 2026 from 1 September 2026; 90 days before that date). We do not file anything with the Ville de Nice for you.",
       "sections": {
         "primaryCap": {
-          "title": "Primary residence: 90 days without change of use",
-          "body": "When the whole dwelling is your primary residence, the owner guide states you may rent it as a furnished tourist rental up to 90 days per calendar year without change-of-use authorisation on Nice commune. The meublés touristiques page describes a dispense up to 120 days per year unless communal rules lower the cap. The owner guide applies 90 days for Nice. Beyond that duration you need change-of-use authorisation. Copropriété rules still apply (sworn statement required in dossiers)."
+          "title": "Primary residence: 120 days without change of use",
+          "body": "When the whole dwelling is your primary residence, the meublés touristiques page and règlement 2.1 (article 5) cap furnished tourist rental at 120 cumulative days per calendar year without change-of-use authorisation on Nice commune from 1 September 2026 (deliberation no. 5.2 of 19 June 2026). Before that date the communal cap was 90 days per year. Beyond that duration you need change-of-use authorisation. Copropriété rules still apply (sworn statement required in dossiers)."
         },
         "nonPrimary": {
           "title": "Non-primary: change of use before day 1",
-          "body": "Secondary homes and investment units need change-of-use authorisation before any tourist rental. File online on changementdusage.fr/nice (paper only on request to changement.usage@ville-nice.fr). Natural persons may receive one 5-year temporary authorisation per tax household for a first meublé without compensation under règlement 2.1 (particuliers page). Legal entities need compensation from the 1st meublé (personnes morales page). Valid DPE classes A to E is required (A to D from 1 January 2034 per public quota notice)."
+          "body": "Secondary homes and investment units need change-of-use authorisation before any tourist rental. File online on changementdusage.fr/nice (paper only on request to changement.usage@ville-nice.fr). Natural persons may receive one 5-year temporary authorisation per tax household for a first meublé without compensation under règlement 2.1 (particuliers page). Commercial legal entities (personnes morales à vocation commerciale) need compensation from the 1st meublé (personnes morales page). Other legal entities follow the natural-person rules. Valid DPE classes A to E is required (A to D from 1 January 2034 per public quota notice)."
         },
         "compensation": {
           "title": "Compensation and location mixte",
-          "body": "Compensation means transforming non-housing premises into housing on Nice at the same time as the change-of-use request, or buying titres de commercialité from a third party who transforms premises into housing (local must be in Nice). Legal entities compensate from the 1st meublé. Natural persons compensate from the 2nd meublé or after the 5-year temporary period unless they use the location mixte path (student during the academic year, tourists in summer) with annual renewal. Details are in the meublés touristiques page, FAQ and règlement 2.1 PDF."
+          "body": "Compensation means transforming non-housing premises into housing on Nice at the same time as the change-of-use request, or buying titres de commercialité from a third party who transforms premises into housing (local must be in Nice). Commercial legal entities compensate from the 1st meublé. Natural persons compensate from the 2nd meublé or after the 5-year temporary period unless they use the location mixte path (student during the academic year, tourists in summer) with annual renewal. Details are in the meublés touristiques page, FAQ and règlement 2.1 PDF."
         },
         "quotaZones": {
           "title": "Quota sectors (Vieux-Nice, Riquier-Port-Mont Boron, Centre-Ville, Ouest)",
-          "body": "First-time change-of-use requests in the four quota sectors are capped (691 authorisations across the sectors in 2026). Online filing reopens from 1 September to 31 December 2026. Test your address on changementdusage.fr/nice. Renewals, location mixte and compensation dossiers are not quota-limited and may be filed year-round per the August 2026 public notice PDF."
+          "body": "First-time change-of-use requests in the four quota sectors are capped (691 authorisations across the sectors in 2026). Online filing reopens on 1 September 2026 and closes in late December 2026 (Métropole web pages cite 31 December; the 15 August 2026 public notice cites 21 December for first requests: check the exact date on nicecotedazur.org). Test your address on changementdusage.fr/nice. Renewals, location mixte and compensation dossiers are not quota-limited and may be filed year-round per the August 2026 public notice PDF."
         },
         "registration": {
           "title": "Registration number (déclaration en mairie) on the tax portal",
@@ -1014,7 +1014,7 @@
         },
         "taxeSejour": {
           "title": "Taxe de séjour quadrimestre declarations",
-          "body": "Declare stays three times per year on the Métropole portal (May for January to April, September for May to August, January for September to December per owner guide). Even when platforms collect tax, upload platform CSV summaries and declare to reach 0 EUR due. Declare zero when you had no stays. Contact: taxedesejour@nicecotedazur.org for portal questions, regie.taxedesejour@nicecotedazur.org for payment."
+          "body": "Declare stays three times per year by quadrimestre on the Métropole portal (May for January to April, September for May to August, January for September to December per owner guide). Even when platforms collect tax, upload platform CSV summaries and declare to reach 0 EUR due. Declare zero when you had no stays. Portal help and official contacts: taxedesejour.ofeaweb.fr/ts/metropole-nca and the meublés touristiques pages on nicecotedazur.org."
         },
         "sanctions": {
           "title": "Sanctions",
@@ -1030,7 +1030,7 @@
         },
         "glint": {
           "title": "How Host Registry helps",
-          "body": "Select Nice, set residency status and owner type. Add nice:quota-zone, nice:location-mixte, nice:second-meuble or nice:compensation in notes when relevant. Track the fr-nice playbook, 90-night Cap Guard, taxe de séjour periods, registration number on each channel and guest register exports. You submit on changementdusage.fr/nice and the Métropole tax portal yourself."
+          "body": "Select Nice, set residency status and owner type. Add nice:quota-zone, nice:location-mixte, nice:second-meuble or nice:compensation in notes when relevant. Track the fr-nice playbook, 120-night Cap Guard, taxe de séjour periods, registration number on each channel and guest register exports. You submit on changementdusage.fr/nice and the Métropole tax portal yourself."
         }
       }
     },
@@ -1044,8 +1044,8 @@
           "body": "After you validate your host account on taxedesejour.ofeaweb.fr/ts/metropole-nca, paste the 13-character registration number into the field Airbnb shows for France. Use the same number on other channels. It is not your change-of-use authorisation number."
         },
         "ninetyDay": {
-          "title": "90-day cap (primary residence on Nice commune)",
-          "body": "Primary residences are capped at 90 furnished tourist days per year in the owner guide for Nice commune. Connect iCal in Host Registry to count nights. Beyond the cap you need change-of-use authorisation."
+          "title": "120-day cap (primary residence on Nice commune)",
+          "body": "Primary residences are capped at 120 cumulative furnished tourist days per calendar year on Nice commune from 1 September 2026 (90 days before that date). Connect iCal in Host Registry to count nights. Beyond the cap you need change-of-use authorisation."
         },
         "nonPrimary": {
           "title": "Non-primary homes",
@@ -1057,7 +1057,7 @@
         },
         "glint": {
           "title": "Host Registry, by Glint",
-          "body": "Nice playbook branching, 90-night Cap Guard, tourist tax period queue, registration storage and guest register. No automatic filing with the Ville de Nice or Métropole."
+          "body": "Nice playbook branching, 120-night Cap Guard, tourist tax period queue, registration storage and guest register. No automatic filing with the Ville de Nice or Métropole."
         }
       }
     },
@@ -1772,7 +1772,7 @@
         },
         "14": {
           "q": "Does Glint track the 120-night primary residence cap?",
-          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Nice, Marseille, Bordeaux), and alerts you before you breach, under Code du tourisme art. L324-1-1."
+          "a": "Yes, for French properties marked as primary residence. Glint counts nights from iCal feeds and manual stays, applies the statutory cap (120) or commune cap (90 in Paris, Lyon, Marseille, Bordeaux; 120 on Nice commune from 1 September 2026), and alerts you before you breach, under Code du tourisme art. L324-1-1."
         },
         "15": {
           "q": "If Airbnb collects taxe de séjour, am I done?",
@@ -2489,6 +2489,7 @@
       "monthly": "Monthly",
       "bimonthly": "Bimonthly",
       "quarterly": "Quarterly",
+      "quadrimestral": "Every four months (quadrimestre)",
       "annual": "Annual",
       "unknown": "Unknown"
     },

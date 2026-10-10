@@ -4,11 +4,7 @@ import { buildParisPlaybook } from "./paris-steps";
 import { buildLyonPlaybook, LYON_TAXE_SEJOUR_URL } from "./lyon-steps";
 import { buildMarseillePlaybook } from "./marseille-steps";
 import { buildBordeauxPlaybook, BORDEAUX_PORTAL_URL } from "./bordeaux-steps";
-
-const NICE_CHANGE_OF_USE_RULES_URL =
-  "https://www.nicecotedazur.org/services/logement/autorisations-de-changements-dusage/";
-const NICE_CHANGE_OF_USE_PORTAL_URL = "https://changementdusage.fr/nice";
-const NICE_PORTAL_URL = "https://taxedesejour.ofeaweb.fr/ts/metropole-nca";
+import { buildNicePlaybook, NICE_PORTAL_URL } from "./nice-steps";
 
 const LILLE_RULES_URL = "https://lillemetropole.fr/meubles-de-tourisme";
 const LILLE_FORM_URL =
@@ -456,158 +452,7 @@ const BASE_FRANCE_PLAYBOOKS: Playbook[] = [
   buildLyonPlaybook(frSteps),
   buildMarseillePlaybook(frSteps),
   buildBordeauxPlaybook(frSteps),
-  {
-    id: "fr-nice",
-    country: "France",
-    city: "Nice",
-    title: {
-      en: "Nice furnished tourist rental",
-      fr: "Location meublée touristique — Nice",
-    },
-    description: {
-      en: "Change-of-use and registration are distinct numbers and procedures. Primary residences often capped at 90 nights. Change-of-use via Métropole pages / changementdusage.fr/nice; registration via taxe de séjour portal.",
-      fr: "Le changement d'usage et l'enregistrement sont des numéros et procédures distincts. Résidences principales souvent plafonnées à 90 nuitées. Changement d'usage via pages Métropole / changementdusage.fr/nice ; enregistrement via portail taxe de séjour.",
-    },
-    sourceReviewedAt: "2026-03-25",
-    steps: [
-      {
-        key: "nice-verify-rules",
-        title: {
-          en: "Check Nice STR rules for your situation",
-          fr: "Vérifier la réglementation niçoise selon votre situation",
-        },
-        instruction: {
-          en: "Nice requires separate change-of-use authorization and registration numbers. Primary residences are often capped at 90 rental nights per year. Review the Métropole rules page to determine which procedures apply to your property.",
-          fr: "Nice exige des numéros distincts pour le changement d'usage et l'enregistrement. Les résidences principales sont souvent plafonnées à 90 nuitées de location par an. Consultez la page des règles de la Métropole pour déterminer les procédures applicables.",
-        },
-        officialUrls: [
-          {
-            url: NICE_CHANGE_OF_USE_RULES_URL,
-            label: {
-              en: "Métropole Nice Côte d'Azur — change-of-use rules for STR",
-              fr: "Métropole Nice Côte d'Azur — règles changement d'usage location meublée",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Confirm primary vs non-primary residence status",
-            "Property surface area and location",
-            "Co-ownership bylaws (if applicable)",
-          ],
-          fr: [
-            "Confirmer le statut résidence principale ou non",
-            "Surface et localisation du bien",
-            "Règlement de copropriété (le cas échéant)",
-          ],
-        },
-        pitfalls: {
-          en: "Change-of-use authorization number and registration number are DIFFERENT. You need both for non-primary properties.",
-          fr: "Le numéro d'autorisation de changement d'usage et le numéro d'enregistrement sont DIFFÉRENTS. Vous avez besoin des deux pour les biens non principaux.",
-        },
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      {
-        key: "nice-change-of-use",
-        title: {
-          en: "Obtain change-of-use authorization (when required)",
-          fr: "Obtenir l'autorisation de changement d'usage (si requis)",
-        },
-        instruction: {
-          en: "For properties requiring change-of-use, apply via the Métropole Nice Côte d'Azur portal at changementdusage.fr/nice. This produces a separate authorization number — distinct from the registration number obtained later.",
-          fr: "Pour les biens nécessitant un changement d'usage, déposez votre demande via le portail de la Métropole Nice Côte d'Azur sur changementdusage.fr/nice. Cela produit un numéro d'autorisation distinct — différent du numéro d'enregistrement obtenu ensuite.",
-        },
-        officialUrls: [
-          {
-            url: NICE_CHANGE_OF_USE_PORTAL_URL,
-            label: {
-              en: "Nice — change-of-use application portal",
-              fr: "Nice — portail demande de changement d'usage",
-            },
-            role: "portal",
-            urlVerified: true,
-          },
-          {
-            url: NICE_CHANGE_OF_USE_RULES_URL,
-            label: {
-              en: "Métropole Nice Côte d'Azur — change-of-use rules",
-              fr: "Métropole Nice Côte d'Azur — règles changement d'usage",
-            },
-            role: "rules",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "Property deed and floor plans",
-            "Co-ownership bylaws (if applicable)",
-            "Compensation details (if required)",
-          ],
-          fr: [
-            "Titre de propriété et plans",
-            "Règlement de copropriété (le cas échéant)",
-            "Détails de compensation (si requis)",
-          ],
-        },
-        timeline: {
-          en: "Change-of-use processing can take several weeks.",
-          fr: "Le traitement du changement d'usage peut prendre plusieurs semaines.",
-        },
-        pitfalls: {
-          en: "The change-of-use number and registration number are different — do not confuse them on your listings.",
-          fr: "Le numéro de changement d'usage et le numéro d'enregistrement sont différents — ne les confondez pas sur vos annonces.",
-        },
-        appliesWhen: "nonPrimary",
-        fieldHints: ["address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      {
-        key: "nice-declare-registration",
-        title: {
-          en: "Register on the Nice Côte d'Azur tourist tax portal",
-          fr: "S'inscrire sur le portail taxe de séjour Métropole NCA",
-        },
-        instruction: {
-          en: "After any required change-of-use authorization, register your furnished rental on the Métropole Nice Côte d'Azur tourist tax portal. Create a host account to obtain your 13-character registration number for platform listings.",
-          fr: "Après toute autorisation de changement d'usage requise, enregistrez votre location meublée sur le portail de taxe de séjour de la Métropole Nice Côte d'Azur. Créez un compte hébergeur pour obtenir votre numéro d'enregistrement à 13 caractères pour vos annonces.",
-        },
-        officialUrls: [
-          {
-            url: NICE_PORTAL_URL,
-            label: {
-              en: "Nice Côte d'Azur tourist tax portal — host registration",
-              fr: "Portail taxe de séjour Métropole NCA — inscription hébergeur",
-            },
-            role: "portal",
-            urlVerified: true,
-          },
-        ],
-        documents: {
-          en: [
-            "National ID or passport",
-            "Proof of ownership",
-            "Change-of-use authorization number (if non-primary)",
-            "Property address",
-          ],
-          fr: [
-            "Pièce d'identité",
-            "Justificatif de propriété",
-            "Numéro d'autorisation de changement d'usage (si non principale)",
-            "Adresse du bien",
-          ],
-        },
-        timeline: {
-          en: "Registration number issued after portal account setup.",
-          fr: "Numéro d'enregistrement délivré après création du compte sur le portail.",
-        },
-        fieldHints: ["name", "address", "city", "country", "propertyType", "residencyStatus"],
-      },
-      frSteps.taxDeclaration("nice"),
-      frSteps.updateListings("nice"),
-      frSteps.guestRegister("nice"),
-    ],
-  },
+  buildNicePlaybook(frSteps),
   {
     id: "fr-lille",
     country: "France",
@@ -1417,6 +1262,20 @@ function withPrimaryNightCapStep(playbook: Playbook): Playbook {
     };
   }
 
+  if (playbook.id === "fr-nice") {
+    nightCapStep = {
+      ...nightCapStep,
+      instruction: {
+        en: "For your primary residence in Nice, the meublés touristiques page and règlement 2.1 (article 5) cap whole-unit furnished tourist rental at 120 cumulative days per calendar year without change-of-use authorisation on Nice commune from 1 September 2026 (deliberation no. 5.2 of 19 June 2026). Before that date the communal cap was 90 days per year. Connect iCal feeds or add stays manually in Host Registry. Beyond the cap you need change-of-use authorisation.",
+        fr: "Pour votre résidence principale à Nice, la page meublés touristiques et le règlement 2.1 (article 5) plafonnent la location meublée touristique (logement entier) à 120 jours cumulés par année civile sans autorisation de changement d'usage sur la commune de Nice à partir du 1er septembre 2026 (délibération n° 5.2 du 19 juin 2026). Avant cette date, le plafond communal était de 90 jours par an. Connectez iCal ou saisissez les séjours dans Host Registry. Au-delà du plafond : autorisation de changement d'usage.",
+      },
+      pitfalls: {
+        en: "Host Registry counts nights (Cap Guard). The owner guide also cites a 90 consecutive day limit per tenant under the 1970 law for seasonal contracts, separate from the annual primary cap.",
+        fr: "Host Registry compte les nuitées (Cap Guard). Le guide propriétaires cite aussi une limite de 90 jours consécutifs par locataire au titre de la loi de 1970, distincte du plafond annuel en résidence principale.",
+      },
+    };
+  }
+
   if (playbook.steps.some((s) => s.key.endsWith("-primary-night-cap"))) {
     return playbook;
   }
@@ -1495,6 +1354,28 @@ function withTouristTaxDeclarationStep(playbook: Playbook): Playbook {
           label: {
             en: "taxedesejour.bordeaux-metropole.fr",
             fr: "taxedesejour.bordeaux-metropole.fr",
+          },
+          role: "portal",
+          urlVerified: true,
+        },
+        ...touristTaxStep.officialUrls,
+      ],
+    };
+  }
+
+  if (playbook.id === "fr-nice") {
+    touristTaxStep = {
+      ...touristTaxStep,
+      instruction: {
+        en: "Taxe de séjour on the Métropole Nice Côte d'Azur portal is declared three times per year by quadrimestre (May for Jan-Apr, September for May-Aug, January for Sep-Dec per owner guide). Even when platforms collect tax, you must declare stays in your host account (including platform CSV uploads for 0 EUR when they collect). File zero declarations when you had no stays. Glint queues periods from your calendar; you submit on the official portal.",
+        fr: "La taxe de séjour sur le portail Métropole Nice Côte d'Azur se déclare trois fois par an par quadrimestre (mai pour jan-avr, septembre pour mai-août, janvier pour sep-déc selon le guide propriétaires). Même si les plateformes collectent la taxe, déclarez les séjours dans votre compte hébergeur (y compris import CSV plateforme à 0 € lorsqu'elles collectent). Déclarez à 0 € sans séjour. Glint prépare les périodes depuis votre calendrier ; vous déposez sur le portail officiel.",
+      },
+      officialUrls: [
+        {
+          url: NICE_PORTAL_URL,
+          label: {
+            en: "taxedesejour.ofeaweb.fr/ts/metropole-nca",
+            fr: "taxedesejour.ofeaweb.fr/ts/metropole-nca",
           },
           role: "portal",
           urlVerified: true,

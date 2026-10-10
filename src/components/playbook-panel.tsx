@@ -21,6 +21,7 @@ import {
   lyonInputFromProperty,
   marseilleInputFromProperty,
   bordeauxInputFromProperty,
+  niceInputFromProperty,
   stepApplies,
 } from "@/lib/playbooks";
 import type {
@@ -286,7 +287,9 @@ export function PlaybookPanel({
         ? marseilleInputFromProperty(propertyWithResidency)
         : playbook.id === "fr-bordeaux"
           ? bordeauxInputFromProperty(propertyWithResidency)
-          : null;
+          : playbook.id === "fr-nice"
+            ? niceInputFromProperty(propertyWithResidency)
+            : null;
   const visibleSteps = playbook.steps.filter((step) =>
     stepApplies(
       playbook,

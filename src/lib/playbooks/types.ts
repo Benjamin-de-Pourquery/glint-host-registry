@@ -49,7 +49,14 @@ export type StepAppliesWhen =
   | "bordeauxSecteurPending"
   | "bordeauxSecteurKnown"
   | "bordeauxRoomInPrimary"
-  | "bordeauxChambreHote";
+  | "bordeauxChambreHote"
+  | "nicePrimaryResidence"
+  | "niceNonPrimaryChangeOfUse"
+  | "niceLegalEntityNonPrimary"
+  | "niceCompensationRequired"
+  | "niceLocationMixte"
+  | "niceQuotaZone"
+  | "niceNotPrimary";
 
 export type ResidencyStatus = "primary" | "secondary" | "other";
 

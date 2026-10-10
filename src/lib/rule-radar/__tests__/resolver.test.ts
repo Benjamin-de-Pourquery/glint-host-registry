@@ -19,7 +19,6 @@ describe("rule radar resolver", () => {
     assert.deepEqual(resolveFrCommune90Cities(snapshot), [
       "paris",
       "lyon",
-      "nice",
       "marseille",
       "bordeaux",
     ]);

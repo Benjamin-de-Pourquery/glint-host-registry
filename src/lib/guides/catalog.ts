@@ -23,6 +23,8 @@ export const GUIDE_INDEX_GROUPS: GuideIndexGroup[] = [
       "guideMarseilleAirbnbRegistration",
       "guideBordeauxStrRegistration",
       "guideBordeauxAirbnbRegistration",
+      "guideNiceStrRegistration",
+      "guideNiceAirbnbRegistration",
     ],
   },
   {
@@ -147,6 +149,8 @@ const FOOTER_LABEL_KEY: Partial<Record<SeoPageKey, string>> = {
   guideMarseilleAirbnbRegistration: "guideMarseilleAirbnbRegistration",
   guideBordeauxStrRegistration: "guideBordeauxStrRegistration",
   guideBordeauxAirbnbRegistration: "guideBordeauxAirbnbRegistration",
+  guideNiceStrRegistration: "guideNiceStrRegistration",
+  guideNiceAirbnbRegistration: "guideNiceAirbnbRegistration",
 };
 
 export function footerLabelKeyForGuide(page: SeoPageKey): string {

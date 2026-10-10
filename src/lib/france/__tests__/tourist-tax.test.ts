@@ -2,6 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import {
   BORDEAUX_TOURIST_TAX_PORTAL_URL,
+  NICE_TOURIST_TAX_PORTAL_URL,
   buildDefaultTouristTaxSettings,
   defaultTouristTaxPortalUrlForCity,
   MARSEILLE_TOURIST_TAX_PORTAL_URL,
@@ -28,6 +29,7 @@ describe("defaultTouristTaxPortalUrlForCity", () => {
   it("returns Marseille portal URL", () => {
     assert.equal(defaultTouristTaxPortalUrlForCity("Marseille"), MARSEILLE_TOURIST_TAX_PORTAL_URL);
     assert.equal(defaultTouristTaxPortalUrlForCity("Bordeaux"), BORDEAUX_TOURIST_TAX_PORTAL_URL);
+    assert.equal(defaultTouristTaxPortalUrlForCity("Nice"), NICE_TOURIST_TAX_PORTAL_URL);
     assert.equal(defaultTouristTaxPortalUrlForCity("Lyon"), null);
   });
 
@@ -36,6 +38,10 @@ describe("defaultTouristTaxPortalUrlForCity", () => {
       buildDefaultTouristTaxSettings("Marseille").portalUrl,
       MARSEILLE_TOURIST_TAX_PORTAL_URL
     );
+  });
+
+  it("sets quadrimestral cadence for Nice", () => {
+    assert.equal(buildDefaultTouristTaxSettings("Nice").declarationCadence, "quadrimestral");
   });
 });
 
@@ -82,6 +88,19 @@ describe("period bounds and due dates", () => {
     const due = getDeclarationDueDate(new Date("2026-01-31"), "monthly");
     assert.equal(due.getMonth(), 1);
     assert.equal(due.getDate(), 28);
+  });
+
+  it("uses Jan-Apr, May-Aug and Sep-Dec quadrimestre bounds for Nice", () => {
+    const q1 = getPeriodBounds(new Date("2026-02-10"), "quadrimestral");
+    assert.equal(q1.periodStart.getMonth(), 0);
+    assert.equal(q1.periodEnd.getMonth(), 3);
+
+    const q2 = getPeriodBounds(new Date("2026-06-15"), "quadrimestral");
+    assert.equal(q2.periodStart.getMonth(), 4);
+    assert.equal(q2.periodEnd.getMonth(), 7);
+
+    const dueQ1 = getDeclarationDueDate(q1.periodEnd, "quadrimestral");
+    assert.equal(dueQ1.getMonth(), 4);
   });
 });
 

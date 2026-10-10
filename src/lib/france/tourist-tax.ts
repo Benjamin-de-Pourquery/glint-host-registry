@@ -30,6 +30,7 @@ export const DECLARATION_CADENCES = [
   "monthly",
   "bimonthly",
   "quarterly",
+  "quadrimestral",
   "annual",
   "unknown",
 ] as const;
@@ -116,6 +117,9 @@ export const MARSEILLE_TOURIST_TAX_PORTAL_URL =
 export const BORDEAUX_TOURIST_TAX_PORTAL_URL =
   "https://taxedesejour.bordeaux-metropole.fr/";
 
+export const NICE_TOURIST_TAX_PORTAL_URL =
+  "https://taxedesejour.ofeaweb.fr/ts/metropole-nca";
+
 export function defaultTouristTaxPortalUrlForCity(
   city: string | null | undefined
 ): string | null {
@@ -126,16 +130,21 @@ export function defaultTouristTaxPortalUrlForCity(
   if (key === "bordeaux") {
     return BORDEAUX_TOURIST_TAX_PORTAL_URL;
   }
+  if (key === "nice") {
+    return NICE_TOURIST_TAX_PORTAL_URL;
+  }
   return null;
 }
 
 export function buildDefaultTouristTaxSettings(
   city?: string | null
 ): TouristTaxSettingsInput {
+  const key = (city ?? "").trim().toLowerCase();
+  const declarationCadence = key === "nice" ? "quadrimestral" : "monthly";
   return {
     enabled: true,
     collectionMode: "unknown",
-    declarationCadence: "monthly",
+    declarationCadence,
     portalUrl: defaultTouristTaxPortalUrlForCity(city),
     classification: "unclassified",
     attestationOnFile: false,
@@ -178,10 +187,41 @@ export function countRentalNightsInPeriod(
   return total;
 }
 
+function quadrimestreBoundsForReference(ref: Date): { periodStart: Date; periodEnd: Date } {
+  const year = ref.getFullYear();
+  const month = ref.getMonth();
+  if (month <= 3) {
+    return {
+      periodStart: startOfYear(ref),
+      periodEnd: endOfDay(new Date(year, 3, 30)),
+    };
+  }
+  if (month <= 7) {
+    return {
+      periodStart: startOfMonth(new Date(year, 4, 1)),
+      periodEnd: endOfDay(new Date(year, 7, 31)),
+    };
+  }
+  return {
+    periodStart: startOfMonth(new Date(year, 8, 1)),
+    periodEnd: endOfDay(endOfYear(ref)),
+  };
+}
+
 export function getDeclarationDueDate(periodEnd: Date, cadence: DeclarationCadence): Date {
   const end = startOfDay(periodEnd);
   if (cadence === "annual") {
     return endOfDay(endOfMonth(new Date(end.getFullYear(), 2, 1)));
+  }
+  if (cadence === "quadrimestral") {
+    const month = end.getMonth();
+    if (month <= 3) {
+      return endOfDay(endOfMonth(new Date(end.getFullYear(), 4, 1)));
+    }
+    if (month <= 7) {
+      return endOfDay(new Date(end.getFullYear(), 8, 30));
+    }
+    return endOfDay(endOfMonth(new Date(end.getFullYear() + 1, 0, 1)));
   }
   if (cadence === "quarterly") {
     const quarterEnd = endOfQuarter(end);
@@ -205,6 +245,9 @@ export function getPeriodBounds(
   if (cadence === "annual") {
     return { periodStart: startOfYear(ref), periodEnd: endOfDay(endOfYear(ref)) };
   }
+  if (cadence === "quadrimestral") {
+    return quadrimestreBoundsForReference(ref);
+  }
   if (cadence === "quarterly") {
     return { periodStart: startOfQuarter(ref), periodEnd: endOfDay(endOfQuarter(ref)) };
   }
@@ -224,6 +267,10 @@ export function getPreviousPeriodBounds(
 ): { periodStart: Date; periodEnd: Date } {
   if (cadence === "annual") {
     const prev = new Date(periodStart.getFullYear() - 1, 0, 1);
+    return getPeriodBounds(prev, cadence);
+  }
+  if (cadence === "quadrimestral") {
+    const prev = subMonths(periodStart, 1);
     return getPeriodBounds(prev, cadence);
   }
   if (cadence === "quarterly") {

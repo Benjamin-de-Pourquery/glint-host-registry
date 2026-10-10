@@ -315,6 +315,22 @@
       "title": "Enregistrement Airbnb Bordeaux: guide meublé de tourisme",
       "description": "Hôtes Airbnb à Bordeaux: portail taxedesejour.bordeaux-metropole.fr, numéro sur les annonces, 90 nuitées, changement d'usage hors principale."
     },
+    "guideNiceStrRegistration": {
+      "title": "Enregistrement location courte durée Nice: guide meublé de tourisme",
+      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage sur changementdusage.fr/nice, enregistrement portail taxe, plafond 120 jours en principale (depuis le 1er sept. 2026), quotas et compensation. Informations pratiques."
+    },
+    "guideNiceStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Nice: guide meublé de tourisme",
+      "description": "Règles Nice et Métropole NCA (octobre 2026): changement d'usage, numéro d'enregistrement, plafond 120 jours en principale, quotas et compensation."
+    },
+    "guideNiceAirbnbRegistration": {
+      "title": "Enregistrement Airbnb Nice: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Nice: numéro portail taxe de séjour métropolitain, changement d'usage si requis, plafond 120 jours en principale, déclarations taxe de séjour par quadrimestre."
+    },
+    "guideNiceAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Nice: guide meublé de tourisme",
+      "description": "Hôtes Airbnb à Nice: numéro sur le portail taxe de séjour, changement d'usage si requis, plafond 120 jours en résidence principale."
+    },
     "guideFrNerMigration": {
       "title": "Migration NER national meublé de tourisme 2026: guide",
       "description": "Préparez l'API Meublés : inventaire des numéros communaux, checklist pièces, NER national et mise à jour des annonces."
@@ -971,6 +987,80 @@
         }
       }
     },
+    "niceStrRegistration": {
+      "title": "Enregistrement location meublée touristique à Nice",
+      "updated": "Vérifié sur nicecotedazur.org en octobre 2026",
+      "intro": "Cette page résume les étapes issues des pages officielles Métropole Nice Côte d'Azur et Ville de Nice sur les meublés touristiques, le changement d'usage et la taxe de séjour (guide propriétaires PDF juin 2026, règlement 2.1 au 1er septembre 2026). Ce n'est pas un avis juridique. Host Registry, par Glint, vous aide à suivre vos pièces, l'affichage du numéro et le décompte des 120 nuitées en résidence principale sur la commune de Nice (plafond porté à 120 jours par délibération n° 5.2 du 19 juin 2026, à partir du 1er septembre 2026 ; 90 jours avant cette date). Nous ne déposons rien à la Ville de Nice pour vous.",
+      "sections": {
+        "primaryCap": {
+          "title": "Résidence principale : 120 jours sans changement d'usage",
+          "body": "Pour la totalité du logement en résidence principale, la page meublés touristiques et le règlement 2.1 (article 5) plafonnent la location meublée touristique à 120 jours cumulés par année civile sans autorisation de changement d'usage sur la commune de Nice à partir du 1er septembre 2026 (délibération n° 5.2 du 19 juin 2026). Avant cette date, le plafond communal était de 90 jours par an. Au-delà, autorisation de changement d'usage. Le règlement de copropriété reste applicable (attestation sur l'honneur dans les dossiers)."
+        },
+        "nonPrimary": {
+          "title": "Hors résidence principale : changement d'usage avant le 1er jour",
+          "body": "Résidences secondaires et investissements locatifs : autorisation de changement d'usage avant toute location touristique. Dépôt en ligne sur changementdusage.fr/nice (papier sur demande à changement.usage@ville-nice.fr). Personnes physiques : une autorisation temporaire de 5 ans par foyer fiscal pour un 1er meublé sans compensation (règlement 2.1, page particuliers). Personnes morales à vocation commerciale : compensation dès le 1er meublé (page personnes morales). Les autres personnes morales suivent les règles des personnes physiques. DPE valide classes A à E requis (A à D à partir du 1er janvier 2034 selon l'avis quotas)."
+        },
+        "compensation": {
+          "title": "Compensation et location mixte",
+          "body": "La compensation consiste à transformer des locaux non habitables en logement sur Nice de façon concomitante, ou à acheter des titres de commercialité auprès d'un tiers qui transforme des locaux en logement (local à Nice). Les personnes morales à vocation commerciale compensent dès le 1er meublé. Les personnes physiques compensent à partir du 2e meublé ou après la période temporaire de 5 ans, sauf location mixte (étudiant sur l'année universitaire, touristes l'été) avec renouvellement annuel. Voir la page meublés touristiques, la FAQ et le PDF règlement 2.1."
+        },
+        "quotaZones": {
+          "title": "Secteurs à quotas (Vieux-Nice, Riquier-Port-Mont Boron, Centre-Ville, Ouest)",
+          "body": "Les premières demandes dans les quatre secteurs à quotas sont plafonnées (691 autorisations sur les secteurs en 2026). Le dépôt en ligne rouvre le 1er septembre 2026 et se clôt en fin décembre 2026 (les pages web Métropole indiquent le 31 décembre, l'avis au public du 15 août 2026 cite le 21 décembre pour les premières demandes : vérifiez la date exacte sur nicecotedazur.org). Testez l'adresse sur changementdusage.fr/nice. Renouvellements, location mixte et dossiers de compensation ne sont pas soumis aux quotas et restent déposables toute l'année (avis au public août 2026)."
+        },
+        "registration": {
+          "title": "Numéro d'enregistrement (déclaration en mairie) sur le portail taxe",
+          "body": "Tous les meublés touristiques doivent afficher un numéro à 13 caractères sur les annonces. Il s'obtient sur le portail taxe de séjour métropolitain après validation du compte. Ce numéro diffère de la référence d'autorisation de changement d'usage. Pour les biens hors principale, obtenez d'abord l'autorisation. Le PDF secondaire/investissement sur le portail détaille la création du compte hébergeur et les déclarations par quadrimestre."
+        },
+        "taxeSejour": {
+          "title": "Déclarations taxe de séjour par quadrimestre",
+          "body": "Déclarez trois fois par an par quadrimestre sur le portail Métropole (mai pour janvier-avril, septembre pour mai-août, janvier pour septembre-décembre selon le guide propriétaires). Même si les plateformes collectent la taxe, importez le CSV plateforme et déclarez pour arriver à 0 € dû. Déclarez à 0 € sans séjour. Contacts et aide : taxedesejour.ofeaweb.fr/ts/metropole-nca et les pages meublés touristiques sur nicecotedazur.org."
+        },
+        "sanctions": {
+          "title": "Sanctions",
+          "body": "La page meublés touristiques cite le CCH : amende civile jusqu'à 50 000 € par local transformé illégalement, astreinte jusqu'à 1 000 € par jour et par m², et peines pénales jusqu'à un an d'emprisonnement et/ou 80 000 € en cas de fausses déclarations ou dissimulation."
+        },
+        "national": {
+          "title": "Contexte registre national",
+          "body": "La France prépare l'API Meublés. Voir /guides/migration-ner-2026. L'enregistrement municipal sur le portail taxe Métropole reste obligatoire selon les règles actuelles. Host Registry ne dépose jamais automatiquement."
+        },
+        "related": {
+          "title": "Autres guides Host Registry",
+          "body": "Vue d'ensemble numéros : /guides/numero-enregistrement-meuble. Fiche police voyageurs : /guides/fiche-police-voyageurs. Migration NER : /guides/migration-ner-2026."
+        },
+        "glint": {
+          "title": "Comment Host Registry aide",
+          "body": "Sélectionnez Nice, renseignez le statut de résidence et le type de propriétaire. Ajoutez nice:quota-zone, nice:location-mixte, nice:second-meuble ou nice:compensation dans les notes si pertinent. Suivez le playbook fr-nice, Cap Guard 120 nuitées, périodes taxe de séjour, numéro sur chaque canal et registre voyageurs. Vous déposez sur changementdusage.fr/nice et le portail taxe Métropole vous-même."
+        }
+      }
+    },
+    "niceAirbnbRegistration": {
+      "title": "Airbnb Nice et le registre meublé de tourisme",
+      "updated": "Vérifié sur nicecotedazur.org en octobre 2026",
+      "intro": "Les hôtes Airbnb à Nice suivent les mêmes règles Ville de Nice et Métropole que sur les autres plateformes. Informations pratiques, pas un avis juridique.",
+      "sections": {
+        "airbnbField": {
+          "title": "Numéro sur Airbnb",
+          "body": "Après validation de votre compte hébergeur sur taxedesejour.ofeaweb.fr/ts/metropole-nca, saisissez le numéro à 13 caractères dans le champ Airbnb pour la France. Même numéro sur les autres canaux. Ce n'est pas le numéro d'autorisation de changement d'usage."
+        },
+        "ninetyDay": {
+          "title": "Plafond 120 jours (résidence principale sur Nice)",
+          "body": "La résidence principale est plafonnée à 120 jours cumulés de location meublée touristique par an civile sur la commune de Nice à partir du 1er septembre 2026 (90 jours avant cette date). Connectez iCal dans Host Registry. Au-delà du plafond : autorisation de changement d'usage."
+        },
+        "nonPrimary": {
+          "title": "Hors résidence principale",
+          "body": "Les biens secondaires et d'investissement exigent un changement d'usage sur changementdusage.fr/nice avant le 1er jour. Le numéro du portail taxe ne remplace pas l'autorisation. Voir le guide Nice complet pour quotas, compensation et location mixte."
+        },
+        "taxeSejour": {
+          "title": "Taxe de séjour et plateformes",
+          "body": "Créez votre compte portail Métropole même si Airbnb collecte la taxe. Déclarez chaque quadrimestre dans votre compte hébergeur, y compris les séjours plateforme avec import CSV le cas échéant."
+        },
+        "glint": {
+          "title": "Host Registry, par Glint",
+          "body": "Playbook Nice, Cap Guard 120 nuitées, file taxe de séjour, stockage du numéro et registre voyageurs. Pas de dépôt automatique auprès de la Ville de Nice ou de la Métropole."
+        }
+      }
+    },
     "viennaStrRegistration": {
       "title": "Enregistrement LCD Vienne (WKVRG)",
       "updated": "Mis à jour : septembre 2026",
@@ -1527,7 +1617,7 @@
       "subtitle": "Guidage local, registre opérationnel et suivi portefeuille, dans une interface sobre et bilingue.",
       "compliance": {
         "title": "Démarches guidées",
-        "description": "Playbooks pas à pas selon la localisation du bien, avec liens vers formulaires officiels, règlements et branchement selon votre statut de résidence."
+        "description": "Playbooks pas à pas selon la localisation du bien, avec liens portails officiels, branchement selon la résidence et parcours communes françaises tier A où publiés (voir l'index guides)."
       },
       "guestRegister": {
         "title": "Registre voyageurs",
@@ -1682,7 +1772,7 @@
         },
         "14": {
           "q": "Glint suit-il le plafond de 120 nuitées en résidence principale ?",
-          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Nice, Marseille, Bordeaux) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
+          "a": "Oui, pour les biens français déclarés en résidence principale. Glint compte les nuitées depuis vos flux iCal et séjours manuels, applique le plafond statutaire (120) ou communal (90 à Paris, Lyon, Marseille, Bordeaux ; 120 sur Nice commune à partir du 1er septembre 2026) et vous alerte avant dépassement, conformément à l'article L324-1-1 du Code du tourisme."
         },
         "15": {
           "q": "Si Airbnb collecte la taxe de séjour, suis-je à jour ?",
@@ -1759,6 +1849,8 @@
       "guideMarseilleAirbnbRegistration": "Airbnb Marseille / meublé de tourisme",
       "guideBordeauxStrRegistration": "Enregistrement LCD Bordeaux",
       "guideBordeauxAirbnbRegistration": "Airbnb Bordeaux / meublé de tourisme",
+      "guideNiceStrRegistration": "Enregistrement LCD Nice",
+      "guideNiceAirbnbRegistration": "Airbnb Nice / meublé de tourisme",
       "guideIrelandStrRegistration": "Registre LCD Irlande",
       "guideDublinAirbnbRegistration": "Airbnb Dublin / registre LCD",
       "account": "Compte",
@@ -2397,6 +2489,7 @@
       "monthly": "Mensuelle",
       "bimonthly": "Bimestrielle",
       "quarterly": "Trimestrielle",
+      "quadrimestral": "Quadrimestrielle (3 fois par an)",
       "annual": "Annuelle",
       "unknown": "Inconnue"
     },
@@ -2562,7 +2655,7 @@
     "nerShort": "NER",
     "localCommune": "Commune / autorité de délivrance",
     "localPlaceholder": "ex. 75112-STR-2024-00847",
-    "localCommunePlaceholder": "ex. Paris, Lyon, Bordeaux Métropole",
+    "localCommunePlaceholder": "ex. Paris, Lyon, Nice, Bordeaux Métropole",
     "noLocalYet": "Faites l'inventaire : saisissez votre numéro communal si vous en avez un, ou préparez-vous à vous enregistrer à l'ouverture du portail national.",
     "documentsTitle": "Checklist pièces",
     "documents": {

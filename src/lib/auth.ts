@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { isGoogleOAuthConfigured } from "@/lib/auth/google-oauth";
+import { persistSignupRefFromCookies } from "@/lib/auth/signup-ref-persist";
 
 const googleOAuthConfigured = isGoogleOAuthConfigured();
 
@@ -87,7 +88,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   events: {
     async signIn({ user, account, isNewUser }) {
-      if (!isNewUser || account?.provider !== "google" || !user.id) {
+      if (!isNewUser || !user.id) {
+        return;
+      }
+
+      await persistSignupRefFromCookies(user.id);
+
+      if (account?.provider !== "google") {
         return;
       }
 

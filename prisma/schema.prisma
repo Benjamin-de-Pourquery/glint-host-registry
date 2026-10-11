@@ -21,6 +21,7 @@ model User {
   stripeSubscriptionId String?
   onboardingDismissedAt DateTime?
   passwordChangedAt    DateTime?
+  signupRef            String?
   createdAt            DateTime       @default(now())
   updatedAt            DateTime       @updatedAt
   accounts             Account[]

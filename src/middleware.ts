@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
 import { resolveGuideSlugRedirect } from "@/lib/seo/guide-routing";
+import { attachSignupRefCookieIfNeeded } from "@/lib/auth/signup-ref";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -19,7 +20,10 @@ export default function middleware(request: NextRequest) {
     if (redirectPath) {
       const url = request.nextUrl.clone();
       url.pathname = redirectPath;
-      return NextResponse.redirect(url, 308);
+      return attachSignupRefCookieIfNeeded(
+        request,
+        NextResponse.redirect(url, 308)
+      );
     }
   }
 
@@ -36,14 +40,17 @@ export default function middleware(request: NextRequest) {
       const locale = pathname.startsWith("/fr") ? "fr" : "en";
       const loginUrl = new URL(`/${locale}/login`, request.url);
       loginUrl.searchParams.set("callbackUrl", pathname);
-      return NextResponse.redirect(loginUrl);
+      return attachSignupRefCookieIfNeeded(
+        request,
+        NextResponse.redirect(loginUrl)
+      );
     }
   }
 
   const response = intlMiddleware(request);
   const locale = pathname.startsWith("/fr") ? "fr" : "en";
   response.headers.set("x-locale", locale);
-  return response;
+  return attachSignupRefCookieIfNeeded(request, response);
 }
 
 export const config = {

@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import {
+  SIGNUP_REF_COOKIE_NAME,
+  signupRefCreateFields,
+} from "@/lib/auth/signup-ref";
 import { z } from "zod";
 
 const schema = z.object({
@@ -28,12 +33,18 @@ export async function POST(request: Request) {
 
     const hashed = await bcrypt.hash(data.password, 12);
 
+    const cookieStore = await cookies();
+    const signupRefFields = signupRefCreateFields(
+      cookieStore.get(SIGNUP_REF_COOKIE_NAME)?.value
+    );
+
     const user = await prisma.user.create({
       data: {
         name: data.name,
         email: data.email,
         password: hashed,
         language: data.language || "en",
+        ...signupRefFields,
       },
     });
 

@@ -46,7 +46,6 @@ prisma/dev.db
 .claude/
 .windsurf/
 skills-lock.json
-AGENTS.md
 CLAUDE.md
 
 # vercel

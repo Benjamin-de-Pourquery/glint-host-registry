@@ -18,6 +18,10 @@ export type SeoPageKey =
   | "guideAmsterdamAirbnbRegistrationFr"
   | "guideItalyCinAlloggiati"
   | "guidePortugalRnalSiba"
+  | "guideLisbonStrRegistration"
+  | "guideLisbonStrRegistrationFr"
+  | "guideLisbonAirbnbRegistration"
+  | "guideLisbonAirbnbRegistrationFr"
   | "guideGreeceAmaAade"
   | "guideCroatiaEvisitor"
   | "guideBelgiumStrRegistration"
@@ -102,6 +106,10 @@ export const PAGE_PATHS: Record<SeoPageKey, string> = {
   guideAmsterdamAirbnbRegistrationFr: "/guides/enregistrement-airbnb-amsterdam",
   guideItalyCinAlloggiati: "/guides/italy-cin-alloggiati",
   guidePortugalRnalSiba: "/guides/rnal-siba-portugal",
+  guideLisbonStrRegistration: "/guides/lisbon-short-term-rental-registration",
+  guideLisbonStrRegistrationFr: "/guides/enregistrement-location-courte-duree-lisbonne",
+  guideLisbonAirbnbRegistration: "/guides/lisbon-airbnb-registration",
+  guideLisbonAirbnbRegistrationFr: "/guides/enregistrement-airbnb-lisbonne",
   guideGreeceAmaAade: "/guides/greece-ama-aade",
   guideCroatiaEvisitor: "/guides/croatia-evisitor",
   guideBelgiumStrRegistration: "/guides/belgium-short-term-rental-registration",

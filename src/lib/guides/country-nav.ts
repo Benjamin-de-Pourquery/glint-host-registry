@@ -45,7 +45,7 @@ const COUNTRY_NAV: Record<GuideCountryId, CountryNav> = {
   },
   portugal: {
     national: ["guidePortugalRnalSiba"],
-    cities: [],
+    cities: ["guideLisbonStrRegistration", "guideLisbonAirbnbRegistration"],
   },
   greece: {
     national: ["guideGreeceAmaAade"],
@@ -102,6 +102,8 @@ const PAGE_TO_COUNTRY = new Map<SeoPageKey, GuideCountryId>([
   ["guideSevilleAirbnbRegistration", "spain"],
   ["guideItalyCinAlloggiati", "italy"],
   ["guidePortugalRnalSiba", "portugal"],
+  ["guideLisbonStrRegistration", "portugal"],
+  ["guideLisbonAirbnbRegistration", "portugal"],
   ["guideGreeceAmaAade", "greece"],
   ["guideCroatiaEvisitor", "croatia"],
   ["guideAmsterdamNightCap", "netherlands"],

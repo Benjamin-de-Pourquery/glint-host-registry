@@ -84,16 +84,16 @@
       "description": "Numéro RNAL sur les annonces (UE 2024/1028) et Boletim de Alojamento SIBA pour voyageurs étrangers, délais et phases de déclaration."
     },
     "guideLisbonStrRegistration": {
-      "title": "Lisbon short-term rental registration: Alojamento Local host guide",
-      "description": "RJEEAL national (Decreto-Lei 128/2014, Lei 56/2023, Decreto-Lei 76/2024), RNAL, zones de contention Câmara Municipal de Lisboa, SIBA et taxe municipale touristique. Pas un avis juridique."
+      "title": "Enregistrement location courte durée Lisbonne : guide Alojamento Local",
+      "description": "RJEEAL national (Decreto-Lei 128/2014, Lei 56/2023, Decreto-Lei 76/2024), RNAL, zones de contention municipales de Lisbonne, SIBA et taxe municipale touristique. Pas un avis juridique."
     },
     "guideLisbonStrRegistrationFr": {
       "title": "Enregistrement location courte durée Lisbonne: guide Alojamento Local",
       "description": "RJEEAL national, RNAL, zones de contention municipales, SIBA et taxe touristique de Lisbonne. Informations pratiques, pas un avis juridique."
     },
     "guideLisbonAirbnbRegistration": {
-      "title": "Lisbon Airbnb registration: RNAL and municipal AL compliance guide",
-      "description": "RNAL sur Airbnb, contrôles de contention avant publication, taxa municipal turística et préparation SIBA. Host Registry ne dépose pas automatiquement."
+      "title": "Enregistrement Airbnb Lisbonne : guide conformité RNAL et AL municipal",
+      "description": "RNAL sur Airbnb, contrôles de contention municipaux avant publication, taxe touristique et préparation SIBA. Host Registry ne dépose pas automatiquement."
     },
     "guideLisbonAirbnbRegistrationFr": {
       "title": "Enregistrement Airbnb Lisbonne: guide conformité RNAL et AL municipal",
@@ -592,7 +592,7 @@
       "sections": {
         "rnal": {
           "title": "RNAL: Registo Nacional de Alojamento Local",
-          "body": "Enregistrez votre location de courte durée auprès de Turismo de Portugal et de votre municipalité (comunicação prévia). Vous recevez un numéro RNAL (ex. 12345/AL) à afficher sur toutes les annonces. Depuis le 20 mai 2026, les plateformes vérifient le RNAL au titre du règlement (UE) 2024/1028."
+          "body": "Enregistrez votre location de courte durée auprès de Turismo de Portugal et de votre municipalité (comunicação prévia). Vous recevez un numéro RNAL (format illustratif 12345/AL) à afficher sur toutes les annonces. Le règlement (UE) 2024/1028 s'applique depuis le 20 mai 2026 ; les plateformes vérifient le RNAL au titre de ce règlement."
         },
         "siba": {
           "title": "SIBA: Boletim de Alojamento (voyageurs étrangers)",
@@ -619,31 +619,31 @@
       "sections": {
         "nationalRegime": {
           "title": "RJEEAL national : Decreto-Lei 128/2014 et réformes",
-          "body": "Le Portugal encadre l'hébergement touristique payant via le Regime Jurídico da Exploração dos Estabelecimentos de Alojamento Local (RJEEAL), approuvé par le Decreto-Lei n.º 128/2014 (https://diariodarepublica.pt/detalhe/decreto-lei/128-2014) et amendé plusieurs fois. La Lei n.º 56/2023 (Mais Habitação, https://diariodarepublica.pt/detalhe/lei/56-2023) avait instauré gel national des nouveaux enregistrements, validité de cinq ans, consentement de copropriété et contribution CEAL. Le Decreto-Lei n.º 76/2024 (https://files.diariodarepublica.pt/1s/2024/10/20600/0000300031.pdf), en vigueur depuis le 1er novembre 2024 selon Turismo de Portugal (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Como_comecar/Alojamento_Local/Paginas/alteracao-regime-juridico-alojamento-local.aspx), a largement abrogé ces mesures 2023 et renforcé les pouvoirs municipaux (zones de contention, zones de croissance durable, délais d'opposition allongés). Lisez toujours le texte consolidé actuel avant de vous fier à d'anciens articles Mais Habitação."
+          "body": "Le Portugal encadre l'hébergement touristique payant via le Regime Jurídico da Exploração dos Estabelecimentos de Alojamento Local (RJEEAL), approuvé par le Decreto-Lei n.º 128/2014 (https://diariodarepublica.pt/detalhe/decreto-lei/128-2014) et amendé plusieurs fois. La Lei n.º 56/2023 (Mais Habitação, https://diariodarepublica.pt/detalhe/lei/56-2023) avait instauré un gel national des nouveaux enregistrements AL dans les frações autónomas (appartements et hospedagem en copropriété), une validité de cinq ans, le consentement de copropriété et la contribution CEAL. Le Decreto-Lei n.º 76/2024 (https://files.diariodarepublica.pt/1s/2024/10/20600/0000300031.pdf), en vigueur depuis le 1er novembre 2024 selon Turismo de Portugal (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Como_comecar/Alojamento_Local/Paginas/alteracao-regime-juridico-alojamento-local.aspx), a largement abrogé ces mesures 2023 et renforcé les pouvoirs municipaux (zones de contention, zones de croissance durable, délais d'opposition allongés). Lisez toujours le texte consolidé actuel avant de vous fier à d'anciens articles Mais Habitação."
         },
         "rnal": {
           "title": "Enregistrement RNAL (comunicação prévia com prazo)",
-          "body": "Chaque établissement AL doit être enregistré par comunicação prévia com prazo sur le Balcão do Empreendedor / Portal do Cidadão (https://www2.gov.pt/pt/inicio/espaco-empresa/balcao-do-empreendedor/alojamento-local-registo-da-atividade et https://www.gov.pt/guias/alojamento-local). Turismo de Portugal précise que le document électronique avec le numéro RNAL (ex. 12345/AL) est le titre valable pour ouvrir et publiciser le logement, et que les plateformes doivent l'afficher (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Licenciamento_Registo_da_Atividade/Alojamento_Local/Paginas/default.aspx). Consultation publique : https://rnt.turismodeportugal.pt/RNT/RNAL.aspx. Après l'enregistrement, vous devez remettre la preuve d'assurance responsabilité civile comme indiqué sur gov.pt. Glint stocke votre RNAL et la checklist d'affichage uniquement."
+          "body": "Chaque établissement AL doit être enregistré par comunicação prévia com prazo sur le Balcão do Empreendedor / Portal do Cidadão (https://www2.gov.pt/pt/inicio/espaco-empresa/balcao-do-empreendedor/alojamento-local-registo-da-atividade et https://www.gov.pt/guias/alojamento-local). Turismo de Portugal précise que le document électronique avec le numéro RNAL (format illustratif 12345/AL) est le titre valable pour ouvrir et publiciser le logement, et que les plateformes doivent l'afficher (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Licenciamento_Registo_da_Atividade/Alojamento_Local/Paginas/default.aspx). Consultation publique : https://rnt.turismodeportugal.pt/RNT/RNAL.aspx. Après l'enregistrement, vous devez remettre la preuve d'assurance responsabilité civile comme indiqué sur gov.pt. Glint stocke votre RNAL et la checklist d'affichage uniquement."
         },
         "lisbonContainment": {
           "title": "Áreas de contenção à Lisbonne et nouveaux registos (à vérifier avant de déposer)",
-          "body": "La page municipale AL (https://www.lisboa.pt/temas/urbanismo/estudos-planos-e-programas/estudos-e-planos/alojamento-local) indique que les nouveaux registos AL restent suspendus par périodes de six mois renouvelables jusqu'à l'entrée en vigueur du RMAL amendé, sans préjudice des zones de contention existantes. Le RMAL amendé est publié sous l'Aviso n.º 29926-A/2025/2 (PDF : https://www.lisboa.pt/fileadmin/info_administrativa/normativas/regulamentos/comercio/Regulamento_Municipal_Alojamento_Local_Alteracao_2025.pdf). Il prévoit une contention absolue à partir d'un ratio AL/logements d'au moins 5 % (y compris une contention absolue à l'échelle du concelho tant que le ratio municipal reste à ou au-dessus de 5 %, selon les documents municipaux 2024) et une contention relative entre 2,5 % et 5 %. Vérifiez l'adresse sur la carte interactive (thème Alojamento Local – Áreas de contenção sur lisboainterativa.cm-lisboa.pt, lien depuis lisboa.pt). Le Decreto-Lei 76/2024 permet aux municipalités de s'opposer ou de refuser des registos en zone de contention, notamment si un bail de résidence a été signé dans les deux années précédentes (à confirmer sur l'article 15.º-B RJEEAL consolidé). Ne supposez pas qu'un nouveau RNAL est disponible pour votre freguesia tant que la ville n'a pas confirmé la situation pour votre adresse."
+          "body": "La page municipale AL (https://www.lisboa.pt/temas/urbanismo/estudos-planos-e-programas/estudos-e-planos/alojamento-local) peut encore citer la Deliberação 609/AML/2024, qui suspendait les nouveaux registos AL jusqu'à l'entrée en vigueur du RMAL amendé. Cette suspension a pris fin lorsque le RMAL amendé a été publié au Diário da República le 5 décembre 2025 (Aviso n.º 29926-A/2025/2, PDF : https://www.lisboa.pt/fileadmin/info_administrativa/normativas/regulamentos/comercio/Regulamento_Municipal_Alojamento_Local_Alteracao_2025.pdf) et est en vigueur depuis le 6 décembre 2025. Les áreas de contenção du RMAL régissent désormais les nouveaux registos. Le RMAL 2025 art. 4.º fixe une contention absolue pour le concelho, la freguesia ou le bairro dont le ratio établissements AL / logements de habitação permanente est d'au moins 10 %, et une contention relative pour les freguesias ou bairros entre 5 % et moins de 10 % (bairro seulement si la freguesia n'est pas déjà contenue). En zone contenue, les nouveaux registos ne sont possibles que par autorisation exceptionnelle municipale (RMAL arts. 5.º et 6.º), jamais pour un bien soumis à un contrat de arrendamento urbano para habitação dans les cinq dernières années ni acquis en vente publique municipale ou de freguesia. Vérifiez l'adresse sur la carte interactive (thème Alojamento Local, Áreas de contenção sur lisboainterativa.cm-lisboa.pt, lien depuis lisboa.pt). Le Decreto-Lei 76/2024 art. 15.º-B permet aux municipalités d'interdire les nouveaux registos en zone de contention si un bail de résidence a été signé dans les deux années précédentes ; le RMAL de Lisbonne fixe cinq ans. Ne supposez pas qu'un nouveau RNAL est disponible tant que vous n'avez pas confirmé votre adresse."
         },
         "municipalRegulation": {
           "title": "Délais d'opposition municipale et obligations RMAL",
-          "body": "Après le régime post-76/2024 résumé par Turismo de Portugal, le délai d'opposition municipale est de 60 jours ouvrés après la comunicação prévia, ou 90 jours ouvrés en área de contenção. L'absence d'opposition permet en principe le RNAL, mais Lisbonne peut utiliser les outils du RMAL (y compris l'opposition au renouvellement — vérifiez les articles actuels sur le PDF officiel). L'amendement RMAL 2025 ajoute des obligations d'assurance et de tenue de registres (responsabilité civile, assurance incendie en copropriété, suivi des obligations dont la taxe touristique). Confirmez les montants minimaux et portarias sur le PDF officiel."
+          "body": "Après le régime post-76/2024 résumé par Turismo de Portugal, le délai d'opposition municipale est de 60 jours ouvrés après la comunicação prévia, ou 90 jours ouvrés en área de contenção. L'absence d'opposition permet en principe le RNAL, mais Lisbonne peut utiliser les outils du RMAL (y compris l'opposition au renouvellement ; vérifiez les articles actuels sur le PDF officiel). L'amendement RMAL 2025 ajoute des obligations d'assurance et de tenue de registres : assurance responsabilité civile avec capital minimum de 75 000 € par sinistro (RMAL 2025 art. 11.º n.º 2), preuve d'assurance incendie en copropriété (art. 11.º n.º 3) et registres des obligations dont la taxe touristique (art. 11.º n.º 4)."
         },
         "siba": {
-          "title": "Déclarations SIBA (UCFE / SSI — plus SEF ni AIMA)",
+          "title": "Déclarations SIBA (UCFE / SSI, plus SEF ni AIMA)",
           "body": "La déclaration police des voyageurs étrangers passe par le Sistema de Informação de Boletins de Alojamento (SIBA) sur https://siba.ssi.gov.pt/, sous l'Unidade de Coordenação de Fronteiras e Estrangeiros (UCFE) du SSI. La Lei 23/2007 art. 15.º impose la communication électronique via SIBA ; la FAQ SIBA indique que le fax n'est plus accepté (https://siba.ssi.gov.pt/ajuda/perguntas-frequentes/). Cela remplace l'ancien flux SEF souvent cité avant 2023. Les unités AL doivent indiquer le RNAL à l'inscription SIBA (https://siba.ssi.gov.pt/). Les ressortissants portugais ne sont pas déclarés. Host Registry prépare les champs boletim et la file d'échéance en jours ouvrés ; vous soumettez sur SIBA vous-même. Voir /guides/rnal-siba-portugal pour le détail national."
         },
         "touristTax": {
           "title": "Taxa Municipal Turística (Lisbonne)",
-          "body": "Lisbonne applique une Taxa Municipal Turística de dormida sur les séjours AL dans le concelho. La FAQ municipale (https://informacoeseservicos.lisboa.pt/servicos/perguntas-frequentes/pagamentos-taxas-e-tarifas) indique 4 € par hôte et par nuit, plafonné à sept nuits par séjour, pour les hôtes de 13 ans et plus, hors TVA. Déclaration et paiement via https://tmturistica.cm-lisboa.pt/ (en principe avant le 25 du mois suivant — confirmez sur le portail). Les plateformes avec protocole municipal peuvent collecter ; vous restez responsable de l'autoliquidação sauf disposition contraire du protocole."
+          "body": "Lisbonne applique une Taxa Municipal Turística de dormida sur les séjours AL dans le concelho. La FAQ municipale (https://informacoeseservicos.lisboa.pt/servicos/perguntas-frequentes/pagamentos-taxas-e-tarifas) indique 4 € par hôte et par nuit, plafonné à sept nuits par séjour, pour les hôtes de 13 ans et plus, non soumise à la TVA. L'autoliquidação est due au plus tard le 25 du mois suivant le mois concerné. Les opérateurs en déclaration trimestrielle de TVA ou non soumis à la TVA peuvent déposer trimestriellement au 25 du mois suivant le trimestre. Le paiement des montants dus intervient au plus tard le dernier jour du mois suivant (Aviso 18684/2024). Déclaration et paiement via https://tmturistica.cm-lisboa.pt/. Les plateformes avec protocole municipal peuvent collecter ; vérifiez avec la plateforme et sur le portail TMT qui dépose l'autoliquidação."
         },
         "platforms": {
           "title": "Règlement (UE) 2024/1028",
-          "body": "Le règlement (UE) 2024/1028 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1028) oblige les plateformes à collecter, vérifier et afficher les numéros d'enregistrement. Turismo de Portugal rappelle l'obligation d'affichage RNAL sur les plateformes à partir du 20 mai 2026. Marquez l'affichage par canal dans Host Registry une fois le RNAL actif."
+          "body": "Le règlement (UE) 2024/1028 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1028) oblige les plateformes à collecter, vérifier et afficher les numéros d'enregistrement et s'applique depuis le 20 mai 2026. Le RJEEAL impose déjà aux plateformes d'exiger et d'afficher le RNAL (Turismo de Portugal). Marquez l'affichage par canal dans Host Registry une fois le RNAL actif."
         },
         "national": {
           "title": "Guide Portugal national",
@@ -666,11 +666,11 @@
       "sections": {
         "airbnbField": {
           "title": "RNAL sur Airbnb",
-          "body": "Après obtention du RNAL via comunicação prévia, saisissez-le dans le champ d'enregistrement ou de licence Airbnb pour le Portugal (même numéro sur Booking et autres canaux). Les plateformes peuvent vérifier le RNAL au titre du règlement UE 2024/1028 à partir du 20 mai 2026. Ne publiez pas sans RNAL valide sauf confirmation écrite que la procédure municipale est terminée."
+          "body": "Après obtention du RNAL via comunicação prévia, saisissez-le dans le champ d'enregistrement ou de licence Airbnb pour le Portugal (même numéro sur Booking et autres canaux). Les plateformes peuvent vérifier le RNAL au titre du règlement UE 2024/1028 depuis le 20 mai 2026. Ne publiez pas sans RNAL valide sauf confirmation écrite que la procédure municipale est terminée."
         },
         "beforeList": {
           "title": "Avant de publier à Lisbonne",
-          "body": "Vérifiez si votre freguesia ou bairro est en área de contenção ou sous la suspension municipale des nouveaux registos (https://www.lisboa.pt/temas/urbanismo/estudos-planos-e-programas/estudos-e-planos/alojamento-local). Obtenez l'assurance responsabilité civile et les preuves d'assurance exigées par le RMAL. Inscrivez l'établissement sur SIBA avec votre RNAL si vous accueillez des voyageurs étrangers."
+          "body": "Vérifiez si votre freguesia ou bairro est en área de contenção (https://www.lisboa.pt/temas/urbanismo/estudos-planos-e-programas/estudos-e-planos/alojamento-local et la carte interactive liée). Obtenez l'assurance responsabilité civile (minimum 75 000 € par sinistro selon RMAL 2025 art. 11.º n.º 2) et les autres preuves d'assurance exigées par le RMAL. Inscrivez l'établissement sur SIBA avec votre RNAL si vous accueillez des voyageurs étrangers."
         },
         "display": {
           "title": "Checklist d'affichage",
@@ -1711,7 +1711,7 @@
       "subtitle": "Guidage local, registre opérationnel et suivi portefeuille, dans une interface sobre et bilingue.",
       "compliance": {
         "title": "Démarches guidées",
-        "description": "Playbooks pas à pas selon la localisation du bien, avec liens portails officiels, branchement selon la résidence et parcours ville lorsque publié (dont Alojamento Local à Lisbonne — voir l'index guides)."
+        "description": "Playbooks pas à pas selon la localisation du bien, avec liens portails officiels, branchement selon la résidence et parcours ville lorsque publié (dont Alojamento Local à Lisbonne : voir l'index guides)."
       },
       "guestRegister": {
         "title": "Registre voyageurs",
@@ -1723,7 +1723,7 @@
       },
       "coverage": {
         "title": "Couverture européenne",
-        "description": "Playbooks ville et checklists nationales pour l'enregistrement, les déclarations voyageurs et l'affichage sur les annonces en Europe — dont le Portugal (Lisbonne). Rien n'est déposé à votre place, sauf si vous activez l'envoi live optionnel.",
+        "description": "Playbooks ville et checklists nationales pour l'enregistrement, les déclarations voyageurs et l'affichage sur les annonces en Europe, dont le Portugal (Lisbonne). Rien n'est déposé à votre place, sauf si vous activez l'envoi live optionnel.",
         "link": "Voir tous les guides par pays"
       },
       "tabs": {

@@ -83,6 +83,22 @@
       "title": "Portugal RNAL & SIBA: Alojamento Local host guide",
       "description": "RNAL number on listings (EU 2024/1028) and SIBA Boletim de Alojamento for foreign guests, deadlines and reporting phases."
     },
+    "guideLisbonStrRegistration": {
+      "title": "Lisbon short-term rental registration: Alojamento Local host guide",
+      "description": "National RJEEAL (Decreto-Lei 128/2014, Lei 56/2023, Decreto-Lei 76/2024), RNAL, Lisbon municipal containment areas, SIBA guest reporting and municipal tourist tax. Not legal advice."
+    },
+    "guideLisbonStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Lisbonne: guide Alojamento Local",
+      "description": "RJEEAL national, RNAL, zones de contention de la Câmara Municipal de Lisboa, SIBA et taxe municipale touristique. Informations pratiques, pas un avis juridique."
+    },
+    "guideLisbonAirbnbRegistration": {
+      "title": "Lisbon Airbnb registration: RNAL and municipal AL compliance guide",
+      "description": "RNAL on Airbnb listings, Lisbon containment checks before publishing, taxa municipal turística and SIBA readiness. Host Registry does not auto-submit to government portals."
+    },
+    "guideLisbonAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Lisbonne: guide conformité RNAL et AL municipal",
+      "description": "RNAL sur Airbnb, contrôles de contention municipaux, taxe touristique et préparation SIBA. Host Registry ne dépose pas automatiquement aux portails officiels."
+    },
     "guideGreeceAmaAade": {
       "title": "Greece AMA & AADE: short-term rental host guide",
       "description": "AMA registration on myAADE and short-term stay declarations by the 20th of the month after departure, export and portal, no automatic filing."
@@ -576,7 +592,7 @@
       "sections": {
         "rnal": {
           "title": "RNAL: Registo Nacional de Alojamento Local",
-          "body": "Register your short-term rental with Turismo de Portugal and your municipality (comunicação prévia). You receive an RNAL number (e.g. 12345/AL) to display on all listings. From 20 May 2026, platforms verify RNAL under Regulation (EU) 2024/1028."
+          "body": "Register your short-term rental with Turismo de Portugal and your municipality (comunicação prévia). You receive an RNAL number (illustrative format 12345/AL) to display on all listings. Regulation (EU) 2024/1028 applies since 20 May 2026; platforms verify RNAL under that regulation."
         },
         "siba": {
           "title": "SIBA: Boletim de Alojamento (foreign guests)",
@@ -586,9 +602,87 @@
           "title": "SIBA reporting phases",
           "body": "Phase 1: register the establishment on the SIBA portal. Phase 2: for each stay: report foreign guest arrival within 3 working days (dias úteis). Phase 3: report departure within 3 working days after checkout. Glint prepares boletim fields via check-in link and CSV/printable export. You enter manually on the official portal."
         },
+        "related": {
+          "title": "City guides (Portugal)",
+          "body": "Lisbon municipal Alojamento Local rules, containment areas and tourist tax."
+        },
         "glint": {
           "title": "How Glint helps",
           "body": "Glint does not submit to Turismo de Portugal or SIBA, it tracks RNAL per listing, collects boletim data, validates fields and manages the due queue (3 working days) for arrival and departure. You remain legally responsible for submission."
+        }
+      }
+    },
+    "lisbonStrRegistration": {
+      "title": "Lisbon Alojamento Local registration and compliance",
+      "updated": "Checked against lisboa.pt, Turismo de Portugal and SIBA in October 2026",
+      "intro": "This page summarizes practical steps from official Portuguese and Lisbon municipal sources on Alojamento Local (AL) in the city of Lisbon (checked October 2026). It is not legal advice. National law sets the RJEEAL framework; Lisbon adds municipal containment rules and tourist tax. Host Registry, by Glint, helps you track RNAL, SIBA boletim readiness, municipal checks and listing display. We do not file comunicação prévia, RNAL, SIBA or tax returns for you.",
+      "sections": {
+        "nationalRegime": {
+          "title": "National RJEEAL: Decreto-Lei 128/2014 and later changes",
+          "body": "Portugal regulates short-term paid accommodation under the Regime Jurídico da Exploração dos Estabelecimentos de Alojamento Local (RJEEAL), approved by Decreto-Lei n.º 128/2014 (https://diariodarepublica.pt/detalhe/decreto-lei/128-2014) and amended several times. Lei n.º 56/2023 (Mais Habitação, https://diariodarepublica.pt/detalhe/lei/56-2023) introduced a national registration freeze on new AL in autonomous fractions (apartments and guesthouses in frações autónomas), five-year registration expiry, condominium-consent rules and the CEAL levy. Decreto-Lei n.º 76/2024 (https://files.diariodarepublica.pt/1s/2024/10/20600/0000300031.pdf), in force from 1 November 2024 per Turismo de Portugal’s summary (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Como_comecar/Alojamento_Local/Paginas/alteracao-regime-juridico-alojamento-local.aspx), revoked most of those 2023 restrictions (freeze, fixed expiry, general condominium consent, CEAL) and strengthened municipal powers (containment areas, sustainable-growth areas, longer opposition windows). Always read the current consolidated RJEEAL text before relying on older Mais Habitação articles."
+        },
+        "rnal": {
+          "title": "RNAL registration (comunicação prévia com prazo)",
+          "body": "You must register each AL establishment through a comunicação prévia com prazo on the Balcão do Empreendedor / Portal do Cidadão (https://www2.gov.pt/pt/inicio/espaco-empresa/balcao-do-empreendedor/alojamento-local-registo-da-atividade and https://www.gov.pt/guias/alojamento-local). Turismo de Portugal explains that the electronic document with the RNAL number (illustrative format 12345/AL) is the valid title to open and advertise the unit, and that platforms must display it (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Licenciamento_Registo_da_Atividade/Alojamento_Local/Paginas/default.aspx). Public lookup: https://rnt.turismodeportugal.pt/RNT/RNAL.aspx. After registration you must deliver civil-liability insurance proof as described on gov.pt. Glint stores your RNAL and listing-display checklist only."
+        },
+        "lisbonContainment": {
+          "title": "Lisbon áreas de contenção and new registrations (verify before applying)",
+          "body": "Lisbon’s municipal Alojamento Local page (https://www.lisboa.pt/temas/urbanismo/estudos-planos-e-programas/estudos-e-planos/alojamento-local) may still quote Deliberação 609/AML/2024, which suspended new AL registos until the amended Regulamento Municipal do Alojamento Local (RMAL) entered force. That suspension ended when the amended RMAL was published in Diário da República on 5 December 2025 (Aviso n.º 29926-A/2025/2, PDF: https://www.lisboa.pt/fileadmin/info_administrativa/normativas/regulamentos/comercio/Regulamento_Municipal_Alojamento_Local_Alteracao_2025.pdf) and entered force on 6 December 2025. RMAL containment areas now govern new registos. RMAL 2025 art. 4.º sets absolute containment for the concelho, freguesia or bairro where the ratio of AL establishments to permanent housing units is at or above 10%, and relative containment for freguesias or bairros at or above 5% and below 10% (bairro-level only where the freguesia is not already contained). In contained areas, new registos are allowed only by exceptional municipal authorisation (RMAL arts. 5.º and 6.º), never for property that was under a residential urban lease in the last five years or acquired at a municipal or freguesia public auction. Check your address on the interactive map (theme Alojamento Local, Áreas de contenção on lisboainterativa.cm-lisboa.pt, linked from lisboa.pt). Decreto-Lei 76/2024 art. 15.º-B lets municipalities bar new registos in containment areas where a residential lease was signed in the prior two years; Lisbon’s RMAL sets five years. Do not assume a new RNAL is available until you confirm your address."
+        },
+        "municipalRegulation": {
+          "title": "Municipal opposition windows and RMAL obligations",
+          "body": "Under the post-76/2024 regime summarized by Turismo de Portugal, the municipal opposition period is 60 working days after comunicação prévia, or 90 working days in áreas de contenção. Silence without opposition generally allows the RNAL to stand, but Lisbon may use RMAL tools (including opposition to renewals; verify current RMAL articles on the PDF above). The 2025 RMAL amendment adds insurance and record-keeping duties: civil liability insurance with minimum capital of €75,000 per claim (RMAL 2025 art. 11.º n.º 2), fire insurance evidence in horizontal-property buildings (art. 11.º n.º 3), and records of compliance including tourist tax (art. 11.º n.º 4)."
+        },
+        "siba": {
+          "title": "SIBA guest reporting (UCFE / SSI, not SEF or AIMA)",
+          "body": "Foreign-guest police reporting uses the Sistema de Informação de Boletins de Alojamento (SIBA) at https://siba.ssi.gov.pt/, operated under the SSI’s Unidade de Coordenação de Fronteiras e Estrangeiros (UCFE). Lei 23/2007 art. 15.º requires electronic communication via SIBA; SIBA FAQ states fax is no longer accepted (https://siba.ssi.gov.pt/ajuda/perguntas-frequentes/). This replaces the older SEF workflow often referenced in pre-2023 guides. AL units must enter the RNAL when registering on SIBA (https://siba.ssi.gov.pt/). Portuguese nationals are not reported. Host Registry prepares boletim fields and a due queue on working days; you submit on SIBA yourself. See /guides/rnal-siba-portugal for national detail."
+        },
+        "touristTax": {
+          "title": "Taxa Municipal Turística (Lisbon)",
+          "body": "Lisbon charges a Taxa Municipal Turística de dormida on AL stays in the concelho. The city FAQ (https://informacoeseservicos.lisboa.pt/servicos/perguntas-frequentes/pagamentos-taxas-e-tarifas) states €4 per guest per night, capped at seven nights per stay, for guests aged 13 and over, and that the tax is not subject to VAT. Autoliquidação is due by the 25th of the month following the reporting month. Operators who file VAT quarterly or are VAT-exempt may file quarterly autoliquidação by the 25th after the quarter ends. Payment of amounts due is by the last day of the following month (Aviso 18684/2024). Declare and pay through https://tmturistica.cm-lisboa.pt/. Platforms with municipal protocols may collect; check with your platform and the TMT portal who files autoliquidação."
+        },
+        "platforms": {
+          "title": "EU Regulation 2024/1028 on platforms",
+          "body": "Regulation (EU) 2024/1028 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1028) requires platforms to collect, verify and display unique registration numbers and applies since 20 May 2026. RJEEAL already requires platforms to require and display RNAL (Turismo de Portugal). Mark per-channel display in Host Registry after your RNAL is active."
+        },
+        "national": {
+          "title": "National Portugal guide",
+          "body": "For RNAL phases, SIBA boletim timing and national context, see /guides/rnal-siba-portugal. Glint never auto-submits to Turismo de Portugal, Câmara Municipal de Lisboa or SIBA."
+        },
+        "related": {
+          "title": "Related Host Registry guides",
+          "body": "Lisbon Airbnb checklist, Portugal RNAL and SIBA overview."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Lisboa, use the pt-lisboa playbook, store RNAL, track listing health per OTA, SIBA boletim due queue for foreign guests, and municipal tourist-tax reminders. Add notes such as lisboa:containment-check when your address is in an área de contenção. Glint prepares exports and checklists. You submit comunicação prévia, SIBA boletins and TMT autoliquidação on official portals."
+        }
+      }
+    },
+    "lisbonAirbnbRegistration": {
+      "title": "Lisbon Airbnb and Alojamento Local compliance",
+      "updated": "Checked against lisboa.pt and Turismo de Portugal in October 2026",
+      "intro": "Airbnb hosts in Lisbon follow the same national RJEEAL and municipal RMAL rules as other OTAs. This guide covers operational readiness only, not legal advice.",
+      "sections": {
+        "airbnbField": {
+          "title": "RNAL on Airbnb",
+          "body": "After your comunicação prévia produces an RNAL number, enter it in the registration or license field Airbnb shows for Portugal (same number on Booking and other channels). Platforms may verify RNAL under EU 2024/1028 since 20 May 2026. Do not publish without a valid RNAL unless you have written confirmation that your municipal procedure is complete."
+        },
+        "beforeList": {
+          "title": "Before you publish in Lisbon",
+          "body": "Confirm whether your freguesia or bairro is in an área de contenção (https://www.lisboa.pt/temas/urbanismo/estudos-planos-e-programas/estudos-e-planos/alojamento-local and the interactive map linked there). Obtain civil-liability insurance (minimum €75,000 per claim under RMAL 2025 art. 11.º n.º 2) and any other RMAL insurance proofs. Register the establishment on SIBA with your RNAL if you will host foreign guests."
+        },
+        "display": {
+          "title": "Listing display checklist",
+          "body": "After RNAL is active, confirm the number appears in the Airbnb UI and guest communications where required. Toggle displayed on listings in Host Registry per channel. Disclose Lisbon tourist tax collection where applicable."
+        },
+        "related": {
+          "title": "Related guides",
+          "body": "Full Lisbon STR steps, Portugal RNAL and SIBA."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Lisbon playbook, RNAL storage, SIBA export prep, listing health, and evidence pack export. No automatic filing with Turismo de Portugal, Câmara Municipal de Lisboa or SIBA."
         }
       }
     },
@@ -1617,7 +1711,7 @@
       "subtitle": "Local guidance, operational guest register, and portfolio tracking, in a clean bilingual interface.",
       "compliance": {
         "title": "Guided compliance steps",
-        "description": "Step-by-step playbooks keyed to your property location, with official portal links, residency branching, and tier-A French commune paths where published (see guides index)."
+        "description": "Step-by-step playbooks keyed to your property location, with official portal links, residency branching, and city paths where published (including Lisbon Alojamento Local: see guides index)."
       },
       "guestRegister": {
         "title": "Guest register",
@@ -1629,7 +1723,7 @@
       },
       "coverage": {
         "title": "European coverage",
-        "description": "City playbooks and country checklists for registration, guest reporting, and listing display. Nothing is filed on your behalf unless you turn on optional live submission.",
+        "description": "City playbooks and national checklists for registration, guest reporting, and listing display across Europe, including Portugal (Lisbon). Nothing is filed on your behalf unless you turn on optional live submission.",
         "link": "See all guides by country"
       },
       "tabs": {
@@ -1764,7 +1858,7 @@
         },
         "12": {
           "q": "Does Glint cover Portugal, Greece, and Croatia?",
-          "a": "Yes. Portugal: RNAL for listings plus SIBA boletim for foreign guests within 3 working days. Greece: AMA for listings plus AADE Short-Term Stay Declarations (by the 20th of the month after departure). Croatia: tourist categorisation tracking plus eVisitor check-in and check-out within 24h. In each case Glint prepares export kits and queues. You submit on the official portal."
+          "a": "Yes. Portugal: national RNAL and SIBA guide plus a Lisbon city guide for municipal containment and tourist tax. SIBA boletim for foreign guests within 3 working days. Greece: AMA for listings plus AADE Short-Term Stay Declarations (by the 20th of the month after departure). Croatia: tourist categorisation tracking plus eVisitor check-in and check-out within 24h. In each case Glint prepares export kits and queues. You submit on the official portal."
         },
         "13": {
           "q": "Does Host Registry cover the Netherlands, Belgium, Germany, Austria and Ireland?",
@@ -1820,6 +1914,8 @@
       "guideAmsterdamAirbnbRegistration": "Amsterdam Airbnb / toeristische verhuur",
       "guideItalyCinAlloggiati": "Italy CIN & Alloggiati",
       "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
+      "guideLisbonStrRegistration": "Lisbon STR (AL / RNAL)",
+      "guideLisbonAirbnbRegistration": "Lisbon Airbnb / RNAL",
       "guideGreeceAmaAade": "Greece AMA & AADE",
       "guideCroatiaEvisitor": "Croatia eVisitor",
       "guideBelgiumStrRegistration": "Belgium STR registration",

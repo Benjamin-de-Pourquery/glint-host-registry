@@ -24,6 +24,8 @@ export default async function GuideRomeStrRegistrationPage({ params }: Props) {
       <p>{t("sections.nationalLaw.body")}</p>
       <h2>{t("sections.ciaScia.title")}</h2>
       <p>{t("sections.ciaScia.body")}</p>
+      <h2>{t("sections.lazioRegional.title")}</h2>
+      <p>{t("sections.lazioRegional.body")}</p>
       <h2>{t("sections.prgNta.title")}</h2>
       <p>{t("sections.prgNta.body")}</p>
       <h2>{t("sections.municipalRegulation.title")}</h2>

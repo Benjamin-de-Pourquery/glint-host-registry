@@ -79,6 +79,22 @@
       "title": "Italy CIN & Alloggiati Web: host guide 2026",
       "description": "Codice Identificativo Nazionale (BDSR) on listings and Alloggiati Web schedine within 24h, separate obligations for Italian hosts."
     },
+    "guideRomeStrRegistration": {
+      "title": "Rome short-term rental registration: CIN, CIA and municipal host guide",
+      "description": "Roma Capitale SUAR CIA/SCIA for locazioni turistiche, PRG planning limits, BDSR CIN, Alloggiati Web, Regione Lazio copy and contributo di soggiorno. Not legal advice."
+    },
+    "guideRomeStrRegistrationFr": {
+      "title": "Enregistrement location courte durée Rome: guide CIN, CIA et municipal",
+      "description": "CIA/SCIA SUAR de Roma Capitale, limites urbanistiques, CIN BDSR, Alloggiati Web, copie Regione Lazio et contributo di soggiorno. Informations pratiques, pas un avis juridique."
+    },
+    "guideRomeAirbnbRegistration": {
+      "title": "Rome Airbnb registration: CIN and locazione turistica compliance guide",
+      "description": "CIN on Airbnb listings, SUAR CIA/SCIA readiness before publishing, Alloggiati Web and contributo di soggiorno. Host Registry does not auto-submit to government portals."
+    },
+    "guideRomeAirbnbRegistrationFr": {
+      "title": "Enregistrement Airbnb Rome: guide conformité CIN et locazione turistica",
+      "description": "CIN sur Airbnb, préparation CIA/SCIA SUAR, Alloggiati Web et contributo di soggiorno. Host Registry ne dépose pas automatiquement aux portails officiels."
+    },
     "guidePortugalRnalSiba": {
       "title": "Portugal RNAL & SIBA: Alojamento Local host guide",
       "description": "RNAL number on listings (EU 2024/1028) and SIBA Boletim de Alojamento for foreign guests, deadlines and reporting phases."
@@ -579,9 +595,95 @@
           "title": "Three separate obligations",
           "body": "CIN (tourism / platforms) ≠ Alloggiati schedina (police) ≠ regional CIR/SCIA (planning). Do not confuse the code displayed on Airbnb with police reporting. Many regions also require monthly ISTAT tourist flow statistics (ROSS 1000, Sinfonia). Submit on your regional portal, with no Glint API integration."
         },
+        "related": {
+          "title": "City guides (Italy)",
+          "body": "Rome municipal SUAR procedures, planning limits and contributo di soggiorno."
+        },
         "glint": {
           "title": "How Glint helps",
           "body": "Glint does not submit to BDSR or Alloggiati Web, it tracks CIN per listing, collects schedina fields via check-in link, validates data and prepares CSV/printable export with a 24h due queue. You submit on official portals."
+        }
+      }
+    },
+    "romeStrRegistration": {
+      "title": "Rome short-term rental registration and compliance",
+      "updated": "Checked against comune.roma.it, regione.lazio.it and ministeroturismo.gov.it in October 2026",
+      "intro": "This page summarizes practical steps from official Roma Capitale, Regione Lazio and national tourism sources on locazioni turistiche (alloggi per uso turistico) in the city of Rome (checked October 2026). It is not legal advice. National law sets CIN and reporting rules; Rome adds SUAR urban planning procedures and local tourist tax. Host Registry, by Glint, helps you track CIN, Alloggiati schedina readiness, municipal filing status and listing display. We do not file CIA, SCIA, BDSR, Alloggiati or tax returns for you.",
+      "sections": {
+        "nationalLaw": {
+          "title": "National framework: Decreto-Legge 145/2023 and CIN",
+          "body": "Italy regulates short-term tourist lettings through Decreto-Legge n. 145/2023 (converted by Legge n. 191/2023), including art. 13-ter on locazioni turistiche and the Codice Identificativo Nazionale (CIN) for platform listings. The Ministry of Tourism BDSR portal (https://bdsr.ministeroturismo.gov.it/) issues the CIN hosts must display on OTAs. From 20 May 2026, Regulation (EU) 2024/1028 (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1028) requires platforms to verify registration data. CIN is separate from municipal CIA/SCIA and from Alloggiati Web police reporting."
+        },
+        "ciaScia": {
+          "title": "Roma Capitale SUAR: CIA (non imprenditoriale) or SCIA (imprenditoriale)",
+          "body": "Regione Lazio explains that non-entrepreneurial tourist accommodation starts with a Comunicazione di inizio attività (CIA) filed electronically with Roma Capitale SUAR (Sportello Unico Attività Ricettive), while entrepreneurial lettings use SCIA (https://www.regione.lazio.it/cittadini/turismo/strutture-ricettive-turistiche/altre-forme-ospitalita). SUAR FAQ and online forms for alloggi per uso turistico are on Roma Capitale (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Planning compliance, condominium rules and fire safety may be checked before acceptance. Confirm whether your unit is non imprenditoriale or imprenditoriale with SUAR before listing."
+        },
+        "prgNta": {
+          "title": "PRG Norme Tecniche di Attuazione: UNESCO zone and change of use",
+          "body": "Roma Capitale updated Norme Tecniche di Attuazione (NTA) of the Piano Regolatore Generale to limit conversion of residential stock to tourist use, including restrictions in the UNESCO historic centre. Urban planning assessors describe a ban on certain change-of-use paths toward abitazioni ad uso ricettivo in the UNESCO area and additional charges or limits elsewhere (press coverage: https://roma.corriere.it/notizie/cronaca/26_luglio_26/roma-l-assessore-all-urbanistica-veloccia-contro-l-esplosione-di-affitti-brevi-limiti-anche-fuori-dal-centro-8d52a288-83aa-490c-8934-5d3ab875axlk.shtml). Verify your address and cadastral category on official urbanistica pages before assuming a new tourist use is allowed."
+        },
+        "municipalRegulation": {
+          "title": "Dedicated affitti brevi regolamento (still in preparation)",
+          "body": "On 10 June 2025 Roma Capitale approved a memoria launching work on a Regolamento sulle locazioni di immobili a uso residenziale per fini turistici (PDF: https://www.comune.roma.it/web-resources/cms/documents/regolamento_locazioni_turistiche_avvio_iter.pdf). As of October 2026 the regolamento had not yet been adopted by the Assemblea Capitolina. Until it enters force, rely on national law, SUAR CIA/SCIA practice, PRG/NTA planning rules and Regione Lazio guidance. Check comune.roma.it turismo pages for updates."
+        },
+        "cin": {
+          "title": "CIN via BDSR (mandatory on listings)",
+          "body": "Obtain your Codice Identificativo Nazionale on https://bdsr.ministeroturismo.gov.it/ using SPID or CIE. Ministry guidance is at https://www.ministeroturismo.gov.it/. Display the CIN on Airbnb, Booking.com and every channel. Missing CIN on listings is commonly cited at up to €8,000 under national rules summarized on the national Italy guide. Glint stores your CIN and listing health per OTA only."
+        },
+        "alloggiati": {
+          "title": "Alloggiati Web schedina (within 24h of check-in)",
+          "body": "Under TULPS art. 109, communicate each guest schedina to Polizia di Stato within 24 hours of check-in via https://alloggiatiweb.poliziadistato.it/ (see https://www.poliziadistato.it/articolo/alloggiati-web). Complete establishment alta on the portal first. This obligation is independent of CIN and SUAR CIA/SCIA. Host Registry prepares schedina fields and a due queue; you submit on Alloggiati Web yourself."
+        },
+        "lazioCopy": {
+          "title": "Copy of accepted CIA or SCIA to Regione Lazio",
+          "body": "Regione Lazio requires a copy of the accepted CIA or SCIA (with municipal protocol number and date) sent by PEC to organizzazioneufficiperiferici@pec.regione.lazio.it, with the privacy form attached, as described on https://www.regione.lazio.it/cittadini/turismo/strutture-ricettive-turistiche/altre-forme-ospitalita. SUAR FAQ section 6 covers the Codice Identificativo Regionale (CISE) where applicable. Keep municipal and regional acknowledgements in your compliance folder."
+        },
+        "touristTax": {
+          "title": "Contributo di soggiorno (Roma Capitale)",
+          "body": "Roma Capitale applies a contributo di soggiorno on tourist stays. SUAR FAQ section 5 describes collection and management duties for ricettivo operators (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Rates and filing channels can change: confirm current amounts, exemptions and reporting on the official SUAR or tax pages before each season. Glint can queue reminder dates only; you declare and pay on municipal systems."
+        },
+        "platforms": {
+          "title": "EU Regulation 2024/1028 on platforms",
+          "body": "Regulation (EU) 2024/1028 requires platforms to collect, verify and display unique registration numbers from 20 May 2026. In Italy the listing code is the CIN from BDSR, in addition to any municipal references SUAR gives you. Mark per-channel display in Host Registry after your CIN is active."
+        },
+        "national": {
+          "title": "National Italy guide",
+          "body": "For CIN versus Alloggiati versus regional CIR context, see /guides/italy-cin-alloggiati. Glint never auto-submits to BDSR, Polizia di Stato, Roma Capitale SUAR or Regione Lazio."
+        },
+        "related": {
+          "title": "Related Host Registry guides",
+          "body": "Rome Airbnb checklist and Italy CIN and Alloggiati overview."
+        },
+        "glint": {
+          "title": "How Host Registry helps",
+          "body": "Select Roma, use the it-roma playbook, store CIN, track listing health per OTA, Alloggiati schedina due queue within 24h, and notes such as rome:suar-cia-pending or rome:unesco-zone-check. Glint prepares exports and checklists. You submit CIA/SCIA on SUAR, CIN on BDSR, schedine on Alloggiati and contributo di soggiorno on municipal channels."
+        }
+      }
+    },
+    "romeAirbnbRegistration": {
+      "title": "Rome Airbnb and locazione turistica compliance",
+      "updated": "Checked against comune.roma.it and BDSR in October 2026",
+      "intro": "Airbnb hosts in Rome follow the same national CIN rules and Roma Capitale SUAR procedures as other OTAs. This guide covers operational readiness only, not legal advice.",
+      "sections": {
+        "airbnbField": {
+          "title": "CIN on Airbnb",
+          "body": "After BDSR issues your Codice Identificativo Nazionale, enter it in the registration or license field Airbnb shows for Italy (same CIN on Booking and other channels). Platforms may verify CIN under EU 2024/1028 since 20 May 2026. Do not publish without a valid CIN unless you have written confirmation that your BDSR procedure is complete."
+        },
+        "beforeList": {
+          "title": "Before you publish in Rome",
+          "body": "Confirm SUAR accepts your CIA or SCIA for the address (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Check PRG/NTA planning limits for your zone, especially in the UNESCO historic centre. Register on Alloggiati Web if you will host guests who require schedina reporting. Send the accepted CIA/SCIA copy to Regione Lazio by PEC when required."
+        },
+        "display": {
+          "title": "Listing display checklist",
+          "body": "After CIN is active, confirm the code appears in the Airbnb UI and guest communications where required. Toggle displayed on listings in Host Registry per channel. Disclose contributo di soggiorno collection where applicable per municipal rules."
+        },
+        "related": {
+          "title": "Related guides",
+          "body": "Full Rome STR steps and Italy CIN and Alloggiati overview."
+        },
+        "glint": {
+          "title": "Host Registry, by Glint",
+          "body": "Rome playbook, CIN storage, Alloggiati export prep, listing health, and evidence pack export. No automatic filing with BDSR, Roma Capitale SUAR or Polizia di Stato."
         }
       }
     },
@@ -1854,7 +1956,7 @@
         },
         "11": {
           "q": "Does Glint cover Italy (CIN and Alloggiati)?",
-          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (within 24h after check-in) with export kits and due queues. CIN and Alloggiati are separate obligations. We do not submit to government systems automatically."
+          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (within 24h after check-in) with export kits and due queues. CIN and Alloggiati are separate obligations. A Rome city guide covers Roma Capitale SUAR CIA/SCIA and planning checks. We do not submit to government systems automatically."
         },
         "12": {
           "q": "Does Glint cover Portugal, Greece, and Croatia?",
@@ -1913,6 +2015,8 @@
       "guideAmsterdamStrRegistration": "Amsterdam STR registration",
       "guideAmsterdamAirbnbRegistration": "Amsterdam Airbnb / toeristische verhuur",
       "guideItalyCinAlloggiati": "Italy CIN & Alloggiati",
+      "guideRomeStrRegistration": "Rome STR (CIN / SUAR)",
+      "guideRomeAirbnbRegistration": "Rome Airbnb / CIN",
       "guidePortugalRnalSiba": "Portugal RNAL & SIBA",
       "guideLisbonStrRegistration": "Lisbon STR (AL / RNAL)",
       "guideLisbonAirbnbRegistration": "Lisbon Airbnb / RNAL",

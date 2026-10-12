@@ -47,7 +47,11 @@ export const GUIDE_INDEX_GROUPS: GuideIndexGroup[] = [
   {
     id: "italy",
     labelKey: "groups.italy",
-    pages: ["guideItalyCinAlloggiati"],
+    pages: [
+      "guideItalyCinAlloggiati",
+      "guideRomeStrRegistration",
+      "guideRomeAirbnbRegistration",
+    ],
   },
   {
     id: "portugal",
@@ -120,6 +124,8 @@ const FOOTER_LABEL_KEY: Partial<Record<SeoPageKey, string>> = {
   guideSes: "guideSes",
   guideAmsterdamNightCap: "guideAmsterdamNightCap",
   guideItalyCinAlloggiati: "guideItalyCinAlloggiati",
+  guideRomeStrRegistration: "guideRomeStrRegistration",
+  guideRomeAirbnbRegistration: "guideRomeAirbnbRegistration",
   guidePortugalRnalSiba: "guidePortugalRnalSiba",
   guideLisbonStrRegistration: "guideLisbonStrRegistration",
   guideLisbonAirbnbRegistration: "guideLisbonAirbnbRegistration",

@@ -415,8 +415,8 @@
           "body": "Depending on your municipality, you may need to declare or register your furnished rental (13-digit number in tense zones, town hall procedures elsewhere). The national API Meublés portal is expected in Q4 2026. Keep your municipal numbers in the meantime."
         },
         "platforms": {
-          "title": "Platform checks from September 2026",
-          "body": "Major platforms are tightening NER checks from September 2026. Without a valid number or proof of regularization, your listing may be blocked. Prepare your documents and track status per channel."
+          "title": "Platform checks under EU 2024/1028",
+          "body": "Since 20 May 2026, platforms verify NER under Regulation (EU) 2024/1028 and may block listings without a valid number or proof of regularization. Prepare your documents and track status per channel."
         },
         "glint": {
           "title": "How Glint helps",
@@ -427,11 +427,11 @@
     "frNerMigration": {
       "title": "France NER national migration 2026: furnished rental guide",
       "updated": "Updated: September 2026",
-      "intro": "France is moving furnished tourist rentals to a national teleservice (API Meublés / Démarche Numérique), expected in Q4 2026. Existing municipal numbers will need renewal within a transition window; after that, old numbers may become invalid. Platforms will require a valid national NER.",
+      "intro": "France applies the national furnished-rental registration framework under Regulation (EU) 2024/1028 from 20 May 2026 (decret n° 2026-196 du 19 mars 2026: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000053703509). Until the national teleservice opens, many hosts still declare with their commune (Cerfa 14004*04 or local portals). Existing municipal numbers will need renewal within the transition window published by the State; after that, old numbers may become invalid. Platforms require a valid national NER where applicable.",
       "sections": {
         "timeline": {
           "title": "Timeline (configurable in Glint)",
-          "body": "National portal expected Q4 2026. Transition end date will be published by the State at launch. Host Registry stores dates in playbook config, not hardcoded in every screen."
+          "body": "National teleservice opening date will be published by the State. Obligations under the 2026 decrees apply from 20 May 2026. Host Registry stores dates in playbook config, not hardcoded on every screen."
         },
         "inventory": {
           "title": "Inventory your local numbers",
@@ -481,7 +481,7 @@
       "sections": {
         "obligation": {
           "title": "Who is affected?",
-          "body": "Any host renting to a non-French guest (with some EU exceptions) must collect a police fiche. French guests may be registered optionally depending on your internal workflow."
+          "body": "Any host renting to a foreign-national guest must collect a police fiche (this includes EU citizens; there is no EU exemption). Official guidance: https://www.service-public.gouv.fr/particuliers/vosdroits/F33458. Model form: https://www.service-public.gouv.fr/particuliers/vosdroits/R71162. French guests may be registered optionally depending on your internal workflow."
         },
         "data": {
           "title": "What information to collect?",
@@ -512,7 +512,7 @@
         },
         "nightCap": {
           "title": "Night caps: 30 / 15 nights",
-          "body": "The City of Amsterdam allows up to 30 rental nights per calendar year. In parts of Centrum and De Pijp, the maximum is 15 nights. The official permit page does not state when the 15-night rule took effect; confirm how it applies to your address. Host Registry Cap Guard can map inner-city wijken for counting (see /en/guides/amsterdam-short-term-rental-registration). Other Dutch municipalities also enforce night caps."
+          "body": "The City of Amsterdam allows up to 30 rental nights per calendar year. In eight wijken in Centrum and Oude Pijp, the maximum is 15 nights from 1 April 2026 (see https://www.amsterdam.nl/en/housing/holiday-rentals/holiday-rental-permit/holiday-rentals-centrum-pijp/ and Gemeenteblad 2026/151001: https://zoek.officielebekendmakingen.nl/gmb-2026-151001.html). If you rented 15 or more nights between 1 January and 1 April 2026, you cannot rent to tourists for the rest of 2026 in those areas. Host Registry Cap Guard can map inner-city wijken for counting (see /en/guides/amsterdam-short-term-rental-registration). Other Dutch municipalities also enforce night caps."
         },
         "notification": {
           "title": "Municipal notification before each stay",
@@ -543,7 +543,7 @@
         },
         "nightCap": {
           "title": "Night caps (30 / 15 nights)",
-          "body": "The City of Amsterdam allows up to 30 rental nights per calendar year. In parts of Centrum and De Pijp, the maximum is 15 nights. The permit page does not list an effective date for the 15-night rule. Cap Guard in Host Registry counts calendar nights (including wijk mapping for inner-city areas) and alerts before limits. Overview: /en/guides/amsterdam-night-cap."
+          "body": "The City of Amsterdam allows up to 30 rental nights per calendar year. In eight wijken in Centrum and Oude Pijp, the maximum is 15 nights from 1 April 2026 (https://www.amsterdam.nl/en/housing/holiday-rentals/holiday-rental-permit/holiday-rentals-centrum-pijp/, Gemeenteblad 2026/151001: https://zoek.officielebekendmakingen.nl/gmb-2026-151001.html). Cap Guard in Host Registry counts calendar nights (including wijk mapping for inner-city areas) and alerts before limits. Overview: /en/guides/amsterdam-night-cap."
         },
         "platforms": {
           "title": "EU Regulation 2024/1028 on platforms",
@@ -566,7 +566,7 @@
         },
         "beforeList": {
           "title": "Before you publish on Airbnb",
-          "body": "Obtain your free registration number on toeristischeverhuur.nl (once per home), secure a valid Amsterdam holiday-rental vergunning if you live and are registered at the address, and confirm night caps (30 nights per year, 15 in parts of Centrum and De Pijp). Report each rental period on toeristischeverhuur.nl before guests arrive. Register for Amsterdam tourist tax (12.5% of the overnight price excluding VAT, per amsterdam.nl). See /en/guides/amsterdam-short-term-rental-registration for the full checklist."
+          "body": "Obtain your free registration number on toeristischeverhuur.nl (once per home), secure a valid Amsterdam holiday-rental vergunning if you live and are registered at the address, and confirm night caps (30 nights per year, 15 from 1 April 2026 in listed Centrum and Oude Pijp wijken). Report each rental period on toeristischeverhuur.nl before guests arrive. Register for Amsterdam tourist tax (12.5% of the overnight price excluding VAT, per amsterdam.nl). See /en/guides/amsterdam-short-term-rental-registration for the full checklist."
         },
         "display": {
           "title": "Listing display checklist",
@@ -589,7 +589,7 @@
         },
         "alloggiati": {
           "title": "Alloggiati Web: schedina within 24h",
-          "body": "Under TULPS art. 109, communicate each guest's schedina to Polizia di Stato via alloggiatipoliziadistato.it. For stays of 24 hours or longer, file within 24 hours of check-in. For stays under 24 hours, communicate on arrival (all'arrivo). Complete the establishment alta on the portal first, then file each schedina with identity, nationality, date and place of birth, document type and arrival date."
+          "body": "Under TULPS art. 109, communicate each guest's schedina to Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (see https://www.poliziadistato.it/articolo/alloggiati-web). For stays of 24 hours or longer, file within 24 hours of check-in. For stays under 24 hours, communicate on arrival (all'arrivo). Complete the establishment alta on the portal first, then file each schedina with identity, nationality, date and place of birth, document type and arrival date."
         },
         "distinct": {
           "title": "Three separate obligations",
@@ -702,7 +702,7 @@
         },
         "siba": {
           "title": "SIBA: Boletim de Alojamento (foreign guests)",
-          "body": "Hosts lodging foreign guests for pay must register the establishment on siba.ssi.gov.pt (SSI/UCFE) and submit a Boletim de Alojamento for each foreign guest arrival AND departure. Portuguese nationals are not reported. Fines from €100 to €2,000 for late communication (Lei 23/2007 art. 203)."
+          "body": "Hosts lodging foreign guests for pay must register the establishment on https://siba.ssi.gov.pt/ (SSI/UCFE) and submit a Boletim de Alojamento for each foreign guest arrival AND departure. Portuguese nationals are not reported. Late communication may be sanctioned under Lei 23/2007; check the current consolidated law on https://diariodarepublica.pt/ before relying on fine amounts."
         },
         "phases": {
           "title": "SIBA reporting phases",
@@ -729,7 +729,7 @@
         },
         "rnal": {
           "title": "RNAL registration (comunicação prévia com prazo)",
-          "body": "You must register each AL establishment through a comunicação prévia com prazo on the Balcão do Empreendedor / Portal do Cidadão (https://www2.gov.pt/pt/inicio/espaco-empresa/balcao-do-empreendedor/alojamento-local-registo-da-atividade and https://www.gov.pt/guias/alojamento-local). Turismo de Portugal explains that the electronic document with the RNAL number (illustrative format 12345/AL) is the valid title to open and advertise the unit, and that platforms must display it (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Licenciamento_Registo_da_Atividade/Alojamento_Local/Paginas/default.aspx). Public lookup: https://rnt.turismodeportugal.pt/RNT/RNAL.aspx. After registration you must deliver civil-liability insurance proof as described on gov.pt. Glint stores your RNAL and listing-display checklist only."
+          "body": "You must register each AL establishment through a comunicação prévia com prazo on the Balcão do Empreendedor / Portal do Cidadão (https://www.gov.pt/guias/alojamento-local). Turismo de Portugal explains that the electronic document with the RNAL number (illustrative format 12345/AL) is the valid title to open and advertise the unit, and that platforms must display it (https://business.turismodeportugal.pt/pt/Planear_Iniciar/Licenciamento_Registo_da_Atividade/Alojamento_Local/Paginas/default.aspx). Public lookup: https://rnt.turismodeportugal.pt/RNT/RNAL.aspx. After registration you must deliver civil-liability insurance proof as described on gov.pt. Glint stores your RNAL and listing-display checklist only."
         },
         "lisbonContainment": {
           "title": "Lisbon áreas de contenção and new registrations (verify before applying)",
@@ -799,15 +799,15 @@
       "sections": {
         "ama": {
           "title": "AMA: AADE property registry registration",
-          "body": "Register each short-term rental unit in the AADE Short-Term Stay Property Registry via myAADE (aade.gr). You receive an AMA to display on Airbnb, Booking.com and other OTAs. Licensed tourist accommodations may use an ESL or Unique Notification Number instead. From 20 May 2026, platforms verify numbers under Regulation (EU) 2024/1028. Missing AMA on listings is commonly cited at €5,000."
+          "body": "Register each short-term rental unit in the AADE Short-Term Stay Property Registry via myAADE (aade.gr). You receive an AMA to display on Airbnb, Booking.com and other OTAs. Licensed tourist accommodations may use an ESL or Unique Notification Number instead. From 20 May 2026, platforms verify numbers under Regulation (EU) 2024/1028. Failure to register or to display AMA (or ESL/UNN where applicable) on listings can incur a standalone fine of at least €5,000 under AADE short-term rental rules (see FAQ on https://www.aade.gr/en/short-term-rental)."
         },
         "declaration": {
           "title": "AADE stay declaration (≤59 nights)",
-          "body": "For each short-term stay (≤59 nights), submit the declaration on myAADE by the 20th of the calendar month following guest departure (e.g. checkout 15 July → declare by 20 August). Stays of 60+ nights use the long-term lease declaration path, outside Glint's short-stay queue. Collect identity, nationality, arrival and departure dates."
+          "body": "For each short-term stay (≤59 nights), submit the declaration on myAADE by the 20th of the calendar month following guest departure (e.g. checkout 15 July → declare by 20 August). Late submission carries a €100 administrative fine under AADE rules cited on https://www.aade.gr/en/short-term-rental. Stays of 60+ nights use the long-term lease declaration path, outside Glint's short-stay queue. Collect identity, nationality, arrival and departure dates."
         },
         "distinct": {
           "title": "AMA ≠ stay declaration",
-          "body": "AMA covers listing compliance; the stay declaration covers each guest after checkout. From October 2025, Greece also applies updated property safety and operational requirements (fire safety, equipment), see the AADE short-term rental hub. Several municipalities (Athens, Thessaloniki) restrict new AMA registrations in certain zones from 2026."
+          "body": "AMA covers listing compliance; the stay declaration covers each guest after checkout. From October 2025, Greece also applies updated property safety and operational requirements (fire safety, equipment), see the AADE short-term rental hub. Athens has restricted new AMA registrations in certain zones (verify current maps on municipality and AADE pages). Thessaloniki zone restrictions were not confirmed on official sources in this review."
         },
         "glint": {
           "title": "How Glint helps",
@@ -860,7 +860,7 @@
     "irelandStrRegistration": {
       "title": "Ireland short-term letting register (2026)",
       "updated": "Updated: October 2026",
-      "intro": "Ireland is introducing a national short-term letting (STL) register run by Fáilte Ireland for paid stays up to and including 21 nights. As of October 2026, failteireland.ie states registration is not yet open and that the portal will open once the Short Term Letting and Tourism Bill has passed. The government announced, on gov.ie (updated 6 August 2026) and enterprise.gov.ie, an opening on 1 December 2026 and a legal obligation to register by 31 December 2026. Host Registry, by Glint, helps you prepare. We do not submit to Fáilte Ireland or your local authority.",
+      "intro": "Ireland is introducing a national short-term letting (STL) register run by Fáilte Ireland for paid stays up to and including 21 nights. The Short Term Letting and Tourism Bill was published on 6 October 2026 (DETE: https://enterprise.gov.ie/en/news-and-events/department-news/2026/october/20261006.html) and must pass the Oireachtas before it is law. As of October 2026, failteireland.ie states registration is not yet open. The government announced, on gov.ie (updated 6 August 2026) and enterprise.gov.ie, an opening on 1 December 2026 and a legal obligation to register by 31 December 2026. Host Registry, by Glint, helps you prepare. We do not submit to Fáilte Ireland or your local authority.",
       "sections": {
         "portal": {
           "title": "Portal status and announced dates",
@@ -901,7 +901,7 @@
     },
     "parisStrRegistration": {
       "title": "Paris furnished tourist rental registration",
-      "updated": "Updated: March 2026 (Ville de Paris page reviewed 25 March 2026)",
+      "updated": "Updated: October 2026 (Ville de Paris page reviewed 12 October 2026)",
       "intro": "This page summarizes practical steps from the official Ville de Paris guide « La location meublée touristique : les règles à suivre » (paris.fr, updated 25/03/2026). It is not legal advice. For usage or destination questions, the City directs you to a notaire or avocat. Host Registry, by Glint, helps you track your situation, documents, registration number display and the 90-night count for primary residences. We do not file anything with the Ville de Paris for you.",
       "sections": {
         "fourSituations": {
@@ -926,7 +926,7 @@
         },
         "sanctions": {
           "title": "Maximum sanctions listed by the City",
-          "body": "Primary residence over 90 nights per year: fine up to €10,000 per year of overrun. Secondary housing without change-of-use authorization: up to €100,000 plus astreinte up to €1,000 per day per m² until regularized. Commercial or artisanal premises without authorization: up to €25,000. Other premises without urbanism authorization: penal sanction (no amount published on the page). Missing registration: up to €5,000. False declarations or concealment: up to one year imprisonment and €80,000. Obstructing municipal housing agents: €2,250."
+          "body": "As listed by the City on paris.fr (reviewed October 2026): primary residence over 90 nights per year: fine up to €10,000 per year of overrun. Secondary housing without change-of-use authorization: up to €100,000 plus astreinte up to €1,000 per day per m² until regularized. Commercial or artisanal premises without authorization: up to €25,000. Other premises without urbanism authorization: penal sanction (no amount published on the page). Missing registration: up to €5,000. False declarations or concealment: up to one year imprisonment and €80,000. Obstructing municipal housing agents: €2,250. The Code du tourisme art. L324-1-1, as amended by loi n° 2024-1039, sets higher maximums for some breaches (for example missing declaration up to €10,000, false declaration up to €20,000, primary-residence night-cap breach up to €15,000): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000050623378. Check with the authority which scale applies in your case."
         },
         "national": {
           "title": "National register context",
@@ -944,7 +944,7 @@
     },
     "parisAirbnbRegistration": {
       "title": "Paris Airbnb and the meublé de tourisme register",
-      "updated": "Updated: March 2026 (Ville de Paris page reviewed 25 March 2026)",
+      "updated": "Updated: October 2026 (Ville de Paris page reviewed 12 October 2026)",
       "intro": "Airbnb hosts in Paris follow the same Ville de Paris meublé de tourisme rules as other platforms. This is practical information with links to official sources, not legal advice.",
       "sections": {
         "airbnbField": {
@@ -953,7 +953,7 @@
         },
         "ninetyDay": {
           "title": "90-night cap (primary residence)",
-          "body": "If the listing is your primary residence whole dwelling, Paris caps furnished tourist rental at 90 nights per year. Connect iCal in Host Registry to count nights. Exceeding the cap may lead to fines up to €10,000 per year of overrun under City rules."
+          "body": "If the listing is your primary residence whole dwelling, Paris caps furnished tourist rental at 90 nights per year. Connect iCal in Host Registry to count nights. Exceeding the cap may lead to fines up to €10,000 per year of overrun under City rules on paris.fr; the national Code du tourisme maximum for IV breaches is €15,000 (https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000050623378)."
         },
         "urbanism": {
           "title": "Non-primary, commercial and other premises",
@@ -984,7 +984,7 @@
         },
         "sanctions": {
           "title": "Sanctions quoted in the 2023 règlement",
-          "body": "Article 15 (CCH L.651-2 / L.651-3) quotes a civil fine up to €50,000 by the president of the Tribunal judiciaire, an order to return premises to housing, and astreinte up to €1,000 per day per m². False declarations or concealment: up to one year imprisonment and €80,000. National ceilings may have changed since loi 2024-1039. lyon.fr does not publish a specific fine for exceeding 90 nights or missing the registration number."
+          "body": "Article 15 of the Métropole règlement quotes CCH art. L651-2 civil fines up to €50,000 by the president of the Tribunal judiciaire, an order to return premises to housing, and astreinte up to €1,000 per day per m². Since loi n° 2024-1039, art. L651-2 sets a civil fine of up to €100,000 per unlawfully transformed unit: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006825946. False declarations or concealment: up to one year imprisonment and €80,000. lyon.fr does not publish a specific fine for exceeding 90 nights or missing the registration number."
         },
         "taxe": {
           "title": "Taxe de séjour",
@@ -1218,7 +1218,7 @@
         },
         "sanctions": {
           "title": "Sanctions",
-          "body": "The meublés touristiques page cites CCH articles: civil fine up to 50 000 EUR per illegally transformed unit, daily astreinte up to 1 000 EUR per m², and criminal penalties up to one year imprisonment and/or 80 000 EUR for false declarations or concealment."
+          "body": "The meublés touristiques page cites CCH art. L651-2: civil fine up to €50,000 per illegally transformed unit in the Métropole règlement, daily astreinte up to €1,000 per m², and criminal penalties up to one year imprisonment and/or €80,000 for false declarations or concealment. Since loi n° 2024-1039, art. L651-2 sets a civil fine of up to €100,000 per unlawfully transformed unit: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006825946."
         },
         "national": {
           "title": "National register context",
@@ -1276,11 +1276,11 @@
         },
         "platforms": {
           "title": "Platforms and fines",
-          "body": "Platforms will need a valid registration number to keep listings live after the transition. Proposed fines up to €50,000 per breach, with minimum fines for repeat offences. No guest-police submission is part of this Vienna register."
+          "body": "Platforms will need a valid registration number to keep listings live after the transition. Austrian press (for example ORF and derStandard, September 2026, citing the mayor) reported proposed fines up to €50,000 per breach; this is not stated on the official announcement (https://www.wien.gv.at/kontakt/wohnungen-kurzzeitvermietung-registrierungspflicht). No guest-police submission is part of this Vienna register."
         },
         "eu": {
           "title": "EU Regulation 2024/1028",
-          "body": "In force since 20 May 2026, the EU regulation requires platforms to verify registration numbers where Member States require them. Vienna's register is the local implementation path announced by the city."
+          "body": "In force since 20 May 2026, the EU regulation requires platforms to verify registration numbers where Member States require them. Vienna's register is the local implementation path announced by the city. At federal level, BMWET states that as of 20 May 2026 no Austrian Bundesland has implemented the EU STR registration procedure yet, so there is no nationwide registration number requirement outside Vienna's planned register: https://www.bmwet.gv.at/en/Topics/tourism/tourism-service-and-contacts/str_regulation.html"
         },
         "ninetyDay": {
           "title": "90-day rule, Ortstaxe and Ausnahmebewilligung (separate from WKVRG)",
@@ -1307,7 +1307,7 @@
         },
         "fines": {
           "title": "Enforcement",
-          "body": "Proposed penalties up to €50,000. Host Registry tracks your number and display checklist but does not file on your behalf."
+          "body": "Austrian press (ORF and derStandard, September 2026, citing the mayor) reported proposed penalties up to €50,000; the official Stadt Wien page does not publish fine amounts (https://www.wien.gv.at/kontakt/wohnungen-kurzzeitvermietung-registrierungspflicht). Host Registry tracks your number and display checklist but does not file on your behalf."
         },
         "glint": {
           "title": "Host Registry workflow",
@@ -1434,11 +1434,11 @@
         },
         "hut": {
           "title": "Obtain and store HUT",
-          "body": "Complete municipal and Generalitat steps for Habitatge d'Ús Turístic. Use Canal Empresa or published municipal procedures. When you receive HUT, enter it in Host Registry and set status to active."
+          "body": "Complete municipal and Generalitat steps for Habitatge d'Ús Turístic. Use Canal Empresa (https://canalempresa.gencat.cat/) or published municipal procedures. When you receive HUT, enter it in Host Registry and set status to active."
         },
         "barcelona": {
           "title": "Barcelona municipal rules",
-          "body": "Barcelona adds zone restrictions and municipal requirements on top of the Catalan HUT. Review Ajuntament guidance before publishing. Host Registry does not obtain municipal permits for you."
+          "body": "Barcelona adds zone restrictions and municipal requirements on top of the Catalan HUT, including urbanistic licensing under Catalan Decree-law 3/2023. Press and municipal communications have reported that the Ajuntament may not renew HUT licences through November 2028 (confirm current policy on Ajuntament tourism pages before relying on any licence end date). Review Ajuntament guidance before publishing. Host Registry does not obtain municipal permits for you."
         },
         "platforms": {
           "title": "EU 2024/1028 on platforms",
@@ -1716,7 +1716,7 @@
       "sections": {
         "categorisation": {
           "title": "Tourist accommodation categorisation / approval",
-          "body": "Before any listing, obtain approval and categorisation from the Ministry of Tourism and Sport (mint.gov.hr). Your property must be registered as a tourist accommodation facility. Under Regulation (EU) 2024/1028, platforms verify registration from 20 May 2026; Croatia's unique listing registration numbers are expected from ~January 2027 under the new Hospitality Act / eTourism."
+          "body": "Before any listing, household accommodation (ugostiteljske usluge u domaćinstvu) needs approval and categorisation from the competent county state administration office (upravni odjel), or the City of Zagreb office where applicable. The Ministry of Tourism and Sport sets the framework (pravilnik) but does not issue every county rjesenje. See https://psc.gov.hr/hospitality-and-catering-services-in-the-household/1416. Under Regulation (EU) 2024/1028, platforms verify registration from 20 May 2026."
         },
         "evisitor": {
           "title": "eVisitor: property object registration",
@@ -1724,7 +1724,7 @@
         },
         "reporting": {
           "title": "Arrival / departure reporting within 24h",
-          "body": "Register every guest on eVisitor within 24 hours of arrival (check-in) and report departure within 24 hours of checkout. Tourism inspectors check pre-season and peak season. Glint collects fields via check-in link, validates data and prepares CSV/printable export. You submit manually on evisitor.hr. No live API in this release (Rhetos integration planned for phase 2)."
+          "body": "Register every guest on eVisitor within 24 hours of arrival (check-in) and report departure within 24 hours of checkout (https://www.gov.hr/en/tourist-registration-and-deregistration/1432). Tourism inspectors check pre-season and peak season. Glint collects fields via check-in link, validates data and prepares CSV/printable export. You submit manually on evisitor.hr. No live API in this release (Rhetos integration planned for phase 2)."
         },
         "glint": {
           "title": "How Glint helps",
@@ -2698,12 +2698,12 @@
       "unknown": "Unknown"
     },
     "classification": {
-      "unclassified": "Unclassified",
       "1": "1 star",
       "2": "2 stars",
       "3": "3 stars",
       "4": "4 stars",
       "5": "5 stars",
+      "unclassified": "Unclassified",
       "unknown": "Unknown"
     },
     "status": {

@@ -53,6 +53,8 @@ const PAIRED_GUIDE_IDS = [
   "niceAirbnb",
   "lisbonStr",
   "lisbonAirbnb",
+  "romeStr",
+  "romeAirbnb",
 ] as const;
 
 const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
@@ -96,6 +98,8 @@ const PAIR_KEYS: Record<(typeof PAIRED_GUIDE_IDS)[number], [string, string]> = {
   niceAirbnb: ["guideNiceAirbnbRegistration", "guideNiceAirbnbRegistrationFr"],
   lisbonStr: ["guideLisbonStrRegistration", "guideLisbonStrRegistrationFr"],
   lisbonAirbnb: ["guideLisbonAirbnbRegistration", "guideLisbonAirbnbRegistrationFr"],
+  romeStr: ["guideRomeStrRegistration", "guideRomeStrRegistrationFr"],
+  romeAirbnb: ["guideRomeAirbnbRegistration", "guideRomeAirbnbRegistrationFr"],
 };
 
 function enSlug(enKey: string): string {
@@ -239,6 +243,10 @@ describe("sitemap entries", () => {
     assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-nice"));
     assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-nice"));
     assert.ok(!urls.includes("/fr/guides/nice-short-term-rental-registration"));
+    assert.ok(urls.includes("/en/guides/rome-short-term-rental-registration"));
+    assert.ok(urls.includes("/fr/guides/enregistrement-location-courte-duree-rome"));
+    assert.ok(!urls.includes("/en/guides/enregistrement-location-courte-duree-rome"));
+    assert.ok(!urls.includes("/fr/guides/rome-short-term-rental-registration"));
   });
 
   it("lists NER migration only under /fr", () => {
@@ -320,8 +328,8 @@ describe("guides index sitemap", () => {
         ({ locale: loc, path }) => loc === locale && path.startsWith("/guides/"),
       ).length;
 
-    assert.equal(countGuideIndexLinks("en"), 42);
-    assert.equal(countGuideIndexLinks("fr"), 43);
+    assert.equal(countGuideIndexLinks("en"), 44);
+    assert.equal(countGuideIndexLinks("fr"), 45);
     assert.equal(countGuideIndexLinks("en"), guidePathsInSitemap("en"));
     assert.equal(countGuideIndexLinks("fr"), guidePathsInSitemap("fr"));
     assert.equal(GUIDE_INDEX_GROUPS.length, 11);

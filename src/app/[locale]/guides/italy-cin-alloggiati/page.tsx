@@ -1,5 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { GuideLayout } from "@/components/guides/guide-layout";
+import { GuideRelatedLinks } from "@/components/guides/guide-related-links";
 import { generatePageMetadata } from "@/lib/seo/generate-page-metadata";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -23,6 +24,11 @@ export default async function GuideItalyCinAlloggiatiPage({ params }: Props) {
       <p>{t("sections.alloggiati.body")}</p>
       <h2>{t("sections.distinct.title")}</h2>
       <p>{t("sections.distinct.body")}</p>
+      <h2>{t("sections.related.title")}</h2>
+      <GuideRelatedLinks
+        locale={locale}
+        pages={["guideRomeStrRegistration", "guideRomeAirbnbRegistration"]}
+      />
       <h2>{t("sections.glint.title")}</h2>
       <p>{t("sections.glint.body")}</p>
     </GuideLayout>

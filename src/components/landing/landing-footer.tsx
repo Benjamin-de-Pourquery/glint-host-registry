@@ -34,6 +34,16 @@ export async function LandingFooter({ locale }: Props) {
             </div>
             <p className="mt-3 text-sm leading-relaxed">{tBrand("tagline")}</p>
             <p className="mt-3 text-sm leading-relaxed text-slate-500">{tBrand("suiteOneliner")}</p>
+            <p className="mt-3 text-sm">
+              <a
+                href="https://www.linkedin.com/company/146620549"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-white"
+              >
+                {t("linkedin")}
+              </a>
+            </p>
           </div>
 
           <div>

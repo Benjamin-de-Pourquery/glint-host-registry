@@ -97,11 +97,11 @@
     },
     "guidePortugalRnalSiba": {
       "title": "Portugal RNAL & SIBA guide for Alojamento Local hosts",
-      "description": "RNAL display under EU 2024/1028, SIBA boletim within 3 working days for foreign guests. Glint check-in export and due queue; you submit on SIBA."
+      "description": "RNAL display under EU 2024/1028, SIBA boletim within 3 working days for foreign guests. Host Registry check-in export and due queue; you submit on SIBA."
     },
     "guideLisbonStrRegistration": {
       "title": "Lisbon AL registration guide: RNAL, containment and SIBA",
-      "description": "RNAL on listings, Lisbon containment checks, SIBA boletim queue and tourist tax. Host Registry playbooks; you file on gov.pt and SIBA."
+      "description": "RNAL on listings, Lisbon containment checks, SIBA boletim queue and tourist tax. Host Registry playbooks; you file on gov.pt and SIBA. Not legal advice."
     },
     "guideLisbonStrRegistrationFr": {
       "title": "Enregistrement location courte durée Lisbonne: guide Alojamento Local",

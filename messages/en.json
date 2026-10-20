@@ -96,12 +96,12 @@
       "description": "CIN sur Airbnb, préparation CIA/SCIA SUAR, Alloggiati Web et contributo di soggiorno. Host Registry ne dépose pas automatiquement aux portails officiels."
     },
     "guidePortugalRnalSiba": {
-      "title": "Portugal RNAL & SIBA: Alojamento Local host guide",
-      "description": "RNAL number on listings (EU 2024/1028) and SIBA Boletim de Alojamento for foreign guests, deadlines and reporting phases."
+      "title": "Portugal RNAL & SIBA guide for Alojamento Local hosts",
+      "description": "RNAL display under EU 2024/1028, SIBA boletim within 3 working days for foreign guests. Glint check-in export and due queue; you submit on SIBA."
     },
     "guideLisbonStrRegistration": {
-      "title": "Lisbon short-term rental registration: Alojamento Local host guide",
-      "description": "National RJEEAL (Decreto-Lei 128/2014, Lei 56/2023, Decreto-Lei 76/2024), RNAL, Lisbon municipal containment areas, SIBA guest reporting and municipal tourist tax. Not legal advice."
+      "title": "Lisbon AL registration guide: RNAL, containment and SIBA",
+      "description": "RNAL on listings, Lisbon containment checks, SIBA boletim queue and tourist tax. Host Registry playbooks; you file on gov.pt and SIBA."
     },
     "guideLisbonStrRegistrationFr": {
       "title": "Enregistrement location courte durée Lisbonne: guide Alojamento Local",

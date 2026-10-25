@@ -56,8 +56,8 @@
       "description": "Obligations for the individual police form for foreign guests in furnished rentals, data fields, 6-month retention and best practices."
     },
     "guideAmsterdamNightCap": {
-      "title": "Amsterdam & Netherlands: night caps, permit & registration",
-      "description": "Host guide: toeristischeverhuur.nl registration, Amsterdam holiday permit (€76), per-stay reporting before guests arrive, and 30/15 night caps (Centrum and De Pijp)."
+      "title": "Amsterdam 30 night cap, permit, registration | Host Registry",
+      "description": "Amsterdam holiday rental: free registration, €76 permit, report stays before arrival, 30 night cap, 15 in parts of Centrum and De Pijp. Not legal advice."
     },
     "guideAmsterdamStrRegistration": {
       "title": "Amsterdam short-term rental registration: toeristische verhuur host guide",
@@ -80,8 +80,8 @@
       "description": "Codice Identificativo Nazionale (BDSR) on listings and Alloggiati Web schedine within 24h, separate obligations for Italian hosts."
     },
     "guideRomeStrRegistration": {
-      "title": "Rome short-term rental registration: CIN, CIA and municipal host guide",
-      "description": "Roma Capitale SUAR CIA/SCIA for locazioni turistiche, PRG planning limits, BDSR CIN, Alloggiati Web, Regione Lazio copy and contributo di soggiorno. Not legal advice."
+      "title": "Rome short-term rental registration: CIN | Host Registry",
+      "description": "Rome tourist lettings: CIA on SUAR, CIR before CIN, Alloggiati Web within 24h of arrival (6h for stays of 24h or less), tourist tax. Not legal advice."
     },
     "guideRomeStrRegistrationFr": {
       "title": "Enregistrement location courte durée Rome: guide CIN, CIA et municipal",
@@ -96,12 +96,12 @@
       "description": "CIN sur Airbnb, préparation CIA/SCIA SUAR, Alloggiati Web et contributo di soggiorno. Host Registry ne dépose pas automatiquement aux portails officiels."
     },
     "guidePortugalRnalSiba": {
-      "title": "Portugal RNAL & SIBA guide for Alojamento Local hosts",
-      "description": "RNAL display under EU 2024/1028, SIBA boletim within 3 working days for foreign guests. Host Registry check-in export and due queue; you submit on SIBA."
+      "title": "Portugal RNAL and SIBA guide for AL hosts | Host Registry",
+      "description": "RNAL number on every listing, SIBA boletim within 3 working days of foreign guest arrival and departure, EU 2024/1028 platform checks. Not legal advice."
     },
     "guideLisbonStrRegistration": {
-      "title": "Lisbon AL registration guide: RNAL, containment and SIBA",
-      "description": "RNAL on listings, Lisbon containment checks, SIBA boletim queue and tourist tax. Host Registry playbooks; you file on gov.pt and SIBA. Not legal advice."
+      "title": "Lisbon short-term rental registration: RNAL | Host Registry",
+      "description": "Register a Lisbon Alojamento Local: RNAL number on listings, containment area checks, SIBA reports for foreign guests, €4 tourist tax. Not legal advice."
     },
     "guideLisbonStrRegistrationFr": {
       "title": "Enregistrement location courte durée Lisbonne: guide Alojamento Local",
@@ -636,7 +636,7 @@
         },
         "alloggiati": {
           "title": "Alloggiati Web schedina (within 24h of check-in)",
-          "body": "Under TULPS art. 109, communicate each guest schedina to Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (see https://www.poliziadistato.it/articolo/alloggiati-web). For stays of 24 hours or longer, file within 24 hours of check-in. For stays under 24 hours, communicate on arrival (all'arrivo). Complete establishment alta on the portal first. This obligation is independent of CIN and SUAR CIA/SCIA. Host Registry prepares schedina fields and a due queue; you submit on Alloggiati Web yourself."
+          "body": "Under TULPS art. 109, communicate each guest schedina to Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (see https://www.poliziadistato.it/articolo/alloggiati-web). For stays longer than 24 hours, file within 24 hours of arrival; for stays of 24 hours or less, within 6 hours of arrival. Complete establishment alta on the portal first. This obligation is independent of CIN and SUAR CIA/SCIA. Host Registry prepares schedina fields and a due queue; you submit on Alloggiati Web yourself."
         },
         "lazioCopy": {
           "title": "Copy of accepted CIA or SCIA to Regione Lazio",

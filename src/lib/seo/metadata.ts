@@ -95,11 +95,14 @@ export function buildPageMetadata({
   noIndex = false,
 }: BuildMetadataOptions): Metadata {
   const canonical = buildCanonicalUrl(locale, page);
-  const brandedTitle = formatBrandedPageTitle(title);
+  // Titles that already carry their own brand suffix (e.g. "... | Host Registry")
+  // are rendered as is, without the root layout template.
+  const hasOwnSuffix = / \| [^|]+$/.test(title);
+  const brandedTitle = hasOwnSuffix ? title : formatBrandedPageTitle(title);
   const ogImageUrl = new URL(OG_IMAGE_PATH, getSiteUrl()).toString();
 
   return {
-    title,
+    title: hasOwnSuffix ? { absolute: title } : title,
     description,
     metadataBase: new URL(getSiteUrl()),
     alternates: {

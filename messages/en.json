@@ -589,7 +589,7 @@
         },
         "alloggiati": {
           "title": "Alloggiati Web: schedina within 24h",
-          "body": "Under TULPS art. 109, communicate each guest's schedina to Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (see https://www.poliziadistato.it/articolo/alloggiati-web). For stays of 24 hours or longer, file within 24 hours of check-in. For stays under 24 hours, communicate on arrival (all'arrivo). Complete the establishment alta on the portal first, then file each schedina with identity, nationality, date and place of birth, document type and arrival date."
+          "body": "Under TULPS art. 109, communicate each guest's schedina to Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (see https://www.poliziadistato.it/articolo/alloggiati-web). For stays longer than 24 hours, file within 24 hours of arrival; for stays of 24 hours or less, within 6 hours of arrival. Complete the establishment alta on the portal first, then file each schedina with identity, nationality, date and place of birth, document type and arrival date."
         },
         "distinct": {
           "title": "Three separate obligations",
@@ -675,7 +675,7 @@
         },
         "beforeList": {
           "title": "Before you publish in Rome",
-          "body": "Confirm SUAR accepts your CIA or SCIA for the address (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Obtain and display your Lazio CIR/CISE before requesting CIN on BDSR. Plan monthly ROSS 1000 reporting on the regional portal. Treat PRG/NTA tourist-use limits as press announced until you confirm official urbanistica sources for your zone, especially in the UNESCO historic centre. Register on Alloggiati Web if guests require schedina reporting (within 24h of check-in for stays of 24h or longer, on arrival for shorter stays). Send the accepted CIA/SCIA copy to Regione Lazio by PEC when required."
+          "body": "Confirm SUAR accepts your CIA or SCIA for the address (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Obtain and display your Lazio CIR/CISE before requesting CIN on BDSR. Plan monthly ROSS 1000 reporting on the regional portal. Treat PRG/NTA tourist-use limits as press announced until you confirm official urbanistica sources for your zone, especially in the UNESCO historic centre. Register on Alloggiati Web if guests require schedina reporting (within 24 hours of arrival for stays longer than 24 hours, within 6 hours of arrival for stays of 24 hours or less). Send the accepted CIA/SCIA copy to Regione Lazio by PEC when required."
         },
         "display": {
           "title": "Listing display checklist",
@@ -1960,7 +1960,7 @@
         },
         "11": {
           "q": "Does Glint cover Italy (CIN and Alloggiati)?",
-          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (within 24h after check-in for stays of 24h or longer, on arrival for shorter stays) with export kits and due queues. CIN and Alloggiati are separate obligations. A Rome city guide covers Roma Capitale SUAR CIA/SCIA, Lazio CIR/CISE, ROSS 1000 and planning checks. We do not submit to government systems automatically."
+          "a": "Yes. Glint tracks BDSR CIN for listing compliance under EU 2024/1028 and prepares Alloggiati Web guest schedules (within 24 hours of arrival for stays longer than 24 hours, within 6 hours of arrival for stays of 24 hours or less) with export kits and due queues. CIN and Alloggiati are separate obligations. A Rome city guide covers Roma Capitale SUAR CIA/SCIA, Lazio CIR/CISE, ROSS 1000 and planning checks. We do not submit to government systems automatically."
         },
         "12": {
           "q": "Does Glint cover Portugal, Greece, and Croatia?",

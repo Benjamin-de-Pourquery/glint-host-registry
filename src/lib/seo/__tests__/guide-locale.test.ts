@@ -288,6 +288,18 @@ describe("buildPageMetadata title", () => {
     );
   });
 
+  it("renders titles with their own suffix as absolute, without the template", () => {
+    const title = "Lisbon short-term rental registration: RNAL | Host Registry";
+    const meta = buildPageMetadata({
+      locale: "en",
+      page: "guideLisbonStrRegistration",
+      title,
+      description: "Test description",
+    });
+    assert.deepEqual(meta.title, { absolute: title });
+    assert.equal(meta.openGraph?.title, title);
+  });
+
   it("includes openGraph and twitter preview images", () => {
     const meta = buildPageMetadata({
       locale: "en",

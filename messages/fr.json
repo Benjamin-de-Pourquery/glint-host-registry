@@ -589,7 +589,7 @@
         },
         "alloggiati": {
           "title": "Alloggiati Web: schedina sous 24 h",
-          "body": "Au titre de l'art. 109 TULPS, communiquez la schedina de chaque voyageur à la Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (voir https://www.poliziadistato.it/articolo/alloggiati-web). Pour les séjours de 24 heures ou plus, déposez sous 24 heures après l'arrivée. Pour les séjours de moins de 24 heures, communiquez à l'arrivée (all'arrivo). Effectuez d'abord l'alta de l'établissement sur le portail, puis déposez chaque schedina avec identité, nationalité, date et lieu de naissance, type de document et date d'arrivée."
+          "body": "Au titre de l'art. 109 TULPS, communiquez la schedina de chaque voyageur à la Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (voir https://www.poliziadistato.it/articolo/alloggiati-web). Pour les séjours de plus de 24 heures, déposez sous 24 heures après l'arrivée ; pour les séjours de 24 heures ou moins, sous 6 heures après l'arrivée. Effectuez d'abord l'alta de l'établissement sur le portail, puis déposez chaque schedina avec identité, nationalité, date et lieu de naissance, type de document et date d'arrivée."
         },
         "distinct": {
           "title": "Trois obligations distinctes",
@@ -636,7 +636,7 @@
         },
         "alloggiati": {
           "title": "Schedina Alloggiati Web (sous 24 h après l'arrivée)",
-          "body": "Au titre de l'art. 109 TULPS, communiquez la schedina de chaque hôte à la Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (voir https://www.poliziadistato.it/articolo/alloggiati-web). Pour les séjours de 24 heures ou plus, déposez sous 24 heures après l'arrivée. Pour les séjours de moins de 24 heures, communiquez à l'arrivée (all'arrivo). Effectuez d'abord l'alta de l'établissement sur le portail. Cette obligation est indépendante du CIN et de la CIA/SCIA SUAR. Host Registry prépare les champs schedina et une file d'échéance ; vous soumettez sur Alloggiati Web vous-même."
+          "body": "Au titre de l'art. 109 TULPS, communiquez la schedina de chaque hôte à la Polizia di Stato via https://alloggiatiweb.poliziadistato.it/ (voir https://www.poliziadistato.it/articolo/alloggiati-web). Pour les séjours de plus de 24 heures, déposez sous 24 heures après l'arrivée ; pour les séjours de 24 heures ou moins, sous 6 heures après l'arrivée. Effectuez d'abord l'alta de l'établissement sur le portail. Cette obligation est indépendante du CIN et de la CIA/SCIA SUAR. Host Registry prépare les champs schedina et une file d'échéance ; vous soumettez sur Alloggiati Web vous-même."
         },
         "lazioCopy": {
           "title": "Copie de la CIA ou SCIA acceptée à la Regione Lazio",
@@ -675,7 +675,7 @@
         },
         "beforeList": {
           "title": "Avant de publier à Rome",
-          "body": "Confirmez que le SUAR accepte votre CIA ou SCIA pour l'adresse (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Obtenez et affichez votre CIR/CISE du Latium avant de demander le CIN sur le BDSR. Prévoyez les déclarations mensuelles ROSS 1000 sur le portail régional. Traitez les limites PRG/NTA comme annoncées par la presse tant que vous n'avez pas confirmé les sources urbanistica officielles pour votre zone, surtout dans le centre historique UNESCO. Inscrivez-vous sur Alloggiati Web si des hôtes exigent la schedina (sous 24 h après l'arrivée pour les séjours de 24 h ou plus, à l'arrivée pour les séjours plus courts). Envoyez la copie de CIA/SCIA acceptée à la Regione Lazio par PEC si requis."
+          "body": "Confirmez que le SUAR accepte votre CIA ou SCIA pour l'adresse (https://www.comune.roma.it/web/it/scheda-servizi.page?contentId=INF123012). Obtenez et affichez votre CIR/CISE du Latium avant de demander le CIN sur le BDSR. Prévoyez les déclarations mensuelles ROSS 1000 sur le portail régional. Traitez les limites PRG/NTA comme annoncées par la presse tant que vous n'avez pas confirmé les sources urbanistica officielles pour votre zone, surtout dans le centre historique UNESCO. Inscrivez-vous sur Alloggiati Web si des hôtes exigent la schedina (sous 24 heures après l'arrivée pour les séjours de plus de 24 heures, sous 6 heures après l'arrivée pour les séjours de 24 heures ou moins). Envoyez la copie de CIA/SCIA acceptée à la Regione Lazio par PEC si requis."
         },
         "display": {
           "title": "Checklist d'affichage sur l'annonce",
@@ -1960,7 +1960,7 @@
         },
         "11": {
           "q": "Glint couvre-t-il l'Italie (CIN et Alloggiati) ?",
-          "a": "Oui. Glint suit le CIN BDSR pour les annonces (règlement UE 2024/1028) et prépare les schedine Alloggiati Web (sous 24 h après l'arrivée pour les séjours de 24 h ou plus, à l'arrivée pour les séjours plus courts) avec kits d'export et files d'échéance. CIN et Alloggiati sont des obligations distinctes. Un guide ville Rome couvre la CIA/SCIA SUAR de Roma Capitale, le CIR/CISE du Latium, ROSS 1000 et les contrôles urbanistiques. Pas de soumission automatique aux administrations."
+          "a": "Oui. Glint suit le CIN BDSR pour les annonces (règlement UE 2024/1028) et prépare les schedine Alloggiati Web (sous 24 heures après l'arrivée pour les séjours de plus de 24 heures, sous 6 heures après l'arrivée pour les séjours de 24 heures ou moins) avec kits d'export et files d'échéance. CIN et Alloggiati sont des obligations distinctes. Un guide ville Rome couvre la CIA/SCIA SUAR de Roma Capitale, le CIR/CISE du Latium, ROSS 1000 et les contrôles urbanistiques. Pas de soumission automatique aux administrations."
         },
         "12": {
           "q": "Glint couvre-t-il le Portugal, la Grèce et la Croatie ?",

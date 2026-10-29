@@ -6,12 +6,17 @@ const checklistItemSchema = z.object({
   done: z.boolean(),
 });
 
+const calendarDateString = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/)
+  .refine((v) => {
+    const d = new Date(`${v}T00:00:00.000Z`);
+    return !Number.isNaN(d.getTime()) && d.toISOString().startsWith(v);
+  }, "Invalid date");
+
 /** ISO datetime or YYYY-MM-DD date strings from forms. */
 export const optionalMigrationDateString = z
-  .union([
-    z.string().datetime(),
-    z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  ])
+  .union([z.string().datetime(), calendarDateString])
   .nullable()
   .optional();
 

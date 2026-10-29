@@ -12,9 +12,9 @@ describe("frNerMigrationPatchSchema", () => {
   });
 
   it("rejects invalid date strings", () => {
-    const parsed = frNerMigrationPatchSchema.safeParse({
-      nerIssuedAt: "not-a-date",
-    });
-    assert.equal(parsed.success, false);
+    for (const nerIssuedAt of ["not-a-date", "2026-13-01", "2026-02-31"]) {
+      const parsed = frNerMigrationPatchSchema.safeParse({ nerIssuedAt });
+      assert.equal(parsed.success, false, `expected reject for ${nerIssuedAt}`);
+    }
   });
 });

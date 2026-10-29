@@ -9,6 +9,10 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Radar } from "lucide-react";
 import { format } from "date-fns";
 import type { RuleImpactFeedItem } from "@/lib/rule-radar/service";
+import {
+  nightCapLimit,
+  sanitizeRuleImpactFeedItems,
+} from "@/lib/rule-radar/feed-guards";
 
 type Props = {
   locale: string;
@@ -25,14 +29,23 @@ export function RuleRadarFeed({ locale }: Props) {
   const t = useTranslations("ruleRadar");
   const [items, setItems] = useState<RuleImpactFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const res = await fetch("/api/rule-radar/changes?limit=10");
-      if (!res.ok) return;
+      if (!res.ok) {
+        setLoadError(true);
+        setItems([]);
+        return;
+      }
       const data = await res.json();
-      setItems(data.items ?? []);
+      setItems(sanitizeRuleImpactFeedItems(data.items));
+    } catch {
+      setLoadError(true);
+      setItems([]);
     } finally {
       setLoading(false);
     }
@@ -65,8 +78,27 @@ export function RuleRadarFeed({ locale }: Props) {
     );
   }
 
+  if (loadError) {
+    return (
+      <Card>
+        <CardContent className="space-y-3 py-8 text-center">
+          <p className="text-sm text-slate-600">{t("feed.loadError")}</p>
+          <Button variant="outline" size="sm" onClick={() => void load()}>
+            {t("feed.retry")}
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
   if (items.length === 0) {
-    return null;
+    return (
+      <Card>
+        <CardContent className="py-8 text-center text-sm text-slate-500">
+          {t("feed.empty")}
+        </CardContent>
+      </Card>
+    );
   }
 
   const unseenCount = items.filter((item) => !item.seenAt).length;
@@ -86,10 +118,12 @@ export function RuleRadarFeed({ locale }: Props) {
       <CardContent className="space-y-4">
         {items.map((item) => {
           const summary = locale === "fr" ? item.summaryFr : item.summaryEn;
+          const limitBefore = nightCapLimit(item.before);
+          const limitAfter = nightCapLimit(item.after);
           const nightCapChanged =
-            item.before.nightCap.limit !== item.after.nightCap.limit;
-          const limitBefore = item.before.nightCap.limit;
-          const limitAfter = item.after.nightCap.limit;
+            limitBefore != null &&
+            limitAfter != null &&
+            limitBefore !== limitAfter;
 
           return (
             <div

@@ -6,6 +6,12 @@
     "tagline": "EU short-term rental compliance, simplified",
     "suiteOneliner": "Glint builds operational registries for European compliance. Software only: not a certification body, not a law firm, not a notified body."
   },
+  "notFound": {
+    "title": "Page not found",
+    "description": "This link may be outdated or the page may have moved. Head back to Host Registry home or open your dashboard.",
+    "homeCta": "Back to home",
+    "appCta": "Open dashboard"
+  },
   "seo": {
     "home": {
       "title": "EU short-term rental compliance: registration numbers, SES Hospedajes & guest register",
@@ -2876,6 +2882,7 @@
     "save": "Save migration cockpit",
     "saved": "Migration cockpit saved",
     "saveError": "Could not save",
+    "migrationLocked": "This regulatory identity is already locked. You can still update checklists and move through the wizard, but you cannot change the NER or municipal numbers here.",
     "copied": "Copied",
     "ctaOfficial": "API Meublés: official guide (DGE)",
     "ctaPlaybook": "Open compliance step",
@@ -2900,6 +2907,7 @@
       "title": "Migration wizard",
       "stepCounter": "Step {current} of {total}",
       "saveError": "Could not save step",
+      "migrationLocked": "This regulatory identity is already locked. You can still update checklists and move through the wizard, but you cannot change the NER or municipal numbers here.",
       "stepSaved": "Step saved",
       "back": "Back",
       "next": "Next",
@@ -2974,7 +2982,9 @@
       "none": "No active subscription",
       "manage": "Manage billing",
       "upgrade": "Upgrade plan",
-      "subscribe": "Subscribe"
+      "subscribe": "Subscribe",
+      "checkoutError": "Billing is temporarily unavailable. Try again in a few minutes.",
+      "portalError": "The billing portal is temporarily unavailable. Try again in a few minutes."
     },
     "demo": {
       "title": "Demo data",
@@ -3015,6 +3025,8 @@
     "subtitle": "Collect and retain police forms for foreign guests (fiche de police).",
     "loading": "Loading guest register…",
     "loadError": "Could not load guest register",
+    "loadErrorHint": "Try again in a moment. If the problem continues, refresh the page or contact support.",
+    "retry": "Try again",
     "actionError": "Could not update check-in link",
     "checkInLink": "Public check-in link",
     "enableLink": "Generate check-in link",
@@ -4350,6 +4362,9 @@
       "title": "Changes affecting you",
       "description": "Regulatory updates that may change limits or deadlines for your properties. Operational aid only, not legal advice.",
       "loading": "Loading regulatory changes...",
+      "empty": "No regulatory changes to show right now.",
+      "loadError": "Could not load regulatory changes.",
+      "retry": "Try again",
       "markSeen": "Mark as seen",
       "nightCapDelta": "(night cap: {before} to {after} nights)",
       "disclaimer": "Check the official source and effective date before acting. This is not legal advice."

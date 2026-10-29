@@ -32,6 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { normalizeGuestRegisterPanelData } from "@/lib/guest-register/normalize-panel-data";
 import { EmptyState } from "@/components/empty-state";
 import { SesStayActions } from "@/components/ses-stay-actions";
 import {
@@ -171,8 +172,14 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
         fetch(`/api/properties/${propertyId}/calendar-feeds`),
       ]);
       if (!registerRes.ok) throw new Error("Failed");
-      const json = (await registerRes.json()) as GuestRegisterData;
-      setData(json);
+      const json = await registerRes.json();
+      const normalized = normalizeGuestRegisterPanelData(json);
+      if (!normalized) {
+        setData(null);
+        toast.error(t("loadError"));
+      } else {
+        setData(normalized);
+      }
       if (feedsRes.ok) {
         const feedsJson = (await feedsRes.json()) as { feeds: CalendarFeedSummary[] };
         setFeeds(feedsJson.feeds);
@@ -409,7 +416,17 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
     );
   }
 
-  const isEnabled = data?.token?.enabled ?? false;
+  if (!data) {
+    return (
+      <EmptyState icon={AlertCircle} title={t("loadError")} description={t("loadErrorHint")}>
+        <Button variant="outline" size="sm" onClick={() => void loadData()}>
+          {t("retry")}
+        </Button>
+      </EmptyState>
+    );
+  }
+
+  const isEnabled = data.token?.enabled ?? false;
   const missingCount = data?.missingFichesCount ?? 0;
 
   return (

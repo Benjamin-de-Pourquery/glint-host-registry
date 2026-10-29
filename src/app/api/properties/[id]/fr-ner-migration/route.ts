@@ -1,32 +1,18 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { z } from "zod";
 import {
   applyFrNerMigrationPatch,
   buildInitialMigrationData,
   frNerMigrationApplies,
   toFrNerMigrationRecord,
 } from "@/lib/fr-ner-migration/service";
-import { FR_NER_MIGRATION_STATUSES, FR_NER_WIZARD_STEPS } from "@/lib/fr-ner-migration/types";
-
-const checklistItemSchema = z.object({
-  key: z.string(),
-  done: z.boolean(),
-});
-
-const patchSchema = z.object({
-  status: z.enum(FR_NER_MIGRATION_STATUSES).optional(),
-  localRegistrationNumber: z.string().nullable().optional(),
-  localIssuingCommune: z.string().nullable().optional(),
-  nerNumber: z.string().nullable().optional(),
-  nerIssuedAt: z.string().nullable().optional(),
-  transitionEndsAt: z.string().nullable().optional(),
-  documentsChecklist: z.array(checklistItemSchema).optional(),
-  channelUpdatesChecklist: z.array(checklistItemSchema).optional(),
-  notifyOnPortalOpen: z.boolean().optional(),
-  wizardStep: z.enum(FR_NER_WIZARD_STEPS).nullable().optional(),
-});
+import {
+  migrationAlreadyCompleteBody,
+  migrationNotFoundBody,
+  shouldRejectFrNerMigrationPatch,
+} from "@/lib/fr-ner-migration/route-errors";
+import { frNerMigrationPatchSchema } from "@/lib/fr-ner-migration/patch-schema";
 
 async function ensureMigrationForProperty(propertyId: string, country: string) {
   const registration = await prisma.registration.upsert({
@@ -79,7 +65,7 @@ export async function GET(
 
   const { migration } = await ensureMigrationForProperty(property.id, property.country);
   if (!migration) {
-    return NextResponse.json({ applies: true, migration: null });
+    return NextResponse.json(migrationNotFoundBody(), { status: 404 });
   }
 
   return NextResponse.json({
@@ -114,59 +100,71 @@ export async function PATCH(
     );
   }
 
+  let body: unknown;
   try {
-    const body = await request.json();
-    const data = patchSchema.parse(body);
-
-    const { registration, migration } = await ensureMigrationForProperty(
-      property.id,
-      property.country
-    );
-
-    if (!migration) {
-      return NextResponse.json({ error: "Migration record missing" }, { status: 500 });
-    }
-
-    const current = toFrNerMigrationRecord(migration);
-    const { record, registrationSync } = applyFrNerMigrationPatch(current, data);
-
-    const updated = await prisma.frNerMigration.update({
-      where: { id: migration.id },
-      data: {
-        status: record.status,
-        localRegistrationNumber: record.localRegistrationNumber,
-        localIssuingCommune: record.localIssuingCommune,
-        nerNumber: record.nerNumber,
-        nerIssuedAt: record.nerIssuedAt ? new Date(record.nerIssuedAt) : null,
-        transitionEndsAt: record.transitionEndsAt
-          ? new Date(record.transitionEndsAt)
-          : null,
-        documentsChecklist: JSON.stringify(record.documentsChecklist),
-        channelUpdatesChecklist: JSON.stringify(record.channelUpdatesChecklist),
-        notifyOnPortalOpen: record.notifyOnPortalOpen,
-        wizardStep: record.wizardStep,
-      },
-    });
-
-    if (registrationSync) {
-      await prisma.registration.update({
-        where: { id: registration.id },
-        data: {
-          registrationNumber: registrationSync.registrationNumber,
-          issuingAuthority: registrationSync.issuingAuthority,
-          nationalRegistrationNumber: registrationSync.nationalRegistrationNumber,
-          ...(registrationSync.nationalTransitionStatus
-            ? { nationalTransitionStatus: registrationSync.nationalTransitionStatus }
-            : {}),
-        },
-      });
-    }
-
-    return NextResponse.json({
-      applies: true,
-      migration: toFrNerMigrationRecord(updated),
-    });
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
+
+  const parsed = frNerMigrationPatchSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  }
+
+  const data = parsed.data;
+
+  const { registration, migration } = await ensureMigrationForProperty(
+    property.id,
+    property.country
+  );
+
+  if (!migration) {
+    return NextResponse.json(migrationNotFoundBody(), { status: 404 });
+  }
+
+  const current = toFrNerMigrationRecord(migration);
+  const rejectCode = shouldRejectFrNerMigrationPatch(current, data);
+  if (rejectCode === "migration_already_complete") {
+    return NextResponse.json(migrationAlreadyCompleteBody(), { status: 409 });
+  }
+
+  const { record, registrationSync } = applyFrNerMigrationPatch(current, data);
+
+  const updated = await prisma.frNerMigration.update({
+    where: { id: migration.id },
+    data: {
+      status: record.status,
+      localRegistrationNumber: record.localRegistrationNumber,
+      localIssuingCommune: record.localIssuingCommune,
+      nerNumber: record.nerNumber,
+      nerIssuedAt: record.nerIssuedAt ? new Date(record.nerIssuedAt) : null,
+      transitionEndsAt: record.transitionEndsAt
+        ? new Date(record.transitionEndsAt)
+        : null,
+      documentsChecklist: JSON.stringify(record.documentsChecklist),
+      channelUpdatesChecklist: JSON.stringify(record.channelUpdatesChecklist),
+      notifyOnPortalOpen: record.notifyOnPortalOpen,
+      wizardStep: record.wizardStep,
+    },
+  });
+
+  if (registrationSync) {
+    await prisma.registration.update({
+      where: { id: registration.id },
+      data: {
+        registrationNumber: registrationSync.registrationNumber,
+        issuingAuthority: registrationSync.issuingAuthority,
+        nationalRegistrationNumber: registrationSync.nationalRegistrationNumber,
+        ...(registrationSync.nationalTransitionStatus
+          ? { nationalTransitionStatus: registrationSync.nationalTransitionStatus }
+          : {}),
+      },
+    });
+  }
+
+  return NextResponse.json({
+    applies: true,
+    migration: toFrNerMigrationRecord(updated),
+  });
 }

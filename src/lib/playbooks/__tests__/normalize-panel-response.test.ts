@@ -22,4 +22,17 @@ describe("normalizePlaybookPanelResponse", () => {
     });
     assert.equal(data?.progress.length, 1);
   });
+
+  it("returns null when playbook exists but summary is invalid", () => {
+    const data = normalizePlaybookPanelResponse({
+      playbook: {
+        id: "fr-paris",
+        title: { en: "Paris", fr: "Paris" },
+        description: { en: "d", fr: "d" },
+        steps: [],
+      },
+      summary: { completed: "bad" },
+    });
+    assert.equal(data, null);
+  });
 });

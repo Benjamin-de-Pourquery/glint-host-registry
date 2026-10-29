@@ -35,19 +35,14 @@ export function shouldRejectFrNerMigrationPatch(
     return null;
   }
 
-  if (patch.wizardStep !== undefined && patch.wizardStep !== current.wizardStep) {
+  if (patch.status !== undefined && patch.status !== "NER_ACTIVE") {
     return "migration_already_complete";
   }
 
   if (
-    patch.status !== undefined &&
-    patch.status !== "NER_ACTIVE" &&
-    patch.status !== "SUBMITTED"
+    patch.localRegistrationNumber !== undefined &&
+    patch.localRegistrationNumber !== current.localRegistrationNumber
   ) {
-    return "migration_already_complete";
-  }
-
-  if (patch.localRegistrationNumber !== undefined && patch.localRegistrationNumber !== current.localRegistrationNumber) {
     return "migration_already_complete";
   }
 

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { z } from "zod";
 import {
   applyFrNerMigrationPatch,
   buildInitialMigrationData,
@@ -13,25 +12,7 @@ import {
   migrationNotFoundBody,
   shouldRejectFrNerMigrationPatch,
 } from "@/lib/fr-ner-migration/route-errors";
-import { FR_NER_MIGRATION_STATUSES, FR_NER_WIZARD_STEPS } from "@/lib/fr-ner-migration/types";
-
-const checklistItemSchema = z.object({
-  key: z.string(),
-  done: z.boolean(),
-});
-
-const patchSchema = z.object({
-  status: z.enum(FR_NER_MIGRATION_STATUSES).optional(),
-  localRegistrationNumber: z.string().nullable().optional(),
-  localIssuingCommune: z.string().nullable().optional(),
-  nerNumber: z.string().nullable().optional(),
-  nerIssuedAt: z.string().nullable().optional(),
-  transitionEndsAt: z.string().nullable().optional(),
-  documentsChecklist: z.array(checklistItemSchema).optional(),
-  channelUpdatesChecklist: z.array(checklistItemSchema).optional(),
-  notifyOnPortalOpen: z.boolean().optional(),
-  wizardStep: z.enum(FR_NER_WIZARD_STEPS).nullable().optional(),
-});
+import { frNerMigrationPatchSchema } from "@/lib/fr-ner-migration/patch-schema";
 
 async function ensureMigrationForProperty(propertyId: string, country: string) {
   const registration = await prisma.registration.upsert({
@@ -126,7 +107,7 @@ export async function PATCH(
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const parsed = patchSchema.safeParse(body);
+  const parsed = frNerMigrationPatchSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }

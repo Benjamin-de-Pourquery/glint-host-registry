@@ -35,9 +35,20 @@ describe("fr-ner migration route errors", () => {
     assert.equal(migrationAlreadyCompleteBody().code, "migration_already_complete");
   });
 
-  it("blocks wizard changes after NER is active", () => {
+  it("allows wizard navigation after NER is active", () => {
     assert.equal(
       shouldRejectFrNerMigrationPatch(baseRecord, { wizardStep: "account" }),
+      null
+    );
+  });
+
+  it("blocks regulatory identity rollback after NER is active", () => {
+    assert.equal(
+      shouldRejectFrNerMigrationPatch(baseRecord, { nerNumber: "FRA000" }),
+      "migration_already_complete"
+    );
+    assert.equal(
+      shouldRejectFrNerMigrationPatch(baseRecord, { status: "HAS_LOCAL" }),
       "migration_already_complete"
     );
   });

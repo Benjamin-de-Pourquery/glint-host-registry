@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { toast } from "sonner";
+import { stripeBillingToastKey } from "@/lib/stripe/billing-toast";
 import { PLANS } from "@/lib/plans";
 
 type UserSettings = {
@@ -59,7 +60,7 @@ export default function SettingsPage() {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      toast.error(data.error || t("billing.checkoutError"));
+      toast.error(t(stripeBillingToastKey(data.code, "checkout")));
       setCheckoutLoading("");
     }
   };
@@ -74,7 +75,7 @@ export default function SettingsPage() {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      toast.error(data.error || t("billing.portalError"));
+      toast.error(t(stripeBillingToastKey(data.code, "portal")));
     }
   };
 

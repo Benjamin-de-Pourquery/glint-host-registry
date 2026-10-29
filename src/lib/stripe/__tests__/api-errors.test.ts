@@ -2,6 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import Stripe from "stripe";
 import {
+  formatUnknownStripeLogPayload,
   isStripeApiError,
   normalizeStripeLocale,
   stripeApiErrorResponse,
@@ -39,5 +40,14 @@ describe("stripeApiErrorResponse", () => {
     assert.equal(isStripeApiError(error), true);
     const { status } = stripeApiErrorResponse(error, "en");
     assert.equal(status, 503);
+  });
+
+  it("does not log full unknown error objects", () => {
+    const payload = formatUnknownStripeLogPayload({ secret: "sk_test_xxx", nested: { token: "x" } });
+    assert.deepEqual(payload, { kind: "unknown" });
+    const errPayload = formatUnknownStripeLogPayload(new Error("boom"));
+    assert.ok("message" in errPayload);
+    assert.equal(errPayload.name, "Error");
+    assert.equal(errPayload.message, "boom");
   });
 });

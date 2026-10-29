@@ -175,13 +175,8 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
       const json = await registerRes.json();
       const normalized = normalizeGuestRegisterPanelData(json);
       if (!normalized) {
-        setData({
-          token: null,
-          records: [],
-          stays: [],
-          guestsThisMonth: 0,
-          missingFichesCount: 0,
-        });
+        setData(null);
+        toast.error(t("loadError"));
       } else {
         setData(normalized);
       }
@@ -423,7 +418,7 @@ export function GuestRegisterPanel({ propertyId, locale, country = "", city = ""
 
   if (!data) {
     return (
-      <EmptyState icon={AlertCircle} title={t("loadError")} description={t("loadError")}>
+      <EmptyState icon={AlertCircle} title={t("loadError")} description={t("loadErrorHint")}>
         <Button variant="outline" size="sm" onClick={() => void loadData()}>
           {t("retry")}
         </Button>

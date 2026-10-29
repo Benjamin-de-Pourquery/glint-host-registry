@@ -29,14 +29,23 @@ export function RuleRadarFeed({ locale }: Props) {
   const t = useTranslations("ruleRadar");
   const [items, setItems] = useState<RuleImpactFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
+    setLoadError(false);
     try {
       const res = await fetch("/api/rule-radar/changes?limit=10");
-      if (!res.ok) return;
+      if (!res.ok) {
+        setLoadError(true);
+        setItems([]);
+        return;
+      }
       const data = await res.json();
       setItems(sanitizeRuleImpactFeedItems(data.items));
+    } catch {
+      setLoadError(true);
+      setItems([]);
     } finally {
       setLoading(false);
     }
@@ -64,6 +73,19 @@ export function RuleRadarFeed({ locale }: Props) {
         <CardContent className="flex items-center gap-2 py-8 text-slate-600">
           <Loader2 className="h-4 w-4 animate-spin" />
           {t("feed.loading")}
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <Card>
+        <CardContent className="space-y-3 py-8 text-center">
+          <p className="text-sm text-slate-600">{t("feed.loadError")}</p>
+          <Button variant="outline" size="sm" onClick={() => void load()}>
+            {t("feed.retry")}
+          </Button>
         </CardContent>
       </Card>
     );

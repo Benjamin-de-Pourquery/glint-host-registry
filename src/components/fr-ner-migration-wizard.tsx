@@ -57,6 +57,15 @@ export function FrNerMigrationWizard({ propertyId, migration, locale, onUpdated 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patch),
       });
+      if (res.status === 409) {
+        const conflict = (await res.json().catch(() => null)) as {
+          code?: string;
+        } | null;
+        if (conflict?.code === "migration_already_complete") {
+          toast.error(t("migrationLocked"));
+          return null;
+        }
+      }
       if (!res.ok) throw new Error("save failed");
       const json = await res.json();
       onUpdated?.(json.migration);

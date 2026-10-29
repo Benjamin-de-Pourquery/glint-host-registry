@@ -23,6 +23,15 @@ export function isStripeApiError(error: unknown): error is Stripe.errors.StripeE
   );
 }
 
+export function formatUnknownStripeLogPayload(
+  error: unknown
+): { name: string; message: string } | { kind: "unknown" } {
+  if (error instanceof Error) {
+    return { name: error.name, message: error.message };
+  }
+  return { kind: "unknown" };
+}
+
 export function stripeApiErrorResponse(
   error: unknown,
   locale: unknown
@@ -37,7 +46,7 @@ export function stripeApiErrorResponse(
       statusCode: error.statusCode,
     });
   } else {
-    console.error("[stripe]", error);
+    console.error("[stripe]", formatUnknownStripeLogPayload(error));
   }
 
   const status =

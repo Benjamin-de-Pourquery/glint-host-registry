@@ -12,25 +12,26 @@ export type PlaybookPanelResponse = {
   } | null;
 };
 
-function normalizeSummary(raw: unknown): PlaybookPanelResponse["summary"] {
+function isValidSummary(raw: unknown): raw is PlaybookPanelResponse["summary"] {
   if (!raw || typeof raw !== "object") {
-    return { completed: 0, total: 0, skipped: 0 };
+    return false;
   }
   const summary = raw as PlaybookPanelResponse["summary"];
-  return {
-    completed:
-      typeof summary.completed === "number" && Number.isFinite(summary.completed)
-        ? summary.completed
-        : 0,
-    total:
-      typeof summary.total === "number" && Number.isFinite(summary.total)
-        ? summary.total
-        : 0,
-    skipped:
-      typeof summary.skipped === "number" && Number.isFinite(summary.skipped)
-        ? summary.skipped
-        : 0,
-  };
+  return (
+    typeof summary.completed === "number" &&
+    Number.isFinite(summary.completed) &&
+    typeof summary.total === "number" &&
+    Number.isFinite(summary.total) &&
+    typeof summary.skipped === "number" &&
+    Number.isFinite(summary.skipped)
+  );
+}
+
+function normalizeSummary(raw: unknown): PlaybookPanelResponse["summary"] {
+  if (!isValidSummary(raw)) {
+    return { completed: 0, total: 0, skipped: 0 };
+  }
+  return raw;
 }
 
 function normalizeProgress(raw: unknown): PlaybookStepProgress[] {
@@ -62,11 +63,21 @@ export function normalizePlaybookPanelResponse(
   }
 
   const data = raw as Partial<PlaybookPanelResponse>;
-  const playbook = data.playbook === null || data.playbook === undefined
-    ? null
-    : isPlaybook(data.playbook)
-      ? data.playbook
-      : null;
+  const rawPlaybook = data.playbook;
+  const playbook =
+    rawPlaybook === null || rawPlaybook === undefined
+      ? null
+      : isPlaybook(rawPlaybook)
+        ? rawPlaybook
+        : null;
+
+  if (rawPlaybook !== null && rawPlaybook !== undefined && !playbook) {
+    return null;
+  }
+
+  if (playbook && !isValidSummary(data.summary)) {
+    return null;
+  }
 
   return {
     playbook,

@@ -621,6 +621,7 @@ export function PlaybookNextActionTeaser({
     const panelSummary = data?.summary ?? { completed: 0, total: 0, skipped: 0 };
     if (
       data?.playbook &&
+      panelSummary.total > 0 &&
       panelSummary.completed + panelSummary.skipped >= panelSummary.total
     ) {
       return (

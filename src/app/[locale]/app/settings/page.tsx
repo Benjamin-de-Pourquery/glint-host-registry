@@ -59,7 +59,7 @@ export default function SettingsPage() {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      toast.error(data.error || "Stripe not configured");
+      toast.error(data.error || t("billing.checkoutError"));
       setCheckoutLoading("");
     }
   };
@@ -74,7 +74,7 @@ export default function SettingsPage() {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      toast.error(data.error || "Billing portal unavailable");
+      toast.error(data.error || t("billing.portalError"));
     }
   };
 

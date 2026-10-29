@@ -6,6 +6,12 @@
     "tagline": "Conformité location courte durée UE, simplifiée",
     "suiteOneliner": "Glint construit des registres opérationnels pour la conformité européenne. Outil logiciel uniquement : pas un certificateur, pas un avocat, pas un organisme notifié."
   },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "Ce lien est peut-être obsolète ou la page a été déplacée. Revenez à l'accueil Host Registry ou ouvrez votre tableau de bord.",
+    "homeCta": "Retour à l'accueil",
+    "appCta": "Ouvrir le tableau de bord"
+  },
   "seo": {
     "home": {
       "title": "Conformité location courte durée UE : numéro d'enregistrement, SES Hospedajes & registre voyageurs",
@@ -2974,7 +2980,9 @@
       "none": "Aucun abonnement actif",
       "manage": "Gérer la facturation",
       "upgrade": "Mettre à niveau",
-      "subscribe": "S'abonner"
+      "subscribe": "S'abonner",
+      "checkoutError": "La facturation est temporairement indisponible. Réessayez dans quelques minutes.",
+      "portalError": "Le portail de facturation est temporairement indisponible. Réessayez dans quelques minutes."
     },
     "demo": {
       "title": "Données de démo",
@@ -3015,6 +3023,7 @@
     "subtitle": "Collectez et conservez les fiches de police pour les voyageurs étrangers.",
     "loading": "Chargement du registre…",
     "loadError": "Impossible de charger le registre",
+    "retry": "Réessayer",
     "actionError": "Impossible de mettre à jour le lien",
     "checkInLink": "Lien d'enregistrement public",
     "enableLink": "Générer le lien d'enregistrement",
@@ -4350,6 +4359,7 @@
       "title": "Changements vous concernant",
       "description": "Mises à jour réglementaires pouvant modifier plafonds ou échéances pour vos logements. Aide opérationnelle, pas un conseil juridique.",
       "loading": "Chargement des changements réglementaires...",
+      "empty": "Aucun changement réglementaire à afficher pour le moment.",
       "markSeen": "Marquer comme vu",
       "nightCapDelta": "(plafond : {before} à {after} nuitées)",
       "disclaimer": "Vérifiez la source officielle et la date d'effet avant d'agir. Ceci n'est pas un conseil juridique."

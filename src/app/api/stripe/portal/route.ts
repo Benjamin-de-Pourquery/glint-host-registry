@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { stripe, isStripeConfigured } from "@/lib/stripe";
+import { stripeApiErrorResponse } from "@/lib/stripe/api-errors";
 
 export async function POST(request: Request) {
   const session = await auth();
@@ -11,7 +12,7 @@ export async function POST(request: Request) {
 
   if (!isStripeConfigured() || !stripe) {
     return NextResponse.json(
-      { error: "Stripe is not configured" },
+      { error: "Stripe is not configured", code: "stripe_unavailable" },
       { status: 503 }
     );
   }
@@ -30,10 +31,15 @@ export async function POST(request: Request) {
   const { locale } = await request.json().catch(() => ({}));
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:4311";
 
-  const portalSession = await stripe.billingPortal.sessions.create({
-    customer: user.stripeCustomerId,
-    return_url: `${appUrl}/${locale || "en"}/app/settings`,
-  });
+  try {
+    const portalSession = await stripe.billingPortal.sessions.create({
+      customer: user.stripeCustomerId,
+      return_url: `${appUrl}/${locale || "en"}/app/settings`,
+    });
 
-  return NextResponse.json({ url: portalSession.url });
+    return NextResponse.json({ url: portalSession.url });
+  } catch (error) {
+    const { status, body } = stripeApiErrorResponse(error, locale);
+    return NextResponse.json(body, { status });
+  }
 }

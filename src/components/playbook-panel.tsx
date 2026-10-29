@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { normalizePlaybookPanelResponse } from "@/lib/playbooks/normalize-panel-response";
 import { EmptyState } from "@/components/empty-state";
 
 type Props = {
@@ -91,10 +92,16 @@ export function PlaybookPanel({
     try {
       const res = await fetch(`/api/properties/${propertyId}/playbook`);
       if (!res.ok) throw new Error("Failed to load");
-      const json = (await res.json()) as PlaybookResponse;
-      setData(json);
-      if (json.nextStepKey) {
-        setExpandedStepKey(json.nextStepKey);
+      const json = await res.json();
+      const normalized = normalizePlaybookPanelResponse(json);
+      if (!normalized) {
+        setError(true);
+        setData(null);
+        return;
+      }
+      setData(normalized);
+      if (normalized.nextStepKey) {
+        setExpandedStepKey(normalized.nextStepKey);
       }
     } catch {
       setError(true);
@@ -273,9 +280,14 @@ export function PlaybookPanel({
   }
 
   const { playbook, progress, nextStepKey, summary } = data;
-  const progressMap = new Map(progress.map((p) => [p.stepKey, p.status]));
-  const nextStep = playbook.steps.find((s) => s.key === nextStepKey) ?? null;
-  const allDone = summary.completed + summary.skipped >= summary.total;
+  const progressMap = new Map(
+    Array.isArray(progress) ? progress.map((p) => [p.stepKey, p.status]) : []
+  );
+  const steps = Array.isArray(playbook.steps) ? playbook.steps : [];
+  const nextStep = steps.find((s) => s.key === nextStepKey) ?? null;
+  const safeSummary = summary ?? { completed: 0, total: 0, skipped: 0 };
+  const allDone =
+    safeSummary.completed + safeSummary.skipped >= safeSummary.total;
   const nextCta = nextStep ? getPrimaryCtaUrl(nextStep) : null;
   const nextCtaLabelKey = nextCta ? getCtaLabelKey(nextCta.role) : "openOfficial";
 
@@ -290,7 +302,7 @@ export function PlaybookPanel({
           : playbook.id === "fr-nice"
             ? niceInputFromProperty(propertyWithResidency)
             : null;
-  const visibleSteps = playbook.steps.filter((step) =>
+  const visibleSteps = steps.filter((step) =>
     stepApplies(
       playbook,
       step,
@@ -323,11 +335,11 @@ export function PlaybookPanel({
           </div>
           <p className="text-sm text-slate-600">
             <span className="font-semibold text-slate-900">
-              {t("progress", { done: summary.completed, total: summary.total })}
+              {t("progress", { done: safeSummary.completed, total: safeSummary.total })}
             </span>
-            {summary.skipped > 0 && (
+            {safeSummary.skipped > 0 && (
               <span className="ml-2 text-xs text-slate-500">
-                ({t("skippedCount", { count: summary.skipped })})
+                ({t("skippedCount", { count: safeSummary.skipped })})
               </span>
             )}
           </p>
@@ -606,7 +618,11 @@ export function PlaybookNextActionTeaser({
   }
 
   if (!data?.playbook || !data.nextStepKey) {
-    if (data?.playbook && data.summary.completed + data.summary.skipped >= data.summary.total) {
+    const panelSummary = data?.summary ?? { completed: 0, total: 0, skipped: 0 };
+    if (
+      data?.playbook &&
+      panelSummary.completed + panelSummary.skipped >= panelSummary.total
+    ) {
       return (
         <EmptyState
           icon={CheckCircle2}
@@ -620,8 +636,11 @@ export function PlaybookNextActionTeaser({
     return null;
   }
 
-  const nextStep = data.playbook.steps.find((s) => s.key === data.nextStepKey);
+  const teaserSteps = Array.isArray(data.playbook.steps) ? data.playbook.steps : [];
+  const nextStep = teaserSteps.find((s) => s.key === data.nextStepKey);
   if (!nextStep) return null;
+
+  const teaserSummary = data.summary ?? { completed: 0, total: 0, skipped: 0 };
 
   return (
     <div className="rounded-xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-white px-5 py-4">
@@ -633,7 +652,7 @@ export function PlaybookNextActionTeaser({
         {getStepWhyNow(nextStep, uiLocale)}
       </p>
       <p className="mt-2 text-xs text-slate-500">
-        {t("progress", { done: data.summary.completed, total: data.summary.total })}
+        {t("progress", { done: teaserSummary.completed, total: teaserSummary.total })}
       </p>
       <Button className="mt-3" size="sm" onClick={onGoToCompliance}>
         {t("viewCompliance")}

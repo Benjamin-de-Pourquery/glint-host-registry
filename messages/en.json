@@ -2170,7 +2170,8 @@
       "irelandRegistration": "{count, plural, one {# Ireland property: STL register readiness or listing display missing} other {# Ireland properties: STL register readiness or listing display missing}}",
       "spainRegistration": "{count, plural, one {# Catalonia property: HUT dossier or listing display missing} other {# Catalonia properties: HUT dossier or listing display missing}}",
       "nightCap": "{count, plural, one {# primary residence — night cap alert} other {# primary residences — night cap alerts}}",
-      "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}"
+      "touristTax": "{count, plural, one {# property — taxe de séjour due} other {# properties — taxe de séjour due}}",
+      "listingHealthAtRisk": "{count, plural, one {# property at listing health risk} other {# properties at listing health risk}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# missing police form} other {# missing police forms}}",
@@ -2197,6 +2198,12 @@
       "subscribeDescription": "Subscribe to a plan, then add your first property to get started.",
       "cta": "Add your first property"
     }
+  },
+  "appError": {
+    "title": "This section could not load",
+    "description": "Something went wrong while loading this page. You can try again or return to the dashboard.",
+    "retry": "Try again",
+    "dashboard": "Back to dashboard"
   },
   "onboarding": {
     "title": "Get started with Glint",
@@ -4246,10 +4253,12 @@
         "valencian": "Comunitat Valenciana",
         "andalucia": "Andalucía"
       },
-      "licenseKind": "License kind",
-      "licenseKind.hut": "HUT (Catalonia tourist housing)",
-      "licenseKind.vut": "VUT (Comunidad de Madrid tourist housing)",
-      "licenseKind.other": "Other (out of scope)",
+      "licenseKind": {
+        "label": "License kind",
+        "hut": "HUT (Catalonia tourist housing)",
+        "vut": "VUT (Comunidad de Madrid tourist housing)",
+        "other": "Other (out of scope)"
+      },
       "dossierPreparedAt": "Dossier prepared on",
       "registrationNumber": "HUT registration number",
       "registrationNumberVut": "VUT registration number",

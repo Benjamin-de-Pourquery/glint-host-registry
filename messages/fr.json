@@ -2170,7 +2170,8 @@
       "irelandRegistration": "{count, plural, one {# bien Irlande : préparation registre LCD ou affichage annonce manquant} other {# biens Irlande : préparation registre LCD ou affichage annonce manquant}}",
       "spainRegistration": "{count, plural, one {# bien Catalogne : dossier HUT ou affichage annonce manquant} other {# biens Catalogne : dossier HUT ou affichage annonce manquant}}",
       "nightCap": "{count, plural, one {# résidence principale — plafond de nuitées} other {# résidences principales — plafond de nuitées}}",
-      "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}"
+      "touristTax": "{count, plural, one {# bien — taxe de séjour à déclarer} other {# biens — taxe de séjour à déclarer}}",
+      "listingHealthAtRisk": "{count, plural, one {# logement à risque de dépublication} other {# logements à risque de dépublication}}"
     },
     "missingFiches": {
       "title": "{count, plural, one {# fiche de police manquante} other {# fiches de police manquantes}}",
@@ -2197,6 +2198,12 @@
       "subscribeDescription": "Abonnez-vous à un plan, puis ajoutez votre premier bien pour commencer.",
       "cta": "Ajouter votre premier bien"
     }
+  },
+  "appError": {
+    "title": "Cette section n'a pas pu se charger",
+    "description": "Un problème est survenu lors du chargement de cette page. Vous pouvez réessayer ou revenir au tableau de bord.",
+    "retry": "Réessayer",
+    "dashboard": "Retour au tableau de bord"
   },
   "onboarding": {
     "title": "Démarrez avec Glint",
@@ -4246,10 +4253,12 @@
         "valencian": "Communauté valencienne",
         "andalucia": "Andalousie"
       },
-      "licenseKind": "Type de licence",
-      "licenseKind.hut": "HUT (habitatge d'ús turístic)",
-      "licenseKind.vut": "VUT (vivienda de uso turístico)",
-      "licenseKind.other": "Autre (hors périmètre)",
+      "licenseKind": {
+        "label": "Type de licence",
+        "hut": "HUT (habitatge d'ús turístic)",
+        "vut": "VUT (vivienda de uso turístico)",
+        "other": "Autre (hors périmètre)"
+      },
       "dossierPreparedAt": "Dossier prêt le",
       "registrationNumber": "Numéro HUT",
       "registrationNumberVut": "Numéro VUT",

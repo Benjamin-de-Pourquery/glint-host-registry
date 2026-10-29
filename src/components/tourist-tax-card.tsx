@@ -22,33 +22,16 @@ import {
   type CollectionMode,
   type DeclarationCadence,
   type MeubleClassification,
-  type TouristTaxSummary,
 } from "@/lib/france/tourist-tax";
+import {
+  formatDeclarationDueDate,
+  type TouristTaxResponse,
+  type TouristTaxSettingsResponse,
+} from "@/lib/france/tourist-tax-api";
 import { isFranceCountry } from "@/lib/national-transition";
 import { ExternalLink, Loader2, Receipt, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-
-type TouristTaxSettings = {
-  enabled: boolean;
-  collectionMode: CollectionMode;
-  declarationCadence: DeclarationCadence;
-  portalUrl: string | null;
-  classification: MeubleClassification;
-  attestationOnFile: boolean;
-  notes: string | null;
-};
-
-type TouristTaxResponse = {
-  applies: boolean;
-  settings: TouristTaxSettings | null;
-  summary: TouristTaxSummary | null;
-  priorityAction: {
-    level: string;
-    title: { en: string; fr: string };
-    message: { en: string; fr: string };
-  } | null;
-};
 
 type Props = {
   propertyId: string;
@@ -86,7 +69,7 @@ export function TouristTaxCard({ propertyId, country, locale }: Props) {
   const [data, setData] = useState<TouristTaxResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState<TouristTaxSettings | null>(null);
+  const [form, setForm] = useState<TouristTaxSettingsResponse | null>(null);
   const [copied, setCopied] = useState(false);
 
   const load = useCallback(async () => {
@@ -131,7 +114,7 @@ export function TouristTaxCard({ propertyId, country, locale }: Props) {
   const headlineStatus = summary.nextDuePeriod?.status ?? "upcoming";
   const tone = STATUS_TONE[headlineStatus] ?? STATUS_TONE.upcoming;
 
-  const save = async (patch: Partial<TouristTaxSettings>) => {
+  const save = async (patch: Partial<TouristTaxSettingsResponse>) => {
     setSaving(true);
     try {
       const res = await fetch(`/api/properties/${propertyId}/tourist-tax`, {
@@ -405,8 +388,9 @@ export function TouristTaxCard({ propertyId, country, locale }: Props) {
                       {t("nights", { count: period.nightsInPeriod ?? 0 })}
                       {period.status === "due" || period.status === "overdue"
                         ? ` · ${t("dueBy", {
-                            date: period.declarationDueDate.toLocaleDateString(
-                              uiLocale === "fr" ? "fr-FR" : "en-GB"
+                            date: formatDeclarationDueDate(
+                              period.declarationDueDate,
+                              uiLocale
                             ),
                           })}`
                         : ""}

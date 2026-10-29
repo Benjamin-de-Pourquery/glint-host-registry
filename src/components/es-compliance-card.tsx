@@ -259,7 +259,7 @@ export function EsComplianceCard({ propertyId, country, city, registration }: Pr
             </Select>
           </div>
           <div className="space-y-2">
-            <Label>{t("licenseKind")}</Label>
+            <Label>{t("licenseKind.label")}</Label>
             <Select
               value={form.esLicenseKind || defaultLicenseKind(activeCommunity)}
               onValueChange={(v) => setForm({ ...form, esLicenseKind: v })}
